@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-6e4ce817" version="1.0.4584">
+  <head std:sid="head-f48ff920">
+    <screen std:sid="screen-92fb885f" id="default" name="default" width="1024px" height="768px" active="true"/>
+    <screen std:sid="screen-675602a3" id="tablet" name="tablet" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-7ea65ebe" id="mobile" name="mobile" width="350px" height="525px"/>
+    <cl:model std:sid="model-d0df39b0"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-75f61cb5">
+    <cl:udc std:sid="ud-control-7c458ce1" type="udc.header">
+      <cl:xylayoutdata std:sid="xyl-data-8c72cc0f" top="20px" right="20px" left="30px" height="158px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+    </cl:udc>
+    <cl:searchinput std:sid="s-input-5e485e85" value="여행지를 검색하세요!">
+      <cl:xylayoutdata std:sid="xyl-data-3051a3dd" top="200px" width="524px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+    </cl:searchinput>
+    <cl:xylayout std:sid="xylayout-03cda20f"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

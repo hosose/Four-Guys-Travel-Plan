@@ -19,11 +19,25 @@
     </cl:model>
     <cl:appspec/>
   </head>
-  <body std:sid="body-3c97ba97">
-    <cl:button std:sid="button-f77cb928" id="btn1" value="TEST BUTTON">
-      <cl:listener std:sid="listener-afd2c941" name="click" handler="onBtn1Click"/>
-      <cl:xylayoutdata std:sid="xyl-data-055bea88" width="100px" height="20px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
-    </cl:button>
+  <body std:sid="body-3c97ba97" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none; border-bottom-style:none; border-top-style:none;">
+    <cl:img std:sid="image-28e63dd0" id="jejuImg1" style="opacity: 70%;" src="images/harubang.jpg">
+      <cl:xylayoutdata std:sid="xyl-data-6ef3be1a" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+    </cl:img>
+    <cl:output std:sid="output-c6854068" style="color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="여행 계획을&#xD;&#xA;">
+      <cl:xylayoutdata std:sid="xyl-data-b83513dd" top="320px" left="130px" width="819px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:output std:sid="output-ee793e74" style="background-color:#37E7F1; color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="TRAVEL and PLAN 스케줄링">
+      <cl:xylayoutdata std:sid="xyl-data-b924ba8d" top="389px" left="130px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:output std:sid="output-7750e935" style="color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="을 통해">
+      <cl:xylayoutdata std:sid="xyl-data-27e482aa" top="389px" left="779px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:output std:sid="output-59f212ff" style="color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="작성해 보세요!">
+      <cl:xylayoutdata std:sid="xyl-data-b3dc1d68" top="458px" left="130px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:udc std:sid="ud-control-dd2289b1" type="udc.header">
+      <cl:xylayoutdata std:sid="xyl-data-ea46fe25" top="20px" right="20px" left="30px" height="300px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+    </cl:udc>
     <cl:xylayout std:sid="xylayout-19454b57"/>
   </body>
   <std:studiosetting>

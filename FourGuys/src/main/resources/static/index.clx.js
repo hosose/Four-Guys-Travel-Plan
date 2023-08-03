@@ -51,8 +51,13 @@
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
+				"border-bottom-style" : "none",
+				"border-top-style" : "none",
+				"border-right-style" : "none",
+				"background-color" : "#FFFFFF",
 				"width" : "100%",
-				"height" : "100%"
+				"height" : "100%",
+				"border-left-style" : "none"
 			});
 			
 			// Layout
@@ -60,16 +65,85 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var button_1 = new cpr.controls.Button("btn1");
-			button_1.value = "TEST BUTTON";
-			if(typeof onBtn1Click == "function") {
-				button_1.addEventListener("click", onBtn1Click);
-			}
-			container.addChild(button_1, {
-				"width": "100px",
-				"height": "20px",
-				"left": "calc(50% - 50px)",
-				"top": "calc(50% - 10px)"
+			var image_1 = new cpr.controls.Image("jejuImg1");
+			image_1.src = "images/harubang.jpg";
+			image_1.style.css({
+				"opacity" : "70%"
+			});
+			container.addChild(image_1, {
+				"top": "0px",
+				"right": "0px",
+				"bottom": "0px",
+				"left": "0px"
+			});
+			
+			var output_1 = new cpr.controls.Output();
+			output_1.value = "여행 계획을\r\n";
+			output_1.style.setClasses(["output1"]);
+			output_1.style.css({
+				"color" : "#FFFFFF",
+				"font-size" : "50px",
+				"font-style" : "normal"
+			});
+			container.addChild(output_1, {
+				"top": "320px",
+				"left": "130px",
+				"width": "819px",
+				"height": "59px"
+			});
+			
+			var output_2 = new cpr.controls.Output();
+			output_2.value = "TRAVEL and PLAN 스케줄링";
+			output_2.style.setClasses(["output1"]);
+			output_2.style.css({
+				"background-color" : "#37E7F1",
+				"color" : "#FFFFFF",
+				"font-size" : "50px",
+				"font-style" : "normal"
+			});
+			container.addChild(output_2, {
+				"top": "389px",
+				"left": "130px",
+				"width": "650px",
+				"height": "59px"
+			});
+			
+			var output_3 = new cpr.controls.Output();
+			output_3.value = "을 통해";
+			output_3.style.setClasses(["output1"]);
+			output_3.style.css({
+				"color" : "#FFFFFF",
+				"font-size" : "50px",
+				"font-style" : "normal"
+			});
+			container.addChild(output_3, {
+				"top": "389px",
+				"left": "779px",
+				"width": "650px",
+				"height": "59px"
+			});
+			
+			var output_4 = new cpr.controls.Output();
+			output_4.value = "작성해 보세요!";
+			output_4.style.setClasses(["output1"]);
+			output_4.style.css({
+				"color" : "#FFFFFF",
+				"font-size" : "50px",
+				"font-style" : "normal"
+			});
+			container.addChild(output_4, {
+				"top": "458px",
+				"left": "130px",
+				"width": "650px",
+				"height": "59px"
+			});
+			
+			var userDefinedControl_1 = new udc.header();
+			container.addChild(userDefinedControl_1, {
+				"top": "20px",
+				"right": "20px",
+				"left": "30px",
+				"height": "300px"
 			});
 		}
 	});
