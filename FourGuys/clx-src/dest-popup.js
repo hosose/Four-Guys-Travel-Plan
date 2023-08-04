@@ -15,7 +15,7 @@ function onBodyLoad2(e) {
 		/*다이얼로그의 initValue 가져오기*/
 		var voInitValue = app.getHostProperty("initValue");
 		/*해당 값이 Null인지 여부를 체크하여 반환한다. */
-		if (!ValueUtil.isNull(voInitValue)) {
+		if (voInitValue) {
 			/*initValue 내의 msg 값을 아웃풋에 표시*/
 			app.lookup("intro1").value = voInitValue["msg"];
 		}

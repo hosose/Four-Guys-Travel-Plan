@@ -9,8 +9,9 @@ public class HomeController {
 	public String home() {
 		return "index.clx";
 	}
-	@GetMapping("/hello")
+
+	@GetMapping("/selectDestinationForm")
 	public String hello() {
-		return "hello.clx";
+		return "select_dest.clx";
 	}
 }

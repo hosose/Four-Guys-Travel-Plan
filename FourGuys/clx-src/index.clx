@@ -56,13 +56,9 @@
         <cl:xylayoutdata std:sid="sxyl-data-cdfb24c5" top="20px" left="24px" width="204px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
-    <cl:udc std:sid="ud-control-dffc5609" type="udc.header_nav">
-      <std:metadata>
-        <std:property key="locked" value="true"/>
-      </std:metadata>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-ca07be61">
-        <cl:xylayoutdata std:sid="sxyl-data-4f46240c" top="20px" right="50px" width="510px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
-        <cl:xylayoutdata std:sid="sxyl-data-b1b4e94e" top="106px" left="20px" width="509px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
+    <cl:udc std:sid="ud-control-9e5a030c" type="udc.header_nav">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-f499f45c">
+        <cl:xylayoutdata std:sid="sxyl-data-01065462" top="20px" right="50px" width="510px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
     <cl:responsivexylayout std:sid="r-xylayout-a55ed4bb"/>

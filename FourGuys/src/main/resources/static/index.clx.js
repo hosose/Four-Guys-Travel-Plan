@@ -16,16 +16,7 @@
 			 * Created at 2023. 8. 3. 오전 9:48:58.
 			 *
 			 * @author USER
-			 ************************************************/
-
-			/*
-			 * "Button" 버튼(btn1)에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-			function onBtn1Click(e){
-				var btn1 = e.control;
-				var url = new cpr.utils.URL(location.href="hello");
-			};
+			 ************************************************/;
 			// End - User Script
 			
 			// Header
@@ -272,15 +263,15 @@
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "106px",
-						"left": "20px",
-						"width": "509px",
+						"top": "20px",
+						"right": "24px",
+						"width": "249px",
 						"height": "77px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "106px",
-						"left": "7px",
+						"top": "20px",
+						"right": "17px",
 						"width": "174px",
 						"height": "77px"
 					}
