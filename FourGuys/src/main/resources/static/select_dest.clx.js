@@ -16,7 +16,33 @@
 			 * Created at 2023. 8. 3. 오후 4:51:13.
 			 *
 			 * @author USER
-			 ************************************************/;
+			 ************************************************/
+
+			/*
+			 * "JEJU" 버튼(jeju)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onJejuClick(e) {
+				var jeju = e.control;
+				var intro = "제주도, 그림 같은 아름다움이 넘치는 섬으로 대한민국에서 가장 특별한 곳 중 하나입니다.\n" + "맑고 푸른 바다, 푸른 하늘, 그리고 끝없이 펼쳐진 녹색 목초지가 만들어내는 풍경은 누구에게나 꿈꾸던 휴양지의 모습입니다.\n" +
+					"고유한 문화와 전통이 살아 숨쉬는 곳입니다.\n" +
+					"제주도는 그림 같은 자연과 다채로운 문화로 여행자들에게 환상적인 경험을 선사하는 곳입니다. 현대적인 편의시설과 전통이 공존하는 이곳에서 특별한 추억을 만들어보세요. 제주도의 아름다움은 당신을 매료시킬 것입니다."
+				var initValue = {
+					"msg": intro
+				}
+				app.openDialog("dest-popup", {
+					width: 600,
+					height: 450
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {
+						// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+						dialogApp.initValue = initValue;
+					});
+				}).then(function(returnValue) {
+					alert(JSON.stringify(returnValue));
+				});
+				
+			}
 			// End - User Script
 			
 			// Header
@@ -32,25 +58,228 @@
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
-			var userDefinedControl_1 = new udc.header();
-			container.addChild(userDefinedControl_1, {
-				"top": "20px",
-				"right": "20px",
-				"left": "30px",
-				"height": "158px"
+			var searchInput_1 = new cpr.controls.SearchInput();
+			searchInput_1.value = "";
+			searchInput_1.placeholder = "여행지를 검색하세요!";
+			searchInput_1.style.css({
+				"text-align" : "center"
+			});
+			container.addChild(searchInput_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "200px",
+						"width": "524px",
+						"height": "60px",
+						"left": "calc(50% - 262px)"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "200px",
+						"width": "256px",
+						"height": "60px",
+						"left": "calc(50% - 128px)"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "200px",
+						"width": "88px",
+						"height": "60px",
+						"left": "calc(50% - 44px)"
+					}
+				]
 			});
 			
-			var searchInput_1 = new cpr.controls.SearchInput();
-			searchInput_1.value = "여행지를 검색하세요!";
-			container.addChild(searchInput_1, {
-				"top": "200px",
-				"width": "524px",
-				"height": "60px",
-				"left": "calc(50% - 262px)"
+			var button_1 = new cpr.controls.Button("jeju");
+			button_1.value = "JEJU";
+			button_1.style.css({
+				"background-size" : "cover",
+				"color" : "#FFFFFF",
+				"font-size" : "40px",
+				"background-image" : "url('images/harubang2.jpg')",
+				"background-position" : "center"
+			});
+			if(typeof onJejuClick == "function") {
+				button_1.addEventListener("click", onJejuClick);
+			}
+			container.addChild(button_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "339px",
+						"right": "1400px",
+						"width": "294px",
+						"height": "320px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "339px",
+						"left": "98px",
+						"width": "144px",
+						"height": "160px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "339px",
+						"left": "33px",
+						"width": "49px",
+						"height": "160px"
+					}
+				]
+			});
+			
+			var button_2 = new cpr.controls.Button("seoul");
+			button_2.value = "SEOUL";
+			button_2.style.css({
+				"color" : "#FFFFFF",
+				"font-size" : "40px"
+			});
+			container.addChild(button_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "339px",
+						"right": "1000px",
+						"width": "294px",
+						"height": "320px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "339px",
+						"right": "493px",
+						"width": "144px",
+						"height": "160px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "339px",
+						"right": "169px",
+						"width": "49px",
+						"height": "160px"
+					}
+				]
+			});
+			
+			var button_3 = new cpr.controls.Button("japan");
+			button_3.value = "JAPAN";
+			button_3.style.css({
+				"color" : "#FFFFFF",
+				"font-size" : "40px"
+			});
+			container.addChild(button_3, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "340px",
+						"right": "600px",
+						"width": "294px",
+						"height": "320px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "340px",
+						"right": "293px",
+						"width": "144px",
+						"height": "160px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "340px",
+						"right": "100px",
+						"width": "49px",
+						"height": "160px"
+					}
+				]
+			});
+			
+			var button_4 = new cpr.controls.Button("vietnam");
+			button_4.value = "VIETNAM";
+			button_4.style.css({
+				"color" : "#FFFFFF",
+				"font-size" : "40px"
+			});
+			container.addChild(button_4, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "340px",
+						"right": "200px",
+						"width": "294px",
+						"height": "320px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "340px",
+						"right": "98px",
+						"width": "144px",
+						"height": "160px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "340px",
+						"right": "33px",
+						"width": "49px",
+						"height": "160px"
+					}
+				]
+			});
+			
+			var userDefinedControl_1 = new udc.logo();
+			container.addChild(userDefinedControl_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "20px",
+						"left": "50px",
+						"width": "172px",
+						"height": "70px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "20px",
+						"left": "20px",
+						"width": "266px",
+						"height": "70px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "20px",
+						"left": "7px",
+						"width": "91px",
+						"height": "70px"
+					}
+				]
+			});
+			
+			var userDefinedControl_2 = new udc.header_nav();
+			container.addChild(userDefinedControl_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "20px",
+						"right": "20px",
+						"width": "510px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "110px",
+						"left": "20px",
+						"width": "500px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "110px",
+						"left": "7px",
+						"width": "171px",
+						"height": "80px"
+					}
+				]
 			});
 		}
 	});

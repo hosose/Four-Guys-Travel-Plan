@@ -8,13 +8,50 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-75f61cb5">
-    <cl:udc std:sid="ud-control-7c458ce1" type="udc.header">
-      <cl:xylayoutdata std:sid="xyl-data-8c72cc0f" top="20px" right="20px" left="30px" height="158px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
-    </cl:udc>
-    <cl:searchinput std:sid="s-input-5e485e85" value="여행지를 검색하세요!">
-      <cl:xylayoutdata std:sid="xyl-data-3051a3dd" top="200px" width="524px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+    <cl:searchinput std:sid="s-input-5e485e85" style="text-align:center;" value="" placeholder="여행지를 검색하세요!">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-80d03e88">
+        <cl:xylayoutdata std:sid="sxyl-data-da0f4bd5" top="200px" width="524px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-c43e7ddc" top="200px" width="256px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="tablet"/>
+      </cl:responsivexylayoutdata>
     </cl:searchinput>
-    <cl:xylayout std:sid="xylayout-03cda20f"/>
+    <cl:button std:sid="button-9083e9ae" id="jeju" style="background-size:cover; color:#FFFFFF; font-size:40px; background-image:url(images/harubang2.jpg); background-position:center;" value="JEJU">
+      <cl:listener std:sid="listener-2abc7368" name="click" handler="onJejuClick"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-6daa3d08">
+        <cl:xylayoutdata std:sid="sxyl-data-6d88c30d" top="339px" right="1400px" width="294px" height="320px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-9762d81f" top="339px" left="98px" width="144px" height="160px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-271d219c" id="seoul" style="color:#FFFFFF; font-size:40px;" value="SEOUL">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-144b0fa5">
+        <cl:xylayoutdata std:sid="sxyl-data-c7b3e05e" top="339px" right="1000px" width="294px" height="320px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-1bfab4e0" top="339px" right="493px" width="144px" height="160px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-e7057512" id="japan" style="color:#FFFFFF; font-size:40px;" value="JAPAN">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-df05cba4">
+        <cl:xylayoutdata std:sid="sxyl-data-dbc50a97" top="340px" right="600px" width="294px" height="320px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-a60647da" top="340px" right="293px" width="144px" height="160px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-2e1106cc" id="vietnam" style="color:#FFFFFF; font-size:40px;" value="VIETNAM">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-f1b400f4">
+        <cl:xylayoutdata std:sid="sxyl-data-760fddbc" top="340px" right="200px" width="294px" height="320px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-a4915dc7" top="340px" right="98px" width="144px" height="160px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:udc std:sid="ud-control-be652860" type="udc.logo">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-bba5a9ef">
+        <cl:xylayoutdata std:sid="sxyl-data-6b649499" top="20px" left="50px" width="172px" height="70px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-fc0b2419" top="20px" left="20px" width="266px" height="70px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
+      </cl:responsivexylayoutdata>
+    </cl:udc>
+    <cl:udc std:sid="ud-control-6c49815d" type="udc.header_nav">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-0533d07c">
+        <cl:xylayoutdata std:sid="sxyl-data-95fbad22" top="20px" right="20px" width="510px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-332b3346" top="110px" left="20px" width="500px" height="80px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
+      </cl:responsivexylayoutdata>
+    </cl:udc>
+    <cl:responsivexylayout std:sid="r-xylayout-de1cafbf"/>
   </body>
   <std:studiosetting>
     <std:hruler/>
