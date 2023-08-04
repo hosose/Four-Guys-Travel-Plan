@@ -259,6 +259,7 @@
 	cpr.core.Platform.INSTANCE.register(internalApp);
 })();
 /// end - udc.logo
+<<<<<<< HEAD
 /// start - udc.myPageMyInfo
 /*
  * UDC Qualified Name: udc.myPageMyInfo
@@ -526,3 +527,5 @@
 	cpr.core.Platform.INSTANCE.register(internalApp);
 })();
 /// end - udc.nav_header
+=======
+>>>>>>> branch 'main' of https://github.com/hosose/Four-Guys-Travel-Plan.git
