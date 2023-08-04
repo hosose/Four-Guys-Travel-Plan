@@ -13,11 +13,23 @@ exports.getText = function(){
 	return "";
 };
 
+
+
+
 /*
- * "플랜 생성" 버튼에서 click 이벤트 발생 시 호출.
+ * "플랜 생성" 버튼(create_plan)에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onButtonClick(e){
-	var button = e.control;
+function onCreate_planClick(e){
+	var create_plan = e.control;
 	location.href="/selectDestinationForm"
+}
+
+/*
+ * "Login" 버튼(login)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onLoginClick(e){
+	var login = e.control;
+	location.href="/login"
 }

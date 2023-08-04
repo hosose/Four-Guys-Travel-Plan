@@ -19,10 +19,10 @@
     <cl:appspec title="로그인"/>
   </head>
   <body std:sid="body-4ce9e0c1" style="top:0px; left:0px; width:800px; background-image:none; height:600px;">
-    <cl:img std:sid="image-ec445c68" style="border-right-style:solid; border-radius:0px; border-bottom-color:#0e2eeb; border-left-style:solid; border-left-color:#0e2eeb; border-top-color:#0e2eeb; border-bottom-style:solid; border-right-color:#0e2eeb; border-top-style:solid;" src="theme/images/login.jpg">
-      <cl:xylayoutdata std:sid="xyl-data-c786929d" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+    <cl:img std:sid="image-fa65b1d5" src="images/harubang3.jpg">
+      <cl:xylayoutdata std:sid="xyl-data-b7a029ea" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
     </cl:img>
-    <cl:group std:sid="group-0e829648" style="background-color:tarnsparent; border-right-style:solid; border-bottom-color:#aefbf4; border-left-style:solid; border-left-color:#aefbf4; border-top-color:#aefbf4; border-bottom-style:solid; border-right-color:#aefbf4; border-top-style:solid;" class="login-box">
+    <cl:group std:sid="group-0e829648" style="background-color:tarnsparent; border-right-style:solid; border-bottom-color:#ffffff; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-right-color:#ffffff; border-bottom-style:solid; border-top-style:solid;" class="login-box">
       <cl:xylayoutdata std:sid="xyl-data-8e006681" width="350px" height="300px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
       <cl:inputbox std:sid="i-box-a2a037e2" id="ipb1" tooltip="ID를 입력하세요" placeholder="ID">
         <cl:datamapbind property="value" datacontrolid="dm_login" columnname="user_id"/>
@@ -36,22 +36,29 @@
       <cl:checkbox std:sid="c-box-a54b7192" id="cbx1" style="text-align:left;" value="" text="ID 저장">
         <cl:formdata std:sid="f-data-e5f71f85" row="3" col="0" rowspan="1" colspan="1"/>
       </cl:checkbox>
-      <cl:button std:sid="button-b76d85c5" id="btnLogin" style="background-color:#E4157C;" class="login" value="LOGIN">
-        <cl:listener std:sid="listener-ffb0c87c" name="click" handler="onButtonClick"/>
-        <cl:formdata std:sid="f-data-2e92fd42" valign="FILL" row="4" col="0"/>
-      </cl:button>
       <cl:img std:sid="image-8d2d1ab7" src="theme/images/logo.png">
-        <cl:formdata std:sid="f-data-44a555a4" row="0" col="0"/>
+        <cl:formdata std:sid="f-data-fa028be4" row="0" col="0" rowspan="1" colspan="1"/>
       </cl:img>
+      <cl:button std:sid="button-b76d85c5" id="btnLogin" style="background-color:#E4157C;" class="login" value="LOGIN">
+        <cl:formdata std:sid="f-data-454e0a6e" row="4" col="0"/>
+      </cl:button>
+      <cl:button std:sid="button-ce569052" id="register" style="background-color:#E4157C;" class="register" value="회원가입">
+        <cl:listener std:sid="listener-d1e0dd5a" name="click" handler="onRegisterClick"/>
+        <cl:formdata std:sid="f-data-5d67937d" row="5" col="0"/>
+      </cl:button>
       <cl:formlayout std:sid="f-layout-2b37edc8" top-margin="50" right-margin="50" bottom-margin="50" left-margin="50">
-        <cl:rows length="1" unit="FRACTION" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="40" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000"/>
+        <cl:rows length="30" unit="PIXEL"/>
         <cl:columns length="1" unit="FRACTION" shadetype="NONE" shadecolor="#000000"/>
       </cl:formlayout>
     </cl:group>
+    <cl:udc std:sid="ud-control-661cf73d" type="udc.logo">
+      <cl:xylayoutdata std:sid="xyl-data-8f9a393b" top="8px" left="20px" width="183px" height="74px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:udc>
     <cl:xylayout std:sid="xylayout-e6a24a7f"/>
   </body>
   <std:studiosetting>

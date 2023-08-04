@@ -85,6 +85,15 @@
 				if(e.keyCode == cpr.events.KeyCode.ENTER) {
 					app.lookup("btnLogin").click();
 				}
+			}
+
+			/*
+			 * "회원가입" 버튼(register)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onRegisterClick(e){
+				var register = e.control;
+				location.href="/register"
 			};
 			// End - User Script
 			
@@ -125,18 +134,7 @@
 			
 			// UI Configuration
 			var image_1 = new cpr.controls.Image();
-			image_1.src = "theme/images/login.jpg";
-			image_1.style.css({
-				"border-right-style" : "solid",
-				"border-radius" : "0px",
-				"border-bottom-color" : "#0e2eeb",
-				"border-left-style" : "solid",
-				"border-left-color" : "#0e2eeb",
-				"border-top-color" : "#0e2eeb",
-				"border-bottom-style" : "solid",
-				"border-right-color" : "#0e2eeb",
-				"border-top-style" : "solid"
-			});
+			image_1.src = "images/harubang3.jpg";
 			container.addChild(image_1, {
 				"top": "0px",
 				"right": "0px",
@@ -149,12 +147,12 @@
 			group_1.style.css({
 				"background-color" : "tarnsparent",
 				"border-right-style" : "solid",
-				"border-bottom-color" : "#aefbf4",
+				"border-bottom-color" : "#ffffff",
 				"border-left-style" : "solid",
-				"border-left-color" : "#aefbf4",
-				"border-top-color" : "#aefbf4",
+				"border-left-color" : "#ffffff",
+				"border-top-color" : "#ffffff",
+				"border-right-color" : "#ffffff",
 				"border-bottom-style" : "solid",
-				"border-right-color" : "#aefbf4",
 				"border-top-style" : "solid"
 			});
 			var formLayout_1 = new cpr.controls.layouts.FormLayout();
@@ -163,7 +161,7 @@
 			formLayout_1.bottomMargin = "50";
 			formLayout_1.leftMargin = "50";
 			formLayout_1.setColumns(["1fr"]);
-			formLayout_1.setRows(["1fr", "30px", "30px", "30px", "30px"]);
+			formLayout_1.setRows(["40px", "30px", "30px", "30px", "30px", "30px"]);
 			group_1.setLayout(formLayout_1);
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
@@ -202,25 +200,36 @@
 					"colSpan": 1,
 					"rowSpan": 1
 				});
+				var image_2 = new cpr.controls.Image();
+				image_2.src = "theme/images/logo.png";
+				container.addChild(image_2, {
+					"colIndex": 0,
+					"rowIndex": 0,
+					"colSpan": 1,
+					"rowSpan": 1
+				});
 				var button_1 = new cpr.controls.Button("btnLogin");
 				button_1.value = "LOGIN";
 				button_1.style.setClasses(["login"]);
 				button_1.style.css({
 					"background-color" : "#E4157C"
 				});
-				if(typeof onButtonClick == "function") {
-					button_1.addEventListener("click", onButtonClick);
-				}
 				container.addChild(button_1, {
 					"colIndex": 0,
-					"rowIndex": 4,
-					"verticalAlign": "fill"
+					"rowIndex": 4
 				});
-				var image_2 = new cpr.controls.Image();
-				image_2.src = "theme/images/logo.png";
-				container.addChild(image_2, {
+				var button_2 = new cpr.controls.Button("register");
+				button_2.value = "회원가입";
+				button_2.style.setClasses(["register"]);
+				button_2.style.css({
+					"background-color" : "#E4157C"
+				});
+				if(typeof onRegisterClick == "function") {
+					button_2.addEventListener("click", onRegisterClick);
+				}
+				container.addChild(button_2, {
 					"colIndex": 0,
-					"rowIndex": 0
+					"rowIndex": 5
 				});
 			})(group_1);
 			container.addChild(group_1, {
@@ -228,6 +237,14 @@
 				"height": "300px",
 				"left": "calc(50% - 175px)",
 				"top": "calc(50% - 150px)"
+			});
+			
+			var userDefinedControl_1 = new udc.logo();
+			container.addChild(userDefinedControl_1, {
+				"top": "8px",
+				"left": "20px",
+				"width": "183px",
+				"height": "74px"
 			});
 		}
 	});

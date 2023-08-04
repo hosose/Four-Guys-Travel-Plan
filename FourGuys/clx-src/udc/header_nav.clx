@@ -8,14 +8,15 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-78891704" style="top:0px; left:0px; width:500px; height:300px;">
-    <cl:button std:sid="button-6f1f615e" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="Login">
+    <cl:button std:sid="button-6f1f615e" id="login" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="Login">
+      <cl:listener std:sid="listener-d9dbad4d" name="click" handler="onLoginClick"/>
       <cl:xylayoutdata std:sid="xyl-data-6153b4c8" top="10px" right="77px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:button std:sid="button-3fd7aa5f" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="플래너 게시판">
       <cl:xylayoutdata std:sid="xyl-data-b10c7e01" top="10px" right="218px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:button std:sid="button-1329a282" style="border-right-style:none; color:#FFFFFF; border-bottom-color:#ffffff; border-left-color:#ffffff; font-size:18px; border-right-color:#ffffff; font-style:normal; border-top-style:none; background-color:#306DC6; background-repeat:no-repeat; border-left-style:none; border-top-color:#ffffff; border-bottom-style:none; background-image:none;" value="플랜 생성">
-      <cl:listener std:sid="listener-f2f640ed" name="click" handler="onButtonClick"/>
+    <cl:button std:sid="button-1329a282" id="create_plan" style="border-right-style:none; color:#FFFFFF; border-bottom-color:#ffffff; border-left-color:#ffffff; font-size:18px; border-right-color:#ffffff; font-style:normal; border-top-style:none; background-color:#306DC6; background-repeat:no-repeat; border-left-style:none; border-top-color:#ffffff; border-bottom-style:none; background-image:none;" value="플랜 생성">
+      <cl:listener std:sid="listener-f090946d" name="click" handler="onCreate_planClick"/>
       <cl:xylayoutdata std:sid="xyl-data-0f0e6f37" top="10px" right="359px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-242e59ac"/>
