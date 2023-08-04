@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-eb386ffc" version="1.0.0.0">
+  <head std:sid="head-59afb709">
+    <title>login</title>
+    <screen std:sid="screen-7484e0b2" id="main" name="main" width="1024px" height="768px"/>
+    <cl:model std:sid="model-e3259305">
+      <cl:datamap std:sid="d-map-087d1b50" id="dm_login">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-4d8ce689" name="user_id"/>
+          <cl:datacolumn std:sid="d-column-6fc7363b" name="user_pass"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-5b413b26" id="sub_login" action="login.do">
+        <cl:listener std:sid="listener-79e90fc9" name="submit-success" handler="onSub_loginSubmitSuccess"/>
+        <cl:listener std:sid="listener-9aa59957" name="submit-error" handler="onSub_loginSubmitError"/>
+        <cl:requestdata dataid="dm_login"/>
+      </cl:submission>
+    </cl:model>
+    <cl:appspec title="로그인"/>
+  </head>
+  <body std:sid="body-4ce9e0c1" style="top:0px; left:0px; width:800px; background-image:none; height:600px;">
+    <cl:img std:sid="image-ec445c68" style="border-right-style:solid; border-radius:0px; border-bottom-color:#0e2eeb; border-left-style:solid; border-left-color:#0e2eeb; border-top-color:#0e2eeb; border-bottom-style:solid; border-right-color:#0e2eeb; border-top-style:solid;" src="theme/images/login.jpg">
+      <cl:xylayoutdata std:sid="xyl-data-c786929d" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+    </cl:img>
+    <cl:group std:sid="group-0e829648" style="background-color:tarnsparent; border-right-style:solid; border-bottom-color:#aefbf4; border-left-style:solid; border-left-color:#aefbf4; border-top-color:#aefbf4; border-bottom-style:solid; border-right-color:#aefbf4; border-top-style:solid;" class="login-box">
+      <cl:xylayoutdata std:sid="xyl-data-8e006681" width="350px" height="300px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
+      <cl:inputbox std:sid="i-box-a2a037e2" id="ipb1" tooltip="ID를 입력하세요" placeholder="ID">
+        <cl:datamapbind property="value" datacontrolid="dm_login" columnname="user_id"/>
+        <cl:formdata std:sid="f-data-04d0f0b0" valign="FILL" row="1" col="0"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-e1d92f20" id="ipb2" tooltip="비밀번호를 입력하세요" secret="true" placeholder="PW">
+        <cl:listener std:sid="listener-2801a25b" name="keydown" handler="onIpb2Keydown"/>
+        <cl:datamapbind property="value" datacontrolid="dm_login" columnname="user_pass"/>
+        <cl:formdata std:sid="f-data-c304d72b" valign="FILL" row="2" col="0" rowspan="1" colspan="1"/>
+      </cl:inputbox>
+      <cl:checkbox std:sid="c-box-a54b7192" id="cbx1" style="text-align:left;" value="" text="ID 저장">
+        <cl:formdata std:sid="f-data-e5f71f85" row="3" col="0" rowspan="1" colspan="1"/>
+      </cl:checkbox>
+      <cl:button std:sid="button-b76d85c5" id="btnLogin" style="background-color:#E4157C;" class="login" value="LOGIN">
+        <cl:listener std:sid="listener-ffb0c87c" name="click" handler="onButtonClick"/>
+        <cl:formdata std:sid="f-data-2e92fd42" valign="FILL" row="4" col="0"/>
+      </cl:button>
+      <cl:img std:sid="image-8d2d1ab7" src="theme/images/logo.png">
+        <cl:formdata std:sid="f-data-44a555a4" row="0" col="0"/>
+      </cl:img>
+      <cl:formlayout std:sid="f-layout-2b37edc8" top-margin="50" right-margin="50" bottom-margin="50" left-margin="50">
+        <cl:rows length="1" unit="FRACTION" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000"/>
+        <cl:columns length="1" unit="FRACTION" shadetype="NONE" shadecolor="#000000"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-e6a24a7f"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
