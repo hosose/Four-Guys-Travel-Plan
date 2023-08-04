@@ -29,42 +29,24 @@
 			// End - User Script
 			
 			// Header
-			var dataSet_1 = new cpr.data.DataSet("ds1");
-			dataSet_1.parseData({
-				"columns" : [
-					{"name": "column1"},
-					{"name": "column2"}
-				]
-			});
-			app.register(dataSet_1);
-			var submission_1 = new cpr.protocols.Submission("sms1");
-			submission_1.async = false;
-			submission_1.action = "/hello";
-			submission_1.addParameter("param0", null);
-			submission_1.addRequestData(dataSet_1);
-			submission_1.addResponseData(dataSet_1, false);
-			app.register(submission_1);
-			app.supportMedia("all and (min-width: 1024px)", "default");
-			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
-			app.supportMedia("all and (max-width: 499px)", "mobile");
+			app.supportMedia("all", "default");
 			
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
-				"border-bottom-style" : "none",
-				"border-top-style" : "none",
-				"border-right-style" : "none",
-				"background-color" : "#FFFFFF",
 				"width" : "100%",
-				"height" : "100%",
-				"border-left-style" : "none"
+				"height" : "100%"
 			});
 			
 			// Layout
+<<<<<<< HEAD
 			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
 			container.setLayout(responsiveXYLayout_1);
+=======
+>>>>>>> branch 'main' of https://github.com/hosose/Four-Guys-Travel-Plan.git
 			
 			// UI Configuration
+<<<<<<< HEAD
 			var image_1 = new cpr.controls.Image("jejuImg1");
 			image_1.src = "images/harubang.jpg";
 			image_1.style.css({
@@ -286,6 +268,8 @@
 					}
 				]
 			});
+=======
+>>>>>>> branch 'main' of https://github.com/hosose/Four-Guys-Travel-Plan.git
 		}
 	});
 	app.title = "index";
