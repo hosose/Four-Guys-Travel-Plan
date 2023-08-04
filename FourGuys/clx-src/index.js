@@ -13,3 +13,5 @@ function onBtn1Click(e){
 	var btn1 = e.control;
 	var url = new cpr.utils.URL(location.href="hello");
 }
+
+

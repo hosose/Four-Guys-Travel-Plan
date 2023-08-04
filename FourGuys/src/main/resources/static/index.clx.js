@@ -29,24 +29,7 @@
 			// End - User Script
 			
 			// Header
-			var dataSet_1 = new cpr.data.DataSet("ds1");
-			dataSet_1.parseData({
-				"columns" : [
-					{"name": "column1"},
-					{"name": "column2"}
-				]
-			});
-			app.register(dataSet_1);
-			var submission_1 = new cpr.protocols.Submission("sms1");
-			submission_1.async = false;
-			submission_1.action = "/hello";
-			submission_1.addParameter("param0", null);
-			submission_1.addRequestData(dataSet_1);
-			submission_1.addResponseData(dataSet_1, false);
-			app.register(submission_1);
-			app.supportMedia("all and (min-width: 1024px)", "default");
-			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
-			app.supportMedia("all and (max-width: 499px)", "mobile");
+			app.supportMedia("all", "default");
 			
 			// Configure root container
 			var container = app.getContainer();
@@ -56,18 +39,8 @@
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var button_1 = new cpr.controls.Button();
-			button_1.value = "Button";
-			container.addChild(button_1, {
-				"top": "186px",
-				"left": "241px",
-				"width": "100px",
-				"height": "20px"
-			});
 		}
 	});
 	app.title = "index";

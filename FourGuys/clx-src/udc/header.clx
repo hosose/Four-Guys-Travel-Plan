@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-54f85455" version="1.0.4584">
+  <head std:sid="head-a93e3067">
+    <screen std:sid="screen-988667ac" id="default" name="default" width="1024px" height="768px" active="true"/>
+    <screen std:sid="screen-16fa7026" id="tablet" name="tablet" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-8b4fb36d" id="mobile" name="mobile" width="350px" height="525px" active="false"/>
+    <cl:model std:sid="model-060e2861"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-37fc9c3b" style="border-right-style:none; border-bottom-color:#306dc6; border-left-color:#306dc6; border-right-color:#306dc6; border-top-style:none; background-color:transparent; top:0px; left:0px; border-left-style:none; width:1600px; border-top-color:#306dc6; border-bottom-style:none; height:300px;">
+    <cl:button std:sid="button-76087784" id="logo" style="border-right-style:none; background-color:transparent; background-size:cover; border-left-style:none; border-bottom-style:none; background-position:center; background-image:url(../images/Four_Guys-removebg-preview.png); border-top-style:none;" value="">
+      <cl:xylayoutdata std:sid="xyl-data-0013baf3" top="10px" left="10px" width="153px" height="51px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-d268b3c3" id="login" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="Login">
+      <cl:xylayoutdata std:sid="xyl-data-8c68f06d" top="13px" right="365px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-c20f5801" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="플래너 게시판">
+      <cl:xylayoutdata std:sid="xyl-data-c07acdfc" top="13px" right="224px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-39e153fb" style="border-right-style:none; color:#FFFFFF; border-bottom-color:#ffffff; border-left-color:#ffffff; font-size:18px; border-right-color:#ffffff; font-style:normal; border-top-style:none; background-color:#306DC6; background-repeat:no-repeat; border-left-style:none; border-top-color:#ffffff; border-bottom-style:none; background-image:none;" value="플랜 생성">
+      <cl:xylayoutdata std:sid="xyl-data-3161eb7b" top="13px" right="83px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:xylayout std:sid="xylayout-ad20cb29"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

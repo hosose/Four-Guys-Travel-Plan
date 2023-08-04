@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-b621c5ee" version="1.0.4584">
+  <head std:sid="head-f72d5afa">
+    <screen std:sid="screen-1aed4f80" id="default" name="default" width="1024px" height="768px"/>
+    <screen std:sid="screen-6fb68c2e" id="tablet" name="tablet" width="500px" height="667px"/>
+    <screen std:sid="screen-8c37b30a" id="mobile" name="mobile" width="350px" height="525px"/>
+    <cl:model std:sid="model-5ef2f7c2"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-2ffb0c79">
+    <cl:group std:sid="group-b1b5a732">
+      <cl:xylayoutdata std:sid="xyl-data-b4caa162" top="0px" left="0px" width="1024px" height="720px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:group std:sid="group-0ff7b38b">
+        <cl:xylayoutdata std:sid="xyl-data-9be5431d" top="3px" right="8px" width="530px" height="720px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+        <cl:button std:sid="button-cc40b938" id="save" style="color:#35B3A2;" value="저장">
+          <cl:listener std:sid="listener-1efcd284" name="click" handler="onButtonClick"/>
+          <cl:xylayoutdata std:sid="xyl-data-b4507ee3" top="5px" left="329px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        </cl:button>
+        <cl:button std:sid="button-3c1f0909" style="color:#35B3A2;" value="닫기">
+          <cl:xylayoutdata std:sid="xyl-data-16aacb2f" top="5px" left="428px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        </cl:button>
+        <cl:img std:sid="image-6e15cedb" src="images/jejuphoto.png">
+          <cl:xylayoutdata std:sid="xyl-data-d423643e" top="24px" left="4px" width="524px" height="690px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        </cl:img>
+        <cl:xylayout std:sid="xylayout-291ca0e8"/>
+      </cl:group>
+      <cl:group std:sid="group-c2f1659f" style="color:#35B3A2;">
+        <cl:xylayoutdata std:sid="xyl-data-36357382" top="41px" left="235px" width="252px" height="683px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:output std:sid="output-2edce8e3" value="">
+          <cl:formdata std:sid="f-data-9e3e9ac0" row="0" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-66f2184b" value="Output">
+          <cl:formdata std:sid="f-data-2be3f598" row="1" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-c0f88f05" value="Output">
+          <cl:formdata std:sid="f-data-8e025d23" row="2" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-3afa467c" value="Output">
+          <cl:formdata std:sid="f-data-3b562523" row="3" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-c3951c1e" value="Output">
+          <cl:formdata std:sid="f-data-a26ea10b" row="4" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-cfadceeb" value="Output">
+          <cl:formdata std:sid="f-data-8c68772b" row="5" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-4a63013d" value="Output">
+          <cl:formdata std:sid="f-data-73d57c41" row="6" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-3c5671d1" value="Output">
+          <cl:formdata std:sid="f-data-220548ce" row="7" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-e45be567" value="Output">
+          <cl:formdata std:sid="f-data-f09bdbdc" row="8" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-47a34f87" value="Output">
+          <cl:formdata std:sid="f-data-fa122b21" row="9" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-a2c7001e" value="Output">
+          <cl:formdata std:sid="f-data-00ce869f" row="10" col="0"/>
+        </cl:output>
+        <cl:formlayout std:sid="f-layout-4ba44c6a" scrollable="true" hspace="25px" vspace="25px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="1" unit="FRACTION"/>
+          <cl:columns length="1" unit="FRACTION"/>
+        </cl:formlayout>
+      </cl:group>
+      <cl:group std:sid="group-9c599071">
+        <cl:xylayoutdata std:sid="xyl-data-a6b5af29" top="3px" left="1px" width="486px" height="39px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:textarea std:sid="t-area-16401de2" id="txa2" style="text-align:center;" value="플래너 제목 :">
+          <cl:formdata std:sid="f-data-5ee3a053" row="0" col="0"/>
+        </cl:textarea>
+        <cl:textarea std:sid="t-area-2524b1e1" id="txa3">
+          <cl:formdata std:sid="f-data-2dfeb73d" row="0" col="1"/>
+        </cl:textarea>
+        <cl:formlayout std:sid="f-layout-2c5ff2cc" scrollable="true" hspace="25px" vspace="25px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+          <cl:rows length="1" unit="FRACTION"/>
+          <cl:columns length="150" unit="PIXEL"/>
+          <cl:columns length="1" unit="FRACTION" shadetype="NONE" shadecolor="transparent"/>
+        </cl:formlayout>
+      </cl:group>
+      <cl:group std:sid="group-f63677d1" style="color:#7CDBE4;">
+        <cl:xylayoutdata std:sid="xyl-data-30305c29" top="52px" left="7px" width="229px" height="671px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:textarea std:sid="t-area-d2764810" id="txa1" style="text-align:center;" value="일정">
+          <cl:formdata std:sid="f-data-8d8cbbe6" row="0" col="0"/>
+        </cl:textarea>
+        <cl:button std:sid="button-54d1d9b0" value="day1">
+          <cl:formdata std:sid="f-data-272c82b2" row="1" col="0"/>
+        </cl:button>
+        <cl:button std:sid="button-08901577" value="day2">
+          <cl:formdata std:sid="f-data-b0bc265a" row="2" col="0"/>
+        </cl:button>
+        <cl:button std:sid="button-59c4138a" value="day3">
+          <cl:formdata std:sid="f-data-305a7c07" row="3" col="0"/>
+        </cl:button>
+        <cl:output std:sid="output-da70c516" value="Output">
+          <cl:formdata std:sid="f-data-f7104ace" row="3" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-c382dc10" value="Output">
+          <cl:formdata std:sid="f-data-d0b7a847" row="1" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-2621e66f" value="Output">
+          <cl:formdata std:sid="f-data-31a0fca3" row="2" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-5bff815d" value="Output">
+          <cl:formdata std:sid="f-data-d49cd741" row="4" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-b26e6553" value="Output">
+          <cl:formdata std:sid="f-data-bf8d22eb" row="5" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-a90bccd5" value="Output">
+          <cl:formdata std:sid="f-data-fa49aa0a" row="7" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-f7057458" value="Output">
+          <cl:formdata std:sid="f-data-4fb5b901" row="10" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-17266954" value="Output">
+          <cl:formdata std:sid="f-data-1ff8b0b0" row="11" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-5bb2a305" value="Output">
+          <cl:formdata std:sid="f-data-3d3a56e8" row="9" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-1b97e412" value="Output">
+          <cl:formdata std:sid="f-data-d9909738" row="8" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-09653d0f" value="Output">
+          <cl:formdata std:sid="f-data-4fdaa7ed" row="6" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-ac1d7f67" value="Output">
+          <cl:formdata std:sid="f-data-c47c36ca" row="12" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-e3a9e545" value="Output">
+          <cl:formdata std:sid="f-data-c0755635" row="13" col="1"/>
+        </cl:output>
+        <cl:formlayout std:sid="f-layout-76c3c2d1" scrollable="true" hspace="25px" vspace="25px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="1" unit="FRACTION"/>
+          <cl:columns length="100" unit="PIXEL"/>
+          <cl:columns length="1" unit="FRACTION"/>
+        </cl:formlayout>
+      </cl:group>
+      <cl:xylayout std:sid="xylayout-45f214b6"/>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-52dfb31e"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler>
+      <std:guide position="7"/>
+    </std:hruler>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
