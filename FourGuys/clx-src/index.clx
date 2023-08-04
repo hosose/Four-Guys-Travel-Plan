@@ -20,9 +20,8 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-3c97ba97">
-    <cl:button std:sid="button-f77cb928" id="btn1" value="TEST BUTTON">
-      <cl:listener std:sid="listener-afd2c941" name="click" handler="onBtn1Click"/>
-      <cl:xylayoutdata std:sid="xyl-data-055bea88" width="100px" height="20px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
+    <cl:button std:sid="button-f56a0828" value="Button">
+      <cl:xylayoutdata std:sid="xyl-data-29f1c7b8" top="186px" left="241px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-19454b57"/>
   </body>

@@ -60,16 +60,13 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var button_1 = new cpr.controls.Button("btn1");
-			button_1.value = "TEST BUTTON";
-			if(typeof onBtn1Click == "function") {
-				button_1.addEventListener("click", onBtn1Click);
-			}
+			var button_1 = new cpr.controls.Button();
+			button_1.value = "Button";
 			container.addChild(button_1, {
+				"top": "186px",
+				"left": "241px",
 				"width": "100px",
-				"height": "20px",
-				"left": "calc(50% - 50px)",
-				"top": "calc(50% - 10px)"
+				"height": "20px"
 			});
 		}
 	});
