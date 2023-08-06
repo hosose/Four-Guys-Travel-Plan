@@ -14,6 +14,18 @@
           <cl:datacolumn std:sid="d-column-f6dccd0a" name="PLANNER_LAST_DATE" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
+      <cl:dataset std:sid="d-set-9b0647a4" id="ds2">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-e75d9c4a" name="ID"/>
+          <cl:datacolumn std:sid="d-column-2e1353c0" name="NAME"/>
+          <cl:datacolumn std:sid="d-column-31b88888" name="PASSWORD"/>
+          <cl:datacolumn std:sid="d-column-61a9301e" name="ADDRESS"/>
+          <cl:datacolumn std:sid="d-column-a309f53f" name="BIRTH"/>
+          <cl:datacolumn std:sid="d-column-d8ac280c" name="GENDER"/>
+          <cl:datacolumn std:sid="d-column-a4712edc" name="PHONE"/>
+          <cl:datacolumn std:sid="d-column-1add0a5d" name="EMAIL"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-08d30fec" id="dmDetail">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-37b22f96" name="PLAN_TITLE"/>
@@ -21,10 +33,23 @@
           <cl:datacolumn std:sid="d-column-cd359a90" name="PLAN_LAST"/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:submission std:sid="submission-194396c7" id="findMyPage" action="/findMyPage">
+        <cl:requestdata dataid="ds2"/>
+        <cl:responsedata dataid="ds2"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-2f0c2b5f" id="updatePassword" action="/updatePassword">
+        <cl:requestdata dataid="ds2"/>
+        <cl:responsedata dataid="ds2"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-219aa173" id="updateAll" action="/updateAll">
+        <cl:requestdata dataid="ds2"/>
+        <cl:responsedata dataid="ds2"/>
+      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-adae535c">
+    <cl:listener std:sid="listener-e28469a2" name="load" handler="onBodyLoad"/>
     <cl:group std:sid="group-97ec36dd" id="grp1">
       <cl:xylayoutdata std:sid="xyl-data-4e862c6f" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
       <cl:tabfolder std:sid="t-folder-64679f1f" tabindex="3">
@@ -32,6 +57,9 @@
           <cl:xylayoutdata std:sid="sxyl-data-716297f0" top="0px" right="4px" bottom="0px" left="6px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
         </cl:responsivexylayoutdata>
         <cl:tabitem std:sid="t-item-3a63cd4f" selected="true" text="MYPAGE">
+          <std:metadata>
+            <std:property key="is-active-item" value="true"/>
+          </std:metadata>
           <cl:group std:sid="group-e5c13333" id="grp2">
             <std:metadata>
               <std:property key="locked" value="true"/>
@@ -59,31 +87,40 @@
               <cl:output std:sid="output-193ecac5" style="text-align:center;" value="휴대폰 번호">
                 <cl:formdata std:sid="f-data-04387c93" halign="CENTER" row="7" col="1"/>
               </cl:output>
-              <cl:inputbox std:sid="i-box-136261d4" id="ipb1">
+              <cl:inputbox std:sid="i-box-136261d4" id="ID" readonly="true">
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="ID" rowindex="0"/>
                 <cl:formdata std:sid="f-data-a6df4a35" row="1" col="2"/>
               </cl:inputbox>
-              <cl:inputbox std:sid="i-box-668e3050" id="ipb2" secret="true">
+              <cl:inputbox std:sid="i-box-668e3050" id="Pass" secret="true">
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="PASSWORD" rowindex="0"/>
                 <cl:formdata std:sid="f-data-6a4ed2a3" row="2" col="2"/>
               </cl:inputbox>
-              <cl:inputbox std:sid="i-box-838596cb" id="ipb3">
+              <cl:inputbox std:sid="i-box-838596cb" id="ADDR">
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="ADDRESS" rowindex="0"/>
                 <cl:formdata std:sid="f-data-91d11ce7" row="3" col="2"/>
               </cl:inputbox>
-              <cl:inputbox std:sid="i-box-bed5f5d0" id="ipb4">
+              <cl:inputbox std:sid="i-box-bed5f5d0" id="NAME">
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="NAME" rowindex="0"/>
                 <cl:formdata std:sid="f-data-a4298e2c" row="4" col="2"/>
               </cl:inputbox>
-              <cl:inputbox std:sid="i-box-a008d353" id="ipb6">
+              <cl:inputbox std:sid="i-box-a008d353" id="EMAIL">
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="EMAIL" rowindex="0"/>
                 <cl:formdata std:sid="f-data-e1a879eb" row="6" col="2"/>
               </cl:inputbox>
               <cl:button std:sid="button-177791b8" id="btn1" value="패스워드변경">
+                <cl:listener std:sid="listener-8882f314" name="click" handler="onBtn1Click"/>
                 <cl:formdata std:sid="f-data-8ec2dbe9" row="2" col="3"/>
               </cl:button>
-              <cl:maskeditor std:sid="m-editor-f14997c0" id="mse1" mask="XXX-XXXX-XXXX">
+              <cl:maskeditor std:sid="m-editor-f14997c0" id="PHONE" mask="XXX-XXXX-XXXX">
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="PHONE" rowindex="0"/>
                 <cl:formdata std:sid="f-data-d0781fcf" row="7" col="2"/>
               </cl:maskeditor>
-              <cl:dateinput std:sid="d-input-df177294" id="dti1">
+              <cl:dateinput std:sid="d-input-df177294" id="BIRTH">
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="BIRTH" rowindex="0"/>
                 <cl:formdata std:sid="f-data-88c16f35" row="5" col="2"/>
               </cl:dateinput>
               <cl:button std:sid="button-1c8aafba" id="btn2" value="수정하기">
+                <cl:listener std:sid="listener-794c4367" name="click" handler="onBtn2Click"/>
                 <cl:formdata std:sid="f-data-90e641cd" row="9" col="2"/>
               </cl:button>
               <cl:formlayout std:sid="f-layout-41056cb7" scrollable="false" hspace="5px" vspace="5px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
@@ -110,9 +147,6 @@
           </cl:group>
         </cl:tabitem>
         <cl:tabitem std:sid="t-item-8264a6eb" text="MYPLAN">
-          <std:metadata>
-            <std:property key="is-active-item" value="true"/>
-          </std:metadata>
           <cl:group std:sid="group-3f0b68a4" id="grp3">
             <std:metadata>
               <std:property key="locked" value="true"/>

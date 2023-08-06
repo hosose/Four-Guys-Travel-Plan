@@ -16,7 +16,46 @@
 			 * Created at 2023. 8. 4. 오전 9:40:38.
 			 *
 			 * @author USER
-			 ************************************************/;
+			 ************************************************/
+
+			/*
+			 * "패스워드변경" 버튼(btn1)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onBtn1Click(e){
+				var btn1 = e.control;
+				var submission = app.lookup("updatePassword");
+				var inputBox = app.lookup("Pass");
+				submission.getRequestData(inputBox.value);
+				console.log(inputBox.value);
+				submission.send();
+				}
+
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			function onBodyLoad(e){
+				var submission = app.lookup("findMyPage");
+				submission.send();
+			}
+
+			/*
+			 * "수정하기" 버튼(btn2)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onBtn2Click(e){
+				var btn2 = e.control;
+				var ADDR = app.lookup("ADDR").value;
+				var BIRTH = app.lookup("BIRTH").value;
+				var EMAIL = app.lookup("EMAIL").value;
+				var PHONE = app.lookup("PHONE").value;
+				var NAME = app.lookup("NAME").value;
+				
+				var submission = app.lookup("updateAll");
+				submission.getRequestData(ADDR,BIRTH,EMAIL,NAME,PHONE);
+				submission.send();
+			};
 			// End - User Script
 			
 			// Header
@@ -43,6 +82,21 @@
 				]
 			});
 			app.register(dataSet_1);
+			
+			var dataSet_2 = new cpr.data.DataSet("ds2");
+			dataSet_2.parseData({
+				"columns" : [
+					{"name": "ID"},
+					{"name": "NAME"},
+					{"name": "PASSWORD"},
+					{"name": "ADDRESS"},
+					{"name": "BIRTH"},
+					{"name": "GENDER"},
+					{"name": "PHONE"},
+					{"name": "EMAIL"}
+				]
+			});
+			app.register(dataSet_2);
 			var dataMap_1 = new cpr.data.DataMap("dmDetail");
 			dataMap_1.parseData({
 				"columns" : [
@@ -52,6 +106,23 @@
 				]
 			});
 			app.register(dataMap_1);
+			var submission_1 = new cpr.protocols.Submission("findMyPage");
+			submission_1.action = "/findMyPage";
+			submission_1.addRequestData(dataSet_2);
+			submission_1.addResponseData(dataSet_2, false);
+			app.register(submission_1);
+			
+			var submission_2 = new cpr.protocols.Submission("updatePassword");
+			submission_2.action = "/updatePassword";
+			submission_2.addRequestData(dataSet_2);
+			submission_2.addResponseData(dataSet_2, false);
+			app.register(submission_2);
+			
+			var submission_3 = new cpr.protocols.Submission("updateAll");
+			submission_3.action = "/updateAll";
+			submission_3.addRequestData(dataSet_2);
+			submission_3.addResponseData(dataSet_2, false);
+			app.register(submission_3);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -165,51 +236,65 @@
 								"rowIndex": 7,
 								"horizontalAlign": "center"
 							});
-							var inputBox_1 = new cpr.controls.InputBox("ipb1");
+							var inputBox_1 = new cpr.controls.InputBox("ID");
+							inputBox_1.readOnly = true;
+							inputBox_1.bind("value").toDataSet(app.lookup("ds2"), "ID", 0);
 							container.addChild(inputBox_1, {
 								"colIndex": 2,
 								"rowIndex": 1
 							});
-							var inputBox_2 = new cpr.controls.InputBox("ipb2");
+							var inputBox_2 = new cpr.controls.InputBox("Pass");
 							inputBox_2.secret = true;
+							inputBox_2.bind("value").toDataSet(app.lookup("ds2"), "PASSWORD", 0);
 							container.addChild(inputBox_2, {
 								"colIndex": 2,
 								"rowIndex": 2
 							});
-							var inputBox_3 = new cpr.controls.InputBox("ipb3");
+							var inputBox_3 = new cpr.controls.InputBox("ADDR");
+							inputBox_3.bind("value").toDataSet(app.lookup("ds2"), "ADDRESS", 0);
 							container.addChild(inputBox_3, {
 								"colIndex": 2,
 								"rowIndex": 3
 							});
-							var inputBox_4 = new cpr.controls.InputBox("ipb4");
+							var inputBox_4 = new cpr.controls.InputBox("NAME");
+							inputBox_4.bind("value").toDataSet(app.lookup("ds2"), "NAME", 0);
 							container.addChild(inputBox_4, {
 								"colIndex": 2,
 								"rowIndex": 4
 							});
-							var inputBox_5 = new cpr.controls.InputBox("ipb6");
+							var inputBox_5 = new cpr.controls.InputBox("EMAIL");
+							inputBox_5.bind("value").toDataSet(app.lookup("ds2"), "EMAIL", 0);
 							container.addChild(inputBox_5, {
 								"colIndex": 2,
 								"rowIndex": 6
 							});
 							var button_1 = new cpr.controls.Button("btn1");
 							button_1.value = "패스워드변경";
+							if(typeof onBtn1Click == "function") {
+								button_1.addEventListener("click", onBtn1Click);
+							}
 							container.addChild(button_1, {
 								"colIndex": 3,
 								"rowIndex": 2
 							});
-							var maskEditor_1 = new cpr.controls.MaskEditor("mse1");
+							var maskEditor_1 = new cpr.controls.MaskEditor("PHONE");
 							maskEditor_1.mask = "XXX-XXXX-XXXX";
+							maskEditor_1.bind("value").toDataSet(app.lookup("ds2"), "PHONE", 0);
 							container.addChild(maskEditor_1, {
 								"colIndex": 2,
 								"rowIndex": 7
 							});
-							var dateInput_1 = new cpr.controls.DateInput("dti1");
+							var dateInput_1 = new cpr.controls.DateInput("BIRTH");
+							dateInput_1.bind("value").toDataSet(app.lookup("ds2"), "BIRTH", 0);
 							container.addChild(dateInput_1, {
 								"colIndex": 2,
 								"rowIndex": 5
 							});
 							var button_2 = new cpr.controls.Button("btn2");
 							button_2.value = "수정하기";
+							if(typeof onBtn2Click == "function") {
+								button_2.addEventListener("click", onBtn2Click);
+							}
 							container.addChild(button_2, {
 								"colIndex": 2,
 								"rowIndex": 9
@@ -695,6 +780,9 @@
 				"bottom": "0px",
 				"left": "0px"
 			});
+			if(typeof onBodyLoad == "function"){
+				app.addEventListener("load", onBodyLoad);
+			}
 		}
 	});
 	app.title = "mypage";
