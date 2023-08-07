@@ -11,6 +11,7 @@ import org.kosta.fourguys.service.MemberService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,8 +46,24 @@ public class MemberController {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("memberVO", result);
 			initParam.put("uri", "/");
-			initParam.put("session", session);
 			success = true;
+		}
+		dataRequest.setMetadata(success, initParam);
+		return new JSONDataView();
+	}
+
+	@GetMapping("/loginCheck")
+	public View loginCheck(DataRequest dataRequest, HttpServletRequest request,
+			HttpServletResponse httpServletResponse) {
+		HttpSession session = request.getSession(false);
+		Map<String, Object> initParam = new HashMap<>();
+		boolean success = false;
+		if (session != null) {
+			MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+			initParam.put("memberVO", memberVO);
+			success = true;
+		} else {
+			initParam.put("message", "로그인하셔야 합니다.");
 		}
 		dataRequest.setMetadata(success, initParam);
 		return new JSONDataView();
