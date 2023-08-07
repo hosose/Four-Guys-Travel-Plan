@@ -52,7 +52,7 @@
 				var PHONE = app.lookup("PHONE").value;
 				var NAME = app.lookup("NAME").value;
 				
-				var submission = app.lookup("updateAll");
+				var submission = app.lookup("updateMember");
 				submission.getRequestData(ADDR,BIRTH,EMAIL,NAME,PHONE);
 				submission.send();
 			};
@@ -112,17 +112,11 @@
 			submission_1.addResponseData(dataSet_2, false);
 			app.register(submission_1);
 			
-			var submission_2 = new cpr.protocols.Submission("updatePassword");
-			submission_2.action = "/updatePassword";
+			var submission_2 = new cpr.protocols.Submission("updateMember");
+			submission_2.action = "/updateMember";
 			submission_2.addRequestData(dataSet_2);
 			submission_2.addResponseData(dataSet_2, false);
 			app.register(submission_2);
-			
-			var submission_3 = new cpr.protocols.Submission("updateAll");
-			submission_3.action = "/updateAll";
-			submission_3.addRequestData(dataSet_2);
-			submission_3.addResponseData(dataSet_2, false);
-			app.register(submission_3);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -268,15 +262,6 @@
 								"colIndex": 2,
 								"rowIndex": 6
 							});
-							var button_1 = new cpr.controls.Button("btn1");
-							button_1.value = "패스워드변경";
-							if(typeof onBtn1Click == "function") {
-								button_1.addEventListener("click", onBtn1Click);
-							}
-							container.addChild(button_1, {
-								"colIndex": 3,
-								"rowIndex": 2
-							});
 							var maskEditor_1 = new cpr.controls.MaskEditor("PHONE");
 							maskEditor_1.mask = "XXX-XXXX-XXXX";
 							maskEditor_1.bind("value").toDataSet(app.lookup("ds2"), "PHONE", 0);
@@ -290,12 +275,12 @@
 								"colIndex": 2,
 								"rowIndex": 5
 							});
-							var button_2 = new cpr.controls.Button("btn2");
-							button_2.value = "수정하기";
+							var button_1 = new cpr.controls.Button("btn2");
+							button_1.value = "수정하기";
 							if(typeof onBtn2Click == "function") {
-								button_2.addEventListener("click", onBtn2Click);
+								button_1.addEventListener("click", onBtn2Click);
 							}
-							container.addChild(button_2, {
+							container.addChild(button_1, {
 								"colIndex": 2,
 								"rowIndex": 9
 							});
@@ -337,9 +322,9 @@
 							formLayout_2.setRows(["40px", "30px", "1fr", "30px"]);
 							group_5.setLayout(formLayout_2);
 							(function(container){
-								var button_3 = new cpr.controls.Button("btn3");
-								button_3.value = "신규";
-								container.addChild(button_3, {
+								var button_2 = new cpr.controls.Button("btn3");
+								button_2.value = "신규";
+								container.addChild(button_2, {
 									"colIndex": 2,
 									"rowIndex": 1,
 									"horizontalAlign": "fill"
@@ -364,9 +349,9 @@
 										"colIndex": 0,
 										"rowIndex": 0
 									});
-									var button_4 = new cpr.controls.Button("btn4");
-									button_4.value = "검색";
-									container.addChild(button_4, {
+									var button_3 = new cpr.controls.Button("btn4");
+									button_3.value = "검색";
+									container.addChild(button_3, {
 										"colIndex": 2,
 										"rowIndex": 0
 									});
@@ -552,21 +537,21 @@
 								formLayout_5.setRows(["1fr"]);
 								group_8.setLayout(formLayout_5);
 								(function(container){
-									var button_5 = new cpr.controls.Button("btn5");
-									button_5.value = "저장";
-									container.addChild(button_5, {
+									var button_4 = new cpr.controls.Button("btn5");
+									button_4.value = "저장";
+									container.addChild(button_4, {
 										"colIndex": 0,
 										"rowIndex": 0
 									});
-									var button_6 = new cpr.controls.Button("btn6");
-									button_6.value = "목록";
-									container.addChild(button_6, {
+									var button_5 = new cpr.controls.Button("btn6");
+									button_5.value = "목록";
+									container.addChild(button_5, {
 										"colIndex": 1,
 										"rowIndex": 0
 									});
-									var button_7 = new cpr.controls.Button("btn7");
-									button_7.value = "삭제";
-									container.addChild(button_7, {
+									var button_6 = new cpr.controls.Button("btn7");
+									button_6.value = "삭제";
+									container.addChild(button_6, {
 										"colIndex": 2,
 										"rowIndex": 0
 									});

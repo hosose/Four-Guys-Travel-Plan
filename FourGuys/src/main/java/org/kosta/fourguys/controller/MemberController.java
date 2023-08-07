@@ -1,10 +1,5 @@
 package org.kosta.fourguys.controller;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.catalina.Session;
 import org.kosta.fourguys.service.MemberService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.springframework.http.HttpStatus;

@@ -37,11 +37,7 @@
         <cl:requestdata dataid="ds2"/>
         <cl:responsedata dataid="ds2"/>
       </cl:submission>
-      <cl:submission std:sid="submission-2f0c2b5f" id="updatePassword" action="/updatePassword">
-        <cl:requestdata dataid="ds2"/>
-        <cl:responsedata dataid="ds2"/>
-      </cl:submission>
-      <cl:submission std:sid="submission-219aa173" id="updateAll" action="/updateAll">
+      <cl:submission std:sid="submission-219aa173" id="updateMember" action="/updateMember">
         <cl:requestdata dataid="ds2"/>
         <cl:responsedata dataid="ds2"/>
       </cl:submission>
@@ -107,10 +103,6 @@
                 <cl:datasetbind property="value" datacontrolid="ds2" columnname="EMAIL" rowindex="0"/>
                 <cl:formdata std:sid="f-data-e1a879eb" row="6" col="2"/>
               </cl:inputbox>
-              <cl:button std:sid="button-177791b8" id="btn1" value="패스워드변경">
-                <cl:listener std:sid="listener-8882f314" name="click" handler="onBtn1Click"/>
-                <cl:formdata std:sid="f-data-8ec2dbe9" row="2" col="3"/>
-              </cl:button>
               <cl:maskeditor std:sid="m-editor-f14997c0" id="PHONE" mask="XXX-XXXX-XXXX">
                 <cl:datasetbind property="value" datacontrolid="ds2" columnname="PHONE" rowindex="0"/>
                 <cl:formdata std:sid="f-data-d0781fcf" row="7" col="2"/>
