@@ -14,11 +14,4 @@ public class MemberVO {
 	private String address;
 	private String birth;
 	private String email;
-<<<<<<< HEAD
-	private String phone;
-	private String birth;
-=======
-    private String phone;
-
->>>>>>> branch 'main' of https://github.com/hosose/Four-Guys-Travel-Plan.git
 }
