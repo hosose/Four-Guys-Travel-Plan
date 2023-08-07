@@ -737,24 +737,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "0px",
 							"right": "4px",
 							"bottom": "0px",
-							"left": "6px"
+							"left": "6px",
+							"height": "963px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "0px",
 							"right": "2px",
 							"bottom": "0px",
-							"left": "3px"
+							"left": "3px",
+							"height": "963px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "0px",
 							"right": "1px",
 							"bottom": "0px",
-							"left": "2px"
+							"left": "2px",
+							"height": "963px"
 						}
 					]
 				});

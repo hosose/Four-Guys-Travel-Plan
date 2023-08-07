@@ -9,6 +9,7 @@
   </head>
   <body std:sid="body-5266d4b3" style="top:0px; left:0px; width:300px; height:300px;">
     <cl:button std:sid="button-76087784" id="logo" style="border-right-style:none; background-color:transparent; background-size:cover; border-left-style:none; border-bottom-style:none; background-position:center; background-image:url(../images/Four_Guys-removebg-preview.png); border-top-style:none;" value="">
+      <cl:listener std:sid="listener-ef953e93" name="click" handler="onLogoClick"/>
       <cl:xylayoutdata std:sid="xyl-data-37eeb859" top="10px" left="10px" width="153px" height="51px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-9365f2b1"/>
