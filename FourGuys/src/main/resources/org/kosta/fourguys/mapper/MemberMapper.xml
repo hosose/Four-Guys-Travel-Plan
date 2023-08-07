@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kosta.fourguys.mapper.MemberMapper">
@@ -13,4 +14,12 @@
 	<delete id="deleteMember" parameterType="org.kosta.fourguys.vo.MemberVO">
 		delete member where id = #{id}
 	</delete>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.fourguys.mapper.MemberMapper">
+<insert id="registerMember" parameterType="org.kosta.fourguys.vo.MemberVO">
+insert into MEMBER values (#{id},#{name},#{password},#{address},#{birth},#{email},#{phone})
+</insert>
+>>>>>>> branch 'main' of https://github.com/hosose/Four-Guys-Travel-Plan.git
 </mapper>
