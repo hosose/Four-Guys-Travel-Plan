@@ -47,7 +47,7 @@
 				 */
 				function onLoginClick(e){
 					var login = e.control;
-					location.href="/login"
+					location.href="/loginForm"
 				};
 				// End - User Script
 				
