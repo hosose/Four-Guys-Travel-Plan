@@ -20,6 +20,7 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-3c97ba97" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none; border-bottom-style:none; border-top-style:none;">
+    <cl:listener std:sid="listener-5492d180" name="load" handler="onBodyLoad"/>
     <cl:img std:sid="image-28e63dd0" id="jejuImg1" style="opacity: 70%;" src="images/harubang.jpg">
       <cl:responsivexylayoutdata std:sid="rxyl-data-ef22a856">
         <cl:xylayoutdata std:sid="sxyl-data-4d32c2ce" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>

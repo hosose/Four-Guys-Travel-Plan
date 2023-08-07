@@ -25,7 +25,6 @@
 				subLogin.send();
 			}
 
-
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
@@ -33,14 +32,8 @@
 			function onSubLoginSubmitSuccess(e) {
 				var subLogin = e.control;
 				var uri = subLogin.getMetadata("uri");
-				
 				if (uri != null) {
-					// 화면이동
-					cpr.core.App.load(uri, function(newapp) {
-						app.close();
-						newapp.createNewInstance().run();
-					});
-					return;
+				location.href=uri
 				}
 			}
 
@@ -54,8 +47,8 @@
 				if (msg != null) {
 					alert(msg);
 				}
-				app.lookup("idInput").value ="";
-				app.lookup("passwordInput").value ="";
+				app.lookup("idInput").value = "";
+				app.lookup("passwordInput").value = "";
 			}
 			// End - User Script
 			
