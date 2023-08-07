@@ -39,7 +39,7 @@ function onBtn2Click(e){
 	var PHONE = app.lookup("PHONE").value;
 	var NAME = app.lookup("NAME").value;
 	
-	var submission = app.lookup("updateAll");
+	var submission = app.lookup("updateMember");
 	submission.getRequestData(ADDR,BIRTH,EMAIL,NAME,PHONE);
 	submission.send();
 }
