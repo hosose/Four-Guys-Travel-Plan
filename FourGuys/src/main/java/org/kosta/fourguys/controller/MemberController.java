@@ -1,47 +1,68 @@
 package org.kosta.fourguys.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.kosta.fourguys.service.MemberService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.View;
+
+import com.cleopatra.protocol.data.DataRequest;
+import com.cleopatra.protocol.data.ParameterGroup;
+import com.cleopatra.spring.JSONDataView;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@Slf4j
 @RequiredArgsConstructor
 public class MemberController {
 	private final MemberService memberService;
-	
-	@PostMapping("/login/{id}&{password}")
-	public ResponseEntity<MemberVO> login
-	(@PathVariable String id,@PathVariable String password){
-		MemberVO memberVO = memberService.Login(id, password);
-		if(memberVO == null) {
-			return new ResponseEntity<MemberVO>(HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<MemberVO>(memberVO,HttpStatus.OK);
+
+	@PostMapping("/login")
+	public View login(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
+		ParameterGroup loginParam = dataRequest.getParameterGroup("loginParam");
+		String id = loginParam.getValue("id");
+		String password = loginParam.getValue("password");
+		boolean success = false;
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId(id);
+		memberVO.setPassword(password);
+		MemberVO result = memberService.login(memberVO);
+		Map<String, Object> initParam = new HashMap<>();
+		if (result == null) {
+			initParam.put("message", "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.\r\n" + "입력하신 내용을 다시 확인해주세요.");
+		} else {
+			HttpSession session = request.getSession(true);
+			session.setAttribute("memberVO", result);
+			initParam.put("uri", "index");
+			success = true;
 		}
+		dataRequest.setMetadata(success, initParam);
+		return new JSONDataView();
 	}
-	
+
 	@PostMapping("/register")
-	public ResponseEntity<String> registerMember(@RequestBody MemberVO memberVO){
+	public ResponseEntity<String> registerMember(@RequestBody MemberVO memberVO) {
 		memberService.registerMember(memberVO);
-		return new ResponseEntity<String>(memberVO.getId()+"님 회원가입 완료했습니다.",HttpStatus.OK);
+		return new ResponseEntity<String>(memberVO.getId() + "님 회원가입 완료했습니다.", HttpStatus.OK);
 	}
-	
+
 	@PutMapping("updateMember")
-	public ResponseEntity<String> updateMember(MemberVO memberVO){
+	public ResponseEntity<String> updateMember(MemberVO memberVO) {
 		int result = memberService.updateMember(memberVO);
-		if(result < 1)
+		if (result < 1)
 			return ResponseEntity.notFound().build();
 		else
-			return ResponseEntity.ok().body(memberVO.getId()+"님 회원 수정되었습니다.");
+			return ResponseEntity.ok().body(memberVO.getId() + "님 회원 수정되었습니다.");
 	}
 }

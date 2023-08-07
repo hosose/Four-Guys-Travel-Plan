@@ -336,8 +336,56 @@
 				]
 			});
 			
-			var userDefinedControl_1 = new udc.logo();
+			var userDefinedControl_1 = new udc.header_nav();
 			container.addChild(userDefinedControl_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1670px)",
+						"top": "20px",
+						"right": "62px",
+						"width": "887px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
+						"top": "20px",
+						"right": "38px",
+						"width": "956px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
+						"top": "20px",
+						"right": "47px",
+						"width": "1176px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (min-width: 900px) and (max-width: 1259px)",
+						"top": "20px",
+						"right": "41px",
+						"width": "1034px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 899px)",
+						"top": "110px",
+						"left": "20px",
+						"width": "500px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "110px",
+						"left": "7px",
+						"width": "171px",
+						"height": "80px"
+					}
+				]
+			});
+			
+			var userDefinedControl_2 = new udc.logo();
+			container.addChild(userDefinedControl_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1670px)",
@@ -380,54 +428,6 @@
 						"left": "7px",
 						"width": "91px",
 						"height": "70px"
-					}
-				]
-			});
-			
-			var userDefinedControl_2 = new udc.header_nav();
-			container.addChild(userDefinedControl_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1670px)",
-						"top": "20px",
-						"right": "62px",
-						"width": "1559px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
-						"top": "20px",
-						"right": "38px",
-						"width": "956px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
-						"top": "20px",
-						"right": "47px",
-						"width": "1176px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
-						"top": "20px",
-						"right": "41px",
-						"width": "1034px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 899px)",
-						"top": "110px",
-						"left": "20px",
-						"width": "500px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "110px",
-						"left": "7px",
-						"width": "171px",
-						"height": "80px"
 					}
 				]
 			});
