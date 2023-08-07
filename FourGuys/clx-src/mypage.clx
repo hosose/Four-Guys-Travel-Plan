@@ -37,11 +37,7 @@
         <cl:requestdata dataid="ds2"/>
         <cl:responsedata dataid="ds2"/>
       </cl:submission>
-      <cl:submission std:sid="submission-2f0c2b5f" id="updatePassword" action="/updatePassword">
-        <cl:requestdata dataid="ds2"/>
-        <cl:responsedata dataid="ds2"/>
-      </cl:submission>
-      <cl:submission std:sid="submission-219aa173" id="updateAll" action="/updateAll">
+      <cl:submission std:sid="submission-219aa173" id="updateMember" action="/updateMember">
         <cl:requestdata dataid="ds2"/>
         <cl:responsedata dataid="ds2"/>
       </cl:submission>
@@ -54,7 +50,7 @@
       <cl:xylayoutdata std:sid="xyl-data-4e862c6f" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
       <cl:tabfolder std:sid="t-folder-64679f1f" tabindex="3">
         <cl:responsivexylayoutdata std:sid="rxyl-data-d1fd3406">
-          <cl:xylayoutdata std:sid="sxyl-data-716297f0" top="0px" right="4px" bottom="0px" left="6px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-716297f0" right="4px" bottom="0px" left="6px" height="963px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
         </cl:responsivexylayoutdata>
         <cl:tabitem std:sid="t-item-3a63cd4f" selected="true" text="MYPAGE">
           <std:metadata>

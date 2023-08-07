@@ -112,17 +112,11 @@
 			submission_1.addResponseData(dataSet_2, false);
 			app.register(submission_1);
 			
-			var submission_2 = new cpr.protocols.Submission("updatePassword");
-			submission_2.action = "/updatePassword";
+			var submission_2 = new cpr.protocols.Submission("updateMember");
+			submission_2.action = "/updateMember";
 			submission_2.addRequestData(dataSet_2);
 			submission_2.addResponseData(dataSet_2, false);
 			app.register(submission_2);
-			
-			var submission_3 = new cpr.protocols.Submission("updateAll");
-			submission_3.action = "/updateAll";
-			submission_3.addRequestData(dataSet_2);
-			submission_3.addResponseData(dataSet_2, false);
-			app.register(submission_3);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -752,24 +746,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "0px",
 							"right": "4px",
 							"bottom": "0px",
-							"left": "6px"
+							"left": "6px",
+							"height": "963px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "0px",
 							"right": "2px",
 							"bottom": "0px",
-							"left": "3px"
+							"left": "3px",
+							"height": "963px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "0px",
 							"right": "1px",
 							"bottom": "0px",
-							"left": "2px"
+							"left": "2px",
+							"height": "963px"
 						}
 					]
 				});
