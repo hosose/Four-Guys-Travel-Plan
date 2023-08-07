@@ -14,15 +14,15 @@ public class HomeController {
 	public String hello() {
 		return "select_dest.clx";
 	}
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "login.clx";
 	}
-	
 
 	@GetMapping("/register")
 	public String register() {
 		return "register.clx";
 	}
+
 }
