@@ -93,7 +93,7 @@
 			 */
 			function onRegisterClick(e){
 				var register = e.control;
-				location.href="/register"
+				location.href="/registerForm"
 			};
 			// End - User Script
 			

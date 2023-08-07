@@ -31,5 +31,5 @@ function onCreate_planClick(e){
  */
 function onLoginClick(e){
 	var login = e.control;
-	location.href="/login"
+	location.href="/loginForm"
 }
