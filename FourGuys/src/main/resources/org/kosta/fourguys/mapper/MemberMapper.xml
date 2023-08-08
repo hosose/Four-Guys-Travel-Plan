@@ -1,7 +1,25 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.fourguys.mapper.MemberMapper">
+	<insert id="registerMember" parameterType="org.kosta.fourguys.vo.MemberVO">
+		insert into member values(#{id},#{password},#{name},#{address},#{birth},#{email},#{phone})
+	</insert>
+	<select id="Login" parameterType="org.kosta.fourguys.vo.MemberVO">
+		select * from member where id = #{id} and password = #{password}
+	</select>
+	<update id="updateMember" parameterType="org.kosta.fourguys.vo.MemberVO">
+		update member set name = #{name} ,password=#{password},address=#{address},phone=#{phone} where id=#{id}
+	</update>
+	<delete id="deleteMember" parameterType="org.kosta.fourguys.vo.MemberVO">
+		delete member where id = #{id}
+	</delete>
+=======
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kosta.fourguys.mapper.MemberMapper">
 <insert id="registerMember" parameterType="org.kosta.fourguys.vo.MemberVO">
 insert into MEMBER values (#{id},#{name},#{password},#{address},#{birth},#{email},#{phone})
 </insert>
+>>>>>>> branch 'main' of https://github.com/hosose/Four-Guys-Travel-Plan.git
 </mapper>

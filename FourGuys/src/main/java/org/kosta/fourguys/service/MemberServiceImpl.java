@@ -22,5 +22,9 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO Login(String id, String password) {
 		return memberMapper.Login(id, password);
 	}
+	@Override
+	public int deleteMember(String id) {
+		return memberMapper.deleteMember(id);
+	}
 	
 }

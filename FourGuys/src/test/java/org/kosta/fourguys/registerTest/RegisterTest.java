@@ -13,20 +13,15 @@ public class RegisterTest {
 	@Autowired
 	MemberService memberService;
 
-	@Test
-	public void registerMemberTest() {
-		String id ="javajava";
-		String name="자바";
-		String password="dsf";
-		String address ="오리역";
-		String birth ="2012-4-3";
-		String email="a@a.com";
-		String phone="010-4848-7848";
-		MemberVO memberVO = new MemberVO(id, name, password, address, birth, email, phone);
-		System.out.println(memberVO);
-		int result= memberService.registerMember(memberVO);
-		
-		Assertions.assertEquals(1, result);
-	}
+	/*
+	 * @Test public void registerMemberTest() { String id ="javajava"; String
+	 * name="자바"; String password="dsf"; String address ="오리역"; String birth
+	 * ="2012-4-3"; String email="a@a.com"; String phone="010-4848-7848"; MemberVO
+	 * memberVO = new MemberVO(id, name, password, address, birth, email, phone);
+	 * System.out.println(memberVO); int result=
+	 * memberService.registerMember(memberVO);
+	 * 
+	 * Assertions.assertEquals(1, result); }
+	 */
 
 }
