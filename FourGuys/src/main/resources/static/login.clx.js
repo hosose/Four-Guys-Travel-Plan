@@ -49,7 +49,23 @@
 				}
 				app.lookup("idInput").value = "";
 				app.lookup("passwordInput").value = "";
+				app.lookup("idInput").focus();
 			}
+
+			/*
+			 * 인풋 박스에서 keydown 이벤트 발생 시 호출.
+			 * 사용자가 키를 누를 때 발생하는 이벤트. 키코드 관련 상수는 {@link cpr.events.KeyCode}에서 참조할 수 있습니다.
+			 */
+			function onPasswordInputKeydown(e){
+				/**
+				 * @type cpr.controls.InputBox
+				 */
+				var passwordInput = e.control;
+				if(e.keyCode == cpr.events.KeyCode.ENTER){
+					var loginBtn = app.lookup("btnLogin");
+					loginBtn.click();	
+				}
+			};
 			// End - User Script
 			
 			// Header
@@ -117,7 +133,7 @@
 			formLayout_1.bottomMargin = "50";
 			formLayout_1.leftMargin = "50";
 			formLayout_1.setColumns(["1fr"]);
-			formLayout_1.setRows(["40px", "30px", "30px", "30px", "30px", "30px"]);
+			formLayout_1.setRows(["50px", "20px", "30px", "30px", "30px", "30px"]);
 			group_1.setLayout(formLayout_1);
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("idInput");
@@ -126,7 +142,7 @@
 				inputBox_1.bind("value").toDataMap(app.lookup("loginParam"), "id");
 				container.addChild(inputBox_1, {
 					"colIndex": 0,
-					"rowIndex": 1,
+					"rowIndex": 2,
 					"verticalAlign": "fill"
 				});
 				var inputBox_2 = new cpr.controls.InputBox("passwordInput");
@@ -134,27 +150,13 @@
 				inputBox_2.secret = true;
 				inputBox_2.placeholder = "PW";
 				inputBox_2.bind("value").toDataMap(app.lookup("loginParam"), "password");
-				if(typeof onIpb2Keydown == "function") {
-					inputBox_2.addEventListener("keydown", onIpb2Keydown);
+				if(typeof onPasswordInputKeydown == "function") {
+					inputBox_2.addEventListener("keydown", onPasswordInputKeydown);
 				}
 				container.addChild(inputBox_2, {
 					"colIndex": 0,
-					"rowIndex": 2,
-					"colSpan": 1,
-					"rowSpan": 1,
-					"verticalAlign": "fill"
-				});
-				var checkBox_1 = new cpr.controls.CheckBox("cbx1");
-				checkBox_1.value = "";
-				checkBox_1.text = "ID 저장";
-				checkBox_1.style.css({
-					"text-align" : "left"
-				});
-				container.addChild(checkBox_1, {
-					"colIndex": 0,
 					"rowIndex": 3,
-					"colSpan": 1,
-					"rowSpan": 1
+					"verticalAlign": "fill"
 				});
 				var image_2 = new cpr.controls.Image();
 				image_2.src = "theme/images/logo.png";

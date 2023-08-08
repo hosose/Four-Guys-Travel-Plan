@@ -26,16 +26,13 @@
       <cl:xylayoutdata std:sid="xyl-data-8e006681" width="350px" height="300px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
       <cl:inputbox std:sid="i-box-a2a037e2" id="idInput" tooltip="ID를 입력하세요" placeholder="ID">
         <cl:datamapbind property="value" datacontrolid="loginParam" columnname="id"/>
-        <cl:formdata std:sid="f-data-04d0f0b0" valign="FILL" row="1" col="0"/>
+        <cl:formdata std:sid="f-data-968ad518" valign="FILL" row="2" col="0"/>
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-e1d92f20" id="passwordInput" tooltip="비밀번호를 입력하세요" secret="true" placeholder="PW">
-        <cl:listener std:sid="listener-2801a25b" name="keydown" handler="onIpb2Keydown"/>
+        <cl:listener std:sid="listener-d213df78" name="keydown" handler="onPasswordInputKeydown"/>
         <cl:datamapbind property="value" datacontrolid="loginParam" columnname="password"/>
-        <cl:formdata std:sid="f-data-c304d72b" valign="FILL" row="2" col="0" rowspan="1" colspan="1"/>
+        <cl:formdata std:sid="f-data-b7757da5" valign="FILL" row="3" col="0"/>
       </cl:inputbox>
-      <cl:checkbox std:sid="c-box-a54b7192" id="cbx1" style="text-align:left;" value="" text="ID 저장">
-        <cl:formdata std:sid="f-data-e5f71f85" row="3" col="0" rowspan="1" colspan="1"/>
-      </cl:checkbox>
       <cl:img std:sid="image-8d2d1ab7" src="theme/images/logo.png">
         <cl:formdata std:sid="f-data-fa028be4" row="0" col="0" rowspan="1" colspan="1"/>
       </cl:img>
@@ -48,8 +45,8 @@
         <cl:formdata std:sid="f-data-5d67937d" row="5" col="0"/>
       </cl:button>
       <cl:formlayout std:sid="f-layout-2b37edc8" top-margin="50" right-margin="50" bottom-margin="50" left-margin="50">
-        <cl:rows length="40" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
-        <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="50" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="20" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000"/>
