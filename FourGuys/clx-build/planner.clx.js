@@ -49,307 +49,192 @@
 			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_2);
 			(function(container){
-				var group_2 = new cpr.controls.Container();
-				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
-				group_2.setLayout(xYLayout_3);
-				(function(container){
-					var button_1 = new cpr.controls.Button("save");
-					button_1.value = "저장";
-					button_1.style.css({
-						"color" : "#35B3A2"
-					});
-					if(typeof onButtonClick == "function") {
-						button_1.addEventListener("click", onButtonClick);
-					}
-					container.addChild(button_1, {
-						"top": "5px",
-						"left": "329px",
-						"width": "100px",
-						"height": "20px"
-					});
-					var button_2 = new cpr.controls.Button();
-					button_2.value = "닫기";
-					button_2.style.css({
-						"color" : "#35B3A2"
-					});
-					container.addChild(button_2, {
-						"top": "5px",
-						"left": "428px",
-						"width": "100px",
-						"height": "20px"
-					});
-					var image_1 = new cpr.controls.Image();
-					image_1.src = "images/jejuphoto.png";
-					container.addChild(image_1, {
-						"top": "24px",
-						"left": "4px",
-						"width": "524px",
-						"height": "690px"
-					});
-				})(group_2);
-				container.addChild(group_2, {
-					"top": "3px",
-					"right": "8px",
-					"width": "530px",
-					"height": "720px"
+				var textArea_1 = new cpr.controls.TextArea("txa1");
+				textArea_1.value = "제주도 지역 검색";
+				textArea_1.style.css({
+					"text-align" : "center"
 				});
-				var group_3 = new cpr.controls.Container();
-				group_3.style.css({
-					"color" : "#35B3A2"
+				container.addChild(textArea_1, {
+					"top": "0px",
+					"bottom": "0px",
+					"left": "0px",
+					"width": "290px"
 				});
-				var formLayout_1 = new cpr.controls.layouts.FormLayout();
-				formLayout_1.scrollable = true;
-				formLayout_1.topMargin = "5px";
-				formLayout_1.rightMargin = "5px";
-				formLayout_1.bottomMargin = "5px";
-				formLayout_1.leftMargin = "5px";
-				formLayout_1.horizontalSpacing = "25px";
-				formLayout_1.verticalSpacing = "25px";
-				formLayout_1.setColumns(["1fr"]);
-				formLayout_1.setRows(["25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "1fr"]);
-				group_3.setLayout(formLayout_1);
-				(function(container){
-					var output_1 = new cpr.controls.Output();
-					output_1.value = "";
-					container.addChild(output_1, {
-						"colIndex": 0,
-						"rowIndex": 0
-					});
-					var output_2 = new cpr.controls.Output();
-					output_2.value = "Output";
-					container.addChild(output_2, {
-						"colIndex": 0,
-						"rowIndex": 1
-					});
-					var output_3 = new cpr.controls.Output();
-					output_3.value = "Output";
-					container.addChild(output_3, {
-						"colIndex": 0,
-						"rowIndex": 2
-					});
-					var output_4 = new cpr.controls.Output();
-					output_4.value = "Output";
-					container.addChild(output_4, {
-						"colIndex": 0,
-						"rowIndex": 3
-					});
-					var output_5 = new cpr.controls.Output();
-					output_5.value = "Output";
-					container.addChild(output_5, {
-						"colIndex": 0,
-						"rowIndex": 4
-					});
-					var output_6 = new cpr.controls.Output();
-					output_6.value = "Output";
-					container.addChild(output_6, {
-						"colIndex": 0,
-						"rowIndex": 5
-					});
-					var output_7 = new cpr.controls.Output();
-					output_7.value = "Output";
-					container.addChild(output_7, {
-						"colIndex": 0,
-						"rowIndex": 6
-					});
-					var output_8 = new cpr.controls.Output();
-					output_8.value = "Output";
-					container.addChild(output_8, {
-						"colIndex": 0,
-						"rowIndex": 7
-					});
-					var output_9 = new cpr.controls.Output();
-					output_9.value = "Output";
-					container.addChild(output_9, {
-						"colIndex": 0,
-						"rowIndex": 8
-					});
-					var output_10 = new cpr.controls.Output();
-					output_10.value = "Output";
-					container.addChild(output_10, {
-						"colIndex": 0,
-						"rowIndex": 9
-					});
-					var output_11 = new cpr.controls.Output();
-					output_11.value = "Output";
-					container.addChild(output_11, {
-						"colIndex": 0,
-						"rowIndex": 10
-					});
-				})(group_3);
-				container.addChild(group_3, {
-					"top": "41px",
-					"left": "235px",
-					"width": "252px",
-					"height": "683px"
-				});
-				var group_4 = new cpr.controls.Container();
-				var formLayout_2 = new cpr.controls.layouts.FormLayout();
-				formLayout_2.scrollable = true;
-				formLayout_2.topMargin = "5px";
-				formLayout_2.rightMargin = "5px";
-				formLayout_2.bottomMargin = "5px";
-				formLayout_2.leftMargin = "5px";
-				formLayout_2.horizontalSpacing = "25px";
-				formLayout_2.verticalSpacing = "25px";
-				formLayout_2.setColumns(["150px", "1fr"]);
-				formLayout_2.setRows(["1fr"]);
-				group_4.setLayout(formLayout_2);
-				(function(container){
-					var textArea_1 = new cpr.controls.TextArea("txa2");
-					textArea_1.value = "플래너 제목 :";
-					textArea_1.style.css({
-						"text-align" : "center"
-					});
-					container.addChild(textArea_1, {
-						"colIndex": 0,
-						"rowIndex": 0
-					});
-					var textArea_2 = new cpr.controls.TextArea("txa3");
-					container.addChild(textArea_2, {
-						"colIndex": 1,
-						"rowIndex": 0
-					});
-				})(group_4);
-				container.addChild(group_4, {
-					"top": "3px",
-					"left": "1px",
-					"width": "486px",
-					"height": "39px"
-				});
-				var group_5 = new cpr.controls.Container();
-				group_5.style.css({
-					"color" : "#7CDBE4"
-				});
-				var formLayout_3 = new cpr.controls.layouts.FormLayout();
-				formLayout_3.scrollable = true;
-				formLayout_3.topMargin = "5px";
-				formLayout_3.rightMargin = "5px";
-				formLayout_3.bottomMargin = "5px";
-				formLayout_3.leftMargin = "5px";
-				formLayout_3.horizontalSpacing = "25px";
-				formLayout_3.verticalSpacing = "25px";
-				formLayout_3.setColumns(["100px", "1fr"]);
-				formLayout_3.setRows(["25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "1fr"]);
-				group_5.setLayout(formLayout_3);
-				(function(container){
-					var textArea_3 = new cpr.controls.TextArea("txa1");
-					textArea_3.value = "일정";
-					textArea_3.style.css({
-						"text-align" : "center"
-					});
-					container.addChild(textArea_3, {
-						"colIndex": 0,
-						"rowIndex": 0
-					});
-					var button_3 = new cpr.controls.Button();
-					button_3.value = "day1";
-					container.addChild(button_3, {
-						"colIndex": 0,
-						"rowIndex": 1
-					});
-					var button_4 = new cpr.controls.Button();
-					button_4.value = "day2";
-					container.addChild(button_4, {
-						"colIndex": 0,
-						"rowIndex": 2
-					});
-					var button_5 = new cpr.controls.Button();
-					button_5.value = "day3";
-					container.addChild(button_5, {
-						"colIndex": 0,
-						"rowIndex": 3
-					});
-					var output_12 = new cpr.controls.Output();
-					output_12.value = "Output";
-					container.addChild(output_12, {
-						"colIndex": 1,
-						"rowIndex": 3
-					});
-					var output_13 = new cpr.controls.Output();
-					output_13.value = "Output";
-					container.addChild(output_13, {
-						"colIndex": 1,
-						"rowIndex": 1
-					});
-					var output_14 = new cpr.controls.Output();
-					output_14.value = "Output";
-					container.addChild(output_14, {
-						"colIndex": 1,
-						"rowIndex": 2
-					});
-					var output_15 = new cpr.controls.Output();
-					output_15.value = "Output";
-					container.addChild(output_15, {
-						"colIndex": 1,
-						"rowIndex": 4
-					});
-					var output_16 = new cpr.controls.Output();
-					output_16.value = "Output";
-					container.addChild(output_16, {
-						"colIndex": 1,
-						"rowIndex": 5
-					});
-					var output_17 = new cpr.controls.Output();
-					output_17.value = "Output";
-					container.addChild(output_17, {
-						"colIndex": 1,
-						"rowIndex": 7
-					});
-					var output_18 = new cpr.controls.Output();
-					output_18.value = "Output";
-					container.addChild(output_18, {
-						"colIndex": 1,
-						"rowIndex": 10
-					});
-					var output_19 = new cpr.controls.Output();
-					output_19.value = "Output";
-					container.addChild(output_19, {
-						"colIndex": 1,
-						"rowIndex": 11
-					});
-					var output_20 = new cpr.controls.Output();
-					output_20.value = "Output";
-					container.addChild(output_20, {
-						"colIndex": 1,
-						"rowIndex": 9
-					});
-					var output_21 = new cpr.controls.Output();
-					output_21.value = "Output";
-					container.addChild(output_21, {
-						"colIndex": 1,
-						"rowIndex": 8
-					});
-					var output_22 = new cpr.controls.Output();
-					output_22.value = "Output";
-					container.addChild(output_22, {
-						"colIndex": 1,
-						"rowIndex": 6
-					});
-					var output_23 = new cpr.controls.Output();
-					output_23.value = "Output";
-					container.addChild(output_23, {
-						"colIndex": 1,
-						"rowIndex": 12
-					});
-					var output_24 = new cpr.controls.Output();
-					output_24.value = "Output";
-					container.addChild(output_24, {
-						"colIndex": 1,
-						"rowIndex": 13
-					});
-				})(group_5);
-				container.addChild(group_5, {
-					"top": "52px",
-					"left": "7px",
-					"width": "229px",
-					"height": "671px"
+				var button_1 = new cpr.controls.Button();
+				button_1.value = "검색";
+				container.addChild(button_1, {
+					"top": "0px",
+					"right": "0px",
+					"width": "100px",
+					"height": "20px"
 				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "0px",
-				"left": "0px",
-				"width": "1024px",
-				"height": "720px"
+				"top": "41px",
+				"left": "20px",
+				"width": "400px",
+				"height": "22px"
+			});
+			
+			var group_2 = new cpr.controls.Container();
+			var xYLayout_3 = new cpr.controls.layouts.XYLayout();
+			group_2.setLayout(xYLayout_3);
+			(function(container){
+				var textArea_2 = new cpr.controls.TextArea("txa2");
+				textArea_2.value = "플래너 제목 :";
+				textArea_2.style.css({
+					"text-align" : "center"
+				});
+				container.addChild(textArea_2, {
+					"top": "0px",
+					"bottom": "0px",
+					"left": "0px",
+					"width": "185px"
+				});
+				var inputBox_1 = new cpr.controls.InputBox("ipb1");
+				container.addChild(inputBox_1, {
+					"top": "0px",
+					"right": "0px",
+					"left": "184px",
+					"height": "22px"
+				});
+			})(group_2);
+			container.addChild(group_2, {
+				"top": "20px",
+				"left": "20px",
+				"width": "848px",
+				"height": "22px"
+			});
+			
+			var group_3 = new cpr.controls.Container();
+			var formLayout_1 = new cpr.controls.layouts.FormLayout();
+			formLayout_1.scrollable = false;
+			formLayout_1.topMargin = "5px";
+			formLayout_1.rightMargin = "5px";
+			formLayout_1.bottomMargin = "5px";
+			formLayout_1.leftMargin = "5px";
+			formLayout_1.horizontalSpacing = "25px";
+			formLayout_1.verticalSpacing = "25px";
+			formLayout_1.setColumns(["50px", "50px"]);
+			formLayout_1.setRows(["25px"]);
+			group_3.setLayout(formLayout_1);
+			(function(container){
+				var button_2 = new cpr.controls.Button();
+				button_2.value = "저장";
+				container.addChild(button_2, {
+					"colIndex": 0,
+					"rowIndex": 0,
+					"verticalAlign": "top"
+				});
+				var button_3 = new cpr.controls.Button();
+				button_3.value = "취소";
+				container.addChild(button_3, {
+					"colIndex": 1,
+					"rowIndex": 0
+				});
+			})(group_3);
+			container.addChild(group_3, {
+				"top": "14px",
+				"left": "867px",
+				"width": "150px",
+				"height": "33px"
+			});
+			
+			var group_4 = new cpr.controls.Container();
+			var xYLayout_4 = new cpr.controls.layouts.XYLayout();
+			group_4.setLayout(xYLayout_4);
+			(function(container){
+				var linkedComboBox_1 = new cpr.controls.LinkedComboBox("lcb1");
+				container.addChild(linkedComboBox_1, {
+					"top": "0px",
+					"left": "0px",
+					"width": "120px",
+					"height": "20px"
+				});
+			})(group_4);
+			container.addChild(group_4, {
+				"top": "73px",
+				"left": "20px",
+				"width": "120px",
+				"height": "694px"
+			});
+			
+			var group_5 = new cpr.controls.Container();
+			var xYLayout_5 = new cpr.controls.layouts.XYLayout();
+			group_5.setLayout(xYLayout_5);
+			(function(container){
+				var grid_1 = new cpr.controls.Grid("grd2");
+				grid_1.init({
+					"columns": [{"width": "100px"}],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.text = "여행지 목록";
+							}
+						}]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+							}
+						}]
+					}
+				});
+				container.addChild(grid_1, {
+					"top": "0px",
+					"left": "0px",
+					"width": "140px",
+					"height": "694px"
+				});
+			})(group_5);
+			container.addChild(group_5, {
+				"top": "73px",
+				"left": "278px",
+				"width": "140px",
+				"height": "694px"
+			});
+			
+			var group_6 = new cpr.controls.Container();
+			var xYLayout_6 = new cpr.controls.layouts.XYLayout();
+			group_6.setLayout(xYLayout_6);
+			(function(container){
+				var grid_2 = new cpr.controls.Grid("grd1");
+				grid_2.init({
+					"columns": [{"width": "167px"}],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.text = "선택한 여행지 목록";
+							}
+						}]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+							}
+						}]
+					}
+				});
+				container.addChild(grid_2, {
+					"top": "0px",
+					"left": "0px",
+					"width": "140px",
+					"height": "694px"
+				});
+			})(group_6);
+			container.addChild(group_6, {
+				"top": "73px",
+				"left": "139px",
+				"width": "140px",
+				"height": "694px"
 			});
 		}
 	});
