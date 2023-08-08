@@ -20,6 +20,19 @@
 			// End - User Script
 			
 			// Header
+			var dataMap_1 = new cpr.data.DataMap("register");
+			dataMap_1.parseData({
+				"columns" : [
+					{"name": "id"},
+					{"name": "name"},
+					{"name": "password"},
+					{"name": "address"},
+					{"name": "birth"},
+					{"name": "email"},
+					{"name": "phone"}
+				]
+			});
+			app.register(dataMap_1);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -79,6 +92,8 @@
 				"border-right-color" : "#f0f0f0",
 				"border-top-style" : "solid"
 			});
+			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("register"));
+			group_1.setBindContext(dataMapContext_1);
 			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_1);
 			(function(container){
@@ -111,6 +126,7 @@
 					"height": "25px"
 				});
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
+				inputBox_1.bind("value").toDataMap(app.lookup("register"), "id");
 				container.addChild(inputBox_1, {
 					"top": "157px",
 					"left": "182px",
@@ -119,6 +135,7 @@
 				});
 				var inputBox_2 = new cpr.controls.InputBox("ipb2");
 				inputBox_2.secret = true;
+				inputBox_2.bind("value").toDataColumn("password");
 				container.addChild(inputBox_2, {
 					"top": "187px",
 					"left": "182px",
@@ -126,6 +143,7 @@
 					"height": "25px"
 				});
 				var inputBox_3 = new cpr.controls.InputBox("ipb3");
+				inputBox_3.bind("value").toDataColumn("name");
 				container.addChild(inputBox_3, {
 					"top": "217px",
 					"left": "182px",
@@ -133,6 +151,7 @@
 					"height": "25px"
 				});
 				var inputBox_4 = new cpr.controls.InputBox("ipb4");
+				inputBox_4.bind("value").toDataColumn("address");
 				container.addChild(inputBox_4, {
 					"top": "277px",
 					"left": "182px",
@@ -140,6 +159,7 @@
 					"height": "25px"
 				});
 				var inputBox_5 = new cpr.controls.InputBox("ipb6");
+				inputBox_5.bind("value").toDataColumn("email");
 				container.addChild(inputBox_5, {
 					"top": "307px",
 					"left": "182px",
@@ -148,6 +168,7 @@
 				});
 				var maskEditor_1 = new cpr.controls.MaskEditor("mse1");
 				maskEditor_1.mask = "XXX-XXXX-XXXX";
+				maskEditor_1.bind("value").toDataColumn("phone");
 				container.addChild(maskEditor_1, {
 					"top": "337px",
 					"left": "182px",
@@ -223,6 +244,7 @@
 					"height": "25px"
 				});
 				var dateInput_1 = new cpr.controls.DateInput("dti1");
+				dateInput_1.bind("value").toDataColumn("birth");
 				container.addChild(dateInput_1, {
 					"top": "247px",
 					"left": "182px",

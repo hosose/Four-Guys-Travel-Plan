@@ -4,7 +4,19 @@
     <screen std:sid="screen-8eb1f96e" id="default" name="default" width="1024px" height="768px"/>
     <screen std:sid="screen-c46709b4" id="tablet" name="tablet" width="500px" height="667px"/>
     <screen std:sid="screen-5202db4a" id="mobile" name="mobile" width="350px" height="525px"/>
-    <cl:model std:sid="model-df7e2a1f"/>
+    <cl:model std:sid="model-df7e2a1f">
+      <cl:datamap std:sid="d-map-669844e8" id="register">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-6f5d4c48" name="id"/>
+          <cl:datacolumn std:sid="d-column-1ee9b507" name="name"/>
+          <cl:datacolumn std:sid="d-column-62da1553" name="password"/>
+          <cl:datacolumn std:sid="d-column-76e0e525" name="address"/>
+          <cl:datacolumn std:sid="d-column-7645d0cc" name="birth"/>
+          <cl:datacolumn std:sid="d-column-d42ac10a" name="email"/>
+          <cl:datacolumn std:sid="d-column-0cb608b2" name="phone"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+    </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-b3f0ff3a" style="border-right-style:none; border-left-style:none; border-bottom-style:none; border-top-style:none;">
@@ -14,6 +26,7 @@
       </cl:responsivexylayoutdata>
     </cl:img>
     <cl:group std:sid="group-bc392d7d" style="border-right-style:solid; border-bottom-color:#f0f0f0; border-left-style:solid; border-left-color:#f0f0f0; border-top-color:#f0f0f0; border-bottom-style:solid; border-right-color:#f0f0f0; border-top-style:solid;">
+      <cl:datamapcontext datacontrolid="register"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-e521be7a">
         <cl:xylayoutdata std:sid="sxyl-data-a1a2ebde" top="82px" bottom="240px" width="524px" horizontalAnchor="CENTER" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
@@ -24,21 +37,27 @@
         <cl:xylayoutdata std:sid="xyl-data-ee007601" top="157px" left="77px" width="100px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:inputbox std:sid="i-box-136261d4" id="ipb1">
+        <cl:datamapbind property="value" category="PROPERTY" datacontrolid="register" columnname="id"/>
         <cl:xylayoutdata std:sid="xyl-data-976cf932" top="157px" left="182px" width="200px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-668e3050" id="ipb2" secret="true">
+        <cl:relativebind property="value" columnname="password"/>
         <cl:xylayoutdata std:sid="xyl-data-1d281e80" top="187px" left="182px" width="200px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-838596cb" id="ipb3">
+        <cl:relativebind property="value" columnname="name"/>
         <cl:xylayoutdata std:sid="xyl-data-4f59994d" top="217px" left="182px" width="200px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-bed5f5d0" id="ipb4">
+        <cl:relativebind property="value" columnname="address"/>
         <cl:xylayoutdata std:sid="xyl-data-0d7217fb" top="277px" left="182px" width="200px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-a008d353" id="ipb6">
+        <cl:relativebind property="value" columnname="email"/>
         <cl:xylayoutdata std:sid="xyl-data-28013d64" top="307px" left="182px" width="200px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
       <cl:maskeditor std:sid="m-editor-f14997c0" id="mse1" mask="XXX-XXXX-XXXX">
+        <cl:relativebind property="value" columnname="phone"/>
         <cl:xylayoutdata std:sid="xyl-data-2d198626" top="337px" left="182px" width="200px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:maskeditor>
       <cl:button std:sid="button-1c8aafba" id="btn2" value="회원등록">
@@ -54,6 +73,7 @@
         <cl:xylayoutdata std:sid="xyl-data-e27e90c9" top="277px" left="77px" width="100px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:dateinput std:sid="d-input-df177294" id="dti1">
+        <cl:relativebind property="value" columnname="birth"/>
         <cl:xylayoutdata std:sid="xyl-data-c040823b" top="247px" left="182px" width="200px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:dateinput>
       <cl:output std:sid="output-6717958d" style="border-right-style:solid; border-bottom-color:#ffffff; color:#FFFFFF; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-right-color:#ffffff; border-bottom-style:solid; border-top-style:solid; text-align:center;" value="생년월일">
