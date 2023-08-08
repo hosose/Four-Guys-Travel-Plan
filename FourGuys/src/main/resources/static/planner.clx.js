@@ -29,6 +29,39 @@
 			// End - User Script
 			
 			// Header
+			var dataSet_1 = new cpr.data.DataSet("ds1");
+			dataSet_1.parseData({
+				"columns": [
+					{
+						"name": "contentid",
+						"dataType": "number"
+					},
+					{
+						"name": "mapx",
+						"dataType": "number"
+					},
+					{
+						"name": "mapy",
+						"dataType": "number"
+					},
+					{"name": "cat1"},
+					{"name": "cat2"},
+					{"name": "cat3"},
+					{"name": "addr1"},
+					{"name": "addr2"},
+					{"name": "firstimage"},
+					{"name": "title"},
+					{"name": "tel"}
+				],
+				"rows": [
+					{"contentid": "1", "mapx": "1", "mapy": "1", "cat1": "cat11", "cat2": "cat21", "cat3": "cat31", "addr1": "addr11", "addr2": "addr21", "firstimage": "firstimage1", "title": "기념품샵", "tel": "tel1"},
+					{"contentid": "2", "mapx": "2", "mapy": "2", "cat1": "cat12", "cat2": "cat22", "cat3": "cat32", "addr1": "addr12", "addr2": "addr22", "firstimage": "firstimage2", "title": "공항", "tel": "tel2"},
+					{"contentid": "3", "mapx": "3", "mapy": "3", "cat1": "cat13", "cat2": "cat23", "cat3": "cat33", "addr1": "addr13", "addr2": "addr23", "firstimage": "firstimage3", "title": "바닷가", "tel": "tel3"}
+				]
+			});
+			app.register(dataSet_1);
+			var submission_1 = new cpr.protocols.Submission("subSave");
+			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -140,6 +173,74 @@
 				"height": "33px"
 			});
 			
+			var grid_1 = new cpr.controls.Grid("grd2");
+			grid_1.init({
+				"dataSet": app.lookup("ds1"),
+				"columns": [{"width": "100px"}],
+				"header": {
+					"rows": [{"height": "24px"}],
+					"cells": [{
+						"constraint": {"rowIndex": 0, "colIndex": 0},
+						"configurator": function(cell){
+							cell.filterable = false;
+							cell.sortable = false;
+							cell.targetColumnName = "title";
+							cell.text = "지역 목록";
+						}
+					}]
+				},
+				"detail": {
+					"rows": [{"height": "24px"}],
+					"cells": [{
+						"constraint": {"rowIndex": 0, "colIndex": 0},
+						"configurator": function(cell){
+							cell.columnName = "title";
+							cell.bind("fieldLabel").toDataSet(app.lookup("ds1"), "title", 0);
+						}
+					}]
+				}
+			});
+			if(typeof onGrd2Mousedown == "function") {
+				grid_1.addEventListener("mousedown", onGrd2Mousedown);
+			}
+			if(typeof onGrd2Dblclick == "function") {
+				grid_1.addEventListener("dblclick", onGrd2Dblclick);
+			}
+			container.addChild(grid_1, {
+				"top": "73px",
+				"left": "300px",
+				"width": "140px",
+				"height": "700px"
+			});
+			
+			var grid_2 = new cpr.controls.Grid("grd1");
+			grid_2.init({
+				"columns": [{"width": "137px"}],
+				"header": {
+					"rows": [{"height": "24px"}],
+					"cells": [{
+						"constraint": {"rowIndex": 0, "colIndex": 0},
+						"configurator": function(cell){
+							cell.text = "선택한 여행지 목록";
+						}
+					}]
+				},
+				"detail": {
+					"rows": [{"height": "24px"}],
+					"cells": [{
+						"constraint": {"rowIndex": 0, "colIndex": 0},
+						"configurator": function(cell){
+						}
+					}]
+				}
+			});
+			container.addChild(grid_2, {
+				"top": "73px",
+				"left": "150px",
+				"width": "140px",
+				"height": "700px"
+			});
+			
 			var group_4 = new cpr.controls.Container();
 			var xYLayout_4 = new cpr.controls.layouts.XYLayout();
 			group_4.setLayout(xYLayout_4);
@@ -156,85 +257,7 @@
 				"top": "73px",
 				"left": "20px",
 				"width": "120px",
-				"height": "694px"
-			});
-			
-			var group_5 = new cpr.controls.Container();
-			var xYLayout_5 = new cpr.controls.layouts.XYLayout();
-			group_5.setLayout(xYLayout_5);
-			(function(container){
-				var grid_1 = new cpr.controls.Grid("grd2");
-				grid_1.init({
-					"columns": [{"width": "100px"}],
-					"header": {
-						"rows": [{"height": "24px"}],
-						"cells": [{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-								cell.text = "여행지 목록";
-							}
-						}]
-					},
-					"detail": {
-						"rows": [{"height": "24px"}],
-						"cells": [{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-							}
-						}]
-					}
-				});
-				container.addChild(grid_1, {
-					"top": "0px",
-					"left": "0px",
-					"width": "140px",
-					"height": "694px"
-				});
-			})(group_5);
-			container.addChild(group_5, {
-				"top": "73px",
-				"left": "278px",
-				"width": "140px",
-				"height": "694px"
-			});
-			
-			var group_6 = new cpr.controls.Container();
-			var xYLayout_6 = new cpr.controls.layouts.XYLayout();
-			group_6.setLayout(xYLayout_6);
-			(function(container){
-				var grid_2 = new cpr.controls.Grid("grd1");
-				grid_2.init({
-					"columns": [{"width": "167px"}],
-					"header": {
-						"rows": [{"height": "24px"}],
-						"cells": [{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-								cell.text = "선택한 여행지 목록";
-							}
-						}]
-					},
-					"detail": {
-						"rows": [{"height": "24px"}],
-						"cells": [{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-							}
-						}]
-					}
-				});
-				container.addChild(grid_2, {
-					"top": "0px",
-					"left": "0px",
-					"width": "140px",
-					"height": "694px"
-				});
-			})(group_6);
-			container.addChild(group_6, {
-				"top": "73px",
-				"left": "139px",
-				"width": "140px",
-				"height": "694px"
+				"height": "700px"
 			});
 		}
 	});

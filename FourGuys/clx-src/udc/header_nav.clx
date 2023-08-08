@@ -8,6 +8,9 @@
       <cl:submission std:sid="submission-94c29d62" id="loginCheck" method="get" action="loginCheck">
         <cl:listener std:sid="listener-5c9f55ed" name="submit-success" handler="onLoginCheckSubmitSuccess"/>
       </cl:submission>
+      <cl:submission std:sid="submission-4c39e025" id="subLogout" async="false" action="logout">
+        <cl:listener std:sid="listener-544f172d" name="submit-success" handler="onSubLogoutSubmitSuccess"/>
+      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>

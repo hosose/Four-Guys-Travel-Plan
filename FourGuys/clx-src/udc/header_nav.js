@@ -65,3 +65,8 @@ function onMyPageBtnClick(e){
 	var MyPageBtn = e.control;
 	location.href = "mypage.clx";
 }
+
+
+
+
+

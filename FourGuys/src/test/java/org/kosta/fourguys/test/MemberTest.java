@@ -1,5 +1,7 @@
 package org.kosta.fourguys.test;
 
+import javax.servlet.http.HttpSession;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kosta.fourguys.mapper.MemberMapper;

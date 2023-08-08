@@ -119,4 +119,22 @@ public class MemberController {
 		dataRequest.setMetadata(success, initParam);
 		return new JSONDataView();
 	}
+	@PostMapping("/logout")
+	public View logout(HttpServletRequest request,HttpServletResponse response, DataRequest dataRequest) {
+		Map<String, Object> message = new HashMap<String, Object>();
+		HttpSession session= request.getSession(false);
+		//System.out.println(session);
+		if(session!=null) {
+			session.invalidate();
+		}
+		message.put("uri", "/");
+		dataRequest.setMetadata(true, message);
+		return new JSONDataView();
+	}
 }
+
+
+
+
+
+

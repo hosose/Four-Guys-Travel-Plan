@@ -91,6 +91,14 @@
 					submission_1.addEventListener("submit-success", onLoginCheckSubmitSuccess);
 				}
 				app.register(submission_1);
+				
+				var submission_2 = new cpr.protocols.Submission("subLogout");
+				submission_2.async = false;
+				submission_2.action = "logout";
+				if(typeof onSubLogoutSubmitSuccess == "function") {
+					submission_2.addEventListener("submit-success", onSubLogoutSubmitSuccess);
+				}
+				app.register(submission_2);
 				app.supportMedia("all and (min-width: 1024px)", "default");
 				app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 				app.supportMedia("all and (max-width: 499px)", "mobile");
