@@ -69,6 +69,28 @@
 						loginBtn.visible = false;
 						logoutBtn.visible = true;
 					}
+				}
+	
+				/*
+				 * "Logout" 버튼(logoutBtn)에서 click 이벤트 발생 시 호출.
+				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+				 */
+				function onLogoutBtnClick(e){
+					var logoutBtn = e.control;
+					var subLogout = app.lookup("subLogout");
+					subLogout.send();
+				}
+	
+				/*
+				 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+				 * 통신이 성공하면 발생합니다.
+				 */
+				function onSubLogoutSubmitSuccess(e){
+					var subLogout = e.control;
+					var uri = subLogout.getMetadata("uri");
+					if (uri != null) {
+					location.href=uri
+					}
 				};
 				// End - User Script
 				
@@ -80,6 +102,14 @@
 					submission_1.addEventListener("submit-success", onLoginCheckSubmitSuccess);
 				}
 				app.register(submission_1);
+				
+				var submission_2 = new cpr.protocols.Submission("subLogout");
+				submission_2.async = false;
+				submission_2.action = "logout";
+				if(typeof onSubLogoutSubmitSuccess == "function") {
+					submission_2.addEventListener("submit-success", onSubLogoutSubmitSuccess);
+				}
+				app.register(submission_2);
 				app.supportMedia("all and (min-width: 1024px)", "default");
 				app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 				app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -186,6 +216,9 @@
 					"font-style" : "normal",
 					"border-top-style" : "none"
 				});
+				if(typeof onLogoutBtnClick == "function") {
+					button_4.addEventListener("click", onLogoutBtnClick);
+				}
 				container.addChild(button_4, {
 					"top": "10px",
 					"right": "77px",

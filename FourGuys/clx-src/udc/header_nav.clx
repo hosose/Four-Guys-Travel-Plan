@@ -8,6 +8,9 @@
       <cl:submission std:sid="submission-94c29d62" id="loginCheck" method="get" action="loginCheck">
         <cl:listener std:sid="listener-5c9f55ed" name="submit-success" handler="onLoginCheckSubmitSuccess"/>
       </cl:submission>
+      <cl:submission std:sid="submission-4c39e025" id="subLogout" async="false" action="logout">
+        <cl:listener std:sid="listener-544f172d" name="submit-success" handler="onSubLogoutSubmitSuccess"/>
+      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
@@ -25,6 +28,7 @@
       <cl:xylayoutdata std:sid="xyl-data-0f0e6f37" top="10px" right="359px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:button std:sid="button-3f6ac83c" id="logoutBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" visible="false" value="Logout">
+      <cl:listener std:sid="listener-07e221e2" name="click" handler="onLogoutBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-bb505d20" top="10px" right="77px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-242e59ac"/>

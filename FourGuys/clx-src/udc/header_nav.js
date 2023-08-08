@@ -54,3 +54,30 @@ function onLoginCheckSubmitSuccess(e){
 		logoutBtn.visible = true;
 	}
 }
+
+/*
+ * "Logout" 버튼(logoutBtn)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onLogoutBtnClick(e){
+	var logoutBtn = e.control;
+	var subLogout = app.lookup("subLogout");
+	subLogout.send();
+}
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSubLogoutSubmitSuccess(e){
+	var subLogout = e.control;
+	var uri = subLogout.getMetadata("uri");
+	if (uri != null) {
+	location.href=uri
+	}
+}
+
+
+
+
+
