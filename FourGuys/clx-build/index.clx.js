@@ -93,7 +93,6 @@
 			output_1.style.css({
 				"color" : "#FFFFFF",
 				"font-size" : "50px",
-				"font-family" : "태나다체",
 				"font-style" : "normal"
 			});
 			container.addChild(output_1, {
@@ -129,7 +128,6 @@
 				"background-color" : "#37E7F1",
 				"color" : "#FFFFFF",
 				"font-size" : "50px",
-				"font-family" : "태나다체",
 				"font-style" : "normal"
 			});
 			container.addChild(output_2, {
@@ -164,7 +162,6 @@
 			output_3.style.css({
 				"color" : "#FFFFFF",
 				"font-size" : "50px",
-				"font-family" : "태나다체",
 				"font-style" : "normal"
 			});
 			container.addChild(output_3, {
@@ -199,7 +196,6 @@
 			output_4.style.css({
 				"color" : "#FFFFFF",
 				"font-size" : "50px",
-				"font-family" : "태나다체",
 				"font-style" : "normal"
 			});
 			container.addChild(output_4, {

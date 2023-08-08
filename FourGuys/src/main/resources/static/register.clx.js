@@ -16,40 +16,10 @@
 			 * Created at 2023. 8. 4. 오후 3:28:09.
 			 *
 			 * @author USER
-			 ************************************************/
-
-			/*
-			 * "회원등록" 버튼(btn2)에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-			function onBtn2Click(e){
-				var btn2 = e.control;
-				var submission = app.lookup("sms1");
-				var dataSet = app.lookup("Member");
-				submission.send();
-				alert("회원가입이 완료되었습니다.");
-				location.href="/";
-			};
+			 ************************************************/;
 			// End - User Script
 			
 			// Header
-			var dataSet_1 = new cpr.data.DataSet("Member");
-			dataSet_1.parseData({
-				"columns" : [
-					{"name": "ID"},
-					{"name": "PASSWORD"},
-					{"name": "NAME"},
-					{"name": "BIRTH"},
-					{"name": "ADDRESS"},
-					{"name": "EMAIL"},
-					{"name": "PHONE"}
-				]
-			});
-			app.register(dataSet_1);
-			var submission_1 = new cpr.protocols.Submission("sms1");
-			submission_1.action = "/register";
-			submission_1.addRequestData(dataSet_1);
-			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -141,7 +111,6 @@
 					"height": "25px"
 				});
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
-				inputBox_1.bind("value").toDataSet(app.lookup("Member"), "ID", 0);
 				container.addChild(inputBox_1, {
 					"top": "157px",
 					"left": "182px",
@@ -150,7 +119,6 @@
 				});
 				var inputBox_2 = new cpr.controls.InputBox("ipb2");
 				inputBox_2.secret = true;
-				inputBox_2.bind("value").toDataSet(app.lookup("Member"), "PASSWORD", 0);
 				container.addChild(inputBox_2, {
 					"top": "187px",
 					"left": "182px",
@@ -158,7 +126,6 @@
 					"height": "25px"
 				});
 				var inputBox_3 = new cpr.controls.InputBox("ipb3");
-				inputBox_3.bind("value").toDataSet(app.lookup("Member"), "NAME", 0);
 				container.addChild(inputBox_3, {
 					"top": "217px",
 					"left": "182px",
@@ -166,7 +133,6 @@
 					"height": "25px"
 				});
 				var inputBox_4 = new cpr.controls.InputBox("ipb4");
-				inputBox_4.bind("value").toDataSet(app.lookup("Member"), "ADDRESS", 0);
 				container.addChild(inputBox_4, {
 					"top": "277px",
 					"left": "182px",
@@ -174,7 +140,6 @@
 					"height": "25px"
 				});
 				var inputBox_5 = new cpr.controls.InputBox("ipb6");
-				inputBox_5.bind("value").toDataSet(app.lookup("Member"), "EMAIL", 0);
 				container.addChild(inputBox_5, {
 					"top": "307px",
 					"left": "182px",
@@ -183,7 +148,6 @@
 				});
 				var maskEditor_1 = new cpr.controls.MaskEditor("mse1");
 				maskEditor_1.mask = "XXX-XXXX-XXXX";
-				maskEditor_1.bind("value").toDataSet(app.lookup("Member"), "PHONE", 0);
 				container.addChild(maskEditor_1, {
 					"top": "337px",
 					"left": "182px",
@@ -192,9 +156,6 @@
 				});
 				var button_1 = new cpr.controls.Button("btn2");
 				button_1.value = "회원등록";
-				if(typeof onBtn2Click == "function") {
-					button_1.addEventListener("click", onBtn2Click);
-				}
 				container.addChild(button_1, {
 					"top": "392px",
 					"left": "181px",
@@ -262,7 +223,6 @@
 					"height": "25px"
 				});
 				var dateInput_1 = new cpr.controls.DateInput("dti1");
-				dateInput_1.bind("value").toDataSet(app.lookup("Member"), "BIRTH", 0);
 				container.addChild(dateInput_1, {
 					"top": "247px",
 					"left": "182px",

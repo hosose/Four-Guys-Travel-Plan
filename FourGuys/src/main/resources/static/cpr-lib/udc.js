@@ -24,34 +24,62 @@
 				/**
 				 * UDC 컨트롤이 그리드의 뷰 모드에서 표시할 텍스트를 반환합니다.
 				 */
-				exports.getText = function(){
+				exports.getText = function() {
 					// TODO: 그리드의 뷰 모드에서 표시할 텍스트를 반환하는 하는 코드를 작성해야 합니다.
 					return "";
 				};
-	
-	
-	
 	
 				/*
 				 * "플랜 생성" 버튼(create_plan)에서 click 이벤트 발생 시 호출.
 				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 				 */
-				function onCreate_planClick(e){
+				function onCreate_planClick(e) {
 					var create_plan = e.control;
-					location.href="/selectDestinationForm"
+					location.href = "/selectDestinationForm"
 				}
 	
 				/*
 				 * "Login" 버튼(login)에서 click 이벤트 발생 시 호출.
 				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 				 */
-				function onLoginClick(e){
+				function onLoginClick(e) {
 					var login = e.control;
-					location.href="/loginForm"
+					location.href = "login.clx";
+				}
+	
+				/*
+				 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+				 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+				 */
+				function onBodyLoad(e){
+					var subLogin = app.lookup("loginCheck");
+					subLogin.send();
+				}
+	
+				/*
+				 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+				 * 통신이 성공하면 발생합니다.
+				 */
+				function onLoginCheckSubmitSuccess(e){
+					var loginCheck = e.control;
+					var vo = loginCheck.getMetadata("memberVO");
+					var loginBtn = app.lookup("loginBtn");
+					var logoutBtn = app.lookup("logoutBtn");
+					if(vo){
+						loginBtn.visible = false;
+						logoutBtn.visible = true;
+					}
 				};
 				// End - User Script
 				
 				// Header
+				var submission_1 = new cpr.protocols.Submission("loginCheck");
+				submission_1.method = "get";
+				submission_1.action = "loginCheck";
+				if(typeof onLoginCheckSubmitSuccess == "function") {
+					submission_1.addEventListener("submit-success", onLoginCheckSubmitSuccess);
+				}
+				app.register(submission_1);
 				app.supportMedia("all and (min-width: 1024px)", "default");
 				app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 				app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -70,7 +98,7 @@
 				container.setLayout(xYLayout_1);
 				
 				// UI Configuration
-				var button_1 = new cpr.controls.Button("login");
+				var button_1 = new cpr.controls.Button("loginBtn");
 				button_1.value = "Login";
 				button_1.style.css({
 					"background-color" : "#306DC6",
@@ -94,7 +122,7 @@
 					"height": "45px"
 				});
 				
-				var button_2 = new cpr.controls.Button();
+				var button_2 = new cpr.controls.Button("boardBtn");
 				button_2.value = "플래너 게시판";
 				button_2.style.css({
 					"background-color" : "#306DC6",
@@ -115,7 +143,7 @@
 					"height": "45px"
 				});
 				
-				var button_3 = new cpr.controls.Button("create_plan");
+				var button_3 = new cpr.controls.Button("createBtn");
 				button_3.value = "플랜 생성";
 				button_3.style.css({
 					"border-right-style" : "none",
@@ -142,6 +170,31 @@
 					"width": "131px",
 					"height": "45px"
 				});
+				
+				var button_4 = new cpr.controls.Button("logoutBtn");
+				button_4.visible = false;
+				button_4.value = "Logout";
+				button_4.style.css({
+					"background-color" : "#306DC6",
+					"border-right-style" : "none",
+					"background-repeat" : "no-repeat",
+					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-size" : "18px",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"font-style" : "normal",
+					"border-top-style" : "none"
+				});
+				container.addChild(button_4, {
+					"top": "10px",
+					"right": "77px",
+					"width": "131px",
+					"height": "45px"
+				});
+				if(typeof onBodyLoad == "function"){
+					app.addEventListener("load", onBodyLoad);
+				}
 			}
 		});
 	internalApp.title = "header_nav";
@@ -203,7 +256,7 @@
 				 */
 				function onLogoClick(e){
 					var logo = e.control;
-					
+					location.href="/"
 				};
 				// End - User Script
 				

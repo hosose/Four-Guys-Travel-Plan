@@ -3,9 +3,9 @@
   <head std:sid="head-f48ff920">
     <screen std:sid="screen-4d534f4d" id="new-screen" name="new-screen" minwidth="1670px" width="1670px" height="600px" active="false"/>
     <screen std:sid="screen-4eb445e6" id="wide" name="wide" minwidth="1550px" maxwidth="1669px" width="1550px" height="600px" customHeight="600" customWidth="800" active="false"/>
-    <screen std:sid="screen-e2cda8aa" id="new-screen2" name="new-screen2" minwidth="1260px" maxwidth="1549px" width="1260px" height="600px" active="false"/>
+    <screen std:sid="screen-e2cda8aa" id="new-screen2" name="new-screen2" minwidth="1260px" maxwidth="1549px" width="1260px" height="600px" active="true"/>
     <screen std:sid="screen-3d628ab6" id="new-screen3" name="new-screen3" minwidth="900px" maxwidth="1259px" width="900px" height="600px" active="false"/>
-    <screen std:sid="screen-bcb2bdd5" id="tablet" name="tablet" minwidth="500px" maxwidth="899px" width="500px" height="667px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-bcb2bdd5" id="tablet" name="tablet" minwidth="500px" maxwidth="899px" width="500px" height="667px" customHeight="600" customWidth="800" active="false"/>
     <screen std:sid="screen-0d4a43b9" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
     <cl:model std:sid="model-d0df39b0"/>
     <cl:appspec/>
@@ -57,6 +57,15 @@
         <cl:xylayoutdata std:sid="sxyl-data-7c99bb76" top="713px" right="80px" width="300px" height="310px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="new-screen3"/>
       </cl:responsivexylayoutdata>
     </cl:button>
+    <cl:udc std:sid="ud-control-6c49815d" type="udc.header_nav">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-0533d07c">
+        <cl:xylayoutdata std:sid="sxyl-data-332b3346" top="110px" left="20px" width="500px" height="80px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-1ca90487" top="20px" right="38px" width="956px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="wide"/>
+        <cl:xylayoutdata std:sid="sxyl-data-e4824142" top="20px" right="62px" width="887px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-36fc5d2d" top="20px" right="47px" width="1176px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="new-screen2"/>
+        <cl:xylayoutdata std:sid="sxyl-data-22bf1c4d" top="20px" right="41px" width="1034px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="new-screen3"/>
+      </cl:responsivexylayoutdata>
+    </cl:udc>
     <cl:udc std:sid="ud-control-be652860" type="udc.logo">
       <cl:responsivexylayoutdata std:sid="rxyl-data-bba5a9ef">
         <cl:xylayoutdata std:sid="sxyl-data-fc0b2419" top="20px" left="20px" width="266px" height="70px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
@@ -64,15 +73,6 @@
         <cl:xylayoutdata std:sid="sxyl-data-decc200a" top="20px" left="153px" width="527px" height="70px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
         <cl:xylayoutdata std:sid="sxyl-data-9985addc" top="20px" left="116px" width="397px" height="70px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen2"/>
         <cl:xylayoutdata std:sid="sxyl-data-51756030" top="20px" left="102px" width="349px" height="70px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen3"/>
-      </cl:responsivexylayoutdata>
-    </cl:udc>
-    <cl:udc std:sid="ud-control-6c49815d" type="udc.header_nav">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-0533d07c">
-        <cl:xylayoutdata std:sid="sxyl-data-332b3346" top="110px" left="20px" width="500px" height="80px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
-        <cl:xylayoutdata std:sid="sxyl-data-1ca90487" top="20px" right="38px" width="956px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="wide"/>
-        <cl:xylayoutdata std:sid="sxyl-data-e4824142" top="20px" right="62px" width="1559px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="new-screen"/>
-        <cl:xylayoutdata std:sid="sxyl-data-36fc5d2d" top="20px" right="47px" width="1176px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="new-screen2"/>
-        <cl:xylayoutdata std:sid="sxyl-data-22bf1c4d" top="20px" right="41px" width="1034px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="new-screen3"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
     <cl:responsivexylayout std:sid="r-xylayout-de1cafbf"/>

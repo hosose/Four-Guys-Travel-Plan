@@ -14,7 +14,7 @@
           <cl:datacolumn std:sid="d-column-f6dccd0a" name="PLANNER_LAST_DATE" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
-      <cl:dataset std:sid="d-set-9b0647a4" id="Member">
+      <cl:dataset std:sid="d-set-9b0647a4" id="ds2">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-e75d9c4a" name="ID"/>
           <cl:datacolumn std:sid="d-column-2e1353c0" name="NAME"/>
@@ -34,12 +34,12 @@
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-194396c7" id="findMyPage" action="/findMyPage">
-        <cl:requestdata dataid="Member"/>
-        <cl:responsedata dataid="Member"/>
+        <cl:requestdata dataid="ds2"/>
+        <cl:responsedata dataid="ds2"/>
       </cl:submission>
       <cl:submission std:sid="submission-219aa173" id="updateMember" action="/updateMember">
-        <cl:requestdata dataid="Member"/>
-        <cl:responsedata dataid="Member"/>
+        <cl:requestdata dataid="ds2"/>
+        <cl:responsedata dataid="ds2"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -50,7 +50,7 @@
       <cl:xylayoutdata std:sid="xyl-data-4e862c6f" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
       <cl:tabfolder std:sid="t-folder-64679f1f" tabindex="3">
         <cl:responsivexylayoutdata std:sid="rxyl-data-d1fd3406">
-          <cl:xylayoutdata std:sid="sxyl-data-716297f0" right="4px" bottom="0px" left="6px" height="876px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-716297f0" right="4px" bottom="0px" left="6px" height="963px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
         </cl:responsivexylayoutdata>
         <cl:tabitem std:sid="t-item-3a63cd4f" selected="true" text="MYPAGE">
           <std:metadata>
@@ -84,35 +84,35 @@
                 <cl:formdata std:sid="f-data-04387c93" halign="CENTER" row="7" col="1"/>
               </cl:output>
               <cl:inputbox std:sid="i-box-136261d4" id="ID" readonly="true">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="ID" rowindex="0"/>
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="ID" rowindex="0"/>
                 <cl:formdata std:sid="f-data-a6df4a35" row="1" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-668e3050" id="Pass" secret="true">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="PASSWORD" rowindex="0"/>
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="PASSWORD" rowindex="0"/>
                 <cl:formdata std:sid="f-data-6a4ed2a3" row="2" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-838596cb" id="ADDR">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="ADDRESS" rowindex="0"/>
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="ADDRESS" rowindex="0"/>
                 <cl:formdata std:sid="f-data-91d11ce7" row="3" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-bed5f5d0" id="NAME">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="NAME" rowindex="0"/>
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="NAME" rowindex="0"/>
                 <cl:formdata std:sid="f-data-a4298e2c" row="4" col="2"/>
               </cl:inputbox>
-              <cl:inputbox std:sid="i-box-a008d353" id="EMAIL" readonly="true">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="EMAIL" rowindex="0"/>
+              <cl:inputbox std:sid="i-box-a008d353" id="EMAIL">
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="EMAIL" rowindex="0"/>
                 <cl:formdata std:sid="f-data-e1a879eb" row="6" col="2"/>
               </cl:inputbox>
               <cl:maskeditor std:sid="m-editor-f14997c0" id="PHONE" mask="XXX-XXXX-XXXX">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="PHONE" rowindex="0"/>
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="PHONE" rowindex="0"/>
                 <cl:formdata std:sid="f-data-d0781fcf" row="7" col="2"/>
               </cl:maskeditor>
               <cl:dateinput std:sid="d-input-df177294" id="BIRTH">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="BIRTH" rowindex="0"/>
+                <cl:datasetbind property="value" datacontrolid="ds2" columnname="BIRTH" rowindex="0"/>
                 <cl:formdata std:sid="f-data-88c16f35" row="5" col="2"/>
               </cl:dateinput>
-              <cl:button std:sid="button-1c8aafba" id="Update" value="수정하기">
-                <cl:listener std:sid="listener-460aaa02" name="click" handler="onUpdateClick"/>
+              <cl:button std:sid="button-1c8aafba" id="btn2" value="수정하기">
+                <cl:listener std:sid="listener-794c4367" name="click" handler="onBtn2Click"/>
                 <cl:formdata std:sid="f-data-90e641cd" row="9" col="2"/>
               </cl:button>
               <cl:formlayout std:sid="f-layout-41056cb7" scrollable="false" hspace="5px" vspace="5px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
