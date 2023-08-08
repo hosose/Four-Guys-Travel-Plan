@@ -49,8 +49,19 @@ function onLoginCheckSubmitSuccess(e){
 	var vo = loginCheck.getMetadata("memberVO");
 	var loginBtn = app.lookup("loginBtn");
 	var logoutBtn = app.lookup("logoutBtn");
+	var MyPageBtn = app.lookup("MyPageBtn");
 	if(vo){
 		loginBtn.visible = false;
 		logoutBtn.visible = true;
+		MyPageBtn.visible = true;
 	}
+}
+
+/*
+ * "마이페이지" 버튼(MyPageBtn)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onMyPageBtnClick(e){
+	var MyPageBtn = e.control;
+	location.href = "mypage.clx";
 }

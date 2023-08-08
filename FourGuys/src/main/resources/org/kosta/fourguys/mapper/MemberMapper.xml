@@ -4,4 +4,7 @@
 <select id="login" parameterType="org.kosta.fourguys.vo.MemberVO" >
 SELECT * FROM member WHERE id = #{id} AND password = #{password}
 </select>
+<update id="updateMember" parameterType="org.kosta.fourguys.vo.MemberVO">
+	update member set address=#{address},name=#{name},email=#{email},phone=#{phone} where id=#{id}
+</update>
 </mapper>
