@@ -4,7 +4,65 @@
     <screen std:sid="screen-1aed4f80" id="default" name="default" width="1024px" height="768px"/>
     <screen std:sid="screen-6fb68c2e" id="tablet" name="tablet" width="500px" height="667px"/>
     <screen std:sid="screen-8c37b30a" id="mobile" name="mobile" width="350px" height="525px"/>
-    <cl:model std:sid="model-5ef2f7c2"/>
+    <cl:model std:sid="model-5ef2f7c2">
+      <cl:dataset std:sid="d-set-35e84f64" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-9ed45647" name="contentid" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-2df73f48" name="mapx" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-2732dc56" name="mapy" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-35d04d52" name="cat1"/>
+          <cl:datacolumn std:sid="d-column-d7327944" name="cat2"/>
+          <cl:datacolumn std:sid="d-column-4b1cf1e7" name="cat3"/>
+          <cl:datacolumn std:sid="d-column-e6d37015" name="addr1"/>
+          <cl:datacolumn std:sid="d-column-0b179b36" name="addr2"/>
+          <cl:datacolumn std:sid="d-column-34b7decd" name="firstimage"/>
+          <cl:datacolumn std:sid="d-column-599ced2f" name="title"/>
+          <cl:datacolumn std:sid="d-column-f5402849" name="tel"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="contentid">1</cl:datavalue>
+            <cl:datavalue columnname="mapx">1</cl:datavalue>
+            <cl:datavalue columnname="mapy">1</cl:datavalue>
+            <cl:datavalue columnname="cat1">cat11</cl:datavalue>
+            <cl:datavalue columnname="cat2">cat21</cl:datavalue>
+            <cl:datavalue columnname="cat3">cat31</cl:datavalue>
+            <cl:datavalue columnname="addr1">addr11</cl:datavalue>
+            <cl:datavalue columnname="addr2">addr21</cl:datavalue>
+            <cl:datavalue columnname="firstimage">firstimage1</cl:datavalue>
+            <cl:datavalue columnname="title"><![CDATA[기념품샵]]></cl:datavalue>
+            <cl:datavalue columnname="tel">tel1</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="contentid">2</cl:datavalue>
+            <cl:datavalue columnname="mapx">2</cl:datavalue>
+            <cl:datavalue columnname="mapy">2</cl:datavalue>
+            <cl:datavalue columnname="cat1">cat12</cl:datavalue>
+            <cl:datavalue columnname="cat2">cat22</cl:datavalue>
+            <cl:datavalue columnname="cat3">cat32</cl:datavalue>
+            <cl:datavalue columnname="addr1">addr12</cl:datavalue>
+            <cl:datavalue columnname="addr2">addr22</cl:datavalue>
+            <cl:datavalue columnname="firstimage">firstimage2</cl:datavalue>
+            <cl:datavalue columnname="title"><![CDATA[공항]]></cl:datavalue>
+            <cl:datavalue columnname="tel">tel2</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="contentid">3</cl:datavalue>
+            <cl:datavalue columnname="mapx">3</cl:datavalue>
+            <cl:datavalue columnname="mapy">3</cl:datavalue>
+            <cl:datavalue columnname="cat1">cat13</cl:datavalue>
+            <cl:datavalue columnname="cat2">cat23</cl:datavalue>
+            <cl:datavalue columnname="cat3">cat33</cl:datavalue>
+            <cl:datavalue columnname="addr1">addr13</cl:datavalue>
+            <cl:datavalue columnname="addr2">addr23</cl:datavalue>
+            <cl:datavalue columnname="firstimage">firstimage3</cl:datavalue>
+            <cl:datavalue columnname="title"><![CDATA[바닷가]]></cl:datavalue>
+            <cl:datavalue columnname="tel">tel3</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:submission std:sid="submission-2537bb48" id="subSave"/>
+    </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-2ffb0c79">
@@ -42,44 +100,40 @@
         <cl:columns length="50" unit="PIXEL"/>
       </cl:formlayout>
     </cl:group>
+    <cl:grid std:sid="grid-1afb50d3" id="grd2" datasetid="ds1">
+      <cl:listener std:sid="listener-ba19f11c" name="mousedown" handler="onGrd2Mousedown"/>
+      <cl:listener std:sid="listener-c6267a3e" name="dblclick" handler="onGrd2Dblclick"/>
+      <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="300px" width="140px" height="700px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-c3aabf5d"/>
+      <cl:gridheader std:sid="gh-band-0bd0e92b">
+        <cl:gridrow std:sid="g-row-9a2c96f8"/>
+        <cl:gridcell std:sid="gh-cell-e8f1a0bd" rowindex="0" colindex="0" targetcolumnname="title" sortable="false" filterable="false" text="지역 목록"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-264a77fd">
+        <cl:gridrow std:sid="g-row-edb4e4fb"/>
+        <cl:gridcell std:sid="gd-cell-91739953" rowindex="0" colindex="0" columnname="title">
+          <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="ds1" columnname="title"/>
+        </cl:gridcell>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:grid std:sid="grid-b5555db0" id="grd1">
+      <cl:xylayoutdata std:sid="xyl-data-d58387b8" top="73px" left="150px" width="140px" height="700px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-ffb95a4d" width="137px"/>
+      <cl:gridheader std:sid="gh-band-488dd52f">
+        <cl:gridrow std:sid="g-row-344d077d"/>
+        <cl:gridcell std:sid="gh-cell-264b51f6" rowindex="0" colindex="0" text="선택한 여행지 목록"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-7e8260de">
+        <cl:gridrow std:sid="g-row-2f95fbfe"/>
+        <cl:gridcell std:sid="gd-cell-3cfc72fb" rowindex="0" colindex="0"/>
+      </cl:griddetail>
+    </cl:grid>
     <cl:group std:sid="group-5906196c">
-      <cl:xylayoutdata std:sid="xyl-data-f706c4a2" top="73px" left="20px" width="120px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="700px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:linkedcombobox std:sid="lc-box-37735dde" id="lcb1">
         <cl:xylayoutdata std:sid="xyl-data-41c32539" top="0px" left="0px" width="120px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:linkedcombobox>
       <cl:xylayout std:sid="xylayout-d70cae89"/>
-    </cl:group>
-    <cl:group std:sid="group-2732ccae">
-      <cl:xylayoutdata std:sid="xyl-data-cee69e88" top="73px" left="278px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:grid std:sid="grid-1afb50d3" id="grd2">
-        <cl:xylayoutdata std:sid="xyl-data-32362222" top="0px" left="0px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        <cl:gridcolumn std:sid="g-column-941f092d"/>
-        <cl:gridheader std:sid="gh-band-c8025d14">
-          <cl:gridrow std:sid="g-row-17e6723e"/>
-          <cl:gridcell std:sid="gh-cell-7adebb4d" rowindex="0" colindex="0" text="여행지 목록"/>
-        </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-7acbe31f">
-          <cl:gridrow std:sid="g-row-f8d4381e"/>
-          <cl:gridcell std:sid="gd-cell-7c94c6bb" rowindex="0" colindex="0"/>
-        </cl:griddetail>
-      </cl:grid>
-      <cl:xylayout std:sid="xylayout-3d3893d7"/>
-    </cl:group>
-    <cl:group std:sid="group-7ada658a">
-      <cl:xylayoutdata std:sid="xyl-data-e1cf92c3" top="73px" left="139px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:grid std:sid="grid-b5555db0" id="grd1">
-        <cl:xylayoutdata std:sid="xyl-data-90fc6ce8" top="0px" left="0px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        <cl:gridcolumn std:sid="g-column-ffb95a4d" width="167px"/>
-        <cl:gridheader std:sid="gh-band-488dd52f">
-          <cl:gridrow std:sid="g-row-344d077d"/>
-          <cl:gridcell std:sid="gh-cell-264b51f6" rowindex="0" colindex="0" text="선택한 여행지 목록"/>
-        </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-7e8260de">
-          <cl:gridrow std:sid="g-row-2f95fbfe"/>
-          <cl:gridcell std:sid="gd-cell-3cfc72fb" rowindex="0" colindex="0"/>
-        </cl:griddetail>
-      </cl:grid>
-      <cl:xylayout std:sid="xylayout-f50f42b8"/>
     </cl:group>
     <cl:xylayout std:sid="xylayout-52dfb31e"/>
   </body>
