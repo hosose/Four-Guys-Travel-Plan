@@ -17,18 +17,59 @@
 			 *
 			 * @author iedl9
 			 ************************************************/
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			var date = 0;
+
+			function onBodyLoad(e) {
+				app.openDialog("select_date_title", {
+					width: 600,
+					height: 450
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {});
+				}).then(function(returnValue) {
+					date = JSON.stringify(returnValue);
+					app.lookup("loginCheck").send();
+				});
+			}
 
 			/*
-			 * "저장" 버튼에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
 			 */
-			function onButtonClick(e){
-				var button = e.control;
-
-			};
+			function onLoginCheckSubmitSuccess(e) {
+				var loginCheck = e.control;
+				var container = app.lookup("dateLayout");
+				for (var i = 1; i <=date; i++) {
+					//udc 동적 생성
+					var dateButton = "Day" + i;
+					dateButton = new udc.dateButton(dateButton);
+					//udc에서 출판한 이미지 경로 앱 속성 지정
+					dateButton.btnValue ="Day" + i;
+					//생성한 udc를 루트 컨테이너에 부착
+					container.addChild(dateButton, {
+						height: "53px",
+						width: "120px",
+						autoSize: "both"
+					});
+					//udc에서 출판한 이미지 삭제 이벤트 구현
+					dateButton.addEventListener("selectDate", function(e) {
+						e.control.dispose();
+					});
+				}
+			}
 			// End - User Script
 			
 			// Header
+			var submission_1 = new cpr.protocols.Submission("loginCheck");
+			submission_1.method = "get";
+			submission_1.action = "loginCheck";
+			if(typeof onLoginCheckSubmitSuccess == "function") {
+				submission_1.addEventListener("submit-success", onLoginCheckSubmitSuccess);
+			}
+			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -140,18 +181,9 @@
 				"height": "33px"
 			});
 			
-			var group_4 = new cpr.controls.Container();
-			var xYLayout_4 = new cpr.controls.layouts.XYLayout();
-			group_4.setLayout(xYLayout_4);
-			(function(container){
-				var linkedComboBox_1 = new cpr.controls.LinkedComboBox("lcb1");
-				container.addChild(linkedComboBox_1, {
-					"top": "0px",
-					"left": "0px",
-					"width": "120px",
-					"height": "20px"
-				});
-			})(group_4);
+			var group_4 = new cpr.controls.Container("dateLayout");
+			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
+			group_4.setLayout(verticalLayout_1);
 			container.addChild(group_4, {
 				"top": "73px",
 				"left": "20px",
@@ -160,8 +192,8 @@
 			});
 			
 			var group_5 = new cpr.controls.Container();
-			var xYLayout_5 = new cpr.controls.layouts.XYLayout();
-			group_5.setLayout(xYLayout_5);
+			var xYLayout_4 = new cpr.controls.layouts.XYLayout();
+			group_5.setLayout(xYLayout_4);
 			(function(container){
 				var grid_1 = new cpr.controls.Grid("grd2");
 				grid_1.init({
@@ -193,14 +225,14 @@
 			})(group_5);
 			container.addChild(group_5, {
 				"top": "73px",
-				"left": "278px",
+				"left": "320px",
 				"width": "140px",
 				"height": "694px"
 			});
 			
 			var group_6 = new cpr.controls.Container();
-			var xYLayout_6 = new cpr.controls.layouts.XYLayout();
-			group_6.setLayout(xYLayout_6);
+			var xYLayout_5 = new cpr.controls.layouts.XYLayout();
+			group_6.setLayout(xYLayout_5);
 			(function(container){
 				var grid_2 = new cpr.controls.Grid("grd1");
 				grid_2.init({
@@ -211,6 +243,9 @@
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.text = "선택한 여행지 목록";
+								cell.style.css({
+									"text-align" : "center"
+								});
 							}
 						}]
 					},
@@ -225,17 +260,20 @@
 				});
 				container.addChild(grid_2, {
 					"top": "0px",
+					"right": "0px",
 					"left": "0px",
-					"width": "140px",
 					"height": "694px"
 				});
 			})(group_6);
 			container.addChild(group_6, {
 				"top": "73px",
-				"left": "139px",
-				"width": "140px",
+				"left": "150px",
+				"width": "160px",
 				"height": "694px"
 			});
+			if(typeof onBodyLoad == "function"){
+				app.addEventListener("load", onBodyLoad);
+			}
 		}
 	});
 	app.title = "planner";

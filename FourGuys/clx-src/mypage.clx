@@ -53,9 +53,6 @@
           <cl:xylayoutdata std:sid="sxyl-data-716297f0" right="4px" bottom="0px" left="6px" height="963px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
         </cl:responsivexylayoutdata>
         <cl:tabitem std:sid="t-item-3a63cd4f" selected="true" text="MYPAGE">
-          <std:metadata>
-            <std:property key="is-active-item" value="true"/>
-          </std:metadata>
           <cl:group std:sid="group-e5c13333" id="grp2">
             <std:metadata>
               <std:property key="locked" value="true"/>
@@ -139,6 +136,9 @@
           </cl:group>
         </cl:tabitem>
         <cl:tabitem std:sid="t-item-8264a6eb" text="MYPLAN">
+          <std:metadata>
+            <std:property key="is-active-item" value="true"/>
+          </std:metadata>
           <cl:group std:sid="group-3f0b68a4" id="grp3">
             <std:metadata>
               <std:property key="locked" value="true"/>

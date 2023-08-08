@@ -10,7 +10,8 @@
   </head>
   <body std:sid="body-4b04b2c9" style="top:0px; left:0px; width:800px; height:600px;" class="cl-form-group">
     <cl:listener std:sid="listener-51eb9f3b" name="load" handler="onBodyLoad2"/>
-    <cl:button std:sid="button-6f1f615e" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="플래너 만들기">
+    <cl:button std:sid="button-6f1f615e" id="createBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="플래너 만들기">
+      <cl:listener std:sid="listener-7815f637" name="click" handler="onCreateBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-d2cf1afa" bottom="50px" left="200px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
     </cl:button>
     <cl:output std:sid="output-28d34c53" id="titleoutput" style="text-align:center;" value="여행 제목">
@@ -19,7 +20,7 @@
     <cl:output std:sid="output-1c7e68dd" id="dateoutput" style="text-align:center;" value="여행 기간">
       <cl:xylayoutdata std:sid="xyl-data-2c515219" top="150px" left="50px" width="100px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:inputbox std:sid="i-box-7a1eab29" id="ipb1" placeholder="제목을 입력해주세요.">
+    <cl:inputbox std:sid="i-box-7a1eab29" id="titleInput" placeholder="제목을 입력해주세요.">
       <cl:xylayoutdata std:sid="xyl-data-5996cdf3" top="50px" left="200px" width="267px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
     <cl:dateinput std:sid="d-input-da101aa7" id="dti1" value="출발일">
