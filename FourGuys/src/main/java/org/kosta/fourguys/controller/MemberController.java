@@ -1,5 +1,11 @@
 package org.kosta.fourguys.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.kosta.fourguys.service.MemberService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.springframework.http.HttpStatus;
@@ -8,7 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.View;
+
+import com.cleopatra.protocol.data.DataRequest;
+import com.cleopatra.protocol.data.ParameterGroup;
+import com.cleopatra.spring.JSONDataView;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,13 +41,35 @@ public class MemberController {
 			return new ResponseEntity<MemberVO>(memberVO,HttpStatus.OK);
 		}
 	}
-	
+	/*
 	@PostMapping("/register")
 	public ResponseEntity<String> registerMember(@RequestBody MemberVO memberVO){
 		memberService.registerMember(memberVO);
 		return new ResponseEntity<String>(memberVO.getId()+"님 회원가입 완료했습니다.",HttpStatus.OK);
 	}
+	*/
 	
+	@RequestMapping("/registerMember")
+	public View registerMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) throws Exception {
+		ParameterGroup registerparam = dataRequest.getParameterGroup("register");
+		
+		Map<String, Object> message = new HashMap<String, Object>();
+
+
+		String id = registerparam.getValue("id");
+		String name=registerparam.getValue("id");
+		String password=registerparam.getValue("id");
+		String address =registerparam.getValue("id");
+		String birth =registerparam.getValue("id");
+		String email=registerparam.getValue("id");
+		String phone=registerparam.getValue("id");
+		MemberVO memberVO = new MemberVO(id, name, password, address, birth, email, phone);
+		memberService.registerMember(memberVO);
+		message.put("uri", "index");
+		dataRequest.setMetadata(true, message);
+		return new JSONDataView();	}
+	
+
 	@PutMapping("updateMember")
 	public ResponseEntity<String> updateMember(MemberVO memberVO){
 		int result = memberService.updateMember(memberVO);
