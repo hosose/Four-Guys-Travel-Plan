@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MemberVO {
 	private String id;
-	private String password;
 	private String name;
+	private String password;
 	private String address;
+	private String birth;
 	private String email;
 	private String phone;
-	private int birth;
 }

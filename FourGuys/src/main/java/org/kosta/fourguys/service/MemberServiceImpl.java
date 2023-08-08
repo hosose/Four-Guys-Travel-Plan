@@ -11,8 +11,8 @@ import lombok.RequiredArgsConstructor;
 public class MemberServiceImpl implements MemberService{
 	private final MemberMapper memberMapper;
 	@Override
-	public void registerMember(MemberVO memberVO) {
-		memberMapper.registerMember(memberVO);
+	public int registerMember(MemberVO memberVO) {
+		return memberMapper.registerMember(memberVO);
 	}
 	@Override
 	public int updateMember(MemberVO memberVO) {
@@ -21,6 +21,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO Login(String id, String password) {
 		return memberMapper.Login(id, password);
+	}
+	@Override
+	public int deleteMember(String id) {
+		return memberMapper.deleteMember(id);
 	}
 	
 }
