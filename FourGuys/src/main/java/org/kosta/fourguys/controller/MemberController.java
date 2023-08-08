@@ -45,22 +45,10 @@ public class MemberController {
 			return new ResponseEntity<MemberVO>(memberVO,HttpStatus.OK);
 		}
 	}
-	/*
-	@PostMapping("/register")
-	public ResponseEntity<String> registerMember(@RequestBody MemberVO memberVO){
-		memberService.registerMember(memberVO);
-		return new ResponseEntity<String>(memberVO.getId()+"님 회원가입 완료했습니다.",HttpStatus.OK);
-	}
-	*/
-	
-<<<<<<< HEAD
 	@RequestMapping("/registerMember")
 	public View registerMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) throws Exception {
 		ParameterGroup registerparam = dataRequest.getParameterGroup("register");
-		
 		Map<String, Object> message = new HashMap<String, Object>();
-
-
 		String id = registerparam.getValue("id");
 		String name=registerparam.getValue("id");
 		String password=registerparam.getValue("id");
@@ -72,12 +60,8 @@ public class MemberController {
 		memberService.registerMember(memberVO);
 		message.put("uri", "index");
 		dataRequest.setMetadata(true, message);
-		return new JSONDataView();	}
-	
-
-=======
-	
->>>>>>> branch 'main' of https://github.com/hosose/Four-Guys-Travel-Plan.git
+		return new JSONDataView();
+		}
 	@PutMapping("updateMember")
 	public ResponseEntity<String> updateMember(MemberVO memberVO){
 		int result = memberService.updateMember(memberVO);
