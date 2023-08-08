@@ -17,27 +17,13 @@
 			 *
 			 * @author USER
 			 ************************************************/
-
-			/*
-			 * "패스워드변경" 버튼(btn1)에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-			function onBtn1Click(e){
-				var btn1 = e.control;
-				var submission = app.lookup("updatePassword");
-				var inputBox = app.lookup("Pass");
-				submission.getRequestData(inputBox.value);
-				console.log(inputBox.value);
-				submission.send();
-				}
-
 			/*
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
 			function onBodyLoad(e){
-				var submission = app.lookup("findMyPage");
-				submission.send();
+				var findMyPage = app.lookup("findMyPage");
+				findMyPage.send();
 			}
 
 			/*
@@ -46,15 +32,57 @@
 			 */
 			function onBtn2Click(e){
 				var btn2 = e.control;
-				var ADDR = app.lookup("ADDR").value;
-				var BIRTH = app.lookup("BIRTH").value;
-				var EMAIL = app.lookup("EMAIL").value;
-				var PHONE = app.lookup("PHONE").value;
-				var NAME = app.lookup("NAME").value;
-				
 				var submission = app.lookup("updateMember");
-				submission.getRequestData(ADDR,BIRTH,EMAIL,NAME,PHONE);
 				submission.send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onFindMyPageSubmitSuccess(e){
+				var findMyPage = e.control;
+				var meta = findMyPage.getMetadata("findMyPageis");
+				if(meta != null){
+					var ID = app.lookup("ID");
+					var passwd = app.lookup("Pass");
+					var ADDR = app.lookup("ADDR");
+					var BIRTH = app.lookup("BIRTH");
+					var NAME = app.lookup("NAME");
+					var EMAIL = app.lookup("EMAIL");
+					var PHONE = app.lookup("PHONE");
+					ID.value=meta["id"];
+					passwd.value=meta["password"];
+					ADDR.value=meta["address"];
+					BIRTH.value=meta["birth"];
+					EMAIL.value=meta["email"];
+					PHONE.value=meta["phone"];
+					NAME.value=meta["name"];
+				}else{
+					alert("없다");
+				}
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onUpdateMemberSubmitSuccess(e){
+				var updateMember = e.control;
+				alert("수정되었습니다.");
+				location.href="/";
+			}
+
+			/*
+			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
+			 * 통신 중 문제가 생기면 발생합니다.
+			 */
+			function onUpdateMemberSubmitError(e){
+				var updateMember = e.control;
+				var msg = updateMember.getMetadata("message");
+				if (msg != null) {
+					alert(msg);
+				}
 			};
 			// End - User Script
 			
@@ -82,21 +110,6 @@
 				]
 			});
 			app.register(dataSet_1);
-			
-			var dataSet_2 = new cpr.data.DataSet("Member");
-			dataSet_2.parseData({
-				"columns" : [
-					{"name": "ID"},
-					{"name": "NAME"},
-					{"name": "PASSWORD"},
-					{"name": "ADDRESS"},
-					{"name": "BIRTH"},
-					{"name": "GENDER"},
-					{"name": "PHONE"},
-					{"name": "EMAIL"}
-				]
-			});
-			app.register(dataSet_2);
 			var dataMap_1 = new cpr.data.DataMap("dmDetail");
 			dataMap_1.parseData({
 				"columns" : [
@@ -106,16 +119,43 @@
 				]
 			});
 			app.register(dataMap_1);
+			
+			var dataMap_2 = new cpr.data.DataMap("member");
+			dataMap_2.parseData({
+				"alterColumnLayout": "client",
+				"columns": [
+					{"name": "id"},
+					{"name": "password"},
+					{
+						"name": "name",
+						"dataType": "string"
+					},
+					{"name": "email"},
+					{"name": "birth"},
+					{"name": "phone"},
+					{"name": "address"}
+				]
+			});
+			app.register(dataMap_2);
 			var submission_1 = new cpr.protocols.Submission("findMyPage");
-			submission_1.action = "/findMyPage";
-			submission_1.addRequestData(dataSet_2);
-			submission_1.addResponseData(dataSet_2, false);
+			submission_1.method = "get";
+			submission_1.action = "findMyPage";
+			submission_1.addResponseData(dataMap_2, false);
+			if(typeof onFindMyPageSubmitSuccess == "function") {
+				submission_1.addEventListener("submit-success", onFindMyPageSubmitSuccess);
+			}
 			app.register(submission_1);
 			
 			var submission_2 = new cpr.protocols.Submission("updateMember");
+			submission_2.method = "put";
 			submission_2.action = "/updateMember";
-			submission_2.addRequestData(dataSet_2);
-			submission_2.addResponseData(dataSet_2, false);
+			submission_2.addRequestData(dataMap_2);
+			if(typeof onUpdateMemberSubmitSuccess == "function") {
+				submission_2.addEventListener("submit-success", onUpdateMemberSubmitSuccess);
+			}
+			if(typeof onUpdateMemberSubmitError == "function") {
+				submission_2.addEventListener("submit-error", onUpdateMemberSubmitError);
+			}
 			app.register(submission_2);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -232,54 +272,55 @@
 							});
 							var inputBox_1 = new cpr.controls.InputBox("ID");
 							inputBox_1.readOnly = true;
-							inputBox_1.bind("value").toDataSet(app.lookup("Member"), "ID", 0);
+							inputBox_1.bind("value").toDataMap(app.lookup("member"), "id");
 							container.addChild(inputBox_1, {
 								"colIndex": 2,
 								"rowIndex": 1
 							});
 							var inputBox_2 = new cpr.controls.InputBox("Pass");
 							inputBox_2.secret = true;
-							inputBox_2.bind("value").toDataSet(app.lookup("Member"), "PASSWORD", 0);
+							inputBox_2.bind("value").toDataMap(app.lookup("member"), "password");
 							container.addChild(inputBox_2, {
 								"colIndex": 2,
 								"rowIndex": 2
 							});
 							var inputBox_3 = new cpr.controls.InputBox("ADDR");
-							inputBox_3.bind("value").toDataSet(app.lookup("Member"), "ADDRESS", 0);
+							inputBox_3.bind("value").toDataMap(app.lookup("member"), "address");
 							container.addChild(inputBox_3, {
 								"colIndex": 2,
 								"rowIndex": 3
 							});
 							var inputBox_4 = new cpr.controls.InputBox("NAME");
-							inputBox_4.bind("value").toDataSet(app.lookup("Member"), "NAME", 0);
+							inputBox_4.bind("value").toDataMap(app.lookup("member"), "name");
 							container.addChild(inputBox_4, {
 								"colIndex": 2,
 								"rowIndex": 4
 							});
 							var inputBox_5 = new cpr.controls.InputBox("EMAIL");
 							inputBox_5.readOnly = true;
-							inputBox_5.bind("value").toDataSet(app.lookup("Member"), "EMAIL", 0);
+							inputBox_5.bind("value").toDataMap(app.lookup("member"), "email");
 							container.addChild(inputBox_5, {
 								"colIndex": 2,
 								"rowIndex": 6
 							});
 							var maskEditor_1 = new cpr.controls.MaskEditor("PHONE");
 							maskEditor_1.mask = "XXX-XXXX-XXXX";
-							maskEditor_1.bind("value").toDataSet(app.lookup("Member"), "PHONE", 0);
+							maskEditor_1.bind("value").toDataMap(app.lookup("member"), "phone");
 							container.addChild(maskEditor_1, {
 								"colIndex": 2,
 								"rowIndex": 7
 							});
 							var dateInput_1 = new cpr.controls.DateInput("BIRTH");
-							dateInput_1.bind("value").toDataSet(app.lookup("Member"), "BIRTH", 0);
+							dateInput_1.readOnly = true;
+							dateInput_1.bind("value").toDataMap(app.lookup("member"), "birth");
 							container.addChild(dateInput_1, {
 								"colIndex": 2,
 								"rowIndex": 5
 							});
 							var button_1 = new cpr.controls.Button("Update");
 							button_1.value = "수정하기";
-							if(typeof onUpdateClick == "function") {
-								button_1.addEventListener("click", onUpdateClick);
+							if(typeof onBtn2Click == "function") {
+								button_1.addEventListener("click", onBtn2Click);
 							}
 							container.addChild(button_1, {
 								"colIndex": 2,
@@ -756,6 +797,32 @@
 							"bottom": "0px",
 							"left": "2px",
 							"height": "876px"
+						}
+					]
+				});
+				var userDefinedControl_1 = new udc.logo();
+				container.addChild(userDefinedControl_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "4px",
+							"left": "6px",
+							"width": "277px",
+							"height": "73px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "4px",
+							"left": "3px",
+							"width": "135px",
+							"height": "73px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "4px",
+							"left": "2px",
+							"width": "95px",
+							"height": "73px"
 						}
 					]
 				});

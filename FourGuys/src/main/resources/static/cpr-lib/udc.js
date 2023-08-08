@@ -65,10 +65,21 @@
 					var vo = loginCheck.getMetadata("memberVO");
 					var loginBtn = app.lookup("loginBtn");
 					var logoutBtn = app.lookup("logoutBtn");
+					var MyPageBtn = app.lookup("MyPageBtn");
 					if(vo){
 						loginBtn.visible = false;
 						logoutBtn.visible = true;
+						MyPageBtn.visible = true;
 					}
+				}
+	
+				/*
+				 * "마이페이지" 버튼(MyPageBtn)에서 click 이벤트 발생 시 호출.
+				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+				 */
+				function onMyPageBtnClick(e){
+					var MyPageBtn = e.control;
+					location.href = "mypage.clx";
 				};
 				// End - User Script
 				
@@ -116,13 +127,14 @@
 					button_1.addEventListener("click", onLoginClick);
 				}
 				container.addChild(button_1, {
-					"top": "10px",
-					"right": "77px",
+					"top": "20px",
+					"right": "20px",
 					"width": "131px",
 					"height": "45px"
 				});
 				
 				var button_2 = new cpr.controls.Button("boardBtn");
+				button_2.visible = true;
 				button_2.value = "플래너 게시판";
 				button_2.style.css({
 					"background-color" : "#306DC6",
@@ -136,9 +148,12 @@
 					"font-style" : "normal",
 					"border-top-style" : "none"
 				});
+				if(typeof onBoardBtnClick == "function") {
+					button_2.addEventListener("click", onBoardBtnClick);
+				}
 				container.addChild(button_2, {
-					"top": "10px",
-					"right": "218px",
+					"top": "20px",
+					"right": "302px",
 					"width": "131px",
 					"height": "45px"
 				});
@@ -165,8 +180,8 @@
 					button_3.addEventListener("click", onCreate_planClick);
 				}
 				container.addChild(button_3, {
-					"top": "10px",
-					"right": "359px",
+					"top": "20px",
+					"right": "443px",
 					"width": "131px",
 					"height": "45px"
 				});
@@ -187,8 +202,30 @@
 					"border-top-style" : "none"
 				});
 				container.addChild(button_4, {
-					"top": "10px",
-					"right": "77px",
+					"top": "20px",
+					"right": "20px",
+					"width": "131px",
+					"height": "45px"
+				});
+				
+				var button_5 = new cpr.controls.Button("MyPageBtn");
+				button_5.visible = false;
+				button_5.value = "마이페이지";
+				button_5.style.css({
+					"background-color" : "#306DC6",
+					"border-right-style" : "none",
+					"background-repeat" : "no-repeat",
+					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-size" : "18px",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"font-style" : "normal",
+					"border-top-style" : "none"
+				});
+				container.addChild(button_5, {
+					"top": "20px",
+					"right": "161px",
 					"width": "131px",
 					"height": "45px"
 				});

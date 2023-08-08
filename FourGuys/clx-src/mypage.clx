@@ -14,18 +14,6 @@
           <cl:datacolumn std:sid="d-column-f6dccd0a" name="PLANNER_LAST_DATE" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
-      <cl:dataset std:sid="d-set-9b0647a4" id="Member">
-        <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-e75d9c4a" name="ID"/>
-          <cl:datacolumn std:sid="d-column-2e1353c0" name="NAME"/>
-          <cl:datacolumn std:sid="d-column-31b88888" name="PASSWORD"/>
-          <cl:datacolumn std:sid="d-column-61a9301e" name="ADDRESS"/>
-          <cl:datacolumn std:sid="d-column-a309f53f" name="BIRTH"/>
-          <cl:datacolumn std:sid="d-column-d8ac280c" name="GENDER"/>
-          <cl:datacolumn std:sid="d-column-a4712edc" name="PHONE"/>
-          <cl:datacolumn std:sid="d-column-1add0a5d" name="EMAIL"/>
-        </cl:datacolumnlist>
-      </cl:dataset>
       <cl:datamap std:sid="d-map-08d30fec" id="dmDetail">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-37b22f96" name="PLAN_TITLE"/>
@@ -33,13 +21,25 @@
           <cl:datacolumn std:sid="d-column-cd359a90" name="PLAN_LAST"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:submission std:sid="submission-194396c7" id="findMyPage" action="/findMyPage">
-        <cl:requestdata dataid="Member"/>
-        <cl:responsedata dataid="Member"/>
+      <cl:datamap std:sid="d-map-df6dc9ae" id="member" altercolumnlayout="client">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-0cb0dad2" name="id"/>
+          <cl:datacolumn std:sid="d-column-dc3bc8df" name="password"/>
+          <cl:datacolumn std:sid="d-column-1960033b" name="name" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-67d4fc4f" name="email"/>
+          <cl:datacolumn std:sid="d-column-9016a61a" name="birth"/>
+          <cl:datacolumn std:sid="d-column-a74902f0" name="phone"/>
+          <cl:datacolumn std:sid="d-column-dabee590" name="address"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-194396c7" id="findMyPage" method="get" action="findMyPage">
+        <cl:listener std:sid="listener-da8d7ecf" name="submit-success" handler="onFindMyPageSubmitSuccess"/>
+        <cl:responsedata dataid="member"/>
       </cl:submission>
-      <cl:submission std:sid="submission-219aa173" id="updateMember" action="/updateMember">
-        <cl:requestdata dataid="Member"/>
-        <cl:responsedata dataid="Member"/>
+      <cl:submission std:sid="submission-219aa173" id="updateMember" method="put" action="/updateMember">
+        <cl:listener std:sid="listener-c1347b71" name="submit-success" handler="onUpdateMemberSubmitSuccess"/>
+        <cl:listener std:sid="listener-3b0c82b0" name="submit-error" handler="onUpdateMemberSubmitError"/>
+        <cl:requestdata dataid="member"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -84,35 +84,35 @@
                 <cl:formdata std:sid="f-data-04387c93" halign="CENTER" row="7" col="1"/>
               </cl:output>
               <cl:inputbox std:sid="i-box-136261d4" id="ID" readonly="true">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="ID" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="id"/>
                 <cl:formdata std:sid="f-data-a6df4a35" row="1" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-668e3050" id="Pass" secret="true">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="PASSWORD" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="password"/>
                 <cl:formdata std:sid="f-data-6a4ed2a3" row="2" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-838596cb" id="ADDR">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="ADDRESS" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="address"/>
                 <cl:formdata std:sid="f-data-91d11ce7" row="3" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-bed5f5d0" id="NAME">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="NAME" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="name"/>
                 <cl:formdata std:sid="f-data-a4298e2c" row="4" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-a008d353" id="EMAIL" readonly="true">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="EMAIL" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="email"/>
                 <cl:formdata std:sid="f-data-e1a879eb" row="6" col="2"/>
               </cl:inputbox>
               <cl:maskeditor std:sid="m-editor-f14997c0" id="PHONE" mask="XXX-XXXX-XXXX">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="PHONE" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="phone"/>
                 <cl:formdata std:sid="f-data-d0781fcf" row="7" col="2"/>
               </cl:maskeditor>
-              <cl:dateinput std:sid="d-input-df177294" id="BIRTH">
-                <cl:datasetbind property="value" datacontrolid="Member" columnname="BIRTH" rowindex="0"/>
+              <cl:dateinput std:sid="d-input-df177294" id="BIRTH" readonly="true">
+                <cl:datamapbind property="value" datacontrolid="member" columnname="birth"/>
                 <cl:formdata std:sid="f-data-88c16f35" row="5" col="2"/>
               </cl:dateinput>
               <cl:button std:sid="button-1c8aafba" id="Update" value="수정하기">
-                <cl:listener std:sid="listener-460aaa02" name="click" handler="onUpdateClick"/>
+                <cl:listener std:sid="listener-71688612" name="click" handler="onBtn2Click"/>
                 <cl:formdata std:sid="f-data-90e641cd" row="9" col="2"/>
               </cl:button>
               <cl:formlayout std:sid="f-layout-41056cb7" scrollable="false" hspace="5px" vspace="5px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
@@ -336,6 +336,11 @@
           </cl:group>
         </cl:tabitem>
       </cl:tabfolder>
+      <cl:udc std:sid="ud-control-4bac0656" type="udc.logo">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-d0531f42">
+          <cl:xylayoutdata std:sid="sxyl-data-a4d9ac19" top="4px" left="6px" width="277px" height="73px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:udc>
       <cl:responsivexylayout std:sid="r-xylayout-dac636ce"/>
     </cl:group>
     <cl:xylayout std:sid="xylayout-70eab1a4"/>
