@@ -29,9 +29,11 @@
       <cl:xylayoutdata std:sid="xyl-data-0f0e6f37" top="20px" right="443px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:button std:sid="button-3f6ac83c" id="logoutBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" visible="false" value="Logout">
+      <cl:listener std:sid="listener-b9953965" name="click" handler="onLogoutBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-bb505d20" top="20px" right="20px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:button std:sid="button-a1fd91f1" id="MyPageBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" visible="false" value="마이페이지">
+      <cl:listener std:sid="listener-c5f16699" name="click" handler="onMyPageBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-8f597ada" top="20px" right="161px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-242e59ac"/>
