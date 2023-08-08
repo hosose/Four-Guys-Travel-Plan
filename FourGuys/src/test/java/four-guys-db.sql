@@ -27,7 +27,7 @@ CREATE TABLE "MEMBER" (
 );
 
 INSERT INTO MEMBER VALUES ('hosose','호소세','a','킹더랜드',to_date('2023-1-11','YYYY-MM-DD'),'hosose@naver.com','010-1123-4587')
-
+SELECT id, name, address, birth, email, phone FROM member WHERE id = 'hosose' AND password = 'a'
 select * from member
 
 DROP TABLE "PLANNER";
