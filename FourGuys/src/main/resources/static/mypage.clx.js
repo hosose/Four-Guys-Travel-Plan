@@ -720,21 +720,21 @@
 							"right": "4px",
 							"bottom": "0px",
 							"left": "6px",
-							"height": "963px"
+							"height": "876px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"right": "2px",
 							"bottom": "0px",
 							"left": "3px",
-							"height": "963px"
+							"height": "876px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"right": "1px",
 							"bottom": "0px",
 							"left": "2px",
-							"height": "963px"
+							"height": "876px"
 						}
 					]
 				});
