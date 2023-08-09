@@ -9,5 +9,5 @@ public interface MemberService {
 
 	public int updateMember(MemberVO memberVO);
 
-	public MemberVO login(MemberVO memberVO);
+	public MemberVO login(MemberVO memberVO);	
 }
