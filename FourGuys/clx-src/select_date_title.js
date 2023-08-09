@@ -13,6 +13,17 @@ function onCreateBtnClick(e) {
 	var createBtn = e.control;
 	var startDate = app.lookup("dti1").dateValue;
 	var endDate = app.lookup("dti2").dateValue;
-	const travelDate = (endDate - startDate)/(1000*60*60*24)+1
-	app.close(travelDate);
+	const travelDate = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1
+	var submission = app.lookup("createPlanner");
+	submission.send();
+}
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onCreatePlannerSubmitSuccess(e) {
+	var createPlanner = e.control;
+	var responseData = createPlanner.getMetadata("plannerVO");
+	app.close(responseData.plannerNo);
 }

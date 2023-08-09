@@ -26,12 +26,66 @@
 				var createBtn = e.control;
 				var startDate = app.lookup("dti1").dateValue;
 				var endDate = app.lookup("dti2").dateValue;
-				const travelDate = (endDate - startDate)/(1000*60*60*24)+1
-				app.close(travelDate);
+				const travelDate = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1
+				var submission = app.lookup("createPlanner");
+				submission.send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onCreatePlannerSubmitSuccess(e) {
+				var createPlanner = e.control;
+				var responseData = createPlanner.getMetadata("plannerVO");
+				app.close(responseData.plannerNo);
 			}
 			// End - User Script
 			
 			// Header
+			var dataSet_1 = new cpr.data.DataSet("plannerVO");
+			dataSet_1.parseData({
+				"columns" : [
+					{
+						"name": "PLANNER_NO",
+						"dataType": "string"
+					},
+					{
+						"name": "ID",
+						"dataType": "string"
+					},
+					{
+						"name": "PLANNER_TITLE",
+						"dataType": "string"
+					},
+					{
+						"name": "PLANNER_START_DATE",
+						"dataType": "string"
+					},
+					{
+						"name": "PLANNER_LAST_DAY",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataSet_1);
+			var dataMap_1 = new cpr.data.DataMap("plannerDM");
+			dataMap_1.parseData({
+				"columns" : [
+					{"name": "plannerTitle"},
+					{"name": "plannerStartDate"},
+					{"name": "plannerLastDate"}
+				]
+			});
+			app.register(dataMap_1);
+			var submission_1 = new cpr.protocols.Submission("createPlanner");
+			submission_1.action = "createPlanner";
+			submission_1.addRequestData(dataMap_1);
+			submission_1.addResponseData(dataSet_1, false);
+			if(typeof onCreatePlannerSubmitSuccess == "function") {
+				submission_1.addEventListener("submit-success", onCreatePlannerSubmitSuccess);
+			}
+			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -101,6 +155,7 @@
 			
 			var inputBox_1 = new cpr.controls.InputBox("titleInput");
 			inputBox_1.placeholder = "제목을 입력해주세요.";
+			inputBox_1.bind("value").toDataMap(app.lookup("plannerDM"), "plannerTitle");
 			container.addChild(inputBox_1, {
 				"top": "50px",
 				"left": "200px",
@@ -109,7 +164,7 @@
 			});
 			
 			var dateInput_1 = new cpr.controls.DateInput("dti1");
-			dateInput_1.value = "출발일";
+			dateInput_1.bind("value").toDataMap(app.lookup("plannerDM"), "plannerStartDate");
 			container.addChild(dateInput_1, {
 				"top": "150px",
 				"left": "200px",
@@ -118,7 +173,7 @@
 			});
 			
 			var dateInput_2 = new cpr.controls.DateInput("dti2");
-			dateInput_2.value = "도착일";
+			dateInput_2.bind("value").toDataMap(app.lookup("plannerDM"), "plannerLastDate");
 			container.addChild(dateInput_2, {
 				"top": "150px",
 				"left": "357px",

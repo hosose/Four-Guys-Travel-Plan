@@ -21,8 +21,6 @@
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
-			var date = 0;
-
 			function onBodyLoad(e) {
 				app.openDialog("select_date_title", {
 					width: 600,
@@ -30,7 +28,9 @@
 				}, function(dialog) {
 					dialog.ready(function(dialogApp) {});
 				}).then(function(returnValue) {
-					date = JSON.stringify(returnValue);
+					var plannerNoOutput = app.lookup("plannerNo");
+					plannerNoOutput.value = JSON.stringify(returnValue);
+					app.lookup("dayBtnSM").send()
 					app.lookup("loginCheck").send();
 				});
 			}
@@ -40,29 +40,30 @@
 			 * 통신이 성공하면 발생합니다.
 			 */
 			function onLoginCheckSubmitSuccess(e) {
-				var loginCheck = e.control;
-				var container = app.lookup("dateLayout");
-				for (var i = 1; i <=date; i++) {
-					//udc 동적 생성
-					var dateButton = "Day" + i;
-					dateButton = new udc.dateButton(dateButton);
-					//udc에서 출판한 이미지 경로 앱 속성 지정
-					dateButton.btnValue ="Day" + i;
-					//생성한 udc를 루트 컨테이너에 부착
-					container.addChild(dateButton, {
-						height: "53px",
-						width: "120px",
-						autoSize: "both"
-					});
-					//udc에서 출판한 이미지 삭제 이벤트 구현
-					dateButton.addEventListener("selectDate", function(e) {
-						e.control.dispose();
-					});
-				}
+				
 			}
 			// End - User Script
 			
 			// Header
+			var dataSet_1 = new cpr.data.DataSet("planDate");
+			dataSet_1.parseData({
+				"columns" : [
+					{
+						"name": "planDate",
+						"dataType": "string"
+					},
+					{
+						"name": "plannerNo",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataSet_1);
+			var dataMap_1 = new cpr.data.DataMap("plannerNoDM");
+			dataMap_1.parseData({
+				"columns" : [{"name": "plannerNo"}]
+			});
+			app.register(dataMap_1);
 			var submission_1 = new cpr.protocols.Submission("loginCheck");
 			submission_1.method = "get";
 			submission_1.action = "loginCheck";
@@ -70,6 +71,13 @@
 				submission_1.addEventListener("submit-success", onLoginCheckSubmitSuccess);
 			}
 			app.register(submission_1);
+			
+			var submission_2 = new cpr.protocols.Submission("dayBtnSM");
+			submission_2.method = "get";
+			submission_2.action = "getDay";
+			submission_2.addRequestData(dataMap_1);
+			submission_2.addResponseData(dataSet_1, false);
+			app.register(submission_2);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -139,6 +147,15 @@
 					"left": "184px",
 					"height": "22px"
 				});
+				var output_1 = new cpr.controls.Output("plannerNo");
+				output_1.visible = false;
+				output_1.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
+				container.addChild(output_1, {
+					"top": "1px",
+					"left": "0px",
+					"width": "100px",
+					"height": "20px"
+				});
 			})(group_2);
 			container.addChild(group_2, {
 				"top": "20px",
@@ -182,21 +199,78 @@
 			});
 			
 			var group_4 = new cpr.controls.Container("dateLayout");
-			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
-			group_4.setLayout(verticalLayout_1);
+			var xYLayout_4 = new cpr.controls.layouts.XYLayout();
+			group_4.setLayout(xYLayout_4);
+			(function(container){
+				var grid_1 = new cpr.controls.Grid("grd3");
+				grid_1.init({
+					"dataSet": app.lookup("planDate"),
+					"columns": [
+						{"width": "100px"},
+						{"width": "100px"}
+					],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "planDate";
+									cell.text = "planDate";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "plannerNo";
+									cell.text = "plannerNo";
+								}
+							}
+						]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.columnName = "planDate";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.columnName = "plannerNo";
+								}
+							}
+						]
+					}
+				});
+				grid_1.bind("fieldLabel").toDataColumn(null);
+				container.addChild(grid_1, {
+					"top": "0px",
+					"width": "236px",
+					"height": "200px",
+					"left": "calc(50% - 118px)"
+				});
+			})(group_4);
 			container.addChild(group_4, {
 				"top": "73px",
 				"left": "20px",
-				"width": "120px",
+				"width": "328px",
 				"height": "694px"
 			});
 			
 			var group_5 = new cpr.controls.Container();
-			var xYLayout_4 = new cpr.controls.layouts.XYLayout();
-			group_5.setLayout(xYLayout_4);
+			var xYLayout_5 = new cpr.controls.layouts.XYLayout();
+			group_5.setLayout(xYLayout_5);
 			(function(container){
-				var grid_1 = new cpr.controls.Grid("grd2");
-				grid_1.init({
+				var grid_2 = new cpr.controls.Grid("grd2");
+				grid_2.init({
 					"columns": [{"width": "100px"}],
 					"header": {
 						"rows": [{"height": "24px"}],
@@ -216,7 +290,7 @@
 						}]
 					}
 				});
-				container.addChild(grid_1, {
+				container.addChild(grid_2, {
 					"top": "0px",
 					"left": "0px",
 					"width": "140px",
@@ -224,18 +298,18 @@
 				});
 			})(group_5);
 			container.addChild(group_5, {
-				"top": "73px",
-				"left": "320px",
+				"top": "88px",
+				"left": "683px",
 				"width": "140px",
 				"height": "694px"
 			});
 			
 			var group_6 = new cpr.controls.Container();
-			var xYLayout_5 = new cpr.controls.layouts.XYLayout();
-			group_6.setLayout(xYLayout_5);
+			var xYLayout_6 = new cpr.controls.layouts.XYLayout();
+			group_6.setLayout(xYLayout_6);
 			(function(container){
-				var grid_2 = new cpr.controls.Grid("grd1");
-				grid_2.init({
+				var grid_3 = new cpr.controls.Grid("grd1");
+				grid_3.init({
 					"columns": [{"width": "167px"}],
 					"header": {
 						"rows": [{"height": "24px"}],
@@ -258,7 +332,7 @@
 						}]
 					}
 				});
-				container.addChild(grid_2, {
+				container.addChild(grid_3, {
 					"top": "0px",
 					"right": "0px",
 					"left": "0px",
@@ -266,8 +340,8 @@
 				});
 			})(group_6);
 			container.addChild(group_6, {
-				"top": "73px",
-				"left": "150px",
+				"top": "88px",
+				"left": "513px",
 				"width": "160px",
 				"height": "694px"
 			});

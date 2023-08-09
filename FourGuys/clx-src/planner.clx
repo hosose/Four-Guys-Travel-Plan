@@ -5,8 +5,23 @@
     <screen std:sid="screen-6fb68c2e" id="tablet" name="tablet" width="500px" height="667px"/>
     <screen std:sid="screen-8c37b30a" id="mobile" name="mobile" width="350px" height="525px"/>
     <cl:model std:sid="model-5ef2f7c2">
+      <cl:dataset std:sid="d-set-814fc2a8" id="planDate">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-febeae05" name="planDate" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-97c39bf3" name="plannerNo" datatype="string"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:datamap std:sid="d-map-520c5aea" id="plannerNoDM">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-6f9f12d7" name="plannerNo"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-94c29d62" id="loginCheck" method="get" action="loginCheck">
         <cl:listener std:sid="listener-39bb8249" name="submit-success" handler="onLoginCheckSubmitSuccess"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-7e681465" id="dayBtnSM" method="get" action="getDay">
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:responsedata dataid="planDate"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -31,6 +46,10 @@
       <cl:inputbox std:sid="i-box-7a3dfa0c" id="ipb1">
         <cl:xylayoutdata std:sid="xyl-data-983f58bb" top="0px" right="0px" left="184px" height="22px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
       </cl:inputbox>
+      <cl:output std:sid="output-0877b6f0" id="plannerNo" visible="false">
+        <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
+        <cl:xylayoutdata std:sid="xyl-data-af9b0f3e" top="1px" left="0px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
       <cl:xylayout std:sid="xylayout-b622fe02"/>
     </cl:group>
     <cl:group std:sid="group-ec15f56b">
@@ -48,11 +67,27 @@
       </cl:formlayout>
     </cl:group>
     <cl:group std:sid="group-5906196c" id="dateLayout">
-      <cl:xylayoutdata std:sid="xyl-data-f706c4a2" top="73px" left="20px" width="120px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:verticallayout std:sid="v-layout-4afe74f6"/>
+      <cl:xylayoutdata std:sid="xyl-data-f706c4a2" top="73px" left="20px" width="328px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:grid std:sid="grid-815196f0" id="grd3" datasetid="planDate">
+        <cl:relativebind property="fieldLabel" category="PROPERTY"/>
+        <cl:xylayoutdata std:sid="xyl-data-15305aed" top="0px" width="236px" height="200px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+        <cl:gridcolumn std:sid="g-column-ff151b56"/>
+        <cl:gridcolumn std:sid="g-column-97b264e1"/>
+        <cl:gridheader std:sid="gh-band-7e4c8239">
+          <cl:gridrow std:sid="g-row-2f83e5d7"/>
+          <cl:gridcell std:sid="gh-cell-cb789772" rowindex="0" colindex="0" targetcolumnname="planDate" sortable="false" filterable="false" text="planDate"/>
+          <cl:gridcell std:sid="gh-cell-a34b3055" rowindex="0" colindex="1" targetcolumnname="plannerNo" sortable="false" filterable="false" text="plannerNo"/>
+        </cl:gridheader>
+        <cl:griddetail std:sid="gd-band-09d03390">
+          <cl:gridrow std:sid="g-row-bb2c24b0"/>
+          <cl:gridcell std:sid="gd-cell-be072d37" rowindex="0" colindex="0" columnname="planDate"/>
+          <cl:gridcell std:sid="gd-cell-dac3c6fb" rowindex="0" colindex="1" columnname="plannerNo"/>
+        </cl:griddetail>
+      </cl:grid>
+      <cl:xylayout std:sid="xylayout-5c7aeec2"/>
     </cl:group>
     <cl:group std:sid="group-2732ccae">
-      <cl:xylayoutdata std:sid="xyl-data-cee69e88" top="73px" left="320px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-cee69e88" top="88px" left="683px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:grid std:sid="grid-1afb50d3" id="grd2">
         <cl:xylayoutdata std:sid="xyl-data-32362222" top="0px" left="0px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         <cl:gridcolumn std:sid="g-column-941f092d"/>
@@ -68,7 +103,7 @@
       <cl:xylayout std:sid="xylayout-3d3893d7"/>
     </cl:group>
     <cl:group std:sid="group-7ada658a">
-      <cl:xylayoutdata std:sid="xyl-data-e1cf92c3" top="73px" left="150px" width="160px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-e1cf92c3" top="88px" left="513px" width="160px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:grid std:sid="grid-b5555db0" id="grd1">
         <cl:xylayoutdata std:sid="xyl-data-90fc6ce8" top="0px" right="0px" left="0px" height="694px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
         <cl:gridcolumn std:sid="g-column-ffb95a4d" width="167px"/>

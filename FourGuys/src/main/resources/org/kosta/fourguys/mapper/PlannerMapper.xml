@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.fourguys.mapper.PlannerMapper">
+	<insert id="createPlanner"
+		parameterType="org.kosta.fourguys.vo.PlannerVO">
+		INSERT INTO PLANNER (planner_no, id, planner_title,
+		PLANNER_START_DATE,PLANNER_LAST_DAY) VALUES(planner_seq.NEXTVAL,
+		#{id},#{plannerTitle},to_date(#{plannerStartDate},'YYYY-MM-DD'),to_date(#{plannerLastDate},'YYYY-MM-DD'))
+		<selectKey keyColumn="planner_no" keyProperty="plannerNo"
+			order="AFTER" resultType="int">
+			SELECT planner_seq.currval from dual
+		</selectKey>
+	</insert>
+	<select id="findDayByPlannerId" parameterType="org.kosta.fourguys.vo.PlannerVO" resultType="int">
+	SELECT trunc(PLANNER_LAST_DAY-PLANNER_START_DATE+1) as day FROM planner where planner_no = #{plannerNo}
+	</select>
+</mapper>

@@ -18,5 +18,16 @@ exports.getText = function(){
  * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
  */
 function onBodyLoad(e){
-		app.lookup("dayBtn").value = app.getAppProperty("btnValue");
+		app.lookup("1").value = app.getAppProperty("btnValue");
+		app.lookup("1").id = app.getAppProperty("btnId");
+}
+
+/*
+ * "Day1" 버튼(dayBtn)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onDayBtnClick(e){
+	var dayBtn = e.control;
+	var cAppEvent = new cpr.events.CAppEvent("getBtnId");
+	app.dispatchEvent(cAppEvent);
 }

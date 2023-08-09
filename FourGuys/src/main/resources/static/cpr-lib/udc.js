@@ -34,12 +34,24 @@
 				 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 				 */
 				function onBodyLoad(e){
-						app.lookup("dayBtn").value = app.getAppProperty("btnValue");
+						app.lookup("1").value = app.getAppProperty("btnValue");
+						app.lookup("1").id = app.getAppProperty("btnId");
+				}
+	
+				/*
+				 * "Day1" 버튼(dayBtn)에서 click 이벤트 발생 시 호출.
+				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+				 */
+				function onDayBtnClick(e){
+					var dayBtn = e.control;
+					var cAppEvent = new cpr.events.CAppEvent("getBtnId");
+					app.dispatchEvent(cAppEvent);
 				};
 				// End - User Script
 				
 				// Header
 				app.declareAppProperty("btnValue", null);
+				app.declareAppProperty("btnId", null);
 				app.supportMedia("all and (min-width: 1024px)", "default");
 				app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 				app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -58,8 +70,11 @@
 				container.setLayout(xYLayout_1);
 				
 				// UI Configuration
-				var button_1 = new cpr.controls.Button("dayBtn");
+				var button_1 = new cpr.controls.Button("1");
 				button_1.value = "Day1";
+				if(typeof onDayBtnClick == "function") {
+					button_1.addEventListener("click", onDayBtnClick);
+				}
 				container.addChild(button_1, {
 					"top": "0px",
 					"left": "0px",
@@ -94,6 +109,14 @@
 		},
 		set: function(newValue){
 			return this.getEmbeddedAppInstance().setAppProperty("btnValue", newValue, true);
+		}
+	});
+	Object.defineProperty(udc.dateButton.prototype, "btnId", {
+		get: function(){
+			return this.getEmbeddedAppInstance().getAppProperty("btnId");
+		},
+		set: function(newValue){
+			return this.getEmbeddedAppInstance().setAppProperty("btnId", newValue, true);
 		}
 	});
 	

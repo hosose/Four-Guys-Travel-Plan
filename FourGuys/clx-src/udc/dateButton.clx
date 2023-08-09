@@ -7,11 +7,14 @@
     <cl:model std:sid="model-d54ec54b"/>
     <cl:appspec>
       <cl:property name="btnValue" type="string" std:desc="버튼 value"/>
+      <cl:property name="btnId" type="string" std:desc="버튼 id"/>
+      <cl:event name="getBtnId" type="cpr.events.CAppEvent"/>
     </cl:appspec>
   </head>
   <body std:sid="body-918a9eb0" style="top:0px; left:0px; width:300px; height:300px;">
     <cl:listener std:sid="listener-cfa123d3" name="load" handler="onBodyLoad"/>
-    <cl:button std:sid="button-c8e1dea7" id="dayBtn" value="Day1">
+    <cl:button std:sid="button-c8e1dea7" id="1" value="Day1">
+      <cl:listener std:sid="listener-e5223537" name="click" handler="onDayBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-feda2b3f" top="0px" left="0px" width="120px" height="53px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-7ff7f0b6"/>

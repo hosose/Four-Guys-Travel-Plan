@@ -33,7 +33,7 @@ public class TestXmlParsing {
 			Document document = db.parse(file);
 			document.getDocumentElement().normalize();
 			NodeList nList = document.getElementsByTagName("item");
-			for (int temp = 0; temp < 100; temp++) {
+			for (int temp = 0; temp < nList.getLength(); temp++) {
 				Node nNode = nList.item(temp);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
