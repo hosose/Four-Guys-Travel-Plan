@@ -21,4 +21,3 @@ function onSearchbtnClick(e){
 	var searchbtn = e.control;
 		app.lookup("areaList").send();	
 }
-
