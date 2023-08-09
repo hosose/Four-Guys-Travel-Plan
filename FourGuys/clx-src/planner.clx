@@ -100,6 +100,7 @@
       <cl:xylayoutdata std:sid="xyl-data-bf2e1144" top="47px" left="20px" width="259px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:textarea>
     <cl:inputbox std:sid="i-box-dde342b5" id="titleSearch">
+      <cl:listener std:sid="listener-cceaf311" name="keydown" handler="onTitleSearchKeydown"/>
       <cl:datamapbind property="value" category="PROPERTY" datacontrolid="areaSearch" columnname="title"/>
       <cl:datamapcontext datacontrolid="areaSearch"/>
       <cl:xylayoutdata std:sid="xyl-data-27022b9a" top="47px" left="289px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

@@ -21,3 +21,15 @@ function onSearchbtnClick(e){
 	var searchbtn = e.control;
 		app.lookup("areaList").send();	
 }
+
+/*
+ * 인풋 박스에서 keydown 이벤트 발생 시 호출.
+ * 사용자가 키를 누를 때 발생하는 이벤트. 키코드 관련 상수는 {@link cpr.events.KeyCode}에서 참조할 수 있습니다.
+ */
+function onTitleSearchKeydown(e){
+	var titleSearch = e.control;
+	if(e.keyCode == cpr.events.KeyCode.ENTER){
+		var Searchbtn = app.lookup("searchbtn");
+		Searchbtn.click();
+	}
+}
