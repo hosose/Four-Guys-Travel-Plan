@@ -21,11 +21,4 @@ function onSearchbtnClick(e){
 	var searchbtn = e.control;
 		app.lookup("areaList").send();	
 }
-/*
-function f_onCopyRow() {
-    // 소스(Source) 그리드의 선택된 행(Row)의 데이터를 타겟(Target) 그리드로 복사한다.
-    // 단, 복사할려는 데이터가 타겟 그리드에 이미 존재하는 경우에는 복사하지 않는다.(중복 복사 방지)
-    util.Grid.copyToGridData(app, "grd2", "grd1");
-}
-* /
 
