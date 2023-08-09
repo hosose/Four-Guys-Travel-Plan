@@ -101,6 +101,15 @@
 					if (uri != null) {
 					location.href=uri
 					}
+				}
+	
+				/*
+				 * "플래너 게시판" 버튼(boardBtn)에서 click 이벤트 발생 시 호출.
+				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+				 */
+				function onBoardBtnClick2(e){
+					var boardBtn = e.control;
+					location.href="PlanBoard.clx";
 				};
 				// End - User Script
 				
@@ -177,8 +186,8 @@
 					"font-style" : "normal",
 					"border-top-style" : "none"
 				});
-				if(typeof onBoardBtnClick == "function") {
-					button_2.addEventListener("click", onBoardBtnClick);
+				if(typeof onBoardBtnClick2 == "function") {
+					button_2.addEventListener("click", onBoardBtnClick2);
 				}
 				container.addChild(button_2, {
 					"top": "20px",
@@ -443,10 +452,36 @@
 				});
 				
 				// Layout
-				var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-				container.setLayout(xYLayout_1);
+				var formLayout_1 = new cpr.controls.layouts.FormLayout();
+				formLayout_1.scrollable = false;
+				formLayout_1.topMargin = "0px";
+				formLayout_1.rightMargin = "0px";
+				formLayout_1.bottomMargin = "0px";
+				formLayout_1.leftMargin = "0px";
+				formLayout_1.horizontalSpacing = "5px";
+				formLayout_1.verticalSpacing = "5px";
+				formLayout_1.setColumns(["1fr", "1fr", "1fr", "1fr"]);
+				formLayout_1.setRows(["1fr", "1fr", "1fr", "1fr", "1fr", "1fr", "1fr", "1fr"]);
+				container.setLayout(formLayout_1);
 				
 				// UI Configuration
+				var button_1 = new cpr.controls.Button("btn1");
+				button_1.value = "MYPAGE";
+				container.addChild(button_1, {
+					"colIndex": 1,
+					"rowIndex": 1,
+					"colSpan": 2,
+					"rowSpan": 1
+				});
+				
+				var button_2 = new cpr.controls.Button("btn2");
+				button_2.value = "MYPLAN";
+				container.addChild(button_2, {
+					"colIndex": 1,
+					"rowIndex": 4,
+					"colSpan": 2,
+					"rowSpan": 1
+				});
 			}
 		});
 	internalApp.title = "myPageSideBar";
