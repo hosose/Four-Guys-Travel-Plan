@@ -21,7 +21,7 @@
       <cl:xylayoutdata std:sid="xyl-data-6153b4c8" top="20px" right="20px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:button std:sid="button-3fd7aa5f" id="boardBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" visible="true" value="플래너 게시판">
-      <cl:listener std:sid="listener-2cbaae5d" name="click" handler="onBoardBtnClick"/>
+      <cl:listener std:sid="listener-b84c4f81" name="click" handler="onBoardBtnClick2"/>
       <cl:xylayoutdata std:sid="xyl-data-b10c7e01" top="20px" right="302px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:button std:sid="button-1329a282" id="createBtn" style="border-right-style:none; color:#FFFFFF; border-bottom-color:#ffffff; border-left-color:#ffffff; font-size:18px; border-right-color:#ffffff; font-style:normal; border-top-style:none; background-color:#306DC6; background-repeat:no-repeat; border-left-style:none; border-top-color:#ffffff; border-bottom-style:none; background-image:none;" value="플랜 생성">

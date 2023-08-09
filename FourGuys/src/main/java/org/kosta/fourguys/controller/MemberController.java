@@ -11,6 +11,7 @@ import org.kosta.fourguys.service.MemberService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -124,6 +125,20 @@ public class MemberController {
 		Map<String, Object> message = new HashMap<String, Object>();
 		HttpSession session= request.getSession(false);
 		//System.out.println(session);
+		if(session!=null) {
+			session.invalidate();
+		}
+		message.put("uri", "/");
+		dataRequest.setMetadata(true, message);
+		return new JSONDataView();
+	}
+	@DeleteMapping("deleteMember")
+	public View deleteMember(HttpServletRequest request,HttpServletResponse response, DataRequest dataRequest) {
+		Map<String, Object> message = new HashMap<String, Object>();
+		HttpSession session= request.getSession(false);
+		//ParameterGroup member = dataRequest.getParameterGroup("member");
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+		memberService.deleteMember(memberVO);
 		if(session!=null) {
 			session.invalidate();
 		}

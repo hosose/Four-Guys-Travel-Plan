@@ -7,4 +7,7 @@ SELECT * FROM member WHERE id = #{id} AND password = #{password}
 <update id="updateMember" parameterType="org.kosta.fourguys.vo.MemberVO">
 	update member set address=#{address},name=#{name},email=#{email},phone=#{phone} where id=#{id}
 </update>
+<delete id="deleteMember" parameterType="org.kosta.fourguys.vo.MemberVO">
+	DELETE member WHERE id=#{id}
+</delete>
 </mapper>
