@@ -205,63 +205,40 @@
 				var grid_1 = new cpr.controls.Grid("grd3");
 				grid_1.init({
 					"dataSet": app.lookup("planDate"),
-					"columns": [
-						{"width": "100px"},
-						{"width": "100px"}
-					],
+					"columns": [{"width": "100px"}],
 					"header": {
 						"rows": [{"height": "24px"}],
-						"cells": [
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 0},
-								"configurator": function(cell){
-									cell.filterable = false;
-									cell.sortable = false;
-									cell.targetColumnName = "planDate";
-									cell.text = "planDate";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 1},
-								"configurator": function(cell){
-									cell.filterable = false;
-									cell.sortable = false;
-									cell.targetColumnName = "plannerNo";
-									cell.text = "plannerNo";
-								}
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "planDate";
+								cell.text = "planDate";
 							}
-						]
+						}]
 					},
 					"detail": {
 						"rows": [{"height": "24px"}],
-						"cells": [
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 0},
-								"configurator": function(cell){
-									cell.columnName = "planDate";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 1},
-								"configurator": function(cell){
-									cell.columnName = "plannerNo";
-								}
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnName = "planDate";
 							}
-						]
+						}]
 					}
 				});
-				grid_1.bind("fieldLabel").toDataColumn(null);
 				container.addChild(grid_1, {
 					"top": "0px",
-					"width": "236px",
+					"width": "160px",
 					"height": "200px",
-					"left": "calc(50% - 118px)"
+					"left": "calc(50% - 80px)"
 				});
 			})(group_4);
 			container.addChild(group_4, {
 				"top": "73px",
 				"left": "20px",
-				"width": "328px",
+				"width": "160px",
 				"height": "694px"
 			});
 			
@@ -298,8 +275,8 @@
 				});
 			})(group_5);
 			container.addChild(group_5, {
-				"top": "88px",
-				"left": "683px",
+				"top": "73px",
+				"left": "360px",
 				"width": "140px",
 				"height": "694px"
 			});
@@ -340,8 +317,8 @@
 				});
 			})(group_6);
 			container.addChild(group_6, {
-				"top": "88px",
-				"left": "513px",
+				"top": "73px",
+				"left": "190px",
 				"width": "160px",
 				"height": "694px"
 			});
