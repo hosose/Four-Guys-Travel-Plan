@@ -28,6 +28,15 @@
           <cl:datacolumn std:sid="d-column-aeebe1dc" name="contentId" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
+      <cl:dataset std:sid="d-set-dea5f539" id="selectedPlan">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-8aac271a" name="planDate" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-f9ba89ce" name="plannerNo" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-66acf88d" name="planNo" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-53041382" name="contentId" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-7af2363e" name="title"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-8fec9b1e" id="areaSearch">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-3a5feb45" name="title"/>
@@ -60,7 +69,12 @@
       <cl:submission std:sid="submission-19ef9968" id="createPlan" action="createPlan">
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:requestdata dataid="createPlanDM"/>
-        <cl:responsedata dataid="planDate"/>
+        <cl:responsedata dataid="selectedPlan"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-4bb551dd" id="selectDate" method="get" action="selectPlansByDate">
+        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -116,16 +130,16 @@
         <cl:gridcell std:sid="gd-cell-e445d91c" rowindex="0" colindex="2" columnname="contentid"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-b5555db0" id="grd1">
+    <cl:grid std:sid="grid-b5555db0" id="grd1" datasetid="selectedPlan">
       <cl:xylayoutdata std:sid="xyl-data-d58387b8" top="73px" left="150px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:gridcolumn std:sid="g-column-ffb95a4d" width="137px"/>
-      <cl:gridheader std:sid="gh-band-488dd52f">
-        <cl:gridrow std:sid="g-row-344d077d"/>
-        <cl:gridcell std:sid="gh-cell-264b51f6" rowindex="0" colindex="0" text="선택한 여행지 목록"/>
+      <cl:gridcolumn std:sid="g-column-a24c7d3e"/>
+      <cl:gridheader std:sid="gh-band-2645386a">
+        <cl:gridrow std:sid="g-row-bb42cbe7"/>
+        <cl:gridcell std:sid="gh-cell-7762d2af" rowindex="0" colindex="0" targetcolumnname="title" sortable="false" filterable="false" text="title"/>
       </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-7e8260de">
-        <cl:gridrow std:sid="g-row-2f95fbfe"/>
-        <cl:gridcell std:sid="gd-cell-3cfc72fb" rowindex="0" colindex="0"/>
+      <cl:griddetail std:sid="gd-band-59502fc7">
+        <cl:gridrow std:sid="g-row-d0a21a46"/>
+        <cl:gridcell std:sid="gd-cell-b54e1053" rowindex="0" colindex="0" columnname="title"/>
       </cl:griddetail>
     </cl:grid>
     <cl:group std:sid="group-5906196c">

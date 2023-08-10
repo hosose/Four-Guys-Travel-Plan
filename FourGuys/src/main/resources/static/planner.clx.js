@@ -65,7 +65,7 @@
 				var dayBtnSM = e.control;
 				var grid = app.lookup("grd3");
 				grid.selectRows([0]);
-				
+				app.lookup("planDateOutput").value=1;
 			}
 
 			/*
@@ -77,6 +77,7 @@
 				var grid = app.lookup("grd3");
 				var planDate = grid.getSelectedRow().getValue("planDate");
 				app.lookup("planDateOutput").value=planDate;
+				app.lookup("selectDate").send();
 			}
 
 			/*
@@ -166,6 +167,30 @@
 				]
 			});
 			app.register(dataSet_2);
+			
+			var dataSet_3 = new cpr.data.DataSet("selectedPlan");
+			dataSet_3.parseData({
+				"columns" : [
+					{
+						"name": "planDate",
+						"dataType": "string"
+					},
+					{
+						"name": "plannerNo",
+						"dataType": "string"
+					},
+					{
+						"name": "planNo",
+						"dataType": "string"
+					},
+					{
+						"name": "contentId",
+						"dataType": "string"
+					},
+					{"name": "title"}
+				]
+			});
+			app.register(dataSet_3);
 			var dataMap_1 = new cpr.data.DataMap("areaSearch");
 			dataMap_1.parseData({
 				"columns" : [
@@ -221,8 +246,16 @@
 			submission_5.action = "createPlan";
 			submission_5.addRequestData(dataMap_2);
 			submission_5.addRequestData(dataMap_3);
-			submission_5.addResponseData(dataSet_2, false);
+			submission_5.addResponseData(dataSet_3, false);
 			app.register(submission_5);
+			
+			var submission_6 = new cpr.protocols.Submission("selectDate");
+			submission_6.method = "get";
+			submission_6.action = "selectPlansByDate";
+			submission_6.addRequestData(dataMap_3);
+			submission_6.addRequestData(dataMap_2);
+			submission_6.addResponseData(dataSet_3, false);
+			app.register(submission_6);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -396,13 +429,17 @@
 			
 			var grid_2 = new cpr.controls.Grid("grd1");
 			grid_2.init({
-				"columns": [{"width": "137px"}],
+				"dataSet": app.lookup("selectedPlan"),
+				"columns": [{"width": "100px"}],
 				"header": {
 					"rows": [{"height": "24px"}],
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
-							cell.text = "선택한 여행지 목록";
+							cell.filterable = false;
+							cell.sortable = false;
+							cell.targetColumnName = "title";
+							cell.text = "title";
 						}
 					}]
 				},
@@ -411,6 +448,7 @@
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
+							cell.columnName = "title";
 						}
 					}]
 				}

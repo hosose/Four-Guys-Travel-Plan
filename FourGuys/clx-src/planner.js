@@ -52,7 +52,7 @@ function onDayBtnSMSubmitSuccess(e){
 	var dayBtnSM = e.control;
 	var grid = app.lookup("grd3");
 	grid.selectRows([0]);
-	
+	app.lookup("planDateOutput").value=1;
 }
 
 /*
@@ -64,6 +64,7 @@ function onGrd3CellClick(e){
 	var grid = app.lookup("grd3");
 	var planDate = grid.getSelectedRow().getValue("planDate");
 	app.lookup("planDateOutput").value=planDate;
+	app.lookup("selectDate").send();
 }
 
 /*

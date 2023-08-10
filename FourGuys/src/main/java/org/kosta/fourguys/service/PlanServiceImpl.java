@@ -31,4 +31,14 @@ public class PlanServiceImpl implements PlanService {
 	public ArrayList<PlanVO> getDayByPlannerNo(int plannerNo) {
 		return planMapper.getDayByPlannerNo(plannerNo);
 	}
+
+	@Override
+	public int createPlan(PlanVO plan) {
+		return planMapper.createPlan(plan);
+	}
+
+	@Override
+	public ArrayList<PlanVO> getPlansByDate(PlanVO selectedPlan) {
+		return planMapper.getPlansByDate(selectedPlan);
+	}
 }
