@@ -55,9 +55,7 @@
 					var Searchbtn = app.lookup("searchbtn");
 					Searchbtn.click();
 				}
-
-			}
-
+			};
 			// End - User Script
 			
 			// Header
