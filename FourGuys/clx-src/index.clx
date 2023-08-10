@@ -59,7 +59,7 @@
     </cl:udc>
     <cl:udc std:sid="ud-control-97b1121b" type="udc.header_nav">
       <cl:responsivexylayoutdata std:sid="rxyl-data-7b6e5ef6">
-        <cl:xylayoutdata std:sid="sxyl-data-964b957d" top="20px" left="806px" width="623px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-964b957d" top="20px" right="20px" width="623px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
     <cl:responsivexylayout std:sid="r-xylayout-a55ed4bb"/>

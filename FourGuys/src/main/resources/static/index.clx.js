@@ -264,21 +264,21 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "20px",
-						"left": "806px",
+						"right": "20px",
 						"width": "623px",
 						"height": "77px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "20px",
-						"left": "394px",
+						"right": "10px",
 						"width": "304px",
 						"height": "77px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "20px",
-						"left": "275px",
+						"right": "7px",
 						"width": "213px",
 						"height": "77px"
 					}

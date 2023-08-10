@@ -20,9 +20,21 @@
           <cl:datacolumn std:sid="d-column-d23a50e8" name="cat3" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
+
+      <cl:dataset std:sid="d-set-814fc2a8" id="planDate">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-febeae05" name="planDate" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-97c39bf3" name="plannerNo" datatype="string"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-8fec9b1e" id="areaSearch">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-3a5feb45" name="title"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:datamap std:sid="d-map-520c5aea" id="plannerNoDM">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-6f9f12d7" name="plannerNo"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-2537bb48" id="subSave"/>
@@ -30,6 +42,13 @@
         <cl:listener std:sid="listener-384844e6" name="submit-success" handler="onAreaListSubmitSuccess"/>
         <cl:requestdata dataid="areaSearch"/>
         <cl:responsedata dataid="jeju"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-94c29d62" id="loginCheck" method="get" action="loginCheck"/>
+      <cl:submission std:sid="submission-7e681465" id="dayBtnSM" method="get" action="getDay">
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:responsedata dataid="planDate"/>
+
+
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -44,6 +63,10 @@
       <cl:inputbox std:sid="i-box-7a3dfa0c" id="ipb1">
         <cl:xylayoutdata std:sid="xyl-data-983f58bb" top="0px" right="0px" left="184px" height="22px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
       </cl:inputbox>
+      <cl:output std:sid="output-0877b6f0" id="plannerNo" visible="false">
+        <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
+        <cl:xylayoutdata std:sid="xyl-data-8e90f211" top="0px" left="0px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
       <cl:xylayout std:sid="xylayout-b622fe02"/>
     </cl:group>
     <cl:group std:sid="group-ec15f56b">
@@ -91,9 +114,21 @@
     </cl:grid>
     <cl:group std:sid="group-5906196c">
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:linkedcombobox std:sid="lc-box-37735dde" id="lcb1">
-        <cl:xylayoutdata std:sid="xyl-data-41c32539" top="0px" left="0px" width="120px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:linkedcombobox>
+
+
+      <cl:grid std:sid="grid-815196f0" id="grd3" datasetid="planDate">
+        <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
+        <cl:gridcolumn std:sid="g-column-ff151b56"/>
+        <cl:gridheader std:sid="gh-band-7e4c8239">
+          <cl:gridrow std:sid="g-row-2f83e5d7"/>
+          <cl:gridcell std:sid="gh-cell-cb789772" rowindex="0" colindex="0" targetcolumnname="planDate" sortable="false" filterable="false" text="여행일자"/>
+        </cl:gridheader>
+        <cl:griddetail std:sid="gd-band-09d03390">
+          <cl:gridrow std:sid="g-row-bb2c24b0"/>
+          <cl:gridcell std:sid="gd-cell-be072d37" rowindex="0" colindex="0" columnname="planDate"/>
+        </cl:griddetail>
+      </cl:grid>
+
       <cl:xylayout std:sid="xylayout-d70cae89"/>
     </cl:group>
     <cl:textarea std:sid="t-area-76ee7bec" id="txa1" style="text-align:center;" value="제주도 지역 검색">
@@ -109,8 +144,13 @@
       <cl:listener std:sid="listener-12efc328" name="click" handler="onSearchbtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-5878dfb3" top="47px" left="399px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
+<<<<<<< HEAD
     <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html">
       <cl:xylayoutdata std:sid="xyl-data-5211db90" top="77px" left="570px" width="434px" height="671px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+=======
+    <cl:embeddedpage std:sid="e-page-0d66a21d" id="ep1" src="thirdparty/maps/kakaoMapAPI.html">
+      <cl:xylayoutdata std:sid="xyl-data-df9d10b8" top="77px" left="570px" width="447px" height="671px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+>>>>>>> refs/heads/main
     </cl:embeddedpage>
     <cl:xylayout std:sid="xylayout-52dfb31e"/>
   </body>
@@ -118,6 +158,8 @@
     <std:hruler>
       <std:guide position="7"/>
     </std:hruler>
-    <std:vruler/>
+    <std:vruler>
+      <std:guide position="169"/>
+    </std:vruler>
   </std:studiosetting>
 </html>

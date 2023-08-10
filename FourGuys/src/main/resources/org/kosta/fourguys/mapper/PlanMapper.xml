@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.fourguys.mapper.PlanMapper">
+<insert id="createPlans" parameterType="org.kosta.fourguys.vo.PlanVO">
+INSERT INTO PLAN(plan_no, planner_no, plan_date) VALUES(plan_seq.NEXTVAL,#{plannerNo},#{planDate})
+</insert>
+<select id="getDayByPlannerNo" parameterType="int">
+SELECT DISTINCT plan_date, planner_no FROM plan WHERE planner_no=#{plannerNo} ORDER BY PLAN_DATE
+</select>
+</mapper>

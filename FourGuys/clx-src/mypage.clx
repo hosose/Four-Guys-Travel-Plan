@@ -55,6 +55,15 @@
           <cl:xylayoutdata std:sid="sxyl-data-716297f0" right="7px" bottom="0px" left="3px" height="778px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
         </cl:responsivexylayoutdata>
         <cl:tabitem std:sid="t-item-3a63cd4f" name="MYPAGE" selected="true" text="MYPAGE" tooltip="회원수정을 위한 탭입니다.">
+
+
+
+          <std:metadata>
+            <std:property key="is-active-item" value="true"/>
+          </std:metadata>
+
+
+
           <cl:group std:sid="group-e5c13333" id="grp2">
             <std:metadata>
               <std:property key="locked" value="true"/>
@@ -141,11 +150,15 @@
             </cl:group>
             <cl:xylayout std:sid="xylayout-827231c2"/>
           </cl:group>
+
+
         </cl:tabitem>
         <cl:tabitem std:sid="t-item-8264a6eb" name="MYPLAN" text="MYPLAN" tooltip="내가 저장한 플랜을 보는 탭입니다.">
           <std:metadata>
             <std:property key="is-active-item" value="true"/>
           </std:metadata>
+
+
           <cl:group std:sid="group-3f0b68a4" id="grp3">
             <std:metadata>
               <std:property key="locked" value="true"/>
@@ -153,9 +166,6 @@
             <cl:tabfolder std:sid="t-folder-22437578" id="tabBoard" hideHeader="true">
               <cl:xylayoutdata std:sid="xyl-data-52263862" top="20px" right="8px" bottom="182px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
               <cl:tabitem std:sid="t-item-923150ab" selected="true" text="list">
-                <std:metadata>
-                  <std:property key="is-active-item" value="true"/>
-                </std:metadata>
                 <cl:group std:sid="group-20e1ff2c" id="grp6">
                   <std:metadata>
                     <std:property key="locked" value="true"/>
@@ -238,6 +248,9 @@
                 </cl:group>
               </cl:tabitem>
               <cl:tabitem std:sid="t-item-99a90c59" text="detail">
+                <std:metadata>
+                  <std:property key="is-active-item" value="true"/>
+                </std:metadata>
                 <cl:group std:sid="group-a0e81c95" id="grp8">
                   <std:metadata>
                     <std:property key="locked" value="true"/>
