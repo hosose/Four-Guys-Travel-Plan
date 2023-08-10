@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.kosta.fourguys.service.PlanService;
 import org.kosta.fourguys.service.PlannerService;
 import org.kosta.fourguys.vo.MemberVO;
+import org.kosta.fourguys.vo.PlanVO;
 import org.kosta.fourguys.vo.PlannerVO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,6 +75,36 @@ public class PlannerController {
 		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
 		dataRequest.setResponse("planDate", planService.getDayByPlannerNo(plannerNo));
+		return new JSONDataView();
+	}
+
+	@PostMapping("/createPlan")
+	public View createPlan(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
+		ParameterGroup createPlanParam = dataRequest.getParameterGroup("createPlanDM");
+		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
+		String contentId = createPlanParam.getValue("contentid");
+		String planDate = createPlanParam.getValue("planDate");
+		PlanVO plan = new PlanVO();
+		plan.setPlanDate(Integer.parseInt(planDate));
+		plan.setPlannerNo(plannerNo);
+		plan.setContentId(Integer.parseInt(contentId));
+		planService.createPlan(plan);
+		dataRequest.setResponse("selectedPlan", planService.getPlansByDate(plan));
+		return new JSONDataView();
+	}
+
+	@GetMapping("selectPlansByDate")
+	public View selectPlansByDate(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
+		ParameterGroup createPlanParam = dataRequest.getParameterGroup("createPlanDM");
+		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
+		String planDate = createPlanParam.getValue("planDate");
+		PlanVO selectedPlan = new PlanVO();
+		selectedPlan.setPlanDate(Integer.parseInt(planDate));
+		selectedPlan.setPlannerNo(plannerNo);
+		planService.getPlansByDate(selectedPlan);
+		dataRequest.setResponse("selectedPlan", planService.getPlansByDate(selectedPlan));
 		return new JSONDataView();
 	}
 }

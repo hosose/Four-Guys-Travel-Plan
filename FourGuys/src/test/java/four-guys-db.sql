@@ -73,7 +73,7 @@ DROP TABLE "PLAN";
 CREATE TABLE "PLAN" (
 	"PLAN_NO"	NUMBER		NOT NULL,
 	"PLANNER_NO"	NUMBER		NOT NULL,
-	"DATE"	DATE		NULL,
+	"plan_DATE" 	DATE		NULL,
 	"CONTENT_ID"	NUMBER		NOT NULL
 );
 CREATE SEQUENCE plan_seq;
@@ -83,6 +83,11 @@ ALTER TABLE JEJU_AREA ADD CONSTRAINT PK_JEJU_AREA PRIMARY KEY (
 	"contentid"
 );
 SELECT DISTINCT plan_date, planner_no FROM plan WHERE planner_no=72 ORDER BY PLAN_DATE
+SELECT p.planner_no, p.plan_date, p.content_id, j.title
+FROM plan p
+INNER JOIN jeju_area j ON p.content_id = j.contentid
+WHERE planner_no = 148 AND plan_date=2
+
 ALTER TABLE "MEMBER" ADD CONSTRAINT "PK_MEMBER" PRIMARY KEY (
 	"ID"
 );

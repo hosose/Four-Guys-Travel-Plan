@@ -56,7 +56,42 @@
 					var Searchbtn = app.lookup("searchbtn");
 					Searchbtn.click();
 				}
-			};
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onDayBtnSMSubmitSuccess(e){
+				var dayBtnSM = e.control;
+				var grid = app.lookup("grd3");
+				grid.selectRows([0]);
+				app.lookup("planDateOutput").value=1;
+			}
+
+			/*
+			 * 그리드에서 cell-click 이벤트 발생 시 호출.
+			 * Grid의 Cell 클릭시 발생하는 이벤트.
+			 */
+			function onGrd3CellClick(e){
+				var grd3 = e.control;
+				var grid = app.lookup("grd3");
+				var planDate = grid.getSelectedRow().getValue("planDate");
+				app.lookup("planDateOutput").value=planDate;
+				app.lookup("selectDate").send();
+			}
+
+			/*
+			 * 그리드에서 row-check 이벤트 발생 시 호출.
+			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 되었을 때 발생하는 이벤트.
+			 */
+			function onGrd2RowCheck(e){
+				var grd2 = e.control;
+				var grid = app.lookup("grd2");
+				var contentId = grid.getSelectedRow().getValue("contentid");
+				app.lookup("contentIdOutput").value=contentId;
+				app.lookup("createPlan").send();
+			}
 			// End - User Script
 			
 			// Header
@@ -121,13 +156,48 @@
 					{
 						"name": "plannerNo",
 						"dataType": "string"
+					},
+					{
+						"name": "planNo",
+						"dataType": "string"
+					},
+					{
+						"name": "contentId",
+						"dataType": "string"
 					}
 				]
 			});
 			app.register(dataSet_2);
+			
+			var dataSet_3 = new cpr.data.DataSet("selectedPlan");
+			dataSet_3.parseData({
+				"columns" : [
+					{
+						"name": "planDate",
+						"dataType": "string"
+					},
+					{
+						"name": "plannerNo",
+						"dataType": "string"
+					},
+					{
+						"name": "planNo",
+						"dataType": "string"
+					},
+					{
+						"name": "contentId",
+						"dataType": "string"
+					},
+					{"name": "title"}
+				]
+			});
+			app.register(dataSet_3);
 			var dataMap_1 = new cpr.data.DataMap("areaSearch");
 			dataMap_1.parseData({
-				"columns" : [{"name": "title"}]
+				"columns" : [
+					{"name": "title"},
+					{"name": "contentId"}
+				]
 			});
 			app.register(dataMap_1);
 			
@@ -136,6 +206,15 @@
 				"columns" : [{"name": "plannerNo"}]
 			});
 			app.register(dataMap_2);
+			
+			var dataMap_3 = new cpr.data.DataMap("createPlanDM");
+			dataMap_3.parseData({
+				"columns" : [
+					{"name": "contentid"},
+					{"name": "planDate"}
+				]
+			});
+			app.register(dataMap_3);
 			var submission_1 = new cpr.protocols.Submission("subSave");
 			app.register(submission_1);
 			
@@ -159,7 +238,25 @@
 			submission_4.action = "getDay";
 			submission_4.addRequestData(dataMap_2);
 			submission_4.addResponseData(dataSet_2, false);
+			if(typeof onDayBtnSMSubmitSuccess == "function") {
+				submission_4.addEventListener("submit-success", onDayBtnSMSubmitSuccess);
+			}
 			app.register(submission_4);
+			
+			var submission_5 = new cpr.protocols.Submission("createPlan");
+			submission_5.action = "createPlan";
+			submission_5.addRequestData(dataMap_2);
+			submission_5.addRequestData(dataMap_3);
+			submission_5.addResponseData(dataSet_3, false);
+			app.register(submission_5);
+			
+			var submission_6 = new cpr.protocols.Submission("selectDate");
+			submission_6.method = "get";
+			submission_6.action = "selectPlansByDate";
+			submission_6.addRequestData(dataMap_3);
+			submission_6.addRequestData(dataMap_2);
+			submission_6.addResponseData(dataSet_3, false);
+			app.register(submission_6);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -254,7 +351,11 @@
 				"dataSet": app.lookup("jeju"),
 				"columns": [
 					{"width": "25px"},
-					{"width": "100px"}
+					{"width": "100px"},
+					{
+						"width": "100px",
+						"visible": false
+					}
 				],
 				"header": {
 					"rows": [{"height": "24px"}],
@@ -273,7 +374,16 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "title";
-								cell.text = "여행지 목록";
+								cell.text = "관광지 목록";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 2},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "contentid";
+								cell.text = "contentId";
 							}
 						}
 					]
@@ -292,6 +402,12 @@
 							"configurator": function(cell){
 								cell.columnName = "title";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 2},
+							"configurator": function(cell){
+								cell.columnName = "contentid";
+							}
 						}
 					]
 				}
@@ -302,6 +418,9 @@
 			if(typeof onGrd2Dblclick == "function") {
 				grid_1.addEventListener("dblclick", onGrd2Dblclick);
 			}
+			if(typeof onGrd2RowCheck == "function") {
+				grid_1.addEventListener("row-check", onGrd2RowCheck);
+			}
 			container.addChild(grid_1, {
 				"top": "73px",
 				"left": "360px",
@@ -311,13 +430,17 @@
 			
 			var grid_2 = new cpr.controls.Grid("grd1");
 			grid_2.init({
-				"columns": [{"width": "137px"}],
+				"dataSet": app.lookup("selectedPlan"),
+				"columns": [{"width": "100px"}],
 				"header": {
 					"rows": [{"height": "24px"}],
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
-							cell.text = "선택한 여행지 목록";
+							cell.filterable = false;
+							cell.sortable = false;
+							cell.targetColumnName = "title";
+							cell.text = "title";
 						}
 					}]
 				},
@@ -326,6 +449,7 @@
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
+							cell.columnName = "title";
 						}
 					}]
 				}
@@ -353,7 +477,7 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "planDate";
-								cell.text = "여행일자";
+								cell.text = "DAY";
 							}
 						}]
 					},
@@ -367,6 +491,9 @@
 						}]
 					}
 				});
+				if(typeof onGrd3CellClick == "function") {
+					grid_3.addEventListener("cell-click", onGrd3CellClick);
+				}
 				container.addChild(grid_3, {
 					"top": "0px",
 					"bottom": "0px",
@@ -415,6 +542,26 @@
 			container.addChild(button_3, {
 				"top": "47px",
 				"left": "399px",
+				"width": "100px",
+				"height": "20px"
+			});
+			
+			var output_2 = new cpr.controls.Output("planDateOutput");
+			output_2.visible = false;
+			output_2.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
+			container.addChild(output_2, {
+				"top": "100px",
+				"left": "150px",
+				"width": "100px",
+				"height": "20px"
+			});
+			
+			var output_3 = new cpr.controls.Output("contentIdOutput");
+			output_3.visible = false;
+			output_3.bind("value").toDataMap(app.lookup("createPlanDM"), "contentid");
+			container.addChild(output_3, {
+				"top": "100px",
+				"left": "249px",
 				"width": "100px",
 				"height": "20px"
 			});

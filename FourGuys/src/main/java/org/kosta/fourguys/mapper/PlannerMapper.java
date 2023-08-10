@@ -8,4 +8,5 @@ public interface PlannerMapper {
 	public int createPlanner(PlannerVO plannerVO);
 
 	public int findDayByPlannerId(int no);
+
 }
