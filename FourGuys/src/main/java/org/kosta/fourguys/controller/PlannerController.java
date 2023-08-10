@@ -76,4 +76,17 @@ public class PlannerController {
 		dataRequest.setResponse("planDate", planService.getDayByPlannerNo(plannerNo));
 		return new JSONDataView();
 	}
+
+	@PostMapping("/createPlan")
+	public View createPlan(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
+		ParameterGroup createPlanParam = dataRequest.getParameterGroup("createPlanDM");
+		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
+		System.out.println(plannerNo);
+		String contentId = createPlanParam.getValue("contentid");
+		System.out.println("contentID : " + contentId);
+		String planDate = createPlanParam.getValue("planDate");
+		System.out.println("date : " + planDate);
+		return new JSONDataView();
+	}
 }

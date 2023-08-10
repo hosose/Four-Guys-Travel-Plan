@@ -24,16 +24,25 @@
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-febeae05" name="planDate" datatype="string"/>
           <cl:datacolumn std:sid="d-column-97c39bf3" name="plannerNo" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-8933ef37" name="planNo" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-aeebe1dc" name="contentId" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
       <cl:datamap std:sid="d-map-8fec9b1e" id="areaSearch">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-3a5feb45" name="title"/>
+          <cl:datacolumn std:sid="d-column-bd971c69" name="contentId"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-520c5aea" id="plannerNoDM">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-6f9f12d7" name="plannerNo"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:datamap std:sid="d-map-e4ff96d8" id="createPlanDM">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-f47e10bf" name="contentid"/>
+          <cl:datacolumn std:sid="d-column-0f887bcf" name="planDate"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-2537bb48" id="subSave"/>
@@ -44,7 +53,13 @@
       </cl:submission>
       <cl:submission std:sid="submission-94c29d62" id="loginCheck" method="get" action="loginCheck"/>
       <cl:submission std:sid="submission-7e681465" id="dayBtnSM" method="get" action="getDay">
+        <cl:listener std:sid="listener-3ac15c99" name="submit-success" handler="onDayBtnSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
+        <cl:responsedata dataid="planDate"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-19ef9968" id="createPlan" action="createPlan">
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:requestdata dataid="createPlanDM"/>
         <cl:responsedata dataid="planDate"/>
       </cl:submission>
     </cl:model>
@@ -83,18 +98,22 @@
     <cl:grid std:sid="grid-1afb50d3" id="grd2" datasetid="jeju">
       <cl:listener std:sid="listener-ba19f11c" name="mousedown" handler="onGrd2Mousedown"/>
       <cl:listener std:sid="listener-c6267a3e" name="dblclick" handler="onGrd2Dblclick"/>
+      <cl:listener std:sid="listener-cfd1181e" name="row-check" handler="onGrd2RowCheck"/>
       <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:gridcolumn std:sid="g-column-ad70a0a1" width="25px"/>
-      <cl:gridcolumn std:sid="g-column-6e963c15"/>
-      <cl:gridheader std:sid="gh-band-6e16a26b">
-        <cl:gridrow std:sid="g-row-ecd4d985"/>
-        <cl:gridcell std:sid="gh-cell-1f93d3e8" rowindex="0" colindex="0" sortable="false" filterable="false" columntype="checkbox"/>
-        <cl:gridcell std:sid="gh-cell-12b7e9a3" rowindex="0" colindex="1" targetcolumnname="title" sortable="false" filterable="false" text="여행지 목록"/>
+      <cl:gridcolumn std:sid="g-column-83f369b3" width="25px"/>
+      <cl:gridcolumn std:sid="g-column-212d1aca"/>
+      <cl:gridcolumn std:sid="g-column-e193f8db" visible="false"/>
+      <cl:gridheader std:sid="gh-band-920a5d9d">
+        <cl:gridrow std:sid="g-row-6a8b963d"/>
+        <cl:gridcell std:sid="gh-cell-e3b7afc9" rowindex="0" colindex="0" sortable="false" filterable="false" columntype="checkbox"/>
+        <cl:gridcell std:sid="gh-cell-cd6311e9" rowindex="0" colindex="1" targetcolumnname="title" sortable="false" filterable="false" text="관광지 목록"/>
+        <cl:gridcell std:sid="gh-cell-14645bc9" rowindex="0" colindex="2" targetcolumnname="contentid" sortable="false" filterable="false" text="contentId"/>
       </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-a132dbbe">
-        <cl:gridrow std:sid="g-row-829808ce"/>
-        <cl:gridcell std:sid="gd-cell-cb104fd1" rowindex="0" colindex="0" columntype="checkbox"/>
-        <cl:gridcell std:sid="gd-cell-1f32f9e8" rowindex="0" colindex="1" columnname="title"/>
+      <cl:griddetail std:sid="gd-band-3c2424fa">
+        <cl:gridrow std:sid="g-row-3eb22adc"/>
+        <cl:gridcell std:sid="gd-cell-eb89fa08" rowindex="0" colindex="0" columntype="checkbox"/>
+        <cl:gridcell std:sid="gd-cell-798f542a" rowindex="0" colindex="1" columnname="title"/>
+        <cl:gridcell std:sid="gd-cell-e445d91c" rowindex="0" colindex="2" columnname="contentid"/>
       </cl:griddetail>
     </cl:grid>
     <cl:grid std:sid="grid-b5555db0" id="grd1">
@@ -112,15 +131,16 @@
     <cl:group std:sid="group-5906196c">
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:grid std:sid="grid-815196f0" id="grd3" datasetid="planDate">
+        <cl:listener std:sid="listener-23808200" name="cell-click" handler="onGrd3CellClick"/>
         <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
-        <cl:gridcolumn std:sid="g-column-ff151b56"/>
-        <cl:gridheader std:sid="gh-band-7e4c8239">
-          <cl:gridrow std:sid="g-row-2f83e5d7"/>
-          <cl:gridcell std:sid="gh-cell-cb789772" rowindex="0" colindex="0" targetcolumnname="planDate" sortable="false" filterable="false" text="여행일자"/>
+        <cl:gridcolumn std:sid="g-column-8344e975"/>
+        <cl:gridheader std:sid="gh-band-83257bab">
+          <cl:gridrow std:sid="g-row-74d2d4c3"/>
+          <cl:gridcell std:sid="gh-cell-a07f605b" rowindex="0" colindex="0" targetcolumnname="planDate" sortable="false" filterable="false" text="DAY"/>
         </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-09d03390">
-          <cl:gridrow std:sid="g-row-bb2c24b0"/>
-          <cl:gridcell std:sid="gd-cell-be072d37" rowindex="0" colindex="0" columnname="planDate"/>
+        <cl:griddetail std:sid="gd-band-3285c3a1">
+          <cl:gridrow std:sid="g-row-0a0b7ae6"/>
+          <cl:gridcell std:sid="gd-cell-f83a592c" rowindex="0" colindex="0" columnname="planDate"/>
         </cl:griddetail>
       </cl:grid>
       <cl:xylayout std:sid="xylayout-d70cae89"/>
@@ -138,6 +158,14 @@
       <cl:listener std:sid="listener-12efc328" name="click" handler="onSearchbtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-5878dfb3" top="47px" left="399px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
+    <cl:output std:sid="output-95adf4c8" id="planDateOutput" visible="false">
+      <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
+      <cl:xylayoutdata std:sid="xyl-data-e085703b" top="100px" left="150px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:output std:sid="output-2455dacf" id="contentIdOutput" visible="false">
+      <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="contentid"/>
+      <cl:xylayoutdata std:sid="xyl-data-733bb1ad" top="100px" left="249px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
     <cl:xylayout std:sid="xylayout-52dfb31e"/>
   </body>
   <std:studiosetting>
