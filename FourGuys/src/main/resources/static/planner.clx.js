@@ -11,6 +11,7 @@
 		onCreate: function(/* cpr.core.AppInstance */ app, exports) {
 			var linker = {};
 			// Start - User Script
+
 			/************************************************
 			 * planner.js
 			 * Created at 2023. 8. 3. 오후 2:50:01.
