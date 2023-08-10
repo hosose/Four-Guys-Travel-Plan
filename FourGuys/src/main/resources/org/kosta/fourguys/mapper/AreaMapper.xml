@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kosta.fourguys.mapper.AreaMapper">
+
 <insert id="registerArea" parameterType="org.kosta.fourguys.vo.AreaVO">
 INSERT INTO jeju_area VALUES (#{contentid},#{mapx},#{mapy},#{cat1},#{cat2},#{cat3},#{addr1},#{addr2},#{firstimage},#{title},#{tel})
 </insert>
+
 <select id="findAllArea" parameterType="string" resultType="org.kosta.fourguys.vo.AreaVO">
 	select * from "JEJU_AREA" 
 		<where>

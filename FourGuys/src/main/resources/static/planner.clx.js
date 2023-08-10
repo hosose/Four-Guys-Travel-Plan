@@ -36,6 +36,7 @@
 				});
 			}
 
+
 			/*
 			 * "검색" 버튼(searchbtn)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -90,7 +91,7 @@
 				var contentId = grid.getSelectedRow().getValue("contentid");
 				app.lookup("contentIdOutput").value=contentId;
 				app.lookup("createPlan").send();
-			};
+			}
 			// End - User Script
 			
 			// Header
@@ -563,6 +564,15 @@
 				"left": "249px",
 				"width": "100px",
 				"height": "20px"
+			});
+			
+			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
+			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+			container.addChild(embeddedPage_1, {
+				"top": "77px",
+				"left": "570px",
+				"width": "447px",
+				"height": "671px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

@@ -41,7 +41,7 @@
         <cl:formdata std:sid="f-data-454e0a6e" row="4" col="0"/>
       </cl:button>
       <cl:button std:sid="button-ce569052" id="register" style="background-color:#E4157C;" class="register" value="회원가입">
-        <cl:listener std:sid="listener-d1e0dd5a" name="click" handler="onRegisterClick"/>
+        <cl:listener std:sid="listener-71f7cd62" name="click" handler="onRegisterClick2"/>
         <cl:formdata std:sid="f-data-5d67937d" row="5" col="0"/>
       </cl:button>
       <cl:formlayout std:sid="f-layout-2b37edc8" top-margin="50" right-margin="50" bottom-margin="50" left-margin="50">

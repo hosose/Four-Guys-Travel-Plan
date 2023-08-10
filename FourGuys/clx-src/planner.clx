@@ -20,6 +20,7 @@
           <cl:datacolumn std:sid="d-column-d23a50e8" name="cat3" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
+
       <cl:dataset std:sid="d-set-814fc2a8" id="planDate">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-febeae05" name="planDate" datatype="string"/>
@@ -65,6 +66,8 @@
         <cl:listener std:sid="listener-3ac15c99" name="submit-success" handler="onDayBtnSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:responsedata dataid="planDate"/>
+
+
       </cl:submission>
       <cl:submission std:sid="submission-19ef9968" id="createPlan" action="createPlan">
         <cl:requestdata dataid="plannerNoDM"/>
@@ -144,6 +147,8 @@
     </cl:grid>
     <cl:group std:sid="group-5906196c">
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+
+
       <cl:grid std:sid="grid-815196f0" id="grd3" datasetid="planDate">
         <cl:listener std:sid="listener-23808200" name="cell-click" handler="onGrd3CellClick"/>
         <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
@@ -157,6 +162,7 @@
           <cl:gridcell std:sid="gd-cell-f83a592c" rowindex="0" colindex="0" columnname="planDate"/>
         </cl:griddetail>
       </cl:grid>
+
       <cl:xylayout std:sid="xylayout-d70cae89"/>
     </cl:group>
     <cl:textarea std:sid="t-area-76ee7bec" id="txa1" style="text-align:center;" value="제주도 지역 검색">
@@ -180,6 +186,9 @@
       <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="contentid"/>
       <cl:xylayoutdata std:sid="xyl-data-733bb1ad" top="100px" left="249px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
+    <cl:embeddedpage std:sid="e-page-0d66a21d" id="ep1" src="thirdparty/maps/kakaoMapAPI.html">
+      <cl:xylayoutdata std:sid="xyl-data-df9d10b8" top="77px" left="570px" width="447px" height="671px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:embeddedpage>
     <cl:xylayout std:sid="xylayout-52dfb31e"/>
   </body>
   <std:studiosetting>
