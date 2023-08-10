@@ -16,10 +16,267 @@
 			 * Created at 2023. 8. 4. 오후 3:28:09.
 			 *
 			 * @author USER
-			 ************************************************/;
+			 ************************************************/
+
+			/*
+			 * "회원등록" 버튼(register)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onRegisterClick(e) {
+				var register = e.control;
+				
+				var id = app.lookup("ipb_id");
+				var password = app.lookup("ipb_password");
+				var name = app.lookup("ipb_name");
+				var birth = app.lookup("dti_birth");
+				var address = app.lookup("ipb_address");
+				var email = app.lookup("ipb_email");
+				var phone = app.lookup("mse_phone");
+				var checkDuplicateId = app.lookup("checkDuplicateId");
+				var checkCount = checkDuplicateId.getMetadata("checkCount");
+				
+				if (id.value.trim() == "") {
+					alert("ID 값을 입력해주세요");
+					id.focus();
+				} else if (password.value.trim() == "") {
+					alert("PASSWORD 값을 입력해주세요");
+					password.focus();
+				} else if (name.value.trim() == "") {
+					alert("이름 값을 입력해주세요");
+					name.focus();
+				} else if (birth.value.trim() == "") {
+					alert("생년월일을 입력해주세요");
+					birth.focus();
+				} else if (address.value.trim() == "") {
+					alert("주소 값을 입력해주세요");
+					address.focus();
+				} else if (email.value.trim() == "") {
+					alert("이메일 값을 입력해주세요");
+					email.focus();
+				} else if (phone.value.trim() == "") {
+					alert("휴대폰 값을 입력해주세요");
+					phone.focus();
+				} else if (checkCount == null) {
+					alert("중복확인을 눌러주세요");
+					
+				} else if (checkCount > 0) {
+					alert("ID 가 중복됩니다. 중복을 확인해주세요.");
+				} else {
+					memberRegister();
+				}
+			}
+
+			function memberRegister() {
+				var subRegister = app.lookup("subRegister");
+				subRegister.send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSubRegisterSubmitSuccess(e) {
+				var subRegister = e.control;
+				
+				var uri = subRegister.getMetadata("registerSuccess");
+				
+				if (uri != null) {
+					alert("회원가입을 축하드립니다.");
+					location.href = uri;
+				}
+				
+			}
+
+			/*
+			 * 인풋 박스에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onIpb_idBlur(e) {
+				var ipb_id = e.control;
+				var ipb_id_lookUp = app.lookup("ipb_id");
+				var idOutput = app.lookup("idOutput");
+				if (ipb_id_lookUp.value.trim() == "") {
+					idOutput.value = "id는 필수로 작성해주세요";
+					
+				} else {
+					idOutput.value = " ";
+					
+				}
+			}
+
+			/*
+			 * 인풋 박스에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onIpb_passwordBlur(e) {
+				var ipb_password = e.control;
+				var ipb_password_lookUp = app.lookup("ipb_password");
+				var passwordOutput = app.lookup("passwordOutput");
+				if (ipb_password_lookUp.value.length < 8) {
+					alert("8자이상으로 작성해주세요");
+					passwordOutput.value = "8자이상으로 작성해주세요";
+					ipb_password_lookUp.focus();
+				} else {
+					passwordOutput.value = " ";
+					
+				}
+			}
+
+			/*
+			 * 인풋 박스에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onIpb_nameBlur(e) {
+				var ipb_name = e.control;
+				var ipb_name_lookUp = app.lookup("ipb_name");
+				var nameOutput = app.lookup("nameOutput");
+				if (ipb_name_lookUp.value.trim() == "") {
+					nameOutput.value = "이름은 필수로 작성해주세요";
+					
+				} else {
+					nameOutput.value = " ";
+					
+				}
+			}
+
+			/*
+			 * 데이트 인풋에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onDti_birthBlur(e) {
+				var dti_birth = e.control;
+				var dti_birth_lookUp = app.lookup("dti_birth");
+				var birthOutput = app.lookup("birthOutput");
+				if (dti_birth_lookUp.value.trim() == "") {
+					birthOutput.value = "생년월일은 필수로 작성해주세요";
+					
+				} else {
+					birthOutput.value = " ";
+					
+				}
+				
+			}
+
+			/*
+			 * 인풋 박스에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onIpb_addressBlur(e) {
+				var ipb_address = e.control;
+				var ipb_address_lookUp = app.lookup("ipb_address");
+				var addressOutput = app.lookup("addressOutput");
+				if (ipb_address_lookUp.value.trim() == "") {
+					addressOutput.value = "주소는 필수로 작성해주세요";
+					
+				} else {
+					addressOutput.value = " ";
+					
+				}
+			}
+
+			/*
+			 * 인풋 박스에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onIpb_emailBlur(e) {
+				var ipb_email = e.control;
+				var ipb_email_lookUp = app.lookup("ipb_email");
+				var emailOutput = app.lookup("emailOutput");
+				if (ipb_email_lookUp.value.trim() == "") {
+					emailOutput.value = "주소는 필수로 작성해주세요";
+					
+				} else {
+					emailOutput.value = " ";
+					
+				}
+			}
+
+			/*
+			 * 마스크 에디터에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onMse_phoneBlur(e) {
+				var mse_phone = e.control;
+				var mse_phone_lookUp = app.lookup("mse_phone");
+				var phoneOutput = app.lookup("phoneOutput");
+				if (mse_phone_lookUp.value.trim() == "") {
+					phoneOutput.value = "핸드폰 번호는 필수로 작성해주세요";
+					
+				} else {
+					phoneOutput.value = " ";
+					
+				}
+				
+			}
+
+			/*
+			 * "중복확인" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e) {
+				var button = e.control;
+				checkDuplicateId();
+			}
+
+			function checkDuplicateId() {
+				var checkDuplicateId = app.lookup("checkDuplicateId");
+				checkDuplicateId.send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onCheckDuplicateIdSubmitSuccess(e) {
+				var checkDuplicateId = e.control;
+				var checkCount = checkDuplicateId.getMetadata("checkCount");
+				var idOutput = app.lookup("idOutput");
+				var ipb_id = app.lookup("ipb_id");
+				
+				if (checkCount > 0) {
+					alert("아이디가 중복됩니다.");
+					idOutput.value = "아이디가 중복됩니다.";
+					
+				} else {
+					alert("아이디를 생성할 수 있습니다.");
+					idOutput.value = "";
+				}
+				
+			}
 			// End - User Script
 			
 			// Header
+			var dataMap_1 = new cpr.data.DataMap("dm_register");
+			dataMap_1.parseData({
+				"columns" : [
+					{"name": "id"},
+					{"name": "name"},
+					{"name": "password"},
+					{"name": "address"},
+					{"name": "birth"},
+					{"name": "email"},
+					{"name": "phone"}
+				]
+			});
+			app.register(dataMap_1);
+			var submission_1 = new cpr.protocols.Submission("subRegister");
+			submission_1.async = false;
+			submission_1.action = "register";
+			submission_1.addRequestData(dataMap_1);
+			if(typeof onSubRegisterSubmitSuccess == "function") {
+				submission_1.addEventListener("submit-success", onSubRegisterSubmitSuccess);
+			}
+			app.register(submission_1);
+			
+			var submission_2 = new cpr.protocols.Submission("checkDuplicateId");
+			submission_2.async = false;
+			submission_2.method = "get";
+			submission_2.action = "checkDuplicateId";
+			submission_2.addRequestData(dataMap_1);
+			if(typeof onCheckDuplicateIdSubmitSuccess == "function") {
+				submission_2.addEventListener("submit-success", onCheckDuplicateIdSubmitSuccess);
+			}
+			app.register(submission_2);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -79,16 +336,35 @@
 				"border-right-color" : "#f0f0f0",
 				"border-top-style" : "solid"
 			});
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_1);
+			var responsiveXYLayout_2 = new cpr.controls.layouts.ResponsiveXYLayout();
+			group_1.setLayout(responsiveXYLayout_2);
 			(function(container){
 				var image_2 = new cpr.controls.Image();
 				image_2.src = "images/Four_Guys.png";
 				container.addChild(image_2, {
-					"top": "20px",
-					"width": "479px",
-					"height": "77px",
-					"left": "calc(50% - 239px)"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "20px",
+							"width": "479px",
+							"height": "77px",
+							"left": "calc(50% - 239px)"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "20px",
+							"width": "234px",
+							"height": "77px",
+							"left": "calc(50% - 117px)"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "20px",
+							"width": "164px",
+							"height": "77px",
+							"left": "calc(50% - 82px)"
+						}
+					]
 				});
 				var output_1 = new cpr.controls.Output();
 				output_1.value = "ID";
@@ -105,62 +381,246 @@
 					"text-align" : "center"
 				});
 				container.addChild(output_1, {
-					"top": "157px",
-					"left": "77px",
-					"width": "100px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "157px",
+							"left": "167px",
+							"width": "100px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "157px",
+							"left": "82px",
+							"width": "49px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "157px",
+							"left": "57px",
+							"width": "34px",
+							"height": "25px"
+						}
+					]
 				});
-				var inputBox_1 = new cpr.controls.InputBox("ipb1");
+				var inputBox_1 = new cpr.controls.InputBox("ipb_id");
+				inputBox_1.placeholder = "ID";
+				inputBox_1.bind("value").toDataMap(app.lookup("dm_register"), "id");
+				if(typeof onIpb_idBlur == "function") {
+					inputBox_1.addEventListener("blur", onIpb_idBlur);
+				}
 				container.addChild(inputBox_1, {
-					"top": "157px",
-					"left": "182px",
-					"width": "200px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "157px",
+							"left": "272px",
+							"width": "200px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "157px",
+							"left": "133px",
+							"width": "98px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "157px",
+							"left": "93px",
+							"width": "68px",
+							"height": "25px"
+						}
+					]
 				});
-				var inputBox_2 = new cpr.controls.InputBox("ipb2");
+				var inputBox_2 = new cpr.controls.InputBox("ipb_password");
 				inputBox_2.secret = true;
+				inputBox_2.placeholder = "PASSWORD";
+				inputBox_2.bind("value").toDataMap(app.lookup("dm_register"), "password");
+				if(typeof onIpb_passwordBlur == "function") {
+					inputBox_2.addEventListener("blur", onIpb_passwordBlur);
+				}
 				container.addChild(inputBox_2, {
-					"top": "187px",
-					"left": "182px",
-					"width": "200px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "200px",
+							"left": "272px",
+							"width": "200px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "200px",
+							"left": "133px",
+							"width": "98px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "200px",
+							"left": "93px",
+							"width": "68px",
+							"height": "25px"
+						}
+					]
 				});
-				var inputBox_3 = new cpr.controls.InputBox("ipb3");
+				var inputBox_3 = new cpr.controls.InputBox("ipb_name");
+				inputBox_3.placeholder = "이름";
+				inputBox_3.bind("value").toDataMap(app.lookup("dm_register"), "name");
+				if(typeof onIpb_nameBlur == "function") {
+					inputBox_3.addEventListener("blur", onIpb_nameBlur);
+				}
 				container.addChild(inputBox_3, {
-					"top": "217px",
-					"left": "182px",
-					"width": "200px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "243px",
+							"left": "272px",
+							"width": "200px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "243px",
+							"left": "133px",
+							"width": "98px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "243px",
+							"left": "93px",
+							"width": "68px",
+							"height": "25px"
+						}
+					]
 				});
-				var inputBox_4 = new cpr.controls.InputBox("ipb4");
+				var inputBox_4 = new cpr.controls.InputBox("ipb_address");
+				inputBox_4.placeholder = "주소";
+				inputBox_4.bind("value").toDataMap(app.lookup("dm_register"), "address");
+				if(typeof onIpb_addressBlur == "function") {
+					inputBox_4.addEventListener("blur", onIpb_addressBlur);
+				}
 				container.addChild(inputBox_4, {
-					"top": "277px",
-					"left": "182px",
-					"width": "200px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "329px",
+							"left": "272px",
+							"width": "200px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "329px",
+							"left": "133px",
+							"width": "98px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "329px",
+							"left": "93px",
+							"width": "68px",
+							"height": "25px"
+						}
+					]
 				});
-				var inputBox_5 = new cpr.controls.InputBox("ipb6");
+				var inputBox_5 = new cpr.controls.InputBox("ipb_email");
+				inputBox_5.placeholder = "email@fourguys.com";
+				inputBox_5.bind("value").toDataMap(app.lookup("dm_register"), "email");
+				if(typeof onIpb_emailBlur == "function") {
+					inputBox_5.addEventListener("blur", onIpb_emailBlur);
+				}
 				container.addChild(inputBox_5, {
-					"top": "307px",
-					"left": "182px",
-					"width": "200px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "372px",
+							"left": "272px",
+							"width": "200px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "372px",
+							"left": "133px",
+							"width": "98px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "372px",
+							"left": "93px",
+							"width": "68px",
+							"height": "25px"
+						}
+					]
 				});
-				var maskEditor_1 = new cpr.controls.MaskEditor("mse1");
-				maskEditor_1.mask = "XXX-XXXX-XXXX";
+				var maskEditor_1 = new cpr.controls.MaskEditor("mse_phone");
+				maskEditor_1.mask = "(000)0000-0000";
+				maskEditor_1.bind("value").toDataMap(app.lookup("dm_register"), "phone");
+				if(typeof onMse_phoneBlur == "function") {
+					maskEditor_1.addEventListener("blur", onMse_phoneBlur);
+				}
 				container.addChild(maskEditor_1, {
-					"top": "337px",
-					"left": "182px",
-					"width": "200px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "415px",
+							"left": "272px",
+							"width": "200px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "415px",
+							"left": "133px",
+							"width": "98px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "415px",
+							"left": "93px",
+							"width": "68px",
+							"height": "25px"
+						}
+					]
 				});
-				var button_1 = new cpr.controls.Button("btn2");
+				var button_1 = new cpr.controls.Button("register");
 				button_1.value = "회원등록";
+				if(typeof onRegisterClick == "function") {
+					button_1.addEventListener("click", onRegisterClick);
+				}
 				container.addChild(button_1, {
-					"top": "392px",
-					"left": "181px",
-					"width": "200px",
-					"height": "50px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "493px",
+							"left": "251px",
+							"width": "200px",
+							"height": "50px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "493px",
+							"left": "123px",
+							"width": "98px",
+							"height": "50px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "493px",
+							"left": "86px",
+							"width": "68px",
+							"height": "50px"
+						}
+					]
 				});
 				var output_2 = new cpr.controls.Output();
 				output_2.value = "PASSWORD";
@@ -177,10 +637,29 @@
 					"text-align" : "center"
 				});
 				container.addChild(output_2, {
-					"top": "187px",
-					"left": "77px",
-					"width": "100px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "200px",
+							"left": "167px",
+							"width": "100px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "200px",
+							"left": "82px",
+							"width": "49px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "200px",
+							"left": "57px",
+							"width": "34px",
+							"height": "25px"
+						}
+					]
 				});
 				var output_3 = new cpr.controls.Output();
 				output_3.value = "이름";
@@ -197,10 +676,29 @@
 					"text-align" : "center"
 				});
 				container.addChild(output_3, {
-					"top": "217px",
-					"left": "77px",
-					"width": "100px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "243px",
+							"left": "167px",
+							"width": "100px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "243px",
+							"left": "82px",
+							"width": "49px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "243px",
+							"left": "57px",
+							"width": "34px",
+							"height": "25px"
+						}
+					]
 				});
 				var output_4 = new cpr.controls.Output();
 				output_4.value = "주소";
@@ -217,17 +715,60 @@
 					"text-align" : "center"
 				});
 				container.addChild(output_4, {
-					"top": "277px",
-					"left": "77px",
-					"width": "100px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "329px",
+							"left": "167px",
+							"width": "100px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "329px",
+							"left": "82px",
+							"width": "49px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "329px",
+							"left": "57px",
+							"width": "34px",
+							"height": "25px"
+						}
+					]
 				});
-				var dateInput_1 = new cpr.controls.DateInput("dti1");
+				var dateInput_1 = new cpr.controls.DateInput("dti_birth");
+				dateInput_1.placeholder = "생년월일";
+				dateInput_1.bind("value").toDataMap(app.lookup("dm_register"), "birth");
+				if(typeof onDti_birthBlur == "function") {
+					dateInput_1.addEventListener("blur", onDti_birthBlur);
+				}
 				container.addChild(dateInput_1, {
-					"top": "247px",
-					"left": "182px",
-					"width": "200px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "286px",
+							"left": "272px",
+							"width": "200px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "286px",
+							"left": "133px",
+							"width": "98px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "286px",
+							"left": "93px",
+							"width": "68px",
+							"height": "25px"
+						}
+					]
 				});
 				var output_5 = new cpr.controls.Output();
 				output_5.value = "생년월일";
@@ -244,10 +785,29 @@
 					"text-align" : "center"
 				});
 				container.addChild(output_5, {
-					"top": "247px",
-					"left": "77px",
-					"width": "100px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "286px",
+							"left": "167px",
+							"width": "100px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "286px",
+							"left": "82px",
+							"width": "49px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "286px",
+							"left": "57px",
+							"width": "34px",
+							"height": "25px"
+						}
+					]
 				});
 				var output_6 = new cpr.controls.Output();
 				output_6.value = "이메일";
@@ -264,10 +824,29 @@
 					"text-align" : "center"
 				});
 				container.addChild(output_6, {
-					"top": "307px",
-					"left": "77px",
-					"width": "100px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "372px",
+							"left": "167px",
+							"width": "100px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "372px",
+							"left": "82px",
+							"width": "49px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "372px",
+							"left": "57px",
+							"width": "34px",
+							"height": "25px"
+						}
+					]
 				});
 				var output_7 = new cpr.controls.Output();
 				output_7.value = "휴대폰번호";
@@ -284,10 +863,276 @@
 					"text-align" : "center"
 				});
 				container.addChild(output_7, {
-					"top": "337px",
-					"left": "77px",
-					"width": "100px",
-					"height": "25px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "415px",
+							"left": "167px",
+							"width": "100px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "415px",
+							"left": "82px",
+							"width": "49px",
+							"height": "25px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "415px",
+							"left": "57px",
+							"width": "34px",
+							"height": "25px"
+						}
+					]
+				});
+				var output_8 = new cpr.controls.Output("passwordOutput");
+				output_8.value = "";
+				output_8.style.css({
+					"color" : "#F40909",
+					"text-align" : "center"
+				});
+				container.addChild(output_8, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "224px",
+							"left": "167px",
+							"width": "305px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "224px",
+							"left": "82px",
+							"width": "149px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "224px",
+							"left": "57px",
+							"width": "104px",
+							"height": "20px"
+						}
+					]
+				});
+				var button_2 = new cpr.controls.Button();
+				button_2.value = "중복확인";
+				if(typeof onButtonClick == "function") {
+					button_2.addEventListener("click", onButtonClick);
+				}
+				container.addChild(button_2, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "160px",
+							"left": "482px",
+							"width": "100px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "160px",
+							"left": "235px",
+							"width": "49px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "160px",
+							"left": "165px",
+							"width": "34px",
+							"height": "20px"
+						}
+					]
+				});
+				var output_9 = new cpr.controls.Output("idOutput");
+				output_9.value = "";
+				output_9.style.css({
+					"color" : "#F40909",
+					"text-align" : "center"
+				});
+				container.addChild(output_9, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "181px",
+							"left": "167px",
+							"width": "305px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "181px",
+							"left": "82px",
+							"width": "149px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "181px",
+							"left": "57px",
+							"width": "104px",
+							"height": "20px"
+						}
+					]
+				});
+				var output_10 = new cpr.controls.Output("nameOutput");
+				output_10.value = "";
+				output_10.style.css({
+					"color" : "#F40909",
+					"text-align" : "center"
+				});
+				container.addChild(output_10, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "267px",
+							"left": "167px",
+							"width": "305px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "267px",
+							"left": "82px",
+							"width": "149px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "267px",
+							"left": "57px",
+							"width": "104px",
+							"height": "20px"
+						}
+					]
+				});
+				var output_11 = new cpr.controls.Output("birthOutput");
+				output_11.value = "";
+				output_11.style.css({
+					"color" : "#F40909",
+					"text-align" : "center"
+				});
+				container.addChild(output_11, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "310px",
+							"left": "167px",
+							"width": "305px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "310px",
+							"left": "82px",
+							"width": "149px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "310px",
+							"left": "57px",
+							"width": "104px",
+							"height": "20px"
+						}
+					]
+				});
+				var output_12 = new cpr.controls.Output("addressOutput");
+				output_12.value = "";
+				output_12.style.css({
+					"color" : "#F40909",
+					"text-align" : "center"
+				});
+				container.addChild(output_12, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "353px",
+							"left": "167px",
+							"width": "305px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "353px",
+							"left": "82px",
+							"width": "149px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "353px",
+							"left": "57px",
+							"width": "104px",
+							"height": "20px"
+						}
+					]
+				});
+				var output_13 = new cpr.controls.Output("emailOutput");
+				output_13.value = "";
+				output_13.style.css({
+					"color" : "#F40909",
+					"text-align" : "center"
+				});
+				container.addChild(output_13, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "396px",
+							"left": "167px",
+							"width": "305px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "396px",
+							"left": "82px",
+							"width": "149px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "396px",
+							"left": "57px",
+							"width": "104px",
+							"height": "20px"
+						}
+					]
+				});
+				var output_14 = new cpr.controls.Output("phoneOutput");
+				output_14.value = "";
+				output_14.style.css({
+					"color" : "#F40909",
+					"text-align" : "center"
+				});
+				container.addChild(output_14, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "439px",
+							"left": "167px",
+							"width": "305px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "439px",
+							"left": "82px",
+							"width": "149px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "439px",
+							"left": "57px",
+							"width": "104px",
+							"height": "20px"
+						}
+					]
 				});
 			})(group_1);
 			container.addChild(group_1, {
@@ -295,23 +1140,23 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "82px",
-						"bottom": "240px",
-						"width": "524px",
-						"left": "calc(50% - 262px)"
+						"bottom": "38px",
+						"width": "706px",
+						"left": "calc(50% - 353px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "82px",
-						"bottom": "240px",
-						"width": "256px",
-						"left": "calc(50% - 128px)"
+						"bottom": "38px",
+						"width": "345px",
+						"left": "calc(50% - 172px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "82px",
-						"bottom": "240px",
-						"width": "179px",
-						"left": "calc(50% - 89px)"
+						"bottom": "38px",
+						"width": "241px",
+						"left": "calc(50% - 120px)"
 					}
 				]
 			});

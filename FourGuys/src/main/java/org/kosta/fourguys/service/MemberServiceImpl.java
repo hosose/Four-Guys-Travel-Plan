@@ -12,8 +12,8 @@ public class MemberServiceImpl implements MemberService {
 	private final MemberMapper memberMapper;
 
 	@Override
-	public void registerMember(MemberVO memberVO) {
-		memberMapper.registerMember(memberVO);
+	public int registerMember(MemberVO memberVO) {
+		return memberMapper.registerMember(memberVO);
 	}
 
 	@Override
@@ -24,5 +24,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO login(MemberVO memberVO) {
 		return memberMapper.login(memberVO);
+	}
+
+	@Override
+	public int checkDuplicateId(String id) {
+		
+		return memberMapper.checkDuplicateId(id);
 	}
 }

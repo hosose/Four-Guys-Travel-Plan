@@ -70,9 +70,41 @@ public class MemberController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<String> registerMember(@RequestBody MemberVO memberVO) {
+	public View register(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
+		ParameterGroup registerParam = dataRequest.getParameterGroup("dm_register");
+		String id = registerParam.getValue("id");
+		String name = registerParam.getValue("name");
+		String password = registerParam.getValue("password");
+		String address = registerParam.getValue("address");
+		String birth = registerParam.getValue("birth");
+		String email = registerParam.getValue("email");
+		String phone = registerParam.getValue("phone");
+
+		MemberVO memberVO = new MemberVO(id, password, name, address, email, phone, birth);
 		memberService.registerMember(memberVO);
-		return new ResponseEntity<String>(memberVO.getId() + "님 회원가입 완료했습니다.", HttpStatus.OK);
+		Map<String, Object> initParam = new HashMap<>();
+		initParam.put("registerSuccess", "/");
+		dataRequest.setMetadata(true, initParam);
+
+		return new JSONDataView();
+
+	}
+
+	@GetMapping("/checkDuplicateId")
+	public View checkDuplicateId(DataRequest dataRequest, HttpServletRequest request,
+			HttpServletResponse httpServletResponse) {
+		ParameterGroup checkDuplicateIdParam = dataRequest.getParameterGroup("dm_register");
+		Map<String, Object> initParam = new HashMap<>();
+
+		String id = checkDuplicateIdParam.getValue("id");
+		int checkCount = memberService.checkDuplicateId(id);
+
+		initParam.put("checkCount", checkCount);
+
+		dataRequest.setMetadata(true, initParam);
+
+		return new JSONDataView();
+
 	}
 
 	@PutMapping("updateMember")
@@ -83,4 +115,5 @@ public class MemberController {
 		else
 			return ResponseEntity.ok().body(memberVO.getId() + "님 회원 수정되었습니다.");
 	}
+
 }
