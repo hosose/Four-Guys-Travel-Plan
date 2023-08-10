@@ -17,31 +17,42 @@
 			 *
 			 * @author iedl9
 			 ************************************************/
-
 			/*
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
-			function onBodyLoad(e){	
+			function onBodyLoad(e) {
 				app.lookup("searchbtn").click();
+				app.openDialog("select_date_title", {
+					width: 600,
+					height: 450
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {});
+				}).then(function(returnValue) {
+					var plannerNoOutput = app.lookup("plannerNo");
+					plannerNoOutput.value = JSON.stringify(returnValue);
+					app.lookup("dayBtnSM").send()
+					app.lookup("loginCheck").send();
+				});
 			}
+
 
 			/*
 			 * "검색" 버튼(searchbtn)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onSearchbtnClick(e){
+			function onSearchbtnClick(e) {
 				var searchbtn = e.control;
-					app.lookup("areaList").send();	
+				app.lookup("areaList").send();
 			}
 
 			/*
 			 * 인풋 박스에서 keydown 이벤트 발생 시 호출.
 			 * 사용자가 키를 누를 때 발생하는 이벤트. 키코드 관련 상수는 {@link cpr.events.KeyCode}에서 참조할 수 있습니다.
 			 */
-			function onTitleSearchKeydown(e){
+			function onTitleSearchKeydown(e) {
 				var titleSearch = e.control;
-				if(e.keyCode == cpr.events.KeyCode.ENTER){
+				if (e.keyCode == cpr.events.KeyCode.ENTER) {
 					var Searchbtn = app.lookup("searchbtn");
 					Searchbtn.click();
 				}
@@ -99,11 +110,32 @@
 				]
 			});
 			app.register(dataSet_1);
+			
+			var dataSet_2 = new cpr.data.DataSet("planDate");
+			dataSet_2.parseData({
+				"columns" : [
+					{
+						"name": "planDate",
+						"dataType": "string"
+					},
+					{
+						"name": "plannerNo",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataSet_2);
 			var dataMap_1 = new cpr.data.DataMap("areaSearch");
 			dataMap_1.parseData({
 				"columns" : [{"name": "title"}]
 			});
 			app.register(dataMap_1);
+			
+			var dataMap_2 = new cpr.data.DataMap("plannerNoDM");
+			dataMap_2.parseData({
+				"columns" : [{"name": "plannerNo"}]
+			});
+			app.register(dataMap_2);
 			var submission_1 = new cpr.protocols.Submission("subSave");
 			app.register(submission_1);
 			
@@ -116,6 +148,18 @@
 				submission_2.addEventListener("submit-success", onAreaListSubmitSuccess);
 			}
 			app.register(submission_2);
+			
+			var submission_3 = new cpr.protocols.Submission("loginCheck");
+			submission_3.method = "get";
+			submission_3.action = "loginCheck";
+			app.register(submission_3);
+			
+			var submission_4 = new cpr.protocols.Submission("dayBtnSM");
+			submission_4.method = "get";
+			submission_4.action = "getDay";
+			submission_4.addRequestData(dataMap_2);
+			submission_4.addResponseData(dataSet_2, false);
+			app.register(submission_4);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -153,6 +197,15 @@
 					"right": "0px",
 					"left": "184px",
 					"height": "22px"
+				});
+				var output_1 = new cpr.controls.Output("plannerNo");
+				output_1.visible = false;
+				output_1.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
+				container.addChild(output_1, {
+					"top": "0px",
+					"left": "0px",
+					"width": "100px",
+					"height": "20px"
 				});
 			})(group_1);
 			container.addChild(group_1, {
@@ -288,12 +341,37 @@
 			var xYLayout_3 = new cpr.controls.layouts.XYLayout();
 			group_3.setLayout(xYLayout_3);
 			(function(container){
-				var linkedComboBox_1 = new cpr.controls.LinkedComboBox("lcb1");
-				container.addChild(linkedComboBox_1, {
+				var grid_3 = new cpr.controls.Grid("grd3");
+				grid_3.init({
+					"dataSet": app.lookup("planDate"),
+					"columns": [{"width": "100px"}],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "planDate";
+								cell.text = "여행일자";
+							}
+						}]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnName = "planDate";
+							}
+						}]
+					}
+				});
+				container.addChild(grid_3, {
 					"top": "0px",
-					"left": "0px",
+					"bottom": "0px",
 					"width": "120px",
-					"height": "20px"
+					"left": "calc(50% - 60px)"
 				});
 			})(group_3);
 			container.addChild(group_3, {
