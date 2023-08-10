@@ -109,6 +109,9 @@
       <cl:listener std:sid="listener-12efc328" name="click" handler="onSearchbtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-5878dfb3" top="47px" left="399px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
+    <cl:embeddedpage std:sid="e-page-0d66a21d" id="ep1" src="thirdparty/maps/kakaoMapAPI.html">
+      <cl:xylayoutdata std:sid="xyl-data-df9d10b8" top="77px" left="570px" width="447px" height="671px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:embeddedpage>
     <cl:xylayout std:sid="xylayout-52dfb31e"/>
   </body>
   <std:studiosetting>

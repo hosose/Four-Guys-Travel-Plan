@@ -340,6 +340,15 @@
 				"width": "100px",
 				"height": "20px"
 			});
+			
+			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
+			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+			container.addChild(embeddedPage_1, {
+				"top": "77px",
+				"left": "570px",
+				"width": "447px",
+				"height": "671px"
+			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
 			}
