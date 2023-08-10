@@ -31,7 +31,7 @@
 				}).then(function(returnValue) {
 					var plannerNoOutput = app.lookup("plannerNo");
 					plannerNoOutput.value = JSON.stringify(returnValue);
-					app.lookup("dayBtnSM").send()
+					app.lookup("dayBtnSM").send();
 					app.lookup("loginCheck").send();
 				});
 			}
