@@ -44,6 +44,7 @@
 			function onSearchbtnClick(e) {
 				var searchbtn = e.control;
 				app.lookup("areaList").send();
+				
 			}
 
 			/*
@@ -56,6 +57,31 @@
 					var Searchbtn = app.lookup("searchbtn");
 					Searchbtn.click();
 				}
+			}
+
+			/*
+			 * 그리드에서 row-check 이벤트 발생 시 호출.
+			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 되었을 때 발생하는 이벤트.
+			 */
+			function onGrd2RowCheck(e){
+				var grd2 = e.control;
+				var embeddedPage = app.lookup("ep1");
+				if(embeddedPage.hasPageMethod("getOutputText")){
+					embeddedPage.callPageMethod("getOutputText");
+				}
+				embeddedPage.redraw();
+			}
+
+			/*
+			 * 임베디드 페이지에서 load 이벤트 발생 시 호출.
+			 * 페이지의 Load가 완료되었을 때 호출되는 Event.
+			 */
+			function onEp1Load(e){
+				var ep1 = e.control;
+				//임베디드 페이지의 로드가 완료되었을 때 호출되는 이벤트
+			    //임베디드 페이지의 속성 설정
+			    ep1.setPageProperty("_ownerApp", app);
+			    ep1.redraw();
 			};
 			// End - User Script
 			
@@ -127,7 +153,10 @@
 			app.register(dataSet_2);
 			var dataMap_1 = new cpr.data.DataMap("areaSearch");
 			dataMap_1.parseData({
-				"columns" : [{"name": "title"}]
+				"columns" : [
+					{"name": "title"},
+					{"name": "addr1"}
+				]
 			});
 			app.register(dataMap_1);
 			
@@ -302,6 +331,9 @@
 			if(typeof onGrd2Dblclick == "function") {
 				grid_1.addEventListener("dblclick", onGrd2Dblclick);
 			}
+			if(typeof onGrd2RowCheck == "function") {
+				grid_1.addEventListener("row-check", onGrd2RowCheck);
+			}
 			container.addChild(grid_1, {
 				"top": "73px",
 				"left": "360px",
@@ -420,7 +452,10 @@
 			});
 			
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
-			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+			embeddedPage_1.src = "thirdparty/maps/kakaoMap.jsp";
+			if(typeof onEp1Load == "function") {
+				embeddedPage_1.addEventListener("load", onEp1Load);
+			}
 			container.addChild(embeddedPage_1, {
 				"top": "77px",
 				"left": "570px",

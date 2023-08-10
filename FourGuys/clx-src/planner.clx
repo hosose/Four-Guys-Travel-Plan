@@ -20,7 +20,6 @@
           <cl:datacolumn std:sid="d-column-d23a50e8" name="cat3" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
-
       <cl:dataset std:sid="d-set-814fc2a8" id="planDate">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-febeae05" name="planDate" datatype="string"/>
@@ -30,6 +29,7 @@
       <cl:datamap std:sid="d-map-8fec9b1e" id="areaSearch">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-3a5feb45" name="title"/>
+          <cl:datacolumn std:sid="d-column-1f6acc0d" name="addr1"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-520c5aea" id="plannerNoDM">
@@ -47,8 +47,6 @@
       <cl:submission std:sid="submission-7e681465" id="dayBtnSM" method="get" action="getDay">
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:responsedata dataid="planDate"/>
-
-
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -86,6 +84,7 @@
     <cl:grid std:sid="grid-1afb50d3" id="grd2" datasetid="jeju">
       <cl:listener std:sid="listener-ba19f11c" name="mousedown" handler="onGrd2Mousedown"/>
       <cl:listener std:sid="listener-c6267a3e" name="dblclick" handler="onGrd2Dblclick"/>
+      <cl:listener std:sid="listener-ae601a08" name="row-check" handler="onGrd2RowCheck"/>
       <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:gridcolumn std:sid="g-column-ad70a0a1" width="25px"/>
       <cl:gridcolumn std:sid="g-column-6e963c15"/>
@@ -114,8 +113,6 @@
     </cl:grid>
     <cl:group std:sid="group-5906196c">
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-
-
       <cl:grid std:sid="grid-815196f0" id="grd3" datasetid="planDate">
         <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
         <cl:gridcolumn std:sid="g-column-ff151b56"/>
@@ -128,7 +125,6 @@
           <cl:gridcell std:sid="gd-cell-be072d37" rowindex="0" colindex="0" columnname="planDate"/>
         </cl:griddetail>
       </cl:grid>
-
       <cl:xylayout std:sid="xylayout-d70cae89"/>
     </cl:group>
     <cl:textarea std:sid="t-area-76ee7bec" id="txa1" style="text-align:center;" value="제주도 지역 검색">
@@ -144,7 +140,8 @@
       <cl:listener std:sid="listener-12efc328" name="click" handler="onSearchbtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-5878dfb3" top="47px" left="399px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html">
+    <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMap.jsp">
+      <cl:listener std:sid="listener-b3918340" name="load" handler="onEp1Load"/>
       <cl:xylayoutdata std:sid="xyl-data-5211db90" top="77px" left="570px" width="434px" height="671px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:embeddedpage>
     <cl:xylayout std:sid="xylayout-52dfb31e"/>
