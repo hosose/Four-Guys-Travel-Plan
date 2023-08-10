@@ -11,6 +11,7 @@ import org.kosta.fourguys.service.MemberService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -44,10 +45,25 @@ public class MemberController {
 			initParam.put("message", "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.\r\n" + "입력하신 내용을 다시 확인해주세요.");
 		} else {
 			HttpSession session = request.getSession(true);
-			System.out.println(result);
 			session.setAttribute("memberVO", result);
 			initParam.put("uri", "/");
 			success = true;
+		}
+		dataRequest.setMetadata(success, initParam);
+		return new JSONDataView();
+	}
+	@GetMapping("/findMyPage")
+	public View findMyPage(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
+		MemberVO memberVO = null;
+		HttpSession session = request.getSession(false);
+		Map<String, Object> initParam = new HashMap<>();
+		boolean success = false;
+		if (session != null) {
+			memberVO = (MemberVO) session.getAttribute("memberVO");
+			initParam.put("findMyPageis", memberVO);
+			success = true;
+		} else {
+			initParam.put("message", "로그인하셔야 합니다.");
 		}
 		dataRequest.setMetadata(success, initParam);
 		return new JSONDataView();
@@ -77,11 +93,63 @@ public class MemberController {
 	}
 
 	@PutMapping("updateMember")
-	public ResponseEntity<String> updateMember(MemberVO memberVO) {
+	public View updateMember(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
+		boolean success = false;
+		HttpSession session = request.getSession(false);
+		ParameterGroup member = dataRequest.getParameterGroup("member");
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+		String Phone = member.getValue("phone");
+		String password = member.getValue("password");
+		String address = member.getValue("address");
+		String email = member.getValue("email");
+		String name= member.getValue("name");
+		memberVO.setPhone(Phone);
+		memberVO.setPassword(password);
+		memberVO.setAddress(address);
+		memberVO.setName(name);
+		memberVO.setEmail(email);
 		int result = memberService.updateMember(memberVO);
-		if (result < 1)
-			return ResponseEntity.notFound().build();
-		else
-			return ResponseEntity.ok().body(memberVO.getId() + "님 회원 수정되었습니다.");
+		Map<String, Object> initParam = new HashMap<>();
+		if (result == 0) {
+			initParam.put("message", "수정 실패");
+		} else {
+			session.setAttribute("memberVO", memberVO);
+			initParam.put("update", memberVO);
+			success = true;
+		}
+		dataRequest.setMetadata(success, initParam);
+		return new JSONDataView();
+	}
+	@PostMapping("/logout")
+	public View logout(HttpServletRequest request,HttpServletResponse response, DataRequest dataRequest) {
+		Map<String, Object> message = new HashMap<String, Object>();
+		HttpSession session= request.getSession(false);
+		//System.out.println(session);
+		if(session!=null) {
+			session.invalidate();
+		}
+		message.put("uri", "/");
+		dataRequest.setMetadata(true, message);
+		return new JSONDataView();
+	}
+	@DeleteMapping("deleteMember")
+	public View deleteMember(HttpServletRequest request,HttpServletResponse response, DataRequest dataRequest) {
+		Map<String, Object> message = new HashMap<String, Object>();
+		HttpSession session= request.getSession(false);
+		//ParameterGroup member = dataRequest.getParameterGroup("member");
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+		memberService.deleteMember(memberVO);
+		if(session!=null) {
+			session.invalidate();
+		}
+		message.put("uri", "/");
+		dataRequest.setMetadata(true, message);
+		return new JSONDataView();
 	}
 }
+
+
+
+
+
+

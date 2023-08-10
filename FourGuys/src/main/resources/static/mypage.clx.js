@@ -17,27 +17,13 @@
 			 *
 			 * @author USER
 			 ************************************************/
-
-			/*
-			 * "패스워드변경" 버튼(btn1)에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-			function onBtn1Click(e){
-				var btn1 = e.control;
-				var submission = app.lookup("updatePassword");
-				var inputBox = app.lookup("Pass");
-				submission.getRequestData(inputBox.value);
-				console.log(inputBox.value);
-				submission.send();
-				}
-
 			/*
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
 			function onBodyLoad(e){
-				var submission = app.lookup("findMyPage");
-				submission.send();
+				var findMyPage = app.lookup("findMyPage");
+				findMyPage.send();
 			}
 
 			/*
@@ -46,15 +32,80 @@
 			 */
 			function onBtn2Click(e){
 				var btn2 = e.control;
-				var ADDR = app.lookup("ADDR").value;
-				var BIRTH = app.lookup("BIRTH").value;
-				var EMAIL = app.lookup("EMAIL").value;
-				var PHONE = app.lookup("PHONE").value;
-				var NAME = app.lookup("NAME").value;
-				
 				var submission = app.lookup("updateMember");
-				submission.getRequestData(ADDR,BIRTH,EMAIL,NAME,PHONE);
 				submission.send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onFindMyPageSubmitSuccess(e){
+				var findMyPage = e.control;
+				var meta = findMyPage.getMetadata("findMyPageis");
+				if(meta != null){
+					var ID = app.lookup("ID");
+					var passwd = app.lookup("Pass");
+					var ADDR = app.lookup("ADDR");
+					var BIRTH = app.lookup("BIRTH");
+					var NAME = app.lookup("NAME");
+					var EMAIL = app.lookup("EMAIL");
+					var PHONE = app.lookup("PHONE");
+					ID.value=meta["id"];
+					passwd.value=meta["password"];
+					ADDR.value=meta["address"];
+					BIRTH.value=meta["birth"];
+					EMAIL.value=meta["email"];
+					PHONE.value=meta["phone"];
+					NAME.value=meta["name"];
+				}else{
+					location.href="";
+				}
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onUpdateMemberSubmitSuccess(e){
+				var updateMember = e.control;
+				alert("수정되었습니다.");
+				location.href="";
+			}
+
+			/*
+			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
+			 * 통신 중 문제가 생기면 발생합니다.
+			 */
+			function onUpdateMemberSubmitError(e){
+				var updateMember = e.control;
+				var msg = updateMember.getMetadata("message");
+				if (msg != null) {
+					alert(msg);
+				}
+			}
+
+			/*
+			 * "계정 탈퇴" 버튼(btn1)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function ondeleteBtnClick(e){
+				var deleteBtn = e.control;
+				var intro = "탈퇴 하시겠습니까?"
+				var initValue = {
+					"msg": intro
+				}
+				app.openDialog("deleteMember", {
+					width: 450,
+					height: 300
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {
+						// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+						dialogApp.initValue = initValue;
+					});
+				}).then(function(returnValue) {
+					alert(JSON.stringify(returnValue));
+				});
 			};
 			// End - User Script
 			
@@ -82,21 +133,6 @@
 				]
 			});
 			app.register(dataSet_1);
-			
-			var dataSet_2 = new cpr.data.DataSet("ds2");
-			dataSet_2.parseData({
-				"columns" : [
-					{"name": "ID"},
-					{"name": "NAME"},
-					{"name": "PASSWORD"},
-					{"name": "ADDRESS"},
-					{"name": "BIRTH"},
-					{"name": "GENDER"},
-					{"name": "PHONE"},
-					{"name": "EMAIL"}
-				]
-			});
-			app.register(dataSet_2);
 			var dataMap_1 = new cpr.data.DataMap("dmDetail");
 			dataMap_1.parseData({
 				"columns" : [
@@ -106,16 +142,43 @@
 				]
 			});
 			app.register(dataMap_1);
+			
+			var dataMap_2 = new cpr.data.DataMap("member");
+			dataMap_2.parseData({
+				"alterColumnLayout": "client",
+				"columns": [
+					{"name": "id"},
+					{"name": "password"},
+					{
+						"name": "name",
+						"dataType": "string"
+					},
+					{"name": "email"},
+					{"name": "birth"},
+					{"name": "phone"},
+					{"name": "address"}
+				]
+			});
+			app.register(dataMap_2);
 			var submission_1 = new cpr.protocols.Submission("findMyPage");
-			submission_1.action = "/findMyPage";
-			submission_1.addRequestData(dataSet_2);
-			submission_1.addResponseData(dataSet_2, false);
+			submission_1.method = "get";
+			submission_1.action = "findMyPage";
+			submission_1.addResponseData(dataMap_2, false);
+			if(typeof onFindMyPageSubmitSuccess == "function") {
+				submission_1.addEventListener("submit-success", onFindMyPageSubmitSuccess);
+			}
 			app.register(submission_1);
 			
 			var submission_2 = new cpr.protocols.Submission("updateMember");
+			submission_2.method = "put";
 			submission_2.action = "/updateMember";
-			submission_2.addRequestData(dataSet_2);
-			submission_2.addResponseData(dataSet_2, false);
+			submission_2.addRequestData(dataMap_2);
+			if(typeof onUpdateMemberSubmitSuccess == "function") {
+				submission_2.addEventListener("submit-success", onUpdateMemberSubmitSuccess);
+			}
+			if(typeof onUpdateMemberSubmitError == "function") {
+				submission_2.addEventListener("submit-error", onUpdateMemberSubmitError);
+			}
 			app.register(submission_2);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -137,17 +200,27 @@
 			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
 			group_1.setLayout(responsiveXYLayout_1);
 			(function(container){
-				var tabFolder_1 = new cpr.controls.TabFolder();
+				var tabFolder_1 = new cpr.controls.TabFolder("MyPages");
 				tabFolder_1.tabIndex = 3;
+				var group_2 = new cpr.controls.Container("grp4");
+				var xYLayout_2 = new cpr.controls.layouts.XYLayout();
+				group_2.setLayout(xYLayout_2);
+				tabFolder_1.addHeaderControl(group_2, {"position": "heading", "width": 498});
+				var group_3 = new cpr.controls.Container("grp11");
+				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
+				group_3.setLayout(xYLayout_3);
+				tabFolder_1.addHeaderControl(group_3, {"position": "inner-left"});
 				
 				var tabItem_1 = (function(tabFolder){
 					var tabItem_1 = new cpr.controls.TabItem();
 					tabItem_1.text = "MYPAGE";
-					var group_2 = new cpr.controls.Container("grp2");
-					var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-					group_2.setLayout(xYLayout_2);
+					tabItem_1.name = "MYPAGE";
+					tabItem_1.tooltip = "회원수정을 위한 탭입니다.";
+					var group_4 = new cpr.controls.Container("grp2");
+					var xYLayout_4 = new cpr.controls.layouts.XYLayout();
+					group_4.setLayout(xYLayout_4);
 					(function(container){
-						var group_3 = new cpr.controls.Container("grp5");
+						var group_5 = new cpr.controls.Container("grp5");
 						var formLayout_1 = new cpr.controls.layouts.FormLayout();
 						formLayout_1.scrollable = false;
 						formLayout_1.topMargin = "0px";
@@ -157,8 +230,8 @@
 						formLayout_1.horizontalSpacing = "5px";
 						formLayout_1.verticalSpacing = "5px";
 						formLayout_1.setColumns(["1fr", "100px", "200px", "100px", "1fr"]);
-						formLayout_1.setRows(["1fr", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "50px", "50px", "50px", "1fr"]);
-						group_3.setLayout(formLayout_1);
+						formLayout_1.setRows(["1fr", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "50px", "40px", "50px", "40px", "1fr"]);
+						group_5.setLayout(formLayout_1);
 						(function(container){
 							var output_1 = new cpr.controls.Output();
 							output_1.value = "ID";
@@ -232,50 +305,52 @@
 							});
 							var inputBox_1 = new cpr.controls.InputBox("ID");
 							inputBox_1.readOnly = true;
-							inputBox_1.bind("value").toDataSet(app.lookup("ds2"), "ID", 0);
+							inputBox_1.bind("value").toDataMap(app.lookup("member"), "id");
 							container.addChild(inputBox_1, {
 								"colIndex": 2,
 								"rowIndex": 1
 							});
 							var inputBox_2 = new cpr.controls.InputBox("Pass");
 							inputBox_2.secret = true;
-							inputBox_2.bind("value").toDataSet(app.lookup("ds2"), "PASSWORD", 0);
+							inputBox_2.bind("value").toDataMap(app.lookup("member"), "password");
 							container.addChild(inputBox_2, {
 								"colIndex": 2,
 								"rowIndex": 2
 							});
 							var inputBox_3 = new cpr.controls.InputBox("ADDR");
-							inputBox_3.bind("value").toDataSet(app.lookup("ds2"), "ADDRESS", 0);
+							inputBox_3.bind("value").toDataMap(app.lookup("member"), "address");
 							container.addChild(inputBox_3, {
 								"colIndex": 2,
 								"rowIndex": 3
 							});
 							var inputBox_4 = new cpr.controls.InputBox("NAME");
-							inputBox_4.bind("value").toDataSet(app.lookup("ds2"), "NAME", 0);
+							inputBox_4.bind("value").toDataMap(app.lookup("member"), "name");
 							container.addChild(inputBox_4, {
 								"colIndex": 2,
 								"rowIndex": 4
 							});
 							var inputBox_5 = new cpr.controls.InputBox("EMAIL");
-							inputBox_5.bind("value").toDataSet(app.lookup("ds2"), "EMAIL", 0);
+							inputBox_5.readOnly = true;
+							inputBox_5.bind("value").toDataMap(app.lookup("member"), "email");
 							container.addChild(inputBox_5, {
 								"colIndex": 2,
 								"rowIndex": 6
 							});
 							var maskEditor_1 = new cpr.controls.MaskEditor("PHONE");
 							maskEditor_1.mask = "XXX-XXXX-XXXX";
-							maskEditor_1.bind("value").toDataSet(app.lookup("ds2"), "PHONE", 0);
+							maskEditor_1.bind("value").toDataMap(app.lookup("member"), "phone");
 							container.addChild(maskEditor_1, {
 								"colIndex": 2,
 								"rowIndex": 7
 							});
 							var dateInput_1 = new cpr.controls.DateInput("BIRTH");
-							dateInput_1.bind("value").toDataSet(app.lookup("ds2"), "BIRTH", 0);
+							dateInput_1.readOnly = true;
+							dateInput_1.bind("value").toDataMap(app.lookup("member"), "birth");
 							container.addChild(dateInput_1, {
 								"colIndex": 2,
 								"rowIndex": 5
 							});
-							var button_1 = new cpr.controls.Button("btn2");
+							var button_1 = new cpr.controls.Button("Update");
 							button_1.value = "수정하기";
 							if(typeof onBtn2Click == "function") {
 								button_1.addEventListener("click", onBtn2Click);
@@ -284,15 +359,27 @@
 								"colIndex": 2,
 								"rowIndex": 9
 							});
-						})(group_3);
-						container.addChild(group_3, {
+							var button_2 = new cpr.controls.Button("deleteBtn");
+							button_2.value = "계정 탈퇴";
+							button_2.style.css({
+								"color" : "#FF0000"
+							});
+							if(typeof ondeleteBtnClick == "function") {
+								button_2.addEventListener("click", ondeleteBtnClick);
+							}
+							container.addChild(button_2, {
+								"colIndex": 2,
+								"rowIndex": 11
+							});
+						})(group_5);
+						container.addChild(group_5, {
 							"width": "962px",
-							"height": "779px",
+							"height": "720px",
 							"left": "calc(50% - 481px)",
-							"top": "calc(50% - 389px)"
+							"top": "calc(50% - 360px)"
 						});
-					})(group_2);
-					tabItem_1.content = group_2;
+					})(group_4);
+					tabItem_1.content = group_4;
 					return tabItem_1;
 				})(tabFolder_1);
 				tabFolder_1.addTabItem(tabItem_1);
@@ -300,9 +387,11 @@
 				var tabItem_2 = (function(tabFolder){
 					var tabItem_2 = new cpr.controls.TabItem();
 					tabItem_2.text = "MYPLAN";
-					var group_4 = new cpr.controls.Container("grp3");
-					var xYLayout_3 = new cpr.controls.layouts.XYLayout();
-					group_4.setLayout(xYLayout_3);
+					tabItem_2.name = "MYPLAN";
+					tabItem_2.tooltip = "내가 저장한 플랜을 보는 탭입니다.";
+					var group_6 = new cpr.controls.Container("grp3");
+					var xYLayout_5 = new cpr.controls.layouts.XYLayout();
+					group_6.setLayout(xYLayout_5);
 					(function(container){
 						var tabFolder_2 = new cpr.controls.TabFolder("tabBoard");
 						tabFolder_2.hideHeader = true;
@@ -310,7 +399,7 @@
 						var tabItem_3 = (function(tabFolder){
 							var tabItem_3 = new cpr.controls.TabItem();
 							tabItem_3.text = "list";
-							var group_5 = new cpr.controls.Container("grp6");
+							var group_7 = new cpr.controls.Container("grp6");
 							var formLayout_2 = new cpr.controls.layouts.FormLayout();
 							formLayout_2.topMargin = "5px";
 							formLayout_2.rightMargin = "5px";
@@ -320,16 +409,16 @@
 							formLayout_2.verticalSpacing = "5px";
 							formLayout_2.setColumns(["1fr", "1fr", "100px"]);
 							formLayout_2.setRows(["40px", "30px", "1fr", "30px"]);
-							group_5.setLayout(formLayout_2);
+							group_7.setLayout(formLayout_2);
 							(function(container){
-								var button_2 = new cpr.controls.Button("btn3");
-								button_2.value = "신규";
-								container.addChild(button_2, {
+								var button_3 = new cpr.controls.Button("btn3");
+								button_3.value = "신규";
+								container.addChild(button_3, {
 									"colIndex": 2,
 									"rowIndex": 1,
 									"horizontalAlign": "fill"
 								});
-								var group_6 = new cpr.controls.Container("grp7");
+								var group_8 = new cpr.controls.Container("grp7");
 								var formLayout_3 = new cpr.controls.layouts.FormLayout();
 								formLayout_3.topMargin = "5px";
 								formLayout_3.rightMargin = "5px";
@@ -338,7 +427,7 @@
 								formLayout_3.verticalSpacing = "15px";
 								formLayout_3.setColumns(["100px", "1fr", "50px"]);
 								formLayout_3.setRows(["1fr"]);
-								group_6.setLayout(formLayout_3);
+								group_8.setLayout(formLayout_3);
 								(function(container){
 									var comboBox_1 = new cpr.controls.ComboBox("cmb1");
 									comboBox_1.value = "title";
@@ -349,9 +438,9 @@
 										"colIndex": 0,
 										"rowIndex": 0
 									});
-									var button_3 = new cpr.controls.Button("btn4");
-									button_3.value = "검색";
-									container.addChild(button_3, {
+									var button_4 = new cpr.controls.Button("btn4");
+									button_4.value = "검색";
+									container.addChild(button_4, {
 										"colIndex": 2,
 										"rowIndex": 0
 									});
@@ -362,8 +451,8 @@
 										"colIndex": 1,
 										"rowIndex": 0
 									});
-								})(group_6);
-								container.addChild(group_6, {
+								})(group_8);
+								container.addChild(group_8, {
 									"colIndex": 0,
 									"rowIndex": 0,
 									"colSpan": 3,
@@ -503,8 +592,8 @@
 									"colSpan": 3,
 									"rowSpan": 1
 								});
-							})(group_5);
-							tabItem_3.content = group_5;
+							})(group_7);
+							tabItem_3.content = group_7;
 							return tabItem_3;
 						})(tabFolder_2);
 						tabFolder_2.addTabItem(tabItem_3);
@@ -512,7 +601,7 @@
 						var tabItem_4 = (function(tabFolder){
 							var tabItem_4 = new cpr.controls.TabItem();
 							tabItem_4.text = "detail";
-							var group_7 = new cpr.controls.Container("grp8");
+							var group_9 = new cpr.controls.Container("grp8");
 							var formLayout_4 = new cpr.controls.layouts.FormLayout();
 							formLayout_4.topMargin = "10px";
 							formLayout_4.rightMargin = "10px";
@@ -523,9 +612,9 @@
 							formLayout_4.setColumns(["1fr", "1fr", "1fr"]);
 							formLayout_4.setRows(["80px", "1fr", "50px"]);
 							formLayout_4.setRowMinHeight(1, 200);
-							group_7.setLayout(formLayout_4);
+							group_9.setLayout(formLayout_4);
 							(function(container){
-								var group_8 = new cpr.controls.Container("grp9");
+								var group_10 = new cpr.controls.Container("grp9");
 								var formLayout_5 = new cpr.controls.layouts.FormLayout();
 								formLayout_5.topMargin = "10px";
 								formLayout_5.rightMargin = "10px";
@@ -535,28 +624,28 @@
 								formLayout_5.verticalSpacing = "5px";
 								formLayout_5.setColumns(["1fr", "1fr", "1fr"]);
 								formLayout_5.setRows(["1fr"]);
-								group_8.setLayout(formLayout_5);
+								group_10.setLayout(formLayout_5);
 								(function(container){
-									var button_4 = new cpr.controls.Button("btn5");
-									button_4.value = "저장";
-									container.addChild(button_4, {
+									var button_5 = new cpr.controls.Button("btn5");
+									button_5.value = "저장";
+									container.addChild(button_5, {
 										"colIndex": 0,
 										"rowIndex": 0
 									});
-									var button_5 = new cpr.controls.Button("btn6");
-									button_5.value = "목록";
-									container.addChild(button_5, {
+									var button_6 = new cpr.controls.Button("btn6");
+									button_6.value = "목록";
+									container.addChild(button_6, {
 										"colIndex": 1,
 										"rowIndex": 0
 									});
-									var button_6 = new cpr.controls.Button("btn7");
-									button_6.value = "삭제";
-									container.addChild(button_6, {
+									var button_7 = new cpr.controls.Button("btn7");
+									button_7.value = "삭제";
+									container.addChild(button_7, {
 										"colIndex": 2,
 										"rowIndex": 0
 									});
-								})(group_8);
-								container.addChild(group_8, {
+								})(group_10);
+								container.addChild(group_10, {
 									"colIndex": 1,
 									"rowIndex": 2,
 									"colSpan": 1,
@@ -569,7 +658,7 @@
 									"colSpan": 3,
 									"rowSpan": 1
 								});
-								var group_9 = new cpr.controls.Container("grp10");
+								var group_11 = new cpr.controls.Container("grp10");
 								var formLayout_6 = new cpr.controls.layouts.FormLayout();
 								formLayout_6.topMargin = "10px";
 								formLayout_6.rightMargin = "10px";
@@ -579,7 +668,7 @@
 								formLayout_6.verticalSpacing = "5px";
 								formLayout_6.setColumns(["100px", "200px", "100px", "200px", "1fr"]);
 								formLayout_6.setRows(["30px", "30px"]);
-								group_9.setLayout(formLayout_6);
+								group_11.setLayout(formLayout_6);
 								(function(container){
 									var inputBox_7 = new cpr.controls.InputBox("ipb5");
 									inputBox_7.bind("value").toDataMap(app.lookup("dmDetail"), "PLAN_TITLE");
@@ -619,15 +708,15 @@
 										"colIndex": 3,
 										"rowIndex": 1
 									});
-								})(group_9);
-								container.addChild(group_9, {
+								})(group_11);
+								container.addChild(group_11, {
 									"colIndex": 0,
 									"rowIndex": 0,
 									"colSpan": 3,
 									"rowSpan": 1
 								});
-							})(group_7);
-							tabItem_4.content = group_7;
+							})(group_9);
+							tabItem_4.content = group_9;
 							return tabItem_4;
 						})(tabFolder_2);
 						tabFolder_2.addTabItem(tabItem_4);
@@ -638,123 +727,60 @@
 							"bottom": "182px",
 							"left": "20px"
 						});
-					})(group_4);
-					tabItem_2.content = group_4;
+					})(group_6);
+					tabItem_2.content = group_6;
 					return tabItem_2;
 				})(tabFolder_1);
 				tabFolder_1.addTabItem(tabItem_2);
-				
-				var tabItem_5 = (function(tabFolder){
-					var tabItem_5 = new cpr.controls.TabItem();
-					tabItem_5.text = "플랜 게시판";
-					var group_10 = new cpr.controls.Container("grp4");
-					var xYLayout_4 = new cpr.controls.layouts.XYLayout();
-					group_10.setLayout(xYLayout_4);
-					(function(container){
-						var grid_2 = new cpr.controls.Grid("grd1");
-						grid_2.init({
-							"columns": [
-								{"width": "100px"},
-								{"width": "100px"},
-								{"width": "100px"},
-								{"width": "100px"},
-								{"width": "100px"}
-							],
-							"header": {
-								"rows": [{"height": "24px"}],
-								"cells": [
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 0},
-										"configurator": function(cell){
-										}
-									},
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 1},
-										"configurator": function(cell){
-										}
-									},
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 2},
-										"configurator": function(cell){
-										}
-									},
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 3},
-										"configurator": function(cell){
-										}
-									},
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 4},
-										"configurator": function(cell){
-										}
-									}
-								]
-							},
-							"detail": {
-								"rows": [{"height": "24px"}],
-								"cells": [
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 0},
-										"configurator": function(cell){
-										}
-									},
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 1},
-										"configurator": function(cell){
-										}
-									},
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 2},
-										"configurator": function(cell){
-										}
-									},
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 3},
-										"configurator": function(cell){
-										}
-									},
-									{
-										"constraint": {"rowIndex": 0, "colIndex": 4},
-										"configurator": function(cell){
-										}
-									}
-								]
-							}
-						});
-						container.addChild(grid_2, {
-							"top": "20px",
-							"left": "20px",
-							"width": "972px",
-							"height": "890px"
-						});
-					})(group_10);
-					tabItem_5.content = group_10;
-					return tabItem_5;
-				})(tabFolder_1);
-				tabFolder_1.addTabItem(tabItem_5);
 				tabFolder_1.setSelectedTabItem(tabItem_1);
 				container.addChild(tabFolder_1, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"right": "4px",
+							"right": "7px",
 							"bottom": "0px",
-							"left": "6px",
-							"height": "963px"
+							"left": "3px",
+							"height": "778px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"right": "2px",
+							"right": "3px",
 							"bottom": "0px",
-							"left": "3px",
-							"height": "963px"
+							"left": "1px",
+							"height": "778px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"right": "1px",
+							"right": "2px",
 							"bottom": "0px",
-							"left": "2px",
-							"height": "963px"
+							"left": "1px",
+							"height": "778px"
+						}
+					]
+				});
+				var userDefinedControl_1 = new udc.logo();
+				container.addChild(userDefinedControl_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "7px",
+							"left": "3px",
+							"width": "277px",
+							"height": "73px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "7px",
+							"left": "1px",
+							"width": "135px",
+							"height": "73px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "7px",
+							"left": "1px",
+							"width": "95px",
+							"height": "73px"
 						}
 					]
 				});
