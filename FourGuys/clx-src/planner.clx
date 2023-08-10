@@ -20,6 +20,7 @@
           <cl:datacolumn std:sid="d-column-d23a50e8" name="cat3" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
+
       <cl:dataset std:sid="d-set-814fc2a8" id="planDate">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-febeae05" name="planDate" datatype="string"/>
@@ -46,6 +47,8 @@
       <cl:submission std:sid="submission-7e681465" id="dayBtnSM" method="get" action="getDay">
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:responsedata dataid="planDate"/>
+
+
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -111,6 +114,8 @@
     </cl:grid>
     <cl:group std:sid="group-5906196c">
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+
+
       <cl:grid std:sid="grid-815196f0" id="grd3" datasetid="planDate">
         <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
         <cl:gridcolumn std:sid="g-column-ff151b56"/>
@@ -123,6 +128,7 @@
           <cl:gridcell std:sid="gd-cell-be072d37" rowindex="0" colindex="0" columnname="planDate"/>
         </cl:griddetail>
       </cl:grid>
+
       <cl:xylayout std:sid="xylayout-d70cae89"/>
     </cl:group>
     <cl:textarea std:sid="t-area-76ee7bec" id="txa1" style="text-align:center;" value="제주도 지역 검색">

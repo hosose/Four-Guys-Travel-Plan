@@ -9,13 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.fourguys.service.MemberService;
 import org.kosta.fourguys.vo.MemberVO;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.View;
 
@@ -69,6 +70,24 @@ public class MemberController {
 		return new JSONDataView();
 	}
 
+	@GetMapping("/findMyPage")
+	public View findMyPage(DataRequest dataRequest, HttpServletRequest request,
+			HttpServletResponse httpServletResponse) {
+		MemberVO memberVO = null;
+		HttpSession session = request.getSession(false);
+		Map<String, Object> initParam = new HashMap<>();
+		boolean success = false;
+		if (session != null) {
+			memberVO = (MemberVO) session.getAttribute("memberVO");
+			initParam.put("findMyPageis", memberVO);
+			success = true;
+		} else {
+			initParam.put("message", "로그인하셔야 합니다.");
+		}
+		dataRequest.setMetadata(success, initParam);
+		return new JSONDataView();
+	}
+
 	@GetMapping("/loginCheck")
 	public View loginCheck(DataRequest dataRequest, HttpServletRequest request,
 			HttpServletResponse httpServletResponse) {
@@ -87,13 +106,47 @@ public class MemberController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<String> registerMember(@RequestBody MemberVO memberVO) {
+	public View register(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
+		ParameterGroup registerParam = dataRequest.getParameterGroup("dm_register");
+		String id = registerParam.getValue("id");
+		String name = registerParam.getValue("name");
+		String password = registerParam.getValue("password");
+		String address = registerParam.getValue("address");
+		String birth = registerParam.getValue("birth");
+		String email = registerParam.getValue("email");
+		String phone = registerParam.getValue("phone");
+
+		MemberVO memberVO = new MemberVO(id, password, name, address, email, phone, birth);
 		memberService.registerMember(memberVO);
-		return new ResponseEntity<String>(memberVO.getId() + "님 회원가입 완료했습니다.", HttpStatus.OK);
+		Map<String, Object> initParam = new HashMap<>();
+		initParam.put("registerSuccess", "/");
+		dataRequest.setMetadata(true, initParam);
+
+		return new JSONDataView();
+
+	}
+
+	@GetMapping("/checkDuplicateId")
+	public View checkDuplicateId(DataRequest dataRequest, HttpServletRequest request,
+			HttpServletResponse httpServletResponse) {
+		ParameterGroup checkDuplicateIdParam = dataRequest.getParameterGroup("dm_register");
+		Map<String, Object> initParam = new HashMap<>();
+
+		String id = checkDuplicateIdParam.getValue("id");
+		int checkCount = memberService.checkDuplicateId(id);
+
+		initParam.put("checkCount", checkCount);
+
+		dataRequest.setMetadata(true, initParam);
+
+		return new JSONDataView();
+
 	}
 
 	@PutMapping("updateMember")
+
 	public View updateMember(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
+
 		boolean success = false;
 		HttpSession session = request.getSession(false);
 		ParameterGroup member = dataRequest.getParameterGroup("member");
@@ -102,7 +155,9 @@ public class MemberController {
 		String password = member.getValue("password");
 		String address = member.getValue("address");
 		String email = member.getValue("email");
+
 		String name= member.getValue("name");
+
 		memberVO.setPhone(Phone);
 		memberVO.setPassword(password);
 		memberVO.setAddress(address);
@@ -120,18 +175,21 @@ public class MemberController {
 		dataRequest.setMetadata(success, initParam);
 		return new JSONDataView();
 	}
+
 	@PostMapping("/logout")
 	public View logout(HttpServletRequest request,HttpServletResponse response, DataRequest dataRequest) {
 		Map<String, Object> message = new HashMap<String, Object>();
 		HttpSession session= request.getSession(false);
 		//System.out.println(session);
 		if(session!=null) {
+
 			session.invalidate();
 		}
 		message.put("uri", "/");
 		dataRequest.setMetadata(true, message);
 		return new JSONDataView();
 	}
+
 	@DeleteMapping("deleteMember")
 	public View deleteMember(HttpServletRequest request,HttpServletResponse response, DataRequest dataRequest) {
 		Map<String, Object> message = new HashMap<String, Object>();
@@ -140,6 +198,7 @@ public class MemberController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 		memberService.deleteMember(memberVO);
 		if(session!=null) {
+
 			session.invalidate();
 		}
 		message.put("uri", "/");
@@ -147,9 +206,4 @@ public class MemberController {
 		return new JSONDataView();
 	}
 }
-
-
-
-
-
 

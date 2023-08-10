@@ -8,5 +8,7 @@ import org.kosta.fourguys.vo.AreaVO;
 @Mapper
 public interface AreaMapper {
 	public void registerArea(AreaVO areaVO);
+
 	public List<AreaVO> findAllArea(String title);
+
 }
