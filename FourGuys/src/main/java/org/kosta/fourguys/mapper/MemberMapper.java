@@ -5,11 +5,15 @@ import org.kosta.fourguys.vo.MemberVO;
 
 @Mapper
 public interface MemberMapper {
+
 	public int registerMember(MemberVO memberVO);
 
 	public int updateMember(MemberVO memberVO);
 
 	public MemberVO login(MemberVO memberVO);
-	
+
 	public int checkDuplicateId(String id);
+
+	public int deleteMember(MemberVO memberVO);
+
 }

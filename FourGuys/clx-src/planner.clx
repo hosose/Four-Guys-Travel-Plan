@@ -4,20 +4,38 @@
     <screen std:sid="screen-1aed4f80" id="default" name="default" width="1024px" height="768px"/>
     <screen std:sid="screen-6fb68c2e" id="tablet" name="tablet" width="500px" height="667px"/>
     <screen std:sid="screen-8c37b30a" id="mobile" name="mobile" width="350px" height="525px"/>
-    <cl:model std:sid="model-5ef2f7c2"/>
+    <cl:model std:sid="model-5ef2f7c2">
+      <cl:dataset std:sid="d-set-0ee31105" id="jeju">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-b8e2ca04" name="contentid" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-64822618" name="mapx" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-fc21874a" name="mapy" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-df84b3d3" name="title" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-b4b97345" name="tel" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-265bf95c" name="firstimage" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-8ed3a99d" name="addr2" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-33ed1583" name="addr1" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-bc3e0c16" name="cat1" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-0617e964" name="cat2" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-d23a50e8" name="cat3" datatype="string"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:datamap std:sid="d-map-8fec9b1e" id="areaSearch">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-3a5feb45" name="title"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-2537bb48" id="subSave"/>
+      <cl:submission std:sid="submission-67bd9f31" id="areaList" method="get" action="/findAllArea">
+        <cl:listener std:sid="listener-384844e6" name="submit-success" handler="onAreaListSubmitSuccess"/>
+        <cl:requestdata dataid="areaSearch"/>
+        <cl:responsedata dataid="jeju"/>
+      </cl:submission>
+    </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-2ffb0c79">
-    <cl:group std:sid="group-accd456c">
-      <cl:xylayoutdata std:sid="xyl-data-e6a66844" top="41px" left="20px" width="400px" height="22px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:textarea std:sid="t-area-76ee7bec" id="txa1" style="text-align:center;" value="제주도 지역 검색">
-        <cl:xylayoutdata std:sid="xyl-data-30726677" top="0px" bottom="0px" left="0px" width="290px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
-      </cl:textarea>
-      <cl:button std:sid="button-d20b0c74" value="검색">
-        <cl:xylayoutdata std:sid="xyl-data-b58e134b" top="0px" right="0px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
-      </cl:button>
-      <cl:xylayout std:sid="xylayout-a7945516"/>
-    </cl:group>
+    <cl:listener std:sid="listener-2b714a1a" name="load" handler="onBodyLoad"/>
     <cl:group std:sid="group-1ec22cbf">
       <cl:xylayoutdata std:sid="xyl-data-428e500c" top="20px" left="20px" width="848px" height="22px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:textarea std:sid="t-area-340b1b08" id="txa2" style="text-align:center;" value="플래너 제목 :">
@@ -42,45 +60,55 @@
         <cl:columns length="50" unit="PIXEL"/>
       </cl:formlayout>
     </cl:group>
+    <cl:grid std:sid="grid-1afb50d3" id="grd2" datasetid="jeju">
+      <cl:listener std:sid="listener-ba19f11c" name="mousedown" handler="onGrd2Mousedown"/>
+      <cl:listener std:sid="listener-c6267a3e" name="dblclick" handler="onGrd2Dblclick"/>
+      <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-ad70a0a1" width="25px"/>
+      <cl:gridcolumn std:sid="g-column-6e963c15"/>
+      <cl:gridheader std:sid="gh-band-6e16a26b">
+        <cl:gridrow std:sid="g-row-ecd4d985"/>
+        <cl:gridcell std:sid="gh-cell-1f93d3e8" rowindex="0" colindex="0" sortable="false" filterable="false" columntype="checkbox"/>
+        <cl:gridcell std:sid="gh-cell-12b7e9a3" rowindex="0" colindex="1" targetcolumnname="title" sortable="false" filterable="false" text="여행지 목록"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-a132dbbe">
+        <cl:gridrow std:sid="g-row-829808ce"/>
+        <cl:gridcell std:sid="gd-cell-cb104fd1" rowindex="0" colindex="0" columntype="checkbox"/>
+        <cl:gridcell std:sid="gd-cell-1f32f9e8" rowindex="0" colindex="1" columnname="title"/>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:grid std:sid="grid-b5555db0" id="grd1">
+      <cl:xylayoutdata std:sid="xyl-data-d58387b8" top="73px" left="150px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-ffb95a4d" width="137px"/>
+      <cl:gridheader std:sid="gh-band-488dd52f">
+        <cl:gridrow std:sid="g-row-344d077d"/>
+        <cl:gridcell std:sid="gh-cell-264b51f6" rowindex="0" colindex="0" text="선택한 여행지 목록"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-7e8260de">
+        <cl:gridrow std:sid="g-row-2f95fbfe"/>
+        <cl:gridcell std:sid="gd-cell-3cfc72fb" rowindex="0" colindex="0"/>
+      </cl:griddetail>
+    </cl:grid>
     <cl:group std:sid="group-5906196c">
-      <cl:xylayoutdata std:sid="xyl-data-f706c4a2" top="73px" left="20px" width="120px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:linkedcombobox std:sid="lc-box-37735dde" id="lcb1">
         <cl:xylayoutdata std:sid="xyl-data-41c32539" top="0px" left="0px" width="120px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:linkedcombobox>
       <cl:xylayout std:sid="xylayout-d70cae89"/>
     </cl:group>
-    <cl:group std:sid="group-2732ccae">
-      <cl:xylayoutdata std:sid="xyl-data-cee69e88" top="73px" left="278px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:grid std:sid="grid-1afb50d3" id="grd2">
-        <cl:xylayoutdata std:sid="xyl-data-32362222" top="0px" left="0px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        <cl:gridcolumn std:sid="g-column-941f092d"/>
-        <cl:gridheader std:sid="gh-band-c8025d14">
-          <cl:gridrow std:sid="g-row-17e6723e"/>
-          <cl:gridcell std:sid="gh-cell-7adebb4d" rowindex="0" colindex="0" text="여행지 목록"/>
-        </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-7acbe31f">
-          <cl:gridrow std:sid="g-row-f8d4381e"/>
-          <cl:gridcell std:sid="gd-cell-7c94c6bb" rowindex="0" colindex="0"/>
-        </cl:griddetail>
-      </cl:grid>
-      <cl:xylayout std:sid="xylayout-3d3893d7"/>
-    </cl:group>
-    <cl:group std:sid="group-7ada658a">
-      <cl:xylayoutdata std:sid="xyl-data-e1cf92c3" top="73px" left="139px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:grid std:sid="grid-b5555db0" id="grd1">
-        <cl:xylayoutdata std:sid="xyl-data-90fc6ce8" top="0px" left="0px" width="140px" height="694px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        <cl:gridcolumn std:sid="g-column-ffb95a4d" width="167px"/>
-        <cl:gridheader std:sid="gh-band-488dd52f">
-          <cl:gridrow std:sid="g-row-344d077d"/>
-          <cl:gridcell std:sid="gh-cell-264b51f6" rowindex="0" colindex="0" text="선택한 여행지 목록"/>
-        </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-7e8260de">
-          <cl:gridrow std:sid="g-row-2f95fbfe"/>
-          <cl:gridcell std:sid="gd-cell-3cfc72fb" rowindex="0" colindex="0"/>
-        </cl:griddetail>
-      </cl:grid>
-      <cl:xylayout std:sid="xylayout-f50f42b8"/>
-    </cl:group>
+    <cl:textarea std:sid="t-area-76ee7bec" id="txa1" style="text-align:center;" value="제주도 지역 검색">
+      <cl:xylayoutdata std:sid="xyl-data-bf2e1144" top="47px" left="20px" width="259px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:textarea>
+    <cl:inputbox std:sid="i-box-dde342b5" id="titleSearch">
+      <cl:listener std:sid="listener-cceaf311" name="keydown" handler="onTitleSearchKeydown"/>
+      <cl:datamapbind property="value" category="PROPERTY" datacontrolid="areaSearch" columnname="title"/>
+      <cl:datamapcontext datacontrolid="areaSearch"/>
+      <cl:xylayoutdata std:sid="xyl-data-27022b9a" top="47px" left="289px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:button std:sid="button-a998ad15" id="searchbtn" value="검색">
+      <cl:listener std:sid="listener-12efc328" name="click" handler="onSearchbtnClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-5878dfb3" top="47px" left="399px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
     <cl:xylayout std:sid="xylayout-52dfb31e"/>
   </body>
   <std:studiosetting>

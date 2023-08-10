@@ -100,8 +100,8 @@ function onIpb_passwordBlur(e) {
 	var ipb_password_lookUp = app.lookup("ipb_password");
 	var passwordOutput = app.lookup("passwordOutput");
 	if (ipb_password_lookUp.value.length < 8) {
-		alert("8자이상으로 작성해주세요");
-		passwordOutput.value = "8자이상으로 작성해주세요";
+		alert("비밀번호는 8자이상으로 작성해주세요");
+		passwordOutput.value = "비밀번호는 8자이상으로 작성해주세요";
 		ipb_password_lookUp.focus();
 	} else {
 		passwordOutput.value = " ";

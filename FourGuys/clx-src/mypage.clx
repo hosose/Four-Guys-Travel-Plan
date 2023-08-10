@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-10fb4525" version="1.0.4584">
   <head std:sid="head-53b312e0">
-    <screen std:sid="screen-5203258b" id="default" name="default" minwidth="1024px" width="1024px" height="768px" useCustomHeight="true" customHeight="963"/>
+    <screen std:sid="screen-5203258b" id="default" name="default" minwidth="1024px" width="1024px" height="768px" useCustomHeight="true" customHeight="1018"/>
     <screen std:sid="screen-5cafd007" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
     <screen std:sid="screen-171eb25c" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
     <cl:model std:sid="model-b372aafa">
@@ -14,18 +14,6 @@
           <cl:datacolumn std:sid="d-column-f6dccd0a" name="PLANNER_LAST_DATE" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
-      <cl:dataset std:sid="d-set-9b0647a4" id="ds2">
-        <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-e75d9c4a" name="ID"/>
-          <cl:datacolumn std:sid="d-column-2e1353c0" name="NAME"/>
-          <cl:datacolumn std:sid="d-column-31b88888" name="PASSWORD"/>
-          <cl:datacolumn std:sid="d-column-61a9301e" name="ADDRESS"/>
-          <cl:datacolumn std:sid="d-column-a309f53f" name="BIRTH"/>
-          <cl:datacolumn std:sid="d-column-d8ac280c" name="GENDER"/>
-          <cl:datacolumn std:sid="d-column-a4712edc" name="PHONE"/>
-          <cl:datacolumn std:sid="d-column-1add0a5d" name="EMAIL"/>
-        </cl:datacolumnlist>
-      </cl:dataset>
       <cl:datamap std:sid="d-map-08d30fec" id="dmDetail">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-37b22f96" name="PLAN_TITLE"/>
@@ -33,26 +21,40 @@
           <cl:datacolumn std:sid="d-column-cd359a90" name="PLAN_LAST"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:submission std:sid="submission-194396c7" id="findMyPage" action="/findMyPage">
-        <cl:requestdata dataid="ds2"/>
-        <cl:responsedata dataid="ds2"/>
+      <cl:datamap std:sid="d-map-df6dc9ae" id="member" altercolumnlayout="client">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-0cb0dad2" name="id"/>
+          <cl:datacolumn std:sid="d-column-dc3bc8df" name="password"/>
+          <cl:datacolumn std:sid="d-column-1960033b" name="name" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-67d4fc4f" name="email"/>
+          <cl:datacolumn std:sid="d-column-9016a61a" name="birth"/>
+          <cl:datacolumn std:sid="d-column-a74902f0" name="phone"/>
+          <cl:datacolumn std:sid="d-column-dabee590" name="address"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-194396c7" id="findMyPage" method="get" action="findMyPage">
+        <cl:listener std:sid="listener-da8d7ecf" name="submit-success" handler="onFindMyPageSubmitSuccess"/>
+        <cl:responsedata dataid="member"/>
       </cl:submission>
-      <cl:submission std:sid="submission-219aa173" id="updateMember" action="/updateMember">
-        <cl:requestdata dataid="ds2"/>
-        <cl:responsedata dataid="ds2"/>
+      <cl:submission std:sid="submission-219aa173" id="updateMember" method="put" action="/updateMember">
+        <cl:listener std:sid="listener-c1347b71" name="submit-success" handler="onUpdateMemberSubmitSuccess"/>
+        <cl:listener std:sid="listener-3b0c82b0" name="submit-error" handler="onUpdateMemberSubmitError"/>
+        <cl:requestdata dataid="member"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec>
+      <cl:event name="event" type="cpr.events.CAppEvent"/>
+    </cl:appspec>
   </head>
   <body std:sid="body-adae535c">
     <cl:listener std:sid="listener-e28469a2" name="load" handler="onBodyLoad"/>
     <cl:group std:sid="group-97ec36dd" id="grp1">
       <cl:xylayoutdata std:sid="xyl-data-4e862c6f" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
-      <cl:tabfolder std:sid="t-folder-64679f1f" tabindex="3">
+      <cl:tabfolder std:sid="t-folder-64679f1f" id="MyPages" tabindex="3">
         <cl:responsivexylayoutdata std:sid="rxyl-data-d1fd3406">
-          <cl:xylayoutdata std:sid="sxyl-data-716297f0" right="4px" bottom="0px" left="6px" height="963px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-716297f0" right="7px" bottom="0px" left="3px" height="778px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
         </cl:responsivexylayoutdata>
-        <cl:tabitem std:sid="t-item-3a63cd4f" selected="true" text="MYPAGE">
+        <cl:tabitem std:sid="t-item-3a63cd4f" name="MYPAGE" selected="true" text="MYPAGE" tooltip="회원수정을 위한 탭입니다.">
           <std:metadata>
             <std:property key="is-active-item" value="true"/>
           </std:metadata>
@@ -61,7 +63,7 @@
               <std:property key="locked" value="true"/>
             </std:metadata>
             <cl:group std:sid="group-cad97fdf" id="grp5">
-              <cl:xylayoutdata std:sid="xyl-data-4bbcfdd4" width="962px" height="779px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
+              <cl:xylayoutdata std:sid="xyl-data-4bbcfdd4" width="962px" height="720px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
               <cl:output std:sid="output-ac69af05" style="text-align:center;" value="ID">
                 <cl:formdata std:sid="f-data-040936fc" halign="CENTER" row="1" col="1"/>
               </cl:output>
@@ -84,36 +86,40 @@
                 <cl:formdata std:sid="f-data-04387c93" halign="CENTER" row="7" col="1"/>
               </cl:output>
               <cl:inputbox std:sid="i-box-136261d4" id="ID" readonly="true">
-                <cl:datasetbind property="value" datacontrolid="ds2" columnname="ID" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="id"/>
                 <cl:formdata std:sid="f-data-a6df4a35" row="1" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-668e3050" id="Pass" secret="true">
-                <cl:datasetbind property="value" datacontrolid="ds2" columnname="PASSWORD" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="password"/>
                 <cl:formdata std:sid="f-data-6a4ed2a3" row="2" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-838596cb" id="ADDR">
-                <cl:datasetbind property="value" datacontrolid="ds2" columnname="ADDRESS" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="address"/>
                 <cl:formdata std:sid="f-data-91d11ce7" row="3" col="2"/>
               </cl:inputbox>
               <cl:inputbox std:sid="i-box-bed5f5d0" id="NAME">
-                <cl:datasetbind property="value" datacontrolid="ds2" columnname="NAME" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="name"/>
                 <cl:formdata std:sid="f-data-a4298e2c" row="4" col="2"/>
               </cl:inputbox>
-              <cl:inputbox std:sid="i-box-a008d353" id="EMAIL">
-                <cl:datasetbind property="value" datacontrolid="ds2" columnname="EMAIL" rowindex="0"/>
+              <cl:inputbox std:sid="i-box-a008d353" id="EMAIL" readonly="true">
+                <cl:datamapbind property="value" datacontrolid="member" columnname="email"/>
                 <cl:formdata std:sid="f-data-e1a879eb" row="6" col="2"/>
               </cl:inputbox>
               <cl:maskeditor std:sid="m-editor-f14997c0" id="PHONE" mask="XXX-XXXX-XXXX">
-                <cl:datasetbind property="value" datacontrolid="ds2" columnname="PHONE" rowindex="0"/>
+                <cl:datamapbind property="value" datacontrolid="member" columnname="phone"/>
                 <cl:formdata std:sid="f-data-d0781fcf" row="7" col="2"/>
               </cl:maskeditor>
-              <cl:dateinput std:sid="d-input-df177294" id="BIRTH">
-                <cl:datasetbind property="value" datacontrolid="ds2" columnname="BIRTH" rowindex="0"/>
+              <cl:dateinput std:sid="d-input-df177294" id="BIRTH" readonly="true">
+                <cl:datamapbind property="value" datacontrolid="member" columnname="birth"/>
                 <cl:formdata std:sid="f-data-88c16f35" row="5" col="2"/>
               </cl:dateinput>
-              <cl:button std:sid="button-1c8aafba" id="btn2" value="수정하기">
-                <cl:listener std:sid="listener-794c4367" name="click" handler="onBtn2Click"/>
+              <cl:button std:sid="button-1c8aafba" id="Update" value="수정하기">
+                <cl:listener std:sid="listener-71688612" name="click" handler="onBtn2Click"/>
                 <cl:formdata std:sid="f-data-90e641cd" row="9" col="2"/>
+              </cl:button>
+              <cl:button std:sid="button-62efcec2" id="deleteBtn" style="color:#FF0000;" value="계정 탈퇴" icon="">
+                <cl:listener std:sid="listener-97628ab4" name="click" handler="ondeleteBtnClick"/>
+                <cl:formdata std:sid="f-data-2af44427" row="11" col="2"/>
               </cl:button>
               <cl:formlayout std:sid="f-layout-41056cb7" scrollable="false" hspace="5px" vspace="5px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
                 <cl:rows length="1" unit="FRACTION"/>
@@ -125,8 +131,9 @@
                 <cl:rows length="25" unit="PIXEL"/>
                 <cl:rows length="25" unit="PIXEL"/>
                 <cl:rows length="50" unit="PIXEL"/>
+                <cl:rows length="40" unit="PIXEL"/>
                 <cl:rows length="50" unit="PIXEL"/>
-                <cl:rows length="50" unit="PIXEL"/>
+                <cl:rows length="40" unit="PIXEL"/>
                 <cl:rows length="1" unit="FRACTION"/>
                 <cl:columns length="1" unit="FRACTION"/>
                 <cl:columns length="100" unit="PIXEL"/>
@@ -138,7 +145,7 @@
             <cl:xylayout std:sid="xylayout-827231c2"/>
           </cl:group>
         </cl:tabitem>
-        <cl:tabitem std:sid="t-item-8264a6eb" text="MYPLAN">
+        <cl:tabitem std:sid="t-item-8264a6eb" name="MYPLAN" text="MYPLAN" tooltip="내가 저장한 플랜을 보는 탭입니다.">
           <cl:group std:sid="group-3f0b68a4" id="grp3">
             <std:metadata>
               <std:property key="locked" value="true"/>
@@ -146,9 +153,6 @@
             <cl:tabfolder std:sid="t-folder-22437578" id="tabBoard" hideHeader="true">
               <cl:xylayoutdata std:sid="xyl-data-52263862" top="20px" right="8px" bottom="182px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
               <cl:tabitem std:sid="t-item-923150ab" selected="true" text="list">
-                <std:metadata>
-                  <std:property key="is-active-item" value="true"/>
-                </std:metadata>
                 <cl:group std:sid="group-20e1ff2c" id="grp6">
                   <std:metadata>
                     <std:property key="locked" value="true"/>
@@ -231,6 +235,9 @@
                 </cl:group>
               </cl:tabitem>
               <cl:tabitem std:sid="t-item-99a90c59" text="detail">
+                <std:metadata>
+                  <std:property key="is-active-item" value="true"/>
+                </std:metadata>
                 <cl:group std:sid="group-a0e81c95" id="grp8">
                   <std:metadata>
                     <std:property key="locked" value="true"/>
@@ -303,39 +310,20 @@
             <cl:xylayout std:sid="xylayout-3a8573bb"/>
           </cl:group>
         </cl:tabitem>
-        <cl:tabitem std:sid="t-item-7425e3f6" text="플랜 게시판">
-          <cl:group std:sid="group-5d3a054b" id="grp4">
-            <std:metadata>
-              <std:property key="locked" value="true"/>
-            </std:metadata>
-            <cl:grid std:sid="grid-2048aacf" id="grd1">
-              <cl:xylayoutdata std:sid="xyl-data-62085449" top="20px" left="20px" width="972px" height="890px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-              <cl:gridcolumn std:sid="g-column-e6739681"/>
-              <cl:gridcolumn std:sid="g-column-5b085c5b"/>
-              <cl:gridcolumn std:sid="g-column-4b894a8d"/>
-              <cl:gridcolumn std:sid="g-column-9f90fa58"/>
-              <cl:gridcolumn std:sid="g-column-4bd28abc"/>
-              <cl:gridheader std:sid="gh-band-74ddd305">
-                <cl:gridrow std:sid="g-row-afdf0343"/>
-                <cl:gridcell std:sid="gh-cell-901b30c0" rowindex="0" colindex="0"/>
-                <cl:gridcell std:sid="gh-cell-dbdd470d" rowindex="0" colindex="1"/>
-                <cl:gridcell std:sid="gh-cell-e46f8449" rowindex="0" colindex="2"/>
-                <cl:gridcell std:sid="gh-cell-595d4512" rowindex="0" colindex="3"/>
-                <cl:gridcell std:sid="gh-cell-102e2e3e" rowindex="0" colindex="4"/>
-              </cl:gridheader>
-              <cl:griddetail std:sid="gd-band-53c3970f">
-                <cl:gridrow std:sid="g-row-7d773054"/>
-                <cl:gridcell std:sid="gd-cell-e324164f" rowindex="0" colindex="0"/>
-                <cl:gridcell std:sid="gd-cell-836ef9c7" rowindex="0" colindex="1"/>
-                <cl:gridcell std:sid="gd-cell-4294d777" rowindex="0" colindex="2"/>
-                <cl:gridcell std:sid="gd-cell-d1c9c1d7" rowindex="0" colindex="3"/>
-                <cl:gridcell std:sid="gd-cell-00491c63" rowindex="0" colindex="4"/>
-              </cl:griddetail>
-            </cl:grid>
-            <cl:xylayout std:sid="xylayout-d47697b0"/>
-          </cl:group>
-        </cl:tabitem>
+        <cl:group std:sid="group-858d8597" id="grp4">
+          <cl:headercontroldata std:sid="thc-data-20d64b89" width="498" position="heading"/>
+          <cl:xylayout std:sid="xylayout-d6b62c16"/>
+        </cl:group>
+        <cl:group std:sid="group-524a6bf0" id="grp11">
+          <cl:headercontroldata std:sid="thc-data-2028ab8e" position="inner-left"/>
+          <cl:xylayout std:sid="xylayout-bfa2b7c9"/>
+        </cl:group>
       </cl:tabfolder>
+      <cl:udc std:sid="ud-control-4bac0656" type="udc.logo">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-f659fb4d">
+          <cl:xylayoutdata std:sid="sxyl-data-565f531d" top="7px" left="3px" width="277px" height="73px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:udc>
       <cl:responsivexylayout std:sid="r-xylayout-dac636ce"/>
     </cl:group>
     <cl:xylayout std:sid="xylayout-70eab1a4"/>
