@@ -57,9 +57,11 @@
         <cl:tabitem std:sid="t-item-3a63cd4f" name="MYPAGE" selected="true" text="MYPAGE" tooltip="회원수정을 위한 탭입니다.">
 
 
+
           <std:metadata>
             <std:property key="is-active-item" value="true"/>
           </std:metadata>
+
 
 
           <cl:group std:sid="group-e5c13333" id="grp2">
@@ -149,11 +151,13 @@
             <cl:xylayout std:sid="xylayout-827231c2"/>
           </cl:group>
 
+
         </cl:tabitem>
         <cl:tabitem std:sid="t-item-8264a6eb" name="MYPLAN" text="MYPLAN" tooltip="내가 저장한 플랜을 보는 탭입니다.">
           <std:metadata>
             <std:property key="is-active-item" value="true"/>
           </std:metadata>
+
 
           <cl:group std:sid="group-3f0b68a4" id="grp3">
             <std:metadata>

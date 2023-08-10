@@ -9,6 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import org.kosta.fourguys.service.MemberService;
 import org.kosta.fourguys.vo.MemberVO;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +49,22 @@ public class MemberController {
 			session.setAttribute("memberVO", result);
 			initParam.put("uri", "/");
 			success = true;
+		}
+		dataRequest.setMetadata(success, initParam);
+		return new JSONDataView();
+	}
+	@GetMapping("/findMyPage")
+	public View findMyPage(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
+		MemberVO memberVO = null;
+		HttpSession session = request.getSession(false);
+		Map<String, Object> initParam = new HashMap<>();
+		boolean success = false;
+		if (session != null) {
+			memberVO = (MemberVO) session.getAttribute("memberVO");
+			initParam.put("findMyPageis", memberVO);
+			success = true;
+		} else {
+			initParam.put("message", "로그인하셔야 합니다.");
 		}
 		dataRequest.setMetadata(success, initParam);
 		return new JSONDataView();
@@ -124,8 +144,9 @@ public class MemberController {
 	}
 
 	@PutMapping("updateMember")
-	public View updateMember(DataRequest dataRequest, HttpServletRequest request,
-			HttpServletResponse httpServletResponse) {
+
+	public View updateMember(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
+
 		boolean success = false;
 		HttpSession session = request.getSession(false);
 		ParameterGroup member = dataRequest.getParameterGroup("member");
@@ -134,7 +155,8 @@ public class MemberController {
 		String password = member.getValue("password");
 		String address = member.getValue("address");
 		String email = member.getValue("email");
-		String name = member.getValue("name");
+
+		String name= member.getValue("name");
 
 		memberVO.setPhone(Phone);
 		memberVO.setPassword(password);
@@ -155,11 +177,12 @@ public class MemberController {
 	}
 
 	@PostMapping("/logout")
-	public View logout(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+	public View logout(HttpServletRequest request,HttpServletResponse response, DataRequest dataRequest) {
 		Map<String, Object> message = new HashMap<String, Object>();
-		HttpSession session = request.getSession(false);
-		// System.out.println(session);
-		if (session != null) {
+		HttpSession session= request.getSession(false);
+		//System.out.println(session);
+		if(session!=null) {
+
 			session.invalidate();
 		}
 		message.put("uri", "/");
@@ -168,13 +191,14 @@ public class MemberController {
 	}
 
 	@DeleteMapping("deleteMember")
-	public View deleteMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+	public View deleteMember(HttpServletRequest request,HttpServletResponse response, DataRequest dataRequest) {
 		Map<String, Object> message = new HashMap<String, Object>();
-		HttpSession session = request.getSession(false);
-		// ParameterGroup member = dataRequest.getParameterGroup("member");
+		HttpSession session= request.getSession(false);
+		//ParameterGroup member = dataRequest.getParameterGroup("member");
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 		memberService.deleteMember(memberVO);
-		if (session != null) {
+		if(session!=null) {
+
 			session.invalidate();
 		}
 		message.put("uri", "/");
@@ -182,3 +206,4 @@ public class MemberController {
 		return new JSONDataView();
 	}
 }
+

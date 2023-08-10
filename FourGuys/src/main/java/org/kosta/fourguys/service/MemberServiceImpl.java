@@ -28,6 +28,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 
+
 	public int checkDuplicateId(String id) {
 
 		return memberMapper.checkDuplicateId(id);
@@ -35,6 +36,7 @@ public class MemberServiceImpl implements MemberService {
 
 	public int deleteMember(MemberVO memberVO) {
 		return memberMapper.deleteMember(memberVO);
+
 
 	}
 }

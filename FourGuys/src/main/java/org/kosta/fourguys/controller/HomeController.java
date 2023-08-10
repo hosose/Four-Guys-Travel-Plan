@@ -21,9 +21,11 @@ public class HomeController {
 	}
 	
 
+
 	@GetMapping("/registerForm")
 	public String registerForm() {
 		return "register.clx";
 	}
+
 
 }
