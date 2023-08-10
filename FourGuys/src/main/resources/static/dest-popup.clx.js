@@ -41,7 +41,7 @@
 			 */
 			function onButtonClick(e){
 				var button = e.control;
-				location.href="";
+				location.href="plannerForm";
 			};
 			// End - User Script
 			

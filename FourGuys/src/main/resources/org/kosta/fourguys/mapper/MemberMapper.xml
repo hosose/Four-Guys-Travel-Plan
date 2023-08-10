@@ -3,6 +3,7 @@
 <mapper namespace="org.kosta.fourguys.mapper.MemberMapper">
 
 
+
 	<select id="login"
 		parameterType="org.kosta.fourguys.vo.MemberVO">
 		SELECT * FROM member WHERE id = #{id} AND password = #{password}
@@ -26,6 +27,7 @@
 		parameterType="org.kosta.fourguys.vo.MemberVO">
 		DELETE member WHERE id=#{id}
 	</delete>
+
 
 
 </mapper>

@@ -28,5 +28,5 @@ function onBodyLoad2(e) {
  */
 function onButtonClick(e){
 	var button = e.control;
-	location.href="";
+	location.href="plannerForm";
 }
