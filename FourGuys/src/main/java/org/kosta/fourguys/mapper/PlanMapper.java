@@ -12,4 +12,10 @@ public interface PlanMapper {
 
 	public ArrayList<PlanVO> getDayByPlannerNo(int plannerNo);
 
+	public int createPlan(PlanVO plan);
+
+	public ArrayList<PlanVO> getPlansByDate(PlanVO selectedPlan);
+
+	public int deletePlan(PlanVO plan);
+
 }

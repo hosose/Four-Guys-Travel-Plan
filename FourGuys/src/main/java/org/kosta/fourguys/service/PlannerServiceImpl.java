@@ -21,4 +21,15 @@ public class PlannerServiceImpl implements PlannerService {
 		return plannerMapper.findDayByPlannerId(no);
 	}
 
+	@Override
+	public int savePlannerByNo(PlannerVO savePlanner) {
+		return plannerMapper.savePlannerByNo(savePlanner);
+
+	}
+
+	@Override
+	public int cancelPlannerByNo(PlannerVO cancelPlanner) {
+		return plannerMapper.cancelPlannerByNo(cancelPlanner);
+	}
+
 }

@@ -22,6 +22,7 @@
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
 			function onBodyLoad(e) {
+				app.lookup("loginCheck").send();
 				app.lookup("searchbtn").click();
 				app.openDialog("select_date_title", {
 					width: 600,
@@ -32,7 +33,6 @@
 					var plannerNoOutput = app.lookup("plannerNo");
 					plannerNoOutput.value = JSON.stringify(returnValue);
 					app.lookup("dayBtnSM").send()
-					app.lookup("loginCheck").send();
 				});
 			}
 
@@ -57,7 +57,6 @@
 					Searchbtn.click();
 				}
 			}
-
 			/*
 			 * 그리드에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -74,6 +73,86 @@
 				var embp_title = embp.setPageProperty("title",title);
 				embp.callPageMethod("panTo");
 			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onDayBtnSMSubmitSuccess(e){
+				var dayBtnSM = e.control;
+				var grid = app.lookup("grd3");
+				grid.selectRows([0]);
+				app.lookup("planDateOutput").value=1;
+			}
+
+			/*
+			 * 그리드에서 cell-click 이벤트 발생 시 호출.
+			 * Grid의 Cell 클릭시 발생하는 이벤트.
+			 */
+			function onGrd3CellClick(e){
+				var grd3 = e.control;
+				var grid = app.lookup("grd3");
+				var planDate = grid.getSelectedRow().getValue("planDate");
+				app.lookup("planDateOutput").value=planDate;
+				app.lookup("selectDate").send();
+			}
+
+			/*
+			 * 그리드에서 row-check 이벤트 발생 시 호출.
+			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 되었을 때 발생하는 이벤트.
+			 */
+			function onGrd2RowCheck(e){
+				var grd2 = e.control;
+				var grid = app.lookup("grd2");
+				var contentId = grid.getSelectedRow().getValue("contentid");
+				app.lookup("contentIdOutput").value=contentId;
+				app.lookup("createPlan").send();
+			}
+
+			/*
+			 * 그리드에서 row-uncheck 이벤트 발생 시 호출.
+			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 해제되었을 때 발생하는 이벤트.
+			 */
+			function onGrd2RowUncheck(e) {
+				var grd2 = e.control;
+				var contentId = grd2.getSelectedRow().getValue("contentid");
+				app.lookup("contentIdOutput").value = contentId;
+				app.lookup("deletePlan").send();
+			}
+
+			/*
+			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
+			 * 통신 중 문제가 생기면 발생합니다.
+			 */
+			function onLoginCheckSubmitError(e){
+				var loginCheck = e.control;
+				var message = loginCheck.getMetadata("message");
+				alert(message);
+				location.href = "loginForm";
+			}
+
+
+			/*
+			 * "저장" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e){
+				var button = e.control;
+				app.lookup("savePlanner").send();
+				alert("저장되었습니다");
+				location.href="/mypage.clx";
+			}
+
+			/*
+			 * "취소" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick2(e){
+				var button = e.control;
+				app.lookup("cancelPlanner").send();
+				alert("취소되었습니다");
+				location.href="selectDestinationForm";
+			};
 			// End - User Script
 			
 			// Header
@@ -138,13 +217,48 @@
 					{
 						"name": "plannerNo",
 						"dataType": "string"
+					},
+					{
+						"name": "planNo",
+						"dataType": "string"
+					},
+					{
+						"name": "contentId",
+						"dataType": "string"
 					}
 				]
 			});
 			app.register(dataSet_2);
+			
+			var dataSet_3 = new cpr.data.DataSet("selectedPlan");
+			dataSet_3.parseData({
+				"columns" : [
+					{
+						"name": "planDate",
+						"dataType": "string"
+					},
+					{
+						"name": "plannerNo",
+						"dataType": "string"
+					},
+					{
+						"name": "planNo",
+						"dataType": "string"
+					},
+					{
+						"name": "contentId",
+						"dataType": "string"
+					},
+					{"name": "title"}
+				]
+			});
+			app.register(dataSet_3);
 			var dataMap_1 = new cpr.data.DataMap("areaSearch");
 			dataMap_1.parseData({
-				"columns" : [{"name": "title"}]
+				"columns" : [
+					{"name": "title"},
+					{"name": "contentId"}
+				]
 			});
 			app.register(dataMap_1);
 			
@@ -153,7 +267,18 @@
 				"columns" : [{"name": "plannerNo"}]
 			});
 			app.register(dataMap_2);
-			var submission_1 = new cpr.protocols.Submission("subSave");
+			
+			var dataMap_3 = new cpr.data.DataMap("createPlanDM");
+			dataMap_3.parseData({
+				"columns" : [
+					{"name": "contentid"},
+					{"name": "planDate"}
+				]
+			});
+			app.register(dataMap_3);
+			var submission_1 = new cpr.protocols.Submission("savePlanner");
+			submission_1.action = "savePlanner";
+			submission_1.addRequestData(dataMap_2);
 			app.register(submission_1);
 			
 			var submission_2 = new cpr.protocols.Submission("areaList");
@@ -166,6 +291,9 @@
 			var submission_3 = new cpr.protocols.Submission("loginCheck");
 			submission_3.method = "get";
 			submission_3.action = "loginCheck";
+			if(typeof onLoginCheckSubmitError == "function") {
+				submission_3.addEventListener("submit-error", onLoginCheckSubmitError);
+			}
 			app.register(submission_3);
 			
 			var submission_4 = new cpr.protocols.Submission("dayBtnSM");
@@ -173,7 +301,38 @@
 			submission_4.action = "getDay";
 			submission_4.addRequestData(dataMap_2);
 			submission_4.addResponseData(dataSet_2, false);
+			if(typeof onDayBtnSMSubmitSuccess == "function") {
+				submission_4.addEventListener("submit-success", onDayBtnSMSubmitSuccess);
+			}
 			app.register(submission_4);
+			
+			var submission_5 = new cpr.protocols.Submission("createPlan");
+			submission_5.action = "createPlan";
+			submission_5.addRequestData(dataMap_2);
+			submission_5.addRequestData(dataMap_3);
+			submission_5.addResponseData(dataSet_3, false);
+			app.register(submission_5);
+			
+			var submission_6 = new cpr.protocols.Submission("selectDate");
+			submission_6.method = "get";
+			submission_6.action = "selectPlansByDate";
+			submission_6.addRequestData(dataMap_3);
+			submission_6.addRequestData(dataMap_2);
+			submission_6.addResponseData(dataSet_3, false);
+			app.register(submission_6);
+			
+			var submission_7 = new cpr.protocols.Submission("deletePlan");
+			submission_7.method = "delete";
+			submission_7.action = "deletePlan";
+			submission_7.addRequestData(dataMap_2);
+			submission_7.addRequestData(dataMap_3);
+			submission_7.addResponseData(dataSet_3, false);
+			app.register(submission_7);
+			
+			var submission_8 = new cpr.protocols.Submission("cancelPlanner");
+			submission_8.action = "cancelPlanner";
+			submission_8.addRequestData(dataMap_2);
+			app.register(submission_8);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -192,9 +351,6 @@
 			// UI Configuration
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
 			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
-			if(typeof onEp1Load == "function") {
-				embeddedPage_1.addEventListener("load", onEp1Load);
-			}
 			container.addChild(embeddedPage_1, {
 				positions: [
 					{
@@ -221,28 +377,10 @@
 				]
 			});
 			
-			var group_1 = new cpr.controls.Container();
+			var group_1 = new cpr.controls.Container("grp1");
 			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_1);
 			(function(container){
-				var textArea_1 = new cpr.controls.TextArea("txa2");
-				textArea_1.value = "플래너 제목 :";
-				textArea_1.style.css({
-					"text-align" : "center"
-				});
-				container.addChild(textArea_1, {
-					"top": "0px",
-					"bottom": "0px",
-					"left": "0px",
-					"width": "185px"
-				});
-				var inputBox_1 = new cpr.controls.InputBox("ipb1");
-				container.addChild(inputBox_1, {
-					"top": "0px",
-					"right": "0px",
-					"left": "184px",
-					"height": "22px"
-				});
 				var output_1 = new cpr.controls.Output("plannerNo");
 				output_1.visible = false;
 				output_1.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
@@ -294,6 +432,9 @@
 			(function(container){
 				var button_1 = new cpr.controls.Button();
 				button_1.value = "저장";
+				if(typeof onButtonClick == "function") {
+					button_1.addEventListener("click", onButtonClick);
+				}
 				container.addChild(button_1, {
 					"colIndex": 0,
 					"rowIndex": 0,
@@ -301,6 +442,9 @@
 				});
 				var button_2 = new cpr.controls.Button();
 				button_2.value = "취소";
+				if(typeof onButtonClick2 == "function") {
+					button_2.addEventListener("click", onButtonClick2);
+				}
 				container.addChild(button_2, {
 					"colIndex": 1,
 					"rowIndex": 0
@@ -311,21 +455,21 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "14px",
-						"left": "867px",
+						"right": "50px",
 						"width": "150px",
 						"height": "33px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "14px",
-						"left": "423px",
+						"right": "24px",
 						"width": "73px",
 						"height": "33px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "14px",
-						"left": "296px",
+						"right": "17px",
 						"width": "51px",
 						"height": "33px"
 					}
@@ -356,7 +500,7 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "title";
-								cell.text = "여행지 목록";
+								cell.text = "관광지 목록";
 							}
 						}
 					]
@@ -388,6 +532,18 @@
 			if(typeof onGrd2RowCheck == "function") {
 				grid_1.addEventListener("row-check", onGrd2RowCheck);
 			}
+			if(typeof onGrd2Mousedown == "function") {
+				grid_1.addEventListener("mousedown", onGrd2Mousedown);
+			}
+			if(typeof onGrd2Dblclick == "function") {
+				grid_1.addEventListener("dblclick", onGrd2Dblclick);
+			}
+			if(typeof onGrd2RowCheck == "function") {
+				grid_1.addEventListener("row-check", onGrd2RowCheck);
+			}
+			if(typeof onGrd2RowUncheck == "function") {
+				grid_1.addEventListener("row-uncheck", onGrd2RowUncheck);
+			}
 			container.addChild(grid_1, {
 				positions: [
 					{
@@ -416,13 +572,17 @@
 			
 			var grid_2 = new cpr.controls.Grid("grd1");
 			grid_2.init({
-				"columns": [{"width": "137px"}],
+				"dataSet": app.lookup("selectedPlan"),
+				"columns": [{"width": "100px"}],
 				"header": {
 					"rows": [{"height": "24px"}],
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
-							cell.text = "선택한 여행지 목록";
+							cell.filterable = false;
+							cell.sortable = false;
+							cell.targetColumnName = "title";
+							cell.text = "선택 목록";
 						}
 					}]
 				},
@@ -431,6 +591,7 @@
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
+							cell.columnName = "title";
 						}
 					}]
 				}
@@ -477,7 +638,7 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "planDate";
-								cell.text = "여행일자";
+								cell.text = "DAY";
 							}
 						}]
 					},
@@ -491,6 +652,9 @@
 						}]
 					}
 				});
+				if(typeof onGrd3CellClick == "function") {
+					grid_3.addEventListener("cell-click", onGrd3CellClick);
+				}
 				container.addChild(grid_3, {
 					"top": "0px",
 					"bottom": "0px",
@@ -524,12 +688,12 @@
 				]
 			});
 			
-			var textArea_2 = new cpr.controls.TextArea("txa1");
-			textArea_2.value = "제주도 지역 검색";
-			textArea_2.style.css({
+			var textArea_1 = new cpr.controls.TextArea("txa1");
+			textArea_1.value = "제주도 지역 검색";
+			textArea_1.style.css({
 				"text-align" : "center"
 			});
-			container.addChild(textArea_2, {
+			container.addChild(textArea_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
@@ -555,14 +719,14 @@
 				]
 			});
 			
-			var inputBox_2 = new cpr.controls.InputBox("titleSearch");
+			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
 			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("areaSearch"));
-			inputBox_2.setBindContext(dataMapContext_1);
-			inputBox_2.bind("value").toDataMap(app.lookup("areaSearch"), "title");
+			inputBox_1.setBindContext(dataMapContext_1);
+			inputBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "title");
 			if(typeof onTitleSearchKeydown == "function") {
-				inputBox_2.addEventListener("keydown", onTitleSearchKeydown);
+				inputBox_1.addEventListener("keydown", onTitleSearchKeydown);
 			}
-			container.addChild(inputBox_2, {
+			container.addChild(inputBox_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
@@ -617,6 +781,26 @@
 						"height": "20px"
 					}
 				]
+			});
+			
+			var output_2 = new cpr.controls.Output("planDateOutput");
+			output_2.visible = false;
+			output_2.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
+			container.addChild(output_2, {
+				"top": "100px",
+				"left": "150px",
+				"width": "100px",
+				"height": "20px"
+			});
+			
+			var output_3 = new cpr.controls.Output("contentIdOutput");
+			output_3.visible = false;
+			output_3.bind("value").toDataMap(app.lookup("createPlanDM"), "contentid");
+			container.addChild(output_3, {
+				"top": "100px",
+				"left": "249px",
+				"width": "100px",
+				"height": "20px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

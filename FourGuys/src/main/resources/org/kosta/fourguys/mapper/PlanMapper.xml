@@ -7,4 +7,16 @@ INSERT INTO PLAN(plan_no, planner_no, plan_date) VALUES(plan_seq.NEXTVAL,#{plann
 <select id="getDayByPlannerNo" parameterType="int">
 SELECT DISTINCT plan_date, planner_no FROM plan WHERE planner_no=#{plannerNo} ORDER BY PLAN_DATE
 </select>
+<insert id="createPlan" parameterType="org.kosta.fourguys.vo.PlanVO">
+INSERT INTO PLAN(plan_no, planner_no, plan_date, content_id) VALUES(plan_seq.NEXTVAL,#{plannerNo},#{planDate},#{contentId})
+</insert>
+<select id="getPlansByDate" parameterType="org.kosta.fourguys.vo.PlanVO" resultType="org.kosta.fourguys.vo.PlanVO">
+SELECT p.planner_no, p.plan_date, p.content_id, j.title
+FROM plan p
+INNER JOIN jeju_area j ON p.content_id = j.contentid
+WHERE planner_no = #{plannerNo} AND plan_date=#{planDate}
+</select>
+<delete id="deletePlan" parameterType="org.kosta.fourguys.vo.PlanVO">
+DELETE FROM plan WHERE planner_no = #{plannerNo} AND content_id=#{contentId}
+</delete>
 </mapper>

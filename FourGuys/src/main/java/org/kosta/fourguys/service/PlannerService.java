@@ -9,4 +9,9 @@ public interface PlannerService {
 	int createPlanner(PlannerVO plannerVO);
 
 	public int findDayByPlannerId(int no);
+
+	int savePlannerByNo(PlannerVO savePlanner);
+
+	int cancelPlannerByNo(PlannerVO cancelPlanner);
+
 }

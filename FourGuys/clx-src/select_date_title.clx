@@ -47,10 +47,12 @@
       <cl:xylayoutdata std:sid="xyl-data-5996cdf3" top="50px" left="200px" width="267px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
     <cl:dateinput std:sid="d-input-da101aa7" id="dti1">
+      <cl:listener std:sid="listener-ffc22a0c" name="value-change" handler="onDti1ValueChange"/>
       <cl:datamapbind property="value" datacontrolid="plannerDM" columnname="plannerStartDate"/>
       <cl:xylayoutdata std:sid="xyl-data-807d208f" top="150px" left="200px" width="110px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:dateinput>
     <cl:dateinput std:sid="d-input-fdac4d62" id="dti2">
+      <cl:listener std:sid="listener-23267c2c" name="value-change" handler="onDti2ValueChange"/>
       <cl:datamapbind property="value" datacontrolid="plannerDM" columnname="plannerLastDate"/>
       <cl:xylayoutdata std:sid="xyl-data-66efeb32" top="150px" left="357px" width="110px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:dateinput>

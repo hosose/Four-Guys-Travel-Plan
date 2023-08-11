@@ -29,7 +29,7 @@ public class PlannerTest {
 	}
 
 	@Test
-	public void createPlan() {
+	public void createPlans() {
 		int no = 9;
 		int day = plannerMapper.findDayByPlannerId(no);
 		PlanVO planVO = new PlanVO();
@@ -45,5 +45,47 @@ public class PlannerTest {
 		int plannerNo = 72;
 		ArrayList<PlanVO> planList = planMapper.getDayByPlannerNo(plannerNo);
 		System.out.println(planList);
+	}
+
+	@Test
+	public void createPlan() {
+		int plannerNo = 131;
+		int planDate = 2;
+		int contentId = 126460;
+		PlanVO plan = new PlanVO();
+		plan.setPlanDate(planDate);
+		plan.setPlannerNo(plannerNo);
+		plan.setContentId(contentId);
+		System.out.println(planMapper.createPlan(plan));
+	}
+
+	@Test
+	public void deletePlan() {
+		int plannerNo = 148;
+		int contentId = 127870;
+		PlanVO plan = new PlanVO();
+		plan.setPlannerNo(plannerNo);
+		plan.setContentId(contentId);
+		System.out.println(planMapper.deletePlan(plan));
+	}
+
+	@Test
+	public void getPlansByDate() {
+		int plannerNo = 148;
+		int planDate = 2;
+		PlanVO selectedPlan = new PlanVO();
+		selectedPlan.setPlannerNo(plannerNo);
+		selectedPlan.setPlanDate(planDate);
+		ArrayList<PlanVO> planList = planMapper.getPlansByDate(selectedPlan);
+		System.out.println(planList);
+	}
+
+	@Test
+	public void savePlannerByNo() {
+		int plannerNo = 147;
+		PlannerVO savePlanner = new PlannerVO();
+		savePlanner.setPlannerNo(plannerNo);
+		int result = plannerMapper.savePlannerByNo(savePlanner);
+		System.out.println(result);
 	}
 }
