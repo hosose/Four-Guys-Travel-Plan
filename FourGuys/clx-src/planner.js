@@ -9,6 +9,7 @@
  * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
  */
 function onBodyLoad(e) {
+	app.lookup("loginCheck").send();
 	app.lookup("searchbtn").click();
 	app.openDialog("select_date_title", {
 		width: 600,
@@ -19,7 +20,6 @@ function onBodyLoad(e) {
 		var plannerNoOutput = app.lookup("plannerNo");
 		plannerNoOutput.value = JSON.stringify(returnValue);
 		app.lookup("dayBtnSM").send()
-		app.lookup("loginCheck").send();
 	});
 }
 
@@ -80,6 +80,29 @@ function onGrd2RowCheck(e){
 	app.lookup("contentIdOutput").value=contentId;
 	app.lookup("createPlan").send();
 }
+
+/*
+ * 그리드에서 row-uncheck 이벤트 발생 시 호출.
+ * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 해제되었을 때 발생하는 이벤트.
+ */
+function onGrd2RowUncheck(e) {
+	var grd2 = e.control;
+	var contentId = grd2.getSelectedRow().getValue("contentid");
+	app.lookup("contentIdOutput").value = contentId;
+	app.lookup("deletePlan").send();
+}
+
+/*
+ * 서브미션에서 submit-error 이벤트 발생 시 호출.
+ * 통신 중 문제가 생기면 발생합니다.
+ */
+function onLoginCheckSubmitError(e){
+	var loginCheck = e.control;
+	var message = loginCheck.getMetadata("message");
+	alert(message);
+	location.href = "loginForm";
+}
+
 
 /*
  * "저장" 버튼에서 click 이벤트 발생 시 호출.

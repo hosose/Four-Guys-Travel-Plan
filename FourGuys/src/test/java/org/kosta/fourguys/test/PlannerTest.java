@@ -60,6 +60,16 @@ public class PlannerTest {
 	}
 
 	@Test
+	public void deletePlan() {
+		int plannerNo = 148;
+		int contentId = 127870;
+		PlanVO plan = new PlanVO();
+		plan.setPlannerNo(plannerNo);
+		plan.setContentId(contentId);
+		System.out.println(planMapper.deletePlan(plan));
+	}
+
+	@Test
 	public void getPlansByDate() {
 		int plannerNo = 148;
 		int planDate = 2;

@@ -16,4 +16,6 @@ public interface PlanMapper {
 
 	public ArrayList<PlanVO> getPlansByDate(PlanVO selectedPlan);
 
+	public int deletePlan(PlanVO plan);
+
 }

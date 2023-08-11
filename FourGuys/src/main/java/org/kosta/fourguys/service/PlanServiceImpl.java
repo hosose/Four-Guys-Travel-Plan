@@ -41,4 +41,9 @@ public class PlanServiceImpl implements PlanService {
 	public ArrayList<PlanVO> getPlansByDate(PlanVO selectedPlan) {
 		return planMapper.getPlansByDate(selectedPlan);
 	}
+
+	@Override
+	public int deletePlan(PlanVO plan) {
+		return planMapper.deletePlan(plan);
+	}
 }

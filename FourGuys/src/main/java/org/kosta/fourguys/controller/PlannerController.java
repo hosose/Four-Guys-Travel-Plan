@@ -12,6 +12,7 @@ import org.kosta.fourguys.service.PlannerService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.kosta.fourguys.vo.PlanVO;
 import org.kosta.fourguys.vo.PlannerVO;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,12 +33,7 @@ public class PlannerController {
 
 	@GetMapping("/plannerForm")
 	public View plannerForm(HttpServletResponse response, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		String uri = "";
-		if (session != null)
-			uri = "planner.clx";
-		else
-			uri = "login.clx";
+		String uri = "planner.clx";
 		return new UIView(uri);
 	}
 
@@ -105,6 +101,22 @@ public class PlannerController {
 		selectedPlan.setPlannerNo(plannerNo);
 		planService.getPlansByDate(selectedPlan);
 		dataRequest.setResponse("selectedPlan", planService.getPlansByDate(selectedPlan));
+		return new JSONDataView();
+	}
+
+	@DeleteMapping("deletePlan")
+	public View deletePlan(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
+		ParameterGroup deletePlanParam = dataRequest.getParameterGroup("createPlanDM");
+		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
+		String planDate = deletePlanParam.getValue("planDate");
+		String contentId = deletePlanParam.getValue("contentid");
+		PlanVO plan = new PlanVO();
+		plan.setPlannerNo(plannerNo);
+		plan.setPlanDate(Integer.parseInt(planDate));
+		plan.setContentId(Integer.parseInt(contentId));
+		planService.deletePlan(plan);
+		dataRequest.setResponse("selectedPlan", planService.getPlansByDate(plan));
 		return new JSONDataView();
 	}
 

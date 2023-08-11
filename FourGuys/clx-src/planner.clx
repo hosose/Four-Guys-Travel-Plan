@@ -62,7 +62,9 @@
         <cl:requestdata dataid="areaSearch"/>
         <cl:responsedata dataid="jeju"/>
       </cl:submission>
-      <cl:submission std:sid="submission-94c29d62" id="loginCheck" method="get" action="loginCheck"/>
+      <cl:submission std:sid="submission-94c29d62" id="loginCheck" method="get" action="loginCheck">
+        <cl:listener std:sid="listener-af859022" name="submit-error" handler="onLoginCheckSubmitError"/>
+      </cl:submission>
       <cl:submission std:sid="submission-7e681465" id="dayBtnSM" method="get" action="getDay">
         <cl:listener std:sid="listener-3ac15c99" name="submit-success" handler="onDayBtnSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
@@ -76,6 +78,11 @@
       <cl:submission std:sid="submission-4bb551dd" id="selectDate" method="get" action="selectPlansByDate">
         <cl:requestdata dataid="createPlanDM"/>
         <cl:requestdata dataid="plannerNoDM"/>
+        <cl:responsedata dataid="selectedPlan"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-b587fea4" id="deletePlan" method="delete" action="deletePlan">
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:requestdata dataid="createPlanDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-9505b4f1" id="cancelPlanner" action="cancelPlanner">
@@ -120,6 +127,7 @@
       <cl:listener std:sid="listener-ba19f11c" name="mousedown" handler="onGrd2Mousedown"/>
       <cl:listener std:sid="listener-c6267a3e" name="dblclick" handler="onGrd2Dblclick"/>
       <cl:listener std:sid="listener-cfd1181e" name="row-check" handler="onGrd2RowCheck"/>
+      <cl:listener std:sid="listener-ba8bfc63" name="row-uncheck" handler="onGrd2RowUncheck"/>
       <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:gridcolumn std:sid="g-column-83f369b3" width="25px"/>
       <cl:gridcolumn std:sid="g-column-212d1aca"/>
