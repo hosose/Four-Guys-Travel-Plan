@@ -58,6 +58,7 @@
 				}
 			}
 
+
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
@@ -92,6 +93,7 @@
 				app.lookup("contentIdOutput").value=contentId;
 				app.lookup("createPlan").send();
 			}
+
 			// End - User Script
 			
 			// Header
