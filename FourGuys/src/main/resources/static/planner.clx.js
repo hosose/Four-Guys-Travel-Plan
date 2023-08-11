@@ -186,13 +186,44 @@
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
+			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
+			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+			if(typeof onEp1Load == "function") {
+				embeddedPage_1.addEventListener("load", onEp1Load);
+			}
+			container.addChild(embeddedPage_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"right": "0px",
+						"bottom": "10px",
+						"left": "570px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"right": "0px",
+						"bottom": "10px",
+						"left": "278px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"right": "0px",
+						"bottom": "10px",
+						"left": "195px"
+					}
+				]
+			});
+			
 			var group_1 = new cpr.controls.Container();
-			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_2);
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_1);
 			(function(container){
 				var textArea_1 = new cpr.controls.TextArea("txa2");
 				textArea_1.value = "플래너 제목 :";
@@ -223,10 +254,29 @@
 				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "20px",
-				"left": "20px",
-				"width": "848px",
-				"height": "22px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "20px",
+						"left": "20px",
+						"width": "848px",
+						"height": "22px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "20px",
+						"left": "10px",
+						"width": "414px",
+						"height": "22px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "20px",
+						"left": "7px",
+						"width": "290px",
+						"height": "22px"
+					}
+				]
 			});
 			
 			var group_2 = new cpr.controls.Container();
@@ -257,10 +307,29 @@
 				});
 			})(group_2);
 			container.addChild(group_2, {
-				"top": "14px",
-				"left": "867px",
-				"width": "150px",
-				"height": "33px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "14px",
+						"left": "867px",
+						"width": "150px",
+						"height": "33px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "14px",
+						"left": "423px",
+						"width": "73px",
+						"height": "33px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "14px",
+						"left": "296px",
+						"width": "51px",
+						"height": "33px"
+					}
+				]
 			});
 			
 			var grid_1 = new cpr.controls.Grid("grd2");
@@ -320,10 +389,29 @@
 				grid_1.addEventListener("row-check", onGrd2RowCheck);
 			}
 			container.addChild(grid_1, {
-				"top": "73px",
-				"left": "360px",
-				"width": "200px",
-				"height": "680px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"left": "360px",
+						"width": "200px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"left": "176px",
+						"width": "98px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"left": "123px",
+						"width": "68px",
+						"height": "680px"
+					}
+				]
 			});
 			
 			var grid_2 = new cpr.controls.Grid("grd1");
@@ -348,15 +436,34 @@
 				}
 			});
 			container.addChild(grid_2, {
-				"top": "73px",
-				"left": "150px",
-				"width": "200px",
-				"height": "680px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"left": "150px",
+						"width": "200px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"left": "73px",
+						"width": "98px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"left": "51px",
+						"width": "68px",
+						"height": "680px"
+					}
+				]
 			});
 			
 			var group_3 = new cpr.controls.Container();
-			var xYLayout_3 = new cpr.controls.layouts.XYLayout();
-			group_3.setLayout(xYLayout_3);
+			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
+			group_3.setLayout(xYLayout_2);
 			(function(container){
 				var grid_3 = new cpr.controls.Grid("grd3");
 				grid_3.init({
@@ -392,10 +499,29 @@
 				});
 			})(group_3);
 			container.addChild(group_3, {
-				"top": "73px",
-				"left": "20px",
-				"width": "120px",
-				"height": "680px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"left": "20px",
+						"width": "120px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"left": "10px",
+						"width": "59px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"left": "7px",
+						"width": "41px",
+						"height": "680px"
+					}
+				]
 			});
 			
 			var textArea_2 = new cpr.controls.TextArea("txa1");
@@ -404,10 +530,29 @@
 				"text-align" : "center"
 			});
 			container.addChild(textArea_2, {
-				"top": "47px",
-				"left": "20px",
-				"width": "259px",
-				"height": "20px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "47px",
+						"left": "20px",
+						"width": "259px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "47px",
+						"left": "10px",
+						"width": "126px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "47px",
+						"left": "7px",
+						"width": "89px",
+						"height": "20px"
+					}
+				]
 			});
 			
 			var inputBox_2 = new cpr.controls.InputBox("titleSearch");
@@ -418,10 +563,29 @@
 				inputBox_2.addEventListener("keydown", onTitleSearchKeydown);
 			}
 			container.addChild(inputBox_2, {
-				"top": "47px",
-				"left": "289px",
-				"width": "100px",
-				"height": "20px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "47px",
+						"left": "289px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "47px",
+						"left": "141px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "47px",
+						"left": "99px",
+						"width": "34px",
+						"height": "20px"
+					}
+				]
 			});
 			
 			var button_3 = new cpr.controls.Button("searchbtn");
@@ -430,22 +594,29 @@
 				button_3.addEventListener("click", onSearchbtnClick);
 			}
 			container.addChild(button_3, {
-				"top": "47px",
-				"left": "399px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
-			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
-			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
-			if(typeof onEp1Load == "function") {
-				embeddedPage_1.addEventListener("load", onEp1Load);
-			}
-			container.addChild(embeddedPage_1, {
-				"top": "77px",
-				"left": "570px",
-				"width": "434px",
-				"height": "671px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "47px",
+						"left": "399px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "47px",
+						"left": "195px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "47px",
+						"left": "136px",
+						"width": "34px",
+						"height": "20px"
+					}
+				]
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
