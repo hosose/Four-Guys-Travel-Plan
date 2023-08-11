@@ -79,4 +79,13 @@ public class PlannerTest {
 		ArrayList<PlanVO> planList = planMapper.getPlansByDate(selectedPlan);
 		System.out.println(planList);
 	}
+
+	@Test
+	public void savePlannerByNo() {
+		int plannerNo = 147;
+		PlannerVO savePlanner = new PlannerVO();
+		savePlanner.setPlannerNo(plannerNo);
+		int result = plannerMapper.savePlannerByNo(savePlanner);
+		System.out.println(result);
+	}
 }

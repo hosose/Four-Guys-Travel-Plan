@@ -14,4 +14,14 @@
 	<select id="findDayByPlannerId" parameterType="org.kosta.fourguys.vo.PlannerVO" resultType="int">
 	SELECT trunc(PLANNER_LAST_DAY-PLANNER_START_DATE+1) as day FROM planner where planner_no = #{plannerNo}
 	</select>
+	<update id="savePlannerByNo" parameterType="org.kosta.fourguys.vo.PlannerVO">
+UPDATE planner	
+SET complete_flag = '완성'
+WHERE planner_no = #{plannerNo}
+</update>
+<update id="cancelPlannerByNo" parameterType="org.kosta.fourguys.vo.PlannerVO">
+UPDATE planner	
+SET complete_flag = '미완성'
+WHERE planner_no = #{plannerNo}
+</update>
 </mapper>
