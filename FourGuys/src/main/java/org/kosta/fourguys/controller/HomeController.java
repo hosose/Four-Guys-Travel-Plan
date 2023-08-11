@@ -15,17 +15,20 @@ public class HomeController {
 		return "index.clx";
 	}
 
+	@GetMapping("/loginForm")
+	public String loginForm(DataRequest dataRequest, HttpServletRequest request,
+			HttpServletResponse httpServletResponse) {
+		return "login.clx";
+	}
+
 	@GetMapping("/selectDestinationForm")
 	public String hello() {
 		return "select_dest.clx";
 	}
-	
-
 
 	@GetMapping("/registerForm")
 	public String registerForm() {
 		return "register.clx";
 	}
-
 
 }

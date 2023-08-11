@@ -16,4 +16,7 @@ FROM plan p
 INNER JOIN jeju_area j ON p.content_id = j.contentid
 WHERE planner_no = #{plannerNo} AND plan_date=#{planDate}
 </select>
+<delete id="deletePlan" parameterType="org.kosta.fourguys.vo.PlanVO">
+DELETE FROM plan WHERE planner_no = #{plannerNo} AND content_id=#{contentId}
+</delete>
 </mapper>

@@ -20,7 +20,6 @@
           <cl:datacolumn std:sid="d-column-d23a50e8" name="cat3" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
-
       <cl:dataset std:sid="d-set-814fc2a8" id="planDate">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-febeae05" name="planDate" datatype="string"/>
@@ -61,13 +60,13 @@
         <cl:requestdata dataid="areaSearch"/>
         <cl:responsedata dataid="jeju"/>
       </cl:submission>
-      <cl:submission std:sid="submission-94c29d62" id="loginCheck" method="get" action="loginCheck"/>
+      <cl:submission std:sid="submission-94c29d62" id="loginCheck" method="get" action="loginCheck">
+        <cl:listener std:sid="listener-af859022" name="submit-error" handler="onLoginCheckSubmitError"/>
+      </cl:submission>
       <cl:submission std:sid="submission-7e681465" id="dayBtnSM" method="get" action="getDay">
         <cl:listener std:sid="listener-3ac15c99" name="submit-success" handler="onDayBtnSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:responsedata dataid="planDate"/>
-
-
       </cl:submission>
       <cl:submission std:sid="submission-19ef9968" id="createPlan" action="createPlan">
         <cl:requestdata dataid="plannerNoDM"/>
@@ -77,6 +76,11 @@
       <cl:submission std:sid="submission-4bb551dd" id="selectDate" method="get" action="selectPlansByDate">
         <cl:requestdata dataid="createPlanDM"/>
         <cl:requestdata dataid="plannerNoDM"/>
+        <cl:responsedata dataid="selectedPlan"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-b587fea4" id="deletePlan" method="delete" action="deletePlan">
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:requestdata dataid="createPlanDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
     </cl:model>
@@ -116,6 +120,7 @@
       <cl:listener std:sid="listener-ba19f11c" name="mousedown" handler="onGrd2Mousedown"/>
       <cl:listener std:sid="listener-c6267a3e" name="dblclick" handler="onGrd2Dblclick"/>
       <cl:listener std:sid="listener-cfd1181e" name="row-check" handler="onGrd2RowCheck"/>
+      <cl:listener std:sid="listener-ba8bfc63" name="row-uncheck" handler="onGrd2RowUncheck"/>
       <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:gridcolumn std:sid="g-column-83f369b3" width="25px"/>
       <cl:gridcolumn std:sid="g-column-212d1aca"/>
@@ -147,8 +152,6 @@
     </cl:grid>
     <cl:group std:sid="group-5906196c">
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-
-
       <cl:grid std:sid="grid-815196f0" id="grd3" datasetid="planDate">
         <cl:listener std:sid="listener-23808200" name="cell-click" handler="onGrd3CellClick"/>
         <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
@@ -162,7 +165,6 @@
           <cl:gridcell std:sid="gd-cell-f83a592c" rowindex="0" colindex="0" columnname="planDate"/>
         </cl:griddetail>
       </cl:grid>
-
       <cl:xylayout std:sid="xylayout-d70cae89"/>
     </cl:group>
     <cl:textarea std:sid="t-area-76ee7bec" id="txa1" style="text-align:center;" value="제주도 지역 검색">
