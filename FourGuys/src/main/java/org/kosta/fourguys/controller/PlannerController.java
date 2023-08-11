@@ -118,15 +118,4 @@ public class PlannerController {
 		dataRequest.setResponse("savePlan", plannerService.savePlannerByNo(savePlanner));
 		return new JSONDataView();
 	}
-
-	@PostMapping("cancelPlanner")
-	public View cancelPlannerByNo(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
-		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
-		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
-		PlannerVO cancelPlanner = new PlannerVO();
-		cancelPlanner.setPlannerNo(plannerNo);
-		plannerService.savePlannerByNo(cancelPlanner);
-		dataRequest.setResponse("cancelPlanner", plannerService.cancelPlannerByNo(cancelPlanner));
-		return new JSONDataView();
-	}
 }

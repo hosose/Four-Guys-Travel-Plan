@@ -12,6 +12,4 @@ public interface PlannerService {
 
 	int savePlannerByNo(PlannerVO savePlanner);
 
-	int cancelPlannerByNo(PlannerVO cancelPlanner);
-
 }

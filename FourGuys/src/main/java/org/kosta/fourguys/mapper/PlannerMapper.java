@@ -11,6 +11,4 @@ public interface PlannerMapper {
 
 	public int savePlannerByNo(PlannerVO savePlanner);
 
-	public int cancelPlannerByNo(PlannerVO cancelPlanner);
-
 }
