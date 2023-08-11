@@ -78,4 +78,13 @@ public class PlannerTest {
 		int result = plannerMapper.savePlannerByNo(savePlanner);
 		System.out.println(result);
 	}
+
+	@Test
+	public void cancelPlannerByNo() {
+		int plannerNo = 162;
+		PlannerVO cancelPlanner = new PlannerVO();
+		cancelPlanner.setPlannerNo(plannerNo);
+		int result = plannerMapper.cancelPlannerByNo(cancelPlanner);
+		System.out.println(result);
+	}
 }
