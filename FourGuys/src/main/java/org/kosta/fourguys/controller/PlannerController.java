@@ -107,4 +107,15 @@ public class PlannerController {
 		dataRequest.setResponse("selectedPlan", planService.getPlansByDate(selectedPlan));
 		return new JSONDataView();
 	}
+
+	@PostMapping("savePlanner")
+	public View savePlannerByNo(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
+		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
+		PlannerVO savePlanner = new PlannerVO();
+		savePlanner.setPlannerNo(plannerNo);
+		plannerService.savePlannerByNo(savePlanner);
+		dataRequest.setResponse("savePlan", plannerService.savePlannerByNo(savePlanner));
+		return new JSONDataView();
+	}
 }

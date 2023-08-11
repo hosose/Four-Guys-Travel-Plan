@@ -20,7 +20,6 @@
           <cl:datacolumn std:sid="d-column-d23a50e8" name="cat3" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
-
       <cl:dataset std:sid="d-set-814fc2a8" id="planDate">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-febeae05" name="planDate" datatype="string"/>
@@ -55,7 +54,9 @@
           <cl:datacolumn std:sid="d-column-0f887bcf" name="planDate"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:submission std:sid="submission-2537bb48" id="subSave"/>
+      <cl:submission std:sid="submission-2537bb48" id="savePlanner" action="savePlanner">
+        <cl:requestdata dataid="plannerNoDM"/>
+      </cl:submission>
       <cl:submission std:sid="submission-67bd9f31" id="areaList" method="get" action="/findAllArea">
         <cl:listener std:sid="listener-384844e6" name="submit-success" handler="onAreaListSubmitSuccess"/>
         <cl:requestdata dataid="areaSearch"/>
@@ -66,8 +67,6 @@
         <cl:listener std:sid="listener-3ac15c99" name="submit-success" handler="onDayBtnSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:responsedata dataid="planDate"/>
-
-
       </cl:submission>
       <cl:submission std:sid="submission-19ef9968" id="createPlan" action="createPlan">
         <cl:requestdata dataid="plannerNoDM"/>
@@ -101,6 +100,7 @@
     <cl:group std:sid="group-ec15f56b">
       <cl:xylayoutdata std:sid="xyl-data-a2607882" top="14px" left="867px" width="150px" height="33px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:button std:sid="button-6f2c6819" value="저장">
+        <cl:listener std:sid="listener-17146623" name="click" handler="onButtonClick"/>
         <cl:formdata std:sid="f-data-74f25ba0" valign="TOP" row="0" col="0"/>
       </cl:button>
       <cl:button std:sid="button-3bf9c536" value="취소">
@@ -147,8 +147,6 @@
     </cl:grid>
     <cl:group std:sid="group-5906196c">
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-
-
       <cl:grid std:sid="grid-815196f0" id="grd3" datasetid="planDate">
         <cl:listener std:sid="listener-23808200" name="cell-click" handler="onGrd3CellClick"/>
         <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
@@ -162,7 +160,6 @@
           <cl:gridcell std:sid="gd-cell-f83a592c" rowindex="0" colindex="0" columnname="planDate"/>
         </cl:griddetail>
       </cl:grid>
-
       <cl:xylayout std:sid="xylayout-d70cae89"/>
     </cl:group>
     <cl:textarea std:sid="t-area-76ee7bec" id="txa1" style="text-align:center;" value="제주도 지역 검색">

@@ -58,6 +58,7 @@
 				}
 			}
 
+
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
@@ -92,6 +93,18 @@
 				app.lookup("contentIdOutput").value=contentId;
 				app.lookup("createPlan").send();
 			}
+
+
+			/*
+			 * "저장" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e){
+				var button = e.control;
+				app.lookup("savePlanner").send();
+				alert("저장되었습니다");
+				location.href="/mypage.clx";
+			};
 			// End - User Script
 			
 			// Header
@@ -215,7 +228,9 @@
 				]
 			});
 			app.register(dataMap_3);
-			var submission_1 = new cpr.protocols.Submission("subSave");
+			var submission_1 = new cpr.protocols.Submission("savePlanner");
+			submission_1.action = "savePlanner";
+			submission_1.addRequestData(dataMap_2);
 			app.register(submission_1);
 			
 			var submission_2 = new cpr.protocols.Submission("areaList");
@@ -327,6 +342,9 @@
 			(function(container){
 				var button_1 = new cpr.controls.Button();
 				button_1.value = "저장";
+				if(typeof onButtonClick == "function") {
+					button_1.addEventListener("click", onButtonClick);
+				}
 				container.addChild(button_1, {
 					"colIndex": 0,
 					"rowIndex": 0,
