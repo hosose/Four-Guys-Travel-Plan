@@ -45,7 +45,7 @@
 				var meta = findMyPage.getMetadata("findMyPageis");
 				if(meta != null){
 					var ID = app.lookup("ID");
-					var passwd = app.lookup("Pass");
+					var passwd = app.lookup("PASSWORD");
 					var ADDR = app.lookup("ADDR");
 					var BIRTH = app.lookup("BIRTH");
 					var NAME = app.lookup("NAME");
@@ -310,7 +310,7 @@
 								"colIndex": 2,
 								"rowIndex": 1
 							});
-							var inputBox_2 = new cpr.controls.InputBox("Pass");
+							var inputBox_2 = new cpr.controls.InputBox("PASSWORD");
 							inputBox_2.secret = true;
 							inputBox_2.bind("value").toDataMap(app.lookup("member"), "password");
 							container.addChild(inputBox_2, {

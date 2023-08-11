@@ -44,7 +44,6 @@
 			function onSearchbtnClick(e) {
 				var searchbtn = e.control;
 				app.lookup("areaList").send();
-				
 			}
 
 			/*
@@ -60,29 +59,21 @@
 			}
 
 			/*
-			 * 그리드에서 row-check 이벤트 발생 시 호출.
-			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 되었을 때 발생하는 이벤트.
+			 * 그리드에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onGrd2RowCheck(e){
+			function onGrd2Click(e){
 				var grd2 = e.control;
-				var embeddedPage = app.lookup("ep1");
-				if(embeddedPage.hasPageMethod("getOutputText")){
-					embeddedPage.callPageMethod("getOutputText");
-				}
-				embeddedPage.redraw();
+				var grid = app.lookup("grd2");
+				var embp = app.lookup("ep1");
+				var mapx = grid.getSelectedRow().getValue("mapx");
+				var mapy = grid.getSelectedRow().getValue("mapy");
+				var title = grid.getSelectedRow().getValue("title");
+				var embp_mapx = embp.setPageProperty("mapx",mapx);
+				var embp_mapy = embp.setPageProperty("mapy",mapy);
+				var embp_title = embp.setPageProperty("title",title);
+				embp.callPageMethod("panTo");
 			}
-
-			/*
-			 * 임베디드 페이지에서 load 이벤트 발생 시 호출.
-			 * 페이지의 Load가 완료되었을 때 호출되는 Event.
-			 */
-			function onEp1Load(e){
-				var ep1 = e.control;
-				//임베디드 페이지의 로드가 완료되었을 때 호출되는 이벤트
-			    //임베디드 페이지의 속성 설정
-			    ep1.setPageProperty("_ownerApp", app);
-			    ep1.redraw();
-			};
 			// End - User Script
 			
 			// Header
@@ -153,10 +144,7 @@
 			app.register(dataSet_2);
 			var dataMap_1 = new cpr.data.DataMap("areaSearch");
 			dataMap_1.parseData({
-				"columns" : [
-					{"name": "title"},
-					{"name": "addr1"}
-				]
+				"columns" : [{"name": "title"}]
 			});
 			app.register(dataMap_1);
 			
@@ -173,9 +161,6 @@
 			submission_2.action = "/findAllArea";
 			submission_2.addRequestData(dataMap_1);
 			submission_2.addResponseData(dataSet_1, false);
-			if(typeof onAreaListSubmitSuccess == "function") {
-				submission_2.addEventListener("submit-success", onAreaListSubmitSuccess);
-			}
 			app.register(submission_2);
 			
 			var submission_3 = new cpr.protocols.Submission("loginCheck");
@@ -325,11 +310,11 @@
 					]
 				}
 			});
-			if(typeof onGrd2Mousedown == "function") {
-				grid_1.addEventListener("mousedown", onGrd2Mousedown);
+			if(typeof onGrd2CellClick == "function") {
+				grid_1.addEventListener("cell-click", onGrd2CellClick);
 			}
-			if(typeof onGrd2Dblclick == "function") {
-				grid_1.addEventListener("dblclick", onGrd2Dblclick);
+			if(typeof onGrd2Click == "function") {
+				grid_1.addEventListener("click", onGrd2Click);
 			}
 			if(typeof onGrd2RowCheck == "function") {
 				grid_1.addEventListener("row-check", onGrd2RowCheck);
@@ -452,7 +437,7 @@
 			});
 			
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
-			embeddedPage_1.src = "thirdparty/maps/kakaoMap.jsp";
+			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
 			if(typeof onEp1Load == "function") {
 				embeddedPage_1.addEventListener("load", onEp1Load);
 			}

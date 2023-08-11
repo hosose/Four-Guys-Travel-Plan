@@ -32,7 +32,7 @@ function onFindMyPageSubmitSuccess(e){
 	var meta = findMyPage.getMetadata("findMyPageis");
 	if(meta != null){
 		var ID = app.lookup("ID");
-		var passwd = app.lookup("Pass");
+		var passwd = app.lookup("PASSWORD");
 		var ADDR = app.lookup("ADDR");
 		var BIRTH = app.lookup("BIRTH");
 		var NAME = app.lookup("NAME");

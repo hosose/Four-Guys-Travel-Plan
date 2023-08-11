@@ -31,7 +31,6 @@ function onBodyLoad(e) {
 function onSearchbtnClick(e) {
 	var searchbtn = e.control;
 	app.lookup("areaList").send();
-	
 }
 
 /*
@@ -47,26 +46,18 @@ function onTitleSearchKeydown(e) {
 }
 
 /*
- * 그리드에서 row-check 이벤트 발생 시 호출.
- * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 되었을 때 발생하는 이벤트.
+ * 그리드에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onGrd2RowCheck(e){
+function onGrd2Click(e){
 	var grd2 = e.control;
-	var embeddedPage = app.lookup("ep1");
-	if(embeddedPage.hasPageMethod("getOutputText")){
-		embeddedPage.callPageMethod("getOutputText");
-	}
-	embeddedPage.redraw();
-}
-
-/*
- * 임베디드 페이지에서 load 이벤트 발생 시 호출.
- * 페이지의 Load가 완료되었을 때 호출되는 Event.
- */
-function onEp1Load(e){
-	var ep1 = e.control;
-	//임베디드 페이지의 로드가 완료되었을 때 호출되는 이벤트
-    //임베디드 페이지의 속성 설정
-    ep1.setPageProperty("_ownerApp", app);
-    ep1.redraw();
+	var grid = app.lookup("grd2");
+	var embp = app.lookup("ep1");
+	var mapx = grid.getSelectedRow().getValue("mapx");
+	var mapy = grid.getSelectedRow().getValue("mapy");
+	var title = grid.getSelectedRow().getValue("title");
+	var embp_mapx = embp.setPageProperty("mapx",mapx);
+	var embp_mapy = embp.setPageProperty("mapy",mapy);
+	var embp_title = embp.setPageProperty("title",title);
+	embp.callPageMethod("panTo");
 }
