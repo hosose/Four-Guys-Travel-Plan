@@ -340,6 +340,7 @@
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
+				"background-image" : "none",
 				"width" : "100%",
 				"height" : "100%"
 			});
@@ -426,22 +427,32 @@
 			formLayout_1.leftMargin = "5px";
 			formLayout_1.horizontalSpacing = "25px";
 			formLayout_1.verticalSpacing = "25px";
-			formLayout_1.setColumns(["50px", "50px"]);
-			formLayout_1.setRows(["25px"]);
+			formLayout_1.setColumns(["100px", "100px"]);
+			formLayout_1.setRows(["70px"]);
 			group_2.setLayout(formLayout_1);
 			(function(container){
 				var button_1 = new cpr.controls.Button();
-				button_1.value = "저장";
+				button_1.style.css({
+					"background-size" : "cover",
+					"background-image" : "url('images/savebutton.png')",
+					"background-position" : "center"
+				});
 				if(typeof onButtonClick == "function") {
 					button_1.addEventListener("click", onButtonClick);
 				}
 				container.addChild(button_1, {
 					"colIndex": 0,
 					"rowIndex": 0,
-					"verticalAlign": "top"
+					"verticalAlign": "top",
+					"height": 70
 				});
 				var button_2 = new cpr.controls.Button();
-				button_2.value = "취소";
+				button_2.value = "";
+				button_2.style.css({
+					"background-size" : "cover",
+					"background-image" : "url('images/cancelbutton.png')",
+					"background-position" : "center"
+				});
 				if(typeof onButtonClick2 == "function") {
 					button_2.addEventListener("click", onButtonClick2);
 				}
@@ -454,24 +465,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "14px",
-						"right": "50px",
-						"width": "150px",
-						"height": "33px"
+						"top": "0px",
+						"right": "20px",
+						"width": "257px",
+						"height": "83px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "14px",
-						"right": "24px",
-						"width": "73px",
-						"height": "33px"
+						"top": "0px",
+						"right": "10px",
+						"width": "125px",
+						"height": "83px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "14px",
-						"right": "17px",
-						"width": "51px",
-						"height": "33px"
+						"top": "0px",
+						"right": "7px",
+						"width": "88px",
+						"height": "83px"
 					}
 				]
 			});
@@ -492,6 +503,9 @@
 								cell.columnType = "checkbox";
 								cell.filterable = false;
 								cell.sortable = false;
+								cell.style.css({
+									"background-color" : "#FFFFFF"
+								});
 							}
 						},
 						{
@@ -501,6 +515,11 @@
 								cell.sortable = false;
 								cell.targetColumnName = "title";
 								cell.text = "관광지 목록";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"color" : "#2DCEB9",
+									"font-weight" : "bolder"
+								});
 							}
 						}
 					]
@@ -518,10 +537,16 @@
 							"constraint": {"rowIndex": 0, "colIndex": 1},
 							"configurator": function(cell){
 								cell.columnName = "title";
+								cell.style.css({
+									"font-weight" : "normal"
+								});
 							}
 						}
 					]
 				}
+			});
+			grid_1.style.css({
+				"font-weight" : "bolder"
 			});
 			if(typeof onGrd2CellClick == "function") {
 				grid_1.addEventListener("cell-click", onGrd2CellClick);
@@ -548,21 +573,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "73px",
+						"top": "80px",
 						"left": "360px",
 						"width": "200px",
 						"height": "680px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "73px",
+						"top": "80px",
 						"left": "176px",
 						"width": "98px",
 						"height": "680px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "73px",
+						"top": "80px",
 						"left": "123px",
 						"width": "68px",
 						"height": "680px"
@@ -583,6 +608,13 @@
 							cell.sortable = false;
 							cell.targetColumnName = "title";
 							cell.text = "선택 목록";
+							cell.style.css({
+								"background-color" : "#FFFFFF",
+								"background-repeat" : "repeat",
+								"color" : "#2DCEB9",
+								"font-weight" : "bolder",
+								"background-image" : "none"
+							});
 						}
 					}]
 				},
@@ -600,21 +632,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "73px",
+						"top": "80px",
 						"left": "150px",
 						"width": "200px",
 						"height": "680px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "73px",
+						"top": "80px",
 						"left": "73px",
 						"width": "98px",
 						"height": "680px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "73px",
+						"top": "80px",
 						"left": "51px",
 						"width": "68px",
 						"height": "680px"
@@ -639,6 +671,10 @@
 								cell.sortable = false;
 								cell.targetColumnName = "planDate";
 								cell.text = "DAY";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"color" : "#2DCEB9"
+								});
 							}
 						}]
 					},
@@ -648,15 +684,21 @@
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.columnName = "planDate";
+								cell.style.css({
+									"font-weight" : "normal"
+								});
 							}
 						}]
 					}
+				});
+				grid_3.style.css({
+					"font-weight" : "bolder"
 				});
 				if(typeof onGrd3CellClick == "function") {
 					grid_3.addEventListener("cell-click", onGrd3CellClick);
 				}
 				container.addChild(grid_3, {
-					"top": "0px",
+					"top": "10px",
 					"bottom": "0px",
 					"width": "120px",
 					"left": "calc(50% - 60px)"
@@ -688,38 +730,11 @@
 				]
 			});
 			
-			var textArea_1 = new cpr.controls.TextArea("txa1");
-			textArea_1.value = "제주도 지역 검색";
-			textArea_1.style.css({
+			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
+			inputBox_1.placeholder = "지역 검색";
+			inputBox_1.style.css({
 				"text-align" : "center"
 			});
-			container.addChild(textArea_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "47px",
-						"left": "20px",
-						"width": "259px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "47px",
-						"left": "10px",
-						"width": "126px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "47px",
-						"left": "7px",
-						"width": "89px",
-						"height": "20px"
-					}
-				]
-			});
-			
-			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
 			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("areaSearch"));
 			inputBox_1.setBindContext(dataMapContext_1);
 			inputBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "title");
@@ -730,30 +745,37 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "47px",
-						"left": "289px",
-						"width": "100px",
-						"height": "20px"
+						"top": "30px",
+						"left": "170px",
+						"width": "273px",
+						"height": "30px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "47px",
-						"left": "141px",
-						"width": "49px",
-						"height": "20px"
+						"top": "30px",
+						"left": "83px",
+						"width": "133px",
+						"height": "30px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "47px",
-						"left": "99px",
-						"width": "34px",
-						"height": "20px"
+						"top": "30px",
+						"left": "58px",
+						"width": "93px",
+						"height": "30px"
 					}
 				]
 			});
 			
 			var button_3 = new cpr.controls.Button("searchbtn");
 			button_3.value = "검색";
+			button_3.style.css({
+				"background-color" : "#306DC6",
+				"background-repeat" : "no-repeat",
+				"color" : "#FFFFFF",
+				"font-size" : "15px",
+				"background-image" : "none"
+			});
 			if(typeof onSearchbtnClick == "function") {
 				button_3.addEventListener("click", onSearchbtnClick);
 			}
@@ -761,24 +783,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "47px",
-						"left": "399px",
+						"top": "30px",
+						"left": "455px",
 						"width": "100px",
-						"height": "20px"
+						"height": "30px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "47px",
-						"left": "195px",
+						"top": "30px",
+						"left": "222px",
 						"width": "49px",
-						"height": "20px"
+						"height": "30px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "47px",
-						"left": "136px",
+						"top": "30px",
+						"left": "156px",
 						"width": "34px",
-						"height": "20px"
+						"height": "30px"
 					}
 				]
 			});
@@ -801,6 +823,33 @@
 				"left": "249px",
 				"width": "100px",
 				"height": "20px"
+			});
+			
+			var userDefinedControl_1 = new udc.logo();
+			container.addChild(userDefinedControl_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "10px",
+						"width": "300px",
+						"height": "73px",
+						"left": "calc(50% - 150px)"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "10px",
+						"width": "146px",
+						"height": "73px",
+						"left": "calc(50% - 73px)"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "10px",
+						"width": "103px",
+						"height": "73px",
+						"left": "calc(50% - 51px)"
+					}
+				]
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
