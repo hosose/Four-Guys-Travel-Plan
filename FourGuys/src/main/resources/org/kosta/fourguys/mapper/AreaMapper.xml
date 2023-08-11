@@ -10,7 +10,7 @@ INSERT INTO jeju_area VALUES (#{contentid},#{mapx},#{mapy},#{cat1},#{cat2},#{cat
 	select * from "JEJU_AREA" 
 		<where>
 			<if test="title!=null and title!=''">
-			 "title" like '%' || #{title} || '%'
+			 title like '%' || #{title} || '%'
 			</if>	
 	</where>
 </select>

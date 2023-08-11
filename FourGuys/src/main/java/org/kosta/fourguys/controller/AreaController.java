@@ -18,11 +18,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AreaController {
 	private final AreaService areaService;
-	
+
 	@GetMapping("/findAllArea")
-	public View findAllArea(DataRequest dataRequest, HttpServletRequest request,HttpServletResponse response) {
+	public View findAllArea(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse response) {
 		ParameterGroup search = dataRequest.getParameterGroup("areaSearch");
 		String areaSearch = search.getValue("title");
+		System.out.println(areaSearch);
 		dataRequest.setResponse("jeju", areaService.findAllArea(areaSearch));
 		return new JSONDataView();
 	}
