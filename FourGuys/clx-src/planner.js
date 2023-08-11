@@ -20,7 +20,6 @@ function onBodyLoad(e) {
 		var plannerNoOutput = app.lookup("plannerNo");
 		plannerNoOutput.value = JSON.stringify(returnValue);
 		app.lookup("dayBtnSM").send()
-		
 	});
 }
 
@@ -101,3 +100,5 @@ function onLoginCheckSubmitError(e){
 	alert(message);
 	location.href = "loginForm";
 }
+
+

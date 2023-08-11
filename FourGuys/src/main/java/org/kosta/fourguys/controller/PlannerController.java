@@ -109,9 +109,11 @@ public class PlannerController {
 		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
 		ParameterGroup deletePlanParam = dataRequest.getParameterGroup("createPlanDM");
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
+		String planDate = deletePlanParam.getValue("planDate");
 		String contentId = deletePlanParam.getValue("contentid");
 		PlanVO plan = new PlanVO();
 		plan.setPlannerNo(plannerNo);
+		plan.setPlanDate(Integer.parseInt(planDate));
 		plan.setContentId(Integer.parseInt(contentId));
 		planService.deletePlan(plan);
 		dataRequest.setResponse("selectedPlan", planService.getPlansByDate(plan));
