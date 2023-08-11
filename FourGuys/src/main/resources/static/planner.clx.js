@@ -36,6 +36,7 @@
 				});
 			}
 
+
 			/*
 			 * "검색" 버튼(searchbtn)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -57,11 +58,12 @@
 				}
 			}
 
+
 			/*
-			 * 서브미션에서 submit-success 이벤트 발생 S시 호출.
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onDayBtnSMSubmitSuccess(e) {
+			function onDayBtnSMSubmitSuccess(e){
 				var dayBtnSM = e.control;
 				var grid = app.lookup("grd3");
 				grid.selectRows([0]);
@@ -92,7 +94,6 @@
 				app.lookup("createPlan").send();
 			}
 
-
 			/*
 			 * "저장" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -102,6 +103,17 @@
 				app.lookup("savePlanner").send();
 				alert("저장되었습니다");
 				location.href="/mypage.clx";
+			}
+
+			/*
+			 * "취소" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick2(e){
+				var button = e.control;
+				app.lookup("cancelPlanner").send();
+				alert("취소되었습니다");
+				location.href="selectDestinationForm";
 			};
 			// End - User Script
 			
@@ -226,7 +238,9 @@
 				]
 			});
 			app.register(dataMap_3);
-			var submission_1 = new cpr.protocols.Submission("subSave");
+			var submission_1 = new cpr.protocols.Submission("savePlanner");
+			submission_1.action = "savePlanner";
+			submission_1.addRequestData(dataMap_2);
 			app.register(submission_1);
 			
 			var submission_2 = new cpr.protocols.Submission("areaList");
@@ -268,6 +282,11 @@
 			submission_6.addRequestData(dataMap_2);
 			submission_6.addResponseData(dataSet_3, false);
 			app.register(submission_6);
+			
+			var submission_7 = new cpr.protocols.Submission("cancelPlanner");
+			submission_7.action = "cancelPlanner";
+			submission_7.addRequestData(dataMap_2);
+			app.register(submission_7);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -338,6 +357,9 @@
 			(function(container){
 				var button_1 = new cpr.controls.Button();
 				button_1.value = "저장";
+				if(typeof onButtonClick == "function") {
+					button_1.addEventListener("click", onButtonClick);
+				}
 				container.addChild(button_1, {
 					"colIndex": 0,
 					"rowIndex": 0,
@@ -345,6 +367,9 @@
 				});
 				var button_2 = new cpr.controls.Button();
 				button_2.value = "취소";
+				if(typeof onButtonClick2 == "function") {
+					button_2.addEventListener("click", onButtonClick2);
+				}
 				container.addChild(button_2, {
 					"colIndex": 1,
 					"rowIndex": 0

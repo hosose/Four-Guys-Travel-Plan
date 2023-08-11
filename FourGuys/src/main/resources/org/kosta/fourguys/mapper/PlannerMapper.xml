@@ -19,4 +19,9 @@ UPDATE planner
 SET complete_flag = '완성'
 WHERE planner_no = #{plannerNo}
 </update>
+<update id="cancelPlannerByNo" parameterType="org.kosta.fourguys.vo.PlannerVO">
+UPDATE planner	
+SET complete_flag = '미완성'
+WHERE planner_no = #{plannerNo}
+</update>
 </mapper>

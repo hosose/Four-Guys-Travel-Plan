@@ -26,4 +26,10 @@ public class PlannerServiceImpl implements PlannerService {
 		return plannerMapper.savePlannerByNo(savePlanner);
 
 	}
+
+	@Override
+	public int cancelPlannerByNo(PlannerVO cancelPlanner) {
+		return plannerMapper.cancelPlannerByNo(cancelPlanner);
+	}
+
 }
