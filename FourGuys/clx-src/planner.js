@@ -44,7 +44,22 @@ function onTitleSearchKeydown(e) {
 		Searchbtn.click();
 	}
 }
-
+/*
+ * 그리드에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onGrd2Click(e){
+	var grd2 = e.control;
+	var grid = app.lookup("grd2");
+	var embp = app.lookup("ep1");
+	var mapx = grid.getSelectedRow().getValue("mapx");
+	var mapy = grid.getSelectedRow().getValue("mapy");
+	var title = grid.getSelectedRow().getValue("title");
+	var embp_mapx = embp.setPageProperty("mapx",mapx);
+	var embp_mapy = embp.setPageProperty("mapy",mapy);
+	var embp_title = embp.setPageProperty("title",title);
+	embp.callPageMethod("panTo");
+}
 
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.

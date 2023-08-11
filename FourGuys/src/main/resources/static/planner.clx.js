@@ -57,7 +57,22 @@
 					Searchbtn.click();
 				}
 			}
-
+			/*
+			 * 그리드에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onGrd2Click(e){
+				var grd2 = e.control;
+				var grid = app.lookup("grd2");
+				var embp = app.lookup("ep1");
+				var mapx = grid.getSelectedRow().getValue("mapx");
+				var mapy = grid.getSelectedRow().getValue("mapy");
+				var title = grid.getSelectedRow().getValue("title");
+				var embp_mapx = embp.setPageProperty("mapx",mapx);
+				var embp_mapy = embp.setPageProperty("mapy",mapy);
+				var embp_title = embp.setPageProperty("title",title);
+				embp.callPageMethod("panTo");
+			}
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -271,9 +286,6 @@
 			submission_2.action = "/findAllArea";
 			submission_2.addRequestData(dataMap_1);
 			submission_2.addResponseData(dataSet_1, false);
-			if(typeof onAreaListSubmitSuccess == "function") {
-				submission_2.addEventListener("submit-success", onAreaListSubmitSuccess);
-			}
 			app.register(submission_2);
 			
 			var submission_3 = new cpr.protocols.Submission("loginCheck");
@@ -333,32 +345,42 @@
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
-			var group_1 = new cpr.controls.Container();
-			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_2);
+			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
+			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+			container.addChild(embeddedPage_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"right": "0px",
+						"bottom": "10px",
+						"left": "570px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"right": "0px",
+						"bottom": "10px",
+						"left": "278px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"right": "0px",
+						"bottom": "10px",
+						"left": "195px"
+					}
+				]
+			});
+			
+			var group_1 = new cpr.controls.Container("grp1");
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_1);
 			(function(container){
-				var textArea_1 = new cpr.controls.TextArea("txa2");
-				textArea_1.value = "플래너 제목 :";
-				textArea_1.style.css({
-					"text-align" : "center"
-				});
-				container.addChild(textArea_1, {
-					"top": "0px",
-					"bottom": "0px",
-					"left": "0px",
-					"width": "185px"
-				});
-				var inputBox_1 = new cpr.controls.InputBox("ipb1");
-				container.addChild(inputBox_1, {
-					"top": "0px",
-					"right": "0px",
-					"left": "184px",
-					"height": "22px"
-				});
 				var output_1 = new cpr.controls.Output("plannerNo");
 				output_1.visible = false;
 				output_1.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
@@ -370,10 +392,29 @@
 				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "20px",
-				"left": "20px",
-				"width": "848px",
-				"height": "22px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "20px",
+						"left": "20px",
+						"width": "848px",
+						"height": "22px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "20px",
+						"left": "10px",
+						"width": "414px",
+						"height": "22px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "20px",
+						"left": "7px",
+						"width": "290px",
+						"height": "22px"
+					}
+				]
 			});
 			
 			var group_2 = new cpr.controls.Container();
@@ -410,10 +451,29 @@
 				});
 			})(group_2);
 			container.addChild(group_2, {
-				"top": "14px",
-				"left": "867px",
-				"width": "150px",
-				"height": "33px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "14px",
+						"right": "50px",
+						"width": "150px",
+						"height": "33px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "14px",
+						"right": "24px",
+						"width": "73px",
+						"height": "33px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "14px",
+						"right": "17px",
+						"width": "51px",
+						"height": "33px"
+					}
+				]
 			});
 			
 			var grid_1 = new cpr.controls.Grid("grd2");
@@ -421,11 +481,7 @@
 				"dataSet": app.lookup("jeju"),
 				"columns": [
 					{"width": "25px"},
-					{"width": "100px"},
-					{
-						"width": "100px",
-						"visible": false
-					}
+					{"width": "100px"}
 				],
 				"header": {
 					"rows": [{"height": "24px"}],
@@ -446,15 +502,6 @@
 								cell.targetColumnName = "title";
 								cell.text = "관광지 목록";
 							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 2},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "contentid";
-								cell.text = "contentId";
-							}
 						}
 					]
 				},
@@ -472,16 +519,19 @@
 							"configurator": function(cell){
 								cell.columnName = "title";
 							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 2},
-							"configurator": function(cell){
-								cell.columnName = "contentid";
-							}
 						}
 					]
 				}
 			});
+			if(typeof onGrd2CellClick == "function") {
+				grid_1.addEventListener("cell-click", onGrd2CellClick);
+			}
+			if(typeof onGrd2Click == "function") {
+				grid_1.addEventListener("click", onGrd2Click);
+			}
+			if(typeof onGrd2RowCheck == "function") {
+				grid_1.addEventListener("row-check", onGrd2RowCheck);
+			}
 			if(typeof onGrd2Mousedown == "function") {
 				grid_1.addEventListener("mousedown", onGrd2Mousedown);
 			}
@@ -495,10 +545,29 @@
 				grid_1.addEventListener("row-uncheck", onGrd2RowUncheck);
 			}
 			container.addChild(grid_1, {
-				"top": "73px",
-				"left": "360px",
-				"width": "200px",
-				"height": "680px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"left": "360px",
+						"width": "200px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"left": "176px",
+						"width": "98px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"left": "123px",
+						"width": "68px",
+						"height": "680px"
+					}
+				]
 			});
 			
 			var grid_2 = new cpr.controls.Grid("grd1");
@@ -513,7 +582,7 @@
 							cell.filterable = false;
 							cell.sortable = false;
 							cell.targetColumnName = "title";
-							cell.text = "title";
+							cell.text = "선택 목록";
 						}
 					}]
 				},
@@ -528,15 +597,34 @@
 				}
 			});
 			container.addChild(grid_2, {
-				"top": "73px",
-				"left": "150px",
-				"width": "200px",
-				"height": "680px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"left": "150px",
+						"width": "200px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"left": "73px",
+						"width": "98px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"left": "51px",
+						"width": "68px",
+						"height": "680px"
+					}
+				]
 			});
 			
 			var group_3 = new cpr.controls.Container();
-			var xYLayout_3 = new cpr.controls.layouts.XYLayout();
-			group_3.setLayout(xYLayout_3);
+			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
+			group_3.setLayout(xYLayout_2);
 			(function(container){
 				var grid_3 = new cpr.controls.Grid("grd3");
 				grid_3.init({
@@ -575,36 +663,93 @@
 				});
 			})(group_3);
 			container.addChild(group_3, {
-				"top": "73px",
-				"left": "20px",
-				"width": "120px",
-				"height": "680px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"left": "20px",
+						"width": "120px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"left": "10px",
+						"width": "59px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"left": "7px",
+						"width": "41px",
+						"height": "680px"
+					}
+				]
 			});
 			
-			var textArea_2 = new cpr.controls.TextArea("txa1");
-			textArea_2.value = "제주도 지역 검색";
-			textArea_2.style.css({
+			var textArea_1 = new cpr.controls.TextArea("txa1");
+			textArea_1.value = "제주도 지역 검색";
+			textArea_1.style.css({
 				"text-align" : "center"
 			});
-			container.addChild(textArea_2, {
-				"top": "47px",
-				"left": "20px",
-				"width": "259px",
-				"height": "20px"
+			container.addChild(textArea_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "47px",
+						"left": "20px",
+						"width": "259px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "47px",
+						"left": "10px",
+						"width": "126px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "47px",
+						"left": "7px",
+						"width": "89px",
+						"height": "20px"
+					}
+				]
 			});
 			
-			var inputBox_2 = new cpr.controls.InputBox("titleSearch");
+			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
 			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("areaSearch"));
-			inputBox_2.setBindContext(dataMapContext_1);
-			inputBox_2.bind("value").toDataMap(app.lookup("areaSearch"), "title");
+			inputBox_1.setBindContext(dataMapContext_1);
+			inputBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "title");
 			if(typeof onTitleSearchKeydown == "function") {
-				inputBox_2.addEventListener("keydown", onTitleSearchKeydown);
+				inputBox_1.addEventListener("keydown", onTitleSearchKeydown);
 			}
-			container.addChild(inputBox_2, {
-				"top": "47px",
-				"left": "289px",
-				"width": "100px",
-				"height": "20px"
+			container.addChild(inputBox_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "47px",
+						"left": "289px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "47px",
+						"left": "141px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "47px",
+						"left": "99px",
+						"width": "34px",
+						"height": "20px"
+					}
+				]
 			});
 			
 			var button_3 = new cpr.controls.Button("searchbtn");
@@ -613,10 +758,29 @@
 				button_3.addEventListener("click", onSearchbtnClick);
 			}
 			container.addChild(button_3, {
-				"top": "47px",
-				"left": "399px",
-				"width": "100px",
-				"height": "20px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "47px",
+						"left": "399px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "47px",
+						"left": "195px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "47px",
+						"left": "136px",
+						"width": "34px",
+						"height": "20px"
+					}
+				]
 			});
 			
 			var output_2 = new cpr.controls.Output("planDateOutput");
@@ -637,15 +801,6 @@
 				"left": "249px",
 				"width": "100px",
 				"height": "20px"
-			});
-			
-			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
-			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
-			container.addChild(embeddedPage_1, {
-				"top": "77px",
-				"left": "570px",
-				"width": "447px",
-				"height": "671px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

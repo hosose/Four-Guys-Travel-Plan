@@ -9,7 +9,7 @@
 	<update id="updateMember"
 		parameterType="org.kosta.fourguys.vo.MemberVO">
 		update member set
-		address=#{address},name=#{name},email=#{email},phone=#{phone} where
+		address=#{address},name=#{name},email=#{email},phone=#{phone},password=#{password} where
 		id=#{id}
 	</update>
 	<insert id="registerMember"
