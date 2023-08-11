@@ -9,8 +9,4 @@ public interface PlannerMapper {
 
 	public int findDayByPlannerId(int no);
 
-	public int savePlannerByNo(PlannerVO savePlanner);
-
-	public int cancelPlannerByNo(PlannerVO cancelPlanner);
-
 }
