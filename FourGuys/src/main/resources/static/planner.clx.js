@@ -36,7 +36,6 @@
 				});
 			}
 
-
 			/*
 			 * "검색" 버튼(searchbtn)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -58,12 +57,11 @@
 				}
 			}
 
-
 			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 서브미션에서 submit-success 이벤트 발생 S시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onDayBtnSMSubmitSuccess(e){
+			function onDayBtnSMSubmitSuccess(e) {
 				var dayBtnSM = e.control;
 				var grid = app.lookup("grd3");
 				grid.selectRows([0]);
@@ -228,9 +226,7 @@
 				]
 			});
 			app.register(dataMap_3);
-			var submission_1 = new cpr.protocols.Submission("savePlanner");
-			submission_1.action = "savePlanner";
-			submission_1.addRequestData(dataMap_2);
+			var submission_1 = new cpr.protocols.Submission("subSave");
 			app.register(submission_1);
 			
 			var submission_2 = new cpr.protocols.Submission("areaList");
@@ -342,9 +338,6 @@
 			(function(container){
 				var button_1 = new cpr.controls.Button();
 				button_1.value = "저장";
-				if(typeof onButtonClick == "function") {
-					button_1.addEventListener("click", onButtonClick);
-				}
 				container.addChild(button_1, {
 					"colIndex": 0,
 					"rowIndex": 0,

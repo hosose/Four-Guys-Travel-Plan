@@ -23,7 +23,6 @@ function onBodyLoad(e) {
 	});
 }
 
-
 /*
  * "검색" 버튼(searchbtn)에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -45,12 +44,11 @@ function onTitleSearchKeydown(e) {
 	}
 }
 
-
 /*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 서브미션에서 submit-success 이벤트 발생 S시 호출.
  * 통신이 성공하면 발생합니다.
  */
-function onDayBtnSMSubmitSuccess(e){
+function onDayBtnSMSubmitSuccess(e) {
 	var dayBtnSM = e.control;
 	var grid = app.lookup("grd3");
 	grid.selectRows([0]);
@@ -92,3 +90,4 @@ function onButtonClick(e){
 	alert("저장되었습니다");
 	location.href="/mypage.clx";
 }
+

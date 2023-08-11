@@ -54,9 +54,7 @@
           <cl:datacolumn std:sid="d-column-0f887bcf" name="planDate"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:submission std:sid="submission-2537bb48" id="savePlanner" action="savePlanner">
-        <cl:requestdata dataid="plannerNoDM"/>
-      </cl:submission>
+      <cl:submission std:sid="submission-2537bb48" id="subSave"/>
       <cl:submission std:sid="submission-67bd9f31" id="areaList" method="get" action="/findAllArea">
         <cl:listener std:sid="listener-384844e6" name="submit-success" handler="onAreaListSubmitSuccess"/>
         <cl:requestdata dataid="areaSearch"/>
@@ -100,7 +98,6 @@
     <cl:group std:sid="group-ec15f56b">
       <cl:xylayoutdata std:sid="xyl-data-a2607882" top="14px" left="867px" width="150px" height="33px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:button std:sid="button-6f2c6819" value="저장">
-        <cl:listener std:sid="listener-17146623" name="click" handler="onButtonClick"/>
         <cl:formdata std:sid="f-data-74f25ba0" valign="TOP" row="0" col="0"/>
       </cl:button>
       <cl:button std:sid="button-3bf9c536" value="취소">

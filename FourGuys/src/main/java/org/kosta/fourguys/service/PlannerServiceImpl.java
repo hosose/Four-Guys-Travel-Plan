@@ -26,5 +26,4 @@ public class PlannerServiceImpl implements PlannerService {
 		return plannerMapper.savePlannerByNo(savePlanner);
 
 	}
-
 }
