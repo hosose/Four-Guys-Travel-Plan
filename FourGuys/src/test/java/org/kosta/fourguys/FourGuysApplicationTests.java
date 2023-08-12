@@ -9,12 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class FourGuysApplicationTests {
 	@Autowired
 	MemberService memberService;
+
 	@Test
 	void contextLoads() {
 	}
-	@Test
-	void login() {
-		System.out.println(memberService.Login("hosose", "a"));
-		memberService.Login("hosose", "a");
-	}
+
 }

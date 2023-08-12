@@ -19,5 +19,5 @@ exports.getText = function(){
  */
 function onLogoClick(e){
 	var logo = e.control;
-	
+	location.href="/"
 }

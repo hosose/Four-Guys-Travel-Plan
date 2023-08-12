@@ -4,16 +4,16 @@
     <title>login</title>
     <screen std:sid="screen-7484e0b2" id="main" name="main" width="1024px" height="768px"/>
     <cl:model std:sid="model-e3259305">
-      <cl:datamap std:sid="d-map-087d1b50" id="dm_login">
+      <cl:datamap std:sid="d-map-b7620a9f" id="loginParam">
         <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-4d8ce689" name="user_id"/>
-          <cl:datacolumn std:sid="d-column-6fc7363b" name="user_pass"/>
+          <cl:datacolumn std:sid="d-column-dfda06df" name="id"/>
+          <cl:datacolumn std:sid="d-column-964f78c5" name="password"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:submission std:sid="submission-5b413b26" id="sub_login" action="login.do">
-        <cl:listener std:sid="listener-79e90fc9" name="submit-success" handler="onSub_loginSubmitSuccess"/>
-        <cl:listener std:sid="listener-9aa59957" name="submit-error" handler="onSub_loginSubmitError"/>
-        <cl:requestdata dataid="dm_login"/>
+      <cl:submission std:sid="submission-773dab9a" id="subLogin" async="false" action="login">
+        <cl:listener std:sid="listener-311a1483" name="submit-success" handler="onSubLoginSubmitSuccess"/>
+        <cl:listener std:sid="listener-db56b246" name="submit-error" handler="onSubLoginSubmitError"/>
+        <cl:requestdata dataid="loginParam"/>
       </cl:submission>
     </cl:model>
     <cl:appspec title="로그인"/>
@@ -22,33 +22,31 @@
     <cl:img std:sid="image-fa65b1d5" src="images/harubang3.jpg">
       <cl:xylayoutdata std:sid="xyl-data-b7a029ea" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
     </cl:img>
-    <cl:group std:sid="group-0e829648" style="background-color:tarnsparent; border-right-style:solid; border-bottom-color:#ffffff; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-right-color:#ffffff; border-bottom-style:solid; border-top-style:solid;" class="login-box">
+    <cl:group std:sid="group-0e829648" id="container" style="background-color:tarnsparent; border-right-style:solid; border-bottom-color:#ffffff; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-right-color:#ffffff; border-bottom-style:solid; border-top-style:solid;" class="login-box">
       <cl:xylayoutdata std:sid="xyl-data-8e006681" width="350px" height="300px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
-      <cl:inputbox std:sid="i-box-a2a037e2" id="ipb1" tooltip="ID를 입력하세요" placeholder="ID">
-        <cl:datamapbind property="value" datacontrolid="dm_login" columnname="user_id"/>
-        <cl:formdata std:sid="f-data-04d0f0b0" valign="FILL" row="1" col="0"/>
+      <cl:inputbox std:sid="i-box-a2a037e2" id="idInput" tooltip="ID를 입력하세요" placeholder="ID">
+        <cl:datamapbind property="value" datacontrolid="loginParam" columnname="id"/>
+        <cl:formdata std:sid="f-data-968ad518" valign="FILL" row="2" col="0"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-e1d92f20" id="ipb2" tooltip="비밀번호를 입력하세요" secret="true" placeholder="PW">
-        <cl:listener std:sid="listener-2801a25b" name="keydown" handler="onIpb2Keydown"/>
-        <cl:datamapbind property="value" datacontrolid="dm_login" columnname="user_pass"/>
-        <cl:formdata std:sid="f-data-c304d72b" valign="FILL" row="2" col="0" rowspan="1" colspan="1"/>
+      <cl:inputbox std:sid="i-box-e1d92f20" id="passwordInput" tooltip="비밀번호를 입력하세요" secret="true" placeholder="PW">
+        <cl:listener std:sid="listener-d213df78" name="keydown" handler="onPasswordInputKeydown"/>
+        <cl:datamapbind property="value" datacontrolid="loginParam" columnname="password"/>
+        <cl:formdata std:sid="f-data-b7757da5" valign="FILL" row="3" col="0"/>
       </cl:inputbox>
-      <cl:checkbox std:sid="c-box-a54b7192" id="cbx1" style="text-align:left;" value="" text="ID 저장">
-        <cl:formdata std:sid="f-data-e5f71f85" row="3" col="0" rowspan="1" colspan="1"/>
-      </cl:checkbox>
       <cl:img std:sid="image-8d2d1ab7" src="theme/images/logo.png">
         <cl:formdata std:sid="f-data-fa028be4" row="0" col="0" rowspan="1" colspan="1"/>
       </cl:img>
       <cl:button std:sid="button-b76d85c5" id="btnLogin" style="background-color:#E4157C;" class="login" value="LOGIN">
+        <cl:listener std:sid="listener-1cb0b76f" name="click" handler="onBtnLoginClick"/>
         <cl:formdata std:sid="f-data-454e0a6e" row="4" col="0"/>
       </cl:button>
       <cl:button std:sid="button-ce569052" id="register" style="background-color:#E4157C;" class="register" value="회원가입">
-        <cl:listener std:sid="listener-d1e0dd5a" name="click" handler="onRegisterClick"/>
+        <cl:listener std:sid="listener-71f7cd62" name="click" handler="onRegisterClick2"/>
         <cl:formdata std:sid="f-data-5d67937d" row="5" col="0"/>
       </cl:button>
       <cl:formlayout std:sid="f-layout-2b37edc8" top-margin="50" right-margin="50" bottom-margin="50" left-margin="50">
-        <cl:rows length="40" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
-        <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="50" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="20" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
         <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000"/>

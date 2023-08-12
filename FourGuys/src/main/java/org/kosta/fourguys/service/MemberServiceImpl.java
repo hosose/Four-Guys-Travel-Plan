@@ -8,23 +8,35 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 	private final MemberMapper memberMapper;
+
 	@Override
 	public int registerMember(MemberVO memberVO) {
 		return memberMapper.registerMember(memberVO);
 	}
+
 	@Override
 	public int updateMember(MemberVO memberVO) {
 		return memberMapper.updateMember(memberVO);
 	}
+
 	@Override
-	public MemberVO Login(String id, String password) {
-		return memberMapper.Login(id, password);
+	public MemberVO login(MemberVO memberVO) {
+		return memberMapper.login(memberVO);
 	}
+
 	@Override
-	public int deleteMember(String id) {
-		return memberMapper.deleteMember(id);
+
+
+	public int checkDuplicateId(String id) {
+
+		return memberMapper.checkDuplicateId(id);
 	}
-	
+
+	public int deleteMember(MemberVO memberVO) {
+		return memberMapper.deleteMember(memberVO);
+
+
+	}
 }

@@ -11,22 +11,17 @@
 		onCreate: function(/* cpr.core.AppInstance */ app, exports) {
 			var linker = {};
 			// Start - User Script
-
-			// 공통 Util 생성
-			//var comUtil = createComUtil(app);
-
-
 			/*
-			 * "확인" 버튼에서 click 이벤트 발생 시 호출.
+			 * "LOGIN" 버튼(btnLogin)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick(/* cpr.events.CMouseEvent */ e){
-				/** 
-				 * @type cpr.controls.Button
-				 */
-				var button = e.control;
-				
-				var subLogin = app.lookup("sub_login");
+			function onBtnLoginClick(e) {
+				var btnLogin = e.control;
+				memberLogin();
+			}
+
+			function memberLogin() {
+				var subLogin = app.lookup("subLogin");
 				subLogin.send();
 			}
 
@@ -34,25 +29,11 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSub_loginSubmitSuccess(/* cpr.events.CSubmissionEvent */ e){
-				/** 
-				 * @type cpr.protocols.Submission
-				 */
-				var sub_login = e.control;
-				
-				var appId = sub_login.getMetadata("uri");
-				var msg = sub_login.getMetadata("message");
-				if(msg != null) {
-					alert(msg);
-				}
-
-				if (appId != null) {
-					// 화면이동
-					cpr.core.App.load(appId, function(newapp) {
-						app.close();
-						newapp.createNewInstance().run();
-					});
-					return;
+			function onSubLoginSubmitSuccess(e) {
+				var subLogin = e.control;
+				var uri = subLogin.getMetadata("uri");
+				if (uri != null) {
+				location.href=uri
 				}
 			}
 
@@ -60,30 +41,29 @@
 			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
 			 * 통신 중 문제가 생기면 발생합니다.
 			 */
-			function onSub_loginSubmitError(/* cpr.events.CSubmissionEvent */ e){
-				/** 
-				 * @type cpr.protocols.Submission
-				 */
-				var sub_login = e.control;
-				
-				var msg = sub_login.getMetadata("message");
-				if(msg != null) {
+			function onSubLoginSubmitError(e) {
+				var subLogin = e.control;
+				var msg = subLogin.getMetadata("message");
+				if (msg != null) {
 					alert(msg);
 				}
+				app.lookup("idInput").value = "";
+				app.lookup("passwordInput").value = "";
+				app.lookup("idInput").focus();
 			}
 
 			/*
 			 * 인풋 박스에서 keydown 이벤트 발생 시 호출.
-			 * 사용자가 키를 누를 때 발생하는 이벤트.
+			 * 사용자가 키를 누를 때 발생하는 이벤트. 키코드 관련 상수는 {@link cpr.events.KeyCode}에서 참조할 수 있습니다.
 			 */
-			function onIpb2Keydown(/* cpr.events.CKeyboardEvent */ e){
-				/** 
+			function onPasswordInputKeydown(e){
+				/**
 				 * @type cpr.controls.InputBox
 				 */
-				var ipb2 = e.control;
-				
-				if(e.keyCode == cpr.events.KeyCode.ENTER) {
-					app.lookup("btnLogin").click();
+				var passwordInput = e.control;
+				if(e.keyCode == cpr.events.KeyCode.ENTER){
+					var loginBtn = app.lookup("btnLogin");
+					loginBtn.click();	
 				}
 			}
 
@@ -91,29 +71,31 @@
 			 * "회원가입" 버튼(register)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onRegisterClick(e){
+			function onRegisterClick2(e){
 				var register = e.control;
-				location.href="/registerForm"
+					location.href = "/registerForm";
+				
 			};
 			// End - User Script
 			
 			// Header
-			var dataMap_1 = new cpr.data.DataMap("dm_login");
+			var dataMap_1 = new cpr.data.DataMap("loginParam");
 			dataMap_1.parseData({
 				"columns" : [
-					{"name": "user_id"},
-					{"name": "user_pass"}
+					{"name": "id"},
+					{"name": "password"}
 				]
 			});
 			app.register(dataMap_1);
-			var submission_1 = new cpr.protocols.Submission("sub_login");
-			submission_1.action = "login.do";
+			var submission_1 = new cpr.protocols.Submission("subLogin");
+			submission_1.async = false;
+			submission_1.action = "login";
 			submission_1.addRequestData(dataMap_1);
-			if(typeof onSub_loginSubmitSuccess == "function") {
-				submission_1.addEventListener("submit-success", onSub_loginSubmitSuccess);
+			if(typeof onSubLoginSubmitSuccess == "function") {
+				submission_1.addEventListener("submit-success", onSubLoginSubmitSuccess);
 			}
-			if(typeof onSub_loginSubmitError == "function") {
-				submission_1.addEventListener("submit-error", onSub_loginSubmitError);
+			if(typeof onSubLoginSubmitError == "function") {
+				submission_1.addEventListener("submit-error", onSubLoginSubmitError);
 			}
 			app.register(submission_1);
 			app.supportMedia("all", "main");
@@ -142,7 +124,7 @@
 				"left": "0px"
 			});
 			
-			var group_1 = new cpr.controls.Container();
+			var group_1 = new cpr.controls.Container("container");
 			group_1.style.setClasses(["login-box"]);
 			group_1.style.css({
 				"background-color" : "tarnsparent",
@@ -161,44 +143,30 @@
 			formLayout_1.bottomMargin = "50";
 			formLayout_1.leftMargin = "50";
 			formLayout_1.setColumns(["1fr"]);
-			formLayout_1.setRows(["40px", "30px", "30px", "30px", "30px", "30px"]);
+			formLayout_1.setRows(["50px", "20px", "30px", "30px", "30px", "30px"]);
 			group_1.setLayout(formLayout_1);
 			(function(container){
-				var inputBox_1 = new cpr.controls.InputBox("ipb1");
+				var inputBox_1 = new cpr.controls.InputBox("idInput");
 				inputBox_1.tooltip = "ID를 입력하세요";
 				inputBox_1.placeholder = "ID";
-				inputBox_1.bind("value").toDataMap(app.lookup("dm_login"), "user_id");
+				inputBox_1.bind("value").toDataMap(app.lookup("loginParam"), "id");
 				container.addChild(inputBox_1, {
 					"colIndex": 0,
-					"rowIndex": 1,
+					"rowIndex": 2,
 					"verticalAlign": "fill"
 				});
-				var inputBox_2 = new cpr.controls.InputBox("ipb2");
+				var inputBox_2 = new cpr.controls.InputBox("passwordInput");
 				inputBox_2.tooltip = "비밀번호를 입력하세요";
 				inputBox_2.secret = true;
 				inputBox_2.placeholder = "PW";
-				inputBox_2.bind("value").toDataMap(app.lookup("dm_login"), "user_pass");
-				if(typeof onIpb2Keydown == "function") {
-					inputBox_2.addEventListener("keydown", onIpb2Keydown);
+				inputBox_2.bind("value").toDataMap(app.lookup("loginParam"), "password");
+				if(typeof onPasswordInputKeydown == "function") {
+					inputBox_2.addEventListener("keydown", onPasswordInputKeydown);
 				}
 				container.addChild(inputBox_2, {
 					"colIndex": 0,
-					"rowIndex": 2,
-					"colSpan": 1,
-					"rowSpan": 1,
-					"verticalAlign": "fill"
-				});
-				var checkBox_1 = new cpr.controls.CheckBox("cbx1");
-				checkBox_1.value = "";
-				checkBox_1.text = "ID 저장";
-				checkBox_1.style.css({
-					"text-align" : "left"
-				});
-				container.addChild(checkBox_1, {
-					"colIndex": 0,
 					"rowIndex": 3,
-					"colSpan": 1,
-					"rowSpan": 1
+					"verticalAlign": "fill"
 				});
 				var image_2 = new cpr.controls.Image();
 				image_2.src = "theme/images/logo.png";
@@ -214,6 +182,9 @@
 				button_1.style.css({
 					"background-color" : "#E4157C"
 				});
+				if(typeof onBtnLoginClick == "function") {
+					button_1.addEventListener("click", onBtnLoginClick);
+				}
 				container.addChild(button_1, {
 					"colIndex": 0,
 					"rowIndex": 4
@@ -224,8 +195,8 @@
 				button_2.style.css({
 					"background-color" : "#E4157C"
 				});
-				if(typeof onRegisterClick == "function") {
-					button_2.addEventListener("click", onRegisterClick);
+				if(typeof onRegisterClick2 == "function") {
+					button_2.addEventListener("click", onRegisterClick2);
 				}
 				container.addChild(button_2, {
 					"colIndex": 0,
