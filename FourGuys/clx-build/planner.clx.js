@@ -17,6 +17,120 @@
 			 *
 			 * @author iedl9
 			 ************************************************/
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			function onBodyLoad(e) {
+				app.lookup("loginCheck").send();
+				app.lookup("searchbtn").click();
+				app.openDialog("select_date_title", {
+					width: 600,
+					height: 450
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {});
+				}).then(function(returnValue) {
+					var plannerNoOutput = app.lookup("plannerNo");
+					plannerNoOutput.value = JSON.stringify(returnValue);
+					app.lookup("dayBtnSM").send()
+				});
+			}
+
+
+			/*
+			 * "검색" 버튼(searchbtn)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onSearchbtnClick(e) {
+				var searchbtn = e.control;
+				app.lookup("areaList").send();
+			}
+
+			/*
+			 * 인풋 박스에서 keydown 이벤트 발생 시 호출.
+			 * 사용자가 키를 누를 때 발생하는 이벤트. 키코드 관련 상수는 {@link cpr.events.KeyCode}에서 참조할 수 있습니다.
+			 */
+			function onTitleSearchKeydown(e) {
+				var titleSearch = e.control;
+				if (e.keyCode == cpr.events.KeyCode.ENTER) {
+					var Searchbtn = app.lookup("searchbtn");
+					Searchbtn.click();
+				}
+			}
+			/*
+			 * 그리드에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onGrd2Click(e){
+				var grd2 = e.control;
+				var grid = app.lookup("grd2");
+				var embp = app.lookup("ep1");
+				var mapx = grid.getSelectedRow().getValue("mapx");
+				var mapy = grid.getSelectedRow().getValue("mapy");
+				var title = grid.getSelectedRow().getValue("title");
+				var embp_mapx = embp.setPageProperty("mapx",mapx);
+				var embp_mapy = embp.setPageProperty("mapy",mapy);
+				var embp_title = embp.setPageProperty("title",title);
+				embp.callPageMethod("panTo");
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onDayBtnSMSubmitSuccess(e){
+				var dayBtnSM = e.control;
+				var grid = app.lookup("grd3");
+				grid.selectRows([0]);
+				app.lookup("planDateOutput").value=1;
+			}
+
+			/*
+			 * 그리드에서 cell-click 이벤트 발생 시 호출.
+			 * Grid의 Cell 클릭시 발생하는 이벤트.
+			 */
+			function onGrd3CellClick(e){
+				var grd3 = e.control;
+				var grid = app.lookup("grd3");
+				var planDate = grid.getSelectedRow().getValue("planDate");
+				app.lookup("planDateOutput").value=planDate;
+				app.lookup("selectDate").send();
+			}
+
+			/*
+			 * 그리드에서 row-check 이벤트 발생 시 호출.
+			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 되었을 때 발생하는 이벤트.
+			 */
+			function onGrd2RowCheck(e){
+				var grd2 = e.control;
+				var grid = app.lookup("grd2");
+				var contentId = grid.getSelectedRow().getValue("contentid");
+				app.lookup("contentIdOutput").value=contentId;
+				app.lookup("createPlan").send();
+			}
+
+			/*
+			 * 그리드에서 row-uncheck 이벤트 발생 시 호출.
+			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 해제되었을 때 발생하는 이벤트.
+			 */
+			function onGrd2RowUncheck(e) {
+				var grd2 = e.control;
+				var contentId = grd2.getSelectedRow().getValue("contentid");
+				app.lookup("contentIdOutput").value = contentId;
+				app.lookup("deletePlan").send();
+			}
+
+			/*
+			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
+			 * 통신 중 문제가 생기면 발생합니다.
+			 */
+			function onLoginCheckSubmitError(e){
+				var loginCheck = e.control;
+				var message = loginCheck.getMetadata("message");
+				alert(message);
+				location.href = "loginForm";
+			}
+
 
 			/*
 			 * "저장" 버튼에서 click 이벤트 발생 시 호출.
@@ -24,11 +138,201 @@
 			 */
 			function onButtonClick(e){
 				var button = e.control;
+				app.lookup("savePlanner").send();
+				alert("저장되었습니다");
+				location.href="/mypage.clx";
+			}
 
+			/*
+			 * "취소" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick2(e){
+				var button = e.control;
+				app.lookup("cancelPlanner").send();
+				alert("취소되었습니다");
+				location.href="selectDestinationForm";
 			};
 			// End - User Script
 			
 			// Header
+			var dataSet_1 = new cpr.data.DataSet("jeju");
+			dataSet_1.parseData({
+				"columns" : [
+					{
+						"name": "contentid",
+						"dataType": "string"
+					},
+					{
+						"name": "mapx",
+						"dataType": "string"
+					},
+					{
+						"name": "mapy",
+						"dataType": "string"
+					},
+					{
+						"name": "title",
+						"dataType": "string"
+					},
+					{
+						"name": "tel",
+						"dataType": "string"
+					},
+					{
+						"name": "firstimage",
+						"dataType": "string"
+					},
+					{
+						"name": "addr2",
+						"dataType": "string"
+					},
+					{
+						"name": "addr1",
+						"dataType": "string"
+					},
+					{
+						"name": "cat1",
+						"dataType": "string"
+					},
+					{
+						"name": "cat2",
+						"dataType": "string"
+					},
+					{
+						"name": "cat3",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataSet_1);
+			
+			var dataSet_2 = new cpr.data.DataSet("planDate");
+			dataSet_2.parseData({
+				"columns" : [
+					{
+						"name": "planDate",
+						"dataType": "string"
+					},
+					{
+						"name": "plannerNo",
+						"dataType": "string"
+					},
+					{
+						"name": "planNo",
+						"dataType": "string"
+					},
+					{
+						"name": "contentId",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataSet_2);
+			
+			var dataSet_3 = new cpr.data.DataSet("selectedPlan");
+			dataSet_3.parseData({
+				"columns" : [
+					{
+						"name": "planDate",
+						"dataType": "string"
+					},
+					{
+						"name": "plannerNo",
+						"dataType": "string"
+					},
+					{
+						"name": "planNo",
+						"dataType": "string"
+					},
+					{
+						"name": "contentId",
+						"dataType": "string"
+					},
+					{"name": "title"}
+				]
+			});
+			app.register(dataSet_3);
+			var dataMap_1 = new cpr.data.DataMap("areaSearch");
+			dataMap_1.parseData({
+				"columns" : [
+					{"name": "title"},
+					{"name": "contentId"}
+				]
+			});
+			app.register(dataMap_1);
+			
+			var dataMap_2 = new cpr.data.DataMap("plannerNoDM");
+			dataMap_2.parseData({
+				"columns" : [{"name": "plannerNo"}]
+			});
+			app.register(dataMap_2);
+			
+			var dataMap_3 = new cpr.data.DataMap("createPlanDM");
+			dataMap_3.parseData({
+				"columns" : [
+					{"name": "contentid"},
+					{"name": "planDate"}
+				]
+			});
+			app.register(dataMap_3);
+			var submission_1 = new cpr.protocols.Submission("savePlanner");
+			submission_1.action = "savePlanner";
+			submission_1.addRequestData(dataMap_2);
+			app.register(submission_1);
+			
+			var submission_2 = new cpr.protocols.Submission("areaList");
+			submission_2.method = "get";
+			submission_2.action = "/findAllArea";
+			submission_2.addRequestData(dataMap_1);
+			submission_2.addResponseData(dataSet_1, false);
+			app.register(submission_2);
+			
+			var submission_3 = new cpr.protocols.Submission("loginCheck");
+			submission_3.method = "get";
+			submission_3.action = "loginCheck";
+			if(typeof onLoginCheckSubmitError == "function") {
+				submission_3.addEventListener("submit-error", onLoginCheckSubmitError);
+			}
+			app.register(submission_3);
+			
+			var submission_4 = new cpr.protocols.Submission("dayBtnSM");
+			submission_4.method = "get";
+			submission_4.action = "getDay";
+			submission_4.addRequestData(dataMap_2);
+			submission_4.addResponseData(dataSet_2, false);
+			if(typeof onDayBtnSMSubmitSuccess == "function") {
+				submission_4.addEventListener("submit-success", onDayBtnSMSubmitSuccess);
+			}
+			app.register(submission_4);
+			
+			var submission_5 = new cpr.protocols.Submission("createPlan");
+			submission_5.action = "createPlan";
+			submission_5.addRequestData(dataMap_2);
+			submission_5.addRequestData(dataMap_3);
+			submission_5.addResponseData(dataSet_3, false);
+			app.register(submission_5);
+			
+			var submission_6 = new cpr.protocols.Submission("selectDate");
+			submission_6.method = "get";
+			submission_6.action = "selectPlansByDate";
+			submission_6.addRequestData(dataMap_3);
+			submission_6.addRequestData(dataMap_2);
+			submission_6.addResponseData(dataSet_3, false);
+			app.register(submission_6);
+			
+			var submission_7 = new cpr.protocols.Submission("deletePlan");
+			submission_7.method = "delete";
+			submission_7.action = "deletePlan";
+			submission_7.addRequestData(dataMap_2);
+			submission_7.addRequestData(dataMap_3);
+			submission_7.addResponseData(dataSet_3, false);
+			app.register(submission_7);
+			
+			var submission_8 = new cpr.protocols.Submission("cancelPlanner");
+			submission_8.action = "cancelPlanner";
+			submission_8.addRequestData(dataMap_2);
+			app.register(submission_8);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -36,321 +340,520 @@
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
+				"background-image" : "none",
 				"width" : "100%",
 				"height" : "100%"
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
-			var group_1 = new cpr.controls.Container();
-			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_2);
-			(function(container){
-				var group_2 = new cpr.controls.Container();
-				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
-				group_2.setLayout(xYLayout_3);
-				(function(container){
-					var button_1 = new cpr.controls.Button("save");
-					button_1.value = "저장";
-					button_1.style.css({
-						"color" : "#35B3A2"
-					});
-					if(typeof onButtonClick == "function") {
-						button_1.addEventListener("click", onButtonClick);
+			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
+			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+			container.addChild(embeddedPage_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"right": "0px",
+						"bottom": "10px",
+						"left": "570px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"right": "0px",
+						"bottom": "10px",
+						"left": "278px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"right": "0px",
+						"bottom": "10px",
+						"left": "195px"
 					}
-					container.addChild(button_1, {
-						"top": "5px",
-						"left": "329px",
-						"width": "100px",
-						"height": "20px"
-					});
-					var button_2 = new cpr.controls.Button();
-					button_2.value = "닫기";
-					button_2.style.css({
-						"color" : "#35B3A2"
-					});
-					container.addChild(button_2, {
-						"top": "5px",
-						"left": "428px",
-						"width": "100px",
-						"height": "20px"
-					});
-					var image_1 = new cpr.controls.Image();
-					image_1.src = "images/jejuphoto.png";
-					container.addChild(image_1, {
-						"top": "24px",
-						"left": "4px",
-						"width": "524px",
-						"height": "690px"
-					});
-				})(group_2);
-				container.addChild(group_2, {
-					"top": "3px",
-					"right": "8px",
-					"width": "530px",
-					"height": "720px"
-				});
-				var group_3 = new cpr.controls.Container();
-				group_3.style.css({
-					"color" : "#35B3A2"
-				});
-				var formLayout_1 = new cpr.controls.layouts.FormLayout();
-				formLayout_1.scrollable = true;
-				formLayout_1.topMargin = "5px";
-				formLayout_1.rightMargin = "5px";
-				formLayout_1.bottomMargin = "5px";
-				formLayout_1.leftMargin = "5px";
-				formLayout_1.horizontalSpacing = "25px";
-				formLayout_1.verticalSpacing = "25px";
-				formLayout_1.setColumns(["1fr"]);
-				formLayout_1.setRows(["25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "1fr"]);
-				group_3.setLayout(formLayout_1);
-				(function(container){
-					var output_1 = new cpr.controls.Output();
-					output_1.value = "";
-					container.addChild(output_1, {
-						"colIndex": 0,
-						"rowIndex": 0
-					});
-					var output_2 = new cpr.controls.Output();
-					output_2.value = "Output";
-					container.addChild(output_2, {
-						"colIndex": 0,
-						"rowIndex": 1
-					});
-					var output_3 = new cpr.controls.Output();
-					output_3.value = "Output";
-					container.addChild(output_3, {
-						"colIndex": 0,
-						"rowIndex": 2
-					});
-					var output_4 = new cpr.controls.Output();
-					output_4.value = "Output";
-					container.addChild(output_4, {
-						"colIndex": 0,
-						"rowIndex": 3
-					});
-					var output_5 = new cpr.controls.Output();
-					output_5.value = "Output";
-					container.addChild(output_5, {
-						"colIndex": 0,
-						"rowIndex": 4
-					});
-					var output_6 = new cpr.controls.Output();
-					output_6.value = "Output";
-					container.addChild(output_6, {
-						"colIndex": 0,
-						"rowIndex": 5
-					});
-					var output_7 = new cpr.controls.Output();
-					output_7.value = "Output";
-					container.addChild(output_7, {
-						"colIndex": 0,
-						"rowIndex": 6
-					});
-					var output_8 = new cpr.controls.Output();
-					output_8.value = "Output";
-					container.addChild(output_8, {
-						"colIndex": 0,
-						"rowIndex": 7
-					});
-					var output_9 = new cpr.controls.Output();
-					output_9.value = "Output";
-					container.addChild(output_9, {
-						"colIndex": 0,
-						"rowIndex": 8
-					});
-					var output_10 = new cpr.controls.Output();
-					output_10.value = "Output";
-					container.addChild(output_10, {
-						"colIndex": 0,
-						"rowIndex": 9
-					});
-					var output_11 = new cpr.controls.Output();
-					output_11.value = "Output";
-					container.addChild(output_11, {
-						"colIndex": 0,
-						"rowIndex": 10
-					});
-				})(group_3);
-				container.addChild(group_3, {
-					"top": "41px",
-					"left": "235px",
-					"width": "252px",
-					"height": "683px"
-				});
-				var group_4 = new cpr.controls.Container();
-				var formLayout_2 = new cpr.controls.layouts.FormLayout();
-				formLayout_2.scrollable = true;
-				formLayout_2.topMargin = "5px";
-				formLayout_2.rightMargin = "5px";
-				formLayout_2.bottomMargin = "5px";
-				formLayout_2.leftMargin = "5px";
-				formLayout_2.horizontalSpacing = "25px";
-				formLayout_2.verticalSpacing = "25px";
-				formLayout_2.setColumns(["150px", "1fr"]);
-				formLayout_2.setRows(["1fr"]);
-				group_4.setLayout(formLayout_2);
-				(function(container){
-					var textArea_1 = new cpr.controls.TextArea("txa2");
-					textArea_1.value = "플래너 제목 :";
-					textArea_1.style.css({
-						"text-align" : "center"
-					});
-					container.addChild(textArea_1, {
-						"colIndex": 0,
-						"rowIndex": 0
-					});
-					var textArea_2 = new cpr.controls.TextArea("txa3");
-					container.addChild(textArea_2, {
-						"colIndex": 1,
-						"rowIndex": 0
-					});
-				})(group_4);
-				container.addChild(group_4, {
-					"top": "3px",
-					"left": "1px",
-					"width": "486px",
-					"height": "39px"
-				});
-				var group_5 = new cpr.controls.Container();
-				group_5.style.css({
-					"color" : "#7CDBE4"
-				});
-				var formLayout_3 = new cpr.controls.layouts.FormLayout();
-				formLayout_3.scrollable = true;
-				formLayout_3.topMargin = "5px";
-				formLayout_3.rightMargin = "5px";
-				formLayout_3.bottomMargin = "5px";
-				formLayout_3.leftMargin = "5px";
-				formLayout_3.horizontalSpacing = "25px";
-				formLayout_3.verticalSpacing = "25px";
-				formLayout_3.setColumns(["100px", "1fr"]);
-				formLayout_3.setRows(["25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "1fr"]);
-				group_5.setLayout(formLayout_3);
-				(function(container){
-					var textArea_3 = new cpr.controls.TextArea("txa1");
-					textArea_3.value = "일정";
-					textArea_3.style.css({
-						"text-align" : "center"
-					});
-					container.addChild(textArea_3, {
-						"colIndex": 0,
-						"rowIndex": 0
-					});
-					var button_3 = new cpr.controls.Button();
-					button_3.value = "day1";
-					container.addChild(button_3, {
-						"colIndex": 0,
-						"rowIndex": 1
-					});
-					var button_4 = new cpr.controls.Button();
-					button_4.value = "day2";
-					container.addChild(button_4, {
-						"colIndex": 0,
-						"rowIndex": 2
-					});
-					var button_5 = new cpr.controls.Button();
-					button_5.value = "day3";
-					container.addChild(button_5, {
-						"colIndex": 0,
-						"rowIndex": 3
-					});
-					var output_12 = new cpr.controls.Output();
-					output_12.value = "Output";
-					container.addChild(output_12, {
-						"colIndex": 1,
-						"rowIndex": 3
-					});
-					var output_13 = new cpr.controls.Output();
-					output_13.value = "Output";
-					container.addChild(output_13, {
-						"colIndex": 1,
-						"rowIndex": 1
-					});
-					var output_14 = new cpr.controls.Output();
-					output_14.value = "Output";
-					container.addChild(output_14, {
-						"colIndex": 1,
-						"rowIndex": 2
-					});
-					var output_15 = new cpr.controls.Output();
-					output_15.value = "Output";
-					container.addChild(output_15, {
-						"colIndex": 1,
-						"rowIndex": 4
-					});
-					var output_16 = new cpr.controls.Output();
-					output_16.value = "Output";
-					container.addChild(output_16, {
-						"colIndex": 1,
-						"rowIndex": 5
-					});
-					var output_17 = new cpr.controls.Output();
-					output_17.value = "Output";
-					container.addChild(output_17, {
-						"colIndex": 1,
-						"rowIndex": 7
-					});
-					var output_18 = new cpr.controls.Output();
-					output_18.value = "Output";
-					container.addChild(output_18, {
-						"colIndex": 1,
-						"rowIndex": 10
-					});
-					var output_19 = new cpr.controls.Output();
-					output_19.value = "Output";
-					container.addChild(output_19, {
-						"colIndex": 1,
-						"rowIndex": 11
-					});
-					var output_20 = new cpr.controls.Output();
-					output_20.value = "Output";
-					container.addChild(output_20, {
-						"colIndex": 1,
-						"rowIndex": 9
-					});
-					var output_21 = new cpr.controls.Output();
-					output_21.value = "Output";
-					container.addChild(output_21, {
-						"colIndex": 1,
-						"rowIndex": 8
-					});
-					var output_22 = new cpr.controls.Output();
-					output_22.value = "Output";
-					container.addChild(output_22, {
-						"colIndex": 1,
-						"rowIndex": 6
-					});
-					var output_23 = new cpr.controls.Output();
-					output_23.value = "Output";
-					container.addChild(output_23, {
-						"colIndex": 1,
-						"rowIndex": 12
-					});
-					var output_24 = new cpr.controls.Output();
-					output_24.value = "Output";
-					container.addChild(output_24, {
-						"colIndex": 1,
-						"rowIndex": 13
-					});
-				})(group_5);
-				container.addChild(group_5, {
-					"top": "52px",
-					"left": "7px",
-					"width": "229px",
-					"height": "671px"
+				]
+			});
+			
+			var group_1 = new cpr.controls.Container("grp1");
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_1);
+			(function(container){
+				var output_1 = new cpr.controls.Output("plannerNo");
+				output_1.visible = false;
+				output_1.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
+				container.addChild(output_1, {
+					"top": "0px",
+					"left": "0px",
+					"width": "100px",
+					"height": "20px"
 				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "0px",
-				"left": "0px",
-				"width": "1024px",
-				"height": "720px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "20px",
+						"left": "20px",
+						"width": "848px",
+						"height": "22px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "20px",
+						"left": "10px",
+						"width": "414px",
+						"height": "22px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "20px",
+						"left": "7px",
+						"width": "290px",
+						"height": "22px"
+					}
+				]
 			});
+			
+			var group_2 = new cpr.controls.Container();
+			var formLayout_1 = new cpr.controls.layouts.FormLayout();
+			formLayout_1.scrollable = false;
+			formLayout_1.topMargin = "5px";
+			formLayout_1.rightMargin = "5px";
+			formLayout_1.bottomMargin = "5px";
+			formLayout_1.leftMargin = "5px";
+			formLayout_1.horizontalSpacing = "25px";
+			formLayout_1.verticalSpacing = "25px";
+			formLayout_1.setColumns(["100px", "100px"]);
+			formLayout_1.setRows(["70px"]);
+			group_2.setLayout(formLayout_1);
+			(function(container){
+				var button_1 = new cpr.controls.Button();
+				button_1.style.css({
+					"background-size" : "cover",
+					"background-image" : "url('images/savebutton.png')",
+					"background-position" : "center"
+				});
+				if(typeof onButtonClick == "function") {
+					button_1.addEventListener("click", onButtonClick);
+				}
+				container.addChild(button_1, {
+					"colIndex": 0,
+					"rowIndex": 0,
+					"verticalAlign": "top",
+					"height": 70
+				});
+				var button_2 = new cpr.controls.Button();
+				button_2.value = "";
+				button_2.style.css({
+					"background-size" : "cover",
+					"background-image" : "url('images/cancelbutton.png')",
+					"background-position" : "center"
+				});
+				if(typeof onButtonClick2 == "function") {
+					button_2.addEventListener("click", onButtonClick2);
+				}
+				container.addChild(button_2, {
+					"colIndex": 1,
+					"rowIndex": 0
+				});
+			})(group_2);
+			container.addChild(group_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "0px",
+						"right": "20px",
+						"width": "257px",
+						"height": "83px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "0px",
+						"right": "10px",
+						"width": "125px",
+						"height": "83px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "0px",
+						"right": "7px",
+						"width": "88px",
+						"height": "83px"
+					}
+				]
+			});
+			
+			var grid_1 = new cpr.controls.Grid("grd2");
+			grid_1.init({
+				"dataSet": app.lookup("jeju"),
+				"columns": [
+					{"width": "25px"},
+					{"width": "100px"}
+				],
+				"header": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnType = "checkbox";
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.style.css({
+									"background-color" : "#FFFFFF"
+								});
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "title";
+								cell.text = "관광지 목록";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"color" : "#2DCEB9",
+									"font-weight" : "bolder"
+								});
+							}
+						}
+					]
+				},
+				"detail": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnType = "checkbox";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.columnName = "title";
+								cell.style.css({
+									"font-weight" : "normal"
+								});
+							}
+						}
+					]
+				}
+			});
+			grid_1.style.css({
+				"font-weight" : "bolder"
+			});
+			if(typeof onGrd2CellClick == "function") {
+				grid_1.addEventListener("cell-click", onGrd2CellClick);
+			}
+			if(typeof onGrd2Click == "function") {
+				grid_1.addEventListener("click", onGrd2Click);
+			}
+			if(typeof onGrd2RowCheck == "function") {
+				grid_1.addEventListener("row-check", onGrd2RowCheck);
+			}
+			if(typeof onGrd2Mousedown == "function") {
+				grid_1.addEventListener("mousedown", onGrd2Mousedown);
+			}
+			if(typeof onGrd2Dblclick == "function") {
+				grid_1.addEventListener("dblclick", onGrd2Dblclick);
+			}
+			if(typeof onGrd2RowCheck == "function") {
+				grid_1.addEventListener("row-check", onGrd2RowCheck);
+			}
+			if(typeof onGrd2RowUncheck == "function") {
+				grid_1.addEventListener("row-uncheck", onGrd2RowUncheck);
+			}
+			container.addChild(grid_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "80px",
+						"left": "360px",
+						"width": "200px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "80px",
+						"left": "176px",
+						"width": "98px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "80px",
+						"left": "123px",
+						"width": "68px",
+						"height": "680px"
+					}
+				]
+			});
+			
+			var grid_2 = new cpr.controls.Grid("grd1");
+			grid_2.init({
+				"dataSet": app.lookup("selectedPlan"),
+				"columns": [{"width": "100px"}],
+				"header": {
+					"rows": [{"height": "24px"}],
+					"cells": [{
+						"constraint": {"rowIndex": 0, "colIndex": 0},
+						"configurator": function(cell){
+							cell.filterable = false;
+							cell.sortable = false;
+							cell.targetColumnName = "title";
+							cell.text = "선택 목록";
+							cell.style.css({
+								"background-color" : "#FFFFFF",
+								"background-repeat" : "repeat",
+								"color" : "#2DCEB9",
+								"font-weight" : "bolder",
+								"background-image" : "none"
+							});
+						}
+					}]
+				},
+				"detail": {
+					"rows": [{"height": "24px"}],
+					"cells": [{
+						"constraint": {"rowIndex": 0, "colIndex": 0},
+						"configurator": function(cell){
+							cell.columnName = "title";
+						}
+					}]
+				}
+			});
+			container.addChild(grid_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "80px",
+						"left": "150px",
+						"width": "200px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "80px",
+						"left": "73px",
+						"width": "98px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "80px",
+						"left": "51px",
+						"width": "68px",
+						"height": "680px"
+					}
+				]
+			});
+			
+			var group_3 = new cpr.controls.Container();
+			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
+			group_3.setLayout(xYLayout_2);
+			(function(container){
+				var grid_3 = new cpr.controls.Grid("grd3");
+				grid_3.init({
+					"dataSet": app.lookup("planDate"),
+					"columns": [{"width": "100px"}],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "planDate";
+								cell.text = "DAY";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"color" : "#2DCEB9"
+								});
+							}
+						}]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnName = "planDate";
+								cell.style.css({
+									"font-weight" : "normal"
+								});
+							}
+						}]
+					}
+				});
+				grid_3.style.css({
+					"font-weight" : "bolder"
+				});
+				if(typeof onGrd3CellClick == "function") {
+					grid_3.addEventListener("cell-click", onGrd3CellClick);
+				}
+				container.addChild(grid_3, {
+					"top": "10px",
+					"bottom": "0px",
+					"width": "120px",
+					"left": "calc(50% - 60px)"
+				});
+			})(group_3);
+			container.addChild(group_3, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "73px",
+						"left": "20px",
+						"width": "120px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "73px",
+						"left": "10px",
+						"width": "59px",
+						"height": "680px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "73px",
+						"left": "7px",
+						"width": "41px",
+						"height": "680px"
+					}
+				]
+			});
+			
+			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
+			inputBox_1.placeholder = "지역 검색";
+			inputBox_1.style.css({
+				"text-align" : "center"
+			});
+			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("areaSearch"));
+			inputBox_1.setBindContext(dataMapContext_1);
+			inputBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "title");
+			if(typeof onTitleSearchKeydown == "function") {
+				inputBox_1.addEventListener("keydown", onTitleSearchKeydown);
+			}
+			container.addChild(inputBox_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "30px",
+						"left": "170px",
+						"width": "273px",
+						"height": "30px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "30px",
+						"left": "83px",
+						"width": "133px",
+						"height": "30px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "30px",
+						"left": "58px",
+						"width": "93px",
+						"height": "30px"
+					}
+				]
+			});
+			
+			var button_3 = new cpr.controls.Button("searchbtn");
+			button_3.value = "검색";
+			button_3.style.css({
+				"background-color" : "#306DC6",
+				"background-repeat" : "no-repeat",
+				"color" : "#FFFFFF",
+				"font-size" : "15px",
+				"background-image" : "none"
+			});
+			if(typeof onSearchbtnClick == "function") {
+				button_3.addEventListener("click", onSearchbtnClick);
+			}
+			container.addChild(button_3, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "30px",
+						"left": "455px",
+						"width": "100px",
+						"height": "30px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "30px",
+						"left": "222px",
+						"width": "49px",
+						"height": "30px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "30px",
+						"left": "156px",
+						"width": "34px",
+						"height": "30px"
+					}
+				]
+			});
+			
+			var output_2 = new cpr.controls.Output("planDateOutput");
+			output_2.visible = false;
+			output_2.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
+			container.addChild(output_2, {
+				"top": "100px",
+				"left": "150px",
+				"width": "100px",
+				"height": "20px"
+			});
+			
+			var output_3 = new cpr.controls.Output("contentIdOutput");
+			output_3.visible = false;
+			output_3.bind("value").toDataMap(app.lookup("createPlanDM"), "contentid");
+			container.addChild(output_3, {
+				"top": "100px",
+				"left": "249px",
+				"width": "100px",
+				"height": "20px"
+			});
+			
+			var userDefinedControl_1 = new udc.logo();
+			container.addChild(userDefinedControl_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "10px",
+						"width": "300px",
+						"height": "73px",
+						"left": "calc(50% - 150px)"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "10px",
+						"width": "146px",
+						"height": "73px",
+						"left": "calc(50% - 73px)"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "10px",
+						"width": "103px",
+						"height": "73px",
+						"left": "calc(50% - 51px)"
+					}
+				]
+			});
+			if(typeof onBodyLoad == "function"){
+				app.addEventListener("load", onBodyLoad);
+			}
 		}
 	});
 	app.title = "planner";
