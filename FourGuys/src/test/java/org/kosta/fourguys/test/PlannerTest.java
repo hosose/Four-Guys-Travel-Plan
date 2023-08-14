@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.kosta.fourguys.mapper.PlanMapper;
+import org.kosta.fourguys.mapper.PlannerBoardMapper;
 import org.kosta.fourguys.mapper.PlannerMapper;
 import org.kosta.fourguys.vo.PlanVO;
+import org.kosta.fourguys.vo.PlannerBoardVO;
 import org.kosta.fourguys.vo.PlannerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +18,8 @@ public class PlannerTest {
 	private PlannerMapper plannerMapper;
 	@Autowired
 	private PlanMapper planMapper;
+	@Autowired
+	private PlannerBoardMapper plannerBoardMapper;
 
 	@Test
 	public void createPlanner() {
@@ -87,5 +91,12 @@ public class PlannerTest {
 		savePlanner.setPlannerNo(plannerNo);
 		int result = plannerMapper.savePlannerByNo(savePlanner);
 		System.out.println(result);
+	}
+
+	@Test
+	public void findPlannerBoardByNo() {
+		int boardNo = 1;
+		ArrayList<PlannerBoardVO> boardList = plannerBoardMapper.findPlannerBoardByNo(boardNo);
+		System.out.println(boardList);
 	}
 }

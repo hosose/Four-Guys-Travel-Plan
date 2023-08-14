@@ -150,3 +150,7 @@ ALTER TABLE planner DROP CONSTRAINT PK_PLANner
 ALTER TABLE planner_board DROP CONSTRAINT PK_PLANNER_BOARD
 
 
+
+SELECT * FROM planner_board WHERE board_no = 1
+
+
