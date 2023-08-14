@@ -19,10 +19,57 @@ function onBodyLoad(e){
  */
 function onBtn2Click(e){
 	var btn2 = e.control;
+	var PASSWORD = app.lookup("PASSWORD");
+	var NAME = app.lookup("NAME");
+	var ADDR = app.lookup("ADDR");
+	var PHONE = app.lookup("PHONE");
+	let strengthBadge = app.lookup("password_check");
+	if(PASSWORD.value.trim() == "") {
+		alert("비밀번호를 입력해주세요");
+		PASSWORD.focus();
+	}else if(NAME.value.trim() == "") {
+		alert("이름을 입력해주세요");
+		NAME.focus();
+	}else if(ADDR.value.trim() == "") {
+		alert("주소을 입력해주세요");
+		ADDR.focus();
+	}else if(PHONE.value.trim() == "") {
+		alert("휴대폰 번호를 입력해주세요");
+		PHONE.focus();
+	}else if(strengthBadge.value=="Weak"){
+		alert("비밀번호를 다시 입력해주세요.");
+		PASSWORD.focus();
+	}else{
+		updateMember();
+	}
+	
+}
+function updateMember(){
 	var submission = app.lookup("updateMember");
 	submission.send();
 }
 
+function StrengthChecker(PasswordParameter) {
+	let strengthBadge = app.lookup("password_check");
+	let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+	let mediumPassword = new RegExp('(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{8,}');
+	if (strongPassword.test(PasswordParameter)) {
+		strengthBadge.style.css("background-color",  "green");
+		strengthBadge.style.css("color","white");
+		strengthBadge.value="Strong";
+		strengthBadge.redraw();
+	} else if (mediumPassword.test(PasswordParameter)) {
+		strengthBadge.style.css("background-color",  "blue");
+		strengthBadge.style.css("color","white");
+		strengthBadge.value = 'Medium';
+		strengthBadge.redraw();
+	} else {
+		strengthBadge.style.css("background-color",  "red");
+		strengthBadge.style.css("color","white");
+		strengthBadge.value = 'Weak';
+		strengthBadge.redraw();
+  }
+}
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
@@ -93,4 +140,52 @@ function ondeleteBtnClick(e){
 	}).then(function(returnValue) {
 		alert(JSON.stringify(returnValue));
 	});
+}
+
+/*
+ * 인풋 박스에서 value-change 이벤트 발생 시 호출.
+ * 변경된 value가 저장된 후에 발생하는 이벤트.
+ */
+function onID(e){
+	var iD = e.control;
+	alert("아이디는 수정이 불가능 합니다.");
+}
+
+/*
+ * 데이트 인풋에서 value-change 이벤트 발생 시 호출.
+ * Dateinput의 value를 변경하여 변경된 값이 저장된 후에 발생하는 이벤트.
+ */
+function onBIRTH(e){
+	var bIRTH = e.control;
+	alert("생일은 수정이 불가능 합니다.");
+}
+
+/*
+ * 인풋 박스에서 value-change 이벤트 발생 시 호출.
+ * 변경된 value가 저장된 후에 발생하는 이벤트.
+ */
+function onEMAIL(e){
+	var eMAIL = e.control;
+	alert("이메일은 수정이 불가능 합니다.");
+}
+
+/*
+ * 인풋 박스에서 blur 이벤트 발생 시 호출.
+ * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+ */
+function onPASSWORDBlur(e){
+	var pASSWORD = e.control;
+	var ipb_password_lookUp = app.lookup("PASSWORD");
+	var passwordOutput = app.lookup("password_output");
+	let strengthBadge = app.lookup("password_check");
+	StrengthChecker(ipb_password_lookUp.value);
+	if (ipb_password_lookUp.value.length < 8) {
+		alert("비밀번호는 8자이상으로 작성해주세요");
+		passwordOutput.value = "비밀번호는 8자이상으로 작성해주세요";
+		ipb_password_lookUp.focus();
+	}else if(strengthBadge.value=="Weak"){
+		passwordOutput.value="1개이상의 특수문자가 필요합니다.";
+	} else {
+		passwordOutput.value = " ";
+	}
 }
