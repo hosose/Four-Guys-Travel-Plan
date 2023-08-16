@@ -127,7 +127,7 @@ function onButtonClick(e){
 	var button = e.control;
 	app.lookup("savePlanner").send();
 	alert("저장되었습니다");
-	location.href="/mypage.clx";
+	location.href="/myplan";
 }
 
 /*

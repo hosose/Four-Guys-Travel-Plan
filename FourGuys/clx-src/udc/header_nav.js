@@ -28,7 +28,7 @@ function onCreate_planClick(e) {
  */
 function onLoginClick(e) {
 	var login = e.control;
-	location.href = "login.clx";
+	location.href = "/loginForm";
 }
 
 /*
@@ -63,7 +63,7 @@ function onLoginCheckSubmitSuccess(e){
  */
 function onMyPageBtnClick(e){
 	var MyPageBtn = e.control;
-	location.href = "mypage.clx";
+	location.href = "mypage";
 }
 /*
  * "Logout" 버튼(logoutBtn)에서 click 이벤트 발생 시 호출.
@@ -93,5 +93,9 @@ function onSubLogoutSubmitSuccess(e){
  */
 function onBoardBtnClick2(e){
 	var boardBtn = e.control;
+<<<<<<< HEAD
 	location.href="planner-board-list.clx";
+=======
+	location.href="PlanBoard";
+>>>>>>> refs/heads/main
 }
