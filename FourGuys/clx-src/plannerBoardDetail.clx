@@ -69,6 +69,7 @@
           <cl:datacolumn std:sid="d-column-8d4830f9" name="title"/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-2ff4cd29" id="editBoardDM"/>
       <cl:submission std:sid="submission-e6c83257" id="boardDetailSM" method="get" action="boardDetail">
         <cl:listener std:sid="listener-ab2ed6a0" name="submit-success" handler="onBoardDetailSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerBoardNoDM"/>
@@ -88,6 +89,9 @@
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:requestdata dataid="createPlanDM"/>
         <cl:responsedata dataid="selectedPlan"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-7ec851ad" id="editBoard" method="put" action="editBoard">
+        <cl:requestdata dataid="boardDetail"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>

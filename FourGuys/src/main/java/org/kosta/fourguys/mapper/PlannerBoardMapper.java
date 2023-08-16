@@ -10,4 +10,6 @@ public interface PlannerBoardMapper {
 
 	public ArrayList<PlannerBoardVO> findPlannerBoardByNo(int boardNo);
 
+	public int editBoardById(PlannerBoardVO editPlanner);
+
 }

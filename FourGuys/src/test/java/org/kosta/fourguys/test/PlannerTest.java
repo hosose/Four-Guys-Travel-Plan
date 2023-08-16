@@ -100,4 +100,15 @@ public class PlannerTest {
 		System.out.println(boardList);
 	}
 
+	@Test
+	public void editBoardById() {
+		String id = "hosose";
+		PlannerBoardVO editPlanner = new PlannerBoardVO();
+		editPlanner.setId(id);
+		editPlanner.setBoardNo(3);
+		editPlanner.setBoardTitle("asd");
+		editPlanner.setBoardContent("바뀌나");
+		int result = plannerBoardMapper.editBoardById(editPlanner);
+		System.out.println(result);
+	}
 }

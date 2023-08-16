@@ -18,4 +18,9 @@ public class PlannerBoardServiceImpl implements PlannerBoardService {
 		return plannerBoardMapper.findPlannerBoardByNo(plannerBoardNo);
 	}
 
+	@Override
+	public int editBoardById(PlannerBoardVO editPlanner) {
+		return plannerBoardMapper.editBoardById(editPlanner);
+	}
+
 }

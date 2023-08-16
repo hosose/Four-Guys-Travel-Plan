@@ -4,4 +4,9 @@
 <select id="findPlannerBoardByNo" parameterType="org.kosta.fourguys.vo.PlannerBoardVO">
  SELECT * FROM planner_board WHERE board_no = #{board_no}
 </select>
+<update id="editBoardById" parameterType="org.kosta.fourguys.vo.PlannerBoardVO">
+update planner_board
+set board_title= #{boardTitle}, board_content = #{boardContent}
+where id= #{id}
+</update>
 </mapper>

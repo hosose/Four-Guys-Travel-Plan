@@ -9,4 +9,6 @@ import org.springframework.stereotype.Service;
 public interface PlannerBoardService {
 
 	public ArrayList<PlannerBoardVO> findPlannerBoardByNo(int plannerBoardNo);
+
+	public int editBoardById(PlannerBoardVO editPlanner);
 }
