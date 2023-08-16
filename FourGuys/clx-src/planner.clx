@@ -215,6 +215,7 @@
       <cl:responsivexylayoutdata std:sid="rxyl-data-795944c0">
         <cl:xylayoutdata std:sid="sxyl-data-dab26494" top="82px" left="362px" width="198px" height="28px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
+      <cl:item std:sid="t-item-b6457a6c" label="" value=""/>
       <cl:item std:sid="t-item-b40dad1e" label="자연" value="A01"/>
       <cl:item std:sid="t-item-50424748" label="인문" value="A02"/>
       <cl:item std:sid="t-item-4ff2344b" label="레포츠" value="A03"/>

@@ -24,7 +24,6 @@ public class AreaController {
 		ParameterGroup search = dataRequest.getParameterGroup("areaSearch");
 		String areaSearch = search.getValue("title");
 		String cat1 = search.getValue("cat1");
-		System.out.println(areaSearch+" "+cat1);
 		dataRequest.setResponse("jeju", areaService.findAllArea(areaSearch,cat1));
 		return new JSONDataView();
 	}

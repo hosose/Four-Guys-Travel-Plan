@@ -856,6 +856,7 @@
 			var comboBox_1 = new cpr.controls.ComboBox("cmb1");
 			comboBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "cat1");
 			(function(comboBox_1){
+				comboBox_1.addItem(new cpr.controls.Item("", ""));
 				comboBox_1.addItem(new cpr.controls.Item("자연", "A01"));
 				comboBox_1.addItem(new cpr.controls.Item("인문", "A02"));
 				comboBox_1.addItem(new cpr.controls.Item("레포츠", "A03"));
