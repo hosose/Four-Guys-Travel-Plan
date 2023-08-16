@@ -206,7 +206,7 @@
 				function onMyPageBtnClick(e){
 					var MyPageBtn = e.control;
 
-					location.href = "mypage";
+					location.href = "myPlan.clx";
 
 				}
 				/*
@@ -239,7 +239,7 @@
 					var boardBtn = e.control;
 
 					location.href="planner-board-list.clx";
-
+					
 				};
 				// End - User Script
 				
@@ -431,7 +431,6 @@
 })();
 /// end - udc.header_nav
 /// start - udc.logo
-
 /*
  * UDC Qualified Name: udc.logo
  * App URI: udc/logo
@@ -737,5 +736,4 @@
 	// Register type into the Platform and package
 	cpr.core.Platform.INSTANCE.register(internalApp);
 })();
-
 /// end - udc.myPageSideBar
