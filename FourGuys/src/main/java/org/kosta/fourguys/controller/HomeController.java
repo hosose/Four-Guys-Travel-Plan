@@ -31,4 +31,18 @@ public class HomeController {
 		return "register.clx";
 	}
 
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "mypage.clx";
+	}
+
+	@GetMapping("/myplan")
+	public String myplan() {
+		return "myplan.clx";
+	}
+
+	@GetMapping("/PlanBoard")
+	public String PlanBoard() {
+		return "PlanBoard.clx";
+	}
 }

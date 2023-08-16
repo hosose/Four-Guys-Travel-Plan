@@ -34,7 +34,7 @@
 				var phone = app.lookup("mse_phone");
 				var checkDuplicateId = app.lookup("checkDuplicateId");
 				var checkCount = checkDuplicateId.getMetadata("checkCount");
-				
+				let strengthBadge = app.lookup("password_check");
 				if (id.value.trim() == "") {
 					alert("ID 값을 입력해주세요");
 					id.focus();
@@ -58,9 +58,14 @@
 					phone.focus();
 				} else if (checkCount == null) {
 					alert("중복확인을 눌러주세요");
-					
 				} else if (checkCount > 0) {
 					alert("ID 가 중복됩니다. 중복을 확인해주세요.");
+				}else if(!isEmail(email.value)){
+					alert("이메일 형식에 맞게 입력해주세요");
+					email.focus();
+				}else if(strengthBadge.value=="Weak"){
+					alert("PASSWORD 값을 다시 입력해주세요.");
+					password.focus();
 				} else {
 					memberRegister();
 				}
@@ -70,7 +75,11 @@
 				var subRegister = app.lookup("subRegister");
 				subRegister.send();
 			}
-
+			function isEmail(asValue) {
+				// 이메일 형식에 맞게 입력했는지 체크
+				let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+				return regExp.test(asValue); // 형식에 맞는 경우에만 true 리턴
+			}
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
@@ -103,7 +112,29 @@
 					
 				}
 			}
-
+			function StrengthChecker(PasswordParameter) {
+				let password = app.lookup("ipb_password");
+				let strengthBadge = app.lookup("password_check");
+				var passwordOutput = app.lookup("passwordOutput");
+				let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+				let mediumPassword = new RegExp('(?!((?:[A-Za-z]+)|(?:[~!@#$%^&*()_+=]+)|(?:[0-9]+))$)[A-Za-z\d~!@#$%^&*()_+=]{8,}');
+				if (strongPassword.test(PasswordParameter)) {
+					strengthBadge.style.css("background-color",  "green");
+					strengthBadge.style.css("color","white");
+					strengthBadge.value="Strong";
+					strengthBadge.redraw();
+				} else if (mediumPassword.test(PasswordParameter)) {
+					strengthBadge.style.css("background-color",  "blue");
+					strengthBadge.style.css("color","white");
+					strengthBadge.value = 'Medium';
+					strengthBadge.redraw();
+				} else {
+					strengthBadge.style.css("background-color",  "red");
+					strengthBadge.style.css("color","white");
+					strengthBadge.value = 'Weak';
+					strengthBadge.redraw();
+			  }
+			}
 			/*
 			 * 인풋 박스에서 blur 이벤트 발생 시 호출.
 			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
@@ -112,13 +143,16 @@
 				var ipb_password = e.control;
 				var ipb_password_lookUp = app.lookup("ipb_password");
 				var passwordOutput = app.lookup("passwordOutput");
+				let strengthBadge = app.lookup("password_check");
+				StrengthChecker(ipb_password_lookUp.value);
 				if (ipb_password_lookUp.value.length < 8) {
 					alert("비밀번호는 8자이상으로 작성해주세요");
 					passwordOutput.value = "비밀번호는 8자이상으로 작성해주세요";
 					ipb_password_lookUp.focus();
+				}else if(strengthBadge.value=="Weak"){
+					passwordOutput.value="1개이상의 특수문자가 필요합니다.";
 				} else {
 					passwordOutput.value = " ";
-					
 				}
 			}
 
@@ -167,10 +201,8 @@
 				var addressOutput = app.lookup("addressOutput");
 				if (ipb_address_lookUp.value.trim() == "") {
 					addressOutput.value = "주소는 필수로 작성해주세요";
-					
 				} else {
 					addressOutput.value = " ";
-					
 				}
 			}
 
@@ -183,8 +215,9 @@
 				var ipb_email_lookUp = app.lookup("ipb_email");
 				var emailOutput = app.lookup("emailOutput");
 				if (ipb_email_lookUp.value.trim() == "") {
-					emailOutput.value = "주소는 필수로 작성해주세요";
-					
+					emailOutput.value = "이메일 주소는 필수로 작성해주세요";
+				}else if(!isEmail(ipb_email_lookUp.value)){
+					emailOutput.value = "이메일 형식에 맞게 작성해주세요";
 				} else {
 					emailOutput.value = " ";
 					
@@ -201,12 +234,9 @@
 				var phoneOutput = app.lookup("phoneOutput");
 				if (mse_phone_lookUp.value.trim() == "") {
 					phoneOutput.value = "핸드폰 번호는 필수로 작성해주세요";
-					
 				} else {
 					phoneOutput.value = " ";
-					
 				}
-				
 			}
 
 			/*
@@ -236,13 +266,22 @@
 				if (checkCount > 0) {
 					alert("아이디가 중복됩니다.");
 					idOutput.value = "아이디가 중복됩니다.";
-					
+
 				} else {
 					alert("아이디를 생성할 수 있습니다.");
 					idOutput.value = "";
 				}
 				
 			}
+
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			function onBodyLoad(e){
+				var birth = app.lookup("dti_birth");
+				birth.maxDate = new Date();
+			};
 			// End - User Script
 			
 			// Header
@@ -328,6 +367,7 @@
 			var group_1 = new cpr.controls.Container();
 			group_1.style.css({
 				"border-right-style" : "solid",
+				"background-color" : "rgba(255, 255, 255, 0.6)",
 				"border-bottom-color" : "#f0f0f0",
 				"border-left-style" : "solid",
 				"border-left-color" : "#f0f0f0",
@@ -377,6 +417,7 @@
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -407,6 +448,9 @@
 				});
 				var inputBox_1 = new cpr.controls.InputBox("ipb_id");
 				inputBox_1.placeholder = "ID";
+				inputBox_1.style.css({
+					"font-family" : "AppleSDGothicNeoEB00"
+				});
 				inputBox_1.bind("value").toDataMap(app.lookup("dm_register"), "id");
 				if(typeof onIpb_idBlur == "function") {
 					inputBox_1.addEventListener("blur", onIpb_idBlur);
@@ -439,9 +483,15 @@
 				var inputBox_2 = new cpr.controls.InputBox("ipb_password");
 				inputBox_2.secret = true;
 				inputBox_2.placeholder = "PASSWORD";
+				inputBox_2.style.css({
+					"font-family" : "AppleSDGothicNeoEB00"
+				});
 				inputBox_2.bind("value").toDataMap(app.lookup("dm_register"), "password");
 				if(typeof onIpb_passwordBlur == "function") {
 					inputBox_2.addEventListener("blur", onIpb_passwordBlur);
+				}
+				if(typeof onIpb_passwordInput == "function") {
+					inputBox_2.addEventListener("input", onIpb_passwordInput);
 				}
 				container.addChild(inputBox_2, {
 					positions: [
@@ -470,6 +520,9 @@
 				});
 				var inputBox_3 = new cpr.controls.InputBox("ipb_name");
 				inputBox_3.placeholder = "이름";
+				inputBox_3.style.css({
+					"font-family" : "AppleSDGothicNeoEB00"
+				});
 				inputBox_3.bind("value").toDataMap(app.lookup("dm_register"), "name");
 				if(typeof onIpb_nameBlur == "function") {
 					inputBox_3.addEventListener("blur", onIpb_nameBlur);
@@ -501,6 +554,9 @@
 				});
 				var inputBox_4 = new cpr.controls.InputBox("ipb_address");
 				inputBox_4.placeholder = "주소";
+				inputBox_4.style.css({
+					"font-family" : "AppleSDGothicNeoEB00"
+				});
 				inputBox_4.bind("value").toDataMap(app.lookup("dm_register"), "address");
 				if(typeof onIpb_addressBlur == "function") {
 					inputBox_4.addEventListener("blur", onIpb_addressBlur);
@@ -532,6 +588,9 @@
 				});
 				var inputBox_5 = new cpr.controls.InputBox("ipb_email");
 				inputBox_5.placeholder = "email@fourguys.com";
+				inputBox_5.style.css({
+					"font-family" : "AppleSDGothicNeoEB00"
+				});
 				inputBox_5.bind("value").toDataMap(app.lookup("dm_register"), "email");
 				if(typeof onIpb_emailBlur == "function") {
 					inputBox_5.addEventListener("blur", onIpb_emailBlur);
@@ -563,6 +622,9 @@
 				});
 				var maskEditor_1 = new cpr.controls.MaskEditor("mse_phone");
 				maskEditor_1.mask = "(000)0000-0000";
+				maskEditor_1.style.css({
+					"font-family" : "AppleSDGothicNeoEB00"
+				});
 				maskEditor_1.bind("value").toDataMap(app.lookup("dm_register"), "phone");
 				if(typeof onMse_phoneBlur == "function") {
 					maskEditor_1.addEventListener("blur", onMse_phoneBlur);
@@ -594,6 +656,16 @@
 				});
 				var button_1 = new cpr.controls.Button("register");
 				button_1.value = "회원등록";
+				button_1.style.css({
+					"background-color" : "#306dc6",
+					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
+					"color" : "#FFFFFF",
+					"font-weight" : "normal",
+					"font-size" : "25px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none"
+				});
 				if(typeof onRegisterClick == "function") {
 					button_1.addEventListener("click", onRegisterClick);
 				}
@@ -633,6 +705,7 @@
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -672,6 +745,7 @@
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -711,6 +785,7 @@
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -741,6 +816,9 @@
 				});
 				var dateInput_1 = new cpr.controls.DateInput("dti_birth");
 				dateInput_1.placeholder = "생년월일";
+				dateInput_1.style.css({
+					"font-family" : "AppleSDGothicNeoEB00"
+				});
 				dateInput_1.bind("value").toDataMap(app.lookup("dm_register"), "birth");
 				if(typeof onDti_birthBlur == "function") {
 					dateInput_1.addEventListener("blur", onDti_birthBlur);
@@ -781,6 +859,7 @@
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -820,6 +899,7 @@
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -859,6 +939,7 @@
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -891,6 +972,7 @@
 				output_8.value = "";
 				output_8.style.css({
 					"color" : "#F40909",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"text-align" : "center"
 				});
 				container.addChild(output_8, {
@@ -920,6 +1002,14 @@
 				});
 				var button_2 = new cpr.controls.Button();
 				button_2.value = "중복확인";
+				button_2.style.css({
+					"background-color" : "#306dc6",
+					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
+					"color" : "#FFFFFF",
+					"font-family" : "AppleSDGothicNeoM00",
+					"background-image" : "none"
+				});
 				if(typeof onButtonClick == "function") {
 					button_2.addEventListener("click", onButtonClick);
 				}
@@ -952,6 +1042,7 @@
 				output_9.value = "";
 				output_9.style.css({
 					"color" : "#F40909",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"text-align" : "center"
 				});
 				container.addChild(output_9, {
@@ -983,6 +1074,7 @@
 				output_10.value = "";
 				output_10.style.css({
 					"color" : "#F40909",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"text-align" : "center"
 				});
 				container.addChild(output_10, {
@@ -1014,6 +1106,7 @@
 				output_11.value = "";
 				output_11.style.css({
 					"color" : "#F40909",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"text-align" : "center"
 				});
 				container.addChild(output_11, {
@@ -1045,6 +1138,7 @@
 				output_12.value = "";
 				output_12.style.css({
 					"color" : "#F40909",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"text-align" : "center"
 				});
 				container.addChild(output_12, {
@@ -1076,6 +1170,7 @@
 				output_13.value = "";
 				output_13.style.css({
 					"color" : "#F40909",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"text-align" : "center"
 				});
 				container.addChild(output_13, {
@@ -1107,6 +1202,7 @@
 				output_14.value = "";
 				output_14.style.css({
 					"color" : "#F40909",
+					"font-family" : "AppleSDGothicNeoEB00",
 					"text-align" : "center"
 				});
 				container.addChild(output_14, {
@@ -1130,6 +1226,36 @@
 							"top": "439px",
 							"left": "57px",
 							"width": "104px",
+							"height": "20px"
+						}
+					]
+				});
+				var output_15 = new cpr.controls.Output("password_check");
+				output_15.style.css({
+					"font-family" : "AppleSDGothicNeoM00",
+					"text-align" : "center"
+				});
+				container.addChild(output_15, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "203px",
+							"left": "482px",
+							"width": "100px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "203px",
+							"left": "235px",
+							"width": "49px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "203px",
+							"left": "165px",
+							"width": "34px",
 							"height": "20px"
 						}
 					]
@@ -1187,6 +1313,9 @@
 					}
 				]
 			});
+			if(typeof onBodyLoad == "function"){
+				app.addEventListener("load", onBodyLoad);
+			}
 		}
 	});
 	app.title = "register";
