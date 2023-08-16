@@ -205,9 +205,7 @@
 				 */
 				function onMyPageBtnClick(e){
 					var MyPageBtn = e.control;
-
-					location.href = "mypage";
-
+					location.href = "myPlan.clx";
 				}
 				/*
 				 * "Logout" 버튼(logoutBtn)에서 click 이벤트 발생 시 호출.
@@ -237,9 +235,7 @@
 				 */
 				function onBoardBtnClick2(e){
 					var boardBtn = e.control;
-
 					location.href="planner-board-list.clx";
-
 				};
 				// End - User Script
 				
