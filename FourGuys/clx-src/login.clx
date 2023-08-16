@@ -24,11 +24,11 @@
     </cl:img>
     <cl:group std:sid="group-0e829648" id="container" style="background-color:tarnsparent; border-right-style:solid; border-bottom-color:#ffffff; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-right-color:#ffffff; border-bottom-style:solid; border-top-style:solid;" class="login-box">
       <cl:xylayoutdata std:sid="xyl-data-8e006681" width="350px" height="300px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
-      <cl:inputbox std:sid="i-box-a2a037e2" id="idInput" tooltip="ID를 입력하세요" placeholder="ID">
+      <cl:inputbox std:sid="i-box-a2a037e2" id="idInput" style="font-family:AppleSDGothicNeoB00;" tooltip="ID를 입력하세요" placeholder="ID">
         <cl:datamapbind property="value" datacontrolid="loginParam" columnname="id"/>
         <cl:formdata std:sid="f-data-968ad518" valign="FILL" row="2" col="0"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-e1d92f20" id="passwordInput" tooltip="비밀번호를 입력하세요" secret="true" placeholder="PW">
+      <cl:inputbox std:sid="i-box-e1d92f20" id="passwordInput" style="font-family:AppleSDGothicNeoB00;" tooltip="비밀번호를 입력하세요" secret="true" placeholder="PW">
         <cl:listener std:sid="listener-d213df78" name="keydown" handler="onPasswordInputKeydown"/>
         <cl:datamapbind property="value" datacontrolid="loginParam" columnname="password"/>
         <cl:formdata std:sid="f-data-b7757da5" valign="FILL" row="3" col="0"/>
@@ -36,11 +36,11 @@
       <cl:img std:sid="image-8d2d1ab7" src="theme/images/logo.png">
         <cl:formdata std:sid="f-data-fa028be4" row="0" col="0" rowspan="1" colspan="1"/>
       </cl:img>
-      <cl:button std:sid="button-b76d85c5" id="btnLogin" style="background-color:#E4157C;" class="login" value="LOGIN">
+      <cl:button std:sid="button-b76d85c5" id="btnLogin" style="background-color:#306dc6; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; font-family:AppleSDGothicNeoB00; background-image:none;" class="login" value="LOGIN">
         <cl:listener std:sid="listener-1cb0b76f" name="click" handler="onBtnLoginClick"/>
         <cl:formdata std:sid="f-data-454e0a6e" row="4" col="0"/>
       </cl:button>
-      <cl:button std:sid="button-ce569052" id="register" style="background-color:#E4157C;" class="register" value="회원가입">
+      <cl:button std:sid="button-ce569052" id="register" style="background-color:#306dc6; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; font-family:AppleSDGothicNeoB00; background-image:none;" class="register" value="회원가입">
         <cl:listener std:sid="listener-71f7cd62" name="click" handler="onRegisterClick2"/>
         <cl:formdata std:sid="f-data-5d67937d" row="5" col="0"/>
       </cl:button>
