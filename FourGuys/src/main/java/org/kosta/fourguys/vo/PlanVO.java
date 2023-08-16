@@ -13,4 +13,6 @@ public class PlanVO {
 	private int planDate;
 	private int contentId;
 	private String title;
+	private String mapx;
+	private String mapy;
 }
