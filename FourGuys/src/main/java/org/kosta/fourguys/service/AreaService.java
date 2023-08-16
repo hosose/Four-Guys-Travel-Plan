@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 
 public interface AreaService {
 
-	List<AreaVO> findAllArea(String title);
+	List<AreaVO> findAllArea(String title, String cat1);
 	
 }

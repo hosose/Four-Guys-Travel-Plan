@@ -41,6 +41,7 @@
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-3a5feb45" name="title"/>
           <cl:datacolumn std:sid="d-column-bd971c69" name="contentId"/>
+          <cl:datacolumn std:sid="d-column-93d47f0f" name="cat1"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-520c5aea" id="plannerNoDM">
@@ -126,15 +127,12 @@
       </cl:formlayout>
     </cl:group>
     <cl:grid std:sid="grid-1afb50d3" id="grd2" style="font-weight:bolder;" datasetid="jeju">
-      <cl:listener std:sid="listener-6239a86b" name="cell-click" handler="onGrd2CellClick"/>
       <cl:listener std:sid="listener-98f29226" name="click" handler="onGrd2Click"/>
       <cl:listener std:sid="listener-a198f87f" name="row-check" handler="onGrd2RowCheck"/>
-      <cl:listener std:sid="listener-ba19f11c" name="mousedown" handler="onGrd2Mousedown"/>
-      <cl:listener std:sid="listener-c6267a3e" name="dblclick" handler="onGrd2Dblclick"/>
       <cl:listener std:sid="listener-cfd1181e" name="row-check" handler="onGrd2RowCheck"/>
       <cl:listener std:sid="listener-ba8bfc63" name="row-uncheck" handler="onGrd2RowUncheck"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-1bd432d1">
-        <cl:xylayoutdata std:sid="sxyl-data-3f7dffed" top="80px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-3f7dffed" top="120px" left="360px" width="200px" height="640px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:gridcolumn std:sid="g-column-ad70a0a1" width="25px"/>
@@ -211,6 +209,20 @@
         <cl:xylayoutdata std:sid="sxyl-data-f8021ced" top="10px" width="300px" height="73px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
+    <cl:combobox std:sid="c-box-099b73f5" id="cmb1">
+      <cl:listener std:sid="listener-09e688ae" name="selection-change" handler="onCmb1SelectionChange"/>
+      <cl:datamapbind property="value" datacontrolid="areaSearch" columnname="cat1"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-795944c0">
+        <cl:xylayoutdata std:sid="sxyl-data-dab26494" top="82px" left="362px" width="198px" height="28px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
+      <cl:item std:sid="t-item-b40dad1e" label="자연" value="A01"/>
+      <cl:item std:sid="t-item-50424748" label="인문" value="A02"/>
+      <cl:item std:sid="t-item-4ff2344b" label="레포츠" value="A03"/>
+      <cl:item std:sid="t-item-29a4b22a" label="쇼핑" value="A04"/>
+      <cl:item std:sid="t-item-81570c2b" label="음식점" value="A05"/>
+      <cl:item std:sid="t-item-6049429e" label="숙박" value="B02"/>
+      <cl:item std:sid="t-item-1ae06c3b" label="추천코스" value="C01"/>
+    </cl:combobox>
     <cl:responsivexylayout std:sid="r-xylayout-3f5a316d"/>
     <cl:xylayout std:sid="xylayout-52dfb31e"/>
   </body>

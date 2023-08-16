@@ -140,3 +140,12 @@ function onButtonClick2(e){
 	alert("취소되었습니다");
 	location.href="selectDestinationForm";
 }
+
+/*
+ * 콤보 박스에서 selection-change 이벤트 발생 시 호출.
+ * ComboBox Item을 선택하여 선택된 값이 저장된 후에 발생하는 이벤트.
+ */
+function onCmb1SelectionChange(e){
+	var cmb1 = e.control;
+	app.lookup("areaList").send();
+}

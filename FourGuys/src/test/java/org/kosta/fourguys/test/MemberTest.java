@@ -37,6 +37,6 @@ public class MemberTest {
 	}
 	@Test
 	public void findAllArea(){
-		System.out.println(areaMapper.findAllArea("곽지"));
+		//System.out.println(areaMapper.findAllArea("곽지"));
 	}
 }
