@@ -99,4 +99,5 @@ public class PlannerTest {
 		ArrayList<PlannerBoardVO> boardList = plannerBoardMapper.findPlannerBoardByNo(boardNo);
 		System.out.println(boardList);
 	}
+
 }

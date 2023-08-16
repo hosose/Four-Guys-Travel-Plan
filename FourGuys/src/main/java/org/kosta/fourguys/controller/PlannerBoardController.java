@@ -24,7 +24,6 @@ public class PlannerBoardController {
 			HttpServletRequest request) {
 		ParameterGroup plannerBoardDetailParam = dataRequest.getParameterGroup("plannerBoardNoDM");
 		int plannerBoardNo = Integer.parseInt(plannerBoardDetailParam.getValue("BOARD_NO"));
-		System.out.println(plannerBoardNo);
 		plannerBoardService.findPlannerBoardByNo(plannerBoardNo);
 		dataRequest.setResponse("boardDetail", plannerBoardService.findPlannerBoardByNo(plannerBoardNo));
 		return new JSONDataView();

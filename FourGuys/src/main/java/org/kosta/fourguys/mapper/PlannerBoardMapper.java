@@ -9,4 +9,5 @@ import org.kosta.fourguys.vo.PlannerBoardVO;
 public interface PlannerBoardMapper {
 
 	public ArrayList<PlannerBoardVO> findPlannerBoardByNo(int boardNo);
+
 }

@@ -15,4 +15,5 @@ public interface PlanService {
 	public ArrayList<PlanVO> getPlansByDate(PlanVO selectedPlan);
 
 	public int deletePlan(PlanVO plan);
+
 }
