@@ -28,9 +28,4 @@ public class PlannerBoardServiceImpl implements PlannerBoardService {
 	public List<PlannerBoardVO> getPlannerBoardList() {
 		return plannerBoardMapper.getPlannerBoardList();
 	}
-
-	@Override
-	public int createPlannerBoard(PlannerBoardVO plannerBoardVO) {
-		return plannerBoardMapper.createPlannerBoard(plannerBoardVO);
-	}
 }

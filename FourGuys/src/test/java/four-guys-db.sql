@@ -41,9 +41,6 @@ CREATE TABLE "PLANNER" (
 	"PLANNER_START_DATE"	DATE		NULL,
 	"PLANNER_LAST_DAY"	DATE		NULL
 );
-SELECT planner_title, to_char(planner_start_date,'YYYY-MM-DD')
-		planner_start_date, to_char(planner_last_day,'YYYY-MM-DD')
-		planner_last_day FROM PLANNER WHERE id = 'hosose' ORDER BY planner_start_date DESC
 ALTER TABLE PLANNER ADD COMPLETE_FLAG VARCHAR2(10) DEFAULT '미완성' NOT NULL;
 CREATE SEQUENCE planner_seq;
 select * from planner
@@ -74,7 +71,6 @@ CREATE SEQUENCE board_seq;
 DROP TABLE "PLAN";
 SELECT board_no, planner_no, id, board_title, board_content, to_char(board_create_date,'YYYY-MM-DD')board_create_date, board_hits FROM planner_board ORDER BY planner_no DESC
 SELECT row_number() over(ORDER BY board_no  DESC) as board_no, planner_no, id, board_title, board_content, to_char(board_create_date,'YYYY-MM-DD') board_create_date, board_hits FROM planner_board
-SELECT to_date(sysdate,'YYYY-MM-DD') FROM dual
 CREATE TABLE "PLAN" (
 	"PLAN_NO"	NUMBER		NOT NULL,
 	"PLANNER_NO"	NUMBER		NOT NULL,

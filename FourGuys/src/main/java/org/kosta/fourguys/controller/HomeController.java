@@ -2,6 +2,7 @@ package org.kosta.fourguys.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +38,14 @@ public class HomeController {
 	}
 
 	@GetMapping("/myplan")
-	public String myplan() {
-		return "myplan.clx";
+	public String myplan(DataRequest dataRequest, HttpServletRequest request,
+			HttpServletResponse httpServletResponse) {
+		HttpSession session = request.getSession(false);
+		if(session==null) {
+			return "index.clx";
+		}
+
+		return "myPlan.clx";
 	}
 
 	@GetMapping("/PlanBoard")

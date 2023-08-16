@@ -19,6 +19,4 @@ public interface PlannerMapper {
 	
 	public List<PlannerVO> findNotCompletePlanner(PlannerVO plannerVO);
 
-	public List<PlannerVO> getPlannerById(String id);
-
 }
