@@ -9,6 +9,6 @@ import org.kosta.fourguys.vo.AreaVO;
 public interface AreaMapper {
 	public void registerArea(AreaVO areaVO);
 
-	public List<AreaVO> findAllArea(String title);
+	public List<AreaVO> findAllArea(String title, String cat1);
 
 }

@@ -152,6 +152,15 @@
 				app.lookup("cancelPlanner").send();
 				alert("취소되었습니다");
 				location.href="selectDestinationForm";
+			}
+
+			/*
+			 * 콤보 박스에서 selection-change 이벤트 발생 시 호출.
+			 * ComboBox Item을 선택하여 선택된 값이 저장된 후에 발생하는 이벤트.
+			 */
+			function onCmb1SelectionChange(e){
+				var cmb1 = e.control;
+				app.lookup("areaList").send();
 			};
 			// End - User Script
 			
@@ -257,7 +266,8 @@
 			dataMap_1.parseData({
 				"columns" : [
 					{"name": "title"},
-					{"name": "contentId"}
+					{"name": "contentId"},
+					{"name": "cat1"}
 				]
 			});
 			app.register(dataMap_1);
@@ -548,20 +558,11 @@
 			grid_1.style.css({
 				"font-weight" : "bolder"
 			});
-			if(typeof onGrd2CellClick == "function") {
-				grid_1.addEventListener("cell-click", onGrd2CellClick);
-			}
 			if(typeof onGrd2Click == "function") {
 				grid_1.addEventListener("click", onGrd2Click);
 			}
 			if(typeof onGrd2RowCheck == "function") {
 				grid_1.addEventListener("row-check", onGrd2RowCheck);
-			}
-			if(typeof onGrd2Mousedown == "function") {
-				grid_1.addEventListener("mousedown", onGrd2Mousedown);
-			}
-			if(typeof onGrd2Dblclick == "function") {
-				grid_1.addEventListener("dblclick", onGrd2Dblclick);
 			}
 			if(typeof onGrd2RowCheck == "function") {
 				grid_1.addEventListener("row-check", onGrd2RowCheck);
@@ -573,24 +574,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "80px",
+						"top": "120px",
 						"left": "360px",
 						"width": "200px",
-						"height": "680px"
+						"height": "640px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "80px",
+						"top": "120px",
 						"left": "176px",
 						"width": "98px",
-						"height": "680px"
+						"height": "640px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "80px",
+						"top": "120px",
 						"left": "123px",
 						"width": "68px",
-						"height": "680px"
+						"height": "640px"
 					}
 				]
 			});
@@ -848,6 +849,46 @@
 						"width": "103px",
 						"height": "73px",
 						"left": "calc(50% - 51px)"
+					}
+				]
+			});
+			
+			var comboBox_1 = new cpr.controls.ComboBox("cmb1");
+			comboBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "cat1");
+			(function(comboBox_1){
+				comboBox_1.addItem(new cpr.controls.Item("자연", "A01"));
+				comboBox_1.addItem(new cpr.controls.Item("인문", "A02"));
+				comboBox_1.addItem(new cpr.controls.Item("레포츠", "A03"));
+				comboBox_1.addItem(new cpr.controls.Item("쇼핑", "A04"));
+				comboBox_1.addItem(new cpr.controls.Item("음식점", "A05"));
+				comboBox_1.addItem(new cpr.controls.Item("숙박", "B02"));
+				comboBox_1.addItem(new cpr.controls.Item("추천코스", "C01"));
+			})(comboBox_1);
+			if(typeof onCmb1SelectionChange == "function") {
+				comboBox_1.addEventListener("selection-change", onCmb1SelectionChange);
+			}
+			container.addChild(comboBox_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "82px",
+						"left": "362px",
+						"width": "198px",
+						"height": "28px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "82px",
+						"left": "177px",
+						"width": "97px",
+						"height": "28px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "82px",
+						"left": "124px",
+						"width": "68px",
+						"height": "28px"
 					}
 				]
 			});

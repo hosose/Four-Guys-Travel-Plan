@@ -13,7 +13,7 @@ public class AreaServiceImpl implements AreaService{
 	private final AreaMapper areaMapper;
 	
 	@Override
-	public List<AreaVO> findAllArea(String title) {
-	return	areaMapper.findAllArea(title);
+	public List<AreaVO> findAllArea(String title, String cat1) {
+		return	areaMapper.findAllArea(title,cat1);
 	}
 }
