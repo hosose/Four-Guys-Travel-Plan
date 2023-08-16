@@ -69,7 +69,8 @@ CREATE TABLE "PLANNER_BOARD" (
 );
 CREATE SEQUENCE board_seq;
 DROP TABLE "PLAN";
-
+SELECT board_no, planner_no, id, board_title, board_content, to_char(board_create_date,'YYYY-MM-DD')board_create_date, board_hits FROM planner_board ORDER BY planner_no DESC
+SELECT row_number() over(ORDER BY board_no  DESC) as board_no, planner_no, id, board_title, board_content, to_char(board_create_date,'YYYY-MM-DD') board_create_date, board_hits FROM planner_board
 CREATE TABLE "PLAN" (
 	"PLAN_NO"	NUMBER		NOT NULL,
 	"PLANNER_NO"	NUMBER		NOT NULL,

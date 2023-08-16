@@ -170,7 +170,7 @@
 				 */
 				function onLoginClick(e) {
 					var login = e.control;
-					location.href = "login.clx";
+					location.href = "/loginForm";
 				}
 	
 				/*
@@ -205,7 +205,7 @@
 				 */
 				function onMyPageBtnClick(e){
 					var MyPageBtn = e.control;
-					location.href = "mypage.clx";
+					location.href = "myPlan.clx";
 				}
 				/*
 				 * "Logout" 버튼(logoutBtn)에서 click 이벤트 발생 시 호출.
@@ -235,7 +235,7 @@
 				 */
 				function onBoardBtnClick2(e){
 					var boardBtn = e.control;
-					location.href="PlanBoard.clx";
+					location.href="planner-board-list.clx";
 				};
 				// End - User Script
 				
@@ -317,7 +317,7 @@
 				}
 				container.addChild(button_2, {
 					"top": "20px",
-					"right": "302px",
+					"right": "161px",
 					"width": "131px",
 					"height": "45px"
 				});
@@ -345,7 +345,7 @@
 				}
 				container.addChild(button_3, {
 					"top": "20px",
-					"right": "443px",
+					"right": "302px",
 					"width": "131px",
 					"height": "45px"
 				});
@@ -395,7 +395,7 @@
 				}
 				container.addChild(button_5, {
 					"top": "20px",
-					"right": "161px",
+					"right": "443px",
 					"width": "131px",
 					"height": "45px"
 				});
@@ -482,8 +482,8 @@
 				});
 				
 				// Layout
-				var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-				container.setLayout(xYLayout_1);
+				var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+				container.setLayout(responsiveXYLayout_1);
 				
 				// UI Configuration
 				var button_1 = new cpr.controls.Button("logo");
@@ -502,10 +502,29 @@
 					button_1.addEventListener("click", onLogoClick);
 				}
 				container.addChild(button_1, {
-					"top": "10px",
-					"left": "10px",
-					"width": "153px",
-					"height": "51px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "10px",
+							"left": "10px",
+							"width": "153px",
+							"height": "51px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "10px",
+							"left": "5px",
+							"width": "75px",
+							"height": "51px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "10px",
+							"left": "3px",
+							"width": "52px",
+							"height": "51px"
+						}
+					]
 				});
 			}
 		});
@@ -560,7 +579,25 @@
 				exports.getText = function(){
 					// TODO: 그리드의 뷰 모드에서 표시할 텍스트를 반환하는 하는 코드를 작성해야 합니다.
 					return "";
-				};;
+				};
+	
+				/*
+				 * "MYPAGE" 버튼(MyPageBtn)에서 click 이벤트 발생 시 호출.
+				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+				 */
+				function onMyPageBtnClick(e){
+					var myPageBtn = e.control;
+					location.href="mypage";
+				}
+	
+				/*
+				 * "MYPLAN" 버튼(MyPlanBtn)에서 click 이벤트 발생 시 호출.
+				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+				 */
+				function onMyPlanBtnClick(e){
+					var myPlanBtn = e.control;
+					location.href="myplan";
+				};
 				// End - User Script
 				
 				// Header
@@ -574,39 +611,103 @@
 					"width" : "100%",
 					"top" : "0px",
 					"height" : "100%",
-					"left" : "0px"
+					"left" : "0px",
+					"color" : "#FFFFFF"
 				});
 				
 				// Layout
-				var formLayout_1 = new cpr.controls.layouts.FormLayout();
-				formLayout_1.scrollable = false;
-				formLayout_1.topMargin = "0px";
-				formLayout_1.rightMargin = "0px";
-				formLayout_1.bottomMargin = "0px";
-				formLayout_1.leftMargin = "0px";
-				formLayout_1.horizontalSpacing = "5px";
-				formLayout_1.verticalSpacing = "5px";
-				formLayout_1.setColumns(["1fr", "1fr", "1fr", "1fr"]);
-				formLayout_1.setRows(["1fr", "1fr", "1fr", "1fr", "1fr", "1fr", "1fr", "1fr"]);
-				container.setLayout(formLayout_1);
+				var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+				container.setLayout(responsiveXYLayout_1);
 				
 				// UI Configuration
-				var button_1 = new cpr.controls.Button("btn1");
+				var button_1 = new cpr.controls.Button("MyPageBtn");
 				button_1.value = "MYPAGE";
+				button_1.style.css({
+					"background-color" : "#306DC6",
+					"border-right-style" : "none",
+					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
+					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-size" : "18px",
+					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none",
+					"font-style" : "normal",
+					"border-top-style" : "none"
+				});
+				if(typeof onMyPageBtnClick == "function") {
+					button_1.addEventListener("click", onMyPageBtnClick);
+				}
 				container.addChild(button_1, {
-					"colIndex": 1,
-					"rowIndex": 1,
-					"colSpan": 2,
-					"rowSpan": 1
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "125px",
+							"left": "0px",
+							"width": "145px",
+							"height": "50px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "125px",
+							"left": "0px",
+							"width": "71px",
+							"height": "50px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "125px",
+							"left": "0px",
+							"width": "50px",
+							"height": "50px"
+						}
+					]
 				});
 				
-				var button_2 = new cpr.controls.Button("btn2");
+				var button_2 = new cpr.controls.Button("MyPlanBtn");
 				button_2.value = "MYPLAN";
+				button_2.style.css({
+					"background-color" : "#306DC6",
+					"border-right-style" : "none",
+					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
+					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-size" : "18px",
+					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none",
+					"font-style" : "normal",
+					"border-top-style" : "none"
+				});
+				if(typeof onMyPlanBtnClick == "function") {
+					button_2.addEventListener("click", onMyPlanBtnClick);
+				}
 				container.addChild(button_2, {
-					"colIndex": 1,
-					"rowIndex": 4,
-					"colSpan": 2,
-					"rowSpan": 1
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "65px",
+							"left": "1px",
+							"width": "144px",
+							"height": "50px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "65px",
+							"left": "0px",
+							"width": "70px",
+							"height": "50px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "65px",
+							"left": "0px",
+							"width": "49px",
+							"height": "50px"
+						}
+					]
 				});
 			}
 		});

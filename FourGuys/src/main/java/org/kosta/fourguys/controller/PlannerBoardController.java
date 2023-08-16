@@ -61,4 +61,23 @@ public class PlannerBoardController {
 		dataRequest.setResponse("plannerBoardVO", plannerBoardVO);
 		return new JSONDataView();
 	}
+	@GetMapping("/getPlannerBoardList")
+	public View getPlannerBoardList(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		Map<String, Object> initParam = new HashMap<>();
+		if (session == null) {
+			initParam.put("message", "로그인이 필요합니다.");
+			dataRequest.setMetadata(false, initParam);
+		} else {
+			dataRequest.setResponse("plannerBoardList", plannerBoardService.getPlannerBoardList());
+			dataRequest.setResponse("plannerBoardList2", plannerBoardService.getPlannerBoardList());
+		}
+		return new JSONDataView();
+	}
+
+	@GetMapping("/boardDetailPage/{plannerNo}")
+	public View getBoardDetailPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		return new UIView("plannerBoardDetail.clx");
+
+	}
 }

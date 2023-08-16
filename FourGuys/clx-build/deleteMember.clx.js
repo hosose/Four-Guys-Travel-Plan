@@ -101,6 +101,7 @@
 			});
 			
 			// Layout
+<<<<<<< HEAD
 			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
 			container.setLayout(responsiveXYLayout_1);
 			
@@ -226,6 +227,71 @@
 						"height": "25px"
 					}
 				]
+=======
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			container.setLayout(xYLayout_1);
+			
+			// UI Configuration
+			var button_1 = new cpr.controls.Button("deleteBtn");
+			button_1.value = "탈퇴";
+			button_1.style.css({
+				"background-color" : "#306DC6",
+				"border-right-style" : "none",
+				"background-repeat" : "no-repeat",
+				"color" : "#FFFFFF",
+				"border-left-style" : "none",
+				"font-size" : "18px",
+				"border-bottom-style" : "none",
+				"background-image" : "none",
+				"font-style" : "normal",
+				"border-top-style" : "none"
+			});
+			if(typeof ondeleteBtnClick == "function") {
+				button_1.addEventListener("click", ondeleteBtnClick);
+			}
+			container.addChild(button_1, {
+				"bottom": "23px",
+				"left": "20px",
+				"width": "180px",
+				"height": "25px"
+			});
+			
+			var output_1 = new cpr.controls.Output("intro1");
+			output_1.value = "";
+			output_1.style.css({
+				"font-weight" : "bold",
+				"font-size" : "35px"
+			});
+			container.addChild(output_1, {
+				"top": "5px",
+				"left": "20px",
+				"width": "370px",
+				"height": "150px"
+			});
+			
+			var button_2 = new cpr.controls.Button("cancelBtn");
+			button_2.value = "취소";
+			button_2.style.css({
+				"background-color" : "#306DC6",
+				"border-right-style" : "none",
+				"background-repeat" : "no-repeat",
+				"color" : "#FFFFFF",
+				"border-left-style" : "none",
+				"font-size" : "18px",
+				"border-bottom-style" : "none",
+				"background-image" : "none",
+				"font-style" : "normal",
+				"border-top-style" : "none"
+			});
+			if(typeof onCancelBtnClick == "function") {
+				button_2.addEventListener("click", onCancelBtnClick);
+			}
+			container.addChild(button_2, {
+				"bottom": "23px",
+				"left": "210px",
+				"width": "180px",
+				"height": "25px"
+>>>>>>> refs/heads/feat-myplanList
 			});
 			if(typeof onBodyLoad2 == "function"){
 				app.addEventListener("load", onBodyLoad2);
