@@ -205,7 +205,7 @@
 				 */
 				function onMyPageBtnClick(e){
 					var MyPageBtn = e.control;
-					location.href = "myPlan.clx";
+					location.href = "mypage";
 				}
 				/*
 				 * "Logout" 버튼(logoutBtn)에서 click 이벤트 발생 시 호출.
