@@ -127,7 +127,7 @@ public class PlannerController {
 		PlannerVO savePlanner = new PlannerVO();
 		savePlanner.setPlannerNo(plannerNo);
 		plannerService.savePlannerByNo(savePlanner);
-		dataRequest.setResponse("savePlan", plannerService.savePlannerByNo(savePlanner));
+		
 		return new JSONDataView();
 	}
 
@@ -137,8 +137,52 @@ public class PlannerController {
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
 		PlannerVO cancelPlanner = new PlannerVO();
 		cancelPlanner.setPlannerNo(plannerNo);
-		plannerService.savePlannerByNo(cancelPlanner);
-		dataRequest.setResponse("cancelPlanner", plannerService.cancelPlannerByNo(cancelPlanner));
+	
+		plannerService.cancelPlannerByNo(cancelPlanner);
 		return new JSONDataView();
 	}
+	
+	@GetMapping("findCompletePlanner")
+	public View findCompletePlanner (DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		PlannerVO plannerVO = new PlannerVO();
+		String id = null;
+		if (session != null) {
+			MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+			id = memberVO.getId();
+		} else {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
+		plannerVO.setId(id);
+		plannerVO.setCompleteFlag("완성");
+		dataRequest.setResponse("completePlannerVO", plannerService.findCompletePlanner(plannerVO));
+		
+		return new JSONDataView();
+		
+		
+	}
+	
+	@GetMapping("findNotCompletePlanner")
+	public View findNotCompletePlanner (DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		PlannerVO plannerVO = new PlannerVO();
+		String id = null;
+		if (session != null) {
+			MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+			id = memberVO.getId();
+		} else {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
+		plannerVO.setId(id);
+		plannerVO.setCompleteFlag("미완성");
+		dataRequest.setResponse("notCompletePlannerVO", plannerService.findNotCompletePlanner(plannerVO));
+		
+		return new JSONDataView();
+		
+		
+	}
+	
+	
 }

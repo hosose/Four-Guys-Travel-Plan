@@ -5,7 +5,7 @@
 		parameterType="org.kosta.fourguys.vo.PlannerVO">
 		INSERT INTO PLANNER (planner_no, id, planner_title,
 		PLANNER_START_DATE,PLANNER_LAST_DAY) VALUES(planner_seq.NEXTVAL,
-		#{id},#{plannerTitle},to_date(#{plannerStartDate},'YYYY-MM-DD'),to_date(#{plannerLastDate},'YYYY-MM-DD'))
+		#{id},#{plannerTitle},to_date(#{plannerStartDate},'YYYY-MM-DD'),to_date(#{plannerLastDay},'YYYY-MM-DD'))
 		<selectKey keyColumn="planner_no" keyProperty="plannerNo"
 			order="AFTER" resultType="int">
 			SELECT planner_seq.currval from dual
@@ -18,20 +18,6 @@
 		where
 		planner_no = #{plannerNo}
 	</select>
-	<update id="savePlannerByNo"
-		parameterType="org.kosta.fourguys.vo.PlannerVO">
-		UPDATE planner
-		SET complete_flag = '완성'
-		WHERE planner_no =
-		#{plannerNo}
-	</update>
-	<update id="cancelPlannerByNo"
-		parameterType="org.kosta.fourguys.vo.PlannerVO">
-		UPDATE planner
-		SET complete_flag = '미완성'
-		WHERE planner_no
-		= #{plannerNo}
-	</update>
 	<select id="getPlannerById" parameterType="string"
 		resultType="org.kosta.fourguys.vo.PlannerVO">
 		SELECT planner_no, planner_title,
@@ -41,4 +27,31 @@
 		planner_last_day FROM PLANNER
 		WHERE id = #{id} ORDER BY planner_start_date DESC
 	</select>
+	<update id="savePlannerByNo"
+		parameterType="org.kosta.fourguys.vo.PlannerVO">
+		UPDATE planner
+		SET complete_flag = '완성'
+		WHERE planner_no = #{plannerNo}
+	</update>
+	<update id="cancelPlannerByNo"
+		parameterType="org.kosta.fourguys.vo.PlannerVO">
+		UPDATE planner
+		SET complete_flag = '미완성'
+		WHERE planner_no = #{plannerNo}
+	</update>
+	<select id="findCompletePlanner"
+		parameterType="org.kosta.fourguys.vo.PlannerVO"
+		resultType="org.kosta.fourguys.vo.PlannerVO">
+		select ROW_NUMBER() OVER(ORDER BY "PLANNER_NO")AS
+		"planNo","PLANNER_TITLE","PLANNER_START_DATE","PLANNER_LAST_DAY" from
+		"PLANNER" where "COMPLETE_FLAG"=#{completeFlag} AND "ID"=#{id}
+	</select>
+	<select id="findNotCompletePlanner"
+		parameterType="org.kosta.fourguys.vo.PlannerVO"
+		resultType="org.kosta.fourguys.vo.PlannerVO">
+		select ROW_NUMBER() OVER(ORDER BY "PLANNER_NO")AS
+		"planNo","PLANNER_TITLE","PLANNER_START_DATE","PLANNER_LAST_DAY" from
+		"PLANNER" where "COMPLETE_FLAG"=#{completeFlag} AND "ID"=#{id}
+	</select>
+
 </mapper>

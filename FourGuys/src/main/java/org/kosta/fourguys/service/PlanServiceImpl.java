@@ -46,4 +46,5 @@ public class PlanServiceImpl implements PlanService {
 	public int deletePlan(PlanVO plan) {
 		return planMapper.deletePlan(plan);
 	}
+
 }

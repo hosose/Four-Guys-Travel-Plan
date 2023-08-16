@@ -13,6 +13,7 @@ import org.kosta.fourguys.vo.MemberVO;
 import org.kosta.fourguys.vo.PlannerBoardVO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.View;
 
@@ -28,6 +29,41 @@ import lombok.RequiredArgsConstructor;
 public class PlannerBoardController {
 	private final PlannerBoardService plannerBoardService;
 	private final PlannerService plannerService;
+
+	@GetMapping("/boardDetail")
+	public View findPlannerBoardByNo(DataRequest dataRequest, HttpServletResponse response,
+			HttpServletRequest request) {
+		ParameterGroup plannerBoardDetailParam = dataRequest.getParameterGroup("plannerBoardNoDM");
+		int plannerBoardNo = Integer.parseInt(plannerBoardDetailParam.getValue("BOARD_NO"));
+		plannerBoardService.findPlannerBoardByNo(plannerBoardNo);
+		dataRequest.setResponse("boardDetail", plannerBoardService.findPlannerBoardByNo(plannerBoardNo));
+		return new JSONDataView();
+	}
+
+	@PutMapping("editBoard")
+	public View editBoardById(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup editParam = dataRequest.getParameterGroup("editBoardDM");
+		HttpSession session = request.getSession(false);
+		PlannerBoardVO plannerBoardVO = new PlannerBoardVO();
+		String plannerBoardTitle = editParam.getValue("boardTitle");
+		String plannerBoardContent = editParam.getValue("boardContent");
+		Map<String, Object> initParam = new HashMap<>();
+		String id = null;
+		if (session != null) {
+			MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+			id = memberVO.getId();
+		} else {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
+		plannerBoardVO.setBoardContent(plannerBoardContent);
+		plannerBoardVO.setBoardTitle(plannerBoardTitle);
+		plannerBoardService.editBoardById(plannerBoardVO);
+		initParam.put("plannerBoardVO", plannerBoardVO);
+		dataRequest.setMetadata(true, initParam);
+		dataRequest.setResponse("plannerBoardVO", plannerBoardVO);
+		return new JSONDataView();
+	}
 
 	@GetMapping("/getPlannerBoardList")
 	public View getPlannerBoardList(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
@@ -46,6 +82,7 @@ public class PlannerBoardController {
 	@GetMapping("/boardDetailPage/{plannerNo}")
 	public View getBoardDetailPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		return new UIView("plannerBoardDetail.clx");
+
 	}
 
 	@GetMapping("/createPlannerBoardForm")

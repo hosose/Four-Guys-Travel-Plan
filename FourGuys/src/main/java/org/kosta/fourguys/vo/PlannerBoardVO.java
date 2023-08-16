@@ -15,4 +15,5 @@ public class PlannerBoardVO {
 	private String boardContent;
 	private String boardCreateDate;
 	private int boardHits;
+
 }

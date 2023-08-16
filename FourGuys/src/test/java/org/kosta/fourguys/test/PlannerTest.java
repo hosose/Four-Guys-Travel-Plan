@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.kosta.fourguys.mapper.PlanMapper;
+import org.kosta.fourguys.mapper.PlannerBoardMapper;
 import org.kosta.fourguys.mapper.PlannerMapper;
 import org.kosta.fourguys.vo.PlanVO;
+import org.kosta.fourguys.vo.PlannerBoardVO;
 import org.kosta.fourguys.vo.PlannerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +19,8 @@ public class PlannerTest {
 	private PlannerMapper plannerMapper;
 	@Autowired
 	private PlanMapper planMapper;
+	@Autowired
+	private PlannerBoardMapper plannerBoardMapper;
 
 	@Test
 	public void createPlanner() {
@@ -95,5 +99,41 @@ public class PlannerTest {
 		String id = "hosose";
 		List<PlannerVO> plannerList = plannerMapper.getPlannerById(id);
 		System.out.println(plannerList);
+	}
+
+	public void findPlannerBoardByNo() {
+		int boardNo = 1;
+		ArrayList<PlannerBoardVO> boardList = plannerBoardMapper.findPlannerBoardByNo(boardNo);
+		System.out.println(boardList);
+	}
+
+	@Test
+	public void editBoardById() {
+		String id = "hosose";
+		PlannerBoardVO editPlanner = new PlannerBoardVO();
+		editPlanner.setId(id);
+		editPlanner.setBoardNo(3);
+		editPlanner.setBoardTitle("asd");
+		editPlanner.setBoardContent("바뀌나");
+		int result = plannerBoardMapper.editBoardById(editPlanner);
+		System.out.println(result);
+	}
+
+	@Test
+	public void findCompletePlanner() {
+		PlannerVO plannerVO = new PlannerVO();
+		plannerVO.setId("java");
+		plannerVO.setCompleteFlag("완성");
+		List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
+		// System.out.println(testVO);
+	}
+
+	@Test
+	public void findNotCompletePlanner() {
+		PlannerVO plannerVO = new PlannerVO();
+		plannerVO.setId("java");
+		plannerVO.setCompleteFlag("미완성");
+		List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
+		// System.out.println(testVO);
 	}
 }

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PlannerVO {
 	private int plannerNo;
+	private String planNo;
 	private String id;
 	private String plannerTitle;
 	private String plannerStartDate;
