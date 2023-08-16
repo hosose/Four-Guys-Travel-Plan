@@ -237,7 +237,7 @@
 				 */
 				function onBoardBtnClick2(e){
 					var boardBtn = e.control;
-			
+
 					location.href="planner-board-list.clx";
 
 				};
