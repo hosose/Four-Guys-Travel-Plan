@@ -98,10 +98,12 @@
           <cl:formdata std:sid="f-data-557c8cc9" row="3" col="2"/>
         </cl:inputbox>
         <cl:inputbox std:sid="i-box-838596cb" id="ADDR" style="font-size:18px; font-family:AppleSDGothicNeoEB00;">
+          <cl:listener std:sid="listener-3a8abcd7" name="blur" handler="onADDRBlur"/>
           <cl:datamapbind property="value" datacontrolid="member" columnname="address"/>
           <cl:formdata std:sid="f-data-1b626958" row="5" col="2"/>
         </cl:inputbox>
         <cl:inputbox std:sid="i-box-bed5f5d0" id="NAME" style="font-size:18px; font-family:AppleSDGothicNeoEB00;">
+          <cl:listener std:sid="listener-0c7f0111" name="blur" handler="onNAMEBlur"/>
           <cl:datamapbind property="value" datacontrolid="member" columnname="name"/>
           <cl:formdata std:sid="f-data-61961d23" row="7" col="2"/>
         </cl:inputbox>
@@ -110,10 +112,6 @@
           <cl:datamapbind property="value" datacontrolid="member" columnname="email"/>
           <cl:formdata std:sid="f-data-349cf872" row="11" col="2"/>
         </cl:inputbox>
-        <cl:maskeditor std:sid="m-editor-f14997c0" id="PHONE" style="font-size:18px; font-family:AppleSDGothicNeoEB00;" mask="XXX-XXXX-XXXX">
-          <cl:datamapbind property="value" datacontrolid="member" columnname="phone"/>
-          <cl:formdata std:sid="f-data-d5220fb3" row="13" col="2"/>
-        </cl:maskeditor>
         <cl:dateinput std:sid="d-input-df177294" id="BIRTH" style="background-color:#A3A3A3; font-size:18px; font-family:AppleSDGothicNeoEB00;" readonly="true">
           <cl:listener std:sid="listener-bd987373" name="click" handler="onBIRTH"/>
           <cl:datamapbind property="value" datacontrolid="member" columnname="birth"/>
@@ -142,6 +140,11 @@
         <cl:output std:sid="output-bcf02553" id="phone__output" style="color:#FF0000; text-align:center;">
           <cl:formdata std:sid="f-data-a371ee32" row="14" col="1" rowspan="1" colspan="3"/>
         </cl:output>
+        <cl:maskeditor std:sid="m-editor-f14997c0" id="PHONE" style="font-family:AppleSDGothicNeoEB00;" mask="(000)0000-0000">
+          <cl:listener std:sid="listener-6d411f45" name="blur" handler="onPHONEBlur"/>
+          <cl:datamapbind property="value" datacontrolid="member" columnname="phone"/>
+          <cl:formdata std:sid="f-data-855d7e90" row="13" col="2"/>
+        </cl:maskeditor>
         <cl:formlayout std:sid="f-layout-41056cb7" scrollable="false" hspace="5px" vspace="5px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
           <cl:rows length="1" unit="FRACTION"/>
           <cl:rows length="25" unit="PIXEL"/>

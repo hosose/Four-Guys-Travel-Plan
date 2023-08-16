@@ -201,6 +201,50 @@
 				} else {
 					passwordOutput.value = " ";
 				}
+			}
+			/*
+			 * 인풋 박스에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onNAMEBlur(e){
+				var NAME = e.control;
+				var ipb_name_lookUp = app.lookup("NAME");
+				var nameOutput = app.lookup("name__output");
+				if (ipb_name_lookUp.value.trim() == "") {
+					nameOutput.value = "이름은 필수로 작성해주세요";
+				} else {
+					nameOutput.value = " ";
+				}
+			}
+
+			/*
+			 * 인풋 박스에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onADDRBlur(e){
+				var aDDR = e.control;
+				var ipb_address_lookUp = app.lookup("ADDR");
+				var addressOutput = app.lookup("addr__output");
+				if (ipb_address_lookUp.value.trim() == "") {
+					addressOutput.value = "주소는 필수로 작성해주세요";
+				} else {
+					addressOutput.value = " ";
+				}
+			}
+
+			/*
+			 * 마스크 에디터에서 blur 이벤트 발생 시 호출.
+			 * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+			 */
+			function onPHONEBlur(e){
+				var pHONE = e.control;
+				var mse_phone_lookUp = app.lookup("PHONE");
+				var phoneOutput = app.lookup("phone__output");
+				if (mse_phone_lookUp.value.trim() == "") {
+					phoneOutput.value = "핸드폰 번호는 필수로 작성해주세요";
+				} else {
+					phoneOutput.value = " ";
+				}
 			};
 			// End - User Script
 			
@@ -485,6 +529,9 @@
 						"font-family" : "AppleSDGothicNeoEB00"
 					});
 					inputBox_3.bind("value").toDataMap(app.lookup("member"), "address");
+					if(typeof onADDRBlur == "function") {
+						inputBox_3.addEventListener("blur", onADDRBlur);
+					}
 					container.addChild(inputBox_3, {
 						"colIndex": 2,
 						"rowIndex": 5
@@ -495,6 +542,9 @@
 						"font-family" : "AppleSDGothicNeoEB00"
 					});
 					inputBox_4.bind("value").toDataMap(app.lookup("member"), "name");
+					if(typeof onNAMEBlur == "function") {
+						inputBox_4.addEventListener("blur", onNAMEBlur);
+					}
 					container.addChild(inputBox_4, {
 						"colIndex": 2,
 						"rowIndex": 7
@@ -514,17 +564,6 @@
 					container.addChild(inputBox_5, {
 						"colIndex": 2,
 						"rowIndex": 11
-					});
-					var maskEditor_1 = new cpr.controls.MaskEditor("PHONE");
-					maskEditor_1.mask = "XXX-XXXX-XXXX";
-					maskEditor_1.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00"
-					});
-					maskEditor_1.bind("value").toDataMap(app.lookup("member"), "phone");
-					container.addChild(maskEditor_1, {
-						"colIndex": 2,
-						"rowIndex": 13
 					});
 					var dateInput_1 = new cpr.controls.DateInput("BIRTH");
 					dateInput_1.readOnly = true;
@@ -633,6 +672,19 @@
 						"rowIndex": 14,
 						"colSpan": 3,
 						"rowSpan": 1
+					});
+					var maskEditor_1 = new cpr.controls.MaskEditor("PHONE");
+					maskEditor_1.mask = "(000)0000-0000";
+					maskEditor_1.style.css({
+						"font-family" : "AppleSDGothicNeoEB00"
+					});
+					maskEditor_1.bind("value").toDataMap(app.lookup("member"), "phone");
+					if(typeof onPHONEBlur == "function") {
+						maskEditor_1.addEventListener("blur", onPHONEBlur);
+					}
+					container.addChild(maskEditor_1, {
+						"colIndex": 2,
+						"rowIndex": 13
 					});
 				})(group_2);
 				container.addChild(group_2, {

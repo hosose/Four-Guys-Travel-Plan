@@ -188,10 +188,8 @@ function onIpb_addressBlur(e) {
 	var addressOutput = app.lookup("addressOutput");
 	if (ipb_address_lookUp.value.trim() == "") {
 		addressOutput.value = "주소는 필수로 작성해주세요";
-		
 	} else {
 		addressOutput.value = " ";
-		
 	}
 }
 
@@ -223,12 +221,9 @@ function onMse_phoneBlur(e) {
 	var phoneOutput = app.lookup("phoneOutput");
 	if (mse_phone_lookUp.value.trim() == "") {
 		phoneOutput.value = "핸드폰 번호는 필수로 작성해주세요";
-		
 	} else {
 		phoneOutput.value = " ";
-		
 	}
-	
 }
 
 /*

@@ -189,3 +189,47 @@ function onPASSWORDBlur(e){
 		passwordOutput.value = " ";
 	}
 }
+/*
+ * 인풋 박스에서 blur 이벤트 발생 시 호출.
+ * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+ */
+function onNAMEBlur(e){
+	var NAME = e.control;
+	var ipb_name_lookUp = app.lookup("NAME");
+	var nameOutput = app.lookup("name__output");
+	if (ipb_name_lookUp.value.trim() == "") {
+		nameOutput.value = "이름은 필수로 작성해주세요";
+	} else {
+		nameOutput.value = " ";
+	}
+}
+
+/*
+ * 인풋 박스에서 blur 이벤트 발생 시 호출.
+ * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+ */
+function onADDRBlur(e){
+	var aDDR = e.control;
+	var ipb_address_lookUp = app.lookup("ADDR");
+	var addressOutput = app.lookup("addr__output");
+	if (ipb_address_lookUp.value.trim() == "") {
+		addressOutput.value = "주소는 필수로 작성해주세요";
+	} else {
+		addressOutput.value = " ";
+	}
+}
+
+/*
+ * 마스크 에디터에서 blur 이벤트 발생 시 호출.
+ * 컨트롤이 포커스를 잃은 후 발생하는 이벤트.
+ */
+function onPHONEBlur(e){
+	var pHONE = e.control;
+	var mse_phone_lookUp = app.lookup("PHONE");
+	var phoneOutput = app.lookup("phone__output");
+	if (mse_phone_lookUp.value.trim() == "") {
+		phoneOutput.value = "핸드폰 번호는 필수로 작성해주세요";
+	} else {
+		phoneOutput.value = " ";
+	}
+}
