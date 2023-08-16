@@ -63,7 +63,7 @@ function onLoginCheckSubmitSuccess(e){
  */
 function onMyPageBtnClick(e){
 	var MyPageBtn = e.control;
-	location.href = "mypage.clx";
+	location.href = "myPlan.clx";
 }
 /*
  * "Logout" 버튼(logoutBtn)에서 click 이벤트 발생 시 호출.
