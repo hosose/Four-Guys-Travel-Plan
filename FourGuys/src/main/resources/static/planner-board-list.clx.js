@@ -76,6 +76,15 @@
 				var pageIndexer = e.control;
 				gridPaging();
 			}
+
+			/*
+			 * "글 작성" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e){
+				var button = e.control;
+				
+			};
 			// End - User Script
 			
 			// Header
@@ -204,112 +213,6 @@
 				"height": "77px"
 			});
 			
-			var grid_1 = new cpr.controls.Grid("plannerBoardListGrid");
-			grid_1.init({
-				"dataSet": app.lookup("plannerBoardList"),
-				"columns": [
-					{"width": "100px"},
-					{"width": "100px"},
-					{"width": "100px"},
-					{"width": "100px"},
-					{"width": "100px"}
-				],
-				"header": {
-					"rows": [{"height": "24px"}],
-					"cells": [
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "boardNo";
-								cell.text = "게시물 번호";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 1},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "boardTitle";
-								cell.text = "제목";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 2},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "id";
-								cell.text = "작성자";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 3},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "boardCreateDate";
-								cell.text = "작성일";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 4},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "boardHits";
-								cell.text = "조회수";
-							}
-						}
-					]
-				},
-				"detail": {
-					"rows": [{"height": "24px"}],
-					"cells": [
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-								cell.columnName = "boardNo";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 1},
-							"configurator": function(cell){
-								cell.columnName = "boardTitle";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 2},
-							"configurator": function(cell){
-								cell.columnName = "id";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 3},
-							"configurator": function(cell){
-								cell.columnName = "boardCreateDate";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 4},
-							"configurator": function(cell){
-								cell.columnName = "boardHits";
-							}
-						}
-					]
-				}
-			});
-			if(typeof onPlannerBoardListGridRowDblclick == "function") {
-				grid_1.addEventListener("row-dblclick", onPlannerBoardListGridRowDblclick);
-			}
-			container.addChild(grid_1, {
-				"top": "300px",
-				"width": "950px",
-				"height": "266px",
-				"left": "calc(50% - 475px)"
-			});
-			
 			var output_1 = new cpr.controls.Output();
 			output_1.value = "플래너 게시판";
 			output_1.style.css({
@@ -324,6 +227,150 @@
 				"left": "calc(50% - 289px)"
 			});
 			
+			var group_1 = new cpr.controls.Container();
+			var formLayout_1 = new cpr.controls.layouts.FormLayout();
+			formLayout_1.scrollable = false;
+			formLayout_1.topMargin = "0px";
+			formLayout_1.rightMargin = "0px";
+			formLayout_1.bottomMargin = "0px";
+			formLayout_1.leftMargin = "0px";
+			formLayout_1.horizontalSpacing = "0px";
+			formLayout_1.verticalSpacing = "0px";
+			formLayout_1.setColumns(["1fr", "100px"]);
+			formLayout_1.setRows(["50px", "0px"]);
+			formLayout_1.setRowAutoSizing(1, true);
+			group_1.setLayout(formLayout_1);
+			(function(container){
+				var button_1 = new cpr.controls.Button();
+				button_1.value = "글 작성";
+				button_1.style.css({
+					"background-color" : "#306dc6",
+					"background-repeat" : "no-repeat",
+					"color" : "#FFFFFF",
+					"font-size" : "18px",
+					"background-image" : "none"
+				});
+				if(typeof onButtonClick == "function") {
+					button_1.addEventListener("click", onButtonClick);
+				}
+				container.addChild(button_1, {
+					"colIndex": 1,
+					"rowIndex": 0,
+					"bottomSpacing": 10
+				});
+				var grid_1 = new cpr.controls.Grid("plannerBoardListGrid");
+				grid_1.init({
+					"dataSet": app.lookup("plannerBoardList"),
+					"columns": [
+						{"width": "50px"},
+						{"width": "285px"},
+						{"width": "114px"},
+						{"width": "114px"},
+						{"width": "62px"}
+					],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "boardNo";
+									cell.text = "게시물 번호";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "boardTitle";
+									cell.text = "제목";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 2},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "id";
+									cell.text = "작성자";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 3},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "boardCreateDate";
+									cell.text = "작성일";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 4},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "boardHits";
+									cell.text = "조회수";
+								}
+							}
+						]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.columnName = "boardNo";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.columnName = "boardTitle";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 2},
+								"configurator": function(cell){
+									cell.columnName = "id";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 3},
+								"configurator": function(cell){
+									cell.columnName = "boardCreateDate";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 4},
+								"configurator": function(cell){
+									cell.columnName = "boardHits";
+								}
+							}
+						]
+					}
+				});
+				if(typeof onPlannerBoardListGridRowDblclick == "function") {
+					grid_1.addEventListener("row-dblclick", onPlannerBoardListGridRowDblclick);
+				}
+				container.addChild(grid_1, {
+					"colIndex": 0,
+					"rowIndex": 1,
+					"colSpan": 2,
+					"rowSpan": 1
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				"top": "282px",
+				"width": "950px",
+				"height": "368px",
+				"left": "calc(50% - 475px)"
+			});
+			
 			var pageIndexer_1 = new cpr.controls.PageIndexer("pageIdx");
 			pageIndexer_1.pageRowCount = 10;
 			pageIndexer_1.bind("totalRowCount").toExpression("#plannerBoardList2.getRowCount()");
@@ -332,10 +379,10 @@
 				pageIndexer_1.addEventListener("selection-change", onPageIndexerSelectionChange);
 			}
 			container.addChild(pageIndexer_1, {
-				"top": "597px",
-				"left": "314px",
+				"top": "649px",
 				"width": "356px",
-				"height": "40px"
+				"height": "40px",
+				"left": "calc(50% - 178px)"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
