@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-b5b2c41a" version="1.0.4584">
+  <head std:sid="head-fbc38e82">
+    <screen std:sid="screen-0e269953" id="default" name="default" width="1024px" height="768px"/>
+    <screen std:sid="screen-8b3afc50" id="tablet" name="tablet" width="500px" height="667px"/>
+    <screen std:sid="screen-3993e129" id="mobile" name="mobile" width="350px" height="525px"/>
+    <cl:model std:sid="model-71c306a3">
+      <cl:dataset std:sid="d-set-039aa0e7" id="plannerBoardList">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-7c12c6f0" name="boardNo" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-56d28ed6" name="plannerNo" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-208d3934" name="id" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-1017f191" name="boardTitle" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-aaa7d9d4" name="boardContent" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-b5a51607" name="boardCreateDate" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-3f94fad3" name="boardHits" datatype="string"/>
+        </cl:datacolumnlist>
+        <cl:dataview std:sid="d-view-f8e54c8a" id="dvPaging"/>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-3342d929" id="plannerBoardList2">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-2729f218" name="boardNo" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-e6d64008" name="plannerNo" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-440defb0" name="id" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-89b3f663" name="boardTitle" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-8dd23f9d" name="boardContent" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-58245085" name="boardCreateDate" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-acbcd606" name="boardHits" datatype="string"/>
+        </cl:datacolumnlist>
+        <cl:dataview std:sid="d-view-99703178" id="dvPaging2"/>
+      </cl:dataset>
+      <cl:submission std:sid="submission-3794577f" id="plannerBoardListSM" method="get" action="getPlannerBoardList">
+        <cl:listener std:sid="listener-c69f36dc" name="submit-error" handler="onPlannerBoardListSMSubmitError"/>
+        <cl:listener std:sid="listener-0355f131" name="submit-success" handler="onPlannerBoardListSMSubmitSuccess"/>
+        <cl:responsedata dataid="plannerBoardList"/>
+        <cl:responsedata dataid="plannerBoardList2"/>
+      </cl:submission>
+    </cl:model>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-3afb49c3">
+    <cl:listener std:sid="listener-35ed72b9" name="load" handler="onBodyLoad"/>
+    <cl:datarowcontext datacontrolid="plannerBoardList" rowindex="0"/>
+    <cl:udc std:sid="ud-control-8db052b7" type="udc.logo">
+      <cl:xylayoutdata std:sid="xyl-data-9f89a4ad" top="10px" left="10px" width="196px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:udc>
+    <cl:udc std:sid="ud-control-97b1121b" type="udc.header_nav">
+      <cl:xylayoutdata std:sid="xyl-data-805eee2f" top="10px" right="20px" width="623px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+    </cl:udc>
+    <cl:output std:sid="output-a472c580" style="font-size:50px; font-family:@휴먼엑스포; text-align:center;" value="플래너 게시판">
+      <cl:xylayoutdata std:sid="xyl-data-fc8ef003" top="150px" width="578px" height="81px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:group std:sid="group-10051869">
+      <cl:xylayoutdata std:sid="xyl-data-11143e6e" top="282px" width="950px" height="368px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-34e02ca4" style="background-color:#306dc6; background-repeat:no-repeat; color:#FFFFFF; font-size:18px; background-image:none;" value="글 작성">
+        <cl:listener std:sid="listener-abd0710f" name="click" handler="onButtonClick"/>
+        <cl:formdata std:sid="f-data-15b3a17f" bottomSpacing="10" row="0" col="1"/>
+      </cl:button>
+      <cl:grid std:sid="grid-6456d8df" id="plannerBoardListGrid" datasetid="plannerBoardList">
+        <cl:listener std:sid="listener-d16eb053" name="row-dblclick" handler="onPlannerBoardListGridRowDblclick"/>
+        <cl:formdata std:sid="f-data-b322dfa8" row="1" col="0" rowspan="1" colspan="2"/>
+        <cl:gridcolumn std:sid="g-column-fe0e52ca" width="50px"/>
+        <cl:gridcolumn std:sid="g-column-6f8dd257" width="285px"/>
+        <cl:gridcolumn std:sid="g-column-446bc9ee" width="114px"/>
+        <cl:gridcolumn std:sid="g-column-684e0050" width="114px"/>
+        <cl:gridcolumn std:sid="g-column-d9d71d6d" width="62px"/>
+        <cl:gridheader std:sid="gh-band-5a7d366c">
+          <cl:gridrow std:sid="g-row-4c749e25"/>
+          <cl:gridcell std:sid="gh-cell-82527671" rowindex="0" colindex="0" targetcolumnname="boardNo" sortable="false" filterable="false" text="게시물 번호"/>
+          <cl:gridcell std:sid="gh-cell-9085b258" rowindex="0" colindex="1" targetcolumnname="boardTitle" sortable="false" filterable="false" text="제목"/>
+          <cl:gridcell std:sid="gh-cell-b2516e68" rowindex="0" colindex="2" targetcolumnname="id" sortable="false" filterable="false" text="작성자"/>
+          <cl:gridcell std:sid="gh-cell-265b70f8" rowindex="0" colindex="3" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="작성일"/>
+          <cl:gridcell std:sid="gh-cell-705bad7c" rowindex="0" colindex="4" targetcolumnname="boardHits" sortable="false" filterable="false" text="조회수"/>
+        </cl:gridheader>
+        <cl:griddetail std:sid="gd-band-5d13fb45">
+          <cl:gridrow std:sid="g-row-1713b9ab"/>
+          <cl:gridcell std:sid="gd-cell-62df93c9" rowindex="0" colindex="0" columnname="boardNo"/>
+          <cl:gridcell std:sid="gd-cell-af0bf760" rowindex="0" colindex="1" columnname="boardTitle"/>
+          <cl:gridcell std:sid="gd-cell-3def6666" rowindex="0" colindex="2" columnname="id"/>
+          <cl:gridcell std:sid="gd-cell-8a20fae9" rowindex="0" colindex="3" columnname="boardCreateDate"/>
+          <cl:gridcell std:sid="gd-cell-14e5121c" rowindex="0" colindex="4" columnname="boardHits"/>
+        </cl:griddetail>
+      </cl:grid>
+      <cl:formlayout std:sid="f-layout-bbd5fd42" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
+        <cl:rows length="50" unit="PIXEL"/>
+        <cl:rows length="280" unit="PIXEL" autoSizing="true" syncminlength="false"/>
+        <cl:columns length="1" unit="FRACTION"/>
+        <cl:columns length="100" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:pageindexer std:sid="p-indexer-8d751f7e" id="pageIdx" pagerowcount="10">
+      <cl:listener std:sid="listener-3f5e021b" name="selection-change" handler="onPageIndexerSelectionChange"/>
+      <cl:expbind property="totalRowCount" category="PROPERTY" expression="#plannerBoardList2.getRowCount()"/>
+      <cl:xylayoutdata std:sid="xyl-data-ae38b285" top="649px" width="356px" height="40px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+    </cl:pageindexer>
+    <cl:xylayout std:sid="xylayout-8aa833e4"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
