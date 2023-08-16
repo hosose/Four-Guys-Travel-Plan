@@ -140,7 +140,11 @@
 				var button = e.control;
 				app.lookup("savePlanner").send();
 				alert("저장되었습니다");
+<<<<<<< HEAD
 				location.href="/myplan";
+=======
+				location.href="/mypage.clx";
+>>>>>>> refs/heads/feat-myplanList
 			}
 
 			/*

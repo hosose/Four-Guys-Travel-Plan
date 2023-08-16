@@ -149,9 +149,12 @@
 				var inputBox_1 = new cpr.controls.InputBox("idInput");
 				inputBox_1.tooltip = "ID를 입력하세요";
 				inputBox_1.placeholder = "ID";
+<<<<<<< HEAD
 				inputBox_1.style.css({
 					"font-family" : "AppleSDGothicNeoB00"
 				});
+=======
+>>>>>>> refs/heads/feat-myplanList
 				inputBox_1.bind("value").toDataMap(app.lookup("loginParam"), "id");
 				container.addChild(inputBox_1, {
 					"colIndex": 0,
@@ -162,9 +165,12 @@
 				inputBox_2.tooltip = "비밀번호를 입력하세요";
 				inputBox_2.secret = true;
 				inputBox_2.placeholder = "PW";
+<<<<<<< HEAD
 				inputBox_2.style.css({
 					"font-family" : "AppleSDGothicNeoB00"
 				});
+=======
+>>>>>>> refs/heads/feat-myplanList
 				inputBox_2.bind("value").toDataMap(app.lookup("loginParam"), "password");
 				if(typeof onPasswordInputKeydown == "function") {
 					inputBox_2.addEventListener("keydown", onPasswordInputKeydown);
@@ -204,12 +210,16 @@
 				button_2.value = "회원가입";
 				button_2.style.setClasses(["register"]);
 				button_2.style.css({
+<<<<<<< HEAD
 					"background-color" : "#306dc6",
 					"background-repeat" : "no-repeat",
 					"text-shadow" : "none",
 					"color" : "#FFFFFF",
 					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none"
+=======
+					"background-color" : "#E4157C"
+>>>>>>> refs/heads/feat-myplanList
 				});
 				if(typeof onRegisterClick2 == "function") {
 					button_2.addEventListener("click", onRegisterClick2);

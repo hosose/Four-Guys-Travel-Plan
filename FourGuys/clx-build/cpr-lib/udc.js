@@ -170,6 +170,7 @@
 				 */
 				function onLoginClick(e) {
 					var login = e.control;
+<<<<<<< HEAD
 					location.href = "/loginForm";
 				}
 	
@@ -240,6 +241,74 @@
 				=======
 					location.href="PlanBoard";
 				>>>>>>> refs/heads/main
+=======
+					location.href = "login.clx";
+				}
+	
+				/*
+				 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+				 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+				 */
+				function onBodyLoad(e){
+					var subLogin = app.lookup("loginCheck");
+					subLogin.send();
+				}
+	
+				/*
+				 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+				 * 통신이 성공하면 발생합니다.
+				 */
+				function onLoginCheckSubmitSuccess(e){
+					var loginCheck = e.control;
+					var vo = loginCheck.getMetadata("memberVO");
+					var loginBtn = app.lookup("loginBtn");
+					var logoutBtn = app.lookup("logoutBtn");
+					var MyPageBtn = app.lookup("MyPageBtn");
+					if(vo){
+						loginBtn.visible = false;
+						logoutBtn.visible = true;
+						MyPageBtn.visible = true;
+					}
+				}
+	
+				/*
+				 * "마이페이지" 버튼(MyPageBtn)에서 click 이벤트 발생 시 호출.
+				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+				 */
+				function onMyPageBtnClick(e){
+					var MyPageBtn = e.control;
+					location.href = "mypage.clx";
+				}
+				/*
+				 * "Logout" 버튼(logoutBtn)에서 click 이벤트 발생 시 호출.
+				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+				 */
+				function onLogoutBtnClick(e){
+					var logoutBtn = e.control;
+					var subLogout = app.lookup("subLogout");
+					subLogout.send();
+				}
+	
+				/*
+				 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+				 * 통신이 성공하면 발생합니다.
+				 */
+				function onSubLogoutSubmitSuccess(e){
+					var subLogout = e.control;
+					var uri = subLogout.getMetadata("uri");
+					if (uri != null) {
+					location.href=uri
+					}
+				}
+	
+				/*
+				 * "플래너 게시판" 버튼(boardBtn)에서 click 이벤트 발생 시 호출.
+				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+				 */
+				function onBoardBtnClick2(e){
+					var boardBtn = e.control;
+					location.href="PlanBoard.clx";
+>>>>>>> refs/heads/feat-myplanList
 				};
 				// End - User Script
 				
@@ -321,7 +390,11 @@
 				}
 				container.addChild(button_2, {
 					"top": "20px",
+<<<<<<< HEAD
 					"right": "161px",
+=======
+					"right": "302px",
+>>>>>>> refs/heads/feat-myplanList
 					"width": "131px",
 					"height": "45px"
 				});
@@ -349,7 +422,11 @@
 				}
 				container.addChild(button_3, {
 					"top": "20px",
+<<<<<<< HEAD
 					"right": "302px",
+=======
+					"right": "443px",
+>>>>>>> refs/heads/feat-myplanList
 					"width": "131px",
 					"height": "45px"
 				});
@@ -399,7 +476,11 @@
 				}
 				container.addChild(button_5, {
 					"top": "20px",
+<<<<<<< HEAD
 					"right": "443px",
+=======
+					"right": "161px",
+>>>>>>> refs/heads/feat-myplanList
 					"width": "131px",
 					"height": "45px"
 				});
@@ -583,6 +664,7 @@
 				exports.getText = function(){
 					// TODO: 그리드의 뷰 모드에서 표시할 텍스트를 반환하는 하는 코드를 작성해야 합니다.
 					return "";
+<<<<<<< HEAD
 				};
 	
 				/*
@@ -712,6 +794,55 @@
 							"height": "50px"
 						}
 					]
+=======
+				};;
+				// End - User Script
+				
+				// Header
+				app.supportMedia("all and (min-width: 1024px)", "default");
+				app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
+				app.supportMedia("all and (max-width: 499px)", "mobile");
+				
+				// Configure root container
+				var container = app.getContainer();
+				container.style.css({
+					"width" : "100%",
+					"top" : "0px",
+					"height" : "100%",
+					"left" : "0px"
+				});
+				
+				// Layout
+				var formLayout_1 = new cpr.controls.layouts.FormLayout();
+				formLayout_1.scrollable = false;
+				formLayout_1.topMargin = "0px";
+				formLayout_1.rightMargin = "0px";
+				formLayout_1.bottomMargin = "0px";
+				formLayout_1.leftMargin = "0px";
+				formLayout_1.horizontalSpacing = "5px";
+				formLayout_1.verticalSpacing = "5px";
+				formLayout_1.setColumns(["1fr", "1fr", "1fr", "1fr"]);
+				formLayout_1.setRows(["1fr", "1fr", "1fr", "1fr", "1fr", "1fr", "1fr", "1fr"]);
+				container.setLayout(formLayout_1);
+				
+				// UI Configuration
+				var button_1 = new cpr.controls.Button("btn1");
+				button_1.value = "MYPAGE";
+				container.addChild(button_1, {
+					"colIndex": 1,
+					"rowIndex": 1,
+					"colSpan": 2,
+					"rowSpan": 1
+				});
+				
+				var button_2 = new cpr.controls.Button("btn2");
+				button_2.value = "MYPLAN";
+				container.addChild(button_2, {
+					"colIndex": 1,
+					"rowIndex": 4,
+					"colSpan": 2,
+					"rowSpan": 1
+>>>>>>> refs/heads/feat-myplanList
 				});
 			}
 		});

@@ -205,7 +205,9 @@
 				 */
 				function onMyPageBtnClick(e){
 					var MyPageBtn = e.control;
+
 					location.href = "mypage";
+
 				}
 				/*
 				 * "Logout" 버튼(logoutBtn)에서 click 이벤트 발생 시 호출.
@@ -235,7 +237,7 @@
 				 */
 				function onBoardBtnClick2(e){
 					var boardBtn = e.control;
-		
+			
 					location.href="planner-board-list.clx";
 
 				};
@@ -429,6 +431,7 @@
 })();
 /// end - udc.header_nav
 /// start - udc.logo
+
 /*
  * UDC Qualified Name: udc.logo
  * App URI: udc/logo
@@ -734,4 +737,5 @@
 	// Register type into the Platform and package
 	cpr.core.Platform.INSTANCE.register(internalApp);
 })();
+
 /// end - udc.myPageSideBar
