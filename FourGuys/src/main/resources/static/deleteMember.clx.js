@@ -101,16 +101,52 @@
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
+			var output_1 = new cpr.controls.Output("intro1");
+			output_1.value = "";
+			output_1.style.css({
+				"font-weight" : "bold",
+				"vertical-align" : "middle",
+				"font-size" : "30px",
+				"font-family" : "AppleSDGothicNeoEB00",
+				"text-align" : "center"
+			});
+			container.addChild(output_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "0px",
+						"right": "0px",
+						"bottom": "0px",
+						"left": "0px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "0px",
+						"right": "0px",
+						"bottom": "0px",
+						"left": "0px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "0px",
+						"right": "0px",
+						"bottom": "0px",
+						"left": "0px"
+					}
+				]
+			});
+			
 			var button_1 = new cpr.controls.Button("deleteBtn");
 			button_1.value = "탈퇴";
 			button_1.style.css({
-				"background-color" : "#306DC6",
+				"background-color" : "#FF0000",
 				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"border-left-style" : "none",
 				"font-size" : "18px",
@@ -123,23 +159,29 @@
 				button_1.addEventListener("click", ondeleteBtnClick);
 			}
 			container.addChild(button_1, {
-				"bottom": "23px",
-				"left": "20px",
-				"width": "180px",
-				"height": "25px"
-			});
-			
-			var output_1 = new cpr.controls.Output("intro1");
-			output_1.value = "";
-			output_1.style.css({
-				"font-weight" : "bold",
-				"font-size" : "35px"
-			});
-			container.addChild(output_1, {
-				"top": "5px",
-				"left": "20px",
-				"width": "370px",
-				"height": "150px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"bottom": "23px",
+						"left": "20px",
+						"width": "180px",
+						"height": "25px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"bottom": "23px",
+						"left": "10px",
+						"width": "88px",
+						"height": "25px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"bottom": "23px",
+						"left": "7px",
+						"width": "62px",
+						"height": "25px"
+					}
+				]
 			});
 			
 			var button_2 = new cpr.controls.Button("cancelBtn");
@@ -148,6 +190,7 @@
 				"background-color" : "#306DC6",
 				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"border-left-style" : "none",
 				"font-size" : "18px",
@@ -160,10 +203,29 @@
 				button_2.addEventListener("click", onCancelBtnClick);
 			}
 			container.addChild(button_2, {
-				"bottom": "23px",
-				"left": "210px",
-				"width": "180px",
-				"height": "25px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"bottom": "23px",
+						"left": "210px",
+						"width": "180px",
+						"height": "25px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"bottom": "23px",
+						"left": "103px",
+						"width": "88px",
+						"height": "25px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"bottom": "23px",
+						"left": "72px",
+						"width": "62px",
+						"height": "25px"
+					}
+				]
 			});
 			if(typeof onBodyLoad2 == "function"){
 				app.addEventListener("load", onBodyLoad2);

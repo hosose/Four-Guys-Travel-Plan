@@ -26,18 +26,24 @@
   </head>
   <body std:sid="body-4b04b2c9" style="top:0px; left:0px; width:300px; height:300px;" class="cl-form-group">
     <cl:listener std:sid="listener-51eb9f3b" name="load" handler="onBodyLoad2"/>
-    <cl:button std:sid="button-6f1f615e" id="deleteBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="탈퇴">
-      <cl:listener std:sid="listener-5c3fcad4" name="click" handler="ondeleteBtnClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-d2cf1afa" bottom="23px" left="20px" width="180px" height="25px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
-    </cl:button>
-    <cl:output std:sid="output-74842dca" id="intro1" style="font-weight:bold; font-size:35px;" value="">
-      <cl:xylayoutdata std:sid="xyl-data-bcbf068c" top="5px" left="20px" width="370px" height="150px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:output std:sid="output-74842dca" id="intro1" style="font-weight:bold; vertical-align:middle; font-size:30px; font-family:AppleSDGothicNeoEB00; text-align:center;" value="">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-7aa6c11b">
+        <cl:xylayoutdata std:sid="sxyl-data-88b37913" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
+      </cl:responsivexylayoutdata>
     </cl:output>
-    <cl:button std:sid="button-402b913e" id="cancelBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="취소">
-      <cl:listener std:sid="listener-cb0cf689" name="click" handler="onCancelBtnClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-62b8ce84" bottom="23px" left="210px" width="180px" height="25px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
+    <cl:button std:sid="button-6f1f615e" id="deleteBtn" style="background-color:#FF0000; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="탈퇴">
+      <cl:listener std:sid="listener-5c3fcad4" name="click" handler="ondeleteBtnClick"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-91a5b86d">
+        <cl:xylayoutdata std:sid="sxyl-data-c11bd577" bottom="23px" left="20px" width="180px" height="25px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM" screenid="default"/>
+      </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:xylayout std:sid="xylayout-a77e7e0a"/>
+    <cl:button std:sid="button-402b913e" id="cancelBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="취소">
+      <cl:listener std:sid="listener-cb0cf689" name="click" handler="onCancelBtnClick"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-e2f3888d">
+        <cl:xylayoutdata std:sid="sxyl-data-c7b49e2d" bottom="23px" left="210px" width="180px" height="25px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM" screenid="default"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:responsivexylayout std:sid="r-xylayout-4e9b4931"/>
   </body>
   <std:studiosetting>
     <std:hruler/>
