@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.fourguys.service.PlannerBoardService;
+import org.kosta.fourguys.service.PlannerService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.kosta.fourguys.vo.PlannerBoardVO;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.View;
@@ -26,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PlannerBoardController {
 	private final PlannerBoardService plannerBoardService;
+	private final PlannerService plannerService;
 
 	@GetMapping("/boardDetail")
 	public View findPlannerBoardByNo(DataRequest dataRequest, HttpServletResponse response,
@@ -61,6 +64,7 @@ public class PlannerBoardController {
 		dataRequest.setResponse("plannerBoardVO", plannerBoardVO);
 		return new JSONDataView();
 	}
+
 	@GetMapping("/getPlannerBoardList")
 	public View getPlannerBoardList(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
@@ -80,4 +84,54 @@ public class PlannerBoardController {
 		return new UIView("plannerBoardDetail.clx");
 
 	}
+
+	@GetMapping("/createPlannerBoardForm")
+	public View createPlannerBoardForm(DataRequest dataRequest, HttpServletResponse response,
+			HttpServletRequest request) {
+		return new UIView("planner-board-form.clx");
+	}
+
+	@GetMapping("/getPlannerById")
+	public View getPlannerById(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		String id = null;
+		if (session != null) {
+			MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+			id = memberVO.getId();
+		} else {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
+		dataRequest.setResponse("plannerVO", plannerService.getPlannerById(id));
+		return new JSONDataView();
+	}
+
+	@PostMapping("/createPlannerBoard")
+	public View createPlannerBoard(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		String id = null;
+		Map<String, Object> initParam = new HashMap<>();
+		if (session != null) {
+			MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+			id = memberVO.getId();
+		} else {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
+		ParameterGroup boardParam = dataRequest.getParameterGroup("boardDM");
+		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
+		String title = boardParam.getValue("title");
+		String content = boardParam.getValue("content");
+		String plannerNo = plannerNoParam.getValue("plannerNo");
+		PlannerBoardVO boardVO = new PlannerBoardVO();
+		boardVO.setBoardTitle(title);
+		boardVO.setBoardContent(content);
+		boardVO.setPlannerNo(Integer.parseInt(plannerNo));
+		boardVO.setId(id);
+		plannerBoardService.createPlannerBoard(boardVO);
+		initParam.put("url", "planner-board-list.clx");
+		dataRequest.setMetadata(true, initParam);
+		return new JSONDataView();
+	}
+
 }

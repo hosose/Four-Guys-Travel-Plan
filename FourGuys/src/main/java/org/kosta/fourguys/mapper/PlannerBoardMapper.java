@@ -15,4 +15,6 @@ public interface PlannerBoardMapper {
 
 	List<PlannerBoardVO> getPlannerBoardList();
 
+	int createPlannerBoard(PlannerBoardVO plannerBoardVO);
+
 }

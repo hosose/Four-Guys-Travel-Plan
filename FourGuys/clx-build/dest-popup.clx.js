@@ -34,15 +34,6 @@
 					}
 				}
 			}
-
-			/*
-			 * "일정 만들기" 버튼에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-			function onButtonClick(e){
-				var button = e.control;
-				location.href="plannerForm";
-			};
 			// End - User Script
 			
 			// Header
@@ -79,9 +70,6 @@
 				"font-style" : "normal",
 				"border-top-style" : "none"
 			});
-			if(typeof onButtonClick == "function") {
-				button_1.addEventListener("click", onButtonClick);
-			}
 			container.addChild(button_1, {
 				"bottom": "50px",
 				"left": "50px",

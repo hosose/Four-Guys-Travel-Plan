@@ -46,11 +46,8 @@
 			// End - User Script
 			
 			// Header
-			app.supportMedia("all and (min-width: 1670px)", "new-screen");
-			app.supportMedia("all and (min-width: 1550px) and (max-width: 1669px)", "wide");
-			app.supportMedia("all and (min-width: 1260px) and (max-width: 1549px)", "new-screen2");
-			app.supportMedia("all and (min-width: 900px) and (max-width: 1259px)", "new-screen3");
-			app.supportMedia("all and (min-width: 500px) and (max-width: 899px)", "tablet");
+			app.supportMedia("all and (min-width: 1024px)", "default");
+			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
 			
 			// Configure root container
@@ -74,46 +71,25 @@
 			container.addChild(searchInput_1, {
 				positions: [
 					{
-						"media": "all and (min-width: 1670px)",
+						"media": "all and (min-width: 1024px)",
 						"top": "200px",
-						"width": "1000px",
+						"width": "524px",
 						"height": "60px",
-						"left": "calc(50% - 500px)"
+						"left": "calc(50% - 262px)"
 					}, 
 					{
-						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "200px",
-						"width": "983px",
+						"width": "256px",
 						"height": "60px",
-						"left": "calc(50% - 491px)"
-					}, 
-					{
-						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
-						"top": "200px",
-						"width": "1210px",
-						"height": "60px",
-						"left": "calc(50% - 605px)"
-					}, 
-					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
-						"top": "200px",
-						"width": "500px",
-						"height": "60px",
-						"left": "calc(50% - 250px)"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 899px)",
-						"top": "200px",
-						"width": "400px",
-						"height": "60px",
-						"left": "calc(50% - 200px)"
+						"left": "calc(50% - 128px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "200px",
-						"width": "137px",
+						"width": "88px",
 						"height": "60px",
-						"left": "calc(50% - 68px)"
+						"left": "calc(50% - 44px)"
 					}
 				]
 			});
@@ -133,46 +109,25 @@
 			container.addChild(button_1, {
 				positions: [
 					{
-						"media": "all and (min-width: 1670px)",
+						"media": "all and (min-width: 1024px)",
 						"top": "339px",
-						"right": "1360px",
-						"width": "330px",
-						"height": "350px"
+						"right": "1400px",
+						"width": "294px",
+						"height": "320px"
 					}, 
 					{
-						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "339px",
-						"right": "1270px",
-						"width": "330px",
-						"height": "350px"
-					}, 
-					{
-						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
-						"top": "339px",
-						"right": "1000px",
-						"width": "200px",
-						"height": "210px"
-					}, 
-					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
-						"top": "338px",
-						"right": "498px",
-						"width": "300px",
-						"height": "310px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 899px)",
-						"top": "339px",
-						"right": "400px",
-						"width": "200px",
-						"height": "210px"
+						"left": "98px",
+						"width": "144px",
+						"height": "160px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "339px",
-						"right": "137px",
-						"width": "68px",
-						"height": "210px"
+						"left": "33px",
+						"width": "49px",
+						"height": "160px"
 					}
 				]
 			});
@@ -186,46 +141,25 @@
 			container.addChild(button_2, {
 				positions: [
 					{
-						"media": "all and (min-width: 1670px)",
+						"media": "all and (min-width: 1024px)",
 						"top": "339px",
-						"right": "970px",
-						"width": "330px",
-						"height": "350px"
+						"right": "1000px",
+						"width": "294px",
+						"height": "320px"
 					}, 
 					{
-						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "339px",
-						"right": "880px",
-						"width": "330px",
-						"height": "350px"
-					}, 
-					{
-						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
-						"top": "339px",
-						"right": "700px",
-						"width": "200px",
-						"height": "210px"
-					}, 
-					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
-						"top": "338px",
-						"right": "80px",
-						"width": "300px",
-						"height": "310px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 899px)",
-						"top": "339px",
-						"right": "150px",
-						"width": "200px",
-						"height": "210px"
+						"right": "493px",
+						"width": "144px",
+						"height": "160px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "339px",
-						"right": "51px",
-						"width": "68px",
-						"height": "210px"
+						"right": "169px",
+						"width": "49px",
+						"height": "160px"
 					}
 				]
 			});
@@ -239,46 +173,25 @@
 			container.addChild(button_3, {
 				positions: [
 					{
-						"media": "all and (min-width: 1670px)",
+						"media": "all and (min-width: 1024px)",
 						"top": "340px",
-						"right": "580px",
-						"width": "330px",
-						"height": "350px"
+						"right": "600px",
+						"width": "294px",
+						"height": "320px"
 					}, 
 					{
-						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "340px",
-						"right": "490px",
-						"width": "330px",
-						"height": "350px"
-					}, 
-					{
-						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
-						"top": "340px",
-						"right": "400px",
-						"width": "200px",
-						"height": "210px"
-					}, 
-					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
-						"top": "713px",
-						"right": "498px",
-						"width": "300px",
-						"height": "310px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 899px)",
-						"top": "650px",
-						"right": "400px",
-						"width": "200px",
-						"height": "210px"
+						"right": "293px",
+						"width": "144px",
+						"height": "160px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "650px",
-						"right": "137px",
-						"width": "68px",
-						"height": "210px"
+						"top": "340px",
+						"right": "100px",
+						"width": "49px",
+						"height": "160px"
 					}
 				]
 			});
@@ -292,131 +205,41 @@
 			container.addChild(button_4, {
 				positions: [
 					{
-						"media": "all and (min-width: 1670px)",
+						"media": "all and (min-width: 1024px)",
 						"top": "340px",
 						"right": "200px",
-						"width": "330px",
-						"height": "350px"
+						"width": "294px",
+						"height": "320px"
 					}, 
 					{
-						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "340px",
-						"right": "100px",
-						"width": "330px",
-						"height": "350px"
-					}, 
-					{
-						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
-						"top": "340px",
-						"right": "100px",
-						"width": "200px",
-						"height": "210px"
-					}, 
-					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
-						"top": "713px",
-						"right": "80px",
-						"width": "300px",
-						"height": "310px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 899px)",
-						"top": "650px",
-						"right": "150px",
-						"width": "200px",
-						"height": "210px"
+						"right": "98px",
+						"width": "144px",
+						"height": "160px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "650px",
-						"right": "51px",
-						"width": "68px",
-						"height": "210px"
+						"top": "340px",
+						"right": "33px",
+						"width": "49px",
+						"height": "160px"
 					}
 				]
 			});
 			
-			var userDefinedControl_1 = new udc.header_nav();
+			var userDefinedControl_1 = new udc.logo();
 			container.addChild(userDefinedControl_1, {
 				positions: [
 					{
-						"media": "all and (min-width: 1670px)",
+						"media": "all and (min-width: 1024px)",
 						"top": "20px",
-						"right": "62px",
-						"width": "887px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
-						"top": "20px",
-						"right": "38px",
-						"width": "956px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
-						"top": "20px",
-						"right": "47px",
-						"width": "1176px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
-						"top": "20px",
-						"right": "41px",
-						"width": "1034px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 899px)",
-						"top": "110px",
-						"left": "20px",
-						"width": "500px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "110px",
-						"left": "7px",
-						"width": "171px",
-						"height": "80px"
-					}
-				]
-			});
-			
-			var userDefinedControl_2 = new udc.logo();
-			container.addChild(userDefinedControl_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1670px)",
-						"top": "20px",
-						"left": "153px",
-						"width": "527px",
+						"left": "50px",
+						"width": "172px",
 						"height": "70px"
 					}, 
 					{
-						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
-						"top": "20px",
-						"left": "94px",
-						"width": "323px",
-						"height": "70px"
-					}, 
-					{
-						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
-						"top": "20px",
-						"left": "116px",
-						"width": "397px",
-						"height": "70px"
-					}, 
-					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
-						"top": "20px",
-						"left": "102px",
-						"width": "349px",
-						"height": "70px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 899px)",
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "20px",
 						"left": "20px",
 						"width": "266px",
@@ -428,6 +251,33 @@
 						"left": "7px",
 						"width": "91px",
 						"height": "70px"
+					}
+				]
+			});
+			
+			var userDefinedControl_2 = new udc.header_nav();
+			container.addChild(userDefinedControl_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "20px",
+						"right": "20px",
+						"width": "510px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "110px",
+						"left": "20px",
+						"width": "500px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "110px",
+						"left": "7px",
+						"width": "171px",
+						"height": "80px"
 					}
 				]
 			});

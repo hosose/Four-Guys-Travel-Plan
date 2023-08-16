@@ -95,6 +95,12 @@ public class PlannerTest {
 	}
 
 	@Test
+	public void getPlannerById() {
+		String id = "hosose";
+		List<PlannerVO> plannerList = plannerMapper.getPlannerById(id);
+		System.out.println(plannerList);
+	}
+
 	public void findPlannerBoardByNo() {
 		int boardNo = 1;
 		ArrayList<PlannerBoardVO> boardList = plannerBoardMapper.findPlannerBoardByNo(boardNo);
@@ -129,6 +135,5 @@ public class PlannerTest {
 		plannerVO.setCompleteFlag("미완성");
 		List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
 		// System.out.println(testVO);
-
 	}
 }

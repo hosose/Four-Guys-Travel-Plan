@@ -22,4 +22,5 @@ public interface PlannerService {
 
 
 
+	List<PlannerVO> getPlannerById(String id);
 }
