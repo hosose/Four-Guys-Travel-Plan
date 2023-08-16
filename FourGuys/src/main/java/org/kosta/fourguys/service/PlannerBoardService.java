@@ -8,4 +8,5 @@ public interface PlannerBoardService {
 
 	List<PlannerBoardVO> getPlannerBoardList();
 
+	int createPlannerBoard(PlannerBoardVO plannerBoardVO);
 }

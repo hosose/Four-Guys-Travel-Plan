@@ -1,5 +1,7 @@
 package org.kosta.fourguys.service;
 
+import java.util.List;
+
 import org.kosta.fourguys.vo.PlannerVO;
 import org.springframework.stereotype.Service;
 
@@ -14,4 +16,5 @@ public interface PlannerService {
 
 	int cancelPlannerByNo(PlannerVO cancelPlanner);
 
+	List<PlannerVO> getPlannerById(String id);
 }

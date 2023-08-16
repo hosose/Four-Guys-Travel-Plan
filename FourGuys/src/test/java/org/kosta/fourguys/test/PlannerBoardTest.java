@@ -18,4 +18,16 @@ public class PlannerBoardTest {
 		List<PlannerBoardVO> boardList = plannerBoardMapper.getPlannerBoardList();
 		System.out.println(boardList);
 	}
+
+	@Test
+	public void createPlannerBoard() {
+		PlannerBoardVO plannerBoardVO = new PlannerBoardVO();
+		String id = "hosose";
+		plannerBoardVO.setId(id);
+		plannerBoardVO.setBoardTitle("두명코스");
+		plannerBoardVO.setBoardContent("둘이서 가면 아주 좋아요.");
+		plannerBoardVO.setPlannerNo(183);
+		int result = plannerBoardMapper.createPlannerBoard(plannerBoardVO);
+		System.out.println(result);
+	}
 }

@@ -1,5 +1,7 @@
 package org.kosta.fourguys.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.fourguys.vo.PlannerVO;
 
@@ -12,5 +14,7 @@ public interface PlannerMapper {
 	public int savePlannerByNo(PlannerVO savePlanner);
 
 	public int cancelPlannerByNo(PlannerVO cancelPlanner);
+
+	public List<PlannerVO> getPlannerById(String id);
 
 }

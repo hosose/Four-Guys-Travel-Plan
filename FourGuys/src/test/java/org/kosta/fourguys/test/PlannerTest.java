@@ -1,6 +1,7 @@
 package org.kosta.fourguys.test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.kosta.fourguys.mapper.PlanMapper;
@@ -23,7 +24,7 @@ public class PlannerTest {
 		plannerVO.setId("hosose");
 		plannerVO.setPlannerTitle("제주제주");
 		plannerVO.setPlannerStartDate("2023-08-30");
-		plannerVO.setPlannerLastDate("2023-09-02");
+		plannerVO.setPlannerLastDay("2023-09-02");
 //		int result = plannerMapper.createPlanner(plannerVO);
 //		Assertions.assertEquals(1, result);
 	}
@@ -87,5 +88,12 @@ public class PlannerTest {
 		savePlanner.setPlannerNo(plannerNo);
 		int result = plannerMapper.savePlannerByNo(savePlanner);
 		System.out.println(result);
+	}
+
+	@Test
+	public void getPlannerById() {
+		String id = "hosose";
+		List<PlannerVO> plannerList = plannerMapper.getPlannerById(id);
+		System.out.println(plannerList);
 	}
 }

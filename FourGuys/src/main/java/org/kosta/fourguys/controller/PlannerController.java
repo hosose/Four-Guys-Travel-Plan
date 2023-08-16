@@ -57,7 +57,7 @@ public class PlannerController {
 		plannerVO.setId(id);
 		plannerVO.setPlannerTitle(plannerTitle);
 		plannerVO.setPlannerStartDate(plannerStartDate);
-		plannerVO.setPlannerLastDate(plannerLastDate);
+		plannerVO.setPlannerLastDay(plannerLastDate);
 		plannerService.createPlanner(plannerVO);
 		planService.createPlans(plannerVO.getPlannerNo());
 		initParam.put("plannerVO", plannerVO);

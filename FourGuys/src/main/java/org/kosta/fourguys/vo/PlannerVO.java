@@ -12,6 +12,6 @@ public class PlannerVO {
 	private String id;
 	private String plannerTitle;
 	private String plannerStartDate;
-	private String plannerLastDate;
+	private String plannerLastDay;
 	private String completeFlag;
 }

@@ -4,4 +4,7 @@
 <select id="getPlannerBoardList" resultType="org.kosta.fourguys.vo.PlannerBoardVO">
 SELECT row_number() over(ORDER BY board_no  DESC) as board_no, planner_no, id, board_title, board_content, to_char(board_create_date,'YYYY-MM-DD') board_create_date, board_hits FROM planner_board
 </select>
+<insert id="createPlannerBoard" parameterType="org.kosta.fourguys.vo.PlannerBoardVO">
+INSERT INTO planner_board VALUES (board_seq.NEXTVAL, #{plannerNo}, #{id},#{boardTitle},#{boardContent}, sysdate,0)
+</insert>
 </mapper>
