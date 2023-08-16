@@ -93,9 +93,5 @@ function onSubLogoutSubmitSuccess(e){
  */
 function onBoardBtnClick2(e){
 	var boardBtn = e.control;
-<<<<<<< HEAD
 	location.href="planner-board-list.clx";
-=======
-	location.href="PlanBoard";
->>>>>>> refs/heads/main
 }
