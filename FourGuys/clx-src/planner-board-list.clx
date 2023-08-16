@@ -52,7 +52,7 @@
     </cl:output>
     <cl:group std:sid="group-10051869">
       <cl:xylayoutdata std:sid="xyl-data-11143e6e" top="282px" width="950px" height="368px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-34e02ca4" style="background-color:#306dc6; background-repeat:no-repeat; color:#FFFFFF; font-size:18px; background-image:none;" value="글쓰기">
+      <cl:button std:sid="button-34e02ca4" style="background-color:#306dc6; background-repeat:no-repeat; color:#FFFFFF; font-size:18px; background-image:none;" value="글 작성">
         <cl:listener std:sid="listener-abd0710f" name="click" handler="onButtonClick"/>
         <cl:formdata std:sid="f-data-15b3a17f" bottomSpacing="10" row="0" col="1"/>
       </cl:button>

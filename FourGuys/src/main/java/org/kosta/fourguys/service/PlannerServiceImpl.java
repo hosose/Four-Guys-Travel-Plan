@@ -34,18 +34,18 @@ public class PlannerServiceImpl implements PlannerService {
 		return plannerMapper.cancelPlannerByNo(cancelPlanner);
 	}
 
-	@Override
-	public List<PlannerVO> getPlannerById(String id) {
-		return plannerMapper.getPlannerById(id);
-	}
+	
 
 	@Override
 	public List<PlannerVO> findCompletePlanner(PlannerVO plannerVO) {
+		// TODO Auto-generated method stub
 		return plannerMapper.findCompletePlanner(plannerVO);
 	}
 
 	@Override
 	public List<PlannerVO> findNotCompletePlanner(PlannerVO plannerVO) {
+		
 		return plannerMapper.findNotCompletePlanner(plannerVO);
 	}
+
 }
