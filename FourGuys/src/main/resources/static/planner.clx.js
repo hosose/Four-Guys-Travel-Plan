@@ -36,7 +36,6 @@
 				});
 			}
 
-
 			/*
 			 * "검색" 버튼(searchbtn)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -61,16 +60,16 @@
 			 * 그리드에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onGrd2Click(e){
+			function onGrd2Click(e) {
 				var grd2 = e.control;
 				var grid = app.lookup("grd2");
 				var embp = app.lookup("ep1");
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
-				var embp_mapx = embp.setPageProperty("mapx",mapx);
-				var embp_mapy = embp.setPageProperty("mapy",mapy);
-				var embp_title = embp.setPageProperty("title",title);
+				var embp_mapx = embp.setPageProperty("mapx", mapx);
+				var embp_mapy = embp.setPageProperty("mapy", mapy);
+				var embp_title = embp.setPageProperty("title", title);
 				embp.callPageMethod("panTo");
 			}
 
@@ -78,22 +77,21 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onDayBtnSMSubmitSuccess(e){
+			function onDayBtnSMSubmitSuccess(e) {
 				var dayBtnSM = e.control;
 				var grid = app.lookup("grd3");
-				grid.selectRows([0]);
-				app.lookup("planDateOutput").value=1;
+				app.lookup("createPlanDM").setValue("planDate", 1);
 			}
 
 			/*
 			 * 그리드에서 cell-click 이벤트 발생 시 호출.
 			 * Grid의 Cell 클릭시 발생하는 이벤트.
 			 */
-			function onGrd3CellClick(e){
+			function onGrd3CellClick(e) {
 				var grd3 = e.control;
 				var grid = app.lookup("grd3");
 				var planDate = grid.getSelectedRow().getValue("planDate");
-				app.lookup("planDateOutput").value=planDate;
+				app.lookup("createPlanDM").setValue("planDate", planDate);
 				app.lookup("selectDate").send();
 			}
 
@@ -101,11 +99,11 @@
 			 * 그리드에서 row-check 이벤트 발생 시 호출.
 			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 되었을 때 발생하는 이벤트.
 			 */
-			function onGrd2RowCheck(e){
+			function onGrd2RowCheck(e) {
 				var grd2 = e.control;
 				var grid = app.lookup("grd2");
 				var contentId = grid.getSelectedRow().getValue("contentid");
-				app.lookup("contentIdOutput").value=contentId;
+				app.lookup("createPlanDM").setValue("contentid", contentId);
 				app.lookup("createPlan").send();
 			}
 
@@ -116,7 +114,7 @@
 			function onGrd2RowUncheck(e) {
 				var grd2 = e.control;
 				var contentId = grd2.getSelectedRow().getValue("contentid");
-				app.lookup("contentIdOutput").value = contentId;
+				app.lookup("createPlanDM").setValue("contentid", contentId);
 				app.lookup("deletePlan").send();
 			}
 
@@ -124,44 +122,43 @@
 			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
 			 * 통신 중 문제가 생기면 발생합니다.
 			 */
-			function onLoginCheckSubmitError(e){
+			function onLoginCheckSubmitError(e) {
 				var loginCheck = e.control;
 				var message = loginCheck.getMetadata("message");
 				alert(message);
 				location.href = "loginForm";
 			}
 
-
 			/*
 			 * "저장" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick(e){
+			function onButtonClick(e) {
 				var button = e.control;
 				app.lookup("savePlanner").send();
 				alert("저장되었습니다");
-				location.href="/myplan";
+				location.href = "/myplan";
 			}
 
 			/*
 			 * "취소" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick2(e){
+			function onButtonClick2(e) {
 				var button = e.control;
 				app.lookup("cancelPlanner").send();
 				alert("취소되었습니다");
-				location.href="selectDestinationForm";
+				location.href = "selectDestinationForm";
 			}
 
 			/*
 			 * 콤보 박스에서 selection-change 이벤트 발생 시 호출.
 			 * ComboBox Item을 선택하여 선택된 값이 저장된 후에 발생하는 이벤트.
 			 */
-			function onCmb1SelectionChange(e){
+			function onCmb1SelectionChange(e) {
 				var cmb1 = e.control;
 				app.lookup("areaList").send();
-			};
+			}
 			// End - User Script
 			
 			// Header
@@ -391,17 +388,6 @@
 			var group_1 = new cpr.controls.Container("grp1");
 			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_1);
-			(function(container){
-				var output_1 = new cpr.controls.Output("plannerNo");
-				output_1.visible = false;
-				output_1.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-				container.addChild(output_1, {
-					"top": "0px",
-					"left": "0px",
-					"width": "100px",
-					"height": "20px"
-				});
-			})(group_1);
 			container.addChild(group_1, {
 				positions: [
 					{
@@ -804,26 +790,6 @@
 						"height": "30px"
 					}
 				]
-			});
-			
-			var output_2 = new cpr.controls.Output("planDateOutput");
-			output_2.visible = false;
-			output_2.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
-			container.addChild(output_2, {
-				"top": "100px",
-				"left": "150px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
-			var output_3 = new cpr.controls.Output("contentIdOutput");
-			output_3.visible = false;
-			output_3.bind("value").toDataMap(app.lookup("createPlanDM"), "contentid");
-			container.addChild(output_3, {
-				"top": "100px",
-				"left": "249px",
-				"width": "100px",
-				"height": "20px"
 			});
 			
 			var userDefinedControl_1 = new udc.logo();

@@ -17,8 +17,8 @@ function onBodyLoad(e) {
 	}, function(dialog) {
 		dialog.ready(function(dialogApp) {});
 	}).then(function(returnValue) {
-		var plannerNoOutput = app.lookup("plannerNoOutput");
-		plannerNoOutput.value = returnValue;
+		var plannerNoDM = app.lookup("plannerNoDM");
+		plannerNoDM.setValue("plannerNo", returnValue);
 		app.lookup("dayBtnSM").send()
 	});
 }
@@ -41,7 +41,7 @@ function onLoginCheckSubmitError(e) {
 function onDayGrdCellClick(e) {
 	var dayGrd = e.control;
 	var planDate = dayGrd.getSelectedRow().getValue("planDate");
-	app.lookup("planDateOutput").value = planDate;
+	app.lookup("createPlanDM").setValue("planDate", planDate);
 	app.lookup("selectDate").send();
 }
 
