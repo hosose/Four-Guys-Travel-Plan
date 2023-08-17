@@ -70,5 +70,5 @@ function onPageIndexerSelectionChange(e) {
  */
 function onButtonClick(e) {
 	var button = e.control;
-	
+	location.href = "createPlannerBoardForm";
 }

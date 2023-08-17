@@ -83,7 +83,7 @@
 			 */
 			function onButtonClick(e) {
 				var button = e.control;
-				
+				location.href = "createPlannerBoardForm";
 			};
 			// End - User Script
 			
@@ -242,7 +242,7 @@
 			group_1.setLayout(formLayout_1);
 			(function(container){
 				var button_1 = new cpr.controls.Button();
-				button_1.value = "글 작성";
+				button_1.value = "글쓰기";
 				button_1.style.css({
 					"background-color" : "#306dc6",
 					"background-repeat" : "no-repeat",
