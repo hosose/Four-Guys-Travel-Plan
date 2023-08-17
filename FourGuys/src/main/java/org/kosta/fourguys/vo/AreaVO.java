@@ -12,5 +12,11 @@ public class AreaVO {
 	private String mapx;
 	private String mapy;
 	private String cat1;
+	private String cat2;
+	private String cat3;
+	private String addr1;
+	private String addr2;
+	private String firstimage;
 	private String title;
+	private String tel;
 }
