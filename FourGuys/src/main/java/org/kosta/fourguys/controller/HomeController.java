@@ -38,13 +38,11 @@ public class HomeController {
 	}
 
 	@GetMapping("/myplan")
-	public String myplan(DataRequest dataRequest, HttpServletRequest request,
-			HttpServletResponse httpServletResponse) {
+	public String myplan(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
 		HttpSession session = request.getSession(false);
-		if(session==null) {
+		if (session == null) {
 			return "index.clx";
 		}
-
 		return "myPlan.clx";
 	}
 
