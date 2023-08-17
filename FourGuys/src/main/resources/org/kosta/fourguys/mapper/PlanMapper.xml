@@ -11,7 +11,7 @@ SELECT DISTINCT plan_date, planner_no FROM plan WHERE planner_no=#{plannerNo} OR
 INSERT INTO PLAN(plan_no, planner_no, plan_date, content_id) VALUES(plan_seq.NEXTVAL,#{plannerNo},#{planDate},#{contentId})
 </insert>
 <select id="getPlansByDate" parameterType="org.kosta.fourguys.vo.PlanVO" resultType="org.kosta.fourguys.vo.PlanVO">
-SELECT p.planner_no, p.plan_date, p.content_id, j.title,j."mapx",j."mapy"
+SELECT p.planner_no, p.plan_date, p.content_id, j.title,j."mapx",j."mapy",j."firstimage"
 FROM plan p
 INNER JOIN jeju_area j ON p.content_id = j.contentid
 WHERE planner_no = #{plannerNo} AND plan_date=#{planDate}

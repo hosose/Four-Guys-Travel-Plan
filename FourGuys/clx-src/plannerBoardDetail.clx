@@ -33,6 +33,7 @@
           <cl:datacolumn std:sid="d-column-a05cbdb2" name="title"/>
           <cl:datacolumn std:sid="d-column-8356ff15" name="mapx" datatype="string"/>
           <cl:datacolumn std:sid="d-column-1144ba11" name="mapy" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-834e96e8" name="firstimage"/>
         </cl:datacolumnlist>
       </cl:dataset>
       <cl:datamap std:sid="d-map-333b6018" id="plannerBoardNoDM">
@@ -99,14 +100,20 @@
   <body std:sid="body-de831e9d">
     <cl:listener std:sid="listener-c4c1ed67" name="load" handler="onBodyLoad"/>
     <cl:udc std:sid="ud-control-6dbfc96f" type="udc.logo">
-      <cl:xylayoutdata std:sid="xyl-data-aa01408b" top="20px" left="20px" width="300px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-e2467989">
+        <cl:xylayoutdata std:sid="sxyl-data-0fdb9adb" top="20px" left="20px" width="300px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
     </cl:udc>
     <cl:output std:sid="output-f33a29fb" id="boardNo" visible="false">
       <cl:datamapbind property="value" datacontrolid="plannerBoardNoDM" columnname="BOARD_NO"/>
-      <cl:xylayoutdata std:sid="xyl-data-4faa2975" top="20px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-47dc97d9">
+        <cl:xylayoutdata std:sid="sxyl-data-38f3c21b" top="20px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
     </cl:output>
     <cl:grid std:sid="grid-b21dacf8" id="grd1" datasetid="boardDetail">
-      <cl:xylayoutdata std:sid="xyl-data-8499bae8" top="139px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-a3825c0a">
+        <cl:xylayoutdata std:sid="sxyl-data-a6f3894f" top="139px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-b0588a25"/>
       <cl:gridcolumn std:sid="g-column-1cfe7d6a"/>
       <cl:gridcolumn std:sid="g-column-36cd5695"/>
@@ -133,7 +140,9 @@
       </cl:griddetail>
     </cl:grid>
     <cl:grid std:sid="grid-721a0fa5" id="grd2" datasetid="boardDetail">
-      <cl:xylayoutdata std:sid="xyl-data-58aa6a02" top="197px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-0f3afce0">
+        <cl:xylayoutdata std:sid="sxyl-data-868fac58" top="197px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-5eac1179"/>
       <cl:gridheader std:sid="gh-band-2a052ff5">
         <cl:gridrow std:sid="g-row-9faef54c"/>
@@ -144,12 +153,16 @@
         <cl:gridcell std:sid="gd-cell-5d7667f0" rowindex="0" colindex="0" columnname="boardContent"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html">
-      <cl:xylayoutdata std:sid="xyl-data-28a8e457" top="339px" right="10px" bottom="129px" left="500px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+    <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html" scrolling="no">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-42aeba20">
+        <cl:xylayoutdata std:sid="sxyl-data-0c2b548c" top="268px" right="10px" bottom="20px" left="430px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
+      </cl:responsivexylayoutdata>
     </cl:embeddedpage>
     <cl:grid std:sid="grid-cccde53f" id="grd3" datasetid="planDate">
       <cl:listener std:sid="listener-9cf5eca9" name="cell-click" handler="onGrd3CellClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-d6a374d8" top="268px" bottom="10px" left="10px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-053c234e">
+        <cl:xylayoutdata std:sid="sxyl-data-a500d52a" top="268px" bottom="10px" left="10px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
+      </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-09c7aeb8"/>
       <cl:gridheader std:sid="gh-band-91667f1f">
         <cl:gridrow std:sid="g-row-9713d813"/>
@@ -162,7 +175,9 @@
     </cl:grid>
     <cl:grid std:sid="grid-7187e12f" id="grd4" datasetid="selectedPlan">
       <cl:listener std:sid="listener-ab175514" name="click" handler="onGrd4Click"/>
-      <cl:xylayoutdata std:sid="xyl-data-2b706f83" top="268px" bottom="10px" left="220px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-bc7d69ab">
+        <cl:xylayoutdata std:sid="sxyl-data-c16f3225" top="268px" bottom="10px" left="220px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
+      </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-9bfcafe4"/>
       <cl:gridheader std:sid="gh-band-4ef620f9">
         <cl:gridrow std:sid="g-row-9e749704"/>
@@ -177,11 +192,15 @@
     </cl:grid>
     <cl:output std:sid="output-da291bce" id="plannerNo" visible="false">
       <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-      <cl:xylayoutdata std:sid="xyl-data-06d1f26b" top="8px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-ecb70386">
+        <cl:xylayoutdata std:sid="sxyl-data-f7a672b9" top="8px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
     </cl:output>
     <cl:group std:sid="group-324120f0" id="slt" visible="false">
       <cl:datamapcontext datacontrolid="selectTitleDM"/>
-      <cl:xylayoutdata std:sid="xyl-data-ca0db8d0" top="8px" left="20px" width="179px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-b005aa18">
+        <cl:xylayoutdata std:sid="sxyl-data-d88b6376" top="8px" left="20px" width="179px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
       <cl:output std:sid="output-85395942" id="plannerNoOutput">
         <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
         <cl:xylayoutdata std:sid="xyl-data-0fec68fb" top="22px" left="70px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
@@ -194,13 +213,17 @@
     </cl:group>
     <cl:button std:sid="button-f742fcec" value="삭제">
       <cl:listener std:sid="listener-77cd6713" name="click" handler="onButtonClick2"/>
-      <cl:xylayoutdata std:sid="xyl-data-be8ea45c" top="40px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-97725089">
+        <cl:xylayoutdata std:sid="sxyl-data-4612779f" top="40px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
     </cl:button>
     <cl:button std:sid="button-dc31c6e3" value="수정">
       <cl:listener std:sid="listener-b5d97c71" name="click" handler="onButtonClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-990e564a" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+      <cl:responsivexylayoutdata std:sid="rxyl-data-c5f469d0">
+        <cl:xylayoutdata std:sid="sxyl-data-e010000b" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:xylayout std:sid="xylayout-9001bf41"/>
+    <cl:responsivexylayout std:sid="r-xylayout-22d199fb"/>
   </body>
   <std:studiosetting>
     <std:hruler/>

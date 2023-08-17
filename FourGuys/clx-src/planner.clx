@@ -93,7 +93,7 @@
   </head>
   <body std:sid="body-2ffb0c79" style="background-image:none;">
     <cl:listener std:sid="listener-2b714a1a" name="load" handler="onBodyLoad"/>
-    <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html">
+    <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html" scrolling="no">
       <cl:responsivexylayoutdata std:sid="rxyl-data-704c175c">
         <cl:xylayoutdata std:sid="sxyl-data-f7f7a08e" top="73px" right="0px" bottom="10px" left="570px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
@@ -132,7 +132,7 @@
       <cl:listener std:sid="listener-cfd1181e" name="row-check" handler="onGrd2RowCheck"/>
       <cl:listener std:sid="listener-ba8bfc63" name="row-uncheck" handler="onGrd2RowUncheck"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-1bd432d1">
-        <cl:xylayoutdata std:sid="sxyl-data-3f7dffed" top="120px" left="360px" width="200px" height="640px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-3f7dffed" top="120px" bottom="10px" left="360px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:gridcolumn std:sid="g-column-ad70a0a1" width="25px"/>
@@ -150,7 +150,7 @@
     </cl:grid>
     <cl:grid std:sid="grid-b5555db0" id="grd1" datasetid="selectedPlan">
       <cl:responsivexylayoutdata std:sid="rxyl-data-e8f31ba5">
-        <cl:xylayoutdata std:sid="sxyl-data-1e88443d" top="80px" left="150px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-1e88443d" top="80px" bottom="10px" left="150px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-bfe52550"/>
       <cl:gridheader std:sid="gh-band-f0066996">
@@ -162,14 +162,14 @@
         <cl:gridcell std:sid="gd-cell-26ab244d" rowindex="0" colindex="0" columnname="title"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:group std:sid="group-5906196c">
+    <cl:group std:sid="group-5906196c" id="grp2">
       <cl:responsivexylayoutdata std:sid="rxyl-data-b1de649f">
-        <cl:xylayoutdata std:sid="sxyl-data-90274e3c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-90274e3c" top="80px" bottom="10px" left="20px" width="120px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:grid std:sid="grid-815196f0" id="grd3" style="font-weight:bolder;" datasetid="planDate">
         <cl:listener std:sid="listener-23808200" name="cell-click" handler="onGrd3CellClick"/>
-        <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="10px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
+        <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
         <cl:gridcolumn std:sid="g-column-8344e975"/>
         <cl:gridheader std:sid="gh-band-83257bab">
           <cl:gridrow std:sid="g-row-74d2d4c3"/>

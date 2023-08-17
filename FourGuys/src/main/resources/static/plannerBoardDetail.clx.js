@@ -42,9 +42,11 @@
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
+				var firstimage = grid.getSelectedRow().getValue("firstimage");
 				var embp_mapx = embp.setPageProperty("mapx",mapx);
 				var embp_mapy = embp.setPageProperty("mapy",mapy);
 				var embp_title = embp.setPageProperty("title",title);
+				var embp_firstimage = embp.setPageProperty("firstimage",firstimage);
 				embp.callPageMethod("panTo");
 			}
 
@@ -164,7 +166,8 @@
 					{
 						"name": "mapy",
 						"dataType": "string"
-					}
+					},
+					{"name": "firstimage"}
 				]
 			});
 			app.register(dataSet_3);
@@ -287,26 +290,64 @@
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
 			var userDefinedControl_1 = new udc.logo();
 			container.addChild(userDefinedControl_1, {
-				"top": "20px",
-				"left": "20px",
-				"width": "300px",
-				"height": "120px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "20px",
+						"left": "20px",
+						"width": "300px",
+						"height": "120px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "20px",
+						"left": "10px",
+						"width": "146px",
+						"height": "120px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "20px",
+						"left": "7px",
+						"width": "103px",
+						"height": "120px"
+					}
+				]
 			});
 			
 			var output_1 = new cpr.controls.Output("boardNo");
 			output_1.visible = false;
 			output_1.bind("value").toDataMap(app.lookup("plannerBoardNoDM"), "BOARD_NO");
 			container.addChild(output_1, {
-				"top": "20px",
-				"left": "191px",
-				"width": "100px",
-				"height": "20px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "20px",
+						"left": "191px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "20px",
+						"left": "93px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "20px",
+						"left": "65px",
+						"width": "34px",
+						"height": "20px"
+					}
+				]
 			});
 			
 			var grid_1 = new cpr.controls.Grid("grd1");
@@ -422,10 +463,29 @@
 				}
 			});
 			container.addChild(grid_1, {
-				"top": "139px",
-				"right": "10px",
-				"left": "10px",
-				"height": "50px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "139px",
+						"right": "10px",
+						"left": "10px",
+						"height": "50px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "139px",
+						"right": "5px",
+						"left": "5px",
+						"height": "50px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "139px",
+						"right": "3px",
+						"left": "3px",
+						"height": "50px"
+					}
+				]
 			});
 			
 			var grid_2 = new cpr.controls.Grid("grd2");
@@ -455,19 +515,58 @@
 				}
 			});
 			container.addChild(grid_2, {
-				"top": "197px",
-				"right": "10px",
-				"left": "10px",
-				"height": "50px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "197px",
+						"right": "10px",
+						"left": "10px",
+						"height": "50px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "197px",
+						"right": "5px",
+						"left": "5px",
+						"height": "50px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "197px",
+						"right": "3px",
+						"left": "3px",
+						"height": "50px"
+					}
+				]
 			});
 			
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
 			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+			embeddedPage_1.scrolling = "no";
 			container.addChild(embeddedPage_1, {
-				"top": "339px",
-				"right": "10px",
-				"bottom": "129px",
-				"left": "500px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "268px",
+						"right": "10px",
+						"bottom": "20px",
+						"left": "430px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "268px",
+						"right": "5px",
+						"bottom": "20px",
+						"left": "210px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "268px",
+						"right": "3px",
+						"bottom": "20px",
+						"left": "147px"
+					}
+				]
 			});
 			
 			var grid_3 = new cpr.controls.Grid("grd3");
@@ -500,10 +599,29 @@
 				grid_3.addEventListener("cell-click", onGrd3CellClick);
 			}
 			container.addChild(grid_3, {
-				"top": "268px",
-				"bottom": "10px",
-				"left": "10px",
-				"width": "200px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "268px",
+						"bottom": "10px",
+						"left": "10px",
+						"width": "200px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "268px",
+						"bottom": "10px",
+						"left": "5px",
+						"width": "98px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "268px",
+						"bottom": "10px",
+						"left": "3px",
+						"width": "68px"
+					}
+				]
 			});
 			
 			var grid_4 = new cpr.controls.Grid("grd4");
@@ -537,28 +655,66 @@
 				grid_4.addEventListener("click", onGrd4Click);
 			}
 			container.addChild(grid_4, {
-				"top": "268px",
-				"bottom": "10px",
-				"left": "220px",
-				"width": "200px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "268px",
+						"bottom": "10px",
+						"left": "220px",
+						"width": "200px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "268px",
+						"bottom": "10px",
+						"left": "107px",
+						"width": "98px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "268px",
+						"bottom": "10px",
+						"left": "75px",
+						"width": "68px"
+					}
+				]
 			});
 			
 			var output_2 = new cpr.controls.Output("plannerNo");
 			output_2.visible = false;
 			output_2.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
 			container.addChild(output_2, {
-				"top": "8px",
-				"left": "191px",
-				"width": "100px",
-				"height": "20px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "8px",
+						"left": "191px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "8px",
+						"left": "93px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "8px",
+						"left": "65px",
+						"width": "34px",
+						"height": "20px"
+					}
+				]
 			});
 			
 			var group_1 = new cpr.controls.Container("slt");
 			group_1.visible = false;
 			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("selectTitleDM"));
 			group_1.setBindContext(dataMapContext_1);
-			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_2);
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_1);
 			(function(container){
 				var output_3 = new cpr.controls.Output("plannerNoOutput");
 				output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
@@ -579,10 +735,29 @@
 				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "8px",
-				"left": "20px",
-				"width": "179px",
-				"height": "43px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "8px",
+						"left": "20px",
+						"width": "179px",
+						"height": "43px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "8px",
+						"left": "10px",
+						"width": "87px",
+						"height": "43px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "8px",
+						"left": "7px",
+						"width": "61px",
+						"height": "43px"
+					}
+				]
 			});
 			
 			var button_1 = new cpr.controls.Button();
@@ -591,10 +766,29 @@
 				button_1.addEventListener("click", onButtonClick2);
 			}
 			container.addChild(button_1, {
-				"top": "40px",
-				"right": "10px",
-				"width": "100px",
-				"height": "20px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "40px",
+						"right": "10px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "40px",
+						"right": "5px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "40px",
+						"right": "3px",
+						"width": "34px",
+						"height": "20px"
+					}
+				]
 			});
 			
 			var button_2 = new cpr.controls.Button();
@@ -603,10 +797,29 @@
 				button_2.addEventListener("click", onButtonClick);
 			}
 			container.addChild(button_2, {
-				"top": "8px",
-				"right": "10px",
-				"width": "100px",
-				"height": "20px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "8px",
+						"right": "10px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "8px",
+						"right": "5px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "8px",
+						"right": "3px",
+						"width": "34px",
+						"height": "20px"
+					}
+				]
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

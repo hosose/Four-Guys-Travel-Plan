@@ -68,9 +68,11 @@
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
+				var firstimage = grid.getSelectedRow().getValue("firstimage");
 				var embp_mapx = embp.setPageProperty("mapx",mapx);
 				var embp_mapy = embp.setPageProperty("mapy",mapy);
 				var embp_title = embp.setPageProperty("title",title);
+				var embp_firstimage = embp.setPageProperty("firstimage",firstimage);
 				embp.callPageMethod("panTo");
 			}
 
@@ -362,6 +364,7 @@
 			// UI Configuration
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
 			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+			embeddedPage_1.scrolling = "no";
 			container.addChild(embeddedPage_1, {
 				positions: [
 					{
@@ -575,23 +578,23 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "120px",
+						"bottom": "10px",
 						"left": "360px",
-						"width": "200px",
-						"height": "640px"
+						"width": "200px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "120px",
+						"bottom": "10px",
 						"left": "176px",
-						"width": "98px",
-						"height": "640px"
+						"width": "98px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "120px",
+						"bottom": "10px",
 						"left": "123px",
-						"width": "68px",
-						"height": "640px"
+						"width": "68px"
 					}
 				]
 			});
@@ -634,28 +637,28 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "80px",
+						"bottom": "10px",
 						"left": "150px",
-						"width": "200px",
-						"height": "680px"
+						"width": "200px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "80px",
+						"bottom": "10px",
 						"left": "73px",
-						"width": "98px",
-						"height": "680px"
+						"width": "98px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "80px",
+						"bottom": "10px",
 						"left": "51px",
-						"width": "68px",
-						"height": "680px"
+						"width": "68px"
 					}
 				]
 			});
 			
-			var group_3 = new cpr.controls.Container();
+			var group_3 = new cpr.controls.Container("grp2");
 			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 			group_3.setLayout(xYLayout_2);
 			(function(container){
@@ -699,7 +702,7 @@
 					grid_3.addEventListener("cell-click", onGrd3CellClick);
 				}
 				container.addChild(grid_3, {
-					"top": "10px",
+					"top": "0px",
 					"bottom": "0px",
 					"width": "120px",
 					"left": "calc(50% - 60px)"
@@ -709,24 +712,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "73px",
+						"top": "80px",
+						"bottom": "10px",
 						"left": "20px",
-						"width": "120px",
-						"height": "680px"
+						"width": "120px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "73px",
+						"top": "80px",
+						"bottom": "10px",
 						"left": "10px",
-						"width": "59px",
-						"height": "680px"
+						"width": "59px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "73px",
+						"top": "80px",
+						"bottom": "10px",
 						"left": "7px",
-						"width": "41px",
-						"height": "680px"
+						"width": "41px"
 					}
 				]
 			});

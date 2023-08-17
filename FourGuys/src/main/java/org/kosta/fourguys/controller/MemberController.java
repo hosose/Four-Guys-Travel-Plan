@@ -136,7 +136,6 @@ public class MemberController {
 		String password = member.getValue("password");
 		String address = member.getValue("address");
 		String email = member.getValue("email");
-
 		String name = member.getValue("name");
 
 		memberVO.setPhone(Phone);
