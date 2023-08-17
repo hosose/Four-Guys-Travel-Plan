@@ -127,7 +127,7 @@ public class PlannerController {
 		PlannerVO savePlanner = new PlannerVO();
 		savePlanner.setPlannerNo(plannerNo);
 		plannerService.savePlannerByNo(savePlanner);
-		
+
 		return new JSONDataView();
 	}
 
@@ -137,13 +137,13 @@ public class PlannerController {
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
 		PlannerVO cancelPlanner = new PlannerVO();
 		cancelPlanner.setPlannerNo(plannerNo);
-	
+
 		plannerService.cancelPlannerByNo(cancelPlanner);
 		return new JSONDataView();
 	}
-	
+
 	@GetMapping("findCompletePlanner")
-	public View findCompletePlanner (DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+	public View findCompletePlanner(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		PlannerVO plannerVO = new PlannerVO();
 		String id = null;
@@ -157,14 +157,14 @@ public class PlannerController {
 		plannerVO.setId(id);
 		plannerVO.setCompleteFlag("완성");
 		dataRequest.setResponse("completePlannerVO", plannerService.findCompletePlanner(plannerVO));
-		
+
 		return new JSONDataView();
-		
-		
+
 	}
-	
+
 	@GetMapping("findNotCompletePlanner")
-	public View findNotCompletePlanner (DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+	public View findNotCompletePlanner(DataRequest dataRequest, HttpServletResponse response,
+			HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		PlannerVO plannerVO = new PlannerVO();
 		String id = null;
@@ -178,11 +178,23 @@ public class PlannerController {
 		plannerVO.setId(id);
 		plannerVO.setCompleteFlag("미완성");
 		dataRequest.setResponse("notCompletePlannerVO", plannerService.findNotCompletePlanner(plannerVO));
-		
+
 		return new JSONDataView();
-		
-		
+
 	}
-	
-	
+
+	@GetMapping("/myPlanDetail/{plannerNo}")
+	public View getMyPlanDetailPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		return new UIView("myPlanDetail.clx");
+	}
+
+	@GetMapping("/planDetail")
+	public View findPlannerByNo(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup plannerDetailParam = dataRequest.getParameterGroup("plannerNoDM");
+		int plannerNo = Integer.parseInt(plannerDetailParam.getValue("plannerNo"));
+		// plannerService.findPlannerByNo(plannerNo);
+		dataRequest.setResponse("plannerDetail", plannerService.findPlannerByNo(plannerNo));
+		return new JSONDataView();
+	}
+
 }

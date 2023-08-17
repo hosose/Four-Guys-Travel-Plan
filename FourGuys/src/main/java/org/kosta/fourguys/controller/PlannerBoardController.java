@@ -82,7 +82,6 @@ public class PlannerBoardController {
 	@GetMapping("/boardDetailPage/{plannerNo}")
 	public View getBoardDetailPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		return new UIView("plannerBoardDetail.clx");
-
 	}
 
 	@GetMapping("/createPlannerBoardForm")
@@ -133,5 +132,4 @@ public class PlannerBoardController {
 		dataRequest.setMetadata(true, initParam);
 		return new JSONDataView();
 	}
-
 }

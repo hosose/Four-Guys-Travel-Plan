@@ -54,6 +54,7 @@
       </cl:responsivexylayoutdata>
     </cl:output>
     <cl:grid std:sid="grid-77587128" id="grd1" datasetid="dvCompletePaging">
+      <cl:listener std:sid="listener-e9821763" name="row-dblclick" handler="onGrd1RowDblclick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-1003cc3d">
         <cl:xylayoutdata std:sid="sxyl-data-39120671" top="125px" width="897px" height="150px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>

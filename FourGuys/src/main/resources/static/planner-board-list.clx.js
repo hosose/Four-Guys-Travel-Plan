@@ -32,8 +32,8 @@
 			 */
 			function onPlannerBoardListGridRowDblclick(e) {
 				var plannerBoardListGrid = e.control;
-				var plannerNo = plannerBoardListGrid.getSelectedRow().getValue("plannerNo");
-				location.href = "boardDetailPage/" + plannerNo;
+				var boardNo = plannerBoardListGrid.getSelectedRow().getValue("boardNo");
+				location.href = "boardDetailPage/" + boardNo;
 			}
 
 			/*
@@ -56,7 +56,7 @@
 				var startRowIndex = (currentPageIndex - 1) * pageIdx.pageRowCount;
 				var endRowIndex = currentPageIndex * pageIdx.pageRowCount;
 				/* filter 조건을 통해 그리드를 페이징합니다. */
-				plannerBoardListGrid.setFilter(startRowIndex + " < boardNo && boardNo <= " + endRowIndex);
+				plannerBoardListGrid.setFilter(startRowIndex + " < RNo && RNo <= " + endRowIndex);
 			}
 
 			/*
@@ -118,7 +118,8 @@
 					{
 						"name": "boardHits",
 						"dataType": "string"
-					}
+					},
+					{"name": "RNo"}
 				]
 			});
 			(function(dataSet){
@@ -155,6 +156,7 @@
 						"name": "boardCreateDate",
 						"dataType": "string"
 					},
+					{"name": "RNo"},
 					{
 						"name": "boardHits",
 						"dataType": "string"
@@ -189,7 +191,7 @@
 				"width" : "100%",
 				"height" : "100%"
 			});
-			var dataRowContext_1 = new cpr.bind.DataRowContext(app.lookup("plannerBoardList"), 0);
+			var dataRowContext_1 = new cpr.bind.DataRowContext(app.lookup("plannerBoardList2"), 0);
 			container.setBindContext(dataRowContext_1);
 			
 			// Layout
@@ -262,11 +264,11 @@
 				grid_1.init({
 					"dataSet": app.lookup("plannerBoardList"),
 					"columns": [
-						{"width": "50px"},
-						{"width": "285px"},
-						{"width": "114px"},
-						{"width": "114px"},
-						{"width": "62px"}
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"}
 					],
 					"header": {
 						"rows": [{"height": "24px"}],
@@ -276,8 +278,8 @@
 								"configurator": function(cell){
 									cell.filterable = false;
 									cell.sortable = false;
-									cell.targetColumnName = "boardNo";
-									cell.text = "게시물 번호";
+									cell.targetColumnName = "RNo";
+									cell.text = "RNo";
 								}
 							},
 							{
@@ -285,8 +287,8 @@
 								"configurator": function(cell){
 									cell.filterable = false;
 									cell.sortable = false;
-									cell.targetColumnName = "boardTitle";
-									cell.text = "제목";
+									cell.targetColumnName = "id";
+									cell.text = "id";
 								}
 							},
 							{
@@ -294,8 +296,8 @@
 								"configurator": function(cell){
 									cell.filterable = false;
 									cell.sortable = false;
-									cell.targetColumnName = "id";
-									cell.text = "작성자";
+									cell.targetColumnName = "boardTitle";
+									cell.text = "boardTitle";
 								}
 							},
 							{
@@ -304,7 +306,7 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "boardCreateDate";
-									cell.text = "작성일";
+									cell.text = "boardCreateDate";
 								}
 							},
 							{
@@ -313,7 +315,7 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "boardHits";
-									cell.text = "조회수";
+									cell.text = "boardHits";
 								}
 							}
 						]
@@ -324,19 +326,19 @@
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 0},
 								"configurator": function(cell){
-									cell.columnName = "boardNo";
+									cell.columnName = "RNo";
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 1},
 								"configurator": function(cell){
-									cell.columnName = "boardTitle";
+									cell.columnName = "id";
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 2},
 								"configurator": function(cell){
-									cell.columnName = "id";
+									cell.columnName = "boardTitle";
 								}
 							},
 							{

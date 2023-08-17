@@ -28,8 +28,6 @@
 				app.lookup("findNotCompletePlanner").send();
 				gridPaging2();
 				
-				
-				
 			}
 
 			/**
@@ -40,7 +38,6 @@
 				var vcGridSample = app.lookup("grd1");
 				var vcPageIndexer = app.lookup("completePaging");
 				vcPageIndexer.redraw();
-				
 				
 				/* 페이징의 첫번째 행 번호와 마지막 행 번호를 지정합니다. */
 				var currentPageIndex = vcPageIndexer.currentPageIndex;
@@ -59,7 +56,6 @@
 				var vcPageIndexer = app.lookup("notCompletePaging");
 				vcPageIndexer.redraw();
 				
-				
 				/* 페이징의 첫번째 행 번호와 마지막 행 번호를 지정합니다. */
 				var currentPageIndex = vcPageIndexer.currentPageIndex;
 				var startRowIndex = (currentPageIndex - 1) * vcPageIndexer.pageRowCount;
@@ -76,7 +72,7 @@
 			 * 페이지 인덱서에서 selection-change 이벤트 발생 시 호출.
 			 * Page index를 선택하여 선택된 페이지가 변경된 후에 발생하는 이벤트.
 			 */
-			function onCompletePagingSelectionChange(e){
+			function onCompletePagingSelectionChange(e) {
 				var completePaging = e.control;
 				gridPaging();
 			}
@@ -85,11 +81,22 @@
 			 * 페이지 인덱서에서 selection-change 이벤트 발생 시 호출.
 			 * Page index를 선택하여 선택된 페이지가 변경된 후에 발생하는 이벤트.
 			 */
-			function onNotCompletePagingSelectionChange(e){
+			function onNotCompletePagingSelectionChange(e) {
 				var notCompletePaging = e.control;
 				gridPaging2();
 				
-			};
+			}
+
+			/*
+			 * 그리드에서 row-dblclick 이벤트 발생 시 호출.
+			 * detail이 row를 더블클릭 한 경우 발생하는 이벤트.
+			 */
+			function onGrd1RowDblclick(e) {
+				var grd1 = e.control;
+				var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
+				location.href = "myPlanDetail/" + plannerNo;
+				
+			}
 			// End - User Script
 			
 			// Header
@@ -378,6 +385,9 @@
 					]
 				}
 			});
+			if(typeof onGrd1RowDblclick == "function") {
+				grid_1.addEventListener("row-dblclick", onGrd1RowDblclick);
+			}
 			container.addChild(grid_1, {
 				positions: [
 					{

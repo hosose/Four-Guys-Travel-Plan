@@ -22,54 +22,50 @@
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
-			function onBodyLoad(e){
+			function onBodyLoad(e) {
 				var currentUrl = location.href;
-				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/")+1 );
-			   	app.lookup("boardNo").value = 1;
-			   	app.lookup("plannerNo").value = 201;
-				app.lookup("boardDetailSM").send();	
-				app.lookup("getDay").send();
-			}
+				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				app.lookup("boardNo").value = boardNo;
+				app.lookup("boardDetailSM").send();
+			}	
 
 			/*
 			 * 그리드에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onGrd4Click(e){
+			function onGrd4Click(e) {
 				var grd4 = e.control;
 				var grid = app.lookup("grd4");
 				var embp = app.lookup("ep1");
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
-				var embp_mapx = embp.setPageProperty("mapx",mapx);
-				var embp_mapy = embp.setPageProperty("mapy",mapy);
-				var embp_title = embp.setPageProperty("title",title);
+				var embp_mapx = embp.setPageProperty("mapx", mapx);
+				var embp_mapy = embp.setPageProperty("mapy", mapy);
+				var embp_title = embp.setPageProperty("title", title);
 				embp.callPageMethod("panTo");
 			}
-
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onGetDaySubmitSuccess(e){
+			function onGetDaySubmitSuccess(e) {
 				var getDay = e.control;
 				var grid = app.lookup("grd4");
 				grid.selectRows([0]);
-				app.lookup("planDateOutput").value=1;
+				app.lookup("planDateOutput").value = 1;
 			}
 
 			/*
 			 * 그리드에서 cell-click 이벤트 발생 시 호출.
 			 * Grid의 Cell 클릭시 발생하는 이벤트.
 			 */
-			function onGrd3CellClick(e){
+			function onGrd3CellClick(e) {
 				var grd3 = e.control;
 				var grid = app.lookup("grd3");
-				var plannerNo = app.lookup("plannerNo").value;
 				var planDate = grid.getSelectedRow().getValue("planDate");
-				app.lookup("planDateOutput").value=planDate;
+				app.lookup("planDateOutput").value = planDate;
 				app.lookup("getTitle").send();
 			}
 
@@ -77,14 +73,16 @@
 			 * "수정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick(e){
+			function onButtonClick(e) {
 				var button = e.control;
-				app.openDialog("editBoardDetail", {width : 800, height : 600}, function(dialog){
-					dialog.ready(function(dialogApp){
+				app.openDialog("editBoardDetail", {
+					width: 800,
+					height: 600
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {
 						// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-						
 					});
-				}).then(function(returnValue){
+				}).then(function(returnValue) {
 					;
 				});
 			}
@@ -93,10 +91,21 @@
 			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick2(e){
+			function onButtonClick2(e) {
 				var button = e.control;
 				
-			};
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onBoardDetailSMSubmitSuccess2(e) {
+				var boardDetailSM = e.control;
+				var plannerNo = app.lookup("plannerBoardParamsGrd").getRow(0).getValue("plannerNo");
+				app.lookup("plannerNoOutput").value = plannerNo;
+				app.lookup("getDay").send();
+			}
 			// End - User Script
 			
 			// Header
@@ -120,6 +129,10 @@
 					{"name": "boardCreateDate"},
 					{
 						"name": "boardHits",
+						"dataType": "number"
+					},
+					{
+						"name": "RNo",
 						"dataType": "number"
 					}
 				]
@@ -195,6 +208,10 @@
 					{
 						"name": "boardHits",
 						"dataType": "number"
+					},
+					{
+						"name": "RNo",
+						"dataType": "number"
 					}
 				]
 			});
@@ -239,8 +256,8 @@
 			submission_1.action = "boardDetail";
 			submission_1.addRequestData(dataMap_1);
 			submission_1.addResponseData(dataSet_1, false);
-			if(typeof onBoardDetailSMSubmitSuccess == "function") {
-				submission_1.addEventListener("submit-success", onBoardDetailSMSubmitSuccess);
+			if(typeof onBoardDetailSMSubmitSuccess2 == "function") {
+				submission_1.addEventListener("submit-success", onBoardDetailSMSubmitSuccess2);
 			}
 			app.register(submission_1);
 			
@@ -255,7 +272,6 @@
 			submission_3.method = "get";
 			submission_3.action = "getDay";
 			submission_3.addRequestData(dataMap_3);
-			submission_3.addRequestData(dataMap_4);
 			submission_3.addResponseData(dataSet_2, false);
 			if(typeof onGetDaySubmitSuccess == "function") {
 				submission_3.addEventListener("submit-success", onGetDaySubmitSuccess);
@@ -304,16 +320,15 @@
 			output_1.bind("value").toDataMap(app.lookup("plannerBoardNoDM"), "BOARD_NO");
 			container.addChild(output_1, {
 				"top": "20px",
-				"left": "191px",
+				"left": "581px",
 				"width": "100px",
 				"height": "20px"
 			});
 			
-			var grid_1 = new cpr.controls.Grid("grd1");
+			var grid_1 = new cpr.controls.Grid("plannerBoardParamsGrd");
 			grid_1.init({
 				"dataSet": app.lookup("boardDetail"),
 				"columns": [
-					{"width": "100px"},
 					{"width": "100px"},
 					{"width": "100px"},
 					{"width": "100px"},
@@ -346,21 +361,12 @@
 							"configurator": function(cell){
 								cell.filterable = false;
 								cell.sortable = false;
-								cell.targetColumnName = "boardNo";
-								cell.text = "boardNo";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 3},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
 								cell.targetColumnName = "boardTitle";
 								cell.text = "boardTitle";
 							}
 						},
 						{
-							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
 								cell.filterable = false;
 								cell.sortable = false;
@@ -369,7 +375,7 @@
 							}
 						},
 						{
-							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
 								cell.filterable = false;
 								cell.sortable = false;
@@ -397,23 +403,17 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
-								cell.columnName = "boardNo";
+								cell.columnName = "boardTitle";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
-								cell.columnName = "boardTitle";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 4},
-							"configurator": function(cell){
 								cell.columnName = "boardCreateDate";
 							}
 						},
 						{
-							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
 								cell.columnName = "boardHits";
 							}
@@ -543,41 +543,12 @@
 				"width": "200px"
 			});
 			
-			var output_2 = new cpr.controls.Output("plannerNo");
-			output_2.visible = false;
-			output_2.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-			container.addChild(output_2, {
-				"top": "8px",
-				"left": "191px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
 			var group_1 = new cpr.controls.Container("slt");
 			group_1.visible = false;
 			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("selectTitleDM"));
 			group_1.setBindContext(dataMapContext_1);
 			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_2);
-			(function(container){
-				var output_3 = new cpr.controls.Output("plannerNoOutput");
-				output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-				container.addChild(output_3, {
-					"top": "22px",
-					"left": "70px",
-					"width": "100px",
-					"height": "20px"
-				});
-				var output_4 = new cpr.controls.Output("planDateOutput");
-				output_4.visible = false;
-				output_4.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
-				container.addChild(output_4, {
-					"top": "3px",
-					"left": "30px",
-					"width": "100px",
-					"height": "20px"
-				});
-			})(group_1);
 			container.addChild(group_1, {
 				"top": "8px",
 				"left": "20px",
@@ -605,6 +576,26 @@
 			container.addChild(button_2, {
 				"top": "8px",
 				"right": "10px",
+				"width": "100px",
+				"height": "20px"
+			});
+			
+			var output_2 = new cpr.controls.Output("planDateOutput");
+			output_2.visible = false;
+			output_2.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
+			container.addChild(output_2, {
+				"top": "20px",
+				"left": "361px",
+				"width": "100px",
+				"height": "20px"
+			});
+			
+			var output_3 = new cpr.controls.Output("plannerNoOutput");
+			output_3.visible = false;
+			output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
+			container.addChild(output_3, {
+				"top": "20px",
+				"left": "471px",
 				"width": "100px",
 				"height": "20px"
 			});
