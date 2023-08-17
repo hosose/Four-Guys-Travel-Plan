@@ -34,6 +34,21 @@
           <cl:datacolumn std:sid="d-column-42ac5d5c" name="plannerLastDay" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
+      <cl:dataset std:sid="d-set-0ee31105" id="jeju">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-b8e2ca04" name="contentid" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-64822618" name="mapx" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-fc21874a" name="mapy" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-df84b3d3" name="title" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-b4b97345" name="tel" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-265bf95c" name="firstimage" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-8ed3a99d" name="addr2" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-33ed1583" name="addr1" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-bc3e0c16" name="cat1" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-0617e964" name="cat2" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-d23a50e8" name="cat3" datatype="string"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-333b6018" id="plannerBoardNoDM">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-21c1da66" name="BOARD_NO" datatype="number"/>
@@ -68,6 +83,13 @@
           <cl:datacolumn std:sid="d-column-8d4830f9" name="title"/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-8fec9b1e" id="areaSearch">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-3a5feb45" name="title"/>
+          <cl:datacolumn std:sid="d-column-bd971c69" name="contentId"/>
+          <cl:datacolumn std:sid="d-column-93d47f0f" name="cat1"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-e6c83257" id="planDetail" async="false" method="get" action="planDetail">
         <cl:listener std:sid="listener-253f01f9" name="submit-success" handler="onPlanDetailSubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
@@ -87,6 +109,30 @@
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:requestdata dataid="createPlanDM"/>
         <cl:responsedata dataid="selectedPlan"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-67bd9f31" id="areaList" method="get" action="/findAllArea">
+        <cl:requestdata dataid="areaSearch"/>
+        <cl:responsedata dataid="jeju"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-7e681465" id="dayBtnSM" method="get" action="getDay">
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:responsedata dataid="planDate"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-2537bb48" id="savePlanner" action="savePlanner">
+        <cl:requestdata dataid="plannerNoDM"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-19ef9968" id="createPlan" action="createPlan">
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:requestdata dataid="createPlanDM"/>
+        <cl:responsedata dataid="selectedPlan"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-b587fea4" id="deletePlan" method="delete" action="deletePlan">
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:requestdata dataid="createPlanDM"/>
+        <cl:responsedata dataid="selectedPlan"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-9505b4f1" id="cancelPlanner" action="cancelPlanner">
+        <cl:requestdata dataid="plannerNoDM"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -132,6 +178,32 @@
       <cl:xylayoutdata std:sid="xyl-data-ca0db8d0" top="8px" left="20px" width="179px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:xylayout std:sid="xylayout-c8a3a9da"/>
     </cl:group>
+    <cl:grid std:sid="grid-1afb50d3" id="grd2" style="font-weight:bolder;" datasetid="jeju">
+      <cl:listener std:sid="listener-ecc5c8b0" name="click" handler="onGrd2Click"/>
+      <cl:xylayoutdata std:sid="xyl-data-5aa3a895" top="169px" left="430px" width="200px" height="589px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-ad70a0a1" width="25px"/>
+      <cl:gridcolumn std:sid="g-column-6e963c15"/>
+      <cl:gridheader std:sid="gh-band-920a5d9d">
+        <cl:gridrow std:sid="g-row-6a8b963d"/>
+        <cl:gridcell std:sid="gh-cell-e3b7afc9" rowindex="0" colindex="0" style="background-color:#FFFFFF;" sortable="false" filterable="false" columntype="checkbox"/>
+        <cl:gridcell std:sid="gh-cell-cd6311e9" rowindex="0" colindex="1" style="background-color:#FFFFFF; color:#2DCEB9; font-weight:bolder;" targetcolumnname="title" sortable="false" filterable="false" text="관광지 목록"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-3c2424fa">
+        <cl:gridrow std:sid="g-row-3eb22adc"/>
+        <cl:gridcell std:sid="gd-cell-eb89fa08" rowindex="0" colindex="0" columntype="checkbox"/>
+        <cl:gridcell std:sid="gd-cell-798f542a" rowindex="0" colindex="1" style="font-weight:normal;" columnname="title"/>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:inputbox std:sid="i-box-dde342b5" id="titleSearch" style="text-align:center;" placeholder="지역 검색">
+      <cl:datamapbind property="value" category="PROPERTY" datacontrolid="areaSearch" columnname="title"/>
+      <cl:datamapcontext datacontrolid="areaSearch"/>
+      <cl:xylayoutdata std:sid="xyl-data-44bdcf32" top="129px" left="319px" width="273px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:button std:sid="button-a998ad15" id="searchbtn" style="background-color:#306DC6; background-repeat:no-repeat; color:#FFFFFF; font-size:15px; background-image:none;" value="검색">
+      <cl:listener std:sid="listener-7cc17f10" name="click" handler="onSearchbtnClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-f4de444a" top="129px" left="602px" width="100px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
     <cl:xylayout std:sid="xylayout-9001bf41"/>
   </body>
   <std:studiosetting>

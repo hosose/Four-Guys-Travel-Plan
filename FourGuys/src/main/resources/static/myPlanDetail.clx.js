@@ -22,13 +22,14 @@
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
-			function onBodyLoad(e){
+			function onBodyLoad(e) {
 				
 				var currentUrl = location.href;
-				var plannerNo = currentUrl.substring(currentUrl.lastIndexOf("/")+ 1);
-			   	
-			   	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
-				app.lookup("planDetail").send();	
+				var plannerNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				
+				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+				app.lookup("planDetail").send();
+				app.lookup("searchbtn").click();
 				
 			}
 
@@ -36,25 +37,24 @@
 			 * 그리드에서 click 이벤트 발생 시 호출. 
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onGrd4Click(e){
+			function onGrd4Click(e) {
 				var grd4 = e.control;
 				var grid = app.lookup("grd4");
 				var embp = app.lookup("ep1");
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
-				var embp_mapx = embp.setPageProperty("mapx",mapx);
-				var embp_mapy = embp.setPageProperty("mapy",mapy);
-				var embp_title = embp.setPageProperty("title",title);
+				var embp_mapx = embp.setPageProperty("mapx", mapx);
+				var embp_mapy = embp.setPageProperty("mapy", mapy);
+				var embp_title = embp.setPageProperty("title", title);
 				embp.callPageMethod("panTo");
 			}
-
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onGetDaySubmitSuccess(e){
+			function onGetDaySubmitSuccess(e) {
 				var getDay = e.control;
 				var grid = app.lookup("grd4");
 				grid.selectRows([0]);
@@ -67,7 +67,7 @@
 			 * 그리드에서 cell-click 이벤트 발생 시 호출.
 			 * Grid의 Cell 클릭시 발생하는 이벤트.
 			 */
-			function onGrd3CellClick(e){
+			function onGrd3CellClick(e) {
 				var grd3 = e.control;
 				var grid = app.lookup("grd3");
 				//var plannerNo = app.lookup("plannerNo").value;
@@ -77,20 +77,43 @@
 				app.lookup("getTitle").send();
 			}
 
-
-
-
-
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onPlanDetailSubmitSuccess(e){
+			function onPlanDetailSubmitSuccess(e) {
 				var planDetail = e.control;
 				app.lookup("getDay").send();
 				
+			}
+
+			/*
+			 * "검색" 버튼(searchbtn)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onSearchbtnClick(e) {
+				var searchbtn = e.control;
+				app.lookup("areaList").send();
 				
-			};
+			}
+
+			/*
+			 * 그리드에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onGrd2Click(e) {
+				var grd2 = e.control;
+				
+				var grid = app.lookup("grd2");
+				var embp = app.lookup("ep1");
+				var mapx = grid.getSelectedRow().getValue("mapx");
+				var mapy = grid.getSelectedRow().getValue("mapy");
+				var title = grid.getSelectedRow().getValue("title");
+				var embp_mapx = embp.setPageProperty("mapx", mapx);
+				var embp_mapy = embp.setPageProperty("mapy", mapy);
+				var embp_title = embp.setPageProperty("title", title);
+				embp.callPageMethod("panTo");
+			}
 			// End - User Script
 			
 			// Header
@@ -164,6 +187,57 @@
 				]
 			});
 			app.register(dataSet_3);
+			
+			var dataSet_4 = new cpr.data.DataSet("jeju");
+			dataSet_4.parseData({
+				"columns" : [
+					{
+						"name": "contentid",
+						"dataType": "string"
+					},
+					{
+						"name": "mapx",
+						"dataType": "string"
+					},
+					{
+						"name": "mapy",
+						"dataType": "string"
+					},
+					{
+						"name": "title",
+						"dataType": "string"
+					},
+					{
+						"name": "tel",
+						"dataType": "string"
+					},
+					{
+						"name": "firstimage",
+						"dataType": "string"
+					},
+					{
+						"name": "addr2",
+						"dataType": "string"
+					},
+					{
+						"name": "addr1",
+						"dataType": "string"
+					},
+					{
+						"name": "cat1",
+						"dataType": "string"
+					},
+					{
+						"name": "cat2",
+						"dataType": "string"
+					},
+					{
+						"name": "cat3",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataSet_4);
 			var dataMap_1 = new cpr.data.DataMap("plannerBoardNoDM");
 			dataMap_1.parseData({
 				"columns" : [{
@@ -226,6 +300,16 @@
 				]
 			});
 			app.register(dataMap_5);
+			
+			var dataMap_6 = new cpr.data.DataMap("areaSearch");
+			dataMap_6.parseData({
+				"columns" : [
+					{"name": "title"},
+					{"name": "contentId"},
+					{"name": "cat1"}
+				]
+			});
+			app.register(dataMap_6);
 			var submission_1 = new cpr.protocols.Submission("planDetail");
 			submission_1.async = false;
 			submission_1.method = "get";
@@ -262,6 +346,45 @@
 			submission_4.addRequestData(dataMap_4);
 			submission_4.addResponseData(dataSet_2, false);
 			app.register(submission_4);
+			
+			var submission_5 = new cpr.protocols.Submission("areaList");
+			submission_5.method = "get";
+			submission_5.action = "/findAllArea";
+			submission_5.addRequestData(dataMap_6);
+			submission_5.addResponseData(dataSet_4, false);
+			app.register(submission_5);
+			
+			var submission_6 = new cpr.protocols.Submission("dayBtnSM");
+			submission_6.method = "get";
+			submission_6.action = "getDay";
+			submission_6.addRequestData(dataMap_3);
+			submission_6.addResponseData(dataSet_1, false);
+			app.register(submission_6);
+			
+			var submission_7 = new cpr.protocols.Submission("savePlanner");
+			submission_7.action = "savePlanner";
+			submission_7.addRequestData(dataMap_3);
+			app.register(submission_7);
+			
+			var submission_8 = new cpr.protocols.Submission("createPlan");
+			submission_8.action = "createPlan";
+			submission_8.addRequestData(dataMap_3);
+			submission_8.addRequestData(dataMap_4);
+			submission_8.addResponseData(dataSet_2, false);
+			app.register(submission_8);
+			
+			var submission_9 = new cpr.protocols.Submission("deletePlan");
+			submission_9.method = "delete";
+			submission_9.action = "deletePlan";
+			submission_9.addRequestData(dataMap_3);
+			submission_9.addRequestData(dataMap_4);
+			submission_9.addResponseData(dataSet_2, false);
+			app.register(submission_9);
+			
+			var submission_10 = new cpr.protocols.Submission("cancelPlanner");
+			submission_10.action = "cancelPlanner";
+			submission_10.addRequestData(dataMap_3);
+			app.register(submission_10);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -379,6 +502,111 @@
 				"left": "20px",
 				"width": "179px",
 				"height": "43px"
+			});
+			
+			var grid_3 = new cpr.controls.Grid("grd2");
+			grid_3.init({
+				"dataSet": app.lookup("jeju"),
+				"columns": [
+					{"width": "25px"},
+					{"width": "100px"}
+				],
+				"header": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnType = "checkbox";
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.style.css({
+									"background-color" : "#FFFFFF"
+								});
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "title";
+								cell.text = "관광지 목록";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"color" : "#2DCEB9",
+									"font-weight" : "bolder"
+								});
+							}
+						}
+					]
+				},
+				"detail": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnType = "checkbox";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.columnName = "title";
+								cell.style.css({
+									"font-weight" : "normal"
+								});
+							}
+						}
+					]
+				}
+			});
+			grid_3.style.css({
+				"font-weight" : "bolder"
+			});
+			if(typeof onGrd2Click == "function") {
+				grid_3.addEventListener("click", onGrd2Click);
+			}
+			container.addChild(grid_3, {
+				"top": "73px",
+				"left": "360px",
+				"width": "200px",
+				"height": "680px"
+			});
+			
+			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
+			inputBox_1.placeholder = "지역 검색";
+			inputBox_1.style.css({
+				"text-align" : "center"
+			});
+			var dataMapContext_2 = new cpr.bind.DataMapContext(app.lookup("areaSearch"));
+			inputBox_1.setBindContext(dataMapContext_2);
+			inputBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "title");
+			container.addChild(inputBox_1, {
+				"top": "129px",
+				"left": "319px",
+				"width": "273px",
+				"height": "30px"
+			});
+			
+			var button_1 = new cpr.controls.Button("searchbtn");
+			button_1.value = "검색";
+			button_1.style.css({
+				"background-color" : "#306DC6",
+				"background-repeat" : "no-repeat",
+				"color" : "#FFFFFF",
+				"font-size" : "15px",
+				"background-image" : "none"
+			});
+			if(typeof onSearchbtnClick == "function") {
+				button_1.addEventListener("click", onSearchbtnClick);
+			}
+			container.addChild(button_1, {
+				"top": "129px",
+				"left": "602px",
+				"width": "100px",
+				"height": "30px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
