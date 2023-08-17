@@ -14,6 +14,7 @@
           <cl:datacolumn std:sid="d-column-d22b9d66" name="boardTitle"/>
           <cl:datacolumn std:sid="d-column-e8d4151a" name="boardCreateDate"/>
           <cl:datacolumn std:sid="d-column-32b13e8b" name="boardHits" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-3bfb9d7a" name="RNo" datatype="number"/>
         </cl:datacolumnlist>
       </cl:dataset>
       <cl:dataset std:sid="d-set-fd86dbad" id="planDate">
@@ -49,6 +50,7 @@
           <cl:datacolumn std:sid="d-column-f7e0dd86" name="boardTitle"/>
           <cl:datacolumn std:sid="d-column-8d56c0b7" name="boardCreateDate"/>
           <cl:datacolumn std:sid="d-column-89fee44f" name="boardHits" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-5c6639fa" name="RNo" datatype="number"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-be1b9149" id="plannerNoDM">
@@ -71,7 +73,7 @@
       </cl:datamap>
       <cl:datamap std:sid="d-map-2ff4cd29" id="editBoardDM"/>
       <cl:submission std:sid="submission-e6c83257" id="boardDetailSM" method="get" action="boardDetail">
-        <cl:listener std:sid="listener-ab2ed6a0" name="submit-success" handler="onBoardDetailSMSubmitSuccess"/>
+        <cl:listener std:sid="listener-f761c020" name="submit-success" handler="onBoardDetailSMSubmitSuccess2"/>
         <cl:requestdata dataid="plannerBoardNoDM"/>
         <cl:responsedata dataid="boardDetail"/>
       </cl:submission>
@@ -82,7 +84,6 @@
       <cl:submission std:sid="submission-d6b667c2" id="getDay" method="get" action="getDay">
         <cl:listener std:sid="listener-a0939060" name="submit-success" handler="onGetDaySubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
         <cl:responsedata dataid="planDate"/>
       </cl:submission>
       <cl:submission std:sid="submission-6796ef8b" id="getTitle" method="get" action="selectPlansByDate">
@@ -103,33 +104,30 @@
     </cl:udc>
     <cl:output std:sid="output-f33a29fb" id="boardNo" visible="false">
       <cl:datamapbind property="value" datacontrolid="plannerBoardNoDM" columnname="BOARD_NO"/>
-      <cl:xylayoutdata std:sid="xyl-data-4faa2975" top="20px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-4faa2975" top="20px" left="581px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:grid std:sid="grid-b21dacf8" id="grd1" datasetid="boardDetail">
+    <cl:grid std:sid="grid-b21dacf8" id="plannerBoardParamsGrd" datasetid="boardDetail">
       <cl:xylayoutdata std:sid="xyl-data-8499bae8" top="139px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
-      <cl:gridcolumn std:sid="g-column-b0588a25"/>
-      <cl:gridcolumn std:sid="g-column-1cfe7d6a"/>
-      <cl:gridcolumn std:sid="g-column-36cd5695"/>
-      <cl:gridcolumn std:sid="g-column-a9e73f1c"/>
-      <cl:gridcolumn std:sid="g-column-f959213b"/>
-      <cl:gridcolumn std:sid="g-column-aa2f7e6a"/>
-      <cl:gridheader std:sid="gh-band-ac55cff2">
-        <cl:gridrow std:sid="g-row-7cd0b5e4"/>
-        <cl:gridcell std:sid="gh-cell-7bd571b0" rowindex="0" colindex="0" targetcolumnname="id" sortable="false" filterable="false" text="id"/>
-        <cl:gridcell std:sid="gh-cell-3c024f85" rowindex="0" colindex="1" targetcolumnname="plannerNo" sortable="false" filterable="false" text="plannerNo"/>
-        <cl:gridcell std:sid="gh-cell-e2fc0900" rowindex="0" colindex="2" targetcolumnname="boardNo" sortable="false" filterable="false" text="boardNo"/>
-        <cl:gridcell std:sid="gh-cell-8deeee1b" rowindex="0" colindex="3" targetcolumnname="boardTitle" sortable="false" filterable="false" text="boardTitle"/>
-        <cl:gridcell std:sid="gh-cell-dc1295bc" rowindex="0" colindex="4" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="boardCreateDate"/>
-        <cl:gridcell std:sid="gh-cell-9668c0fe" rowindex="0" colindex="5" targetcolumnname="boardHits" sortable="false" filterable="false" text="boardHits"/>
+      <cl:gridcolumn std:sid="g-column-0714698b"/>
+      <cl:gridcolumn std:sid="g-column-e96611b1"/>
+      <cl:gridcolumn std:sid="g-column-dd70da10"/>
+      <cl:gridcolumn std:sid="g-column-12bd5cb1"/>
+      <cl:gridcolumn std:sid="g-column-e1c6b6a5"/>
+      <cl:gridheader std:sid="gh-band-9c04462b">
+        <cl:gridrow std:sid="g-row-cbabffb7"/>
+        <cl:gridcell std:sid="gh-cell-82cf36c8" rowindex="0" colindex="0" targetcolumnname="id" sortable="false" filterable="false" text="id"/>
+        <cl:gridcell std:sid="gh-cell-461f1275" rowindex="0" colindex="1" targetcolumnname="plannerNo" sortable="false" filterable="false" text="plannerNo"/>
+        <cl:gridcell std:sid="gh-cell-8a10dbc8" rowindex="0" colindex="2" targetcolumnname="boardTitle" sortable="false" filterable="false" text="boardTitle"/>
+        <cl:gridcell std:sid="gh-cell-6c05692e" rowindex="0" colindex="3" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="boardCreateDate"/>
+        <cl:gridcell std:sid="gh-cell-81cf797b" rowindex="0" colindex="4" targetcolumnname="boardHits" sortable="false" filterable="false" text="boardHits"/>
       </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-9986175d">
-        <cl:gridrow std:sid="g-row-b6a3c645"/>
-        <cl:gridcell std:sid="gd-cell-a8029b28" rowindex="0" colindex="0" columnname="id"/>
-        <cl:gridcell std:sid="gd-cell-ce8a0d5e" rowindex="0" colindex="1" columnname="plannerNo"/>
-        <cl:gridcell std:sid="gd-cell-2a50e836" rowindex="0" colindex="2" columnname="boardNo"/>
-        <cl:gridcell std:sid="gd-cell-6314e4dc" rowindex="0" colindex="3" columnname="boardTitle"/>
-        <cl:gridcell std:sid="gd-cell-3b5c65a2" rowindex="0" colindex="4" columnname="boardCreateDate"/>
-        <cl:gridcell std:sid="gd-cell-4d6fc1de" rowindex="0" colindex="5" columnname="boardHits"/>
+      <cl:griddetail std:sid="gd-band-2c083ece">
+        <cl:gridrow std:sid="g-row-74e8655d"/>
+        <cl:gridcell std:sid="gd-cell-fa325191" rowindex="0" colindex="0" columnname="id"/>
+        <cl:gridcell std:sid="gd-cell-a20e34df" rowindex="0" colindex="1" columnname="plannerNo"/>
+        <cl:gridcell std:sid="gd-cell-5d5c016c" rowindex="0" colindex="2" columnname="boardTitle"/>
+        <cl:gridcell std:sid="gd-cell-7fc9c923" rowindex="0" colindex="3" columnname="boardCreateDate"/>
+        <cl:gridcell std:sid="gd-cell-e72fa0bc" rowindex="0" colindex="4" columnname="boardHits"/>
       </cl:griddetail>
     </cl:grid>
     <cl:grid std:sid="grid-721a0fa5" id="grd2" datasetid="boardDetail">
@@ -175,21 +173,9 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:output std:sid="output-da291bce" id="plannerNo" visible="false">
-      <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-      <cl:xylayoutdata std:sid="xyl-data-06d1f26b" top="8px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
     <cl:group std:sid="group-324120f0" id="slt" visible="false">
       <cl:datamapcontext datacontrolid="selectTitleDM"/>
       <cl:xylayoutdata std:sid="xyl-data-ca0db8d0" top="8px" left="20px" width="179px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:output std:sid="output-85395942" id="plannerNoOutput">
-        <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-        <cl:xylayoutdata std:sid="xyl-data-0fec68fb" top="22px" left="70px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:output>
-      <cl:output std:sid="output-c2e53342" id="planDateOutput" visible="false">
-        <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
-        <cl:xylayoutdata std:sid="xyl-data-4e76e24f" top="3px" left="30px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:output>
       <cl:xylayout std:sid="xylayout-c8a3a9da"/>
     </cl:group>
     <cl:button std:sid="button-f742fcec" value="삭제">
@@ -200,6 +186,14 @@
       <cl:listener std:sid="listener-b5d97c71" name="click" handler="onButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-990e564a" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
+    <cl:output std:sid="output-c2e53342" id="planDateOutput" visible="false">
+      <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
+      <cl:xylayoutdata std:sid="xyl-data-8e59c52d" top="20px" left="361px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:output std:sid="output-85395942" id="plannerNoOutput" visible="false">
+      <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
+      <cl:xylayoutdata std:sid="xyl-data-f4b0906d" top="20px" left="471px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
     <cl:xylayout std:sid="xylayout-9001bf41"/>
   </body>
   <std:studiosetting>

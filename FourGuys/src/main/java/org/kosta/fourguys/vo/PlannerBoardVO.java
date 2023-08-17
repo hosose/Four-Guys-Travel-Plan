@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlannerBoardVO {
+	private int rNo;
 	private int boardNo;
 	private int plannerNo;
 	private String id;
