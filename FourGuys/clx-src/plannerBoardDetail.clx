@@ -102,10 +102,6 @@
     <cl:udc std:sid="ud-control-6dbfc96f" type="udc.logo">
       <cl:xylayoutdata std:sid="xyl-data-aa01408b" top="20px" left="20px" width="300px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:udc>
-    <cl:output std:sid="output-f33a29fb" id="boardNo" visible="false">
-      <cl:datamapbind property="value" datacontrolid="plannerBoardNoDM" columnname="BOARD_NO"/>
-      <cl:xylayoutdata std:sid="xyl-data-4faa2975" top="20px" left="581px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
     <cl:grid std:sid="grid-b21dacf8" id="plannerBoardParamsGrd" datasetid="boardDetail">
       <cl:xylayoutdata std:sid="xyl-data-8499bae8" top="139px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
       <cl:gridcolumn std:sid="g-column-0714698b"/>

@@ -25,7 +25,7 @@
 			function onBodyLoad(e) {
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-				app.lookup("boardNo").value = boardNo;
+				app.lookup("plannerBoardNoDM").setValue("BOARD_NO", boardNo);
 				app.lookup("boardDetailSM").send();
 			}	
 
@@ -315,16 +315,6 @@
 				"height": "120px"
 			});
 			
-			var output_1 = new cpr.controls.Output("boardNo");
-			output_1.visible = false;
-			output_1.bind("value").toDataMap(app.lookup("plannerBoardNoDM"), "BOARD_NO");
-			container.addChild(output_1, {
-				"top": "20px",
-				"left": "581px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
 			var grid_1 = new cpr.controls.Grid("plannerBoardParamsGrd");
 			grid_1.init({
 				"dataSet": app.lookup("boardDetail"),
@@ -580,20 +570,20 @@
 				"height": "20px"
 			});
 			
-			var output_2 = new cpr.controls.Output("planDateOutput");
-			output_2.visible = false;
-			output_2.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
-			container.addChild(output_2, {
+			var output_1 = new cpr.controls.Output("planDateOutput");
+			output_1.visible = false;
+			output_1.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
+			container.addChild(output_1, {
 				"top": "20px",
 				"left": "361px",
 				"width": "100px",
 				"height": "20px"
 			});
 			
-			var output_3 = new cpr.controls.Output("plannerNoOutput");
-			output_3.visible = false;
-			output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-			container.addChild(output_3, {
+			var output_2 = new cpr.controls.Output("plannerNoOutput");
+			output_2.visible = false;
+			output_2.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
+			container.addChild(output_2, {
 				"top": "20px",
 				"left": "471px",
 				"width": "100px",
