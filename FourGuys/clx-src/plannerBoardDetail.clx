@@ -82,7 +82,6 @@
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-d6b667c2" id="getDay" method="get" action="getDay">
-        <cl:listener std:sid="listener-a0939060" name="submit-success" handler="onGetDaySubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:responsedata dataid="planDate"/>
       </cl:submission>
@@ -127,14 +126,14 @@
       </cl:griddetail>
     </cl:grid>
     <cl:grid std:sid="grid-721a0fa5" id="grd2" datasetid="boardDetail">
-      <cl:xylayoutdata std:sid="xyl-data-58aa6a02" top="197px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-58aa6a02" top="197px" right="10px" left="10px" height="132px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
       <cl:gridcolumn std:sid="g-column-5eac1179"/>
       <cl:gridheader std:sid="gh-band-2a052ff5">
         <cl:gridrow std:sid="g-row-9faef54c"/>
         <cl:gridcell std:sid="gh-cell-04b46a98" rowindex="0" colindex="0" targetcolumnname="boardContent" sortable="false" filterable="false" text="boardContent"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-f21779d6">
-        <cl:gridrow std:sid="g-row-da2d554f"/>
+        <cl:gridrow std:sid="g-row-da2d554f" height="120px"/>
         <cl:gridcell std:sid="gd-cell-5d7667f0" rowindex="0" colindex="0" columnname="boardContent"/>
       </cl:griddetail>
     </cl:grid>
@@ -143,11 +142,11 @@
     </cl:embeddedpage>
     <cl:grid std:sid="grid-cccde53f" id="grd3" datasetid="planDate">
       <cl:listener std:sid="listener-9cf5eca9" name="cell-click" handler="onGrd3CellClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-d6a374d8" top="268px" bottom="10px" left="10px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
+      <cl:xylayoutdata std:sid="xyl-data-d6a374d8" top="339px" bottom="10px" left="10px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
       <cl:gridcolumn std:sid="g-column-09c7aeb8"/>
       <cl:gridheader std:sid="gh-band-91667f1f">
         <cl:gridrow std:sid="g-row-9713d813"/>
-        <cl:gridcell std:sid="gh-cell-27eaffcf" rowindex="0" colindex="0" targetcolumnname="planDate" sortable="false" filterable="false" text="DAY"/>
+        <cl:gridcell std:sid="gh-cell-a07f605b" rowindex="0" colindex="0" style="background-color:#FFFFFF; color:#2DCEB9; font-weight:bolder;" targetcolumnname="planDate" sortable="false" filterable="false" text="DAY"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-f201f12d">
         <cl:gridrow std:sid="g-row-40f87f23"/>
@@ -156,11 +155,11 @@
     </cl:grid>
     <cl:grid std:sid="grid-7187e12f" id="grd4" datasetid="selectedPlan">
       <cl:listener std:sid="listener-ab175514" name="click" handler="onGrd4Click"/>
-      <cl:xylayoutdata std:sid="xyl-data-2b706f83" top="268px" bottom="10px" left="220px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
+      <cl:xylayoutdata std:sid="xyl-data-2b706f83" top="339px" bottom="10px" left="220px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
       <cl:gridcolumn std:sid="g-column-9bfcafe4"/>
       <cl:gridheader std:sid="gh-band-4ef620f9">
         <cl:gridrow std:sid="g-row-9e749704"/>
-        <cl:gridcell std:sid="gh-cell-eec2397c" rowindex="0" colindex="0" targetcolumnname="title" sortable="false" filterable="false" text="선택한 여행지"/>
+        <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="선택 목록"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-0ea6d39f">
         <cl:gridrow std:sid="g-row-e287c25a"/>
@@ -169,11 +168,6 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:group std:sid="group-324120f0" id="slt" visible="false">
-      <cl:datamapcontext datacontrolid="selectTitleDM"/>
-      <cl:xylayoutdata std:sid="xyl-data-ca0db8d0" top="8px" left="20px" width="179px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:xylayout std:sid="xylayout-c8a3a9da"/>
-    </cl:group>
     <cl:button std:sid="button-f742fcec" value="삭제">
       <cl:listener std:sid="listener-77cd6713" name="click" handler="onButtonClick2"/>
       <cl:xylayoutdata std:sid="xyl-data-be8ea45c" top="40px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
@@ -182,14 +176,6 @@
       <cl:listener std:sid="listener-b5d97c71" name="click" handler="onButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-990e564a" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:output std:sid="output-c2e53342" id="planDateOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
-      <cl:xylayoutdata std:sid="xyl-data-8e59c52d" top="20px" left="361px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
-    <cl:output std:sid="output-85395942" id="plannerNoOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-      <cl:xylayoutdata std:sid="xyl-data-f4b0906d" top="20px" left="471px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
     <cl:xylayout std:sid="xylayout-9001bf41"/>
   </body>
   <std:studiosetting>

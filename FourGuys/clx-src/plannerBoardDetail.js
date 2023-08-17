@@ -33,16 +33,7 @@ function onGrd4Click(e) {
 	embp.callPageMethod("panTo");
 }
 
-/*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
- */
-function onGetDaySubmitSuccess(e) {
-	var getDay = e.control;
-	var grid = app.lookup("grd4");
-	grid.selectRows([0]);
-	app.lookup("planDateOutput").value = 1;
-}
+
 
 /*
  * 그리드에서 cell-click 이벤트 발생 시 호출.
@@ -52,7 +43,7 @@ function onGrd3CellClick(e) {
 	var grd3 = e.control;
 	var grid = app.lookup("grd3");
 	var planDate = grid.getSelectedRow().getValue("planDate");
-	app.lookup("planDateOutput").value = planDate;
+	app.lookup("createPlanDM").setValue("planDate", planDate);
 	app.lookup("getTitle").send();
 }
 
@@ -90,6 +81,6 @@ function onButtonClick2(e) {
 function onBoardDetailSMSubmitSuccess2(e) {
 	var boardDetailSM = e.control;
 	var plannerNo = app.lookup("plannerBoardParamsGrd").getRow(0).getValue("plannerNo");
-	app.lookup("plannerNoOutput").value = plannerNo;
+	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 	app.lookup("getDay").send();
 }

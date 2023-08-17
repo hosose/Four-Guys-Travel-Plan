@@ -46,16 +46,7 @@
 				embp.callPageMethod("panTo");
 			}
 
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			function onGetDaySubmitSuccess(e) {
-				var getDay = e.control;
-				var grid = app.lookup("grd4");
-				grid.selectRows([0]);
-				app.lookup("planDateOutput").value = 1;
-			}
+
 
 			/*
 			 * 그리드에서 cell-click 이벤트 발생 시 호출.
@@ -65,7 +56,7 @@
 				var grd3 = e.control;
 				var grid = app.lookup("grd3");
 				var planDate = grid.getSelectedRow().getValue("planDate");
-				app.lookup("planDateOutput").value = planDate;
+				app.lookup("createPlanDM").setValue("planDate", planDate);
 				app.lookup("getTitle").send();
 			}
 
@@ -103,7 +94,7 @@
 			function onBoardDetailSMSubmitSuccess2(e) {
 				var boardDetailSM = e.control;
 				var plannerNo = app.lookup("plannerBoardParamsGrd").getRow(0).getValue("plannerNo");
-				app.lookup("plannerNoOutput").value = plannerNo;
+				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 				app.lookup("getDay").send();
 			}
 			// End - User Script
@@ -273,9 +264,6 @@
 			submission_3.action = "getDay";
 			submission_3.addRequestData(dataMap_3);
 			submission_3.addResponseData(dataSet_2, false);
-			if(typeof onGetDaySubmitSuccess == "function") {
-				submission_3.addEventListener("submit-success", onGetDaySubmitSuccess);
-			}
 			app.register(submission_3);
 			
 			var submission_4 = new cpr.protocols.Submission("getTitle");
@@ -435,7 +423,7 @@
 					}]
 				},
 				"detail": {
-					"rows": [{"height": "24px"}],
+					"rows": [{"height": "120px"}],
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
@@ -448,7 +436,7 @@
 				"top": "197px",
 				"right": "10px",
 				"left": "10px",
-				"height": "50px"
+				"height": "132px"
 			});
 			
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
@@ -473,6 +461,11 @@
 							cell.sortable = false;
 							cell.targetColumnName = "planDate";
 							cell.text = "DAY";
+							cell.style.css({
+								"background-color" : "#FFFFFF",
+								"color" : "#2DCEB9",
+								"font-weight" : "bolder"
+							});
 						}
 					}]
 				},
@@ -490,7 +483,7 @@
 				grid_3.addEventListener("cell-click", onGrd3CellClick);
 			}
 			container.addChild(grid_3, {
-				"top": "268px",
+				"top": "339px",
 				"bottom": "10px",
 				"left": "10px",
 				"width": "200px"
@@ -508,7 +501,14 @@
 							cell.filterable = false;
 							cell.sortable = false;
 							cell.targetColumnName = "title";
-							cell.text = "선택한 여행지";
+							cell.text = "선택 목록";
+							cell.style.css({
+								"background-color" : "#FFFFFF",
+								"background-repeat" : "repeat",
+								"color" : "#2DCEB9",
+								"font-weight" : "bolder",
+								"background-image" : "none"
+							});
 						}
 					}]
 				},
@@ -527,23 +527,10 @@
 				grid_4.addEventListener("click", onGrd4Click);
 			}
 			container.addChild(grid_4, {
-				"top": "268px",
+				"top": "339px",
 				"bottom": "10px",
 				"left": "220px",
 				"width": "200px"
-			});
-			
-			var group_1 = new cpr.controls.Container("slt");
-			group_1.visible = false;
-			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("selectTitleDM"));
-			group_1.setBindContext(dataMapContext_1);
-			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_2);
-			container.addChild(group_1, {
-				"top": "8px",
-				"left": "20px",
-				"width": "179px",
-				"height": "43px"
 			});
 			
 			var button_1 = new cpr.controls.Button();
@@ -566,26 +553,6 @@
 			container.addChild(button_2, {
 				"top": "8px",
 				"right": "10px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
-			var output_1 = new cpr.controls.Output("planDateOutput");
-			output_1.visible = false;
-			output_1.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
-			container.addChild(output_1, {
-				"top": "20px",
-				"left": "361px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
-			var output_2 = new cpr.controls.Output("plannerNoOutput");
-			output_2.visible = false;
-			output_2.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-			container.addChild(output_2, {
-				"top": "20px",
-				"left": "471px",
 				"width": "100px",
 				"height": "20px"
 			});
