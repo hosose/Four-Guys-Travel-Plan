@@ -1,6 +1,7 @@
 package org.kosta.fourguys.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,22 +34,30 @@ public class PlannerBoardController {
 	@GetMapping("/boardDetail")
 	public View findPlannerBoardByNo(DataRequest dataRequest, HttpServletResponse response,
 			HttpServletRequest request) {
+		boolean success = false;
+		HttpSession session = request.getSession(false);
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 		ParameterGroup plannerBoardDetailParam = dataRequest.getParameterGroup("plannerBoardNoDM");
 		int plannerBoardNo = Integer.parseInt(plannerBoardDetailParam.getValue("BOARD_NO"));
-		plannerBoardService.findPlannerBoardByNo(plannerBoardNo);
+		Map<String, Object> initParam = new HashMap<>();
+		List<PlannerBoardVO> result = plannerBoardService.findPlannerBoardByNo(plannerBoardNo);
+		if (result != null) {
+			session = request.getSession(true);
+			session.setAttribute("memberVO", memberVO);
+			initParam.put("MemberVO", memberVO);
+			success = true;
+		}
 		dataRequest.setResponse("boardDetail", plannerBoardService.findPlannerBoardByNo(plannerBoardNo));
+		dataRequest.setResponse("boardDM", plannerBoardService.findPlannerBoardByNo(plannerBoardNo));
+		dataRequest.setMetadata(success, initParam);
 		return new JSONDataView();
 	}
 
-	@PutMapping("editBoard")
-	public View editBoardById(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
-		ParameterGroup editParam = dataRequest.getParameterGroup("editBoardDM");
+	@PutMapping("updateBoard")
+	public View updateBoard(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		PlannerBoardVO plannerBoardVO = new PlannerBoardVO();
-		String plannerBoardTitle = editParam.getValue("boardTitle");
-		String plannerBoardContent = editParam.getValue("boardContent");
-		Map<String, Object> initParam = new HashMap<>();
 		String id = null;
+		Map<String, Object> initParam = new HashMap<>();
 		if (session != null) {
 			MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 			id = memberVO.getId();
@@ -56,9 +65,16 @@ public class PlannerBoardController {
 			String uri = "login.clx";
 			return new UIView(uri);
 		}
+		ParameterGroup updateParam = dataRequest.getParameterGroup("boardDetail");
+		String plannerBoardTitle = updateParam.getValue("boardTitle");
+		String plannerBoardContent = updateParam.getValue("boardContent");
+		int plannerBoardNo = Integer.parseInt(updateParam.getValue("boardNo"));
+		PlannerBoardVO plannerBoardVO = new PlannerBoardVO();
 		plannerBoardVO.setBoardContent(plannerBoardContent);
 		plannerBoardVO.setBoardTitle(plannerBoardTitle);
-		plannerBoardService.editBoardById(plannerBoardVO);
+		plannerBoardVO.setBoardNo(plannerBoardNo);
+		plannerBoardVO.setId(id);
+		plannerBoardService.updateBoard(plannerBoardVO);
 		initParam.put("plannerBoardVO", plannerBoardVO);
 		dataRequest.setMetadata(true, initParam);
 		dataRequest.setResponse("plannerBoardVO", plannerBoardVO);
@@ -79,9 +95,14 @@ public class PlannerBoardController {
 		return new JSONDataView();
 	}
 
-	@GetMapping("/boardDetailPage/{plannerNo}")
+	@GetMapping("/boardDetailPage/{boardNo}")
 	public View getBoardDetailPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		return new UIView("plannerBoardDetail.clx");
+	}
+
+	@GetMapping("/updateBoardForm/{boardNo}")
+	public View updateBoardPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		return new UIView("updateBoardForm.clx");
 	}
 
 	@GetMapping("/createPlannerBoardForm")

@@ -178,11 +178,11 @@
       <cl:xylayoutdata std:sid="xyl-data-ca0db8d0" top="8px" left="20px" width="179px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:xylayout std:sid="xylayout-c8a3a9da"/>
     </cl:group>
-    <cl:button std:sid="button-f742fcec" value="삭제">
+    <cl:button std:sid="button-f742fcec" id="deleteBtn" visible="false" value="삭제">
       <cl:listener std:sid="listener-77cd6713" name="click" handler="onButtonClick2"/>
       <cl:xylayoutdata std:sid="xyl-data-be8ea45c" top="40px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:button std:sid="button-dc31c6e3" value="수정">
+    <cl:button std:sid="button-dc31c6e3" id="editBtn" visible="false" value="수정">
       <cl:listener std:sid="listener-b5d97c71" name="click" handler="onButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-990e564a" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>

@@ -12,7 +12,7 @@ public interface PlannerBoardService {
 
 	int createPlannerBoard(PlannerBoardVO plannerBoardVO);
 
-	public int editBoardById(PlannerBoardVO editPlanner);
-
 	List<PlannerBoardVO> getPlannerBoardList();
+
+	int updateBoard(PlannerBoardVO plannerBoardVO);
 }
