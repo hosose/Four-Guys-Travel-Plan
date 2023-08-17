@@ -11,6 +11,8 @@ public interface PlannerBoardService {
 
 	public ArrayList<PlannerBoardVO> findPlannerBoardByNo(int plannerBoardNo);
 
+	int createPlannerBoard(PlannerBoardVO plannerBoardVO);
+
 	public int editBoardById(PlannerBoardVO editPlanner);
 
 	List<PlannerBoardVO> getPlannerBoardList();

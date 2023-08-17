@@ -14,9 +14,11 @@ public interface PlannerMapper {
 	public int savePlannerByNo(PlannerVO savePlanner);
 
 	public int cancelPlannerByNo(PlannerVO cancelPlanner);
-	
+
 	public List<PlannerVO> findCompletePlanner(PlannerVO plannerVO);
-	
+
 	public List<PlannerVO> findNotCompletePlanner(PlannerVO plannerVO);
+
+	public List<PlannerVO> getPlannerById(String id);
 
 }

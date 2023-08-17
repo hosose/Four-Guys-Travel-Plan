@@ -15,11 +15,10 @@ public interface PlannerService {
 	int savePlannerByNo(PlannerVO savePlanner);
 
 	int cancelPlannerByNo(PlannerVO cancelPlanner);
-	
+
 	public List<PlannerVO> findCompletePlanner(PlannerVO plannerVO);
-	
+
 	public List<PlannerVO> findNotCompletePlanner(PlannerVO plannerVO);
 
-
-
+	List<PlannerVO> getPlannerById(String id);
 }
