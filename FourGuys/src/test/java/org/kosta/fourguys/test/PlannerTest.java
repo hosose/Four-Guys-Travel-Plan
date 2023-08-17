@@ -97,7 +97,7 @@ public class PlannerTest {
 	@Test
 	public void findPlannerBoardByNo() {
 		int boardNo = 1;
-		PlannerBoardVO boardList = plannerBoardMapper.findPlannerBoardByNo(boardNo);
+		List<PlannerBoardVO> boardList = plannerBoardMapper.findPlannerBoardByNo(boardNo);
 		System.out.println(boardList);
 	}
 
