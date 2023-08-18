@@ -67,7 +67,9 @@ function onButtonClick(e) {
  */
 function onButtonClick2(e) {
 	var button = e.control;
-	
+	app.lookup("deleteBoardSM").send();
+	alert("삭제되었습니다");
+	location.href="planner-board-list.clx";
 }
 
 /*

@@ -80,7 +80,9 @@
 			 */
 			function onButtonClick2(e) {
 				var button = e.control;
-				
+				app.lookup("deleteBoardSM").send();
+				alert("삭제되었습니다");
+				location.href="planner-board-list.clx";
 			}
 
 			/*
@@ -285,6 +287,13 @@
 			submission_5.action = "editBoard";
 			submission_5.addRequestData(dataSet_1);
 			app.register(submission_5);
+			
+			var submission_6 = new cpr.protocols.Submission("deleteBoardSM");
+			submission_6.method = "delete";
+			submission_6.action = "deleteBoard";
+			submission_6.addRequestData(dataMap_1);
+			submission_6.addResponseData(dataSet_1, false);
+			app.register(submission_6);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");

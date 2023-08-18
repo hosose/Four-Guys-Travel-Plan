@@ -32,4 +32,9 @@ public class PlannerBoardServiceImpl implements PlannerBoardService {
 	public int updateBoard(PlannerBoardVO plannerBoardVO) {
 		return plannerBoardMapper.updateBoard(plannerBoardVO);
 	}
+
+	@Override
+	public int deleteBoard(PlannerBoardVO PlannerBoardVO) {
+		return plannerBoardMapper.deleteBoard(PlannerBoardVO);
+	}
 }

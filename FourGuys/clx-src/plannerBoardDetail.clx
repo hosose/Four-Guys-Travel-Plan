@@ -94,6 +94,10 @@
       <cl:submission std:sid="submission-7ec851ad" id="editBoard" method="put" action="editBoard">
         <cl:requestdata dataid="boardDetail"/>
       </cl:submission>
+      <cl:submission std:sid="submission-e957deb5" id="deleteBoardSM" method="delete" action="deleteBoard">
+        <cl:requestdata dataid="plannerBoardNoDM"/>
+        <cl:responsedata dataid="boardDetail"/>
+      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
