@@ -22,6 +22,7 @@
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
+
 			function onBodyLoad(e) {
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
@@ -67,17 +68,10 @@
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 			function onButtonClick(e) {
+				var currentUrl = location.href;
 				var button = e.control;
-				app.openDialog("editBoardDetail", {
-					width: 800,
-					height: 600
-				}, function(dialog) {
-					dialog.ready(function(dialogApp) {
-						// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-					});
-				}).then(function(returnValue) {
-					;
-				});
+				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				location.href="updateBoardForm/"+boardNo;
 			}
 
 			/*
@@ -98,7 +92,16 @@
 				var plannerNo = app.lookup("grd1").getRow(0).getValue("plannerNo");
 				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 				app.lookup("getDay").send();
-			};
+				var vo = boardDetailSM.getMetadata("MemberVO");
+				var editBtn = app.lookup("editBtn");
+				var deleteBtn = app.lookup("deleteBtn");
+				var grid = app.lookup("grd1");
+				var value = grid.getRow(0).getValue("id");
+				if(vo["id"]==value){
+					editBtn.visible = true;
+					deleteBtn.visible=true;
+				}
+			}
 			// End - User Script
 			
 			// Header
@@ -778,7 +781,8 @@
 				]
 			});
 			
-			var button_1 = new cpr.controls.Button();
+			var button_1 = new cpr.controls.Button("deleteBtn");
+			button_1.visible = false;
 			button_1.value = "삭제";
 			if(typeof onButtonClick2 == "function") {
 				button_1.addEventListener("click", onButtonClick2);
@@ -809,7 +813,8 @@
 				]
 			});
 			
-			var button_2 = new cpr.controls.Button();
+			var button_2 = new cpr.controls.Button("editBtn");
+			button_2.visible = false;
 			button_2.value = "수정";
 			if(typeof onButtonClick == "function") {
 				button_2.addEventListener("click", onButtonClick);
