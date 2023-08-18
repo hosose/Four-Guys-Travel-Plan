@@ -59,3 +59,45 @@ function onCreatePlannerBoardSMSubmitSuccess(e) {
 	location.href = url;
 }
 
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onBoardDetailSMSubmitSuccess(e){
+	var boardDetailSM = e.control;
+	var boardContentValue = app.lookup("boardContentValue");
+	boardContentValue.selectRows([0]);
+	setTimeout(() => app.lookup("PasteBtn").click(),700);	
+}
+
+/*
+ * "Button" 버튼(PasteBtn)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onPasteBtnClick(e){
+	var pasteBtn = e.control;
+	var ep1 = app.lookup("ep1");
+	var boardContentValue = app.lookup("boardContentValue");
+	var vcIpb = boardContentValue.getSelectedRow().getValue("boardContent");
+	if (vcIpb == "" || vcIpb == null) return false;
+	ep1.callPageMethod("pasteHTML", vcIpb);
+}
+function print(psEventType) {
+	var vcLblVal = app.lookup("lblVal");
+	if (vcLblVal.value == null) {
+		vcLblVal.value = "";
+	}
+	var vsText = psEventType;
+	vcLblVal.value = vsText;
+}
+
+/*
+ * 서브미션에서 before-submit 이벤트 발생 시 호출.
+ * 통신을 시작하기전에 발생합니다.
+ */
+function onUpdateBoardSMBeforeSubmit(e){
+	var updateBoardSM = e.control;
+	var vcEditor = app.lookup("ep1");
+	var html = vcEditor.callPageMethod("showHTML");
+	print(html);
+}
