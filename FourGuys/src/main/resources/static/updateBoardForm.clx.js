@@ -557,20 +557,20 @@
 			output_3.visible = false;
 			output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
 			container.addChild(output_3, {
-				"top": "95px",
-				"left": "542px",
-				"width": "100px",
-				"height": "20px"
+				"top": "66px",
+				"left": "257px",
+				"width": "10px",
+				"height": "10px"
 			});
 			
 			var output_4 = new cpr.controls.Output("planDateOutput");
 			output_4.visible = false;
 			output_4.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
 			container.addChild(output_4, {
-				"top": "95px",
-				"left": "681px",
-				"width": "100px",
-				"height": "20px"
+				"top": "66px",
+				"left": "277px",
+				"width": "10px",
+				"height": "10px"
 			});
 			
 			var button_1 = new cpr.controls.Button("selectBtn");
