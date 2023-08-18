@@ -101,7 +101,7 @@
 					editBtn.visible = true;
 					deleteBtn.visible=true;
 				}
-			}
+			};
 			// End - User Script
 			
 			// Header
