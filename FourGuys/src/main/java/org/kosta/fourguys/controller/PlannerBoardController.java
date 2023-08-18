@@ -1,5 +1,6 @@
 package org.kosta.fourguys.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -151,6 +152,29 @@ public class PlannerBoardController {
 		plannerBoardService.createPlannerBoard(boardVO);
 		initParam.put("url", "planner-board-list.clx");
 		dataRequest.setMetadata(true, initParam);
+		return new JSONDataView();
+	}
+
+	@PostMapping("/increaseBoardHits")
+	public View increaseBoardHits(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session == null || session.getAttribute("memberVO") == null) {
+			String uri = "login.clx";
+			return new UIView(uri);
+		} else {
+			ParameterGroup boardNoParam = dataRequest.getParameterGroup("plannerBoardNoDM");
+			int boardNo = Integer.parseInt(boardNoParam.getValue("BOARD_NO"));
+			@SuppressWarnings("unchecked")
+			ArrayList<Integer> plannerBoardNoList = (ArrayList<Integer>) session.getAttribute("plannerBoardNoList");
+			if (plannerBoardNoList == null) {
+				plannerBoardNoList = new ArrayList<>();
+			}
+			if (!plannerBoardNoList.contains(boardNo)) {
+				plannerBoardService.increaseBoardHits(boardNo);
+				plannerBoardNoList.add(boardNo);
+				session.setAttribute("plannerBoardNoList", plannerBoardNoList);
+			}
+		}
 		return new JSONDataView();
 	}
 }

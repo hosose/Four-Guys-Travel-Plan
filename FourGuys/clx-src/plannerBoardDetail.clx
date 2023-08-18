@@ -94,6 +94,9 @@
       <cl:submission std:sid="submission-7ec851ad" id="editBoard" method="put" action="editBoard">
         <cl:requestdata dataid="boardDetail"/>
       </cl:submission>
+      <cl:submission std:sid="submission-8c17a8ca" id="increaseHitsSM" action="increaseBoardHits">
+        <cl:requestdata dataid="plannerBoardNoDM"/>
+      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
@@ -104,12 +107,6 @@
         <cl:xylayoutdata std:sid="sxyl-data-0fdb9adb" top="20px" left="20px" width="300px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
-    <cl:output std:sid="output-f33a29fb" id="boardNo" visible="false">
-      <cl:datamapbind property="value" datacontrolid="plannerBoardNoDM" columnname="BOARD_NO"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-47dc97d9">
-        <cl:xylayoutdata std:sid="sxyl-data-38f3c21b" top="20px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:output>
     <cl:grid std:sid="grid-b21dacf8" id="grd1" datasetid="boardDetail">
       <cl:responsivexylayoutdata std:sid="rxyl-data-a3825c0a">
         <cl:xylayoutdata std:sid="sxyl-data-a6f3894f" top="139px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
@@ -189,27 +186,6 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:output std:sid="output-da291bce" id="plannerNo" visible="false">
-      <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-ecb70386">
-        <cl:xylayoutdata std:sid="sxyl-data-f7a672b9" top="8px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:output>
-    <cl:group std:sid="group-324120f0" id="slt" visible="false">
-      <cl:datamapcontext datacontrolid="selectTitleDM"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-b005aa18">
-        <cl:xylayoutdata std:sid="sxyl-data-d88b6376" top="8px" left="20px" width="179px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-      <cl:output std:sid="output-85395942" id="plannerNoOutput">
-        <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-        <cl:xylayoutdata std:sid="xyl-data-0fec68fb" top="22px" left="70px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:output>
-      <cl:output std:sid="output-c2e53342" id="planDateOutput" visible="false">
-        <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
-        <cl:xylayoutdata std:sid="xyl-data-4e76e24f" top="3px" left="30px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:output>
-      <cl:xylayout std:sid="xylayout-c8a3a9da"/>
-    </cl:group>
     <cl:button std:sid="button-f742fcec" id="deleteBtn" visible="false" value="삭제">
       <cl:listener std:sid="listener-77cd6713" name="click" handler="onButtonClick2"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-97725089">

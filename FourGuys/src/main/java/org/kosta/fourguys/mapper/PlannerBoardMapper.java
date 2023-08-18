@@ -16,4 +16,6 @@ public interface PlannerBoardMapper {
 
 	int createPlannerBoard(PlannerBoardVO plannerBoardVO);
 
+	public int increaseBoardHits(int boardNo);
+
 }

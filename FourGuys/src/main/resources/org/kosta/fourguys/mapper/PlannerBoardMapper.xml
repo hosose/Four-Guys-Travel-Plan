@@ -15,4 +15,7 @@ SELECT row_number() over(ORDER BY board_no  DESC) as r_no, board_no, planner_no,
 <insert id="createPlannerBoard" parameterType="org.kosta.fourguys.vo.PlannerBoardVO">
 INSERT INTO planner_board VALUES (board_seq.NEXTVAL, #{plannerNo}, #{id},#{boardTitle},#{boardContent}, sysdate,0)
 </insert>
+<insert id="increaseBoardHits" parameterType="int">
+UPDATE planner_board SET board_hits = board_hits + 1 WHERE board_no = #{boardNo} 
+</insert>
 </mapper>

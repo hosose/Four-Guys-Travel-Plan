@@ -19,4 +19,11 @@ public class PlannerBoardTest {
 		System.out.println(boardList);
 	}
 
+	@Test
+	public void increaseBoardHits() {
+		int boardNo = 16;
+		int result = plannerBoardMapper.increaseBoardHits(boardNo);
+		System.out.println(result);
+	}
+
 }

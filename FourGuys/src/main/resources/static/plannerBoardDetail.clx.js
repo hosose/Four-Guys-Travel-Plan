@@ -27,6 +27,7 @@
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
 				app.lookup("plannerBoardNoDM").setValue("BOARD_NO", boardNo);
+				app.lookup("increaseHitsSM").send();
 				app.lookup("boardDetailSM").send();
 			}	
 
@@ -285,6 +286,11 @@
 			submission_5.action = "editBoard";
 			submission_5.addRequestData(dataSet_1);
 			app.register(submission_5);
+			
+			var submission_6 = new cpr.protocols.Submission("increaseHitsSM");
+			submission_6.action = "increaseBoardHits";
+			submission_6.addRequestData(dataMap_1);
+			app.register(submission_6);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -324,35 +330,6 @@
 						"left": "7px",
 						"width": "103px",
 						"height": "120px"
-					}
-				]
-			});
-			
-			var output_1 = new cpr.controls.Output("boardNo");
-			output_1.visible = false;
-			output_1.bind("value").toDataMap(app.lookup("plannerBoardNoDM"), "BOARD_NO");
-			container.addChild(output_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "20px",
-						"left": "191px",
-						"width": "100px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "20px",
-						"left": "93px",
-						"width": "49px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "20px",
-						"left": "65px",
-						"width": "34px",
-						"height": "20px"
 					}
 				]
 			});
@@ -689,86 +666,6 @@
 						"bottom": "10px",
 						"left": "75px",
 						"width": "68px"
-					}
-				]
-			});
-			
-			var output_2 = new cpr.controls.Output("plannerNo");
-			output_2.visible = false;
-			output_2.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-			container.addChild(output_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "8px",
-						"left": "191px",
-						"width": "100px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "8px",
-						"left": "93px",
-						"width": "49px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "8px",
-						"left": "65px",
-						"width": "34px",
-						"height": "20px"
-					}
-				]
-			});
-			
-			var group_1 = new cpr.controls.Container("slt");
-			group_1.visible = false;
-			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("selectTitleDM"));
-			group_1.setBindContext(dataMapContext_1);
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_1);
-			(function(container){
-				var output_3 = new cpr.controls.Output("plannerNoOutput");
-				output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-				container.addChild(output_3, {
-					"top": "22px",
-					"left": "70px",
-					"width": "100px",
-					"height": "20px"
-				});
-				var output_4 = new cpr.controls.Output("planDateOutput");
-				output_4.visible = false;
-				output_4.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
-				container.addChild(output_4, {
-					"top": "3px",
-					"left": "30px",
-					"width": "100px",
-					"height": "20px"
-				});
-			})(group_1);
-			container.addChild(group_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "8px",
-						"left": "20px",
-						"width": "179px",
-						"height": "43px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "8px",
-						"left": "10px",
-						"width": "87px",
-						"height": "43px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "8px",
-						"left": "7px",
-						"width": "61px",
-						"height": "43px"
 					}
 				]
 			});

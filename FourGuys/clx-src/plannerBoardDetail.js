@@ -14,6 +14,7 @@ function onBodyLoad(e) {
 	var currentUrl = location.href;
 	var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
 	app.lookup("plannerBoardNoDM").setValue("BOARD_NO", boardNo);
+	app.lookup("increaseHitsSM").send();
 	app.lookup("boardDetailSM").send();
 }	
 

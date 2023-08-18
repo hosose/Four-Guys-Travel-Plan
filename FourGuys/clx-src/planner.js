@@ -17,8 +17,7 @@ function onBodyLoad(e) {
 	}, function(dialog) {
 		dialog.ready(function(dialogApp) {});
 	}).then(function(returnValue) {
-		var plannerNoOutput = app.lookup("plannerNo");
-		plannerNoOutput.value = JSON.stringify(returnValue);
+		app.lookup("plannerNoDM").setValue("plannerNo", returnValue);
 		app.lookup("dayBtnSM").send()
 	});
 }

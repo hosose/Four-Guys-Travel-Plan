@@ -15,4 +15,6 @@ public interface PlannerBoardService {
 	List<PlannerBoardVO> getPlannerBoardList();
 
 	int updateBoard(PlannerBoardVO plannerBoardVO);
+
+	public int increaseBoardHits(int boardNo);
 }
