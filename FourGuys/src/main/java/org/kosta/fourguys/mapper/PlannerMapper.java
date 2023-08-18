@@ -23,6 +23,7 @@ public interface PlannerMapper {
 	public List<PlannerVO> getPlannerById(String id);
 	
 	public List<PlannerVO> findPlannerByNo(int plannerNo);
-
+	
+	public int deletePlannerByNo(int plannerNo);
 
 }
