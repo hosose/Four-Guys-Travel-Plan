@@ -95,7 +95,7 @@
 			 */
 			function onBoardDetailSMSubmitSuccess2(e) {
 				var boardDetailSM = e.control;
-				var plannerNo = app.lookup("plannerBoardParamsGrd").getRow(0).getValue("plannerNo");
+				var plannerNo = app.lookup("grd1").getRow(0).getValue("plannerNo");
 				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 				app.lookup("getDay").send();
 			}
@@ -442,17 +442,23 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
-								cell.columnName = "boardTitle";
+								cell.columnName = "boardNo";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
-								cell.columnName = "boardCreateDate";
+								cell.columnName = "boardTitle";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.columnName = "boardCreateDate";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
 								cell.columnName = "boardHits";
 							}
@@ -503,7 +509,7 @@
 					}]
 				},
 				"detail": {
-					"rows": [{"height": "120px"}],
+					"rows": [{"height": "24px"}],
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
@@ -594,6 +600,7 @@
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
 							cell.columnName = "planDate";
+							cell.bind("fieldLabel").toDataMap(app.lookup("createPlanDM"), "planDate");
 						}
 					}]
 				}

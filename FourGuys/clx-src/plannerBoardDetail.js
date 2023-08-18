@@ -82,7 +82,7 @@ function onButtonClick2(e) {
  */
 function onBoardDetailSMSubmitSuccess2(e) {
 	var boardDetailSM = e.control;
-	var plannerNo = app.lookup("plannerBoardParamsGrd").getRow(0).getValue("plannerNo");
+	var plannerNo = app.lookup("grd1").getRow(0).getValue("plannerNo");
 	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 	app.lookup("getDay").send();
 }

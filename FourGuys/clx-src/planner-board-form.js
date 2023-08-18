@@ -23,6 +23,14 @@ function onBodyLoad(e) {
 	});
 }
 
+function print(psEventType) {
+	var vcLblVal = app.lookup("lblVal");
+	if (vcLblVal.value == null) {
+		vcLblVal.value = "";
+	}
+	var vsText = psEventType.replaceAll("<p>","").replaceAll("</p>","").replaceAll("<br>","");
+	vcLblVal.value = vsText;
+}
 /*
  * 서브미션에서 submit-error 이벤트 발생 시 호출.
  * 통신 중 문제가 생기면 발생합니다.
@@ -62,4 +70,15 @@ function onCreatePlannerBoardSMSubmitSuccess(e) {
 	var createPlannerBoardSM = e.control;
 	var url = createPlannerBoardSM.getMetadata("url");
 	location.href = url;
+}
+
+/*
+ * 서브미션에서 before-submit 이벤트 발생 시 호출.
+ * 통신을 시작하기전에 발생합니다.
+ */
+function onCreatePlannerBoardSMBeforeSubmit(e){
+	var createPlannerBoardSM = e.control;
+	var vcEditor = app.lookup("ep1");
+	var html = vcEditor.callPageMethod("showHTML");
+	print(html);
 }
