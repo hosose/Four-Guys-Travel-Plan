@@ -131,4 +131,11 @@ public class PlannerTest {
 		// System.out.println(testVO);
 
 	}
+	
+	@Test
+	public void findPlannerByNo() {
+		List<PlannerVO> testVO = plannerMapper.findPlannerByNo(197);
+		//System.out.println(testVO);
+
+	}
 }

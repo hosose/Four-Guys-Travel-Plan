@@ -99,11 +99,13 @@ public class PlannerBoardController {
 	@GetMapping("/boardDetailPage/{boardNo}")
 	public View getBoardDetailPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		return new UIView("plannerBoardDetail.clx");
+
 	}
 
 	@GetMapping("/updateBoardForm/{boardNo}")
 	public View updateBoardPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		return new UIView("updateBoardForm.clx");
+
 	}
 
 	@GetMapping("/createPlannerBoardForm")
@@ -155,6 +157,7 @@ public class PlannerBoardController {
 		return new JSONDataView();
 	}
 
+
 	@DeleteMapping("deleteBoard")
 	public View deleteBoard(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerBoardNoDM");
@@ -165,4 +168,5 @@ public class PlannerBoardController {
 		dataRequest.setResponse("boardDetail", plannerBoardService.deleteBoard(plannerBoardVO));
 		return new JSONDataView();
 	}
+
 }

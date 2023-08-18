@@ -11,6 +11,7 @@
 		onCreate: function(/* cpr.core.AppInstance */ app, exports) {
 			var linker = {};
 			// Start - User Script
+
 			/************************************************
 			 * plannerBoardDetail.js
 			 * Created at 2023. 8. 14. 오전 9:40:31.
@@ -72,6 +73,7 @@
 				var button = e.control;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
 				location.href="updateBoardForm/"+boardNo;
+
 			}
 
 			/*

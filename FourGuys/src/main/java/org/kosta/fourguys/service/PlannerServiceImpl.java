@@ -49,4 +49,10 @@ public class PlannerServiceImpl implements PlannerService {
 		return plannerMapper.findNotCompletePlanner(plannerVO);
 	}
 
+	@Override
+	public List<PlannerVO> findPlannerByNo(int plannerNo) {
+		
+		return plannerMapper.findPlannerByNo(plannerNo);
+	}
+
 }

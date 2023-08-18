@@ -3,6 +3,7 @@ package org.kosta.fourguys.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.kosta.fourguys.vo.PlannerBoardVO;
 import org.kosta.fourguys.vo.PlannerVO;
 
 @Mapper
@@ -20,5 +21,8 @@ public interface PlannerMapper {
 	public List<PlannerVO> findNotCompletePlanner(PlannerVO plannerVO);
 
 	public List<PlannerVO> getPlannerById(String id);
+	
+	public List<PlannerVO> findPlannerByNo(int plannerNo);
+
 
 }

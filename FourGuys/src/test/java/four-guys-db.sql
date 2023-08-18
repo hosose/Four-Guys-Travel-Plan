@@ -88,7 +88,7 @@ SELECT DISTINCT plan_date, planner_no FROM plan WHERE planner_no=72 ORDER BY PLA
 SELECT p.planner_no, p.plan_date, p.content_id, j.title
 FROM plan p
 INNER JOIN jeju_area j ON p.content_id = j.contentid
-WHERE planner_no = 148 AND plan_date=2
+WHERE planner_no = 178 AND plan_date=2
 
 ALTER TABLE "MEMBER" ADD CONSTRAINT "PK_MEMBER" PRIMARY KEY (
 	"ID"
