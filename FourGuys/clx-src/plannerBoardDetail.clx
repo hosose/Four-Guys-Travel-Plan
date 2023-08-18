@@ -110,9 +110,11 @@
     </cl:udc>
     <cl:output std:sid="output-f33a29fb" id="boardNo" visible="false">
       <cl:datamapbind property="value" datacontrolid="plannerBoardNoDM" columnname="BOARD_NO"/>
+
       <cl:responsivexylayoutdata std:sid="rxyl-data-47dc97d9">
         <cl:xylayoutdata std:sid="sxyl-data-38f3c21b" top="20px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
+
     </cl:output>
     <cl:grid std:sid="grid-b21dacf8" id="grd1" datasetid="boardDetail">
       <cl:responsivexylayoutdata std:sid="rxyl-data-a3825c0a">
@@ -132,7 +134,9 @@
         <cl:gridcell std:sid="gh-cell-79700795" rowindex="0" colindex="3" targetcolumnname="boardTitle" sortable="false" filterable="false" text="boardTitle"/>
         <cl:gridcell std:sid="gh-cell-1ca46535" rowindex="0" colindex="4" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="boardCreateDate"/>
         <cl:gridcell std:sid="gh-cell-a3234986" rowindex="0" colindex="5" targetcolumnname="boardHits" sortable="false" filterable="false" text="boardHits"/>
+
       </cl:gridheader>
+
       <cl:griddetail std:sid="gd-band-d9e2d6b1">
         <cl:gridrow std:sid="g-row-03351929"/>
         <cl:gridcell std:sid="gd-cell-ca821846" rowindex="0" colindex="0" columnname="id"/>
@@ -141,6 +145,7 @@
         <cl:gridcell std:sid="gd-cell-941cf050" rowindex="0" colindex="3" columnname="boardTitle"/>
         <cl:gridcell std:sid="gd-cell-94bf89f2" rowindex="0" colindex="4" columnname="boardCreateDate"/>
         <cl:gridcell std:sid="gd-cell-ee0194a2" rowindex="0" colindex="5" columnname="boardHits"/>
+
       </cl:griddetail>
     </cl:grid>
     <cl:grid std:sid="grid-721a0fa5" id="grd2" datasetid="boardDetail" autorowheight="all">
@@ -196,14 +201,17 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
+
     <cl:output std:sid="output-da291bce" id="plannerNo" visible="false">
       <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-ecb70386">
         <cl:xylayoutdata std:sid="sxyl-data-f7a672b9" top="8px" left="191px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
+
     <cl:group std:sid="group-324120f0" id="slt" visible="false">
       <cl:datamapcontext datacontrolid="selectTitleDM"/>
+
       <cl:responsivexylayoutdata std:sid="rxyl-data-b005aa18">
         <cl:xylayoutdata std:sid="sxyl-data-d88b6376" top="8px" left="20px" width="179px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
@@ -215,6 +223,7 @@
         <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
         <cl:xylayoutdata std:sid="xyl-data-4e76e24f" top="3px" left="30px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
+
       <cl:xylayout std:sid="xylayout-c8a3a9da"/>
     </cl:group>
     <cl:button std:sid="button-f742fcec" id="deleteBtn" visible="false" value="삭제">
@@ -229,7 +238,9 @@
         <cl:xylayoutdata std:sid="sxyl-data-e010000b" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
+
     <cl:responsivexylayout std:sid="r-xylayout-22d199fb"/>
+
   </body>
   <std:studiosetting>
     <std:hruler>

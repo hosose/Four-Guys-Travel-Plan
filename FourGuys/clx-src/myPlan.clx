@@ -45,7 +45,7 @@
     </cl:img>
     <cl:output std:sid="output-17ee7ce0" style="border-right-style:solid; border-bottom-color:#ffffff; color:#FFFFFF; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-bottom-style:solid; border-right-color:#ffffff; border-top-style:solid; text-align:center;" value="완성">
       <cl:responsivexylayoutdata std:sid="rxyl-data-38bbe393">
-        <cl:xylayoutdata std:sid="sxyl-data-1aad1833" top="95px" width="100px" height="30px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-1aad1833" top="85px" width="100px" height="30px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
     <cl:output std:sid="output-88084889" style="border-right-style:solid; color:#FFFFFF; border-bottom-color:#ffffff; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-bottom-style:solid; border-right-color:#ffffff; border-top-style:solid; text-align:center;" value="미완성">
@@ -55,18 +55,22 @@
     </cl:output>
     <cl:grid std:sid="grid-77587128" id="grd1" datasetid="dvCompletePaging">
       <cl:responsivexylayoutdata std:sid="rxyl-data-1003cc3d">
-        <cl:xylayoutdata std:sid="sxyl-data-39120671" top="125px" width="897px" height="150px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-39120671" top="125px" width="897px" height="146px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-2c680454"/>
       <cl:gridcolumn std:sid="g-column-262b5046"/>
       <cl:gridcolumn std:sid="g-column-cc08bb39"/>
       <cl:gridcolumn std:sid="g-column-9d89c0d3"/>
+      <cl:gridcolumn std:sid="g-column-6e81c2d7"/>
+      <cl:gridcolumn std:sid="g-column-ca91eac4"/>
       <cl:gridheader std:sid="gh-band-065dd586">
         <cl:gridrow std:sid="g-row-f953bce2"/>
         <cl:gridcell std:sid="gh-cell-28036028" rowindex="0" colindex="0" targetcolumnname="planNo" sortable="false" filterable="false" text="planNo"/>
         <cl:gridcell std:sid="gh-cell-000141d4" rowindex="0" colindex="1" targetcolumnname="plannerTitle" sortable="false" filterable="false" text="plannerTitle"/>
         <cl:gridcell std:sid="gh-cell-6bd0241d" rowindex="0" colindex="2" targetcolumnname="plannerStartDate" sortable="false" filterable="false" text="plannerStartDate"/>
         <cl:gridcell std:sid="gh-cell-4da78507" rowindex="0" colindex="3" targetcolumnname="plannerLastDay" sortable="false" filterable="false" text="plannerLastDay"/>
+        <cl:gridcell std:sid="gh-cell-4acca758" rowindex="0" colindex="4"/>
+        <cl:gridcell std:sid="gh-cell-5d5307cf" rowindex="0" colindex="5"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-6a1e1f70">
         <cl:gridrow std:sid="g-row-f954fc0c"/>
@@ -74,22 +78,37 @@
         <cl:gridcell std:sid="gd-cell-4e9f06f7" rowindex="0" colindex="1" columnname="plannerTitle"/>
         <cl:gridcell std:sid="gd-cell-fbdd1136" rowindex="0" colindex="2" columnname="plannerStartDate"/>
         <cl:gridcell std:sid="gd-cell-7a3fbda2" rowindex="0" colindex="3" columnname="plannerLastDay"/>
+        <cl:gridcell std:sid="gd-cell-934fc396" rowindex="0" colindex="4">
+          <cl:button std:sid="button-abb03fc9" value="상세보기">
+            <cl:listener std:sid="listener-f1dac54a" name="click" handler="onButtonClick2"/>
+            <cl:celldata/>
+          </cl:button>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-9d3224e4" rowindex="0" colindex="5">
+          <cl:button std:sid="button-80214ad9" value="삭제">
+            <cl:celldata/>
+          </cl:button>
+        </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
     <cl:grid std:sid="grid-105a7fd9" id="grd2" datasetid="dvNotCompletePaging">
       <cl:responsivexylayoutdata std:sid="rxyl-data-d6c50020">
-        <cl:xylayoutdata std:sid="sxyl-data-349b47fe" top="468px" width="897px" height="150px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-349b47fe" top="468px" width="897px" height="146px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-e9fd9a13"/>
       <cl:gridcolumn std:sid="g-column-1bcf68bb"/>
       <cl:gridcolumn std:sid="g-column-6c97f135"/>
       <cl:gridcolumn std:sid="g-column-b090c3f5"/>
+      <cl:gridcolumn std:sid="g-column-5441f85b"/>
+      <cl:gridcolumn std:sid="g-column-afdba28b"/>
       <cl:gridheader std:sid="gh-band-720a6655">
         <cl:gridrow std:sid="g-row-7717bdd4"/>
         <cl:gridcell std:sid="gh-cell-0df97441" rowindex="0" colindex="0" targetcolumnname="planNo" sortable="false" filterable="false" text="planNo"/>
         <cl:gridcell std:sid="gh-cell-86ea9a51" rowindex="0" colindex="1" targetcolumnname="plannerTitle" sortable="false" filterable="false" text="plannerTitle"/>
         <cl:gridcell std:sid="gh-cell-8dacfe84" rowindex="0" colindex="2" targetcolumnname="plannerStartDate" sortable="false" filterable="false" text="plannerStartDate"/>
         <cl:gridcell std:sid="gh-cell-53b3c10b" rowindex="0" colindex="3" targetcolumnname="plannerLastDay" sortable="false" filterable="false" text="plannerLastDay"/>
+        <cl:gridcell std:sid="gh-cell-6d1ae22e" rowindex="0" colindex="4"/>
+        <cl:gridcell std:sid="gh-cell-465a4460" rowindex="0" colindex="5"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-cd1faf6b">
         <cl:gridrow std:sid="g-row-fdfc06ad"/>
@@ -97,6 +116,17 @@
         <cl:gridcell std:sid="gd-cell-457d0388" rowindex="0" colindex="1" columnname="plannerTitle"/>
         <cl:gridcell std:sid="gd-cell-3dfe8918" rowindex="0" colindex="2" columnname="plannerStartDate"/>
         <cl:gridcell std:sid="gd-cell-483493a3" rowindex="0" colindex="3" columnname="plannerLastDay"/>
+        <cl:gridcell std:sid="gd-cell-5fce4d48" rowindex="0" colindex="4">
+          <cl:button std:sid="button-201c3a2f" value="상세보기">
+            <cl:listener std:sid="listener-57d49197" name="click" handler="onButtonClick"/>
+            <cl:celldata/>
+          </cl:button>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-93e38e66" rowindex="0" colindex="5">
+          <cl:button std:sid="button-ad338198" value="삭제">
+            <cl:celldata/>
+          </cl:button>
+        </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
     <cl:pageindexer std:sid="p-indexer-307d888a" id="completePaging" pagerowcount="5">

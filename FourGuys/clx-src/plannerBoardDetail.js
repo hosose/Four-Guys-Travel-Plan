@@ -1,3 +1,4 @@
+
 /************************************************
  * plannerBoardDetail.js
  * Created at 2023. 8. 14. 오전 9:40:31.
@@ -59,6 +60,7 @@ function onButtonClick(e) {
 	var button = e.control;
 	var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
 	location.href="updateBoardForm/"+boardNo;
+
 }
 
 /*
@@ -93,3 +95,4 @@ function onBoardDetailSMSubmitSuccess2(e) {
 		deleteBtn.visible=true;
 	}
 }
+
