@@ -30,8 +30,8 @@
 				}, function(dialog) {
 					dialog.ready(function(dialogApp) {});
 				}).then(function(returnValue) {
-					var plannerNoOutput = app.lookup("plannerNoOutput");
-					plannerNoOutput.value = returnValue;
+					var plannerNoDM = app.lookup("plannerNoDM");
+					plannerNoDM.setValue("plannerNo", returnValue);
 					app.lookup("dayBtnSM").send()
 				});
 			}
@@ -54,7 +54,7 @@
 			function onDayGrdCellClick(e) {
 				var dayGrd = e.control;
 				var planDate = dayGrd.getSelectedRow().getValue("planDate");
-				app.lookup("planDateOutput").value = planDate;
+				app.lookup("createPlanDM").setValue("planDate", planDate);
 				app.lookup("selectDate").send();
 			}
 
@@ -408,26 +408,6 @@
 				"width": "1000px",
 				"height": "500px",
 				"left": "calc(50% - 500px)"
-			});
-			
-			var output_3 = new cpr.controls.Output("plannerNoOutput");
-			output_3.visible = false;
-			output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-			container.addChild(output_3, {
-				"top": "95px",
-				"left": "542px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
-			var output_4 = new cpr.controls.Output("planDateOutput");
-			output_4.visible = false;
-			output_4.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
-			container.addChild(output_4, {
-				"top": "95px",
-				"left": "681px",
-				"width": "100px",
-				"height": "20px"
 			});
 			
 			var button_1 = new cpr.controls.Button("selectBtn");

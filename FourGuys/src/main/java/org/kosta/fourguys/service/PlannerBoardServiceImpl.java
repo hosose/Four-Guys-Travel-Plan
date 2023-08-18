@@ -1,6 +1,5 @@
 package org.kosta.fourguys.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.kosta.fourguys.mapper.PlannerBoardMapper;
@@ -15,7 +14,7 @@ public class PlannerBoardServiceImpl implements PlannerBoardService {
 	private final PlannerBoardMapper plannerBoardMapper;
 
 	@Override
-	public ArrayList<PlannerBoardVO> findPlannerBoardByNo(int plannerBoardNo) {
+	public List<PlannerBoardVO> findPlannerBoardByNo(int plannerBoardNo) {
 		return plannerBoardMapper.findPlannerBoardByNo(plannerBoardNo);
 	}
 

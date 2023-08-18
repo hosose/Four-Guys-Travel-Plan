@@ -19,8 +19,8 @@ function onBodyLoad(e) {
  */
 function onPlannerBoardListGridRowDblclick(e) {
 	var plannerBoardListGrid = e.control;
-	var plannerNo = plannerBoardListGrid.getSelectedRow().getValue("plannerNo");
-	location.href = "boardDetailPage/" + plannerNo;
+	var boardNo = plannerBoardListGrid.getSelectedRow().getValue("boardNo");
+	location.href = "boardDetailPage/" + boardNo;
 }
 
 /*
@@ -43,7 +43,7 @@ function gridPaging() {
 	var startRowIndex = (currentPageIndex - 1) * pageIdx.pageRowCount;
 	var endRowIndex = currentPageIndex * pageIdx.pageRowCount;
 	/* filter 조건을 통해 그리드를 페이징합니다. */
-	plannerBoardListGrid.setFilter(startRowIndex + " < boardNo && boardNo <= " + endRowIndex);
+	plannerBoardListGrid.setFilter(startRowIndex + " < RNo && RNo <= " + endRowIndex);
 }
 
 /*

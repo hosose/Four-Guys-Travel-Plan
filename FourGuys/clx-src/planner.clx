@@ -102,10 +102,6 @@
       <cl:responsivexylayoutdata std:sid="rxyl-data-fdd900fe">
         <cl:xylayoutdata std:sid="sxyl-data-0d2616eb" top="20px" left="20px" width="848px" height="22px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
-      <cl:output std:sid="output-0877b6f0" id="plannerNo" visible="false">
-        <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-        <cl:xylayoutdata std:sid="xyl-data-8e90f211" top="0px" left="0px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:output>
       <cl:xylayout std:sid="xylayout-b622fe02"/>
     </cl:group>
     <cl:group std:sid="group-ec15f56b">
@@ -196,14 +192,6 @@
         <cl:xylayoutdata std:sid="sxyl-data-2fcbd8a9" top="30px" left="455px" width="100px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:output std:sid="output-95adf4c8" id="planDateOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
-      <cl:xylayoutdata std:sid="xyl-data-e085703b" top="100px" left="150px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
-    <cl:output std:sid="output-2455dacf" id="contentIdOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="contentid"/>
-      <cl:xylayoutdata std:sid="xyl-data-733bb1ad" top="100px" left="249px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
     <cl:udc std:sid="ud-control-21dba280" type="udc.logo">
       <cl:responsivexylayoutdata std:sid="rxyl-data-c5e1ce59">
         <cl:xylayoutdata std:sid="sxyl-data-f8021ced" top="10px" width="300px" height="73px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>

@@ -14,6 +14,7 @@
           <cl:datacolumn std:sid="d-column-d22b9d66" name="boardTitle"/>
           <cl:datacolumn std:sid="d-column-e8d4151a" name="boardCreateDate"/>
           <cl:datacolumn std:sid="d-column-32b13e8b" name="boardHits" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-3bfb9d7a" name="RNo" datatype="number"/>
         </cl:datacolumnlist>
       </cl:dataset>
       <cl:dataset std:sid="d-set-fd86dbad" id="planDate">
@@ -50,6 +51,7 @@
           <cl:datacolumn std:sid="d-column-f7e0dd86" name="boardTitle"/>
           <cl:datacolumn std:sid="d-column-8d56c0b7" name="boardCreateDate"/>
           <cl:datacolumn std:sid="d-column-89fee44f" name="boardHits" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-5c6639fa" name="RNo" datatype="number"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-be1b9149" id="plannerNoDM">
@@ -72,7 +74,7 @@
       </cl:datamap>
       <cl:datamap std:sid="d-map-2ff4cd29" id="editBoardDM"/>
       <cl:submission std:sid="submission-e6c83257" id="boardDetailSM" method="get" action="boardDetail">
-        <cl:listener std:sid="listener-ab2ed6a0" name="submit-success" handler="onBoardDetailSMSubmitSuccess"/>
+        <cl:listener std:sid="listener-f761c020" name="submit-success" handler="onBoardDetailSMSubmitSuccess2"/>
         <cl:requestdata dataid="plannerBoardNoDM"/>
         <cl:responsedata dataid="boardDetail"/>
       </cl:submission>
@@ -81,9 +83,7 @@
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-d6b667c2" id="getDay" method="get" action="getDay">
-        <cl:listener std:sid="listener-a0939060" name="submit-success" handler="onGetDaySubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
         <cl:responsedata dataid="planDate"/>
       </cl:submission>
       <cl:submission std:sid="submission-6796ef8b" id="getTitle" method="get" action="selectPlansByDate">
@@ -129,14 +129,13 @@
         <cl:gridcell std:sid="gh-cell-dc1295bc" rowindex="0" colindex="4" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="boardCreateDate"/>
         <cl:gridcell std:sid="gh-cell-9668c0fe" rowindex="0" colindex="5" targetcolumnname="boardHits" sortable="false" filterable="false" text="boardHits"/>
       </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-9986175d">
-        <cl:gridrow std:sid="g-row-b6a3c645"/>
-        <cl:gridcell std:sid="gd-cell-a8029b28" rowindex="0" colindex="0" columnname="id"/>
-        <cl:gridcell std:sid="gd-cell-ce8a0d5e" rowindex="0" colindex="1" columnname="plannerNo"/>
-        <cl:gridcell std:sid="gd-cell-2a50e836" rowindex="0" colindex="2" columnname="boardNo"/>
-        <cl:gridcell std:sid="gd-cell-6314e4dc" rowindex="0" colindex="3" columnname="boardTitle"/>
-        <cl:gridcell std:sid="gd-cell-3b5c65a2" rowindex="0" colindex="4" columnname="boardCreateDate"/>
-        <cl:gridcell std:sid="gd-cell-4d6fc1de" rowindex="0" colindex="5" columnname="boardHits"/>
+      <cl:griddetail std:sid="gd-band-2c083ece">
+        <cl:gridrow std:sid="g-row-74e8655d"/>
+        <cl:gridcell std:sid="gd-cell-fa325191" rowindex="0" colindex="0" columnname="id"/>
+        <cl:gridcell std:sid="gd-cell-a20e34df" rowindex="0" colindex="1" columnname="plannerNo"/>
+        <cl:gridcell std:sid="gd-cell-5d5c016c" rowindex="0" colindex="2" columnname="boardTitle"/>
+        <cl:gridcell std:sid="gd-cell-7fc9c923" rowindex="0" colindex="3" columnname="boardCreateDate"/>
+        <cl:gridcell std:sid="gd-cell-e72fa0bc" rowindex="0" colindex="4" columnname="boardHits"/>
       </cl:griddetail>
     </cl:grid>
     <cl:grid std:sid="grid-721a0fa5" id="grd2" datasetid="boardDetail">
@@ -149,7 +148,7 @@
         <cl:gridcell std:sid="gh-cell-04b46a98" rowindex="0" colindex="0" targetcolumnname="boardContent" sortable="false" filterable="false" text="boardContent"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-f21779d6">
-        <cl:gridrow std:sid="g-row-da2d554f"/>
+        <cl:gridrow std:sid="g-row-da2d554f" height="120px"/>
         <cl:gridcell std:sid="gd-cell-5d7667f0" rowindex="0" colindex="0" columnname="boardContent"/>
       </cl:griddetail>
     </cl:grid>
@@ -166,7 +165,7 @@
       <cl:gridcolumn std:sid="g-column-09c7aeb8"/>
       <cl:gridheader std:sid="gh-band-91667f1f">
         <cl:gridrow std:sid="g-row-9713d813"/>
-        <cl:gridcell std:sid="gh-cell-27eaffcf" rowindex="0" colindex="0" targetcolumnname="planDate" sortable="false" filterable="false" text="DAY"/>
+        <cl:gridcell std:sid="gh-cell-a07f605b" rowindex="0" colindex="0" style="background-color:#FFFFFF; color:#2DCEB9; font-weight:bolder;" targetcolumnname="planDate" sortable="false" filterable="false" text="DAY"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-f201f12d">
         <cl:gridrow std:sid="g-row-40f87f23"/>
@@ -175,13 +174,14 @@
     </cl:grid>
     <cl:grid std:sid="grid-7187e12f" id="grd4" datasetid="selectedPlan">
       <cl:listener std:sid="listener-ab175514" name="click" handler="onGrd4Click"/>
+
       <cl:responsivexylayoutdata std:sid="rxyl-data-bc7d69ab">
         <cl:xylayoutdata std:sid="sxyl-data-c16f3225" top="268px" bottom="10px" left="220px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-9bfcafe4"/>
       <cl:gridheader std:sid="gh-band-4ef620f9">
         <cl:gridrow std:sid="g-row-9e749704"/>
-        <cl:gridcell std:sid="gh-cell-eec2397c" rowindex="0" colindex="0" targetcolumnname="title" sortable="false" filterable="false" text="선택한 여행지"/>
+        <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="선택 목록"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-0ea6d39f">
         <cl:gridrow std:sid="g-row-e287c25a"/>

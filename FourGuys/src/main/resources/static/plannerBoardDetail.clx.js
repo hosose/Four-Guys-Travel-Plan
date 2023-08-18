@@ -22,20 +22,18 @@
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
-			function onBodyLoad(e){
+			function onBodyLoad(e) {
 				var currentUrl = location.href;
-				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/")+1 );
-			   	app.lookup("boardNo").value = 1;
-			   	app.lookup("plannerNo").value = 201;
-				app.lookup("boardDetailSM").send();	
-				app.lookup("getDay").send();
-			}
+				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				app.lookup("plannerBoardNoDM").setValue("BOARD_NO", boardNo);
+				app.lookup("boardDetailSM").send();
+			}	
 
 			/*
 			 * 그리드에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onGrd4Click(e){
+			function onGrd4Click(e) {
 				var grd4 = e.control;
 				var grid = app.lookup("grd4");
 				var embp = app.lookup("ep1");
@@ -51,27 +49,16 @@
 			}
 
 
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			function onGetDaySubmitSuccess(e){
-				var getDay = e.control;
-				var grid = app.lookup("grd4");
-				grid.selectRows([0]);
-				app.lookup("planDateOutput").value=1;
-			}
 
 			/*
 			 * 그리드에서 cell-click 이벤트 발생 시 호출.
 			 * Grid의 Cell 클릭시 발생하는 이벤트.
 			 */
-			function onGrd3CellClick(e){
+			function onGrd3CellClick(e) {
 				var grd3 = e.control;
 				var grid = app.lookup("grd3");
-				var plannerNo = app.lookup("plannerNo").value;
 				var planDate = grid.getSelectedRow().getValue("planDate");
-				app.lookup("planDateOutput").value=planDate;
+				app.lookup("createPlanDM").setValue("planDate", planDate);
 				app.lookup("getTitle").send();
 			}
 
@@ -79,14 +66,16 @@
 			 * "수정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick(e){
+			function onButtonClick(e) {
 				var button = e.control;
-				app.openDialog("editBoardDetail", {width : 800, height : 600}, function(dialog){
-					dialog.ready(function(dialogApp){
+				app.openDialog("editBoardDetail", {
+					width: 800,
+					height: 600
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {
 						// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-						
 					});
-				}).then(function(returnValue){
+				}).then(function(returnValue) {
 					;
 				});
 			}
@@ -95,10 +84,21 @@
 			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick2(e){
+			function onButtonClick2(e) {
 				var button = e.control;
 				
-			};
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onBoardDetailSMSubmitSuccess2(e) {
+				var boardDetailSM = e.control;
+				var plannerNo = app.lookup("plannerBoardParamsGrd").getRow(0).getValue("plannerNo");
+				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+				app.lookup("getDay").send();
+			}
 			// End - User Script
 			
 			// Header
@@ -122,6 +122,10 @@
 					{"name": "boardCreateDate"},
 					{
 						"name": "boardHits",
+						"dataType": "number"
+					},
+					{
+						"name": "RNo",
 						"dataType": "number"
 					}
 				]
@@ -198,6 +202,10 @@
 					{
 						"name": "boardHits",
 						"dataType": "number"
+					},
+					{
+						"name": "RNo",
+						"dataType": "number"
 					}
 				]
 			});
@@ -242,8 +250,8 @@
 			submission_1.action = "boardDetail";
 			submission_1.addRequestData(dataMap_1);
 			submission_1.addResponseData(dataSet_1, false);
-			if(typeof onBoardDetailSMSubmitSuccess == "function") {
-				submission_1.addEventListener("submit-success", onBoardDetailSMSubmitSuccess);
+			if(typeof onBoardDetailSMSubmitSuccess2 == "function") {
+				submission_1.addEventListener("submit-success", onBoardDetailSMSubmitSuccess2);
 			}
 			app.register(submission_1);
 			
@@ -258,11 +266,7 @@
 			submission_3.method = "get";
 			submission_3.action = "getDay";
 			submission_3.addRequestData(dataMap_3);
-			submission_3.addRequestData(dataMap_4);
 			submission_3.addResponseData(dataSet_2, false);
-			if(typeof onGetDaySubmitSuccess == "function") {
-				submission_3.addEventListener("submit-success", onGetDaySubmitSuccess);
-			}
 			app.register(submission_3);
 			
 			var submission_4 = new cpr.protocols.Submission("getTitle");
@@ -438,23 +442,17 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
-								cell.columnName = "boardNo";
+								cell.columnName = "boardTitle";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
-								cell.columnName = "boardTitle";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 4},
-							"configurator": function(cell){
 								cell.columnName = "boardCreateDate";
 							}
 						},
 						{
-							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
 								cell.columnName = "boardHits";
 							}
@@ -505,7 +503,7 @@
 					}]
 				},
 				"detail": {
-					"rows": [{"height": "24px"}],
+					"rows": [{"height": "120px"}],
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
@@ -582,6 +580,11 @@
 							cell.sortable = false;
 							cell.targetColumnName = "planDate";
 							cell.text = "DAY";
+							cell.style.css({
+								"background-color" : "#FFFFFF",
+								"color" : "#2DCEB9",
+								"font-weight" : "bolder"
+							});
 						}
 					}]
 				},
@@ -636,7 +639,14 @@
 							cell.filterable = false;
 							cell.sortable = false;
 							cell.targetColumnName = "title";
-							cell.text = "선택한 여행지";
+							cell.text = "선택 목록";
+							cell.style.css({
+								"background-color" : "#FFFFFF",
+								"background-repeat" : "repeat",
+								"color" : "#2DCEB9",
+								"font-weight" : "bolder",
+								"background-image" : "none"
+							});
 						}
 					}]
 				},
