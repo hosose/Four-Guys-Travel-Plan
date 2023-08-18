@@ -20,6 +20,13 @@ public class PlannerBoardTest {
 	}
 
 	@Test
+	public void increaseBoardHits() {
+		int boardNo = 16;
+		int result = plannerBoardMapper.increaseBoardHits(boardNo);
+		System.out.println(result);
+	}
+
+	@Test
 	public void deleteBoard() {
 		int boardNo = 6;
 		PlannerBoardVO plannerBoardVO = new PlannerBoardVO();

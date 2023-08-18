@@ -800,21 +800,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "153px",
+						"top": "0px",
 						"width": "300px",
 						"height": "73px",
 						"left": "calc(50% - 150px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "153px",
+						"top": "0px",
 						"width": "146px",
 						"height": "73px",
 						"left": "calc(50% - 73px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "153px",
+						"top": "0px",
 						"width": "103px",
 						"height": "73px",
 						"left": "calc(50% - 51px)"

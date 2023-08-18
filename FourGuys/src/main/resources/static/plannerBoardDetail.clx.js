@@ -11,14 +11,6 @@
 		onCreate: function(/* cpr.core.AppInstance */ app, exports) {
 			var linker = {};
 			// Start - User Script
-
-			/************************************************
-			 * plannerBoardDetail.js
-			 * Created at 2023. 8. 14. 오전 9:40:31.
-			 *
-			 * @author iedl9
-			 ************************************************/
-
 			/*
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
@@ -28,6 +20,7 @@
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
 				app.lookup("plannerBoardNoDM").setValue("BOARD_NO", boardNo);
+				app.lookup("increaseHitsSM").send();
 				app.lookup("boardDetailSM").send();
 			}	
 
@@ -292,12 +285,17 @@
 			submission_5.addRequestData(dataSet_1);
 			app.register(submission_5);
 			
-			var submission_6 = new cpr.protocols.Submission("deleteBoardSM");
-			submission_6.method = "delete";
-			submission_6.action = "deleteBoard";
+			var submission_6 = new cpr.protocols.Submission("increaseHitsSM");
+			submission_6.action = "increaseBoardHits";
 			submission_6.addRequestData(dataMap_1);
-			submission_6.addResponseData(dataSet_1, false);
 			app.register(submission_6);
+			
+			var submission_7 = new cpr.protocols.Submission("deleteBoardSM");
+			submission_7.method = "delete";
+			submission_7.action = "deleteBoard";
+			submission_7.addRequestData(dataMap_1);
+			submission_7.addResponseData(dataSet_1, false);
+			app.register(submission_7);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");

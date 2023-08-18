@@ -57,6 +57,5 @@
 	</select>
 	<select id="findPlannerByNo" parameterType="int" resultType="org.kosta.fourguys.vo.PlannerVO">
 		 SELECT * FROM planner where "PLANNER_NO" = #{plannerNo}
-		
 	</select>
 </mapper>

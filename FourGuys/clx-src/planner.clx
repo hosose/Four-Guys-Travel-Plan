@@ -194,7 +194,7 @@
     </cl:button>
     <cl:udc std:sid="ud-control-21dba280" type="udc.logo">
       <cl:responsivexylayoutdata std:sid="rxyl-data-c5e1ce59">
-        <cl:xylayoutdata std:sid="sxyl-data-f8021ced" top="153px" width="300px" height="73px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-f8021ced" top="0px" width="300px" height="73px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
     <cl:combobox std:sid="c-box-099b73f5" id="cmb1">
