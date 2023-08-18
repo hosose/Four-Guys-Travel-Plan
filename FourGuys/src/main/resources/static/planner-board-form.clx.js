@@ -36,6 +36,14 @@
 				});
 			}
 
+			function print(psEventType) {
+				var vcLblVal = app.lookup("lblVal");
+				if (vcLblVal.value == null) {
+					vcLblVal.value = "";
+				}
+				var vsText = psEventType;
+				vcLblVal.value = vsText;
+			}
 			/*
 			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
 			 * 통신 중 문제가 생기면 발생합니다.
@@ -76,6 +84,17 @@
 				var url = createPlannerBoardSM.getMetadata("url");
 				location.href = url;
 			}
+
+			/*
+			 * 서브미션에서 before-submit 이벤트 발생 시 호출.
+			 * 통신을 시작하기전에 발생합니다.
+			 */
+			function onCreatePlannerBoardSMBeforeSubmit(e){
+				var createPlannerBoardSM = e.control;
+				var vcEditor = app.lookup("ep1");
+				var html = vcEditor.callPageMethod("showHTML");
+				print(html);
+			};
 			// End - User Script
 			
 			// Header
@@ -178,6 +197,9 @@
 			if(typeof onCreatePlannerBoardSMSubmitSuccess == "function") {
 				submission_4.addEventListener("submit-success", onCreatePlannerBoardSMSubmitSuccess);
 			}
+			if(typeof onCreatePlannerBoardSMBeforeSubmit == "function") {
+				submission_4.addEventListener("before-submit", onCreatePlannerBoardSMBeforeSubmit);
+			}
 			app.register(submission_4);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -191,24 +213,62 @@
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
 			var userDefinedControl_1 = new udc.logo();
 			container.addChild(userDefinedControl_1, {
-				"top": "10px",
-				"left": "10px",
-				"width": "196px",
-				"height": "77px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "10px",
+						"left": "10px",
+						"width": "196px",
+						"height": "77px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "10px",
+						"left": "5px",
+						"width": "96px",
+						"height": "77px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "10px",
+						"left": "3px",
+						"width": "67px",
+						"height": "77px"
+					}
+				]
 			});
 			
 			var userDefinedControl_2 = new udc.header_nav();
 			container.addChild(userDefinedControl_2, {
-				"top": "10px",
-				"right": "20px",
-				"width": "623px",
-				"height": "77px"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "10px",
+						"right": "20px",
+						"width": "623px",
+						"height": "77px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "10px",
+						"right": "10px",
+						"width": "304px",
+						"height": "77px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "10px",
+						"right": "7px",
+						"width": "213px",
+						"height": "77px"
+					}
+				]
 			});
 			
 			var group_1 = new cpr.controls.Container();
@@ -280,29 +340,6 @@
 					"rowSpan": 1,
 					"bottomSpacing": 5,
 					"leftSpacing": 3
-				});
-				var textArea_1 = new cpr.controls.TextArea("txa1");
-				textArea_1.placeholder = "내용을 입력해주세요.";
-				textArea_1.style.css({
-					"border-right-style" : "solid",
-					"border-radius" : "5px",
-					"padding-top" : "5px",
-					"border-left-style" : "solid",
-					"padding-left" : "5px",
-					"font-size" : "20px",
-					"padding-bottom" : "5px",
-					"border-bottom-style" : "solid",
-					"border-top-style" : "solid",
-					"padding-right" : "5px"
-				});
-				textArea_1.bind("value").toDataMap(app.lookup("boardDM"), "content");
-				container.addChild(textArea_1, {
-					"colIndex": 1,
-					"rowIndex": 2,
-					"colSpan": 1,
-					"rowSpan": 1,
-					"topSpacing": 5,
-					"leftSpacing": 5
 				});
 				var grid_1 = new cpr.controls.Grid("dayGrd");
 				grid_1.init({
@@ -402,12 +439,39 @@
 					"rowIndex": 1,
 					"leftSpacing": 2
 				});
+				var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
+				embeddedPage_1.src = "thirdparty/smarteditor/SmartEditor2.html";
+				container.addChild(embeddedPage_1, {
+					"colIndex": 1,
+					"rowIndex": 2,
+					"colSpan": 1,
+					"rowSpan": 1
+				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "158px",
-				"width": "1000px",
-				"height": "500px",
-				"left": "calc(50% - 500px)"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "158px",
+						"bottom": "100px",
+						"width": "1000px",
+						"left": "calc(50% - 500px)"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "158px",
+						"bottom": "100px",
+						"width": "488px",
+						"left": "calc(50% - 244px)"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "158px",
+						"bottom": "100px",
+						"width": "342px",
+						"left": "calc(50% - 171px)"
+					}
+				]
 			});
 			
 			var button_1 = new cpr.controls.Button("selectBtn");
@@ -428,10 +492,58 @@
 				button_1.addEventListener("click", onSelectBtnClick);
 			}
 			container.addChild(button_1, {
-				"bottom": "30px",
-				"width": "200px",
-				"height": "60px",
-				"left": "calc(50% - 100px)"
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"bottom": "30px",
+						"width": "200px",
+						"height": "60px",
+						"left": "calc(50% - 100px)"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"bottom": "30px",
+						"width": "98px",
+						"height": "60px",
+						"left": "calc(50% - 49px)"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"bottom": "30px",
+						"width": "68px",
+						"height": "60px",
+						"left": "calc(50% - 34px)"
+					}
+				]
+			});
+			
+			var output_3 = new cpr.controls.Output("lblVal");
+			output_3.visible = false;
+			output_3.bind("value").toDataMap(app.lookup("boardDM"), "content");
+			container.addChild(output_3, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "120px",
+						"left": "12px",
+						"width": "896px",
+						"height": "28px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "120px",
+						"left": "6px",
+						"width": "438px",
+						"height": "28px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "120px",
+						"left": "4px",
+						"width": "306px",
+						"height": "28px"
+					}
+				]
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

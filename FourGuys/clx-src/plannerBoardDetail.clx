@@ -101,7 +101,7 @@
     <cl:listener std:sid="listener-c4c1ed67" name="load" handler="onBodyLoad"/>
     <cl:udc std:sid="ud-control-6dbfc96f" type="udc.logo">
       <cl:responsivexylayoutdata std:sid="rxyl-data-e2467989">
-        <cl:xylayoutdata std:sid="sxyl-data-0fdb9adb" top="20px" left="20px" width="300px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-0fdb9adb" top="20px" left="20px" width="299px" height="70px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
     <cl:output std:sid="output-f33a29fb" id="boardNo" visible="false">
@@ -112,44 +112,45 @@
     </cl:output>
     <cl:grid std:sid="grid-b21dacf8" id="grd1" datasetid="boardDetail">
       <cl:responsivexylayoutdata std:sid="rxyl-data-a3825c0a">
-        <cl:xylayoutdata std:sid="sxyl-data-a6f3894f" top="139px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-a6f3894f" top="100px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
-      <cl:gridcolumn std:sid="g-column-b0588a25"/>
-      <cl:gridcolumn std:sid="g-column-1cfe7d6a"/>
-      <cl:gridcolumn std:sid="g-column-36cd5695"/>
-      <cl:gridcolumn std:sid="g-column-a9e73f1c"/>
-      <cl:gridcolumn std:sid="g-column-f959213b"/>
-      <cl:gridcolumn std:sid="g-column-aa2f7e6a"/>
-      <cl:gridheader std:sid="gh-band-ac55cff2">
-        <cl:gridrow std:sid="g-row-7cd0b5e4"/>
-        <cl:gridcell std:sid="gh-cell-7bd571b0" rowindex="0" colindex="0" targetcolumnname="id" sortable="false" filterable="false" text="id"/>
-        <cl:gridcell std:sid="gh-cell-3c024f85" rowindex="0" colindex="1" targetcolumnname="plannerNo" sortable="false" filterable="false" text="plannerNo"/>
-        <cl:gridcell std:sid="gh-cell-e2fc0900" rowindex="0" colindex="2" targetcolumnname="boardNo" sortable="false" filterable="false" text="boardNo"/>
-        <cl:gridcell std:sid="gh-cell-8deeee1b" rowindex="0" colindex="3" targetcolumnname="boardTitle" sortable="false" filterable="false" text="boardTitle"/>
-        <cl:gridcell std:sid="gh-cell-dc1295bc" rowindex="0" colindex="4" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="boardCreateDate"/>
-        <cl:gridcell std:sid="gh-cell-9668c0fe" rowindex="0" colindex="5" targetcolumnname="boardHits" sortable="false" filterable="false" text="boardHits"/>
+      <cl:gridcolumn std:sid="g-column-bea0a47f"/>
+      <cl:gridcolumn std:sid="g-column-dee9d09d"/>
+      <cl:gridcolumn std:sid="g-column-4f6dcb87"/>
+      <cl:gridcolumn std:sid="g-column-2e49419c"/>
+      <cl:gridcolumn std:sid="g-column-911651fc"/>
+      <cl:gridcolumn std:sid="g-column-99a638e8"/>
+      <cl:gridheader std:sid="gh-band-a989d015">
+        <cl:gridrow std:sid="g-row-3b6cbec8"/>
+        <cl:gridcell std:sid="gh-cell-a6b58f20" rowindex="0" colindex="0" targetcolumnname="id" sortable="false" filterable="false" text="id"/>
+        <cl:gridcell std:sid="gh-cell-65baf4a5" rowindex="0" colindex="1" targetcolumnname="plannerNo" sortable="false" filterable="false" text="plannerNo"/>
+        <cl:gridcell std:sid="gh-cell-d92ec505" rowindex="0" colindex="2" targetcolumnname="boardNo" sortable="false" filterable="false" text="boardNo"/>
+        <cl:gridcell std:sid="gh-cell-79700795" rowindex="0" colindex="3" targetcolumnname="boardTitle" sortable="false" filterable="false" text="boardTitle"/>
+        <cl:gridcell std:sid="gh-cell-1ca46535" rowindex="0" colindex="4" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="boardCreateDate"/>
+        <cl:gridcell std:sid="gh-cell-a3234986" rowindex="0" colindex="5" targetcolumnname="boardHits" sortable="false" filterable="false" text="boardHits"/>
       </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-2c083ece">
-        <cl:gridrow std:sid="g-row-74e8655d"/>
-        <cl:gridcell std:sid="gd-cell-fa325191" rowindex="0" colindex="0" columnname="id"/>
-        <cl:gridcell std:sid="gd-cell-a20e34df" rowindex="0" colindex="1" columnname="plannerNo"/>
-        <cl:gridcell std:sid="gd-cell-5d5c016c" rowindex="0" colindex="2" columnname="boardTitle"/>
-        <cl:gridcell std:sid="gd-cell-7fc9c923" rowindex="0" colindex="3" columnname="boardCreateDate"/>
-        <cl:gridcell std:sid="gd-cell-e72fa0bc" rowindex="0" colindex="4" columnname="boardHits"/>
+      <cl:griddetail std:sid="gd-band-d9e2d6b1">
+        <cl:gridrow std:sid="g-row-03351929"/>
+        <cl:gridcell std:sid="gd-cell-ca821846" rowindex="0" colindex="0" columnname="id"/>
+        <cl:gridcell std:sid="gd-cell-01e92103" rowindex="0" colindex="1" columnname="plannerNo"/>
+        <cl:gridcell std:sid="gd-cell-c8a8d738" rowindex="0" colindex="2" columnname="boardNo"/>
+        <cl:gridcell std:sid="gd-cell-941cf050" rowindex="0" colindex="3" columnname="boardTitle"/>
+        <cl:gridcell std:sid="gd-cell-94bf89f2" rowindex="0" colindex="4" columnname="boardCreateDate"/>
+        <cl:gridcell std:sid="gd-cell-ee0194a2" rowindex="0" colindex="5" columnname="boardHits"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-721a0fa5" id="grd2" datasetid="boardDetail">
+    <cl:grid std:sid="grid-721a0fa5" id="grd2" datasetid="boardDetail" autorowheight="all">
       <cl:responsivexylayoutdata std:sid="rxyl-data-0f3afce0">
-        <cl:xylayoutdata std:sid="sxyl-data-868fac58" top="197px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-868fac58" top="160px" right="10px" left="10px" height="98px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
-      <cl:gridcolumn std:sid="g-column-c087f80a"/>
-      <cl:gridheader std:sid="gh-band-56dcdb9e">
-        <cl:gridrow std:sid="g-row-819bb26a"/>
-        <cl:gridcell std:sid="gh-cell-df4d1e7b" rowindex="0" colindex="0" targetcolumnname="boardContent" sortable="false" filterable="false" text="boardContent"/>
-      </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-95aeee7e">
-        <cl:gridrow std:sid="g-row-1b5fd1d0"/>
-        <cl:gridcell std:sid="gd-cell-7124d101" rowindex="0" colindex="0" columnname="boardContent"/>
+      <cl:gridcolumn std:sid="g-column-7ea8eead"/>
+      <cl:griddetail std:sid="gd-band-1bff09d8">
+        <cl:gridrow std:sid="g-row-3424c70d" height="100%"/>
+        <cl:gridcell std:sid="gd-cell-1151d8e4" rowindex="0" colindex="0" columnname="boardContent">
+          <cl:htmlsnippet std:sid="htmlsnippet-57e9b6ff" value="&lt;p>HTML Snippet&lt;/p>">
+            <cl:celldata std:sid="c-data-0235aac7" halign="FILL" valign="FILL" width="500" height="100"/>
+          </cl:htmlsnippet>
+        </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
     <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html" scrolling="no">
@@ -169,7 +170,9 @@
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-f201f12d">
         <cl:gridrow std:sid="g-row-40f87f23"/>
-        <cl:gridcell std:sid="gd-cell-3333db54" rowindex="0" colindex="0" columnname="planDate"/>
+        <cl:gridcell std:sid="gd-cell-3333db54" rowindex="0" colindex="0" columnname="planDate">
+          <cl:datamapbind property="fieldLabel" category="PROPERTY" datacontrolid="createPlanDM" columnname="planDate"/>
+        </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
     <cl:grid std:sid="grid-7187e12f" id="grd4" datasetid="selectedPlan">
@@ -225,7 +228,11 @@
     <cl:responsivexylayout std:sid="r-xylayout-22d199fb"/>
   </body>
   <std:studiosetting>
-    <std:hruler/>
+    <std:hruler>
+      <std:guide position="589"/>
+      <std:guide position="430"/>
+      <std:guide position="341"/>
+    </std:hruler>
     <std:vruler/>
   </std:studiosetting>
 </html>
