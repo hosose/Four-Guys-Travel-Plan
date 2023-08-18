@@ -228,7 +228,9 @@
     <cl:responsivexylayout std:sid="r-xylayout-22d199fb"/>
   </body>
   <std:studiosetting>
-    <std:hruler/>
+    <std:hruler>
+      <std:guide position="589"/>
+    </std:hruler>
     <std:vruler/>
   </std:studiosetting>
 </html>
