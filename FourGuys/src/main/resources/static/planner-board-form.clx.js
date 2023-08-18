@@ -41,7 +41,7 @@
 				if (vcLblVal.value == null) {
 					vcLblVal.value = "";
 				}
-				var vsText = psEventType.replaceAll("<p>","").replaceAll("</p>","").replaceAll("<br>","");
+				var vsText = psEventType;
 				vcLblVal.value = vsText;
 			}
 			/*

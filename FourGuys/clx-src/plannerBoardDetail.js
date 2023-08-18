@@ -86,3 +86,4 @@ function onBoardDetailSMSubmitSuccess2(e) {
 	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 	app.lookup("getDay").send();
 }
+

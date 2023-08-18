@@ -178,7 +178,6 @@ public class MemberController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 		memberService.deleteMember(memberVO);
 		if (session != null) {
-
 			session.invalidate();
 		}
 		message.put("uri", "/");
