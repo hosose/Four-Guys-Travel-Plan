@@ -11,13 +11,6 @@
 		onCreate: function(/* cpr.core.AppInstance */ app, exports) {
 			var linker = {};
 			// Start - User Script
-			/************************************************
-			 * plannerBoardDetail.js
-			 * Created at 2023. 8. 14. 오전 9:40:31.
-			 *
-			 * @author iedl9
-			 ************************************************/
-
 			/*
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
@@ -73,6 +66,7 @@
 				var button = e.control;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
 				location.href="updateBoardForm/"+boardNo;
+
 			}
 
 			/*
@@ -81,8 +75,12 @@
 			 */
 			function onButtonClick2(e) {
 				var button = e.control;
-				
+				app.lookup("deleteBoardSM").send();
+				alert("삭제되었습니다");
+				location.href="planner-board-list.clx";
 			}
+
+
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -102,7 +100,7 @@
 					editBtn.visible = true;
 					deleteBtn.visible=true;
 				}
-			}
+			};
 			// End - User Script
 			
 			// Header
@@ -291,6 +289,13 @@
 			submission_6.action = "increaseBoardHits";
 			submission_6.addRequestData(dataMap_1);
 			app.register(submission_6);
+			
+			var submission_7 = new cpr.protocols.Submission("deleteBoardSM");
+			submission_7.method = "delete";
+			submission_7.action = "deleteBoard";
+			submission_7.addRequestData(dataMap_1);
+			submission_7.addResponseData(dataSet_1, false);
+			app.register(submission_7);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -314,22 +319,51 @@
 						"media": "all and (min-width: 1024px)",
 						"top": "20px",
 						"left": "20px",
-						"width": "300px",
-						"height": "120px"
+						"width": "299px",
+						"height": "70px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "20px",
 						"left": "10px",
 						"width": "146px",
-						"height": "120px"
+						"height": "70px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "20px",
 						"left": "7px",
-						"width": "103px",
-						"height": "120px"
+						"width": "102px",
+						"height": "70px"
+					}
+				]
+			});
+			
+			var output_1 = new cpr.controls.Output("boardNo");
+			output_1.visible = false;
+			output_1.bind("value").toDataMap(app.lookup("plannerBoardNoDM"), "BOARD_NO");
+			container.addChild(output_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "20px",
+						"left": "191px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "20px",
+						"left": "93px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "20px",
+						"left": "65px",
+						"width": "34px",
+						"height": "20px"
 					}
 				]
 			});
@@ -422,17 +456,23 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
-								cell.columnName = "boardTitle";
+								cell.columnName = "boardNo";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
-								cell.columnName = "boardCreateDate";
+								cell.columnName = "boardTitle";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.columnName = "boardCreateDate";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
 								cell.columnName = "boardHits";
 							}
@@ -444,21 +484,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "139px",
+						"top": "100px",
 						"right": "10px",
 						"left": "10px",
 						"height": "50px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "139px",
+						"top": "100px",
 						"right": "5px",
 						"left": "5px",
 						"height": "50px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "139px",
+						"top": "100px",
 						"right": "3px",
 						"left": "3px",
 						"height": "50px"
@@ -469,25 +509,26 @@
 			var grid_2 = new cpr.controls.Grid("grd2");
 			grid_2.init({
 				"dataSet": app.lookup("boardDetail"),
+				"autoRowHeight": "all",
 				"columns": [{"width": "100px"}],
-				"header": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.filterable = false;
-							cell.sortable = false;
-							cell.targetColumnName = "boardContent";
-							cell.text = "boardContent";
-						}
-					}]
-				},
 				"detail": {
-					"rows": [{"height": "24px"}],
+					"rows": [{"height": "100%"}],
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
 							cell.columnName = "boardContent";
+							cell.control = (function(){
+								var hTMLSnippet_1 = new cpr.controls.HTMLSnippet();
+								hTMLSnippet_1.value = "<p>HTML Snippet<\/p>";
+								hTMLSnippet_1.bind("value").toDataColumn("boardContent");
+								return hTMLSnippet_1;
+							})();
+							cell.controlConstraint = {
+								"horizontalAlign": "fill",
+								"verticalAlign": "fill",
+								"width": 500,
+								"height": 100
+							};
 						}
 					}]
 				}
@@ -496,24 +537,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "197px",
+						"top": "160px",
 						"right": "10px",
 						"left": "10px",
-						"height": "50px"
+						"height": "98px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "197px",
+						"top": "160px",
 						"right": "5px",
 						"left": "5px",
-						"height": "50px"
+						"height": "98px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "197px",
+						"top": "160px",
 						"right": "3px",
 						"left": "3px",
-						"height": "50px"
+						"height": "98px"
 					}
 				]
 			});
@@ -574,6 +615,7 @@
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
 							cell.columnName = "planDate";
+							cell.bind("fieldLabel").toDataMap(app.lookup("createPlanDM"), "planDate");
 						}
 					}]
 				}
@@ -666,6 +708,86 @@
 						"bottom": "10px",
 						"left": "75px",
 						"width": "68px"
+					}
+				]
+			});
+			
+			var output_2 = new cpr.controls.Output("plannerNo");
+			output_2.visible = false;
+			output_2.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
+			container.addChild(output_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "8px",
+						"left": "191px",
+						"width": "100px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "8px",
+						"left": "93px",
+						"width": "49px",
+						"height": "20px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "8px",
+						"left": "65px",
+						"width": "34px",
+						"height": "20px"
+					}
+				]
+			});
+			
+			var group_1 = new cpr.controls.Container("slt");
+			group_1.visible = false;
+			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("selectTitleDM"));
+			group_1.setBindContext(dataMapContext_1);
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_1);
+			(function(container){
+				var output_3 = new cpr.controls.Output("plannerNoOutput");
+				output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
+				container.addChild(output_3, {
+					"top": "22px",
+					"left": "70px",
+					"width": "100px",
+					"height": "20px"
+				});
+				var output_4 = new cpr.controls.Output("planDateOutput");
+				output_4.visible = false;
+				output_4.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
+				container.addChild(output_4, {
+					"top": "3px",
+					"left": "30px",
+					"width": "100px",
+					"height": "20px"
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "8px",
+						"left": "20px",
+						"width": "179px",
+						"height": "43px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "8px",
+						"left": "10px",
+						"width": "87px",
+						"height": "43px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "8px",
+						"left": "7px",
+						"width": "61px",
+						"height": "43px"
 					}
 				]
 			});

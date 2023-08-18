@@ -21,4 +21,7 @@ public interface PlannerService {
 	public List<PlannerVO> findNotCompletePlanner(PlannerVO plannerVO);
 
 	List<PlannerVO> getPlannerById(String id);
+	
+	public List<PlannerVO> findPlannerByNo(int plannerNo);
+
 }

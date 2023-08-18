@@ -18,4 +18,5 @@ public interface PlannerBoardMapper {
 
 	public int increaseBoardHits(int boardNo);
 
+	public int deleteBoard(PlannerBoardVO plannerBoardVO);
 }

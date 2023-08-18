@@ -102,6 +102,7 @@ function onGrd2RowCheck(e) {
 function onGrd2RowUncheck(e) {
 	var grd2 = e.control;
 	var contentId = grd2.getSelectedRow().getValue("contentid");
+
 	app.lookup("createPlanDM").setValue("contentid", contentId);
 	app.lookup("deletePlan").send();
 }

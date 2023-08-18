@@ -115,6 +115,7 @@
 			function onGrd2RowUncheck(e) {
 				var grd2 = e.control;
 				var contentId = grd2.getSelectedRow().getValue("contentid");
+
 				app.lookup("createPlanDM").setValue("contentid", contentId);
 				app.lookup("deletePlan").send();
 			}
@@ -799,21 +800,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "10px",
+						"top": "0px",
 						"width": "300px",
 						"height": "73px",
 						"left": "calc(50% - 150px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "10px",
+						"top": "0px",
 						"width": "146px",
 						"height": "73px",
 						"left": "calc(50% - 73px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "10px",
+						"top": "0px",
 						"width": "103px",
 						"height": "73px",
 						"left": "calc(50% - 51px)"

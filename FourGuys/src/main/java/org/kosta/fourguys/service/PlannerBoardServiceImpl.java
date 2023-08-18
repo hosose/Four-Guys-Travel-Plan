@@ -37,4 +37,8 @@ public class PlannerBoardServiceImpl implements PlannerBoardService {
 	public int increaseBoardHits(int boardNo) {
 		return plannerBoardMapper.increaseBoardHits(boardNo);
 	}
+
+	public int deleteBoard(PlannerBoardVO PlannerBoardVO) {
+		return plannerBoardMapper.deleteBoard(PlannerBoardVO);
+	}
 }

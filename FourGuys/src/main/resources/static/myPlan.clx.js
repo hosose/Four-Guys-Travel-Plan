@@ -28,8 +28,6 @@
 				app.lookup("findNotCompletePlanner").send();
 				gridPaging2();
 				
-				
-				
 			}
 
 			/**
@@ -40,7 +38,6 @@
 				var vcGridSample = app.lookup("grd1");
 				var vcPageIndexer = app.lookup("completePaging");
 				vcPageIndexer.redraw();
-				
 				
 				/* 페이징의 첫번째 행 번호와 마지막 행 번호를 지정합니다. */
 				var currentPageIndex = vcPageIndexer.currentPageIndex;
@@ -59,7 +56,6 @@
 				var vcPageIndexer = app.lookup("notCompletePaging");
 				vcPageIndexer.redraw();
 				
-				
 				/* 페이징의 첫번째 행 번호와 마지막 행 번호를 지정합니다. */
 				var currentPageIndex = vcPageIndexer.currentPageIndex;
 				var startRowIndex = (currentPageIndex - 1) * vcPageIndexer.pageRowCount;
@@ -76,7 +72,7 @@
 			 * 페이지 인덱서에서 selection-change 이벤트 발생 시 호출.
 			 * Page index를 선택하여 선택된 페이지가 변경된 후에 발생하는 이벤트.
 			 */
-			function onCompletePagingSelectionChange(e){
+			function onCompletePagingSelectionChange(e) {
 				var completePaging = e.control;
 				gridPaging();
 			}
@@ -85,11 +81,36 @@
 			 * 페이지 인덱서에서 selection-change 이벤트 발생 시 호출.
 			 * Page index를 선택하여 선택된 페이지가 변경된 후에 발생하는 이벤트.
 			 */
-			function onNotCompletePagingSelectionChange(e){
+			function onNotCompletePagingSelectionChange(e) {
 				var notCompletePaging = e.control;
 				gridPaging2();
 				
-			};
+			}
+
+
+
+			/*
+			 * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e) {
+				var button = e.control;
+				var grd2 = app.lookup("grd2")
+				var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
+				location.href = "myPlanDetail/" + plannerNo;
+				
+			}
+
+			/*
+			 * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick2(e) {
+				var button = e.control;
+				var grd1 = app.lookup("grd1")
+				var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
+				location.href = "myPlanDetail/" + plannerNo;
+			}
 			// End - User Script
 			
 			// Header
@@ -236,21 +257,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "95px",
+						"top": "85px",
 						"width": "100px",
 						"height": "30px",
 						"left": "calc(50% - 50px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "95px",
+						"top": "85px",
 						"width": "49px",
 						"height": "30px",
 						"left": "calc(50% - 24px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "95px",
+						"top": "85px",
 						"width": "34px",
 						"height": "30px",
 						"left": "calc(50% - 17px)"
@@ -305,6 +326,8 @@
 					{"width": "100px"},
 					{"width": "100px"},
 					{"width": "100px"},
+					{"width": "100px"},
+					{"width": "100px"},
 					{"width": "100px"}
 				],
 				"header": {
@@ -345,6 +368,16 @@
 								cell.targetColumnName = "plannerLastDay";
 								cell.text = "plannerLastDay";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+							}
 						}
 					]
 				},
@@ -374,6 +407,29 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_1 = new cpr.controls.Button();
+									button_1.value = "상세보기";
+									if(typeof onButtonClick2 == "function") {
+										button_1.addEventListener("click", onButtonClick2);
+									}
+									return button_1;
+								})();
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_2 = new cpr.controls.Button();
+									button_2.value = "삭제";
+									return button_2;
+								})();
+							}
 						}
 					]
 				}
@@ -384,21 +440,21 @@
 						"media": "all and (min-width: 1024px)",
 						"top": "125px",
 						"width": "897px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 448px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "125px",
 						"width": "438px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 219px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "125px",
 						"width": "307px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 153px)"
 					}
 				]
@@ -411,6 +467,8 @@
 					{"width": "100px"},
 					{"width": "100px"},
 					{"width": "100px"},
+					{"width": "100px"},
+					{"width": "100px"},
 					{"width": "100px"}
 				],
 				"header": {
@@ -451,6 +509,16 @@
 								cell.targetColumnName = "plannerLastDay";
 								cell.text = "plannerLastDay";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+							}
 						}
 					]
 				},
@@ -480,6 +548,29 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_3 = new cpr.controls.Button();
+									button_3.value = "상세보기";
+									if(typeof onButtonClick == "function") {
+										button_3.addEventListener("click", onButtonClick);
+									}
+									return button_3;
+								})();
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_4 = new cpr.controls.Button();
+									button_4.value = "삭제";
+									return button_4;
+								})();
+							}
 						}
 					]
 				}
@@ -490,21 +581,21 @@
 						"media": "all and (min-width: 1024px)",
 						"top": "468px",
 						"width": "897px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 448px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "468px",
 						"width": "438px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 219px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "468px",
 						"width": "307px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 153px)"
 					}
 				]

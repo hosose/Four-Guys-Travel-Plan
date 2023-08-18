@@ -17,4 +17,6 @@ public interface PlannerBoardService {
 	int updateBoard(PlannerBoardVO plannerBoardVO);
 
 	public int increaseBoardHits(int boardNo);
+
+	public int deleteBoard(PlannerBoardVO plannerBoardVO);
 }
