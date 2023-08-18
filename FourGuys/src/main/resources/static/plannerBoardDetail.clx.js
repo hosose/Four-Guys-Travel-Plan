@@ -69,18 +69,24 @@
 
 			}
 
+
 			/*
 			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 			function onButtonClick2(e) {
 				var button = e.control;
-				app.lookup("deleteBoardSM").send();
-				alert("삭제되었습니다");
-				location.href="planner-board-list.clx";
+				var currentUrl = location.href;
+				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				if(!confirm("삭제하시겠습니까?")){
+					alert("취소되었습니다")
+					location.href="boardDetailPage/"+boardNo;
+				}else{
+					app.lookup("deleteBoardSM").send();
+					alert("삭제되었습니다");
+					location.href="planner-board-list.clx";
+				}
 			}
-
-
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
