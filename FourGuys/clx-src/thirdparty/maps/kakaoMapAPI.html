@@ -4,9 +4,16 @@
 <meta charset="utf-8">
 <title>주소로 장소 표시하기</title>
 </head>
+<style>
+	html, body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+</style>
 <body>
 	<!---->
-	<div id="map"style="height: 780px;"></div>
+	<div id="map" style="height:100%; width:100%;"></div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4703e8ce93fa0f57283e362bfab3e9f4&libraries=services"></script>
 
@@ -37,8 +44,14 @@
 			// 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
 			map.panTo(moveLatLon);
 			marker.setMap(map);
-			var iwContent = '<div style="padding:5px;">'+title+'<br></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-			    iwPosition = new kakao.maps.LatLng(mapy, mapx); //인포윈도우 표시 위치입니다
+			var iwContent = null;
+			if(firstimage == null || firstimage == ""){
+				iwContent = '<div style="padding:5px;">'+title+'<br></div>';
+			}else if (firstimage != null){
+				iwContent = '<div style="padding:5px;"><img src='+firstimage+' style="width:150px; height:150px;"></img><br>'+title+'<br></div>';
+			}
+			iwPosition = new kakao.maps.LatLng(mapy, mapx);
+			 //인포윈도우 표시 위치입니다
 			
 			// 인포윈도우를 생성합니다
 			var infowindow = new kakao.maps.InfoWindow({

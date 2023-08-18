@@ -27,9 +27,11 @@ function onGrd4Click(e) {
 	var mapx = grid.getSelectedRow().getValue("mapx");
 	var mapy = grid.getSelectedRow().getValue("mapy");
 	var title = grid.getSelectedRow().getValue("title");
-	var embp_mapx = embp.setPageProperty("mapx", mapx);
-	var embp_mapy = embp.setPageProperty("mapy", mapy);
-	var embp_title = embp.setPageProperty("title", title);
+	var firstimage = grid.getSelectedRow().getValue("firstimage");
+	var embp_mapx = embp.setPageProperty("mapx",mapx);
+	var embp_mapy = embp.setPageProperty("mapy",mapy);
+	var embp_title = embp.setPageProperty("title",title);
+	var embp_firstimage = embp.setPageProperty("firstimage",firstimage);
 	embp.callPageMethod("panTo");
 }
 
