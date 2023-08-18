@@ -101,3 +101,50 @@ function onGrd2Click(e) {
 	var embp_title = embp.setPageProperty("title", title);
 	embp.callPageMethod("panTo");
 }
+
+/*
+ * 그리드에서 row-check 이벤트 발생 시 호출.
+ * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 되었을 때 발생하는 이벤트.
+ */
+function onGrd2RowCheck(e) {
+	var grd2 = e.control;
+	var grid = app.lookup("grd2");
+	var contentId = grid.getSelectedRow().getValue("contentid");
+	app.lookup("createPlanDM").setValue("contentid", contentId);
+	app.lookup("createPlan").send();
+	
+}
+
+/*
+ * 그리드에서 row-uncheck 이벤트 발생 시 호출.
+ * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 해제되었을 때 발생하는 이벤트.
+ */
+function onGrd2RowUncheck(e) {
+	var grd2 = e.control;
+	var contentId = grd2.getSelectedRow().getValue("contentid");
+	app.lookup("createPlanDM").setValue("contentid", contentId);
+	app.lookup("deletePlan").send();
+	
+}
+
+/*
+ * 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick(e) {
+	var button = e.control;
+	app.lookup("savePlanner").send();
+	alert("수정되었습니다");
+	location.href = "/myplan";
+}
+
+/*
+ * 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick2(e) {
+	var button = e.control;
+	app.lookup("cancelPlanner").send();
+	alert("취소되었습니다");
+	location.href = "selectDestinationForm";
+}

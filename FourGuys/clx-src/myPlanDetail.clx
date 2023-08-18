@@ -140,10 +140,10 @@
   <body std:sid="body-de831e9d">
     <cl:listener std:sid="listener-c4c1ed67" name="load" handler="onBodyLoad"/>
     <cl:udc std:sid="ud-control-6dbfc96f" type="udc.logo">
-      <cl:xylayoutdata std:sid="xyl-data-aa01408b" top="20px" left="20px" width="300px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-aa01408b" top="20px" width="175px" height="70px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
     </cl:udc>
     <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html">
-      <cl:xylayoutdata std:sid="xyl-data-28a8e457" top="339px" right="10px" bottom="40px" left="659px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+      <cl:xylayoutdata std:sid="xyl-data-28a8e457" top="169px" right="10px" bottom="40px" left="659px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
     </cl:embeddedpage>
     <cl:grid std:sid="grid-cccde53f" id="grd3" datasetid="planDate">
       <cl:listener std:sid="listener-9cf5eca9" name="cell-click" handler="onGrd3CellClick"/>
@@ -173,15 +173,11 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:group std:sid="group-324120f0" id="slt" visible="false">
-      <cl:datamapcontext datacontrolid="selectTitleDM"/>
-      <cl:xylayoutdata std:sid="xyl-data-ca0db8d0" top="8px" left="20px" width="179px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:xylayout std:sid="xylayout-c8a3a9da"/>
-    </cl:group>
     <cl:grid std:sid="grid-1afb50d3" id="grd2" style="font-weight:bolder;" datasetid="jeju">
       <cl:listener std:sid="listener-ecc5c8b0" name="click" handler="onGrd2Click"/>
-      <cl:xylayoutdata std:sid="xyl-data-5aa3a895" top="169px" left="430px" width="200px" height="589px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="73px" left="360px" width="200px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:listener std:sid="listener-78676b99" name="row-check" handler="onGrd2RowCheck"/>
+      <cl:listener std:sid="listener-b1a08f44" name="row-uncheck" handler="onGrd2RowUncheck"/>
+      <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="169px" bottom="10px" left="430px" width="219px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
       <cl:gridcolumn std:sid="g-column-ad70a0a1" width="25px"/>
       <cl:gridcolumn std:sid="g-column-6e963c15"/>
       <cl:gridheader std:sid="gh-band-920a5d9d">
@@ -198,11 +194,19 @@
     <cl:inputbox std:sid="i-box-dde342b5" id="titleSearch" style="text-align:center;" placeholder="지역 검색">
       <cl:datamapbind property="value" category="PROPERTY" datacontrolid="areaSearch" columnname="title"/>
       <cl:datamapcontext datacontrolid="areaSearch"/>
-      <cl:xylayoutdata std:sid="xyl-data-44bdcf32" top="129px" left="319px" width="273px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-44bdcf32" top="129px" left="272px" width="273px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
     <cl:button std:sid="button-a998ad15" id="searchbtn" style="background-color:#306DC6; background-repeat:no-repeat; color:#FFFFFF; font-size:15px; background-image:none;" value="검색">
       <cl:listener std:sid="listener-7cc17f10" name="click" handler="onSearchbtnClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-f4de444a" top="129px" left="602px" width="100px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-f4de444a" top="129px" left="549px" width="100px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-3bf9c536" style="background-size:cover; background-image:url(images/cancelbutton.png); background-position:center;" value="">
+      <cl:listener std:sid="listener-7d7c7959" name="click" handler="onButtonClick2"/>
+      <cl:xylayoutdata std:sid="xyl-data-4e48342e" top="8px" right="27px" width="100px" height="70px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-6f2c6819" style="background-size:cover; background-image:url(images/modifyButton.png); background-position:center;">
+      <cl:listener std:sid="listener-a187e7e2" name="click" handler="onButtonClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-1442c6b5" top="8px" right="137px" width="100px" height="70px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-9001bf41"/>
   </body>

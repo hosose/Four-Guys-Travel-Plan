@@ -74,13 +74,27 @@ function onNotCompletePagingSelectionChange(e) {
 	
 }
 
+
+
 /*
- * 그리드에서 row-dblclick 이벤트 발생 시 호출.
- * detail이 row를 더블클릭 한 경우 발생하는 이벤트.
+ * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onGrd1RowDblclick(e) {
-	var grd1 = e.control;
-	var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
+function onButtonClick(e) {
+	var button = e.control;
+	var grd2 = app.lookup("grd2")
+	var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
 	location.href = "myPlanDetail/" + plannerNo;
 	
+}
+
+/*
+ * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick2(e) {
+	var button = e.control;
+	var grd1 = app.lookup("grd1")
+	var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
+	location.href = "myPlanDetail/" + plannerNo;
 }

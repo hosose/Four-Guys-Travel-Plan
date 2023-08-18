@@ -87,15 +87,29 @@
 				
 			}
 
+
+
 			/*
-			 * 그리드에서 row-dblclick 이벤트 발생 시 호출.
-			 * detail이 row를 더블클릭 한 경우 발생하는 이벤트.
+			 * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onGrd1RowDblclick(e) {
-				var grd1 = e.control;
-				var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
+			function onButtonClick(e) {
+				var button = e.control;
+				var grd2 = app.lookup("grd2")
+				var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
 				location.href = "myPlanDetail/" + plannerNo;
 				
+			}
+
+			/*
+			 * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick2(e) {
+				var button = e.control;
+				var grd1 = app.lookup("grd1")
+				var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
+				location.href = "myPlanDetail/" + plannerNo;
 			}
 			// End - User Script
 			
@@ -243,21 +257,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "95px",
+						"top": "85px",
 						"width": "100px",
 						"height": "30px",
 						"left": "calc(50% - 50px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "95px",
+						"top": "85px",
 						"width": "49px",
 						"height": "30px",
 						"left": "calc(50% - 24px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "95px",
+						"top": "85px",
 						"width": "34px",
 						"height": "30px",
 						"left": "calc(50% - 17px)"
@@ -312,6 +326,8 @@
 					{"width": "100px"},
 					{"width": "100px"},
 					{"width": "100px"},
+					{"width": "100px"},
+					{"width": "100px"},
 					{"width": "100px"}
 				],
 				"header": {
@@ -352,6 +368,16 @@
 								cell.targetColumnName = "plannerLastDay";
 								cell.text = "plannerLastDay";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+							}
 						}
 					]
 				},
@@ -381,34 +407,54 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_1 = new cpr.controls.Button();
+									button_1.value = "상세보기";
+									if(typeof onButtonClick2 == "function") {
+										button_1.addEventListener("click", onButtonClick2);
+									}
+									return button_1;
+								})();
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_2 = new cpr.controls.Button();
+									button_2.value = "삭제";
+									return button_2;
+								})();
+							}
 						}
 					]
 				}
 			});
-			if(typeof onGrd1RowDblclick == "function") {
-				grid_1.addEventListener("row-dblclick", onGrd1RowDblclick);
-			}
 			container.addChild(grid_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "125px",
 						"width": "897px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 448px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "125px",
 						"width": "438px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 219px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "125px",
 						"width": "307px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 153px)"
 					}
 				]
@@ -421,6 +467,8 @@
 					{"width": "100px"},
 					{"width": "100px"},
 					{"width": "100px"},
+					{"width": "100px"},
+					{"width": "100px"},
 					{"width": "100px"}
 				],
 				"header": {
@@ -461,6 +509,16 @@
 								cell.targetColumnName = "plannerLastDay";
 								cell.text = "plannerLastDay";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+							}
 						}
 					]
 				},
@@ -490,6 +548,29 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_3 = new cpr.controls.Button();
+									button_3.value = "상세보기";
+									if(typeof onButtonClick == "function") {
+										button_3.addEventListener("click", onButtonClick);
+									}
+									return button_3;
+								})();
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_4 = new cpr.controls.Button();
+									button_4.value = "삭제";
+									return button_4;
+								})();
+							}
 						}
 					]
 				}
@@ -500,21 +581,21 @@
 						"media": "all and (min-width: 1024px)",
 						"top": "468px",
 						"width": "897px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 448px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "468px",
 						"width": "438px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 219px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "468px",
 						"width": "307px",
-						"height": "150px",
+						"height": "146px",
 						"left": "calc(50% - 153px)"
 					}
 				]

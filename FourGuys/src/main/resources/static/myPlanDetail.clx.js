@@ -114,6 +114,53 @@
 				var embp_title = embp.setPageProperty("title", title);
 				embp.callPageMethod("panTo");
 			}
+
+			/*
+			 * 그리드에서 row-check 이벤트 발생 시 호출.
+			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 되었을 때 발생하는 이벤트.
+			 */
+			function onGrd2RowCheck(e) {
+				var grd2 = e.control;
+				var grid = app.lookup("grd2");
+				var contentId = grid.getSelectedRow().getValue("contentid");
+				app.lookup("createPlanDM").setValue("contentid", contentId);
+				app.lookup("createPlan").send();
+				
+			}
+
+			/*
+			 * 그리드에서 row-uncheck 이벤트 발생 시 호출.
+			 * Grid의 행 선택 컬럼(columnType=checkbox)이 체크 해제되었을 때 발생하는 이벤트.
+			 */
+			function onGrd2RowUncheck(e) {
+				var grd2 = e.control;
+				var contentId = grd2.getSelectedRow().getValue("contentid");
+				app.lookup("createPlanDM").setValue("contentid", contentId);
+				app.lookup("deletePlan").send();
+				
+			}
+
+			/*
+			 * 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e) {
+				var button = e.control;
+				app.lookup("savePlanner").send();
+				alert("수정되었습니다");
+				location.href = "/myplan";
+			}
+
+			/*
+			 * 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick2(e) {
+				var button = e.control;
+				app.lookup("cancelPlanner").send();
+				alert("취소되었습니다");
+				location.href = "selectDestinationForm";
+			}
 			// End - User Script
 			
 			// Header
@@ -404,15 +451,15 @@
 			var userDefinedControl_1 = new udc.logo();
 			container.addChild(userDefinedControl_1, {
 				"top": "20px",
-				"left": "20px",
-				"width": "300px",
-				"height": "120px"
+				"width": "175px",
+				"height": "70px",
+				"left": "calc(50% - 87px)"
 			});
 			
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
 			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
 			container.addChild(embeddedPage_1, {
-				"top": "339px",
+				"top": "169px",
 				"right": "10px",
 				"bottom": "40px",
 				"left": "659px"
@@ -491,19 +538,6 @@
 				"width": "200px"
 			});
 			
-			var group_1 = new cpr.controls.Container("slt");
-			group_1.visible = false;
-			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("selectTitleDM"));
-			group_1.setBindContext(dataMapContext_1);
-			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_2);
-			container.addChild(group_1, {
-				"top": "8px",
-				"left": "20px",
-				"width": "179px",
-				"height": "43px"
-			});
-			
 			var grid_3 = new cpr.controls.Grid("grd2");
 			grid_3.init({
 				"dataSet": app.lookup("jeju"),
@@ -568,11 +602,17 @@
 			if(typeof onGrd2Click == "function") {
 				grid_3.addEventListener("click", onGrd2Click);
 			}
+			if(typeof onGrd2RowCheck == "function") {
+				grid_3.addEventListener("row-check", onGrd2RowCheck);
+			}
+			if(typeof onGrd2RowUncheck == "function") {
+				grid_3.addEventListener("row-uncheck", onGrd2RowUncheck);
+			}
 			container.addChild(grid_3, {
-				"top": "73px",
-				"left": "360px",
-				"width": "200px",
-				"height": "680px"
+				"top": "169px",
+				"bottom": "10px",
+				"left": "430px",
+				"width": "219px"
 			});
 			
 			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
@@ -580,12 +620,12 @@
 			inputBox_1.style.css({
 				"text-align" : "center"
 			});
-			var dataMapContext_2 = new cpr.bind.DataMapContext(app.lookup("areaSearch"));
-			inputBox_1.setBindContext(dataMapContext_2);
+			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("areaSearch"));
+			inputBox_1.setBindContext(dataMapContext_1);
 			inputBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "title");
 			container.addChild(inputBox_1, {
 				"top": "129px",
-				"left": "319px",
+				"left": "272px",
 				"width": "273px",
 				"height": "30px"
 			});
@@ -604,9 +644,42 @@
 			}
 			container.addChild(button_1, {
 				"top": "129px",
-				"left": "602px",
+				"left": "549px",
 				"width": "100px",
 				"height": "30px"
+			});
+			
+			var button_2 = new cpr.controls.Button();
+			button_2.value = "";
+			button_2.style.css({
+				"background-size" : "cover",
+				"background-image" : "url('images/cancelbutton.png')",
+				"background-position" : "center"
+			});
+			if(typeof onButtonClick2 == "function") {
+				button_2.addEventListener("click", onButtonClick2);
+			}
+			container.addChild(button_2, {
+				"top": "8px",
+				"right": "27px",
+				"width": "100px",
+				"height": "70px"
+			});
+			
+			var button_3 = new cpr.controls.Button();
+			button_3.style.css({
+				"background-size" : "cover",
+				"background-image" : "url('images/modifyButton.png')",
+				"background-position" : "center"
+			});
+			if(typeof onButtonClick == "function") {
+				button_3.addEventListener("click", onButtonClick);
+			}
+			container.addChild(button_3, {
+				"top": "8px",
+				"right": "137px",
+				"width": "100px",
+				"height": "70px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
