@@ -13,7 +13,7 @@
 function onBodyLoad(e) {
 	var currentUrl = location.href;
 	var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-	app.lookup("boardNo").value = boardNo;
+	app.lookup("plannerBoardNoDM").setValue("BOARD_NO", boardNo);
 	app.lookup("boardDetailSM").send();
 }	
 
@@ -28,22 +28,15 @@ function onGrd4Click(e) {
 	var mapx = grid.getSelectedRow().getValue("mapx");
 	var mapy = grid.getSelectedRow().getValue("mapy");
 	var title = grid.getSelectedRow().getValue("title");
-	var embp_mapx = embp.setPageProperty("mapx", mapx);
-	var embp_mapy = embp.setPageProperty("mapy", mapy);
-	var embp_title = embp.setPageProperty("title", title);
+	var firstimage = grid.getSelectedRow().getValue("firstimage");
+	var embp_mapx = embp.setPageProperty("mapx",mapx);
+	var embp_mapy = embp.setPageProperty("mapy",mapy);
+	var embp_title = embp.setPageProperty("title",title);
+	var embp_firstimage = embp.setPageProperty("firstimage",firstimage);
 	embp.callPageMethod("panTo");
 }
 
-/*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
- */
-function onGetDaySubmitSuccess(e) {
-	var getDay = e.control;
-	var grid = app.lookup("grd4");
-	grid.selectRows([0]);
-	app.lookup("planDateOutput").value = 1;
-}
+
 
 /*
  * 그리드에서 cell-click 이벤트 발생 시 호출.
@@ -53,7 +46,7 @@ function onGrd3CellClick(e) {
 	var grd3 = e.control;
 	var grid = app.lookup("grd3");
 	var planDate = grid.getSelectedRow().getValue("planDate");
-	app.lookup("planDateOutput").value = planDate;
+	app.lookup("createPlanDM").setValue("planDate", planDate);
 	app.lookup("getTitle").send();
 }
 
@@ -83,13 +76,13 @@ function onButtonClick2(e) {
  */
 function onBoardDetailSMSubmitSuccess2(e) {
 	var boardDetailSM = e.control;
-	var plannerNo = app.lookup("plannerBoardParamsGrd").getRow(0).getValue("plannerNo");
-	app.lookup("plannerNoOutput").value = plannerNo;
+	var plannerNo = app.lookup("grd1").getRow(0).getValue("plannerNo");
+	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 	app.lookup("getDay").send();
 	var vo = boardDetailSM.getMetadata("MemberVO");
 	var editBtn = app.lookup("editBtn");
 	var deleteBtn = app.lookup("deleteBtn");
-	var grid = app.lookup("plannerBoardParamsGrd");
+	var grid = app.lookup("grd1");
 	var value = grid.getRow(0).getValue("id");
 	if(vo["id"]==value){
 		editBtn.visible = true;

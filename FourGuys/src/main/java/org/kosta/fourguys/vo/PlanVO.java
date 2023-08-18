@@ -15,4 +15,5 @@ public class PlanVO {
 	private String title;
 	private String mapx;
 	private String mapy;
+	private String firstimage;
 }
