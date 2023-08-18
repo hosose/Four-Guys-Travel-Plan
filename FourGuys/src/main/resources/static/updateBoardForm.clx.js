@@ -80,7 +80,7 @@
 				var boardDetailSM = e.control;
 				var boardContentValue = app.lookup("boardContentValue");
 				boardContentValue.selectRows([0]);
-				setTimeout(() => app.lookup("PasteBtn").click(),400);	
+				setTimeout(() => app.lookup("PasteBtn").click(),700);	
 			}
 
 			/*
@@ -94,7 +94,25 @@
 				var vcIpb = boardContentValue.getSelectedRow().getValue("boardContent");
 				if (vcIpb == "" || vcIpb == null) return false;
 				ep1.callPageMethod("pasteHTML", vcIpb);
-				
+			}
+			function print(psEventType) {
+				var vcLblVal = app.lookup("lblVal");
+				if (vcLblVal.value == null) {
+					vcLblVal.value = "";
+				}
+				var vsText = psEventType;
+				vcLblVal.value = vsText;
+			}
+
+			/*
+			 * 서브미션에서 before-submit 이벤트 발생 시 호출.
+			 * 통신을 시작하기전에 발생합니다.
+			 */
+			function onUpdateBoardSMBeforeSubmit(e){
+				var updateBoardSM = e.control;
+				var vcEditor = app.lookup("ep1");
+				var html = vcEditor.callPageMethod("showHTML");
+				print(html);
 			};
 			// End - User Script
 			
@@ -295,6 +313,9 @@
 			submission_5.method = "put";
 			submission_5.action = "updateBoard";
 			submission_5.addRequestData(dataSet_4);
+			if(typeof onUpdateBoardSMBeforeSubmit == "function") {
+				submission_5.addEventListener("before-submit", onUpdateBoardSMBeforeSubmit);
+			}
 			app.register(submission_5);
 			
 			var submission_6 = new cpr.protocols.Submission("boardDetailSM");
@@ -603,8 +624,8 @@
 				}
 			});
 			container.addChild(grid_4, {
-				"top": "97px",
-				"left": "155px",
+				"top": "86px",
+				"left": "237px",
 				"width": "10px",
 				"height": "10px"
 			});
@@ -616,8 +637,18 @@
 				button_2.addEventListener("click", onPasteBtnClick);
 			}
 			container.addChild(button_2, {
-				"top": "86px",
+				"top": "66px",
 				"left": "237px",
+				"width": "10px",
+				"height": "10px"
+			});
+			
+			var output_5 = new cpr.controls.Output("lblVal");
+			output_5.visible = false;
+			output_5.bind("value").toDataSet(app.lookup("boardDetail"), "boardContent", 0);
+			container.addChild(output_5, {
+				"top": "86px",
+				"left": "257px",
 				"width": "10px",
 				"height": "10px"
 			});

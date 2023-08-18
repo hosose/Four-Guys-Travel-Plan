@@ -67,7 +67,7 @@ function onBoardDetailSMSubmitSuccess(e){
 	var boardDetailSM = e.control;
 	var boardContentValue = app.lookup("boardContentValue");
 	boardContentValue.selectRows([0]);
-	setTimeout(() => app.lookup("PasteBtn").click(),400);	
+	setTimeout(() => app.lookup("PasteBtn").click(),700);	
 }
 
 /*
@@ -81,5 +81,23 @@ function onPasteBtnClick(e){
 	var vcIpb = boardContentValue.getSelectedRow().getValue("boardContent");
 	if (vcIpb == "" || vcIpb == null) return false;
 	ep1.callPageMethod("pasteHTML", vcIpb);
-	
+}
+function print(psEventType) {
+	var vcLblVal = app.lookup("lblVal");
+	if (vcLblVal.value == null) {
+		vcLblVal.value = "";
+	}
+	var vsText = psEventType;
+	vcLblVal.value = vsText;
+}
+
+/*
+ * 서브미션에서 before-submit 이벤트 발생 시 호출.
+ * 통신을 시작하기전에 발생합니다.
+ */
+function onUpdateBoardSMBeforeSubmit(e){
+	var updateBoardSM = e.control;
+	var vcEditor = app.lookup("ep1");
+	var html = vcEditor.callPageMethod("showHTML");
+	print(html);
 }
