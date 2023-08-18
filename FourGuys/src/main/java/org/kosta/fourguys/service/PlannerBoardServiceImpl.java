@@ -19,11 +19,6 @@ public class PlannerBoardServiceImpl implements PlannerBoardService {
 	}
 
 	@Override
-	public int editBoardById(PlannerBoardVO editPlanner) {
-		return plannerBoardMapper.editBoardById(editPlanner);
-	}
-
-	@Override
 	public List<PlannerBoardVO> getPlannerBoardList() {
 		return plannerBoardMapper.getPlannerBoardList();
 	}
@@ -31,5 +26,10 @@ public class PlannerBoardServiceImpl implements PlannerBoardService {
 	@Override
 	public int createPlannerBoard(PlannerBoardVO plannerBoardVO) {
 		return plannerBoardMapper.createPlannerBoard(plannerBoardVO);
+	}
+
+	@Override
+	public int updateBoard(PlannerBoardVO plannerBoardVO) {
+		return plannerBoardMapper.updateBoard(plannerBoardVO);
 	}
 }

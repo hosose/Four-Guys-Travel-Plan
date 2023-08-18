@@ -18,4 +18,5 @@ public class PlannerBoardTest {
 		List<PlannerBoardVO> boardList = plannerBoardMapper.getPlannerBoardList();
 		System.out.println(boardList);
 	}
+
 }

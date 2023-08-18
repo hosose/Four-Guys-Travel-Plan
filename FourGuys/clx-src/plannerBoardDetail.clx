@@ -142,14 +142,14 @@
       <cl:responsivexylayoutdata std:sid="rxyl-data-0f3afce0">
         <cl:xylayoutdata std:sid="sxyl-data-868fac58" top="197px" right="10px" left="10px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
-      <cl:gridcolumn std:sid="g-column-5eac1179"/>
-      <cl:gridheader std:sid="gh-band-2a052ff5">
-        <cl:gridrow std:sid="g-row-9faef54c"/>
-        <cl:gridcell std:sid="gh-cell-04b46a98" rowindex="0" colindex="0" targetcolumnname="boardContent" sortable="false" filterable="false" text="boardContent"/>
+      <cl:gridcolumn std:sid="g-column-c087f80a"/>
+      <cl:gridheader std:sid="gh-band-56dcdb9e">
+        <cl:gridrow std:sid="g-row-819bb26a"/>
+        <cl:gridcell std:sid="gh-cell-df4d1e7b" rowindex="0" colindex="0" targetcolumnname="boardContent" sortable="false" filterable="false" text="boardContent"/>
       </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-f21779d6">
-        <cl:gridrow std:sid="g-row-da2d554f" height="120px"/>
-        <cl:gridcell std:sid="gd-cell-5d7667f0" rowindex="0" colindex="0" columnname="boardContent"/>
+      <cl:griddetail std:sid="gd-band-95aeee7e">
+        <cl:gridrow std:sid="g-row-1b5fd1d0"/>
+        <cl:gridcell std:sid="gd-cell-7124d101" rowindex="0" colindex="0" columnname="boardContent"/>
       </cl:griddetail>
     </cl:grid>
     <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html" scrolling="no">
@@ -174,7 +174,6 @@
     </cl:grid>
     <cl:grid std:sid="grid-7187e12f" id="grd4" datasetid="selectedPlan">
       <cl:listener std:sid="listener-ab175514" name="click" handler="onGrd4Click"/>
-
       <cl:responsivexylayoutdata std:sid="rxyl-data-bc7d69ab">
         <cl:xylayoutdata std:sid="sxyl-data-c16f3225" top="268px" bottom="10px" left="220px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
@@ -211,13 +210,13 @@
       </cl:output>
       <cl:xylayout std:sid="xylayout-c8a3a9da"/>
     </cl:group>
-    <cl:button std:sid="button-f742fcec" value="삭제">
+    <cl:button std:sid="button-f742fcec" id="deleteBtn" visible="false" value="삭제">
       <cl:listener std:sid="listener-77cd6713" name="click" handler="onButtonClick2"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-97725089">
         <cl:xylayoutdata std:sid="sxyl-data-4612779f" top="40px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:button std:sid="button-dc31c6e3" value="수정">
+    <cl:button std:sid="button-dc31c6e3" id="editBtn" visible="false" value="수정">
       <cl:listener std:sid="listener-b5d97c71" name="click" handler="onButtonClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-c5f469d0">
         <cl:xylayoutdata std:sid="sxyl-data-e010000b" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>

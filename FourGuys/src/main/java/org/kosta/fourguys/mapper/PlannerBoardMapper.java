@@ -10,7 +10,7 @@ public interface PlannerBoardMapper {
 
 	public List<PlannerBoardVO> findPlannerBoardByNo(int boardNo);
 
-	public int editBoardById(PlannerBoardVO editPlanner);
+	int updateBoard(PlannerBoardVO plannerBoardVO);
 
 	List<PlannerBoardVO> getPlannerBoardList();
 

@@ -102,15 +102,15 @@ public class PlannerTest {
 	}
 
 	@Test
-	public void editBoardById() {
+	public void updateBoard() {
 		String id = "hosose";
-		PlannerBoardVO editPlanner = new PlannerBoardVO();
-		editPlanner.setId(id);
-		editPlanner.setBoardNo(3);
-		editPlanner.setBoardTitle("asd");
-		editPlanner.setBoardContent("바뀌나");
-		int result = plannerBoardMapper.editBoardById(editPlanner);
-		System.out.println(result);
+		int boardNo = 15;
+		PlannerBoardVO updatePlanner = new PlannerBoardVO();
+		updatePlanner.setId(id);
+		updatePlanner.setBoardNo(boardNo);
+		updatePlanner.setBoardTitle("흠");
+		updatePlanner.setBoardContent("domino");
+		plannerBoardMapper.updateBoard(updatePlanner);
 	}
 
 	@Test
