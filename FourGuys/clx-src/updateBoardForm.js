@@ -59,3 +59,27 @@ function onCreatePlannerBoardSMSubmitSuccess(e) {
 	location.href = url;
 }
 
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onBoardDetailSMSubmitSuccess(e){
+	var boardDetailSM = e.control;
+	var boardContentValue = app.lookup("boardContentValue");
+	boardContentValue.selectRows([0]);
+	setTimeout(() => app.lookup("PasteBtn").click(),400);	
+}
+
+/*
+ * "Button" 버튼(PasteBtn)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onPasteBtnClick(e){
+	var pasteBtn = e.control;
+	var ep1 = app.lookup("ep1");
+	var boardContentValue = app.lookup("boardContentValue");
+	var vcIpb = boardContentValue.getSelectedRow().getValue("boardContent");
+	if (vcIpb == "" || vcIpb == null) return false;
+	ep1.callPageMethod("pasteHTML", vcIpb);
+	
+}
