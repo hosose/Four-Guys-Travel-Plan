@@ -120,20 +120,21 @@
       <cl:output std:sid="output-aa161d45" id="contentOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; border-top-style:solid; text-align:center;" value="내용">
         <cl:formdata std:sid="f-data-26fdaeb7" topSpacing="5" row="2" col="0"/>
       </cl:output>
-      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="border-right-style:solid; border-radius:5px; font-weight:bolder; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="planDate">
+      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="border-right-style:solid; border-radius:5px; font-weight:bolder; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="selectedPlan">
         <cl:listener std:sid="listener-a8fe3df0" name="cell-click" handler="onDayGrdCellClick"/>
         <cl:formdata std:sid="f-data-c52af065" rightSpacing="2" row="1" col="0" rowspan="1" colspan="1"/>
-        <cl:gridcolumn std:sid="g-column-8344e975"/>
-        <cl:gridheader std:sid="gh-band-83257bab">
-          <cl:gridrow std:sid="g-row-74d2d4c3" height="45px"/>
-          <cl:gridcell std:sid="gh-cell-a07f605b" rowindex="0" colindex="0" style="background-color:#FFFFFF; color:#2DCEB9; font-size:20px;" targetcolumnname="planDate" sortable="false" filterable="false" text="DAY"/>
+        <cl:gridcolumn std:sid="g-column-b8b2818e"/>
+        <cl:gridheader std:sid="gh-band-dd28bc7b">
+          <cl:gridrow std:sid="g-row-451c21f3" height="45px"/>
+          <cl:gridcell std:sid="gh-cell-ff1e3f29" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; font-size:20px; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="DAY"/>
         </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-3285c3a1">
-          <cl:gridrow std:sid="g-row-0a0b7ae6" height="35px"/>
-          <cl:gridcell std:sid="gd-cell-f83a592c" rowindex="0" colindex="0" style="font-weight:normal;" columnname="planDate"/>
+        <cl:griddetail std:sid="gd-band-9665f1d0">
+          <cl:gridrow std:sid="g-row-7618322b"/>
+          <cl:gridcell std:sid="gd-cell-80ee9e89" rowindex="0" colindex="0" columnname="planDate"/>
         </cl:griddetail>
       </cl:grid>
       <cl:grid std:sid="grid-b5555db0" id="placeGrd" style="border-right-style:solid; border-radius:5px; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="selectedPlan">
+        <cl:relativebind property="readOnly" columnname="title"/>
         <cl:formdata std:sid="f-data-1e836188" leftSpacing="2" row="1" col="1"/>
         <cl:gridcolumn std:sid="g-column-bfe52550"/>
         <cl:gridheader std:sid="gh-band-f0066996">

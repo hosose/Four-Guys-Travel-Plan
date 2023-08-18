@@ -408,7 +408,7 @@
 				});
 				var grid_1 = new cpr.controls.Grid("dayGrd");
 				grid_1.init({
-					"dataSet": app.lookup("planDate"),
+					"dataSet": app.lookup("selectedPlan"),
 					"columns": [{"width": "100px"}],
 					"header": {
 						"rows": [{"height": "45px"}],
@@ -417,25 +417,25 @@
 							"configurator": function(cell){
 								cell.filterable = false;
 								cell.sortable = false;
-								cell.targetColumnName = "planDate";
+								cell.targetColumnName = "title";
 								cell.text = "DAY";
 								cell.style.css({
 									"background-color" : "#FFFFFF",
+									"background-repeat" : "repeat",
 									"color" : "#2DCEB9",
-									"font-size" : "20px"
+									"font-weight" : "bolder",
+									"font-size" : "20px",
+									"background-image" : "none"
 								});
 							}
 						}]
 					},
 					"detail": {
-						"rows": [{"height": "35px"}],
+						"rows": [{"height": "24px"}],
 						"cells": [{
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.columnName = "planDate";
-								cell.style.css({
-									"font-weight" : "normal"
-								});
 							}
 						}]
 					}
@@ -492,6 +492,7 @@
 						}]
 					}
 				});
+				grid_2.bind("readOnly").toDataColumn("title");
 				grid_2.style.css({
 					"border-right-style" : "solid",
 					"border-radius" : "5px",
