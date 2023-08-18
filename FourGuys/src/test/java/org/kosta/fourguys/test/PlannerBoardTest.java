@@ -19,4 +19,11 @@ public class PlannerBoardTest {
 		System.out.println(boardList);
 	}
 
+	@Test
+	public void deleteBoard() {
+		int boardNo = 6;
+		PlannerBoardVO plannerBoardVO = new PlannerBoardVO();
+		plannerBoardVO.setBoardNo(boardNo);
+		System.out.println(plannerBoardMapper.deleteBoard(plannerBoardVO));
+	}
 }

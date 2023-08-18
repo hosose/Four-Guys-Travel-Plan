@@ -12,6 +12,7 @@ import org.kosta.fourguys.service.PlannerBoardService;
 import org.kosta.fourguys.service.PlannerService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.kosta.fourguys.vo.PlannerBoardVO;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -151,6 +152,17 @@ public class PlannerBoardController {
 		plannerBoardService.createPlannerBoard(boardVO);
 		initParam.put("url", "planner-board-list.clx");
 		dataRequest.setMetadata(true, initParam);
+		return new JSONDataView();
+	}
+
+	@DeleteMapping("deleteBoard")
+	public View deleteBoard(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerBoardNoDM");
+		int boardNo = Integer.parseInt(plannerNoParam.getValue("BOARD_NO"));
+		PlannerBoardVO plannerBoardVO = new PlannerBoardVO();
+		plannerBoardVO.setBoardNo(boardNo);
+		plannerBoardService.deleteBoard(plannerBoardVO);
+		dataRequest.setResponse("boardDetail", plannerBoardService.deleteBoard(plannerBoardVO));
 		return new JSONDataView();
 	}
 }
