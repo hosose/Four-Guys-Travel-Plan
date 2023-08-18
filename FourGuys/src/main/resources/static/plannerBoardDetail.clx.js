@@ -85,6 +85,8 @@
 				location.href="planner-board-list.clx";
 			}
 
+
+
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
@@ -103,7 +105,7 @@
 					editBtn.visible = true;
 					deleteBtn.visible=true;
 				}
-			}
+			};
 			// End - User Script
 			
 			// Header
@@ -317,22 +319,22 @@
 						"media": "all and (min-width: 1024px)",
 						"top": "20px",
 						"left": "20px",
-						"width": "300px",
-						"height": "120px"
+						"width": "299px",
+						"height": "70px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "20px",
 						"left": "10px",
 						"width": "146px",
-						"height": "120px"
+						"height": "70px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "20px",
 						"left": "7px",
-						"width": "103px",
-						"height": "120px"
+						"width": "102px",
+						"height": "70px"
 					}
 				]
 			});
@@ -454,17 +456,23 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
-								cell.columnName = "boardTitle";
+								cell.columnName = "boardNo";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
-								cell.columnName = "boardCreateDate";
+								cell.columnName = "boardTitle";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.columnName = "boardCreateDate";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
 								cell.columnName = "boardHits";
 							}
@@ -476,21 +484,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "139px",
+						"top": "100px",
 						"right": "10px",
 						"left": "10px",
 						"height": "50px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "139px",
+						"top": "100px",
 						"right": "5px",
 						"left": "5px",
 						"height": "50px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "139px",
+						"top": "100px",
 						"right": "3px",
 						"left": "3px",
 						"height": "50px"
@@ -501,25 +509,26 @@
 			var grid_2 = new cpr.controls.Grid("grd2");
 			grid_2.init({
 				"dataSet": app.lookup("boardDetail"),
+				"autoRowHeight": "all",
 				"columns": [{"width": "100px"}],
-				"header": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.filterable = false;
-							cell.sortable = false;
-							cell.targetColumnName = "boardContent";
-							cell.text = "boardContent";
-						}
-					}]
-				},
 				"detail": {
-					"rows": [{"height": "24px"}],
+					"rows": [{"height": "100%"}],
 					"cells": [{
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
 							cell.columnName = "boardContent";
+							cell.control = (function(){
+								var hTMLSnippet_1 = new cpr.controls.HTMLSnippet();
+								hTMLSnippet_1.value = "<p>HTML Snippet<\/p>";
+								hTMLSnippet_1.bind("value").toDataColumn("boardContent");
+								return hTMLSnippet_1;
+							})();
+							cell.controlConstraint = {
+								"horizontalAlign": "fill",
+								"verticalAlign": "fill",
+								"width": 500,
+								"height": 100
+							};
 						}
 					}]
 				}
@@ -528,24 +537,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "197px",
+						"top": "160px",
 						"right": "10px",
 						"left": "10px",
-						"height": "50px"
+						"height": "98px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "197px",
+						"top": "160px",
 						"right": "5px",
 						"left": "5px",
-						"height": "50px"
+						"height": "98px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "197px",
+						"top": "160px",
 						"right": "3px",
 						"left": "3px",
-						"height": "50px"
+						"height": "98px"
 					}
 				]
 			});
@@ -606,6 +615,7 @@
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
 							cell.columnName = "planDate";
+							cell.bind("fieldLabel").toDataMap(app.lookup("createPlanDM"), "planDate");
 						}
 					}]
 				}

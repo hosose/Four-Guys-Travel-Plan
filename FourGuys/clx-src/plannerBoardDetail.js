@@ -72,6 +72,8 @@ function onButtonClick2(e) {
 	location.href="planner-board-list.clx";
 }
 
+
+
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
