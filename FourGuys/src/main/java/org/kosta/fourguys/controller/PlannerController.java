@@ -126,7 +126,6 @@ public class PlannerController {
 		PlannerVO savePlanner = new PlannerVO();
 		savePlanner.setPlannerNo(plannerNo);
 		plannerService.savePlannerByNo(savePlanner);
-
 		return new JSONDataView();
 	}
 
@@ -136,7 +135,6 @@ public class PlannerController {
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
 		PlannerVO cancelPlanner = new PlannerVO();
 		cancelPlanner.setPlannerNo(plannerNo);
-
 		plannerService.cancelPlannerByNo(cancelPlanner);
 		return new JSONDataView();
 	}
@@ -156,7 +154,6 @@ public class PlannerController {
 		plannerVO.setId(id);
 		plannerVO.setCompleteFlag("완성");
 		dataRequest.setResponse("completePlannerVO", plannerService.findCompletePlanner(plannerVO));
-
 		return new JSONDataView();
 
 	}
@@ -177,7 +174,6 @@ public class PlannerController {
 		plannerVO.setId(id);
 		plannerVO.setCompleteFlag("미완성");
 		dataRequest.setResponse("notCompletePlannerVO", plannerService.findNotCompletePlanner(plannerVO));
-
 		return new JSONDataView();
 
 	}
@@ -191,7 +187,6 @@ public class PlannerController {
 	public View findPlannerByNo(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		ParameterGroup plannerDetailParam = dataRequest.getParameterGroup("plannerNoDM");
 		int plannerNo = Integer.parseInt(plannerDetailParam.getValue("plannerNo"));
-		// plannerService.findPlannerByNo(plannerNo);
 		dataRequest.setResponse("plannerDetail", plannerService.findPlannerByNo(plannerNo));
 		return new JSONDataView();
 	}
