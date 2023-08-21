@@ -158,3 +158,5 @@ select DISTINCT "cat1" from JEJU_AREA
 
 SELECT * FROM planner_board WHERE board_no = 1
 
+INSERT INTO "BOARD_REPLY" ("REPLY_NO","BOARD_NO", "REPLY_CONTENT", "ID")
+VALUES (board_reply_seq.NEXTVAL, 2, 'gd', 'hosose');

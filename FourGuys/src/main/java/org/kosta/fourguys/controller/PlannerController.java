@@ -191,4 +191,14 @@ public class PlannerController {
 		return new JSONDataView();
 	}
 
+	@DeleteMapping("deletePlanner")
+	public View deletePlanner(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
+		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
+		plannerService.deletePlannerByNo(plannerNo);
+		// dataRequest.setResponse("boardDetail",
+		// plannerBoardService.deleteBoard(plannerBoardVO));
+		return new JSONDataView();
+	}
+
 }

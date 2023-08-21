@@ -55,4 +55,10 @@ public class PlannerServiceImpl implements PlannerService {
 		return plannerMapper.findPlannerByNo(plannerNo);
 	}
 
+	@Override
+	public int deletePlannerByNo(int plannerNo) {
+		
+		return plannerMapper.deletePlannerByNo(plannerNo);
+	}
+
 }

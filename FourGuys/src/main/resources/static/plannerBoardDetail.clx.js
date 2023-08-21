@@ -22,7 +22,8 @@
 				app.lookup("plannerBoardNoDM").setValue("BOARD_NO", boardNo);
 				app.lookup("increaseHitsSM").send();
 				app.lookup("boardDetailSM").send();
-			}	
+				app.lookup("replyListSM").send();
+			}
 
 			/*
 			 * 그리드에서 click 이벤트 발생 시 호출.
@@ -69,18 +70,24 @@
 
 			}
 
+
 			/*
 			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 			function onButtonClick2(e) {
 				var button = e.control;
-				app.lookup("deleteBoardSM").send();
-				alert("삭제되었습니다");
-				location.href="planner-board-list.clx";
+				var currentUrl = location.href;
+				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				if(!confirm("삭제하시겠습니까?")){
+					alert("취소되었습니다")
+					location.href="boardDetailPage/"+boardNo;
+				}else{
+					app.lookup("deleteBoardSM").send();
+					alert("삭제되었습니다");
+					location.href="planner-board-list.clx";
+				}
 			}
-
-
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -99,10 +106,31 @@
 				var deleteBtn = app.lookup("deleteBtn");
 				var boardDetail = app.lookup("boardDetail");
 				var value = boardDetail.getRow(0).getValue("id");
+				app.lookup("snippet").value = app.lookup("boardDetail").getRow(0).getValue("boardContent")
 				if(vo["id"]==value){
 					editBtn.visible = true;
 					deleteBtn.visible=true;
 				}
+			}
+
+			/*
+			 * "댓글 등록" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick3(e){
+				var button = e.control;
+				app.lookup("insertReplySM").send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onInsertReplySMSubmitSuccess(e){
+				var insertReplySM = e.control;
+				var currentUrl = location.href;
+				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				location.href="boardDetailPage/"+boardNo;
 			};
 			// End - User Script
 			
@@ -180,6 +208,33 @@
 				]
 			});
 			app.register(dataSet_3);
+			
+			var dataSet_4 = new cpr.data.DataSet("boardReply");
+			dataSet_4.parseData({
+				"columns" : [
+					{
+						"name": "replyNo",
+						"dataType": "number"
+					},
+					{
+						"name": "boardNo",
+						"dataType": "number"
+					},
+					{
+						"name": "replyContent",
+						"dataType": "string"
+					},
+					{
+						"name": "replyDate",
+						"dataType": "string"
+					},
+					{
+						"name": "id",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataSet_4);
 			var dataMap_1 = new cpr.data.DataMap("plannerBoardNoDM");
 			dataMap_1.parseData({
 				"columns" : [{
@@ -250,6 +305,16 @@
 			var dataMap_6 = new cpr.data.DataMap("editBoardDM");
 			dataMap_6.parseData({});
 			app.register(dataMap_6);
+			
+			var dataMap_7 = new cpr.data.DataMap("replyDM");
+			dataMap_7.parseData({
+				"columns" : [
+					{"name": "REPLY_CONTENT"},
+					{"name": "REPLY_DATE"},
+					{"name": "ID"}
+				]
+			});
+			app.register(dataMap_7);
 			var submission_1 = new cpr.protocols.Submission("boardDetailSM");
 			submission_1.method = "get";
 			submission_1.action = "boardDetail";
@@ -299,6 +364,24 @@
 			submission_7.addRequestData(dataMap_1);
 			submission_7.addResponseData(dataSet_1, false);
 			app.register(submission_7);
+			
+			var submission_8 = new cpr.protocols.Submission("insertReplySM");
+			submission_8.method = "post";
+			submission_8.action = "insertReply";
+			submission_8.addRequestData(dataMap_7);
+			submission_8.addRequestData(dataMap_1);
+			submission_8.addResponseData(dataSet_4, false);
+			if(typeof onInsertReplySMSubmitSuccess == "function") {
+				submission_8.addEventListener("submit-success", onInsertReplySMSubmitSuccess);
+			}
+			app.register(submission_8);
+			
+			var submission_9 = new cpr.protocols.Submission("replyListSM");
+			submission_9.method = "get";
+			submission_9.action = "findReplyBoardByNo";
+			submission_9.addRequestData(dataMap_1);
+			submission_9.addResponseData(dataSet_4, false);
+			app.register(submission_9);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -342,59 +425,6 @@
 				]
 			});
 			
-			var grid_1 = new cpr.controls.Grid("grd2");
-			grid_1.init({
-				"dataSet": app.lookup("boardDetail"),
-				"autoRowHeight": "all",
-				"columns": [{"width": "100px"}],
-				"detail": {
-					"rows": [{"height": "100%"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.columnName = "boardContent";
-							cell.control = (function(){
-								var hTMLSnippet_1 = new cpr.controls.HTMLSnippet();
-								hTMLSnippet_1.value = "<p>HTML Snippet<\/p>";
-								hTMLSnippet_1.bind("value").toDataColumn("boardContent");
-								return hTMLSnippet_1;
-							})();
-							cell.controlConstraint = {
-								"horizontalAlign": "fill",
-								"verticalAlign": "fill",
-								"width": 500,
-								"height": 100
-							};
-						}
-					}]
-				}
-			});
-			container.addChild(grid_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "193px",
-						"right": "10px",
-						"left": "10px",
-						"height": "98px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "193px",
-						"right": "5px",
-						"left": "5px",
-						"height": "98px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "193px",
-						"right": "3px",
-						"left": "3px",
-						"height": "98px"
-					}
-				]
-			});
-			
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
 			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
 			embeddedPage_1.scrolling = "no";
@@ -402,30 +432,30 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "301px",
+						"top": "160px",
 						"right": "10px",
-						"bottom": "-13px",
-						"left": "430px"
+						"left": "770px",
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "301px",
+						"top": "160px",
 						"right": "5px",
-						"bottom": "-13px",
-						"left": "210px"
+						"left": "376px",
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "301px",
+						"top": "160px",
 						"right": "3px",
-						"bottom": "-13px",
-						"left": "147px"
+						"left": "263px",
+						"height": "353px"
 					}
 				]
 			});
 			
-			var grid_2 = new cpr.controls.Grid("grd3");
-			grid_2.init({
+			var grid_1 = new cpr.controls.Grid("grd3");
+			grid_1.init({
 				"dataSet": app.lookup("planDate"),
 				"columns": [{"width": "100px"}],
 				"header": {
@@ -457,36 +487,36 @@
 				}
 			});
 			if(typeof onGrd3CellClick == "function") {
-				grid_2.addEventListener("cell-click", onGrd3CellClick);
+				grid_1.addEventListener("cell-click", onGrd3CellClick);
 			}
-			container.addChild(grid_2, {
+			container.addChild(grid_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "301px",
-						"bottom": "-23px",
+						"top": "160px",
 						"left": "10px",
-						"width": "200px"
+						"width": "200px",
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "301px",
-						"bottom": "-23px",
+						"top": "160px",
 						"left": "5px",
-						"width": "98px"
+						"width": "98px",
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "301px",
-						"bottom": "-23px",
+						"top": "160px",
 						"left": "3px",
-						"width": "68px"
+						"width": "68px",
+						"height": "353px"
 					}
 				]
 			});
 			
-			var grid_3 = new cpr.controls.Grid("grd4");
-			grid_3.init({
+			var grid_2 = new cpr.controls.Grid("grd4");
+			grid_2.init({
 				"dataSet": app.lookup("selectedPlan"),
 				"columns": [{"width": "100px"}],
 				"header": {
@@ -520,30 +550,30 @@
 				}
 			});
 			if(typeof onGrd4Click == "function") {
-				grid_3.addEventListener("click", onGrd4Click);
+				grid_2.addEventListener("click", onGrd4Click);
 			}
-			container.addChild(grid_3, {
+			container.addChild(grid_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "301px",
-						"bottom": "-23px",
+						"top": "160px",
 						"left": "220px",
-						"width": "200px"
+						"width": "200px",
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "301px",
-						"bottom": "-23px",
+						"top": "160px",
 						"left": "107px",
-						"width": "98px"
+						"width": "98px",
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "301px",
-						"bottom": "-23px",
+						"top": "160px",
 						"left": "75px",
-						"width": "68px"
+						"width": "68px",
+						"height": "353px"
 					}
 				]
 			});
@@ -593,6 +623,8 @@
 				"background-color" : "#306dc6",
 				"background-repeat" : "no-repeat",
 				"color" : "#FFFFFF",
+				"font-size" : "14px",
+				"font-style" : "normal",
 				"background-image" : "none"
 			});
 			if(typeof onButtonClick == "function") {
@@ -624,10 +656,202 @@
 				]
 			});
 			
+			var grid_3 = new cpr.controls.Grid("grd5");
+			grid_3.init({
+				"dataSet": app.lookup("boardReply"),
+				"columns": [
+					{"width": "85px"},
+					{"width": "150px"},
+					{"width": "100px"}
+				],
+				"header": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "id";
+								cell.text = "아이디";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "replyContent";
+								cell.text = "내용";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 2},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "replyDate";
+								cell.text = "댓글 등록 날짜";
+							}
+						}
+					]
+				},
+				"detail": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnName = "id";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "id", 0);
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.columnName = "replyContent";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyContent", 0);
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 2},
+							"configurator": function(cell){
+								cell.columnName = "replyDate";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyDate", 0);
+							}
+						}
+					]
+				}
+			});
+			container.addChild(grid_3, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"right": "10px",
+						"bottom": "10px",
+						"left": "10px",
+						"height": "178px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"right": "5px",
+						"bottom": "10px",
+						"left": "5px",
+						"height": "178px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"right": "3px",
+						"bottom": "10px",
+						"left": "3px",
+						"height": "178px"
+					}
+				]
+			});
+			
+			var inputBox_1 = new cpr.controls.InputBox("ipb1");
+			inputBox_1.style.css({
+				"text-align" : "center"
+			});
+			inputBox_1.bind("value").toDataMap(app.lookup("replyDM"), "REPLY_CONTENT");
+			container.addChild(inputBox_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "523px",
+						"right": "120px",
+						"left": "10px",
+						"height": "42px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "523px",
+						"right": "59px",
+						"left": "5px",
+						"height": "42px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "523px",
+						"right": "41px",
+						"left": "3px",
+						"height": "42px"
+					}
+				]
+			});
+			
+			var button_3 = new cpr.controls.Button();
+			button_3.value = "댓글 등록";
+			if(typeof onButtonClick3 == "function") {
+				button_3.addEventListener("click", onButtonClick3);
+			}
+			container.addChild(button_3, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "523px",
+						"right": "10px",
+						"width": "100px",
+						"height": "42px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "523px",
+						"right": "5px",
+						"width": "49px",
+						"height": "42px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "523px",
+						"right": "3px",
+						"width": "34px",
+						"height": "42px"
+					}
+				]
+			});
+			
+			var group_1 = new cpr.controls.Container("grp1");
+			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
+			group_1.setLayout(verticalLayout_1);
+			(function(container){
+				var hTMLSnippet_1 = new cpr.controls.HTMLSnippet("snippet");
+				container.addChild(hTMLSnippet_1, {
+					"autoSize": "height",
+					"width": "586px",
+					"height": "353px"
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "160px",
+						"left": "430px",
+						"width": "330px",
+						"height": "353px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "160px",
+						"left": "210px",
+						"width": "161px",
+						"height": "353px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "160px",
+						"left": "147px",
+						"width": "113px",
+						"height": "353px"
+					}
+				]
+			});
+			
 			var output_1 = new cpr.controls.Output("titleOutput");
 			output_1.style.css({
 				"font-weight" : "bolder",
-				"font-size" : "30px",
+				"font-size" : "35px",
 				"text-align" : "center"
 			});
 			output_1.bind("value").toDataSet(app.lookup("boardDetail"), "boardTitle", 0);
@@ -635,90 +859,90 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "75px",
-						"width": "290px",
-						"height": "53px",
-						"left": "calc(50% - 145px)"
+						"top": "59px",
+						"width": "261px",
+						"height": "47px",
+						"left": "calc(50% - 130px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "75px",
-						"width": "142px",
-						"height": "53px",
-						"left": "calc(50% - 71px)"
+						"top": "59px",
+						"width": "127px",
+						"height": "47px",
+						"left": "calc(50% - 63px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "75px",
-						"width": "99px",
-						"height": "53px",
-						"left": "calc(50% - 49px)"
+						"top": "59px",
+						"width": "89px",
+						"height": "47px",
+						"left": "calc(50% - 44px)"
 					}
 				]
 			});
 			
-			var output_2 = new cpr.controls.Output("createDateOutput");
+			var output_2 = new cpr.controls.Output("idOutput");
 			output_2.style.css({
 				"font-weight" : "bold",
-				"font-size" : "13px",
+				"font-size" : "14px",
 				"text-align" : "center"
 			});
-			output_2.bind("value").toDataSet(app.lookup("boardDetail"), "boardCreateDate", 0);
+			output_2.bind("value").toDataSet(app.lookup("boardDetail"), "id", 0);
 			container.addChild(output_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "153px",
-						"width": "290px",
-						"height": "30px",
-						"left": "calc(50% - 145px)"
+						"top": "105px",
+						"width": "261px",
+						"height": "23px",
+						"left": "calc(50% - 130px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "153px",
-						"width": "142px",
-						"height": "30px",
-						"left": "calc(50% - 71px)"
+						"top": "105px",
+						"width": "127px",
+						"height": "23px",
+						"left": "calc(50% - 63px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "153px",
-						"width": "99px",
-						"height": "30px",
-						"left": "calc(50% - 49px)"
+						"top": "105px",
+						"width": "89px",
+						"height": "23px",
+						"left": "calc(50% - 44px)"
 					}
 				]
 			});
 			
-			var output_3 = new cpr.controls.Output("idOutput");
+			var output_3 = new cpr.controls.Output("createDateOutput");
 			output_3.style.css({
 				"font-weight" : "bold",
-				"font-size" : "13px",
+				"font-size" : "14px",
 				"text-align" : "center"
 			});
-			output_3.bind("value").toDataSet(app.lookup("boardDetail"), "id", 0);
+			output_3.bind("value").toDataSet(app.lookup("boardDetail"), "boardCreateDate", 0);
 			container.addChild(output_3, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "127px",
-						"width": "290px",
-						"height": "27px",
-						"left": "calc(50% - 145px)"
+						"width": "261px",
+						"height": "23px",
+						"left": "calc(50% - 130px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "127px",
-						"width": "142px",
-						"height": "27px",
-						"left": "calc(50% - 71px)"
+						"width": "127px",
+						"height": "23px",
+						"left": "calc(50% - 63px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "127px",
-						"width": "99px",
-						"height": "27px",
-						"left": "calc(50% - 49px)"
+						"width": "89px",
+						"height": "23px",
+						"left": "calc(50% - 44px)"
 					}
 				]
 			});

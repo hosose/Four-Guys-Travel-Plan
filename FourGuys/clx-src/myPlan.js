@@ -74,8 +74,6 @@ function onNotCompletePagingSelectionChange(e) {
 	
 }
 
-
-
 /*
  * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -91,10 +89,63 @@ function onButtonClick(e) {
 /*
  * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
+*/
 function onButtonClick2(e) {
 	var button = e.control;
 	var grd1 = app.lookup("grd1")
 	var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
 	location.href = "myPlanDetail/" + plannerNo;
 }
+
+
+/*
+ * "삭제" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick3(e) {
+	var button = e.control;
+	if (!confirm("삭제하시겠습니까?")) {
+		alert("취소를 누르셨습니다.");
+	} else {
+		var grd1 = app.lookup("grd1")
+		var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
+		app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+		app.lookup("deletePlanner").send();
+		grd1.redraw();
+		
+	}
+	
+}
+
+
+
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onDeletePlannerSubmitSuccess(e) {
+	var deletePlanner = e.control;
+	alert("삭제가 완료되었습니다.");
+	location.href = "myplan"
+}
+
+/*
+ * "삭제" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick4(e) {
+	var button = e.control;
+	if (!confirm("삭제하시겠습니까?")) {
+		alert("취소를 누르셨습니다.");
+	} else {
+		var grd2 = app.lookup("grd2")
+		var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
+		app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+		app.lookup("deletePlanner").send();
+		grd2.redraw();
+		
+	}
+	
+}
+
