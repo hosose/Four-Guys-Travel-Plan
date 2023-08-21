@@ -87,8 +87,6 @@
 				
 			}
 
-
-
 			/*
 			 * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -104,13 +102,65 @@
 			/*
 			 * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
+			*/
 			function onButtonClick2(e) {
 				var button = e.control;
 				var grd1 = app.lookup("grd1")
 				var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
 				location.href = "myPlanDetail/" + plannerNo;
 			}
+
+
+			/*
+			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick3(e) {
+				var button = e.control;
+				if (!confirm("삭제하시겠습니까?")) {
+					alert("취소를 누르셨습니다.");
+				} else {
+					var grd1 = app.lookup("grd1")
+					var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
+					app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+					app.lookup("deletePlanner").send();
+					grd1.redraw();
+					
+				}
+				
+			}
+
+
+
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onDeletePlannerSubmitSuccess(e) {
+				var deletePlanner = e.control;
+				alert("삭제가 완료되었습니다.");
+				location.href = "myplan"
+			}
+
+			/*
+			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick4(e) {
+				var button = e.control;
+				if (!confirm("삭제하시겠습니까?")) {
+					alert("취소를 누르셨습니다.");
+				} else {
+					var grd2 = app.lookup("grd2")
+					var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
+					app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+					app.lookup("deletePlanner").send();
+					grd2.redraw();
+					
+				}
+				
+			};
 			// End - User Script
 			
 			// Header
@@ -179,6 +229,11 @@
 				app.register(dataView_2);
 			})(dataSet_2);
 			app.register(dataSet_2);
+			var dataMap_1 = new cpr.data.DataMap("plannerNoDM");
+			dataMap_1.parseData({
+				"columns" : [{"name": "plannerNo"}]
+			});
+			app.register(dataMap_1);
 			var submission_1 = new cpr.protocols.Submission("findCompletePlanner");
 			submission_1.async = false;
 			submission_1.method = "get";
@@ -192,6 +247,16 @@
 			submission_2.action = "findNotCompletePlanner";
 			submission_2.addResponseData(dataSet_2, false);
 			app.register(submission_2);
+			
+			var submission_3 = new cpr.protocols.Submission("deletePlanner");
+			submission_3.async = true;
+			submission_3.method = "delete";
+			submission_3.action = "deletePlanner";
+			submission_3.addRequestData(dataMap_1);
+			if(typeof onDeletePlannerSubmitSuccess == "function") {
+				submission_3.addEventListener("submit-success", onDeletePlannerSubmitSuccess);
+			}
+			app.register(submission_3);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -339,7 +404,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "planNo";
-								cell.text = "planNo";
+								cell.text = "플래너 번호";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -348,7 +416,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerTitle";
-								cell.text = "plannerTitle";
+								cell.text = "플래너 제목";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -357,7 +428,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerStartDate";
-								cell.text = "plannerStartDate";
+								cell.text = "시작일";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -366,17 +440,29 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerLastDay";
-								cell.text = "plannerLastDay";
+								cell.text = "종료일";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
+								cell.text = "";
+								cell.style.css({
+									"background-color" : "transparent",
+									"color" : "#000000"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
+								cell.text = "";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						}
 					]
@@ -388,24 +474,36 @@
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.columnName = "planNo";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 1},
 							"configurator": function(cell){
 								cell.columnName = "plannerTitle";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
 								cell.columnName = "plannerStartDate";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
@@ -417,8 +515,15 @@
 									if(typeof onButtonClick2 == "function") {
 										button_1.addEventListener("click", onButtonClick2);
 									}
+									if(typeof onButtonMousedown == "function") {
+										button_1.addEventListener("mousedown", onButtonMousedown);
+									}
+									if(typeof onButtonMouseup == "function") {
+										button_1.addEventListener("mouseup", onButtonMouseup);
+									}
 									return button_1;
 								})();
+								cell.controlConstraint = {};
 							}
 						},
 						{
@@ -427,34 +532,47 @@
 								cell.control = (function(){
 									var button_2 = new cpr.controls.Button();
 									button_2.value = "삭제";
+									if(typeof onButtonClick3 == "function") {
+										button_2.addEventListener("click", onButtonClick3);
+									}
 									return button_2;
 								})();
+								cell.controlConstraint = {};
 							}
 						}
 					]
 				}
 			});
+			grid_1.style.css({
+				"color" : "#000000"
+			});
+			if(typeof onGrd1Dblclick == "function") {
+				grid_1.addEventListener("dblclick", onGrd1Dblclick);
+			}
+			if(typeof onGrd1Click == "function") {
+				grid_1.addEventListener("click", onGrd1Click);
+			}
 			container.addChild(grid_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "125px",
 						"width": "897px",
-						"height": "146px",
+						"height": "172px",
 						"left": "calc(50% - 448px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "125px",
 						"width": "438px",
-						"height": "146px",
+						"height": "172px",
 						"left": "calc(50% - 219px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "125px",
 						"width": "307px",
-						"height": "146px",
+						"height": "172px",
 						"left": "calc(50% - 153px)"
 					}
 				]
@@ -480,7 +598,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "planNo";
-								cell.text = "planNo";
+								cell.text = "플래너번호";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -489,7 +610,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerTitle";
-								cell.text = "plannerTitle";
+								cell.text = "플래너제목";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -498,7 +622,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerStartDate";
-								cell.text = "plannerStartDate";
+								cell.text = "시작일";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -507,7 +634,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerLastDay";
-								cell.text = "plannerLastDay";
+								cell.text = "종료일";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -529,24 +659,36 @@
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.columnName = "planNo";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 1},
 							"configurator": function(cell){
 								cell.columnName = "plannerTitle";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
 								cell.columnName = "plannerStartDate";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
@@ -560,6 +702,7 @@
 									}
 									return button_3;
 								})();
+								cell.controlConstraint = {};
 							}
 						},
 						{
@@ -568,13 +711,23 @@
 								cell.control = (function(){
 									var button_4 = new cpr.controls.Button();
 									button_4.value = "삭제";
+									if(typeof onButtonClick4 == "function") {
+										button_4.addEventListener("click", onButtonClick4);
+									}
 									return button_4;
 								})();
+								cell.controlConstraint = {};
 							}
 						}
 					]
 				}
 			});
+			grid_2.style.css({
+				"color" : "#000000"
+			});
+			if(typeof onGrd2Click == "function") {
+				grid_2.addEventListener("click", onGrd2Click);
+			}
 			container.addChild(grid_2, {
 				positions: [
 					{
@@ -612,21 +765,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "335px",
+						"top": "307px",
 						"width": "408px",
 						"height": "42px",
 						"left": "calc(50% - 204px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "335px",
+						"top": "307px",
 						"width": "199px",
 						"height": "42px",
 						"left": "calc(50% - 99px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "335px",
+						"top": "307px",
 						"width": "139px",
 						"height": "42px",
 						"left": "calc(50% - 69px)"
@@ -645,21 +798,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "628px",
+						"top": "624px",
 						"width": "405px",
 						"height": "40px",
 						"left": "calc(50% - 202px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "628px",
+						"top": "624px",
 						"width": "198px",
 						"height": "40px",
 						"left": "calc(50% - 99px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "628px",
+						"top": "624px",
 						"width": "138px",
 						"height": "40px",
 						"left": "calc(50% - 69px)"
