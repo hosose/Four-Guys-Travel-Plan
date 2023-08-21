@@ -256,7 +256,7 @@
     </cl:button>
     <cl:grid std:sid="grid-011a3e31" id="grd5" datasetid="boardReply">
       <cl:responsivexylayoutdata std:sid="rxyl-data-05d09893">
-        <cl:xylayoutdata std:sid="sxyl-data-0f068377" right="10px" bottom="10px" left="10px" height="178px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-0f068377" top="580px" right="10px" bottom="10px" left="10px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-0540b1cf" width="85px"/>
       <cl:gridcolumn std:sid="g-column-1ace8bf0" width="85px"/>
@@ -312,7 +312,7 @@
     <cl:button std:sid="button-4a3b3195" value="댓글 등록">
       <cl:listener std:sid="listener-a2064369" name="click" handler="onButtonClick3"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-f4e27218">
-        <cl:xylayoutdata std:sid="sxyl-data-bbb88b81" top="523px" right="10px" left="914px" height="42px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-bbb88b81" top="523px" right="10px" width="100px" height="42px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
     <cl:group std:sid="group-c6ee925d" id="grp1">

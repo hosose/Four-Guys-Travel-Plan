@@ -1082,24 +1082,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
+						"top": "580px",
 						"right": "10px",
 						"bottom": "10px",
-						"left": "10px",
-						"height": "178px"
+						"left": "10px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "580px",
 						"right": "5px",
 						"bottom": "10px",
-						"left": "5px",
-						"height": "178px"
+						"left": "5px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
+						"top": "580px",
 						"right": "3px",
 						"bottom": "10px",
-						"left": "3px",
-						"height": "178px"
+						"left": "3px"
 					}
 				]
 			});
@@ -1146,21 +1146,21 @@
 						"media": "all and (min-width: 1024px)",
 						"top": "523px",
 						"right": "10px",
-						"left": "914px",
+						"width": "100px",
 						"height": "42px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "523px",
 						"right": "5px",
-						"left": "446px",
+						"width": "49px",
 						"height": "42px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "523px",
 						"right": "3px",
-						"left": "312px",
+						"width": "34px",
 						"height": "42px"
 					}
 				]
