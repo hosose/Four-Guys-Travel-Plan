@@ -37,12 +37,14 @@
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
 				var firstimage = grid.getSelectedRow().getValue("firstimage");
-				var embp_mapx = embp.setPageProperty("mapx", mapx);
-				var embp_mapy = embp.setPageProperty("mapy", mapy);
-				var embp_title = embp.setPageProperty("title", title);
-				var embp_firstimage = embp.setPageProperty("firstimage", firstimage);
+				var embp_mapx = embp.setPageProperty("mapx",mapx);
+				var embp_mapy = embp.setPageProperty("mapy",mapy);
+				var embp_title = embp.setPageProperty("title",title);
+				var embp_firstimage = embp.setPageProperty("firstimage",firstimage);
 				embp.callPageMethod("panTo");
 			}
+
+
 
 			/*
 			 * 그리드에서 cell-click 이벤트 발생 시 호출.
@@ -64,8 +66,8 @@
 				var currentUrl = location.href;
 				var button = e.control;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-				location.href = "updateBoardForm/" + boardNo;
-				
+				location.href="updateBoardForm/"+boardNo;
+
 			}
 
 			/*
@@ -103,6 +105,7 @@
 				if (vo["id"] == value) {
 					editBtn.visible = true;
 					deleteBtn.visible = true;
+					app.lookup("snippet").value = app.lookup("grd2").dataSet.getValue(0, "boardContent");
 				}
 			}
 
