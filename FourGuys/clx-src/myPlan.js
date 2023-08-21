@@ -89,13 +89,14 @@ function onButtonClick(e) {
 /*
  * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
+*/
 function onButtonClick2(e) {
 	var button = e.control;
 	var grd1 = app.lookup("grd1")
 	var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
 	location.href = "myPlanDetail/" + plannerNo;
 }
+
 
 /*
  * "삭제" 버튼에서 click 이벤트 발생 시 호출.
@@ -113,35 +114,11 @@ function onButtonClick3(e) {
 		grd1.redraw();
 		
 	}
-
 	
 }
 
-/*
- * 그리드에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- 
-function onGrd1Click(e) {
-	var grd1 = e.control;
-	var grdLookUp = app.lookup("grd1")
-	var plannerNo = grdLookUp.getSelectedRow().getValue("plannerNo");
-	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
-	
-}
-* */
 
-/*
- * 그리드에서 dblclick 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 더블 클릭할 때 발생하는 이벤트.
 
-function onGrd1Dblclick(e) {
-	var grd1 = e.control;
-	var grdLookUp = app.lookup("grd1")
-	var plannerNo = grdLookUp.getSelectedRow().getValue("plannerNo");
-	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
-	
-}
- */
 
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -171,3 +148,4 @@ function onButtonClick4(e) {
 	}
 	
 }
+

@@ -102,13 +102,14 @@
 			/*
 			 * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
+			*/
 			function onButtonClick2(e) {
 				var button = e.control;
 				var grd1 = app.lookup("grd1")
 				var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
 				location.href = "myPlanDetail/" + plannerNo;
 			}
+
 
 			/*
 			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
@@ -126,35 +127,11 @@
 					grd1.redraw();
 					
 				}
-
 				
 			}
 
-			/*
-			 * 그리드에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 
-			function onGrd1Click(e) {
-				var grd1 = e.control;
-				var grdLookUp = app.lookup("grd1")
-				var plannerNo = grdLookUp.getSelectedRow().getValue("plannerNo");
-				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
-				
-			}
-			* */
 
-			/*
-			 * 그리드에서 dblclick 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 더블 클릭할 때 발생하는 이벤트.
 
-			function onGrd1Dblclick(e) {
-				var grd1 = e.control;
-				var grdLookUp = app.lookup("grd1")
-				var plannerNo = grdLookUp.getSelectedRow().getValue("plannerNo");
-				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
-				
-			}
-			 */
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -183,7 +160,7 @@
 					
 				}
 				
-			}
+			};
 			// End - User Script
 			
 			// Header
@@ -427,7 +404,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "planNo";
-								cell.text = "planNo";
+								cell.text = "플래너 번호";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -436,7 +416,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerTitle";
-								cell.text = "plannerTitle";
+								cell.text = "플래너 제목";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -445,7 +428,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerStartDate";
-								cell.text = "plannerStartDate";
+								cell.text = "시작일";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -454,17 +440,29 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerLastDay";
-								cell.text = "plannerLastDay";
+								cell.text = "종료일";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
+								cell.text = "";
+								cell.style.css({
+									"background-color" : "transparent",
+									"color" : "#000000"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
+								cell.text = "";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						}
 					]
@@ -476,24 +474,36 @@
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.columnName = "planNo";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 1},
 							"configurator": function(cell){
 								cell.columnName = "plannerTitle";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
 								cell.columnName = "plannerStartDate";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
@@ -504,6 +514,12 @@
 									button_1.value = "상세보기";
 									if(typeof onButtonClick2 == "function") {
 										button_1.addEventListener("click", onButtonClick2);
+									}
+									if(typeof onButtonMousedown == "function") {
+										button_1.addEventListener("mousedown", onButtonMousedown);
+									}
+									if(typeof onButtonMouseup == "function") {
+										button_1.addEventListener("mouseup", onButtonMouseup);
 									}
 									return button_1;
 								})();
@@ -527,11 +543,14 @@
 					]
 				}
 			});
-			if(typeof onGrd1Click == "function") {
-				grid_1.addEventListener("click", onGrd1Click);
-			}
+			grid_1.style.css({
+				"color" : "#000000"
+			});
 			if(typeof onGrd1Dblclick == "function") {
 				grid_1.addEventListener("dblclick", onGrd1Dblclick);
+			}
+			if(typeof onGrd1Click == "function") {
+				grid_1.addEventListener("click", onGrd1Click);
 			}
 			container.addChild(grid_1, {
 				positions: [
@@ -539,21 +558,21 @@
 						"media": "all and (min-width: 1024px)",
 						"top": "125px",
 						"width": "897px",
-						"height": "146px",
+						"height": "172px",
 						"left": "calc(50% - 448px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "125px",
 						"width": "438px",
-						"height": "146px",
+						"height": "172px",
 						"left": "calc(50% - 219px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "125px",
 						"width": "307px",
-						"height": "146px",
+						"height": "172px",
 						"left": "calc(50% - 153px)"
 					}
 				]
@@ -579,7 +598,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "planNo";
-								cell.text = "planNo";
+								cell.text = "플래너번호";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -588,7 +610,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerTitle";
-								cell.text = "plannerTitle";
+								cell.text = "플래너제목";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -597,7 +622,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerStartDate";
-								cell.text = "plannerStartDate";
+								cell.text = "시작일";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -606,7 +634,10 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerLastDay";
-								cell.text = "plannerLastDay";
+								cell.text = "종료일";
+								cell.style.css({
+									"color" : "#000000"
+								});
 							}
 						},
 						{
@@ -628,24 +659,36 @@
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.columnName = "planNo";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 1},
 							"configurator": function(cell){
 								cell.columnName = "plannerTitle";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
 								cell.columnName = "plannerStartDate";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
+								cell.style.css({
+									"background-color" : "#EDD9D9"
+								});
 							}
 						},
 						{
@@ -679,6 +722,12 @@
 					]
 				}
 			});
+			grid_2.style.css({
+				"color" : "#000000"
+			});
+			if(typeof onGrd2Click == "function") {
+				grid_2.addEventListener("click", onGrd2Click);
+			}
 			container.addChild(grid_2, {
 				positions: [
 					{
@@ -716,21 +765,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "335px",
+						"top": "307px",
 						"width": "408px",
 						"height": "42px",
 						"left": "calc(50% - 204px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "335px",
+						"top": "307px",
 						"width": "199px",
 						"height": "42px",
 						"left": "calc(50% - 99px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "335px",
+						"top": "307px",
 						"width": "139px",
 						"height": "42px",
 						"left": "calc(50% - 69px)"
@@ -749,21 +798,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "628px",
+						"top": "624px",
 						"width": "405px",
 						"height": "40px",
 						"left": "calc(50% - 202px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "628px",
+						"top": "624px",
 						"width": "198px",
 						"height": "40px",
 						"left": "calc(50% - 99px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "628px",
+						"top": "624px",
 						"width": "138px",
 						"height": "40px",
 						"left": "calc(50% - 69px)"

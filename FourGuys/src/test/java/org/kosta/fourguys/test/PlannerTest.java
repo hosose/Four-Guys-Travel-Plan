@@ -120,7 +120,7 @@ public class PlannerTest {
 		plannerVO.setId("java");
 		plannerVO.setCompleteFlag("완성");
 		List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
-		// System.out.println(testVO);
+		 System.out.println(testVO);
 	}
 
 	@Test
@@ -129,7 +129,7 @@ public class PlannerTest {
 		plannerVO.setId("java");
 		plannerVO.setCompleteFlag("미완성");
 		List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
-		// System.out.println(testVO);
+		//System.out.println(testVO);
 
 	}
 	
