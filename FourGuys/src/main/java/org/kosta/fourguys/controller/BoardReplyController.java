@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.kosta.fourguys.service.ReplyService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.kosta.fourguys.vo.ReplyVO;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +55,16 @@ public class BoardReplyController {
 		ParameterGroup plannerBoardNoDM = dataRequest.getParameterGroup("plannerBoardNoDM");
 		int boardNo = Integer.parseInt(plannerBoardNoDM.getValue("BOARD_NO"));
 		dataRequest.setResponse("boardReply", replyService.findReplyByNo(boardNo));
+		return new JSONDataView();
+	}
+
+	@DeleteMapping("deleteReply")
+	public View deleteReply(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup replyNoParam = dataRequest.getParameterGroup("replyBoardNoDM");
+		int replyNo = Integer.parseInt(replyNoParam.getValue("REPLY_NO"));
+		ReplyVO replyVO = new ReplyVO();
+		replyVO.setReplyNo(replyNo);
+		dataRequest.setResponse("boardReply", replyService.deleteReply(replyVO));
 		return new JSONDataView();
 	}
 }

@@ -23,4 +23,9 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<ReplyVO> findReplyByNo(int boardNo) {
 		return replyMapper.findReplyByNo(boardNo);
 	}
+
+	@Override
+	public int deleteReply(ReplyVO replayNo) {
+		return replyMapper.deleteReply(replayNo);
+	}
 }

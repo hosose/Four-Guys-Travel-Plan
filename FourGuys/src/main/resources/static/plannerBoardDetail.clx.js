@@ -23,7 +23,7 @@
 				app.lookup("increaseHitsSM").send();
 				app.lookup("boardDetailSM").send();
 				app.lookup("replyListSM").send();
-			}	
+			}
 
 			/*
 			 * 그리드에서 click 이벤트 발생 시 호출.
@@ -37,14 +37,12 @@
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
 				var firstimage = grid.getSelectedRow().getValue("firstimage");
-				var embp_mapx = embp.setPageProperty("mapx",mapx);
-				var embp_mapy = embp.setPageProperty("mapy",mapy);
-				var embp_title = embp.setPageProperty("title",title);
-				var embp_firstimage = embp.setPageProperty("firstimage",firstimage);
+				var embp_mapx = embp.setPageProperty("mapx", mapx);
+				var embp_mapy = embp.setPageProperty("mapy", mapy);
+				var embp_title = embp.setPageProperty("title", title);
+				var embp_firstimage = embp.setPageProperty("firstimage", firstimage);
 				embp.callPageMethod("panTo");
 			}
-
-
 
 			/*
 			 * 그리드에서 cell-click 이벤트 발생 시 호출.
@@ -66,10 +64,9 @@
 				var currentUrl = location.href;
 				var button = e.control;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-				location.href="updateBoardForm/"+boardNo;
-
+				location.href = "updateBoardForm/" + boardNo;
+				
 			}
-
 
 			/*
 			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
@@ -79,13 +76,13 @@
 				var button = e.control;
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-				if(!confirm("삭제하시겠습니까?")){
+				if (!confirm("삭제하시겠습니까?")) {
 					alert("취소되었습니다")
-					location.href="boardDetailPage/"+boardNo;
-				}else{
+					location.href = "boardDetailPage/" + boardNo;
+				} else {
 					app.lookup("deleteBoardSM").send();
 					alert("삭제되었습니다");
-					location.href="planner-board-list.clx";
+					location.href = "planner-board-list.clx";
 				}
 			}
 
@@ -103,9 +100,9 @@
 				var deleteBtn = app.lookup("deleteBtn");
 				var grid = app.lookup("grd1");
 				var value = grid.getRow(0).getValue("id");
-				if(vo["id"]==value){
+				if (vo["id"] == value) {
 					editBtn.visible = true;
-					deleteBtn.visible=true;
+					deleteBtn.visible = true;
 				}
 			}
 
@@ -113,7 +110,7 @@
 			 * "댓글 등록" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick3(e){
+			function onButtonClick3(e) {
 				var button = e.control;
 				app.lookup("insertReplySM").send();
 			}
@@ -122,12 +119,51 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onInsertReplySMSubmitSuccess(e){
+			function onInsertReplySMSubmitSuccess(e) {
 				var insertReplySM = e.control;
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-				location.href="boardDetailPage/"+boardNo;
-			};
+				location.href = "boardDetailPage/" + boardNo;
+			}
+
+			/*
+			 * "댓글 삭제" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick4(e) {
+				var button = e.control;
+				var currentUrl = location.href;
+				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				if (!confirm("삭제하시겠습니까?")) {
+					alert("취소되었습니다");
+				} else {
+					var replyNo = app.lookup("grd5").getSelectedRow().getValue("replyNo");
+					app.lookup("replyBoardNoDM").setValue("REPLY_NO", replyNo);
+					app.lookup("deleteReplySM").send();
+					alert("삭제되었습니다");
+					location.href="boardDetailPage/"+boardNo;
+				}
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onDeleteReplySMSubmitSuccess(e){
+				var deleteReplySM = e.control;
+				var boardDetailSM = e.control;
+				var replyNo = app.lookup("grd5").getRow(0).getValue("replyNo");
+				app.lookup("replyBoardNoDM").setValue("replyNo", replyNo);
+				var vo = deleteReplySM.getMetadata("MemberVO");
+				var editBtn = app.lookup("replyEdit");
+				var deleteBtn = app.lookup("replyDelete");
+				var grid = app.lookup("grd5");
+				var value = grid.getRow(0).getValue("id");
+				if(vo["id"]==value){
+					editBtn.visible = true;
+					deleteBtn.visible=true;
+				}
+			}
 			// End - User Script
 			
 			// Header
@@ -210,10 +246,6 @@
 				"columns" : [
 					{
 						"name": "replyNo",
-						"dataType": "number"
-					},
-					{
-						"name": "boardNo",
 						"dataType": "number"
 					},
 					{
@@ -311,6 +343,15 @@
 				]
 			});
 			app.register(dataMap_7);
+			
+			var dataMap_8 = new cpr.data.DataMap("replyBoardNoDM");
+			dataMap_8.parseData({
+				"columns" : [{
+					"name": "REPLY_NO",
+					"dataType": "number"
+				}]
+			});
+			app.register(dataMap_8);
 			var submission_1 = new cpr.protocols.Submission("boardDetailSM");
 			submission_1.method = "get";
 			submission_1.action = "boardDetail";
@@ -378,6 +419,16 @@
 			submission_9.addRequestData(dataMap_1);
 			submission_9.addResponseData(dataSet_4, false);
 			app.register(submission_9);
+			
+			var submission_10 = new cpr.protocols.Submission("deleteReplySM");
+			submission_10.method = "delete";
+			submission_10.action = "deleteReply";
+			submission_10.addRequestData(dataMap_8);
+			submission_10.addResponseData(dataSet_4, false);
+			if(typeof onDeleteReplySMSubmitSuccess == "function") {
+				submission_10.addEventListener("submit-success", onDeleteReplySMSubmitSuccess);
+			}
+			app.register(submission_10);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -946,7 +997,9 @@
 					{"width": "85px"},
 					{"width": "150px"},
 					{"width": "100px"},
-					{"width": "85px"}
+					{"width": "85px"},
+					{"width": "100px"},
+					{"width": "100px"}
 				],
 				"header": {
 					"rows": [{"height": "24px"}],
@@ -965,7 +1018,6 @@
 							"configurator": function(cell){
 								cell.filterable = false;
 								cell.sortable = false;
-								cell.targetColumnName = "boardNo";
 								cell.text = "게시글 번호";
 							}
 						},
@@ -995,6 +1047,16 @@
 								cell.targetColumnName = "id";
 								cell.text = "아이디";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 6},
+							"configurator": function(cell){
+							}
 						}
 					]
 				},
@@ -1011,8 +1073,6 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 1},
 							"configurator": function(cell){
-								cell.columnName = "boardNo";
-								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "boardNo", 0);
 							}
 						},
 						{
@@ -1034,6 +1094,31 @@
 							"configurator": function(cell){
 								cell.columnName = "id";
 								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "id", 0);
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_3 = new cpr.controls.Button("replyEdit");
+									button_3.value = "댓글 수정";
+									return button_3;
+								})();
+								cell.controlConstraint = {};
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 6},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_4 = new cpr.controls.Button("replyDelete");
+									button_4.value = "댓글 삭제";
+									if(typeof onButtonClick4 == "function") {
+										button_4.addEventListener("click", onButtonClick4);
+									}
+									return button_4;
+								})();
+								cell.controlConstraint = {};
 							}
 						}
 					]
@@ -1096,12 +1181,12 @@
 				]
 			});
 			
-			var button_3 = new cpr.controls.Button();
-			button_3.value = "댓글 등록";
+			var button_5 = new cpr.controls.Button();
+			button_5.value = "댓글 등록";
 			if(typeof onButtonClick3 == "function") {
-				button_3.addEventListener("click", onButtonClick3);
+				button_5.addEventListener("click", onButtonClick3);
 			}
-			container.addChild(button_3, {
+			container.addChild(button_5, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
