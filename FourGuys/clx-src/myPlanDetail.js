@@ -148,3 +148,13 @@ function onButtonClick2(e) {
 	alert("취소되었습니다");
 	location.href = "selectDestinationForm";
 }
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onAreaListSubmitSuccess(e) {
+	var areaList = e.control;
+	var grid = app.lookup("grd2")
+	grid.setCheckRowIndex(0, true);
+}

@@ -3,6 +3,7 @@ package org.kosta.fourguys.service;
 import java.util.List;
 
 import org.kosta.fourguys.mapper.PlannerMapper;
+import org.kosta.fourguys.vo.PlanVO;
 import org.kosta.fourguys.vo.PlannerVO;
 import org.springframework.stereotype.Service;
 
@@ -59,6 +60,12 @@ public class PlannerServiceImpl implements PlannerService {
 	public int deletePlannerByNo(int plannerNo) {
 		
 		return plannerMapper.deletePlannerByNo(plannerNo);
+	}
+
+	@Override
+	public List<PlanVO> getContentIdListByPlannerNo(int plannerNo) {
+		
+		return plannerMapper.getContentIdListByPlannerNo(plannerNo);
 	}
 
 }

@@ -111,6 +111,7 @@
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-67bd9f31" id="areaList" method="get" action="/findAllArea">
+        <cl:listener std:sid="listener-c55e47d2" name="submit-success" handler="onAreaListSubmitSuccess"/>
         <cl:requestdata dataid="areaSearch"/>
         <cl:responsedata dataid="jeju"/>
       </cl:submission>

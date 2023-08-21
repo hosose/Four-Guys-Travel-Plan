@@ -161,6 +161,16 @@
 				alert("취소되었습니다");
 				location.href = "selectDestinationForm";
 			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onAreaListSubmitSuccess(e) {
+				var areaList = e.control;
+				var grid = app.lookup("grd2")
+				grid.setCheckRowIndex(0, true);
+			}
 			// End - User Script
 			
 			// Header
@@ -399,6 +409,9 @@
 			submission_5.action = "/findAllArea";
 			submission_5.addRequestData(dataMap_6);
 			submission_5.addResponseData(dataSet_4, false);
+			if(typeof onAreaListSubmitSuccess == "function") {
+				submission_5.addEventListener("submit-success", onAreaListSubmitSuccess);
+			}
 			app.register(submission_5);
 			
 			var submission_6 = new cpr.protocols.Submission("dayBtnSM");
