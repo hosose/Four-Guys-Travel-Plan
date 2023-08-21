@@ -9,7 +9,8 @@ function onBodyLoad(e) {
 	app.lookup("plannerBoardNoDM").setValue("BOARD_NO", boardNo);
 	app.lookup("increaseHitsSM").send();
 	app.lookup("boardDetailSM").send();
-}	
+	
+	}	
 
 /*
  * 그리드에서 click 이벤트 발생 시 호출.
@@ -93,5 +94,5 @@ function onBoardDetailSMSubmitSuccess2(e) {
 		editBtn.visible = true;
 		deleteBtn.visible=true;
 	}
+	app.lookup("snipet").value = app.lookup("grd2").dataSet.getValue(0, "boardContent");
 }
-
