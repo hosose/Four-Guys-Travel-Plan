@@ -49,6 +49,9 @@
 
 			function gridPaging() {
 				var plannerBoardListGrid = app.lookup("plannerBoardListGrid");
+				for(let i =0; i<plannerBoardListGrid.rowCount;i++){
+					plannerBoardListGrid.getRow(i).setValue("boardTitle", "<a href=\"boardDetailPage/"+plannerBoardListGrid.getRow(i).getValue("boardNo")+"\">"+plannerBoardListGrid.getRow(i).getValue("boardTitle")+"</a>")
+				}
 				var pageIdx = app.lookup("pageIdx");
 				const rowCount = plannerBoardListGrid.getRowCount();
 				pageIdx.redraw();
@@ -264,14 +267,14 @@
 				grid_1.init({
 					"dataSet": app.lookup("plannerBoardList"),
 					"columns": [
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"},
+						{"width": "71px"},
+						{"width": "74px"},
+						{"width": "324px"},
 						{"width": "100px"},
 						{"width": "100px"}
 					],
 					"header": {
-						"rows": [{"height": "24px"}],
+						"rows": [{"height": "33px"}],
 						"cells": [
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 0},
@@ -279,7 +282,7 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "RNo";
-									cell.text = "RNo";
+									cell.text = "게시글 번호";
 								}
 							},
 							{
@@ -288,7 +291,7 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "id";
-									cell.text = "id";
+									cell.text = "작성자";
 								}
 							},
 							{
@@ -297,7 +300,7 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "boardTitle";
-									cell.text = "boardTitle";
+									cell.text = "게시물 제목";
 								}
 							},
 							{
@@ -306,7 +309,7 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "boardCreateDate";
-									cell.text = "boardCreateDate";
+									cell.text = "등록일";
 								}
 							},
 							{
@@ -315,46 +318,76 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "boardHits";
-									cell.text = "boardHits";
+									cell.text = "조회수";
 								}
 							}
 						]
 					},
 					"detail": {
-						"rows": [{"height": "24px"}],
+						"rows": [{"height": "39px"}],
 						"cells": [
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 0},
 								"configurator": function(cell){
 									cell.columnName = "RNo";
+									cell.style.css({
+										"font-size" : "14px"
+									});
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 1},
 								"configurator": function(cell){
 									cell.columnName = "id";
+									cell.style.css({
+										"font-size" : "14px"
+									});
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 2},
 								"configurator": function(cell){
 									cell.columnName = "boardTitle";
+									cell.style.css({
+										"text-align" : "center"
+									});
+									cell.control = (function(){
+										var hTMLSnippet_1 = new cpr.controls.HTMLSnippet();
+										hTMLSnippet_1.value = "<p>HTML Snippet<\/p>";
+										hTMLSnippet_1.style.css({
+											"vertical-align" : "middle",
+											"font-size" : "16px",
+											"text-align" : "center"
+										});
+										hTMLSnippet_1.bind("value").toDataColumn("boardTitle");
+										return hTMLSnippet_1;
+									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 3},
 								"configurator": function(cell){
 									cell.columnName = "boardCreateDate";
+									cell.style.css({
+										"font-size" : "14px"
+									});
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 4},
 								"configurator": function(cell){
 									cell.columnName = "boardHits";
+									cell.style.css({
+										"font-size" : "14px"
+									});
 								}
 							}
 						]
 					}
+				});
+				grid_1.style.css({
+					"font-size" : "16px"
 				});
 				if(typeof onPlannerBoardListGridRowDblclick == "function") {
 					grid_1.addEventListener("row-dblclick", onPlannerBoardListGridRowDblclick);
@@ -367,9 +400,9 @@
 				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "282px",
+				"top": "260px",
 				"width": "950px",
-				"height": "368px",
+				"height": "490px",
 				"left": "calc(50% - 475px)"
 			});
 			
@@ -381,7 +414,7 @@
 				pageIndexer_1.addEventListener("selection-change", onPageIndexerSelectionChange);
 			}
 			container.addChild(pageIndexer_1, {
-				"top": "649px",
+				"top": "770px",
 				"width": "356px",
 				"height": "40px",
 				"left": "calc(50% - 178px)"

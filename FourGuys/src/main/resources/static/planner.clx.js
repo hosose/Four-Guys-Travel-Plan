@@ -600,6 +600,7 @@
 							cell.text = "선택 목록";
 							cell.style.css({
 								"background-color" : "#FFFFFF",
+								"border-radius" : "5px",
 								"background-repeat" : "repeat",
 								"color" : "#2DCEB9",
 								"font-weight" : "bolder",
@@ -617,6 +618,9 @@
 						}
 					}]
 				}
+			});
+			grid_2.style.css({
+				"border-radius" : "10px"
 			});
 			container.addChild(grid_2, {
 				positions: [

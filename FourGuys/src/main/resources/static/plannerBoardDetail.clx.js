@@ -88,14 +88,17 @@
 			 */
 			function onBoardDetailSMSubmitSuccess2(e) {
 				var boardDetailSM = e.control;
-				var plannerNo = app.lookup("grd1").getRow(0).getValue("plannerNo");
+				app.lookup("titleOutput").redraw();
+				app.lookup("createDateOutput").redraw();
+				app.lookup("idOutput").redraw();
+				var plannerNo = app.lookup("boardDetail").getRow(0).getValue("plannerNo");
 				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 				app.lookup("getDay").send();
 				var vo = boardDetailSM.getMetadata("MemberVO");
 				var editBtn = app.lookup("editBtn");
 				var deleteBtn = app.lookup("deleteBtn");
-				var grid = app.lookup("grd1");
-				var value = grid.getRow(0).getValue("id");
+				var boardDetail = app.lookup("boardDetail");
+				var value = boardDetail.getRow(0).getValue("id");
 				if(vo["id"]==value){
 					editBtn.visible = true;
 					deleteBtn.visible=true;
@@ -339,175 +342,8 @@
 				]
 			});
 			
-			var output_1 = new cpr.controls.Output("boardNo");
-			output_1.visible = false;
-			output_1.bind("value").toDataMap(app.lookup("plannerBoardNoDM"), "BOARD_NO");
-			container.addChild(output_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "20px",
-						"left": "191px",
-						"width": "100px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "20px",
-						"left": "93px",
-						"width": "49px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "20px",
-						"left": "65px",
-						"width": "34px",
-						"height": "20px"
-					}
-				]
-			});
-			
-			var grid_1 = new cpr.controls.Grid("grd1");
+			var grid_1 = new cpr.controls.Grid("grd2");
 			grid_1.init({
-				"dataSet": app.lookup("boardDetail"),
-				"columns": [
-					{"width": "100px"},
-					{"width": "100px"},
-					{"width": "100px"},
-					{"width": "100px"},
-					{"width": "100px"},
-					{"width": "100px"}
-				],
-				"header": {
-					"rows": [{"height": "24px"}],
-					"cells": [
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "id";
-								cell.text = "id";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 1},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "plannerNo";
-								cell.text = "plannerNo";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 2},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "boardNo";
-								cell.text = "boardNo";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 3},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "boardTitle";
-								cell.text = "boardTitle";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 4},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "boardCreateDate";
-								cell.text = "boardCreateDate";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 5},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "boardHits";
-								cell.text = "boardHits";
-							}
-						}
-					]
-				},
-				"detail": {
-					"rows": [{"height": "24px"}],
-					"cells": [
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-								cell.columnName = "id";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 1},
-							"configurator": function(cell){
-								cell.columnName = "plannerNo";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 2},
-							"configurator": function(cell){
-								cell.columnName = "boardNo";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 3},
-							"configurator": function(cell){
-								cell.columnName = "boardTitle";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 4},
-							"configurator": function(cell){
-								cell.columnName = "boardCreateDate";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 5},
-							"configurator": function(cell){
-								cell.columnName = "boardHits";
-							}
-						}
-					]
-				}
-			});
-			container.addChild(grid_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "100px",
-						"right": "10px",
-						"left": "10px",
-						"height": "50px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "100px",
-						"right": "5px",
-						"left": "5px",
-						"height": "50px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "100px",
-						"right": "3px",
-						"left": "3px",
-						"height": "50px"
-					}
-				]
-			});
-			
-			var grid_2 = new cpr.controls.Grid("grd2");
-			grid_2.init({
 				"dataSet": app.lookup("boardDetail"),
 				"autoRowHeight": "all",
 				"columns": [{"width": "100px"}],
@@ -533,25 +369,25 @@
 					}]
 				}
 			});
-			container.addChild(grid_2, {
+			container.addChild(grid_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "160px",
+						"top": "193px",
 						"right": "10px",
 						"left": "10px",
 						"height": "98px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "160px",
+						"top": "193px",
 						"right": "5px",
 						"left": "5px",
 						"height": "98px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "160px",
+						"top": "193px",
 						"right": "3px",
 						"left": "3px",
 						"height": "98px"
@@ -566,30 +402,30 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "268px",
+						"top": "301px",
 						"right": "10px",
-						"bottom": "20px",
+						"bottom": "-13px",
 						"left": "430px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "268px",
+						"top": "301px",
 						"right": "5px",
-						"bottom": "20px",
+						"bottom": "-13px",
 						"left": "210px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "268px",
+						"top": "301px",
 						"right": "3px",
-						"bottom": "20px",
+						"bottom": "-13px",
 						"left": "147px"
 					}
 				]
 			});
 			
-			var grid_3 = new cpr.controls.Grid("grd3");
-			grid_3.init({
+			var grid_2 = new cpr.controls.Grid("grd3");
+			grid_2.init({
 				"dataSet": app.lookup("planDate"),
 				"columns": [{"width": "100px"}],
 				"header": {
@@ -621,36 +457,36 @@
 				}
 			});
 			if(typeof onGrd3CellClick == "function") {
-				grid_3.addEventListener("cell-click", onGrd3CellClick);
+				grid_2.addEventListener("cell-click", onGrd3CellClick);
 			}
-			container.addChild(grid_3, {
+			container.addChild(grid_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "268px",
-						"bottom": "10px",
+						"top": "301px",
+						"bottom": "-23px",
 						"left": "10px",
 						"width": "200px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "268px",
-						"bottom": "10px",
+						"top": "301px",
+						"bottom": "-23px",
 						"left": "5px",
 						"width": "98px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "268px",
-						"bottom": "10px",
+						"top": "301px",
+						"bottom": "-23px",
 						"left": "3px",
 						"width": "68px"
 					}
 				]
 			});
 			
-			var grid_4 = new cpr.controls.Grid("grd4");
-			grid_4.init({
+			var grid_3 = new cpr.controls.Grid("grd4");
+			grid_3.init({
 				"dataSet": app.lookup("selectedPlan"),
 				"columns": [{"width": "100px"}],
 				"header": {
@@ -684,110 +520,30 @@
 				}
 			});
 			if(typeof onGrd4Click == "function") {
-				grid_4.addEventListener("click", onGrd4Click);
+				grid_3.addEventListener("click", onGrd4Click);
 			}
-			container.addChild(grid_4, {
+			container.addChild(grid_3, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "268px",
-						"bottom": "10px",
+						"top": "301px",
+						"bottom": "-23px",
 						"left": "220px",
 						"width": "200px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "268px",
-						"bottom": "10px",
+						"top": "301px",
+						"bottom": "-23px",
 						"left": "107px",
 						"width": "98px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "268px",
-						"bottom": "10px",
+						"top": "301px",
+						"bottom": "-23px",
 						"left": "75px",
 						"width": "68px"
-					}
-				]
-			});
-			
-			var output_2 = new cpr.controls.Output("plannerNo");
-			output_2.visible = false;
-			output_2.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-			container.addChild(output_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "8px",
-						"left": "191px",
-						"width": "100px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "8px",
-						"left": "93px",
-						"width": "49px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "8px",
-						"left": "65px",
-						"width": "34px",
-						"height": "20px"
-					}
-				]
-			});
-			
-			var group_1 = new cpr.controls.Container("slt");
-			group_1.visible = false;
-			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("selectTitleDM"));
-			group_1.setBindContext(dataMapContext_1);
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_1);
-			(function(container){
-				var output_3 = new cpr.controls.Output("plannerNoOutput");
-				output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-				container.addChild(output_3, {
-					"top": "22px",
-					"left": "70px",
-					"width": "100px",
-					"height": "20px"
-				});
-				var output_4 = new cpr.controls.Output("planDateOutput");
-				output_4.visible = false;
-				output_4.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
-				container.addChild(output_4, {
-					"top": "3px",
-					"left": "30px",
-					"width": "100px",
-					"height": "20px"
-				});
-			})(group_1);
-			container.addChild(group_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "8px",
-						"left": "20px",
-						"width": "179px",
-						"height": "43px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "8px",
-						"left": "10px",
-						"width": "87px",
-						"height": "43px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "8px",
-						"left": "7px",
-						"width": "61px",
-						"height": "43px"
 					}
 				]
 			});
@@ -795,6 +551,12 @@
 			var button_1 = new cpr.controls.Button("deleteBtn");
 			button_1.visible = false;
 			button_1.value = "삭제";
+			button_1.style.css({
+				"background-color" : "#306dc6",
+				"background-repeat" : "no-repeat",
+				"color" : "#FFFFFF",
+				"background-image" : "none"
+			});
 			if(typeof onButtonClick2 == "function") {
 				button_1.addEventListener("click", onButtonClick2);
 			}
@@ -827,6 +589,12 @@
 			var button_2 = new cpr.controls.Button("editBtn");
 			button_2.visible = false;
 			button_2.value = "수정";
+			button_2.style.css({
+				"background-color" : "#306dc6",
+				"background-repeat" : "no-repeat",
+				"color" : "#FFFFFF",
+				"background-image" : "none"
+			});
 			if(typeof onButtonClick == "function") {
 				button_2.addEventListener("click", onButtonClick);
 			}
@@ -852,6 +620,105 @@
 						"right": "3px",
 						"width": "34px",
 						"height": "20px"
+					}
+				]
+			});
+			
+			var output_1 = new cpr.controls.Output("titleOutput");
+			output_1.style.css({
+				"font-weight" : "bolder",
+				"font-size" : "30px",
+				"text-align" : "center"
+			});
+			output_1.bind("value").toDataSet(app.lookup("boardDetail"), "boardTitle", 0);
+			container.addChild(output_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "75px",
+						"width": "290px",
+						"height": "53px",
+						"left": "calc(50% - 145px)"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "75px",
+						"width": "142px",
+						"height": "53px",
+						"left": "calc(50% - 71px)"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "75px",
+						"width": "99px",
+						"height": "53px",
+						"left": "calc(50% - 49px)"
+					}
+				]
+			});
+			
+			var output_2 = new cpr.controls.Output("createDateOutput");
+			output_2.style.css({
+				"font-weight" : "bold",
+				"font-size" : "13px",
+				"text-align" : "center"
+			});
+			output_2.bind("value").toDataSet(app.lookup("boardDetail"), "boardCreateDate", 0);
+			container.addChild(output_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "153px",
+						"width": "290px",
+						"height": "30px",
+						"left": "calc(50% - 145px)"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "153px",
+						"width": "142px",
+						"height": "30px",
+						"left": "calc(50% - 71px)"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "153px",
+						"width": "99px",
+						"height": "30px",
+						"left": "calc(50% - 49px)"
+					}
+				]
+			});
+			
+			var output_3 = new cpr.controls.Output("idOutput");
+			output_3.style.css({
+				"font-weight" : "bold",
+				"font-size" : "13px",
+				"text-align" : "center"
+			});
+			output_3.bind("value").toDataSet(app.lookup("boardDetail"), "id", 0);
+			container.addChild(output_3, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "127px",
+						"width": "290px",
+						"height": "27px",
+						"left": "calc(50% - 145px)"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "127px",
+						"width": "142px",
+						"height": "27px",
+						"left": "calc(50% - 71px)"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "127px",
+						"width": "99px",
+						"height": "27px",
+						"left": "calc(50% - 49px)"
 					}
 				]
 			});

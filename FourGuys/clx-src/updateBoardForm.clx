@@ -96,7 +96,7 @@
         <cl:requestdata dataid="boardDetail"/>
       </cl:submission>
       <cl:submission std:sid="submission-e6c83257" id="boardDetailSM" method="get" action="boardDetail">
-        <cl:listener std:sid="listener-96cc156f" name="submit-success" handler="onBoardDetailSMSubmitSuccess2"/>
+        <cl:listener std:sid="listener-83ec7d55" name="submit-success" handler="onBoardDetailSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerBoardNoDM"/>
         <cl:responsedata dataid="boardDetail"/>
       </cl:submission>
@@ -177,14 +177,6 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:output std:sid="output-7056fa8a" id="plannerNoOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-      <cl:xylayoutdata std:sid="xyl-data-1d3d6c15" top="95px" left="542px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
-    <cl:output std:sid="output-723c42bc" id="planDateOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
-      <cl:xylayoutdata std:sid="xyl-data-4f7d3d26" top="95px" left="681px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
     <cl:button std:sid="button-6f1f615e" id="selectBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:25px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="수정">
       <cl:listener std:sid="listener-eced33cf" name="click" handler="onSelectBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-4024c71d" bottom="30px" width="200px" height="60px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM"/>

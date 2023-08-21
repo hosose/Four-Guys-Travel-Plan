@@ -75,14 +75,17 @@ function onButtonClick2(e) {
  */
 function onBoardDetailSMSubmitSuccess2(e) {
 	var boardDetailSM = e.control;
-	var plannerNo = app.lookup("grd1").getRow(0).getValue("plannerNo");
+	app.lookup("titleOutput").redraw();
+	app.lookup("createDateOutput").redraw();
+	app.lookup("idOutput").redraw();
+	var plannerNo = app.lookup("boardDetail").getRow(0).getValue("plannerNo");
 	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 	app.lookup("getDay").send();
 	var vo = boardDetailSM.getMetadata("MemberVO");
 	var editBtn = app.lookup("editBtn");
 	var deleteBtn = app.lookup("deleteBtn");
-	var grid = app.lookup("grd1");
-	var value = grid.getRow(0).getValue("id");
+	var boardDetail = app.lookup("boardDetail");
+	var value = boardDetail.getRow(0).getValue("id");
 	if(vo["id"]==value){
 		editBtn.visible = true;
 		deleteBtn.visible=true;

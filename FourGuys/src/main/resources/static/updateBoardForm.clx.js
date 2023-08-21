@@ -48,7 +48,7 @@
 			function onDayGrdCellClick(e) {
 				var dayGrd = e.control;
 				var planDate = dayGrd.getSelectedRow().getValue("planDate");
-				app.lookup("planDateOutput").value = planDate;
+				app.lookup("createPlanDM").setValue("planDate", planDate);
 				app.lookup("selectDate").send();
 			}
 
@@ -70,6 +70,17 @@
 				var createPlannerBoardSM = e.control;
 				var url = createPlannerBoardSM.getMetadata("url");
 				location.href = url;
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onBoardDetailSMSubmitSuccess(e){
+				var boardDetailSM = e.control;
+				var plannerNo = app.lookup("boardDetail").getRow(0).getValue("plannerNo");
+				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+				app.lookup("dayBtnSM").send();
 			};
 			// End - User Script
 			
@@ -277,8 +288,8 @@
 			submission_6.action = "boardDetail";
 			submission_6.addRequestData(dataMap_4);
 			submission_6.addResponseData(dataSet_4, false);
-			if(typeof onBoardDetailSMSubmitSuccess2 == "function") {
-				submission_6.addEventListener("submit-success", onBoardDetailSMSubmitSuccess2);
+			if(typeof onBoardDetailSMSubmitSuccess == "function") {
+				submission_6.addEventListener("submit-success", onBoardDetailSMSubmitSuccess);
 			}
 			app.register(submission_6);
 			app.supportMedia("all and (min-width: 1024px)", "default");
@@ -524,26 +535,6 @@
 				"width": "1000px",
 				"height": "500px",
 				"left": "calc(50% - 500px)"
-			});
-			
-			var output_3 = new cpr.controls.Output("plannerNoOutput");
-			output_3.visible = false;
-			output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-			container.addChild(output_3, {
-				"top": "95px",
-				"left": "542px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
-			var output_4 = new cpr.controls.Output("planDateOutput");
-			output_4.visible = false;
-			output_4.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
-			container.addChild(output_4, {
-				"top": "95px",
-				"left": "681px",
-				"width": "100px",
-				"height": "20px"
 			});
 			
 			var button_1 = new cpr.controls.Button("selectBtn");

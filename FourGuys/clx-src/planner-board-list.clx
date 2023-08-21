@@ -53,34 +53,38 @@
       <cl:xylayoutdata std:sid="xyl-data-fc8ef003" top="150px" width="578px" height="81px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
     </cl:output>
     <cl:group std:sid="group-10051869">
-      <cl:xylayoutdata std:sid="xyl-data-11143e6e" top="282px" width="950px" height="368px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-11143e6e" top="260px" width="950px" height="490px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
       <cl:button std:sid="button-34e02ca4" style="background-color:#306dc6; background-repeat:no-repeat; color:#FFFFFF; font-size:18px; background-image:none;" value="글쓰기">
         <cl:listener std:sid="listener-abd0710f" name="click" handler="onButtonClick"/>
         <cl:formdata std:sid="f-data-15b3a17f" bottomSpacing="10" row="0" col="1"/>
       </cl:button>
-      <cl:grid std:sid="grid-6456d8df" id="plannerBoardListGrid" datasetid="plannerBoardList">
+      <cl:grid std:sid="grid-6456d8df" id="plannerBoardListGrid" style="font-size:16px;" datasetid="plannerBoardList">
         <cl:listener std:sid="listener-d16eb053" name="row-dblclick" handler="onPlannerBoardListGridRowDblclick"/>
-        <cl:formdata std:sid="f-data-b322dfa8" row="1" col="0" rowspan="1" colspan="2"/>
-        <cl:gridcolumn std:sid="g-column-8412c27f"/>
-        <cl:gridcolumn std:sid="g-column-86293035"/>
-        <cl:gridcolumn std:sid="g-column-11a025de"/>
+        <cl:formdata std:sid="f-data-cddc21c0" row="1" col="0" rowspan="1" colspan="2"/>
+        <cl:gridcolumn std:sid="g-column-8412c27f" width="71px"/>
+        <cl:gridcolumn std:sid="g-column-86293035" width="74px"/>
+        <cl:gridcolumn std:sid="g-column-11a025de" width="324px"/>
         <cl:gridcolumn std:sid="g-column-cdeb00c0"/>
         <cl:gridcolumn std:sid="g-column-828df6ab"/>
         <cl:gridheader std:sid="gh-band-4be5bc4d">
-          <cl:gridrow std:sid="g-row-34304861"/>
-          <cl:gridcell std:sid="gh-cell-bc36220c" rowindex="0" colindex="0" targetcolumnname="RNo" sortable="false" filterable="false" text="RNo"/>
-          <cl:gridcell std:sid="gh-cell-6c83b58e" rowindex="0" colindex="1" targetcolumnname="id" sortable="false" filterable="false" text="id"/>
-          <cl:gridcell std:sid="gh-cell-b800b69c" rowindex="0" colindex="2" targetcolumnname="boardTitle" sortable="false" filterable="false" text="boardTitle"/>
-          <cl:gridcell std:sid="gh-cell-c1659ab2" rowindex="0" colindex="3" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="boardCreateDate"/>
-          <cl:gridcell std:sid="gh-cell-9c3992f2" rowindex="0" colindex="4" targetcolumnname="boardHits" sortable="false" filterable="false" text="boardHits"/>
+          <cl:gridrow std:sid="g-row-34304861" height="33px"/>
+          <cl:gridcell std:sid="gh-cell-bc36220c" rowindex="0" colindex="0" targetcolumnname="RNo" sortable="false" filterable="false" text="게시글 번호"/>
+          <cl:gridcell std:sid="gh-cell-6c83b58e" rowindex="0" colindex="1" targetcolumnname="id" sortable="false" filterable="false" text="작성자"/>
+          <cl:gridcell std:sid="gh-cell-b800b69c" rowindex="0" colindex="2" targetcolumnname="boardTitle" sortable="false" filterable="false" text="게시물 제목"/>
+          <cl:gridcell std:sid="gh-cell-c1659ab2" rowindex="0" colindex="3" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="등록일"/>
+          <cl:gridcell std:sid="gh-cell-9c3992f2" rowindex="0" colindex="4" targetcolumnname="boardHits" sortable="false" filterable="false" text="조회수"/>
         </cl:gridheader>
         <cl:griddetail std:sid="gd-band-2afd19b3">
-          <cl:gridrow std:sid="g-row-a432dec3"/>
-          <cl:gridcell std:sid="gd-cell-c62f03bf" rowindex="0" colindex="0" columnname="RNo"/>
-          <cl:gridcell std:sid="gd-cell-f42da008" rowindex="0" colindex="1" columnname="id"/>
-          <cl:gridcell std:sid="gd-cell-dbc6ad53" rowindex="0" colindex="2" columnname="boardTitle"/>
-          <cl:gridcell std:sid="gd-cell-87fda9bb" rowindex="0" colindex="3" columnname="boardCreateDate"/>
-          <cl:gridcell std:sid="gd-cell-f1fb66ec" rowindex="0" colindex="4" columnname="boardHits"/>
+          <cl:gridrow std:sid="g-row-a432dec3" height="39px"/>
+          <cl:gridcell std:sid="gd-cell-c62f03bf" rowindex="0" colindex="0" style="font-size:14px;" columnname="RNo"/>
+          <cl:gridcell std:sid="gd-cell-f42da008" rowindex="0" colindex="1" style="font-size:14px;" columnname="id"/>
+          <cl:gridcell std:sid="gd-cell-dbc6ad53" rowindex="0" colindex="2" style="text-align:center;" columnname="boardTitle">
+            <cl:htmlsnippet std:sid="htmlsnippet-7ffd3b63" style="vertical-align:middle; font-size:16px; text-align:center;" value="&lt;p>HTML Snippet&lt;/p>">
+              <cl:celldata std:sid="c-data-2a5543d2"/>
+            </cl:htmlsnippet>
+          </cl:gridcell>
+          <cl:gridcell std:sid="gd-cell-87fda9bb" rowindex="0" colindex="3" style="font-size:14px;" columnname="boardCreateDate"/>
+          <cl:gridcell std:sid="gd-cell-f1fb66ec" rowindex="0" colindex="4" style="font-size:14px;" columnname="boardHits"/>
         </cl:griddetail>
       </cl:grid>
       <cl:formlayout std:sid="f-layout-bbd5fd42" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
@@ -93,7 +97,7 @@
     <cl:pageindexer std:sid="p-indexer-8d751f7e" id="pageIdx" pagerowcount="10">
       <cl:listener std:sid="listener-3f5e021b" name="selection-change" handler="onPageIndexerSelectionChange"/>
       <cl:expbind property="totalRowCount" category="PROPERTY" expression="#plannerBoardList2.getRowCount()"/>
-      <cl:xylayoutdata std:sid="xyl-data-ae38b285" top="649px" width="356px" height="40px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-ae38b285" top="770px" width="356px" height="40px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
     </cl:pageindexer>
     <cl:xylayout std:sid="xylayout-8aa833e4"/>
   </body>

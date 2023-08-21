@@ -99,7 +99,6 @@ public class PlannerController {
 		PlanVO selectedPlan = new PlanVO();
 		selectedPlan.setPlanDate(Integer.parseInt(planDate));
 		selectedPlan.setPlannerNo(plannerNo);
-		planService.getPlansByDate(selectedPlan);
 		dataRequest.setResponse("selectedPlan", planService.getPlansByDate(selectedPlan));
 		return new JSONDataView();
 	}

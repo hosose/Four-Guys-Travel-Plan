@@ -35,7 +35,7 @@ function onLoginCheckSubmitError(e) {
 function onDayGrdCellClick(e) {
 	var dayGrd = e.control;
 	var planDate = dayGrd.getSelectedRow().getValue("planDate");
-	app.lookup("planDateOutput").value = planDate;
+	app.lookup("createPlanDM").setValue("planDate", planDate);
 	app.lookup("selectDate").send();
 }
 
@@ -59,3 +59,13 @@ function onCreatePlannerBoardSMSubmitSuccess(e) {
 	location.href = url;
 }
 
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onBoardDetailSMSubmitSuccess(e){
+	var boardDetailSM = e.control;
+	var plannerNo = app.lookup("boardDetail").getRow(0).getValue("plannerNo");
+	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+	app.lookup("dayBtnSM").send();
+}

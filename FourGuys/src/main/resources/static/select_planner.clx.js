@@ -139,7 +139,7 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerTitle";
-								cell.text = "plannerTitle";
+								cell.text = "플래너 제목";
 							}
 						},
 						{
@@ -148,7 +148,7 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerStartDate";
-								cell.text = "plannerStartDate";
+								cell.text = "시작일";
 							}
 						},
 						{
@@ -157,7 +157,7 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerLastDay";
-								cell.text = "plannerLastDay";
+								cell.text = "종료일";
 							}
 						}
 					]

@@ -144,14 +144,14 @@
         <cl:gridcell std:sid="gd-cell-798f542a" rowindex="0" colindex="1" style="font-weight:normal;" columnname="title"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-b5555db0" id="grd1" datasetid="selectedPlan">
+    <cl:grid std:sid="grid-b5555db0" id="grd1" style="border-radius:10px;" datasetid="selectedPlan">
       <cl:responsivexylayoutdata std:sid="rxyl-data-e8f31ba5">
         <cl:xylayoutdata std:sid="sxyl-data-1e88443d" top="80px" bottom="10px" left="150px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-bfe52550"/>
       <cl:gridheader std:sid="gh-band-f0066996">
         <cl:gridrow std:sid="g-row-cd71b6ce"/>
-        <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="선택 목록"/>
+        <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; border-radius:5px; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="선택 목록"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-914dec06">
         <cl:gridrow std:sid="g-row-e21b3661"/>
