@@ -36,14 +36,14 @@
 		parameterType="org.kosta.fourguys.vo.PlannerVO"
 		resultType="org.kosta.fourguys.vo.PlannerVO">
 		select ROW_NUMBER() OVER(ORDER BY "PLANNER_NO")AS
-		"planNo","PLANNER_NO","PLANNER_TITLE","PLANNER_START_DATE","PLANNER_LAST_DAY" from
+		"planNo","PLANNER_NO","PLANNER_TITLE",to_char(planner_start_date,'YYYY-MM-DD')"PLANNER_START_DATE",to_char(planner_last_day,'YYYY-MM-DD')"PLANNER_LAST_DAY" from
 		"PLANNER" where "COMPLETE_FLAG"=#{completeFlag} AND "ID"=#{id}
 	</select>
 	<select id="findNotCompletePlanner"
 		parameterType="org.kosta.fourguys.vo.PlannerVO"
 		resultType="org.kosta.fourguys.vo.PlannerVO">
 		select ROW_NUMBER() OVER(ORDER BY "PLANNER_NO")AS
-		"planNo","PLANNER_NO","PLANNER_TITLE","PLANNER_START_DATE","PLANNER_LAST_DAY" from
+		"planNo","PLANNER_NO","PLANNER_TITLE",to_char(planner_start_date,'YYYY-MM-DD')"PLANNER_START_DATE",to_char(planner_last_day,'YYYY-MM-DD')"PLANNER_LAST_DAY" from
 		"PLANNER" where "COMPLETE_FLAG"=#{completeFlag} AND "ID"=#{id}
 	</select>
 	<select id="getPlannerById" parameterType="string"
@@ -58,4 +58,8 @@
 	<select id="findPlannerByNo" parameterType="int" resultType="org.kosta.fourguys.vo.PlannerVO">
 		 SELECT * FROM planner where "PLANNER_NO" = #{plannerNo}
 	</select>
+	<delete id="deletePlannerByNo" parameterType="int">
+	 DELETE from planner where "PLANNER_NO" = #{plannerNo}
+	
+	</delete>
 </mapper>

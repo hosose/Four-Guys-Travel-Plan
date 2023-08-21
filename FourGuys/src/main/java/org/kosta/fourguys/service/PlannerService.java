@@ -23,5 +23,7 @@ public interface PlannerService {
 	List<PlannerVO> getPlannerById(String id);
 	
 	public List<PlannerVO> findPlannerByNo(int plannerNo);
+	
+	public int deletePlannerByNo(int plannerNo);
 
 }
