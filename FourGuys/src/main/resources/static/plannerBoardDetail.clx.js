@@ -22,6 +22,7 @@
 				app.lookup("plannerBoardNoDM").setValue("BOARD_NO", boardNo);
 				app.lookup("increaseHitsSM").send();
 				app.lookup("boardDetailSM").send();
+				app.lookup("replyListSM").send();
 			}	
 
 			/*
@@ -106,6 +107,26 @@
 					editBtn.visible = true;
 					deleteBtn.visible=true;
 				}
+			}
+
+			/*
+			 * "댓글 등록" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick3(e){
+				var button = e.control;
+				app.lookup("insertReplySM").send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onInsertReplySMSubmitSuccess(e){
+				var insertReplySM = e.control;
+				var currentUrl = location.href;
+				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				location.href="boardDetailPage/"+boardNo;
 			};
 			// End - User Script
 			
@@ -183,6 +204,33 @@
 				]
 			});
 			app.register(dataSet_3);
+			
+			var dataSet_4 = new cpr.data.DataSet("boardReply");
+			dataSet_4.parseData({
+				"columns" : [
+					{
+						"name": "replyNo",
+						"dataType": "number"
+					},
+					{
+						"name": "boardNo",
+						"dataType": "number"
+					},
+					{
+						"name": "replyContent",
+						"dataType": "string"
+					},
+					{
+						"name": "replyDate",
+						"dataType": "string"
+					},
+					{
+						"name": "id",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataSet_4);
 			var dataMap_1 = new cpr.data.DataMap("plannerBoardNoDM");
 			dataMap_1.parseData({
 				"columns" : [{
@@ -253,6 +301,16 @@
 			var dataMap_6 = new cpr.data.DataMap("editBoardDM");
 			dataMap_6.parseData({});
 			app.register(dataMap_6);
+			
+			var dataMap_7 = new cpr.data.DataMap("replyDM");
+			dataMap_7.parseData({
+				"columns" : [
+					{"name": "REPLY_CONTENT"},
+					{"name": "REPLY_DATE"},
+					{"name": "ID"}
+				]
+			});
+			app.register(dataMap_7);
 			var submission_1 = new cpr.protocols.Submission("boardDetailSM");
 			submission_1.method = "get";
 			submission_1.action = "boardDetail";
@@ -302,6 +360,24 @@
 			submission_7.addRequestData(dataMap_1);
 			submission_7.addResponseData(dataSet_1, false);
 			app.register(submission_7);
+			
+			var submission_8 = new cpr.protocols.Submission("insertReplySM");
+			submission_8.method = "post";
+			submission_8.action = "insertReply";
+			submission_8.addRequestData(dataMap_7);
+			submission_8.addRequestData(dataMap_1);
+			submission_8.addResponseData(dataSet_4, false);
+			if(typeof onInsertReplySMSubmitSuccess == "function") {
+				submission_8.addEventListener("submit-success", onInsertReplySMSubmitSuccess);
+			}
+			app.register(submission_8);
+			
+			var submission_9 = new cpr.protocols.Submission("replyListSM");
+			submission_9.method = "get";
+			submission_9.action = "findReplyBoardByNo";
+			submission_9.addRequestData(dataMap_1);
+			submission_9.addResponseData(dataSet_4, false);
+			app.register(submission_9);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -574,22 +650,22 @@
 						"media": "all and (min-width: 1024px)",
 						"top": "268px",
 						"right": "10px",
-						"bottom": "20px",
-						"left": "430px"
+						"left": "430px",
+						"height": "245px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "268px",
 						"right": "5px",
-						"bottom": "20px",
-						"left": "210px"
+						"left": "210px",
+						"height": "245px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "268px",
 						"right": "3px",
-						"bottom": "20px",
-						"left": "147px"
+						"left": "147px",
+						"height": "245px"
 					}
 				]
 			});
@@ -634,23 +710,23 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "268px",
-						"bottom": "10px",
 						"left": "10px",
-						"width": "200px"
+						"width": "200px",
+						"height": "245px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "268px",
-						"bottom": "10px",
 						"left": "5px",
-						"width": "98px"
+						"width": "98px",
+						"height": "245px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "268px",
-						"bottom": "10px",
 						"left": "3px",
-						"width": "68px"
+						"width": "68px",
+						"height": "245px"
 					}
 				]
 			});
@@ -697,23 +773,23 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "268px",
-						"bottom": "10px",
 						"left": "220px",
-						"width": "200px"
+						"width": "200px",
+						"height": "245px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "268px",
-						"bottom": "10px",
 						"left": "107px",
-						"width": "98px"
+						"width": "98px",
+						"height": "245px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "268px",
-						"bottom": "10px",
 						"left": "75px",
-						"width": "68px"
+						"width": "68px",
+						"height": "245px"
 					}
 				]
 			});
@@ -858,6 +934,195 @@
 						"right": "3px",
 						"width": "34px",
 						"height": "20px"
+					}
+				]
+			});
+			
+			var grid_5 = new cpr.controls.Grid("grd5");
+			grid_5.init({
+				"dataSet": app.lookup("boardReply"),
+				"columns": [
+					{"width": "85px"},
+					{"width": "85px"},
+					{"width": "150px"},
+					{"width": "100px"},
+					{"width": "85px"}
+				],
+				"header": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "replyNo";
+								cell.text = "댓글번호";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "boardNo";
+								cell.text = "게시글 번호";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 2},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "replyContent";
+								cell.text = "내용";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 3},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "replyDate";
+								cell.text = "댓글 등록 날짜";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "id";
+								cell.text = "아이디";
+							}
+						}
+					]
+				},
+				"detail": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnName = "replyNo";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyNo", 0);
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.columnName = "boardNo";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "boardNo", 0);
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 2},
+							"configurator": function(cell){
+								cell.columnName = "replyContent";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyContent", 0);
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 3},
+							"configurator": function(cell){
+								cell.columnName = "replyDate";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyDate", 0);
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.columnName = "id";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "id", 0);
+							}
+						}
+					]
+				}
+			});
+			container.addChild(grid_5, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "575px",
+						"left": "10px",
+						"width": "905px",
+						"height": "176px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "575px",
+						"left": "5px",
+						"width": "442px",
+						"height": "176px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "575px",
+						"left": "3px",
+						"width": "309px",
+						"height": "176px"
+					}
+				]
+			});
+			
+			var inputBox_1 = new cpr.controls.InputBox("ipb1");
+			inputBox_1.style.css({
+				"text-align" : "center"
+			});
+			inputBox_1.bind("value").toDataMap(app.lookup("replyDM"), "REPLY_CONTENT");
+			container.addChild(inputBox_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "523px",
+						"left": "10px",
+						"width": "725px",
+						"height": "42px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "523px",
+						"left": "5px",
+						"width": "354px",
+						"height": "42px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "523px",
+						"left": "3px",
+						"width": "248px",
+						"height": "42px"
+					}
+				]
+			});
+			
+			var button_3 = new cpr.controls.Button();
+			button_3.value = "댓글 등록";
+			if(typeof onButtonClick3 == "function") {
+				button_3.addEventListener("click", onButtonClick3);
+			}
+			container.addChild(button_3, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "523px",
+						"left": "770px",
+						"width": "100px",
+						"height": "42px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "523px",
+						"left": "376px",
+						"width": "49px",
+						"height": "42px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "523px",
+						"left": "263px",
+						"width": "34px",
+						"height": "42px"
 					}
 				]
 			});
