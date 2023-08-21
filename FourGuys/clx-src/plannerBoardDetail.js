@@ -10,7 +10,7 @@ function onBodyLoad(e) {
 	app.lookup("increaseHitsSM").send();
 	app.lookup("boardDetailSM").send();
 	app.lookup("replyListSM").send();
-}	
+}
 
 /*
  * 그리드에서 click 이벤트 발생 시 호출.
@@ -93,6 +93,7 @@ function onBoardDetailSMSubmitSuccess2(e) {
 	if(vo["id"]==value){
 		editBtn.visible = true;
 		deleteBtn.visible=true;
+	app.lookup("snippet").value = app.lookup("grd2").dataSet.getValue(0, "boardContent");
 	}
 }
 
