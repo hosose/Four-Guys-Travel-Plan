@@ -3,6 +3,7 @@ package org.kosta.fourguys.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kosta.fourguys.mapper.PlanMapper;
 import org.kosta.fourguys.mapper.PlannerBoardMapper;
@@ -119,7 +120,7 @@ public class PlannerTest {
 		plannerVO.setId("java");
 		plannerVO.setCompleteFlag("완성");
 		List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
-		// System.out.println(testVO);
+		 System.out.println(testVO);
 	}
 
 	@Test
@@ -128,7 +129,7 @@ public class PlannerTest {
 		plannerVO.setId("java");
 		plannerVO.setCompleteFlag("미완성");
 		List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
-		// System.out.println(testVO);
+		//System.out.println(testVO);
 
 	}
 	
@@ -137,5 +138,12 @@ public class PlannerTest {
 		List<PlannerVO> testVO = plannerMapper.findPlannerByNo(197);
 		//System.out.println(testVO);
 
+	}
+	
+	@Test 
+	public void deletePlannerByNo() {
+		
+		int result = plannerMapper.deletePlannerByNo(245);
+		Assertions.assertEquals(1, result);
 	}
 }
