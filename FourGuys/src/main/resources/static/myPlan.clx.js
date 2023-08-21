@@ -87,8 +87,6 @@
 				
 			}
 
-
-
 			/*
 			 * "상세보기" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -110,6 +108,81 @@
 				var grd1 = app.lookup("grd1")
 				var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
 				location.href = "myPlanDetail/" + plannerNo;
+			}
+
+			/*
+			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick3(e) {
+				var button = e.control;
+				if (!confirm("삭제하시겠습니까?")) {
+					alert("취소를 누르셨습니다.");
+				} else {
+					var grd1 = app.lookup("grd1")
+					var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
+					app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+					app.lookup("deletePlanner").send();
+					grd1.redraw();
+					
+				}
+
+				
+			}
+
+			/*
+			 * 그리드에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 
+			function onGrd1Click(e) {
+				var grd1 = e.control;
+				var grdLookUp = app.lookup("grd1")
+				var plannerNo = grdLookUp.getSelectedRow().getValue("plannerNo");
+				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+				
+			}
+			* */
+
+			/*
+			 * 그리드에서 dblclick 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 더블 클릭할 때 발생하는 이벤트.
+
+			function onGrd1Dblclick(e) {
+				var grd1 = e.control;
+				var grdLookUp = app.lookup("grd1")
+				var plannerNo = grdLookUp.getSelectedRow().getValue("plannerNo");
+				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+				
+			}
+			 */
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onDeletePlannerSubmitSuccess(e) {
+				var deletePlanner = e.control;
+				alert("삭제가 완료되었습니다.");
+				location.href = "myplan"
+			}
+
+			/*
+			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick4(e) {
+				var button = e.control;
+				if (!confirm("삭제하시겠습니까?")) {
+					alert("취소를 누르셨습니다.");
+				} else {
+					var grd2 = app.lookup("grd2")
+					var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
+					app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
+					app.lookup("deletePlanner").send();
+					grd2.redraw();
+					
+				}
+				
 			}
 			// End - User Script
 			
@@ -179,6 +252,11 @@
 				app.register(dataView_2);
 			})(dataSet_2);
 			app.register(dataSet_2);
+			var dataMap_1 = new cpr.data.DataMap("plannerNoDM");
+			dataMap_1.parseData({
+				"columns" : [{"name": "plannerNo"}]
+			});
+			app.register(dataMap_1);
 			var submission_1 = new cpr.protocols.Submission("findCompletePlanner");
 			submission_1.async = false;
 			submission_1.method = "get";
@@ -192,6 +270,16 @@
 			submission_2.action = "findNotCompletePlanner";
 			submission_2.addResponseData(dataSet_2, false);
 			app.register(submission_2);
+			
+			var submission_3 = new cpr.protocols.Submission("deletePlanner");
+			submission_3.async = true;
+			submission_3.method = "delete";
+			submission_3.action = "deletePlanner";
+			submission_3.addRequestData(dataMap_1);
+			if(typeof onDeletePlannerSubmitSuccess == "function") {
+				submission_3.addEventListener("submit-success", onDeletePlannerSubmitSuccess);
+			}
+			app.register(submission_3);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -419,6 +507,7 @@
 									}
 									return button_1;
 								})();
+								cell.controlConstraint = {};
 							}
 						},
 						{
@@ -427,13 +516,23 @@
 								cell.control = (function(){
 									var button_2 = new cpr.controls.Button();
 									button_2.value = "삭제";
+									if(typeof onButtonClick3 == "function") {
+										button_2.addEventListener("click", onButtonClick3);
+									}
 									return button_2;
 								})();
+								cell.controlConstraint = {};
 							}
 						}
 					]
 				}
 			});
+			if(typeof onGrd1Click == "function") {
+				grid_1.addEventListener("click", onGrd1Click);
+			}
+			if(typeof onGrd1Dblclick == "function") {
+				grid_1.addEventListener("dblclick", onGrd1Dblclick);
+			}
 			container.addChild(grid_1, {
 				positions: [
 					{
@@ -560,6 +659,7 @@
 									}
 									return button_3;
 								})();
+								cell.controlConstraint = {};
 							}
 						},
 						{
@@ -568,8 +668,12 @@
 								cell.control = (function(){
 									var button_4 = new cpr.controls.Button();
 									button_4.value = "삭제";
+									if(typeof onButtonClick4 == "function") {
+										button_4.addEventListener("click", onButtonClick4);
+									}
 									return button_4;
 								})();
+								cell.controlConstraint = {};
 							}
 						}
 					]

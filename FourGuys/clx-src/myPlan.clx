@@ -27,11 +27,20 @@
         </cl:datacolumnlist>
         <cl:dataview std:sid="d-view-13f6e6d5" id="dvNotCompletePaging"/>
       </cl:dataset>
+      <cl:datamap std:sid="d-map-eb34d8c3" id="plannerNoDM">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-47bc86eb" name="plannerNo"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-2da1a234" id="findCompletePlanner" async="false" method="get" action="findCompletePlanner">
         <cl:responsedata dataid="completePlannerVO"/>
       </cl:submission>
       <cl:submission std:sid="submission-c8a36176" id="findNotCompletePlanner" async="false" method="get" action="findNotCompletePlanner">
         <cl:responsedata dataid="notCompletePlannerVO"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-cdc25162" id="deletePlanner" async="true" method="delete" action="deletePlanner">
+        <cl:listener std:sid="listener-7f0fb070" name="submit-success" handler="onDeletePlannerSubmitSuccess"/>
+        <cl:requestdata dataid="plannerNoDM"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -54,6 +63,8 @@
       </cl:responsivexylayoutdata>
     </cl:output>
     <cl:grid std:sid="grid-77587128" id="grd1" datasetid="dvCompletePaging">
+      <cl:listener std:sid="listener-6a769b35" name="click" handler="onGrd1Click"/>
+      <cl:listener std:sid="listener-8a6c43b0" name="dblclick" handler="onGrd1Dblclick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-1003cc3d">
         <cl:xylayoutdata std:sid="sxyl-data-39120671" top="125px" width="897px" height="146px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
@@ -81,12 +92,13 @@
         <cl:gridcell std:sid="gd-cell-934fc396" rowindex="0" colindex="4">
           <cl:button std:sid="button-abb03fc9" value="상세보기">
             <cl:listener std:sid="listener-f1dac54a" name="click" handler="onButtonClick2"/>
-            <cl:celldata/>
+            <cl:celldata std:sid="c-data-c7fa23f0"/>
           </cl:button>
         </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-9d3224e4" rowindex="0" colindex="5">
           <cl:button std:sid="button-80214ad9" value="삭제">
-            <cl:celldata/>
+            <cl:listener std:sid="listener-a7510629" name="click" handler="onButtonClick3"/>
+            <cl:celldata std:sid="c-data-7e2763e7"/>
           </cl:button>
         </cl:gridcell>
       </cl:griddetail>
@@ -119,12 +131,13 @@
         <cl:gridcell std:sid="gd-cell-5fce4d48" rowindex="0" colindex="4">
           <cl:button std:sid="button-201c3a2f" value="상세보기">
             <cl:listener std:sid="listener-57d49197" name="click" handler="onButtonClick"/>
-            <cl:celldata/>
+            <cl:celldata std:sid="c-data-f2e96005"/>
           </cl:button>
         </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-93e38e66" rowindex="0" colindex="5">
           <cl:button std:sid="button-ad338198" value="삭제">
-            <cl:celldata/>
+            <cl:listener std:sid="listener-e9df89e8" name="click" handler="onButtonClick4"/>
+            <cl:celldata std:sid="c-data-501099ac"/>
           </cl:button>
         </cl:gridcell>
       </cl:griddetail>
