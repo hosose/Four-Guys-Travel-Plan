@@ -157,16 +157,23 @@
 				var boardDetailSM = e.control;
 				var replyNo = app.lookup("grd5").getRow(0).getValue("replyNo");
 				app.lookup("replyBoardNoDM").setValue("replyNo", replyNo);
-				var vo = deleteReplySM.getMetadata("MemberVO");
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onReplyListSMSubmitSuccess(e){
+				var replyListSM = e.control;
+				var vo = replyListSM.getMetadata("MemberVO");
 				var editBtn = app.lookup("replyEdit");
 				var deleteBtn = app.lookup("replyDelete");
-				var grid = app.lookup("grd5");
-				var value = grid.getRow(0).getValue("id");
+				var value = app.lookup("boardReply").getValue(0, "id");
 				if(vo["id"]==value){
 					editBtn.visible = true;
 					deleteBtn.visible=true;
 				}
-			}
+			};
 			// End - User Script
 			
 			// Header
@@ -425,6 +432,9 @@
 			submission_9.action = "findReplyBoardByNo";
 			submission_9.addRequestData(dataMap_1);
 			submission_9.addResponseData(dataSet_4, false);
+			if(typeof onReplyListSMSubmitSuccess == "function") {
+				submission_9.addEventListener("submit-success", onReplyListSMSubmitSuccess);
+			}
 			app.register(submission_9);
 			
 			var submission_10 = new cpr.protocols.Submission("deleteReplySM");
@@ -1055,6 +1065,7 @@
 							"configurator": function(cell){
 								cell.control = (function(){
 									var button_3 = new cpr.controls.Button("replyEdit");
+									button_3.visible = false;
 									button_3.value = "댓글 수정";
 									return button_3;
 								})();
@@ -1066,6 +1077,7 @@
 							"configurator": function(cell){
 								cell.control = (function(){
 									var button_4 = new cpr.controls.Button("replyDelete");
+									button_4.visible = false;
 									button_4.value = "댓글 삭제";
 									if(typeof onButtonClick4 == "function") {
 										button_4.addEventListener("click", onButtonClick4);

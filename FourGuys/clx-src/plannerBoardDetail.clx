@@ -129,6 +129,7 @@
         <cl:responsedata dataid="boardReply"/>
       </cl:submission>
       <cl:submission std:sid="submission-d06af47d" id="replyListSM" method="get" action="findReplyBoardByNo">
+        <cl:listener std:sid="listener-8e1b9899" name="submit-success" handler="onReplyListSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerBoardNoDM"/>
         <cl:responsedata dataid="boardReply"/>
       </cl:submission>
@@ -291,12 +292,12 @@
           <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="id"/>
         </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-b7ea2f5a" rowindex="0" colindex="5">
-          <cl:button std:sid="button-b5ee1ddc" id="replyEdit" value="댓글 수정">
+          <cl:button std:sid="button-b5ee1ddc" id="replyEdit" visible="false" value="댓글 수정">
             <cl:celldata std:sid="c-data-fc8e8c62"/>
           </cl:button>
         </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-fc54c13c" rowindex="0" colindex="6">
-          <cl:button std:sid="button-d328c188" id="replyDelete" value="댓글 삭제">
+          <cl:button std:sid="button-d328c188" id="replyDelete" visible="false" value="댓글 삭제">
             <cl:listener std:sid="listener-10228fc6" name="click" handler="onButtonClick4"/>
             <cl:celldata std:sid="c-data-2dc7ebb4"/>
           </cl:button>

@@ -144,11 +144,18 @@ function onDeleteReplySMSubmitSuccess(e){
 	var boardDetailSM = e.control;
 	var replyNo = app.lookup("grd5").getRow(0).getValue("replyNo");
 	app.lookup("replyBoardNoDM").setValue("replyNo", replyNo);
-	var vo = deleteReplySM.getMetadata("MemberVO");
+}
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onReplyListSMSubmitSuccess(e){
+	var replyListSM = e.control;
+	var vo = replyListSM.getMetadata("MemberVO");
 	var editBtn = app.lookup("replyEdit");
 	var deleteBtn = app.lookup("replyDelete");
-	var grid = app.lookup("grd5");
-	var value = grid.getRow(0).getValue("id");
+	var value = app.lookup("boardReply").getValue(0, "id");
 	if(vo["id"]==value){
 		editBtn.visible = true;
 		deleteBtn.visible=true;

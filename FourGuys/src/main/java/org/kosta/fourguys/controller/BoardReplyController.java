@@ -1,5 +1,8 @@
 package org.kosta.fourguys.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -54,7 +57,15 @@ public class BoardReplyController {
 	public View findReplyBoardByNo(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		ParameterGroup plannerBoardNoDM = dataRequest.getParameterGroup("plannerBoardNoDM");
 		int boardNo = Integer.parseInt(plannerBoardNoDM.getValue("BOARD_NO"));
+		boolean success = true;
+		HttpSession session = request.getSession(false);
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+		Map<String, Object> initParam = new HashMap<>();
+		session = request.getSession(true);
+		session.setAttribute("memberVO", memberVO);
+		initParam.put("MemberVO", memberVO);
 		dataRequest.setResponse("boardReply", replyService.findReplyByNo(boardNo));
+		dataRequest.setMetadata(success, initParam);
 		return new JSONDataView();
 	}
 
