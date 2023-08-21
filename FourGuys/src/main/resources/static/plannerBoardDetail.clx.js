@@ -78,13 +78,13 @@
 				var button = e.control;
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-				if (!confirm("삭제하시겠습니까?")) {
+				if(!confirm("삭제하시겠습니까?")){
 					alert("취소되었습니다")
-					location.href = "boardDetailPage/" + boardNo;
-				} else {
+					location.href="boardDetailPage/"+boardNo;
+				}else{
 					app.lookup("deleteBoardSM").send();
 					alert("삭제되었습니다");
-					location.href = "planner-board-list.clx";
+					location.href="planner-board-list.clx";
 				}
 			}
 
@@ -102,11 +102,11 @@
 				var deleteBtn = app.lookup("deleteBtn");
 				var grid = app.lookup("grd1");
 				var value = grid.getRow(0).getValue("id");
-				if (vo["id"] == value) {
+				if(vo["id"]==value){
 					editBtn.visible = true;
-					deleteBtn.visible = true;
-					app.lookup("snippet").value = app.lookup("grd2").dataSet.getValue(0, "boardContent");
+					deleteBtn.visible=true;
 				}
+				app.lookup("snippet").value = app.lookup("boardDetail").getValue(0, "boardContent");
 			}
 
 			/*
@@ -249,6 +249,10 @@
 				"columns" : [
 					{
 						"name": "replyNo",
+						"dataType": "number"
+					},
+					{
+						"name": "boardNo",
 						"dataType": "number"
 					},
 					{
@@ -642,59 +646,6 @@
 				]
 			});
 			
-			var grid_2 = new cpr.controls.Grid("grd2");
-			grid_2.init({
-				"dataSet": app.lookup("boardDetail"),
-				"autoRowHeight": "all",
-				"columns": [{"width": "100px"}],
-				"detail": {
-					"rows": [{"height": "100%"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.columnName = "boardContent";
-							cell.control = (function(){
-								var hTMLSnippet_1 = new cpr.controls.HTMLSnippet();
-								hTMLSnippet_1.value = "<p>HTML Snippet<\/p>";
-								hTMLSnippet_1.bind("value").toDataColumn("boardContent");
-								return hTMLSnippet_1;
-							})();
-							cell.controlConstraint = {
-								"horizontalAlign": "fill",
-								"verticalAlign": "fill",
-								"width": 500,
-								"height": 100
-							};
-						}
-					}]
-				}
-			});
-			container.addChild(grid_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "160px",
-						"right": "10px",
-						"left": "10px",
-						"height": "98px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "160px",
-						"right": "5px",
-						"left": "5px",
-						"height": "98px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "160px",
-						"right": "3px",
-						"left": "3px",
-						"height": "98px"
-					}
-				]
-			});
-			
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
 			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
 			embeddedPage_1.scrolling = "no";
@@ -702,30 +653,30 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "268px",
+						"top": "160px",
 						"right": "10px",
-						"left": "430px",
-						"height": "245px"
+						"left": "770px",
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "268px",
+						"top": "160px",
 						"right": "5px",
-						"left": "210px",
-						"height": "245px"
+						"left": "376px",
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "268px",
+						"top": "160px",
 						"right": "3px",
-						"left": "147px",
-						"height": "245px"
+						"left": "263px",
+						"height": "353px"
 					}
 				]
 			});
 			
-			var grid_3 = new cpr.controls.Grid("grd3");
-			grid_3.init({
+			var grid_2 = new cpr.controls.Grid("grd3");
+			grid_2.init({
 				"dataSet": app.lookup("planDate"),
 				"columns": [{"width": "100px"}],
 				"header": {
@@ -757,36 +708,36 @@
 				}
 			});
 			if(typeof onGrd3CellClick == "function") {
-				grid_3.addEventListener("cell-click", onGrd3CellClick);
+				grid_2.addEventListener("cell-click", onGrd3CellClick);
 			}
-			container.addChild(grid_3, {
+			container.addChild(grid_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "268px",
+						"top": "160px",
 						"left": "10px",
 						"width": "200px",
-						"height": "245px"
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "268px",
+						"top": "160px",
 						"left": "5px",
 						"width": "98px",
-						"height": "245px"
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "268px",
+						"top": "160px",
 						"left": "3px",
 						"width": "68px",
-						"height": "245px"
+						"height": "353px"
 					}
 				]
 			});
 			
-			var grid_4 = new cpr.controls.Grid("grd4");
-			grid_4.init({
+			var grid_3 = new cpr.controls.Grid("grd4");
+			grid_3.init({
 				"dataSet": app.lookup("selectedPlan"),
 				"columns": [{"width": "100px"}],
 				"header": {
@@ -820,30 +771,30 @@
 				}
 			});
 			if(typeof onGrd4Click == "function") {
-				grid_4.addEventListener("click", onGrd4Click);
+				grid_3.addEventListener("click", onGrd4Click);
 			}
-			container.addChild(grid_4, {
+			container.addChild(grid_3, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "268px",
+						"top": "160px",
 						"left": "220px",
 						"width": "200px",
-						"height": "245px"
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "268px",
+						"top": "160px",
 						"left": "107px",
 						"width": "98px",
-						"height": "245px"
+						"height": "353px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "268px",
+						"top": "160px",
 						"left": "75px",
 						"width": "68px",
-						"height": "245px"
+						"height": "353px"
 					}
 				]
 			});
@@ -992,8 +943,8 @@
 				]
 			});
 			
-			var grid_5 = new cpr.controls.Grid("grd5");
-			grid_5.init({
+			var grid_4 = new cpr.controls.Grid("grd5");
+			grid_4.init({
 				"dataSet": app.lookup("boardReply"),
 				"columns": [
 					{"width": "85px"},
@@ -1127,28 +1078,28 @@
 					]
 				}
 			});
-			container.addChild(grid_5, {
+			container.addChild(grid_4, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "575px",
+						"right": "10px",
+						"bottom": "10px",
 						"left": "10px",
-						"width": "905px",
-						"height": "176px"
+						"height": "178px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "575px",
+						"right": "5px",
+						"bottom": "10px",
 						"left": "5px",
-						"width": "442px",
-						"height": "176px"
+						"height": "178px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "575px",
+						"right": "3px",
+						"bottom": "10px",
 						"left": "3px",
-						"width": "309px",
-						"height": "176px"
+						"height": "178px"
 					}
 				]
 			});
@@ -1163,22 +1114,22 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "523px",
+						"right": "120px",
 						"left": "10px",
-						"width": "725px",
 						"height": "42px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "523px",
+						"right": "59px",
 						"left": "5px",
-						"width": "354px",
 						"height": "42px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "523px",
+						"right": "41px",
 						"left": "3px",
-						"width": "248px",
 						"height": "42px"
 					}
 				]
@@ -1194,23 +1145,60 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "523px",
-						"left": "770px",
-						"width": "100px",
+						"right": "10px",
+						"left": "914px",
 						"height": "42px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "523px",
-						"left": "376px",
-						"width": "49px",
+						"right": "5px",
+						"left": "446px",
 						"height": "42px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "523px",
-						"left": "263px",
-						"width": "34px",
+						"right": "3px",
+						"left": "312px",
 						"height": "42px"
+					}
+				]
+			});
+			
+			var group_2 = new cpr.controls.Container("grp1");
+			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
+			group_2.setLayout(verticalLayout_1);
+			(function(container){
+				var hTMLSnippet_1 = new cpr.controls.HTMLSnippet("snippet");
+				container.addChild(hTMLSnippet_1, {
+					"autoSize": "height",
+					"width": "586px",
+					"height": "353px"
+				});
+			})(group_2);
+			container.addChild(group_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
+						"top": "160px",
+						"left": "430px",
+						"width": "330px",
+						"height": "353px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "160px",
+						"left": "210px",
+						"width": "161px",
+						"height": "353px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "160px",
+						"left": "147px",
+						"width": "113px",
+						"height": "353px"
 					}
 				]
 			});

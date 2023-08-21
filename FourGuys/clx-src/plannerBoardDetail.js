@@ -65,13 +65,13 @@ function onButtonClick2(e) {
 	var button = e.control;
 	var currentUrl = location.href;
 	var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-	if (!confirm("삭제하시겠습니까?")) {
+	if(!confirm("삭제하시겠습니까?")){
 		alert("취소되었습니다")
-		location.href = "boardDetailPage/" + boardNo;
-	} else {
+		location.href="boardDetailPage/"+boardNo;
+	}else{
 		app.lookup("deleteBoardSM").send();
 		alert("삭제되었습니다");
-		location.href = "planner-board-list.clx";
+		location.href="planner-board-list.clx";
 	}
 }
 
@@ -89,11 +89,11 @@ function onBoardDetailSMSubmitSuccess2(e) {
 	var deleteBtn = app.lookup("deleteBtn");
 	var grid = app.lookup("grd1");
 	var value = grid.getRow(0).getValue("id");
-	if (vo["id"] == value) {
+	if(vo["id"]==value){
 		editBtn.visible = true;
-		deleteBtn.visible = true;
-		app.lookup("snippet").value = app.lookup("grd2").dataSet.getValue(0, "boardContent");
+		deleteBtn.visible=true;
 	}
+	app.lookup("snippet").value = app.lookup("boardDetail").getValue(0, "boardContent");
 }
 
 /*

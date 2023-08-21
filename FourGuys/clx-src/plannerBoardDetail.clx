@@ -40,6 +40,7 @@
       <cl:dataset std:sid="d-set-a8c35931" id="boardReply">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-64ac4283" name="replyNo" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-1e6166cc" name="boardNo" datatype="number"/>
           <cl:datacolumn std:sid="d-column-3155524a" name="replyContent" datatype="string"/>
           <cl:datacolumn std:sid="d-column-148beb7a" name="replyDate" datatype="string"/>
           <cl:datacolumn std:sid="d-column-d34cbd03" name="id" datatype="string"/>
@@ -181,29 +182,15 @@
         <cl:gridcell std:sid="gd-cell-ee0194a2" rowindex="0" colindex="5" columnname="boardHits"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-721a0fa5" id="grd2" datasetid="boardDetail" autorowheight="all">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-0f3afce0">
-        <cl:xylayoutdata std:sid="sxyl-data-868fac58" top="160px" right="10px" left="10px" height="98px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-      <cl:gridcolumn std:sid="g-column-7ea8eead"/>
-      <cl:griddetail std:sid="gd-band-1bff09d8">
-        <cl:gridrow std:sid="g-row-3424c70d" height="100%"/>
-        <cl:gridcell std:sid="gd-cell-1151d8e4" rowindex="0" colindex="0" columnname="boardContent">
-          <cl:htmlsnippet std:sid="htmlsnippet-57e9b6ff" value="&lt;p>HTML Snippet&lt;/p>">
-            <cl:celldata std:sid="c-data-0235aac7" halign="FILL" valign="FILL" width="500" height="100"/>
-          </cl:htmlsnippet>
-        </cl:gridcell>
-      </cl:griddetail>
-    </cl:grid>
     <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html" scrolling="no">
       <cl:responsivexylayoutdata std:sid="rxyl-data-42aeba20">
-        <cl:xylayoutdata std:sid="sxyl-data-0c2b548c" top="268px" right="10px" left="430px" height="245px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-0c2b548c" top="160px" right="10px" left="770px" height="353px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:embeddedpage>
     <cl:grid std:sid="grid-cccde53f" id="grd3" datasetid="planDate">
       <cl:listener std:sid="listener-9cf5eca9" name="cell-click" handler="onGrd3CellClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-053c234e">
-        <cl:xylayoutdata std:sid="sxyl-data-a500d52a" top="268px" left="10px" width="200px" height="245px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-a500d52a" top="160px" left="10px" width="200px" height="353px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-09c7aeb8"/>
       <cl:gridheader std:sid="gh-band-91667f1f">
@@ -220,7 +207,7 @@
     <cl:grid std:sid="grid-7187e12f" id="grd4" datasetid="selectedPlan">
       <cl:listener std:sid="listener-ab175514" name="click" handler="onGrd4Click"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-bc7d69ab">
-        <cl:xylayoutdata std:sid="sxyl-data-c16f3225" top="268px" left="220px" width="200px" height="245px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-c16f3225" top="160px" left="220px" width="200px" height="353px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-9bfcafe4"/>
       <cl:gridheader std:sid="gh-band-4ef620f9">
@@ -269,7 +256,7 @@
     </cl:button>
     <cl:grid std:sid="grid-011a3e31" id="grd5" datasetid="boardReply">
       <cl:responsivexylayoutdata std:sid="rxyl-data-05d09893">
-        <cl:xylayoutdata std:sid="sxyl-data-0f068377" top="575px" left="10px" width="905px" height="176px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-0f068377" right="10px" bottom="10px" left="10px" height="178px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-0540b1cf" width="85px"/>
       <cl:gridcolumn std:sid="g-column-1ace8bf0" width="85px"/>
@@ -319,15 +306,24 @@
     <cl:inputbox std:sid="i-box-51f2a9d1" id="ipb1" style="text-align:center;">
       <cl:datamapbind property="value" datacontrolid="replyDM" columnname="REPLY_CONTENT"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-1bd5ae4d">
-        <cl:xylayoutdata std:sid="sxyl-data-9c138a57" top="523px" left="10px" width="725px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-9c138a57" top="523px" right="120px" left="10px" height="42px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:inputbox>
     <cl:button std:sid="button-4a3b3195" value="댓글 등록">
       <cl:listener std:sid="listener-a2064369" name="click" handler="onButtonClick3"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-f4e27218">
-        <cl:xylayoutdata std:sid="sxyl-data-bbb88b81" top="523px" left="770px" width="100px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-bbb88b81" top="523px" right="10px" left="914px" height="42px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
+    <cl:group std:sid="group-c6ee925d" id="grp1">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-9eb7b050">
+        <cl:xylayoutdata std:sid="sxyl-data-a57b7484" top="160px" left="430px" width="330px" height="353px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+      </cl:responsivexylayoutdata>
+      <cl:htmlsnippet std:sid="htmlsnippet-f1862d32" id="snippet">
+        <cl:verticaldata std:sid="v-data-25d82625" width="586px" height="353px" autosize="height"/>
+      </cl:htmlsnippet>
+      <cl:verticallayout std:sid="v-layout-31ab9a73"/>
+    </cl:group>
     <cl:responsivexylayout std:sid="r-xylayout-22d199fb"/>
   </body>
   <std:studiosetting>
