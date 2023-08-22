@@ -62,4 +62,7 @@
 	 DELETE from planner where "PLANNER_NO" = #{plannerNo}
 	
 	</delete>
+	<select id="getContentIdListByPlannerNo" parameterType="int" resultType="org.kosta.fourguys.vo.PlanVO">
+	SELECT content_id FROM PLAN WHERE planner_no = #{plannerNo} AND content_id is not null
+	</select>
 </mapper>

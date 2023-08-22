@@ -17,6 +17,7 @@ function onBodyLoad(e) {
 	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 	app.lookup("planDetail").send();
 	app.lookup("searchbtn").click();
+	app.lookup("getContentIdList").send();
 	
 }
 
@@ -147,4 +148,44 @@ function onButtonClick2(e) {
 	app.lookup("cancelPlanner").send();
 	alert("취소되었습니다");
 	location.href = "selectDestinationForm";
+}
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onAreaListSubmitSuccess(e) {
+	var areaList = e.control;
+	var grid = app.lookup("grd2")
+	var plannerDetail = app.lookup("plannerDetail");
+	var list = [];
+	for (let i = 0; i < plannerDetail.getRowCount(); i++) {
+		var contentId = plannerDetail.getRow(i).getValue("contentId");
+		list.push(contentId);
+	
+	}
+	for (var j = 0; j < grid.getRowCount(); j++) {
+		var contentIdd = grid.getRow(j).getValue("contentid");
+		//console.log(contentIdd);
+		if (list.indexOf(contentIdd)!=-1){
+			grid.setCheckRowIndex(j, true);
+		}
+	}
+}
+
+
+
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onGetContentIdListSubmitSuccess(e) {
+	var getContentIdList = e.control;
+	var grd2 = app.lookup("grd2");
+	for (var i = 0; i < grd2.getRowCount(); i++) {
+		var contentIdd = grd2.getRow(i).getValue("contentid");
+		
+	}
+	
 }

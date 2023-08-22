@@ -30,6 +30,7 @@
 				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 				app.lookup("planDetail").send();
 				app.lookup("searchbtn").click();
+				app.lookup("getContentIdList").send();
 				
 			}
 
@@ -161,6 +162,46 @@
 				alert("취소되었습니다");
 				location.href = "selectDestinationForm";
 			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onAreaListSubmitSuccess(e) {
+				var areaList = e.control;
+				var grid = app.lookup("grd2")
+				var plannerDetail = app.lookup("plannerDetail");
+				var list = [];
+				for (let i = 0; i < plannerDetail.getRowCount(); i++) {
+					var contentId = plannerDetail.getRow(i).getValue("contentId");
+					list.push(contentId);
+				
+				}
+				for (var j = 0; j < grid.getRowCount(); j++) {
+					var contentIdd = grid.getRow(j).getValue("contentid");
+					//console.log(contentIdd);
+					if (list.indexOf(contentIdd)!=-1){
+						grid.setCheckRowIndex(j, true);
+					}
+				}
+			}
+
+
+
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onGetContentIdListSubmitSuccess(e) {
+				var getContentIdList = e.control;
+				var grd2 = app.lookup("grd2");
+				for (var i = 0; i < grd2.getRowCount(); i++) {
+					var contentIdd = grd2.getRow(i).getValue("contentid");
+					
+				}
+				
+			}
 			// End - User Script
 			
 			// Header
@@ -230,7 +271,8 @@
 					{
 						"name": "plannerLastDay",
 						"dataType": "string"
-					}
+					},
+					{"name": "contentId"}
 				]
 			});
 			app.register(dataSet_3);
@@ -399,6 +441,9 @@
 			submission_5.action = "/findAllArea";
 			submission_5.addRequestData(dataMap_6);
 			submission_5.addResponseData(dataSet_4, false);
+			if(typeof onAreaListSubmitSuccess == "function") {
+				submission_5.addEventListener("submit-success", onAreaListSubmitSuccess);
+			}
 			app.register(submission_5);
 			
 			var submission_6 = new cpr.protocols.Submission("dayBtnSM");
@@ -432,6 +477,17 @@
 			submission_10.action = "cancelPlanner";
 			submission_10.addRequestData(dataMap_3);
 			app.register(submission_10);
+			
+			var submission_11 = new cpr.protocols.Submission("getContentIdList");
+			submission_11.async = false;
+			submission_11.method = "get";
+			submission_11.action = "getContentIdList";
+			submission_11.addRequestData(dataMap_3);
+			submission_11.addResponseData(dataSet_3, false);
+			if(typeof onGetContentIdListSubmitSuccess == "function") {
+				submission_11.addEventListener("submit-success", onGetContentIdListSubmitSuccess);
+			}
+			app.register(submission_11);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");

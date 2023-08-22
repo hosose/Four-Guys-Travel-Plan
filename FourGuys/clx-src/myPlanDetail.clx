@@ -32,6 +32,7 @@
           <cl:datacolumn std:sid="d-column-65232ab3" name="plannerTitle" datatype="string"/>
           <cl:datacolumn std:sid="d-column-0fec3f10" name="plannerStartDate" datatype="string"/>
           <cl:datacolumn std:sid="d-column-42ac5d5c" name="plannerLastDay" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-49293315" name="contentId"/>
         </cl:datacolumnlist>
       </cl:dataset>
       <cl:dataset std:sid="d-set-0ee31105" id="jeju">
@@ -111,6 +112,7 @@
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-67bd9f31" id="areaList" method="get" action="/findAllArea">
+        <cl:listener std:sid="listener-c55e47d2" name="submit-success" handler="onAreaListSubmitSuccess"/>
         <cl:requestdata dataid="areaSearch"/>
         <cl:responsedata dataid="jeju"/>
       </cl:submission>
@@ -133,6 +135,11 @@
       </cl:submission>
       <cl:submission std:sid="submission-9505b4f1" id="cancelPlanner" action="cancelPlanner">
         <cl:requestdata dataid="plannerNoDM"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-6fe246b1" id="getContentIdList" async="false" method="get" action="getContentIdList">
+        <cl:listener std:sid="listener-101da2f4" name="submit-success" handler="onGetContentIdListSubmitSuccess"/>
+        <cl:requestdata dataid="plannerNoDM"/>
+        <cl:responsedata dataid="plannerDetail"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
