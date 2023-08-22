@@ -32,9 +32,11 @@ function onGrd4Click(e) {
 	var mapx = grid.getSelectedRow().getValue("mapx");
 	var mapy = grid.getSelectedRow().getValue("mapy");
 	var title = grid.getSelectedRow().getValue("title");
+	var firstimage = grid.getSelectedRow().getValue("firstimage");
 	var embp_mapx = embp.setPageProperty("mapx", mapx);
 	var embp_mapy = embp.setPageProperty("mapy", mapy);
 	var embp_title = embp.setPageProperty("title", title);
+	var embp_firstimage = embp.setPageProperty("firstimage", firstimage);
 	embp.callPageMethod("panTo");
 }
 
@@ -97,9 +99,11 @@ function onGrd2Click(e) {
 	var mapx = grid.getSelectedRow().getValue("mapx");
 	var mapy = grid.getSelectedRow().getValue("mapy");
 	var title = grid.getSelectedRow().getValue("title");
+	var firstimage = grid.getSelectedRow().getValue("firstimage");
 	var embp_mapx = embp.setPageProperty("mapx", mapx);
 	var embp_mapy = embp.setPageProperty("mapy", mapy);
 	var embp_title = embp.setPageProperty("title", title);
+	var embp_firstimage = embp.setPageProperty("firstimage", firstimage);
 	embp.callPageMethod("panTo");
 }
 
@@ -162,19 +166,16 @@ function onAreaListSubmitSuccess(e) {
 	for (let i = 0; i < plannerDetail.getRowCount(); i++) {
 		var contentId = plannerDetail.getRow(i).getValue("contentId");
 		list.push(contentId);
-	
+		
 	}
 	for (var j = 0; j < grid.getRowCount(); j++) {
 		var contentIdd = grid.getRow(j).getValue("contentid");
 		//console.log(contentIdd);
-		if (list.indexOf(contentIdd)!=-1){
+		if (list.indexOf(contentIdd) != -1) {
 			grid.setCheckRowIndex(j, true);
 		}
 	}
 }
-
-
-
 
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
