@@ -28,4 +28,9 @@ public class ReplyServiceImpl implements ReplyService {
 	public int deleteReply(ReplyVO replayNo) {
 		return replyMapper.deleteReply(replayNo);
 	}
+
+	@Override
+	public int editReply(ReplyVO replyVO) {
+		return replyMapper.editReply(replyVO);
+	}
 }
