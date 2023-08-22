@@ -89,6 +89,11 @@
           <cl:datacolumn std:sid="d-column-8c992d2d" name="ID"/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-e81dea6b" id="replyBoardNoDM">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-ee8c7b55" name="REPLY_NO" datatype="number"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-e6c83257" id="boardDetailSM" method="get" action="boardDetail">
         <cl:listener std:sid="listener-f761c020" name="submit-success" handler="onBoardDetailSMSubmitSuccess2"/>
         <cl:requestdata dataid="plannerBoardNoDM"/>
@@ -124,7 +129,13 @@
         <cl:responsedata dataid="boardReply"/>
       </cl:submission>
       <cl:submission std:sid="submission-d06af47d" id="replyListSM" method="get" action="findReplyBoardByNo">
+        <cl:listener std:sid="listener-8e1b9899" name="submit-success" handler="onReplyListSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerBoardNoDM"/>
+        <cl:responsedata dataid="boardReply"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-41425780" id="deleteReplySM" method="delete" action="deleteReply">
+        <cl:listener std:sid="listener-fcba885f" name="submit-success" handler="onDeleteReplySMSubmitSuccess"/>
+        <cl:requestdata dataid="replyBoardNoDM"/>
         <cl:responsedata dataid="boardReply"/>
       </cl:submission>
     </cl:model>
@@ -246,29 +257,31 @@
     </cl:button>
     <cl:grid std:sid="grid-011a3e31" id="grd5" datasetid="boardReply">
       <cl:responsivexylayoutdata std:sid="rxyl-data-05d09893">
-        <cl:xylayoutdata std:sid="sxyl-data-0f068377" right="10px" bottom="10px" left="10px" height="178px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-0f068377" top="580px" right="10px" bottom="10px" left="10px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-0540b1cf" width="85px"/>
       <cl:gridcolumn std:sid="g-column-1ace8bf0" width="85px"/>
       <cl:gridcolumn std:sid="g-column-c9ceb7fd" width="150px"/>
       <cl:gridcolumn std:sid="g-column-a4c1f1bc"/>
       <cl:gridcolumn std:sid="g-column-57b2b23c" width="85px"/>
+      <cl:gridcolumn std:sid="g-column-d0b3493e"/>
+      <cl:gridcolumn std:sid="g-column-98d6a76d"/>
       <cl:gridheader std:sid="gh-band-878f9613">
         <cl:gridrow std:sid="g-row-173a16d8"/>
         <cl:gridcell std:sid="gh-cell-ff21fd94" rowindex="0" colindex="0" targetcolumnname="replyNo" sortable="false" filterable="false" text="댓글번호"/>
-        <cl:gridcell std:sid="gh-cell-57b0d8c9" rowindex="0" colindex="1" targetcolumnname="boardNo" sortable="false" filterable="false" text="게시글 번호"/>
+        <cl:gridcell std:sid="gh-cell-57b0d8c9" rowindex="0" colindex="1" sortable="false" filterable="false" text="게시글 번호"/>
         <cl:gridcell std:sid="gh-cell-d9027a7b" rowindex="0" colindex="2" targetcolumnname="replyContent" sortable="false" filterable="false" text="내용"/>
         <cl:gridcell std:sid="gh-cell-80083a06" rowindex="0" colindex="3" targetcolumnname="replyDate" sortable="false" filterable="false" text="댓글 등록 날짜"/>
         <cl:gridcell std:sid="gh-cell-751c4266" rowindex="0" colindex="4" targetcolumnname="id" sortable="false" filterable="false" text="아이디"/>
+        <cl:gridcell std:sid="gh-cell-4f1ff4ee" rowindex="0" colindex="5"/>
+        <cl:gridcell std:sid="gh-cell-dbefef39" rowindex="0" colindex="6"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-e7b65e7b">
         <cl:gridrow std:sid="g-row-96262eaa"/>
         <cl:gridcell std:sid="gd-cell-56c32b08" rowindex="0" colindex="0" columnname="replyNo">
           <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="replyNo"/>
         </cl:gridcell>
-        <cl:gridcell std:sid="gd-cell-f8f1f280" rowindex="0" colindex="1" columnname="boardNo">
-          <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="boardNo"/>
-        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-f8f1f280" rowindex="0" colindex="1"/>
         <cl:gridcell std:sid="gd-cell-b3c1ae30" rowindex="0" colindex="2" columnname="replyContent">
           <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="replyContent"/>
         </cl:gridcell>
@@ -277,6 +290,17 @@
         </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-db8eec63" rowindex="0" colindex="4" columnname="id">
           <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="id"/>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-b7ea2f5a" rowindex="0" colindex="5">
+          <cl:button std:sid="button-b5ee1ddc" id="replyEdit" visible="false" value="댓글 수정">
+            <cl:celldata std:sid="c-data-fc8e8c62"/>
+          </cl:button>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-fc54c13c" rowindex="0" colindex="6">
+          <cl:button std:sid="button-d328c188" id="replyDelete" visible="false" value="댓글 삭제">
+            <cl:listener std:sid="listener-10228fc6" name="click" handler="onButtonClick4"/>
+            <cl:celldata std:sid="c-data-2dc7ebb4"/>
+          </cl:button>
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
@@ -289,7 +313,7 @@
     <cl:button std:sid="button-4a3b3195" value="댓글 등록">
       <cl:listener std:sid="listener-a2064369" name="click" handler="onButtonClick3"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-f4e27218">
-        <cl:xylayoutdata std:sid="sxyl-data-bbb88b81" top="523px" right="10px" left="914px" height="42px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-bbb88b81" top="523px" right="10px" width="100px" height="42px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
     <cl:group std:sid="group-c6ee925d" id="grp1">
@@ -301,20 +325,6 @@
       </cl:htmlsnippet>
       <cl:verticallayout std:sid="v-layout-31ab9a73"/>
     </cl:group>
-    <cl:grid std:sid="grid-26a76cb5" id="grd2" visible="false" datasetid="boardDetail" resizablecolumns="all">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-04cc7187">
-        <cl:xylayoutdata std:sid="sxyl-data-f2eface0" top="13px" left="329px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-      <cl:gridcolumn std:sid="g-column-759ef8c4"/>
-      <cl:gridheader std:sid="gh-band-9c52804f">
-        <cl:gridrow std:sid="g-row-5442b49b"/>
-        <cl:gridcell std:sid="gh-cell-a6493551" rowindex="0" colindex="0" targetcolumnname="boardContent" sortable="false" filterable="false" text="boardContent"/>
-      </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-40b17f28">
-        <cl:gridrow std:sid="g-row-381de9c8"/>
-        <cl:gridcell std:sid="gd-cell-394c0961" rowindex="0" colindex="0" columnname="boardContent"/>
-      </cl:griddetail>
-    </cl:grid>
     <cl:responsivexylayout std:sid="r-xylayout-22d199fb"/>
   </body>
   <std:studiosetting>

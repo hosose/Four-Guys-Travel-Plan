@@ -8,4 +8,7 @@ VALUES(board_reply_seq.NEXTVAL,#{boardNo},sysdate, #{replyContent}, #{Id})
 <select id="findReplyByNo" parameterType="org.kosta.fourguys.vo.ReplyVO">
 SELECT * FROM board_reply WHERE board_no = #{board_no}
 </select>
+<delete id="deleteReply" parameterType="org.kosta.fourguys.vo.ReplyVO">
+delete board_reply where reply_no=#{replyNo}
+</delete>
 </mapper>

@@ -9,4 +9,6 @@ public interface ReplyService {
 	public int insertReply(ReplyVO replyVO);
 
 	public List<ReplyVO> findReplyByNo(int boardNo);
+
+	public int deleteReply(ReplyVO replyNo);
 }

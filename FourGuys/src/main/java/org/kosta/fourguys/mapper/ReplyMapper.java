@@ -12,4 +12,6 @@ public interface ReplyMapper {
 
 	public List<ReplyVO> findReplyByNo(int boardNo);
 
+	public int deleteReply(ReplyVO replayNo);
+
 }

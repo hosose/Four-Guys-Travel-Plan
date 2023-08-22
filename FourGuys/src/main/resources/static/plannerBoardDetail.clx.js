@@ -70,7 +70,6 @@
 
 			}
 
-
 			/*
 			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -106,15 +105,15 @@
 				if(vo["id"]==value){
 					editBtn.visible = true;
 					deleteBtn.visible=true;
-				app.lookup("snippet").value = app.lookup("grd2").dataSet.getValue(0, "boardContent");
 				}
+				app.lookup("snippet").value = app.lookup("boardDetail").getValue(0, "boardContent");
 			}
 
 			/*
 			 * "댓글 등록" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick3(e){
+			function onButtonClick3(e) {
 				var button = e.control;
 				app.lookup("insertReplySM").send();
 			}
@@ -123,11 +122,57 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onInsertReplySMSubmitSuccess(e){
+			function onInsertReplySMSubmitSuccess(e) {
 				var insertReplySM = e.control;
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-				location.href="boardDetailPage/"+boardNo;
+				location.href = "boardDetailPage/" + boardNo;
+			}
+
+			/*
+			 * "댓글 삭제" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick4(e) {
+				var button = e.control;
+				var currentUrl = location.href;
+				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+				if (!confirm("삭제하시겠습니까?")) {
+					alert("취소되었습니다");
+				} else {
+					var replyNo = app.lookup("grd5").getSelectedRow().getValue("replyNo");
+					app.lookup("replyBoardNoDM").setValue("REPLY_NO", replyNo);
+					app.lookup("deleteReplySM").send();
+					alert("삭제되었습니다");
+					location.href="boardDetailPage/"+boardNo;
+				}
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onDeleteReplySMSubmitSuccess(e){
+				var deleteReplySM = e.control;
+				var boardDetailSM = e.control;
+				var replyNo = app.lookup("grd5").getRow(0).getValue("replyNo");
+				app.lookup("replyBoardNoDM").setValue("replyNo", replyNo);
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onReplyListSMSubmitSuccess(e){
+				var replyListSM = e.control;
+				var vo = replyListSM.getMetadata("MemberVO");
+				var editBtn = app.lookup("replyEdit");
+				var deleteBtn = app.lookup("replyDelete");
+				var value = app.lookup("boardReply").getValue(0, "id");
+				if(vo["id"]==value){
+					editBtn.visible = true;
+					deleteBtn.visible=true;
+				}
 			};
 			// End - User Script
 			
@@ -312,6 +357,15 @@
 				]
 			});
 			app.register(dataMap_7);
+			
+			var dataMap_8 = new cpr.data.DataMap("replyBoardNoDM");
+			dataMap_8.parseData({
+				"columns" : [{
+					"name": "REPLY_NO",
+					"dataType": "number"
+				}]
+			});
+			app.register(dataMap_8);
 			var submission_1 = new cpr.protocols.Submission("boardDetailSM");
 			submission_1.method = "get";
 			submission_1.action = "boardDetail";
@@ -378,7 +432,20 @@
 			submission_9.action = "findReplyBoardByNo";
 			submission_9.addRequestData(dataMap_1);
 			submission_9.addResponseData(dataSet_4, false);
+			if(typeof onReplyListSMSubmitSuccess == "function") {
+				submission_9.addEventListener("submit-success", onReplyListSMSubmitSuccess);
+			}
 			app.register(submission_9);
+			
+			var submission_10 = new cpr.protocols.Submission("deleteReplySM");
+			submission_10.method = "delete";
+			submission_10.action = "deleteReply";
+			submission_10.addRequestData(dataMap_8);
+			submission_10.addResponseData(dataSet_4, false);
+			if(typeof onDeleteReplySMSubmitSuccess == "function") {
+				submission_10.addEventListener("submit-success", onDeleteReplySMSubmitSuccess);
+			}
+			app.register(submission_10);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -894,7 +961,9 @@
 					{"width": "85px"},
 					{"width": "150px"},
 					{"width": "100px"},
-					{"width": "85px"}
+					{"width": "85px"},
+					{"width": "100px"},
+					{"width": "100px"}
 				],
 				"header": {
 					"rows": [{"height": "24px"}],
@@ -913,7 +982,6 @@
 							"configurator": function(cell){
 								cell.filterable = false;
 								cell.sortable = false;
-								cell.targetColumnName = "boardNo";
 								cell.text = "게시글 번호";
 							}
 						},
@@ -943,6 +1011,16 @@
 								cell.targetColumnName = "id";
 								cell.text = "아이디";
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 6},
+							"configurator": function(cell){
+							}
 						}
 					]
 				},
@@ -959,8 +1037,6 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 1},
 							"configurator": function(cell){
-								cell.columnName = "boardNo";
-								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "boardNo", 0);
 							}
 						},
 						{
@@ -983,6 +1059,33 @@
 								cell.columnName = "id";
 								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "id", 0);
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_3 = new cpr.controls.Button("replyEdit");
+									button_3.visible = false;
+									button_3.value = "댓글 수정";
+									return button_3;
+								})();
+								cell.controlConstraint = {};
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 6},
+							"configurator": function(cell){
+								cell.control = (function(){
+									var button_4 = new cpr.controls.Button("replyDelete");
+									button_4.visible = false;
+									button_4.value = "댓글 삭제";
+									if(typeof onButtonClick4 == "function") {
+										button_4.addEventListener("click", onButtonClick4);
+									}
+									return button_4;
+								})();
+								cell.controlConstraint = {};
+							}
 						}
 					]
 				}
@@ -991,24 +1094,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
+						"top": "580px",
 						"right": "10px",
 						"bottom": "10px",
-						"left": "10px",
-						"height": "178px"
+						"left": "10px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "580px",
 						"right": "5px",
 						"bottom": "10px",
-						"left": "5px",
-						"height": "178px"
+						"left": "5px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
+						"top": "580px",
 						"right": "3px",
 						"bottom": "10px",
-						"left": "3px",
-						"height": "178px"
+						"left": "3px"
 					}
 				]
 			});
@@ -1044,32 +1147,32 @@
 				]
 			});
 			
-			var button_3 = new cpr.controls.Button();
-			button_3.value = "댓글 등록";
+			var button_5 = new cpr.controls.Button();
+			button_5.value = "댓글 등록";
 			if(typeof onButtonClick3 == "function") {
-				button_3.addEventListener("click", onButtonClick3);
+				button_5.addEventListener("click", onButtonClick3);
 			}
-			container.addChild(button_3, {
+			container.addChild(button_5, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "523px",
 						"right": "10px",
-						"left": "914px",
+						"width": "100px",
 						"height": "42px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "523px",
 						"right": "5px",
-						"left": "446px",
+						"width": "49px",
 						"height": "42px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "523px",
 						"right": "3px",
-						"left": "312px",
+						"width": "34px",
 						"height": "42px"
 					}
 				]
@@ -1108,60 +1211,6 @@
 						"left": "147px",
 						"width": "113px",
 						"height": "353px"
-					}
-				]
-			});
-			
-			var grid_5 = new cpr.controls.Grid("grd2");
-			grid_5.visible = false;
-			grid_5.init({
-				"dataSet": app.lookup("boardDetail"),
-				"resizableColumns": "all",
-				"columns": [{"width": "100px"}],
-				"header": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.filterable = false;
-							cell.sortable = false;
-							cell.targetColumnName = "boardContent";
-							cell.text = "boardContent";
-						}
-					}]
-				},
-				"detail": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.columnName = "boardContent";
-						}
-					}]
-				}
-			});
-			container.addChild(grid_5, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "13px",
-						"left": "329px",
-						"width": "10px",
-						"height": "10px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "13px",
-						"left": "161px",
-						"width": "5px",
-						"height": "10px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "13px",
-						"left": "112px",
-						"width": "3px",
-						"height": "10px"
 					}
 				]
 			});
