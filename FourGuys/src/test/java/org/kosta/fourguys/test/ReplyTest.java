@@ -31,4 +31,10 @@ public class ReplyTest {
 		List<ReplyVO> replyList = replyMapper.findReplyByNo(boardNo);
 		System.out.println(replyList);
 	}
+
+	@Test
+	public void deleteReply() {
+		// int replyNo = 41;
+		// replyMapper.deleteReply(replyNo);
+	}
 }

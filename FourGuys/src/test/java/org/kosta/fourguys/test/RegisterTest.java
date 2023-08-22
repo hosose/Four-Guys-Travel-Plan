@@ -7,10 +7,7 @@ import org.kosta.fourguys.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import lombok.extern.slf4j.Slf4j;
-
 @SpringBootTest
-@Slf4j
 public class RegisterTest {
 	@Autowired
 	MemberService memberService;
@@ -31,15 +28,15 @@ public class RegisterTest {
 		String phone = "010-000-0000";
 
 		MemberVO vo = new MemberVO(id, password, name, address, email, phone, birth);
-		 int result = memberService.registerMember(vo);
-		
+		int result = memberService.registerMember(vo);
+
 		Assertions.assertEquals(1, result);
 	}
-	
+
 	@Test
 	public void idDuplicateCheck() {
 		int result = memberService.checkDuplicateId("java");
-		
+
 		Assertions.assertEquals(1, result);
 	}
 }

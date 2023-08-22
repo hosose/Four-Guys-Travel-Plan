@@ -57,7 +57,6 @@ function onButtonClick(e) {
 
 }
 
-
 /*
  * "삭제" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -86,25 +85,24 @@ function onBoardDetailSMSubmitSuccess2(e) {
 	app.lookup("createDateOutput").redraw();
 	app.lookup("idOutput").redraw();
 	var plannerNo = app.lookup("boardDetail").getRow(0).getValue("plannerNo");
+	var createrId = app.lookup("boardDetail").getRow(0).getValue("id");
 	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 	app.lookup("getDay").send();
 	var vo = boardDetailSM.getMetadata("MemberVO");
 	var editBtn = app.lookup("editBtn");
 	var deleteBtn = app.lookup("deleteBtn");
-	var boardDetail = app.lookup("boardDetail");
-	var value = boardDetail.getRow(0).getValue("id");
-	app.lookup("snippet").value = app.lookup("boardDetail").getRow(0).getValue("boardContent")
-	if(vo["id"]==value){
+	if(vo["id"]==createrId){
 		editBtn.visible = true;
 		deleteBtn.visible=true;
 	}
+	app.lookup("snippet").value = app.lookup("boardDetail").getValue(0, "boardContent");
 }
 
 /*
  * "댓글 등록" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onButtonClick3(e){
+function onButtonClick3(e) {
 	var button = e.control;
 	app.lookup("insertReplySM").send();
 }
@@ -113,9 +111,55 @@ function onButtonClick3(e){
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
  */
-function onInsertReplySMSubmitSuccess(e){
+function onInsertReplySMSubmitSuccess(e) {
 	var insertReplySM = e.control;
 	var currentUrl = location.href;
 	var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-	location.href="boardDetailPage/"+boardNo;
+	location.href = "boardDetailPage/" + boardNo;
+}
+
+/*
+ * "댓글 삭제" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick4(e) {
+	var button = e.control;
+	var currentUrl = location.href;
+	var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
+	if (!confirm("삭제하시겠습니까?")) {
+		alert("취소되었습니다");
+	} else {
+		var replyNo = app.lookup("grd5").getSelectedRow().getValue("replyNo");
+		app.lookup("replyBoardNoDM").setValue("REPLY_NO", replyNo);
+		app.lookup("deleteReplySM").send();
+		alert("삭제되었습니다");
+		location.href="boardDetailPage/"+boardNo;
+	}
+}
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onDeleteReplySMSubmitSuccess(e){
+	var deleteReplySM = e.control;
+	var boardDetailSM = e.control;
+	var replyNo = app.lookup("grd5").getRow(0).getValue("replyNo");
+	app.lookup("replyBoardNoDM").setValue("replyNo", replyNo);
+}
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onReplyListSMSubmitSuccess(e){
+	var replyListSM = e.control;
+	var vo = replyListSM.getMetadata("MemberVO");
+	var editBtn = app.lookup("replyEdit");
+	var deleteBtn = app.lookup("replyDelete");
+	var value = app.lookup("boardReply").getValue(0, "id");
+	if(vo["id"]==value){
+		editBtn.visible = true;
+		deleteBtn.visible=true;
+	}
 }
