@@ -15,7 +15,6 @@
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
-
 			function onBodyLoad(e) {
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
@@ -101,8 +100,8 @@
 				var editBtn = app.lookup("editBtn");
 				var deleteBtn = app.lookup("deleteBtn");
 				var grid = app.lookup("grd1");
-				var value = grid.getRow(0).getValue("id");
-				if(vo["id"]==value){
+				var value = grid.getRow(0).getValue("replyId");
+				if(vo["replyId"]==value){
 					editBtn.visible = true;
 					deleteBtn.visible=true;
 				}
@@ -160,18 +159,21 @@
 			}
 
 			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
+			 * "댓글 수정" 버튼(replyEdit)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onReplyListSMSubmitSuccess(e){
-				var replyListSM = e.control;
-				var vo = replyListSM.getMetadata("MemberVO");
-				var editBtn = app.lookup("replyEdit");
-				var deleteBtn = app.lookup("replyDelete");
-				var value = app.lookup("boardReply").getValue(0, "id");
-				if(vo["id"]==value){
-					editBtn.visible = true;
-					deleteBtn.visible=true;
+			function onReplyEditClick(e){
+				var replyEdit = e.control;
+			//	app.openDialog("replyEdit", {width : 800, height : 300}, function(dialog){
+			//		dialog.ready(function(dialogApp){
+			//			
+			//		});
+			//	}).then(function(returnValue){
+			//		;
+			//	});
+				if (confirm("수정하시겠습니까?")){
+					app.lookup("editReplySM").send();
+					location.reload();
 				}
 			};
 			// End - User Script
@@ -271,7 +273,7 @@
 						"dataType": "string"
 					},
 					{
-						"name": "id",
+						"name": "replyId",
 						"dataType": "string"
 					}
 				]
@@ -366,6 +368,12 @@
 				}]
 			});
 			app.register(dataMap_8);
+			
+			var dataMap_9 = new cpr.data.DataMap("MemberVO");
+			dataMap_9.parseData({
+				"columns" : [{"name": "id"}]
+			});
+			app.register(dataMap_9);
 			var submission_1 = new cpr.protocols.Submission("boardDetailSM");
 			submission_1.method = "get";
 			submission_1.action = "boardDetail";
@@ -432,6 +440,7 @@
 			submission_9.action = "findReplyBoardByNo";
 			submission_9.addRequestData(dataMap_1);
 			submission_9.addResponseData(dataSet_4, false);
+			submission_9.addResponseData(dataMap_9, false);
 			if(typeof onReplyListSMSubmitSuccess == "function") {
 				submission_9.addEventListener("submit-success", onReplyListSMSubmitSuccess);
 			}
@@ -446,6 +455,15 @@
 				submission_10.addEventListener("submit-success", onDeleteReplySMSubmitSuccess);
 			}
 			app.register(submission_10);
+			
+			var submission_11 = new cpr.protocols.Submission("editReplySM");
+			submission_11.method = "put";
+			submission_11.action = "editReply";
+			submission_11.addRequestData(dataSet_4);
+			if(typeof onEditReplySMSubmitSuccess == "function") {
+				submission_11.addEventListener("submit-success", onEditReplySMSubmitSuccess);
+			}
+			app.register(submission_11);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -956,14 +974,25 @@
 			var grid_4 = new cpr.controls.Grid("grd5");
 			grid_4.init({
 				"dataSet": app.lookup("boardReply"),
+				"autoRowHeight": "none",
+				"autoFit": "0, 2",
+				"resizableColumns": "none",
 				"columns": [
-					{"width": "85px"},
+					{
+						"width": "85px",
+						"visible": false
+					},
 					{"width": "85px"},
 					{"width": "150px"},
 					{"width": "100px"},
-					{"width": "85px"},
-					{"width": "100px"},
-					{"width": "100px"}
+					{
+						"width": "100px",
+						"visible": true
+					},
+					{
+						"width": "100px",
+						"visible": true
+					}
 				],
 				"header": {
 					"rows": [{"height": "24px"}],
@@ -972,7 +1001,7 @@
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.filterable = false;
-								cell.sortable = false;
+								cell.sortable = true;
 								cell.targetColumnName = "replyNo";
 								cell.text = "댓글번호";
 							}
@@ -982,7 +1011,8 @@
 							"configurator": function(cell){
 								cell.filterable = false;
 								cell.sortable = false;
-								cell.text = "게시글 번호";
+								cell.targetColumnName = "replyId";
+								cell.text = "아이디";
 							}
 						},
 						{
@@ -1006,19 +1036,11 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "id";
-								cell.text = "아이디";
+								cell.text = "";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 5},
-							"configurator": function(cell){
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 6},
 							"configurator": function(cell){
 							}
 						}
@@ -1037,6 +1059,8 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 1},
 							"configurator": function(cell){
+								cell.columnName = "replyId";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyId", 0);
 							}
 						},
 						{
@@ -1044,6 +1068,13 @@
 							"configurator": function(cell){
 								cell.columnName = "replyContent";
 								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyContent", 0);
+								cell.control = (function(){
+									var inputBox_1 = new cpr.controls.InputBox("ipb2");
+									inputBox_1.bind("readOnly").toExpression("replyId != #MemberVO.id ? true : false");
+									inputBox_1.bind("value").toDataColumn("replyContent");
+									return inputBox_1;
+								})();
+								cell.controlConstraint = {};
 							}
 						},
 						{
@@ -1056,29 +1087,25 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
-								cell.columnName = "id";
-								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "id", 0);
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 5},
-							"configurator": function(cell){
 								cell.control = (function(){
 									var button_3 = new cpr.controls.Button("replyEdit");
-									button_3.visible = false;
 									button_3.value = "댓글 수정";
+									button_3.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
+									if(typeof onReplyEditClick == "function") {
+										button_3.addEventListener("click", onReplyEditClick);
+									}
 									return button_3;
 								})();
 								cell.controlConstraint = {};
 							}
 						},
 						{
-							"constraint": {"rowIndex": 0, "colIndex": 6},
+							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
 								cell.control = (function(){
 									var button_4 = new cpr.controls.Button("replyDelete");
-									button_4.visible = false;
 									button_4.value = "댓글 삭제";
+									button_4.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
 									if(typeof onButtonClick4 == "function") {
 										button_4.addEventListener("click", onButtonClick4);
 									}
@@ -1116,12 +1143,12 @@
 				]
 			});
 			
-			var inputBox_1 = new cpr.controls.InputBox("ipb1");
-			inputBox_1.style.css({
+			var inputBox_2 = new cpr.controls.InputBox("ipb1");
+			inputBox_2.style.css({
 				"text-align" : "center"
 			});
-			inputBox_1.bind("value").toDataMap(app.lookup("replyDM"), "REPLY_CONTENT");
-			container.addChild(inputBox_1, {
+			inputBox_2.bind("value").toDataMap(app.lookup("replyDM"), "REPLY_CONTENT");
+			container.addChild(inputBox_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
