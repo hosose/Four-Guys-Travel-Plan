@@ -34,16 +34,16 @@
       <cl:listener std:sid="listener-571ec24d" name="click" handler="onSelectBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-d2cf1afa" bottom="50px" width="180px" height="40px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM"/>
     </cl:button>
-    <cl:grid std:sid="grid-b3d09715" id="grd1" datasetid="plannerVO">
+    <cl:grid std:sid="grid-b3d09715" id="plannerGrd" datasetid="plannerVO">
       <cl:xylayoutdata std:sid="xyl-data-a902b8fd" top="20px" width="550px" height="250px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
       <cl:gridcolumn std:sid="g-column-b69f1b94"/>
       <cl:gridcolumn std:sid="g-column-36ef6ff4"/>
       <cl:gridcolumn std:sid="g-column-dc637fb2"/>
       <cl:gridheader std:sid="gh-band-d0916c67">
         <cl:gridrow std:sid="g-row-9df9946d"/>
-        <cl:gridcell std:sid="gh-cell-60dd46b9" rowindex="0" colindex="0" targetcolumnname="plannerTitle" sortable="false" filterable="false" text="plannerTitle"/>
-        <cl:gridcell std:sid="gh-cell-2c95e3d3" rowindex="0" colindex="1" targetcolumnname="plannerStartDate" sortable="false" filterable="false" text="plannerStartDate"/>
-        <cl:gridcell std:sid="gh-cell-63175264" rowindex="0" colindex="2" targetcolumnname="plannerLastDay" sortable="false" filterable="false" text="plannerLastDay"/>
+        <cl:gridcell std:sid="gh-cell-60dd46b9" rowindex="0" colindex="0" targetcolumnname="plannerTitle" sortable="false" filterable="false" text="플래너 제목"/>
+        <cl:gridcell std:sid="gh-cell-2c95e3d3" rowindex="0" colindex="1" targetcolumnname="plannerStartDate" sortable="false" filterable="false" text="시작일"/>
+        <cl:gridcell std:sid="gh-cell-63175264" rowindex="0" colindex="2" targetcolumnname="plannerLastDay" sortable="false" filterable="false" text="종료일"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-fbbfa418">
         <cl:gridrow std:sid="g-row-b1ffc023"/>

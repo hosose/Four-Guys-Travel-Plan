@@ -65,7 +65,7 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var button_1 = new cpr.controls.Button();
+			var button_1 = new cpr.controls.Button("createPlannerBtn");
 			button_1.value = "일정 만들기";
 			button_1.style.css({
 				"background-color" : "#306DC6",

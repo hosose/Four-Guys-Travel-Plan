@@ -56,9 +56,13 @@ public class BoardReplyController {
 		ParameterGroup plannerBoardNoDM = dataRequest.getParameterGroup("plannerBoardNoDM");
 		int boardNo = Integer.parseInt(plannerBoardNoDM.getValue("BOARD_NO"));
 		HttpSession session = request.getSession(false);
-		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
-		session = request.getSession(true);
-		session.setAttribute("memberVO", memberVO);
+		MemberVO memberVO = null;
+		if (session != null) {
+			memberVO = (MemberVO) session.getAttribute("memberVO");
+		} else {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
 		dataRequest.setResponse("MemberVO", memberVO);
 		dataRequest.setResponse("boardReply", replyService.findReplyByNo(boardNo));
 		return new JSONDataView();

@@ -27,7 +27,7 @@ function onBodyLoad(e) {
  */
 function onGrd4Click(e) {
 	var grd4 = e.control;
-	var grid = app.lookup("grd4");
+	var grid = app.lookup("selectedContentGrd");
 	var embp = app.lookup("ep1");
 	var mapx = grid.getSelectedRow().getValue("mapx");
 	var mapy = grid.getSelectedRow().getValue("mapy");
@@ -46,10 +46,10 @@ function onGrd4Click(e) {
  */
 function onGetDaySubmitSuccess(e) {
 	var getDay = e.control;
-	var grid = app.lookup("grd4");
+	var grid = app.lookup("selectedContentGrd");
 	grid.selectRows([0]);
 	//app.lookup("planDateOutput").value=1;
-	app.lookup("createPlanDM").setValue("planDate", 1);
+	app.lookup("planDM").setValue("planDate", 1);
 	
 }
 
@@ -59,11 +59,11 @@ function onGetDaySubmitSuccess(e) {
  */
 function onGrd3CellClick(e) {
 	var grd3 = e.control;
-	var grid = app.lookup("grd3");
+	var grid = app.lookup("dayGrd");
 	//var plannerNo = app.lookup("plannerNo").value;
 	var planDate = grid.getSelectedRow().getValue("planDate");
 	//app.lookup("planDateOutput").value=planDate;
-	app.lookup("createPlanDM").setValue("planDate", planDate);
+	app.lookup("planDM").setValue("planDate", planDate);
 	app.lookup("getTitle").send();
 }
 
@@ -94,7 +94,7 @@ function onSearchbtnClick(e) {
 function onGrd2Click(e) {
 	var grd2 = e.control;
 	
-	var grid = app.lookup("grd2");
+	var grid = app.lookup("contentGrd");
 	var embp = app.lookup("ep1");
 	var mapx = grid.getSelectedRow().getValue("mapx");
 	var mapy = grid.getSelectedRow().getValue("mapy");
@@ -113,9 +113,9 @@ function onGrd2Click(e) {
  */
 function onGrd2RowCheck(e) {
 	var grd2 = e.control;
-	var grid = app.lookup("grd2");
+	var grid = app.lookup("contentGrd");
 	var contentId = grid.getSelectedRow().getValue("contentid");
-	app.lookup("createPlanDM").setValue("contentid", contentId);
+	app.lookup("planDM").setValue("contentid", contentId);
 	app.lookup("createPlan").send();
 	
 }
@@ -127,7 +127,7 @@ function onGrd2RowCheck(e) {
 function onGrd2RowUncheck(e) {
 	var grd2 = e.control;
 	var contentId = grd2.getSelectedRow().getValue("contentid");
-	app.lookup("createPlanDM").setValue("contentid", contentId);
+	app.lookup("planDM").setValue("contentid", contentId);
 	app.lookup("deletePlan").send();
 	
 }
@@ -160,7 +160,7 @@ function onButtonClick2(e) {
  */
 function onAreaListSubmitSuccess(e) {
 	var areaList = e.control;
-	var grid = app.lookup("grd2")
+	var grid = app.lookup("contentGrd")
 	var plannerDetail = app.lookup("plannerDetail");
 	var list = [];
 	for (let i = 0; i < plannerDetail.getRowCount(); i++) {
@@ -183,7 +183,7 @@ function onAreaListSubmitSuccess(e) {
  */
 function onGetContentIdListSubmitSuccess(e) {
 	var getContentIdList = e.control;
-	var grd2 = app.lookup("grd2");
+	var grd2 = app.lookup("contentGrd");
 	for (var i = 0; i < grd2.getRowCount(); i++) {
 		var contentIdd = grd2.getRow(i).getValue("contentid");
 		

@@ -11,7 +11,6 @@ import org.kosta.fourguys.service.PlanService;
 import org.kosta.fourguys.service.PlannerService;
 import org.kosta.fourguys.vo.MemberVO;
 import org.kosta.fourguys.vo.PlanVO;
-import org.kosta.fourguys.vo.PlannerBoardVO;
 import org.kosta.fourguys.vo.PlannerVO;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,10 +77,10 @@ public class PlannerController {
 	@PostMapping("/createPlan")
 	public View createPlan(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
-		ParameterGroup createPlanParam = dataRequest.getParameterGroup("createPlanDM");
+		ParameterGroup planDM = dataRequest.getParameterGroup("planDM");
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
-		String contentId = createPlanParam.getValue("contentid");
-		String planDate = createPlanParam.getValue("planDate");
+		String contentId = planDM.getValue("contentid");
+		String planDate = planDM.getValue("planDate");
 		PlanVO plan = new PlanVO();
 		plan.setPlanDate(Integer.parseInt(planDate));
 		plan.setPlannerNo(plannerNo);
@@ -94,13 +93,12 @@ public class PlannerController {
 	@GetMapping("selectPlansByDate")
 	public View selectPlansByDate(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
-		ParameterGroup createPlanParam = dataRequest.getParameterGroup("createPlanDM");
+		ParameterGroup planDM = dataRequest.getParameterGroup("planDM");
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
-		String planDate = createPlanParam.getValue("planDate");
+		String planDate = planDM.getValue("planDate");
 		PlanVO selectedPlan = new PlanVO();
 		selectedPlan.setPlanDate(Integer.parseInt(planDate));
 		selectedPlan.setPlannerNo(plannerNo);
-		planService.getPlansByDate(selectedPlan);
 		dataRequest.setResponse("selectedPlan", planService.getPlansByDate(selectedPlan));
 		return new JSONDataView();
 	}
@@ -108,10 +106,10 @@ public class PlannerController {
 	@DeleteMapping("deletePlan")
 	public View deletePlan(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
-		ParameterGroup deletePlanParam = dataRequest.getParameterGroup("createPlanDM");
+		ParameterGroup planDM = dataRequest.getParameterGroup("planDM");
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
-		String planDate = deletePlanParam.getValue("planDate");
-		String contentId = deletePlanParam.getValue("contentid");
+		String planDate = planDM.getValue("planDate");
+		String contentId = planDM.getValue("contentid");
 		PlanVO plan = new PlanVO();
 		plan.setPlannerNo(plannerNo);
 		plan.setPlanDate(Integer.parseInt(planDate));
@@ -128,7 +126,6 @@ public class PlannerController {
 		PlannerVO savePlanner = new PlannerVO();
 		savePlanner.setPlannerNo(plannerNo);
 		plannerService.savePlannerByNo(savePlanner);
-
 		return new JSONDataView();
 	}
 
@@ -138,7 +135,6 @@ public class PlannerController {
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
 		PlannerVO cancelPlanner = new PlannerVO();
 		cancelPlanner.setPlannerNo(plannerNo);
-
 		plannerService.cancelPlannerByNo(cancelPlanner);
 		return new JSONDataView();
 	}
@@ -158,9 +154,7 @@ public class PlannerController {
 		plannerVO.setId(id);
 		plannerVO.setCompleteFlag("완성");
 		dataRequest.setResponse("completePlannerVO", plannerService.findCompletePlanner(plannerVO));
-
 		return new JSONDataView();
-
 	}
 
 	@GetMapping("findNotCompletePlanner")
@@ -179,9 +173,7 @@ public class PlannerController {
 		plannerVO.setId(id);
 		plannerVO.setCompleteFlag("미완성");
 		dataRequest.setResponse("notCompletePlannerVO", plannerService.findNotCompletePlanner(plannerVO));
-
 		return new JSONDataView();
-
 	}
 
 	@GetMapping("/myPlanDetail/{plannerNo}")
@@ -193,20 +185,18 @@ public class PlannerController {
 	public View findPlannerByNo(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		ParameterGroup plannerDetailParam = dataRequest.getParameterGroup("plannerNoDM");
 		int plannerNo = Integer.parseInt(plannerDetailParam.getValue("plannerNo"));
-		// plannerService.findPlannerByNo(plannerNo);
 		dataRequest.setResponse("plannerDetail", plannerService.findPlannerByNo(plannerNo));
 		return new JSONDataView();
 	}
-	
+
 	@DeleteMapping("deletePlanner")
 	public View deletePlanner(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
 		plannerService.deletePlannerByNo(plannerNo);
-		//dataRequest.setResponse("boardDetail", plannerBoardService.deleteBoard(plannerBoardVO));
 		return new JSONDataView();
 	}
-	
+
 	@GetMapping("getContentIdList")
 	public View getContentId(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
@@ -214,8 +204,4 @@ public class PlannerController {
 		dataRequest.setResponse("plannerDetail", plannerService.getContentIdListByPlannerNo(plannerNo));
 		return new JSONDataView();
 	}
-	
-	
-	
-
 }

@@ -24,7 +24,7 @@
 			 */
 			function onSelectBtnClick(e){
 				var createBtn = e.control;
-				var plannerGrd = app.lookup("grd1");
+				var plannerGrd = app.lookup("plannerGrd");
 				var plannerNo = plannerGrd.getSelectedRow().getValue("plannerNo");
 				app.close(plannerNo);
 			}
@@ -122,7 +122,7 @@
 				"left": "calc(50% - 90px)"
 			});
 			
-			var grid_1 = new cpr.controls.Grid("grd1");
+			var grid_1 = new cpr.controls.Grid("plannerGrd");
 			grid_1.init({
 				"dataSet": app.lookup("plannerVO"),
 				"columns": [
@@ -139,7 +139,7 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerTitle";
-								cell.text = "plannerTitle";
+								cell.text = "플래너 제목";
 							}
 						},
 						{
@@ -148,7 +148,7 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerStartDate";
-								cell.text = "plannerStartDate";
+								cell.text = "시작일";
 							}
 						},
 						{
@@ -157,7 +157,7 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerLastDay";
-								cell.text = "plannerLastDay";
+								cell.text = "종료일";
 							}
 						}
 					]

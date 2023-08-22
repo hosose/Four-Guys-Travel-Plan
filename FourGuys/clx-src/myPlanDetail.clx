@@ -71,7 +71,7 @@
           <cl:datacolumn std:sid="d-column-3611c5b7" name="plannerNo"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:datamap std:sid="d-map-e4ff96d8" id="createPlanDM">
+      <cl:datamap std:sid="d-map-e4ff96d8" id="planDM">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-f47e10bf" name="contentid"/>
           <cl:datacolumn std:sid="d-column-0f887bcf" name="planDate"/>
@@ -103,12 +103,12 @@
       <cl:submission std:sid="submission-d6b667c2" id="getDay" method="get" action="getDay">
         <cl:listener std:sid="listener-a0939060" name="submit-success" handler="onGetDaySubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="planDM"/>
         <cl:responsedata dataid="planDate"/>
       </cl:submission>
       <cl:submission std:sid="submission-6796ef8b" id="getTitle" method="get" action="selectPlansByDate">
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="planDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-67bd9f31" id="areaList" method="get" action="/findAllArea">
@@ -125,12 +125,12 @@
       </cl:submission>
       <cl:submission std:sid="submission-19ef9968" id="createPlan" action="createPlan">
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="planDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-b587fea4" id="deletePlan" method="delete" action="deletePlan">
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="planDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-9505b4f1" id="cancelPlanner" action="cancelPlanner">
@@ -155,7 +155,7 @@
     <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" style="border-right-style:solid; border-bottom-color:#ffffff; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-bottom-style:solid; border-right-color:#ffffff; border-top-style:solid;" src="thirdparty/maps/kakaoMapAPI.html">
       <cl:xylayoutdata std:sid="xyl-data-28a8e457" top="169px" right="10px" bottom="10px" left="659px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
     </cl:embeddedpage>
-    <cl:grid std:sid="grid-cccde53f" id="grd3" style="border-right-style:solid; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid;" datasetid="planDate">
+    <cl:grid std:sid="grid-cccde53f" id="dayGrd" style="border-right-style:solid; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid;" datasetid="planDate">
       <cl:listener std:sid="listener-9cf5eca9" name="cell-click" handler="onGrd3CellClick"/>
       <cl:xylayoutdata std:sid="xyl-data-d6a374d8" top="169px" bottom="10px" left="10px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
       <cl:gridcolumn std:sid="g-column-09c7aeb8"/>
@@ -168,7 +168,7 @@
         <cl:gridcell std:sid="gd-cell-3333db54" rowindex="0" colindex="0" style="background-color:#edd9d9; background-image:none;" columnname="planDate"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-7187e12f" id="grd4" style="border-right-style:solid; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid;" datasetid="selectedPlan">
+    <cl:grid std:sid="grid-7187e12f" id="selectedContentGrd" style="border-right-style:solid; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid;" datasetid="selectedPlan">
       <cl:listener std:sid="listener-ab175514" name="click" handler="onGrd4Click"/>
       <cl:xylayoutdata std:sid="xyl-data-2b706f83" top="169px" bottom="10px" left="220px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
       <cl:gridcolumn std:sid="g-column-9bfcafe4"/>
@@ -183,7 +183,7 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-1afb50d3" id="grd2" style="border-right-style:solid; border-bottom-color:#000000; font-weight:bolder; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid;" datasetid="jeju">
+    <cl:grid std:sid="grid-1afb50d3" id="contentGrd" style="border-right-style:solid; border-bottom-color:#000000; font-weight:bolder; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid;" datasetid="jeju">
       <cl:listener std:sid="listener-ecc5c8b0" name="click" handler="onGrd2Click"/>
       <cl:listener std:sid="listener-78676b99" name="row-check" handler="onGrd2RowCheck"/>
       <cl:listener std:sid="listener-b1a08f44" name="row-uncheck" handler="onGrd2RowUncheck"/>
@@ -210,11 +210,11 @@
       <cl:listener std:sid="listener-7cc17f10" name="click" handler="onSearchbtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-f4de444a" top="129px" left="549px" width="100px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:button std:sid="button-3bf9c536" style="border-right-style:solid; background-size:cover; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; background-image:url(images/cancelbutton.png); background-position:center; border-top-style:solid;" value="">
+    <cl:button std:sid="button-3bf9c536" id="cancelBtn" style="border-right-style:solid; background-size:cover; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; background-image:url(images/cancelbutton.png); background-position:center; border-top-style:solid;" value="">
       <cl:listener std:sid="listener-7d7c7959" name="click" handler="onButtonClick2"/>
       <cl:xylayoutdata std:sid="xyl-data-4e48342e" top="8px" right="27px" width="100px" height="70px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:button std:sid="button-6f2c6819" style="border-right-style:solid; background-size:cover; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; background-image:url(images/modifyButton.png); background-position:center; border-top-style:solid;">
+    <cl:button std:sid="button-6f2c6819" id="updateBtn" style="border-right-style:solid; background-size:cover; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; background-image:url(images/modifyButton.png); background-position:center; border-top-style:solid;">
       <cl:listener std:sid="listener-a187e7e2" name="click" handler="onButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-1442c6b5" top="8px" right="137px" width="100px" height="70px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>

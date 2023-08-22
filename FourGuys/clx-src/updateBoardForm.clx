@@ -120,19 +120,6 @@
       <cl:output std:sid="output-aa161d45" id="contentOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; border-top-style:solid; text-align:center;" value="내용">
         <cl:formdata std:sid="f-data-26fdaeb7" topSpacing="5" row="2" col="0"/>
       </cl:output>
-      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="border-right-style:solid; border-radius:5px; font-weight:bolder; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="selectedPlan">
-        <cl:listener std:sid="listener-a8fe3df0" name="cell-click" handler="onDayGrdCellClick"/>
-        <cl:formdata std:sid="f-data-c52af065" rightSpacing="2" row="1" col="0" rowspan="1" colspan="1"/>
-        <cl:gridcolumn std:sid="g-column-b8b2818e"/>
-        <cl:gridheader std:sid="gh-band-dd28bc7b">
-          <cl:gridrow std:sid="g-row-451c21f3" height="45px"/>
-          <cl:gridcell std:sid="gh-cell-ff1e3f29" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; font-size:20px; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="DAY"/>
-        </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-9665f1d0">
-          <cl:gridrow std:sid="g-row-7618322b"/>
-          <cl:gridcell std:sid="gd-cell-80ee9e89" rowindex="0" colindex="0" columnname="planDate"/>
-        </cl:griddetail>
-      </cl:grid>
       <cl:grid std:sid="grid-b5555db0" id="placeGrd" style="border-right-style:solid; border-radius:5px; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="selectedPlan">
         <cl:relativebind property="readOnly" columnname="title"/>
         <cl:formdata std:sid="f-data-1e836188" leftSpacing="2" row="1" col="1"/>
@@ -162,6 +149,19 @@
         <cl:listener std:sid="listener-d23da09a" name="load" handler="onEp1Load2"/>
         <cl:formdata std:sid="f-data-1bde33d1" row="2" col="1"/>
       </cl:embeddedpage>
+      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="border-right-style:solid; border-radius:5px; font-weight:bolder; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="planDate">
+        <cl:listener std:sid="listener-8b1cd717" name="cell-click" handler="onDayGrdCellClick"/>
+        <cl:formdata std:sid="f-data-7ee6e902" row="1" col="0"/>
+        <cl:gridcolumn std:sid="g-column-cf4a4af2"/>
+        <cl:gridheader std:sid="gh-band-1b32023e">
+          <cl:gridrow std:sid="g-row-5f0d311f" height="45px"/>
+          <cl:gridcell std:sid="gh-cell-dfaf2b7b" rowindex="0" colindex="0" style="background-color:#ffffff; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; font-size:20px; background-image:none;" targetcolumnname="planDate" sortable="false" filterable="false" text="DAY"/>
+        </cl:gridheader>
+        <cl:griddetail std:sid="gd-band-6d559cbf">
+          <cl:gridrow std:sid="g-row-ba3b85c1"/>
+          <cl:gridcell std:sid="gd-cell-1aca0de3" rowindex="0" colindex="0" columnname="planDate"/>
+        </cl:griddetail>
+      </cl:grid>
       <cl:formlayout std:sid="f-layout-4b7e1278" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
         <cl:rows length="75" unit="PIXEL"/>
         <cl:rows length="200" unit="PIXEL" autoSizing="false" syncminlength="false"/>
@@ -170,30 +170,10 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:output std:sid="output-7056fa8a" id="plannerNoOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-      <cl:xylayoutdata std:sid="xyl-data-1d3d6c15" top="66px" left="257px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
-    <cl:output std:sid="output-723c42bc" id="planDateOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
-      <cl:xylayoutdata std:sid="xyl-data-4f7d3d26" top="66px" left="277px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
     <cl:button std:sid="button-6f1f615e" id="selectBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:25px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="수정">
       <cl:listener std:sid="listener-eced33cf" name="click" handler="onSelectBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-4024c71d" bottom="30px" width="200px" height="60px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM"/>
     </cl:button>
-    <cl:grid std:sid="grid-a8f0a09e" id="boardContentValue" visible="false" datasetid="boardDetail">
-      <cl:xylayoutdata std:sid="xyl-data-26e165fe" top="86px" left="237px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:gridcolumn std:sid="g-column-b39c64fc"/>
-      <cl:gridheader std:sid="gh-band-a022b371">
-        <cl:gridrow std:sid="g-row-d8c90487"/>
-        <cl:gridcell std:sid="gh-cell-539ab827" rowindex="0" colindex="0" targetcolumnname="boardContent" sortable="false" filterable="false" text="boardContent"/>
-      </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-9875555b">
-        <cl:gridrow std:sid="g-row-91674e03"/>
-        <cl:gridcell std:sid="gd-cell-3c3b7cc7" rowindex="0" colindex="0" columnname="boardContent"/>
-      </cl:griddetail>
-    </cl:grid>
     <cl:button std:sid="button-cf546080" id="PasteBtn" visible="false" value="Button">
       <cl:listener std:sid="listener-92f1dace" name="click" handler="onPasteBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-c84a7a1c" top="66px" left="237px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

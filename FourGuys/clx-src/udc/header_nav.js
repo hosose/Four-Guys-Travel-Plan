@@ -49,7 +49,7 @@ function onLoginCheckSubmitSuccess(e){
 	var vo = loginCheck.getMetadata("memberVO");
 	var loginBtn = app.lookup("loginBtn");
 	var logoutBtn = app.lookup("logoutBtn");
-	var MyPageBtn = app.lookup("MyPageBtn");
+	var MyPageBtn = app.lookup("myPageBtn");
 	if(vo){
 		loginBtn.visible = false;
 		logoutBtn.visible = true;

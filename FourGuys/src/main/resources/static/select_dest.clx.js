@@ -65,59 +65,6 @@
 			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
-			var searchInput_1 = new cpr.controls.SearchInput();
-			searchInput_1.value = "";
-			searchInput_1.placeholder = "여행지를 검색하세요!";
-			searchInput_1.style.css({
-				"text-align" : "center"
-			});
-			container.addChild(searchInput_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1670px)",
-						"top": "200px",
-						"width": "1000px",
-						"height": "60px",
-						"left": "calc(50% - 500px)"
-					}, 
-					{
-						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
-						"top": "200px",
-						"width": "983px",
-						"height": "60px",
-						"left": "calc(50% - 491px)"
-					}, 
-					{
-						"media": "all and (min-width: 1260px) and (max-width: 1549px)",
-						"top": "200px",
-						"width": "1210px",
-						"height": "60px",
-						"left": "calc(50% - 605px)"
-					}, 
-					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
-						"top": "200px",
-						"width": "500px",
-						"height": "60px",
-						"left": "calc(50% - 250px)"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 899px)",
-						"top": "200px",
-						"width": "400px",
-						"height": "60px",
-						"left": "calc(50% - 200px)"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "200px",
-						"width": "137px",
-						"height": "60px",
-						"left": "calc(50% - 68px)"
-					}
-				]
-			});
-			
 			var button_1 = new cpr.controls.Button("jeju");
 			button_1.value = "JEJU";
 			button_1.style.css({

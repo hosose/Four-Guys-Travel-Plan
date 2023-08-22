@@ -33,7 +33,7 @@
           <cl:datacolumn std:sid="d-column-6f9f12d7" name="plannerNo"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:datamap std:sid="d-map-e4ff96d8" id="createPlanDM">
+      <cl:datamap std:sid="d-map-e4ff96d8" id="planDM">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-f47e10bf" name="contentid"/>
           <cl:datacolumn std:sid="d-column-0f887bcf" name="planDate"/>
@@ -48,7 +48,7 @@
       </cl:submission>
       <cl:submission std:sid="submission-4bb551dd" id="selectDate" method="get" action="selectPlansByDate">
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="planDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-68fdf2a0" id="createPlannerBoardSM" action="createPlannerBoard">
@@ -82,7 +82,7 @@
       <cl:output std:sid="output-aa161d45" id="contentOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; border-top-style:solid; text-align:center;" value="내용">
         <cl:formdata std:sid="f-data-26fdaeb7" topSpacing="5" row="2" col="0"/>
       </cl:output>
-      <cl:inputbox std:sid="i-box-1e5a489f" id="ipb1" style="border-right-style:solid; border-radius:5px; padding-top:5px; border-left-style:solid; padding-left:5px; font-size:25px; padding-bottom:5px; border-bottom-style:solid; border-top-style:solid; padding-right:5px;" placeholder="제목을 입력해주세요.">
+      <cl:inputbox std:sid="i-box-1e5a489f" id="titleIpb" style="border-right-style:solid; border-radius:5px; padding-top:5px; border-left-style:solid; padding-left:5px; font-size:25px; padding-bottom:5px; border-bottom-style:solid; border-top-style:solid; padding-right:5px;" placeholder="제목을 입력해주세요.">
         <cl:datamapbind property="value" datacontrolid="boardDM" columnname="title"/>
         <cl:formdata std:sid="f-data-f859d660" bottomSpacing="5" leftSpacing="3" row="0" col="1" rowspan="1" colspan="1"/>
       </cl:inputbox>

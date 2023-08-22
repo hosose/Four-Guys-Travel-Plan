@@ -49,7 +49,7 @@ function onLoginCheckSubmitError(e) {
 function onDayGrdCellClick(e) {
 	var dayGrd = e.control;
 	var planDate = dayGrd.getSelectedRow().getValue("planDate");
-	app.lookup("createPlanDM").setValue("planDate", planDate);
+	app.lookup("planDM").setValue("planDate", planDate);
 	app.lookup("selectDate").send();
 }
 

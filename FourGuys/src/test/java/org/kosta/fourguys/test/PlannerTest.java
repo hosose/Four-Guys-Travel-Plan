@@ -120,7 +120,7 @@ public class PlannerTest {
 		plannerVO.setId("java");
 		plannerVO.setCompleteFlag("완성");
 		List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
-		 System.out.println(testVO);
+		System.out.println(testVO);
 	}
 
 	@Test
@@ -128,21 +128,21 @@ public class PlannerTest {
 		PlannerVO plannerVO = new PlannerVO();
 		plannerVO.setId("java");
 		plannerVO.setCompleteFlag("미완성");
-		List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
-		//System.out.println(testVO);
+		// List<PlannerVO> testVO = plannerMapper.findCompletePlanner(plannerVO);
+		// System.out.println(testVO);
 
 	}
-	
+
 	@Test
 	public void findPlannerByNo() {
-		List<PlannerVO> testVO = plannerMapper.findPlannerByNo(197);
-		//System.out.println(testVO);
+		// List<PlannerVO> testVO = plannerMapper.findPlannerByNo(197);
+		// System.out.println(testVO);
 
 	}
-	
-	@Test 
+
+	@Test
 	public void deletePlannerByNo() {
-		
+
 		int result = plannerMapper.deletePlannerByNo(245);
 		Assertions.assertEquals(1, result);
 	}

@@ -35,7 +35,7 @@
 			 * @param {Number} vnPageRow
 			 */
 			function gridPaging() {
-				var vcGridSample = app.lookup("grd1");
+				var vcGridSample = app.lookup("completeGrd");
 				var vcPageIndexer = app.lookup("completePaging");
 				vcPageIndexer.redraw();
 				
@@ -52,7 +52,7 @@
 			}
 
 			function gridPaging2() {
-				var vcGridSample = app.lookup("grd2");
+				var vcGridSample = app.lookup("notCompleteGrd");
 				var vcPageIndexer = app.lookup("notCompletePaging");
 				vcPageIndexer.redraw();
 				
@@ -93,7 +93,7 @@
 			 */
 			function onButtonClick(e) {
 				var button = e.control;
-				var grd2 = app.lookup("grd2")
+				var grd2 = app.lookup("notCompleteGrd")
 				var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
 				location.href = "myPlanDetail/" + plannerNo;
 				
@@ -105,7 +105,7 @@
 			*/
 			function onButtonClick2(e) {
 				var button = e.control;
-				var grd1 = app.lookup("grd1")
+				var grd1 = app.lookup("completeGrd")
 				var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
 				location.href = "myPlanDetail/" + plannerNo;
 			}
@@ -120,7 +120,7 @@
 				if (!confirm("삭제하시겠습니까?")) {
 					alert("취소를 누르셨습니다.");
 				} else {
-					var grd1 = app.lookup("grd1")
+					var grd1 = app.lookup("completeGrd")
 					var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
 					app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 					app.lookup("deletePlanner").send();
@@ -152,7 +152,7 @@
 				if (!confirm("삭제하시겠습니까?")) {
 					alert("취소를 누르셨습니다.");
 				} else {
-					var grd2 = app.lookup("grd2")
+					var grd2 = app.lookup("notCompleteGrd")
 					var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
 					app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 					app.lookup("deletePlanner").send();
@@ -384,7 +384,7 @@
 				]
 			});
 			
-			var grid_1 = new cpr.controls.Grid("grd1");
+			var grid_1 = new cpr.controls.Grid("completeGrd");
 			grid_1.init({
 				"dataSet": app.lookup("dvCompletePaging"),
 				"columns": [
@@ -578,7 +578,7 @@
 				]
 			});
 			
-			var grid_2 = new cpr.controls.Grid("grd2");
+			var grid_2 = new cpr.controls.Grid("notCompleteGrd");
 			grid_2.init({
 				"dataSet": app.lookup("dvNotCompletePaging"),
 				"columns": [
@@ -852,24 +852,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "69px",
-						"left": "20px",
-						"width": "300px",
-						"height": "300px"
+						"top": "0px",
+						"bottom": "0px",
+						"left": "0px",
+						"width": "151px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "69px",
-						"left": "10px",
-						"width": "146px",
-						"height": "300px"
+						"top": "0px",
+						"bottom": "0px",
+						"left": "0px",
+						"width": "74px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "69px",
-						"left": "7px",
-						"width": "103px",
-						"height": "300px"
+						"top": "0px",
+						"bottom": "0px",
+						"left": "0px",
+						"width": "52px"
 					}
 				]
 			});

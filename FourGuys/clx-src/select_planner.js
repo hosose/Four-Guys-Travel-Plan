@@ -11,7 +11,7 @@
  */
 function onSelectBtnClick(e){
 	var createBtn = e.control;
-	var plannerGrd = app.lookup("grd1");
+	var plannerGrd = app.lookup("plannerGrd");
 	var plannerNo = plannerGrd.getSelectedRow().getValue("plannerNo");
 	app.close(plannerNo);
 }

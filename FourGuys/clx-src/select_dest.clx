@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-6e4ce817" version="1.0.4584">
   <head std:sid="head-f48ff920">
-    <screen std:sid="screen-4d534f4d" id="new-screen" name="new-screen" minwidth="1670px" width="1670px" height="600px" active="false"/>
+    <screen std:sid="screen-4d534f4d" id="new-screen" name="new-screen" minwidth="1670px" width="1670px" height="600px" active="true"/>
     <screen std:sid="screen-4eb445e6" id="wide" name="wide" minwidth="1550px" maxwidth="1669px" width="1550px" height="600px" customHeight="600" customWidth="800" active="false"/>
     <screen std:sid="screen-e2cda8aa" id="new-screen2" name="new-screen2" minwidth="1260px" maxwidth="1549px" width="1260px" height="600px" active="false"/>
     <screen std:sid="screen-3d628ab6" id="new-screen3" name="new-screen3" minwidth="900px" maxwidth="1259px" width="900px" height="600px" active="false"/>
-    <screen std:sid="screen-bcb2bdd5" id="tablet" name="tablet" minwidth="500px" maxwidth="899px" width="500px" height="667px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-bcb2bdd5" id="tablet" name="tablet" minwidth="500px" maxwidth="899px" width="500px" height="667px" customHeight="600" customWidth="800" active="false"/>
     <screen std:sid="screen-0d4a43b9" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
     <cl:model std:sid="model-d0df39b0"/>
     <cl:appspec/>
   </head>
   <body std:sid="body-75f61cb5">
-    <cl:searchinput std:sid="s-input-5e485e85" style="text-align:center;" value="" placeholder="여행지를 검색하세요!">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-80d03e88">
-        <cl:xylayoutdata std:sid="sxyl-data-c43e7ddc" top="200px" width="400px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="tablet"/>
-        <cl:xylayoutdata std:sid="sxyl-data-9455f11a" top="200px" width="983px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="wide"/>
-        <cl:xylayoutdata std:sid="sxyl-data-b55f89ef" top="200px" width="1000px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="new-screen"/>
-        <cl:xylayoutdata std:sid="sxyl-data-cebfa326" top="200px" width="1210px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="new-screen2"/>
-        <cl:xylayoutdata std:sid="sxyl-data-a0f1382f" top="200px" width="500px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="new-screen3"/>
-      </cl:responsivexylayoutdata>
-    </cl:searchinput>
     <cl:button std:sid="button-9083e9ae" id="jeju" style="background-size:cover; color:#FFFFFF; font-size:40px; background-image:url(images/harubang2.jpg); background-position:center;" value="JEJU">
       <cl:listener std:sid="listener-2abc7368" name="click" handler="onJejuClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-6daa3d08">

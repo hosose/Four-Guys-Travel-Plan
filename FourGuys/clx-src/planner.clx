@@ -49,7 +49,7 @@
           <cl:datacolumn std:sid="d-column-6f9f12d7" name="plannerNo"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:datamap std:sid="d-map-e4ff96d8" id="createPlanDM">
+      <cl:datamap std:sid="d-map-e4ff96d8" id="planDM">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-f47e10bf" name="contentid"/>
           <cl:datacolumn std:sid="d-column-0f887bcf" name="planDate"/>
@@ -72,17 +72,17 @@
       </cl:submission>
       <cl:submission std:sid="submission-19ef9968" id="createPlan" action="createPlan">
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="planDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-4bb551dd" id="selectDate" method="get" action="selectPlansByDate">
-        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="planDM"/>
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-b587fea4" id="deletePlan" method="delete" action="deletePlan">
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="planDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-9505b4f1" id="cancelPlanner" action="cancelPlanner">
@@ -98,12 +98,6 @@
         <cl:xylayoutdata std:sid="sxyl-data-f7f7a08e" top="73px" right="0px" bottom="10px" left="570px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:embeddedpage>
-    <cl:group std:sid="group-1ec22cbf" id="grp1">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-fdd900fe">
-        <cl:xylayoutdata std:sid="sxyl-data-0d2616eb" top="20px" left="20px" width="848px" height="22px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-      <cl:xylayout std:sid="xylayout-b622fe02"/>
-    </cl:group>
     <cl:group std:sid="group-ec15f56b">
       <cl:responsivexylayoutdata std:sid="rxyl-data-47885f1d">
         <cl:xylayoutdata std:sid="sxyl-data-341bdf7f" top="0px" right="20px" width="257px" height="83px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
@@ -122,7 +116,7 @@
         <cl:columns length="100" unit="PIXEL"/>
       </cl:formlayout>
     </cl:group>
-    <cl:grid std:sid="grid-1afb50d3" id="grd2" style="font-weight:bolder;" datasetid="jeju">
+    <cl:grid std:sid="grid-1afb50d3" id="contentGrd" style="font-weight:bolder;" datasetid="jeju">
       <cl:listener std:sid="listener-98f29226" name="click" handler="onGrd2Click"/>
       <cl:listener std:sid="listener-a198f87f" name="row-check" handler="onGrd2RowCheck"/>
       <cl:listener std:sid="listener-cfd1181e" name="row-check" handler="onGrd2RowCheck"/>
@@ -144,14 +138,14 @@
         <cl:gridcell std:sid="gd-cell-798f542a" rowindex="0" colindex="1" style="font-weight:normal;" columnname="title"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-b5555db0" id="grd1" datasetid="selectedPlan">
+    <cl:grid std:sid="grid-b5555db0" id="selectedContentGrd" style="border-radius:10px;" datasetid="selectedPlan">
       <cl:responsivexylayoutdata std:sid="rxyl-data-e8f31ba5">
         <cl:xylayoutdata std:sid="sxyl-data-1e88443d" top="80px" bottom="10px" left="150px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:gridcolumn std:sid="g-column-bfe52550"/>
       <cl:gridheader std:sid="gh-band-f0066996">
         <cl:gridrow std:sid="g-row-cd71b6ce"/>
-        <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="선택 목록"/>
+        <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; border-radius:5px; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="선택 목록"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-914dec06">
         <cl:gridrow std:sid="g-row-e21b3661"/>
@@ -163,7 +157,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-90274e3c" top="80px" bottom="10px" left="20px" width="120px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:grid std:sid="grid-815196f0" id="grd3" style="font-weight:bolder;" datasetid="planDate">
+      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="font-weight:bolder;" datasetid="planDate">
         <cl:listener std:sid="listener-23808200" name="cell-click" handler="onGrd3CellClick"/>
         <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
         <cl:gridcolumn std:sid="g-column-8344e975"/>
@@ -197,7 +191,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-f8021ced" top="0px" width="300px" height="73px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
-    <cl:combobox std:sid="c-box-099b73f5" id="cmb1">
+    <cl:combobox std:sid="c-box-099b73f5" id="categoryCmb">
       <cl:listener std:sid="listener-09e688ae" name="selection-change" handler="onCmb1SelectionChange"/>
       <cl:datamapbind property="value" datacontrolid="areaSearch" columnname="cat1"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-795944c0">

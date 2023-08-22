@@ -40,7 +40,7 @@
 			 */
 			function onGrd4Click(e) {
 				var grd4 = e.control;
-				var grid = app.lookup("grd4");
+				var grid = app.lookup("selectedContentGrd");
 				var embp = app.lookup("ep1");
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
@@ -59,10 +59,10 @@
 			 */
 			function onGetDaySubmitSuccess(e) {
 				var getDay = e.control;
-				var grid = app.lookup("grd4");
+				var grid = app.lookup("selectedContentGrd");
 				grid.selectRows([0]);
 				//app.lookup("planDateOutput").value=1;
-				app.lookup("createPlanDM").setValue("planDate", 1);
+				app.lookup("planDM").setValue("planDate", 1);
 				
 			}
 
@@ -72,11 +72,11 @@
 			 */
 			function onGrd3CellClick(e) {
 				var grd3 = e.control;
-				var grid = app.lookup("grd3");
+				var grid = app.lookup("dayGrd");
 				//var plannerNo = app.lookup("plannerNo").value;
 				var planDate = grid.getSelectedRow().getValue("planDate");
 				//app.lookup("planDateOutput").value=planDate;
-				app.lookup("createPlanDM").setValue("planDate", planDate);
+				app.lookup("planDM").setValue("planDate", planDate);
 				app.lookup("getTitle").send();
 			}
 
@@ -107,7 +107,7 @@
 			function onGrd2Click(e) {
 				var grd2 = e.control;
 				
-				var grid = app.lookup("grd2");
+				var grid = app.lookup("contentGrd");
 				var embp = app.lookup("ep1");
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
@@ -126,9 +126,9 @@
 			 */
 			function onGrd2RowCheck(e) {
 				var grd2 = e.control;
-				var grid = app.lookup("grd2");
+				var grid = app.lookup("contentGrd");
 				var contentId = grid.getSelectedRow().getValue("contentid");
-				app.lookup("createPlanDM").setValue("contentid", contentId);
+				app.lookup("planDM").setValue("contentid", contentId);
 				app.lookup("createPlan").send();
 				
 			}
@@ -140,7 +140,7 @@
 			function onGrd2RowUncheck(e) {
 				var grd2 = e.control;
 				var contentId = grd2.getSelectedRow().getValue("contentid");
-				app.lookup("createPlanDM").setValue("contentid", contentId);
+				app.lookup("planDM").setValue("contentid", contentId);
 				app.lookup("deletePlan").send();
 				
 			}
@@ -173,7 +173,7 @@
 			 */
 			function onAreaListSubmitSuccess(e) {
 				var areaList = e.control;
-				var grid = app.lookup("grd2")
+				var grid = app.lookup("contentGrd")
 				var plannerDetail = app.lookup("plannerDetail");
 				var list = [];
 				for (let i = 0; i < plannerDetail.getRowCount(); i++) {
@@ -196,7 +196,7 @@
 			 */
 			function onGetContentIdListSubmitSuccess(e) {
 				var getContentIdList = e.control;
-				var grd2 = app.lookup("grd2");
+				var grd2 = app.lookup("contentGrd");
 				for (var i = 0; i < grd2.getRowCount(); i++) {
 					var contentIdd = grd2.getRow(i).getValue("contentid");
 					
@@ -366,7 +366,7 @@
 			});
 			app.register(dataMap_3);
 			
-			var dataMap_4 = new cpr.data.DataMap("createPlanDM");
+			var dataMap_4 = new cpr.data.DataMap("planDM");
 			dataMap_4.parseData({
 				"columns" : [
 					{"name": "contentid"},
@@ -551,7 +551,7 @@
 				"left": "659px"
 			});
 			
-			var grid_1 = new cpr.controls.Grid("grd3");
+			var grid_1 = new cpr.controls.Grid("dayGrd");
 			grid_1.init({
 				"dataSet": app.lookup("planDate"),
 				"columns": [{"width": "100px"}],
@@ -601,7 +601,7 @@
 				"width": "200px"
 			});
 			
-			var grid_2 = new cpr.controls.Grid("grd4");
+			var grid_2 = new cpr.controls.Grid("selectedContentGrd");
 			grid_2.init({
 				"dataSet": app.lookup("selectedPlan"),
 				"columns": [{"width": "100px"}],
@@ -652,7 +652,7 @@
 				"width": "200px"
 			});
 			
-			var grid_3 = new cpr.controls.Grid("grd2");
+			var grid_3 = new cpr.controls.Grid("contentGrd");
 			grid_3.init({
 				"dataSet": app.lookup("jeju"),
 				"columns": [
@@ -784,7 +784,7 @@
 				"height": "30px"
 			});
 			
-			var button_2 = new cpr.controls.Button();
+			var button_2 = new cpr.controls.Button("cancelBtn");
 			button_2.value = "";
 			button_2.style.css({
 				"border-right-style" : "solid",
@@ -809,7 +809,7 @@
 				"height": "70px"
 			});
 			
-			var button_3 = new cpr.controls.Button();
+			var button_3 = new cpr.controls.Button("updateBtn");
 			button_3.style.css({
 				"border-right-style" : "solid",
 				"background-size" : "cover",

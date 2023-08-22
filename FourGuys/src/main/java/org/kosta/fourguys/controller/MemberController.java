@@ -50,24 +50,6 @@ public class MemberController {
 		return new JSONDataView();
 	}
 
-	@GetMapping("/findMyPage")
-	public View findMyPage(DataRequest dataRequest, HttpServletRequest request,
-			HttpServletResponse httpServletResponse) {
-		MemberVO memberVO = null;
-		HttpSession session = request.getSession(false);
-		Map<String, Object> initParam = new HashMap<>();
-		boolean success = false;
-		if (session != null) {
-			memberVO = (MemberVO) session.getAttribute("memberVO");
-			initParam.put("findMyPageis", memberVO);
-			success = true;
-		} else {
-			initParam.put("message", "로그인하셔야 합니다.");
-		}
-		dataRequest.setMetadata(success, initParam);
-		return new JSONDataView();
-	}
-
 	@GetMapping("/loginCheck")
 	public View loginCheck(DataRequest dataRequest, HttpServletRequest request,
 			HttpServletResponse httpServletResponse) {
@@ -95,15 +77,12 @@ public class MemberController {
 		String birth = registerParam.getValue("birth");
 		String email = registerParam.getValue("email");
 		String phone = registerParam.getValue("phone");
-
 		MemberVO memberVO = new MemberVO(id, password, name, address, email, phone, birth);
 		memberService.registerMember(memberVO);
 		Map<String, Object> initParam = new HashMap<>();
 		initParam.put("registerSuccess", "/");
 		dataRequest.setMetadata(true, initParam);
-
 		return new JSONDataView();
-
 	}
 
 	@GetMapping("/checkDuplicateId")
@@ -128,7 +107,6 @@ public class MemberController {
 	public View updateMember(DataRequest dataRequest, HttpServletRequest request,
 			HttpServletResponse httpServletResponse) {
 
-		boolean success = false;
 		HttpSession session = request.getSession(false);
 		ParameterGroup member = dataRequest.getParameterGroup("member");
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
@@ -147,12 +125,10 @@ public class MemberController {
 		Map<String, Object> initParam = new HashMap<>();
 		if (result == 0) {
 			initParam.put("message", "수정 실패");
+			dataRequest.setMetadata(false, initParam);
 		} else {
 			session.setAttribute("memberVO", memberVO);
-			initParam.put("update", memberVO);
-			success = true;
 		}
-		dataRequest.setMetadata(success, initParam);
 		return new JSONDataView();
 	}
 
@@ -160,9 +136,7 @@ public class MemberController {
 	public View logout(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		Map<String, Object> message = new HashMap<String, Object>();
 		HttpSession session = request.getSession(false);
-		// System.out.println(session);
 		if (session != null) {
-
 			session.invalidate();
 		}
 		message.put("uri", "/");
@@ -174,7 +148,6 @@ public class MemberController {
 	public View deleteMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		Map<String, Object> message = new HashMap<String, Object>();
 		HttpSession session = request.getSession(false);
-		// ParameterGroup member = dataRequest.getParameterGroup("member");
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 		memberService.deleteMember(memberVO);
 		if (session != null) {

@@ -34,7 +34,7 @@ public class ReplyTest {
 
 	@Test
 	public void deleteReply() {
-		int replyNo = 41;
+		// int replyNo = 41;
 		// replyMapper.deleteReply(replyNo);
 	}
 }
