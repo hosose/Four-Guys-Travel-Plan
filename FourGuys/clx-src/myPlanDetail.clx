@@ -187,22 +187,15 @@
       <cl:xylayoutdata std:sid="xyl-data-f63f4acd" top="169px" bottom="10px" left="430px" width="219px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
       <cl:gridcolumn std:sid="g-column-ad70a0a1" width="25px"/>
       <cl:gridcolumn std:sid="g-column-6e963c15"/>
-      <cl:gridcolumn std:sid="g-column-2ac6479e"/>
       <cl:gridheader std:sid="gh-band-920a5d9d">
         <cl:gridrow std:sid="g-row-6a8b963d"/>
         <cl:gridcell std:sid="gh-cell-e3b7afc9" rowindex="0" colindex="0" style="background-color:#FFFFFF;" sortable="false" filterable="false" columntype="checkbox"/>
         <cl:gridcell std:sid="gh-cell-cd6311e9" rowindex="0" colindex="1" style="background-color:#FFFFFF; color:#2DCEB9; font-weight:bolder;" targetcolumnname="title" sortable="false" filterable="false" text="관광지 목록"/>
-        <cl:gridcell std:sid="gh-cell-c21491b5" rowindex="0" colindex="2"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-3c2424fa">
         <cl:gridrow std:sid="g-row-3eb22adc"/>
         <cl:gridcell std:sid="gd-cell-eb89fa08" rowindex="0" colindex="0" columntype="checkbox"/>
         <cl:gridcell std:sid="gd-cell-798f542a" rowindex="0" colindex="1" style="font-weight:normal;" columnname="title"/>
-        <cl:gridcell std:sid="gd-cell-4e770407" rowindex="0" colindex="2" columnname="contentid">
-          <cl:output std:sid="output-7ebd035d">
-            <cl:celldata/>
-          </cl:output>
-        </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
     <cl:inputbox std:sid="i-box-dde342b5" id="titleSearch" style="text-align:center;" placeholder="지역 검색">
@@ -222,21 +215,6 @@
       <cl:listener std:sid="listener-a187e7e2" name="click" handler="onButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-1442c6b5" top="8px" right="137px" width="100px" height="70px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:grid std:sid="grid-fa2abe16" id="grd1" datasetid="plannerDetail">
-      <cl:xylayoutdata std:sid="xyl-data-72576eb7" top="100px" left="659px" width="400px" height="200px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:gridcolumn std:sid="g-column-4e8953fd"/>
-      <cl:gridcolumn std:sid="g-column-aea76888"/>
-      <cl:gridheader std:sid="gh-band-8d1e53c1">
-        <cl:gridrow std:sid="g-row-771a7866"/>
-        <cl:gridcell std:sid="gh-cell-a5b4af7e" rowindex="0" colindex="0" targetcolumnname="plannerTitle" sortable="false" filterable="false" text="plannerTitle"/>
-        <cl:gridcell std:sid="gh-cell-8f2f0a62" rowindex="0" colindex="1" targetcolumnname="contentId" sortable="false" filterable="false" text="contentId"/>
-      </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-7ee5d2a8">
-        <cl:gridrow std:sid="g-row-df305a80"/>
-        <cl:gridcell std:sid="gd-cell-e61cfd98" rowindex="0" colindex="0" columnname="plannerTitle"/>
-        <cl:gridcell std:sid="gd-cell-b0ac1d84" rowindex="0" colindex="1" columnname="contentId"/>
-      </cl:griddetail>
-    </cl:grid>
     <cl:xylayout std:sid="xylayout-9001bf41"/>
   </body>
   <std:studiosetting>

@@ -599,7 +599,6 @@
 				"dataSet": app.lookup("jeju"),
 				"columns": [
 					{"width": "25px"},
-					{"width": "100px"},
 					{"width": "100px"}
 				],
 				"header": {
@@ -629,11 +628,6 @@
 									"font-weight" : "bolder"
 								});
 							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 2},
-							"configurator": function(cell){
-							}
 						}
 					]
 				},
@@ -653,17 +647,6 @@
 								cell.style.css({
 									"font-weight" : "normal"
 								});
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 2},
-							"configurator": function(cell){
-								cell.columnName = "contentid";
-								cell.control = (function(){
-									var output_1 = new cpr.controls.Output();
-									output_1.bind("value").toDataColumn("contentid");
-									return output_1;
-								})();
 							}
 						}
 					]
@@ -753,61 +736,6 @@
 				"right": "137px",
 				"width": "100px",
 				"height": "70px"
-			});
-			
-			var grid_4 = new cpr.controls.Grid("grd1");
-			grid_4.init({
-				"dataSet": app.lookup("plannerDetail"),
-				"columns": [
-					{"width": "100px"},
-					{"width": "100px"}
-				],
-				"header": {
-					"rows": [{"height": "24px"}],
-					"cells": [
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "plannerTitle";
-								cell.text = "plannerTitle";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 1},
-							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "contentId";
-								cell.text = "contentId";
-							}
-						}
-					]
-				},
-				"detail": {
-					"rows": [{"height": "24px"}],
-					"cells": [
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 0},
-							"configurator": function(cell){
-								cell.columnName = "plannerTitle";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 1},
-							"configurator": function(cell){
-								cell.columnName = "contentId";
-							}
-						}
-					]
-				}
-			});
-			container.addChild(grid_4, {
-				"top": "100px",
-				"left": "659px",
-				"width": "400px",
-				"height": "200px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
