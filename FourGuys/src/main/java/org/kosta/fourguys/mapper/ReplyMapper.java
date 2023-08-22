@@ -14,4 +14,6 @@ public interface ReplyMapper {
 
 	public int deleteReply(ReplyVO replayNo);
 
+	public int editReply(ReplyVO replyVO);
+
 }

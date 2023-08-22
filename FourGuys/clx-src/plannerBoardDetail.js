@@ -2,7 +2,6 @@
  * 루트 컨테이너에서 load 이벤트 발생 시 호출.
  * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
  */
-
 function onBodyLoad(e) {
 	var currentUrl = location.href;
 	var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
@@ -88,8 +87,8 @@ function onBoardDetailSMSubmitSuccess2(e) {
 	var editBtn = app.lookup("editBtn");
 	var deleteBtn = app.lookup("deleteBtn");
 	var grid = app.lookup("grd1");
-	var value = grid.getRow(0).getValue("id");
-	if(vo["id"]==value){
+	var value = grid.getRow(0).getValue("replyId");
+	if(vo["replyId"]==value){
 		editBtn.visible = true;
 		deleteBtn.visible=true;
 	}
@@ -147,17 +146,20 @@ function onDeleteReplySMSubmitSuccess(e){
 }
 
 /*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
+ * "댓글 수정" 버튼(replyEdit)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onReplyListSMSubmitSuccess(e){
-	var replyListSM = e.control;
-	var vo = replyListSM.getMetadata("MemberVO");
-	var editBtn = app.lookup("replyEdit");
-	var deleteBtn = app.lookup("replyDelete");
-	var value = app.lookup("boardReply").getValue(0, "id");
-	if(vo["id"]==value){
-		editBtn.visible = true;
-		deleteBtn.visible=true;
+function onReplyEditClick(e){
+	var replyEdit = e.control;
+//	app.openDialog("replyEdit", {width : 800, height : 300}, function(dialog){
+//		dialog.ready(function(dialogApp){
+//			
+//		});
+//	}).then(function(returnValue){
+//		;
+//	});
+	if (confirm("수정하시겠습니까?")){
+		app.lookup("editReplySM").send();
+		location.reload();
 	}
 }

@@ -43,7 +43,7 @@
           <cl:datacolumn std:sid="d-column-1e6166cc" name="boardNo" datatype="number"/>
           <cl:datacolumn std:sid="d-column-3155524a" name="replyContent" datatype="string"/>
           <cl:datacolumn std:sid="d-column-148beb7a" name="replyDate" datatype="string"/>
-          <cl:datacolumn std:sid="d-column-d34cbd03" name="id" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-d34cbd03" name="replyId" datatype="string"/>
         </cl:datacolumnlist>
       </cl:dataset>
       <cl:datamap std:sid="d-map-333b6018" id="plannerBoardNoDM">
@@ -94,6 +94,11 @@
           <cl:datacolumn std:sid="d-column-ee8c7b55" name="REPLY_NO" datatype="number"/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-d16a2d60" id="MemberVO">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-d2571d9c" name="id"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-e6c83257" id="boardDetailSM" method="get" action="boardDetail">
         <cl:listener std:sid="listener-f761c020" name="submit-success" handler="onBoardDetailSMSubmitSuccess2"/>
         <cl:requestdata dataid="plannerBoardNoDM"/>
@@ -132,11 +137,16 @@
         <cl:listener std:sid="listener-8e1b9899" name="submit-success" handler="onReplyListSMSubmitSuccess"/>
         <cl:requestdata dataid="plannerBoardNoDM"/>
         <cl:responsedata dataid="boardReply"/>
+        <cl:responsedata dataid="MemberVO"/>
       </cl:submission>
       <cl:submission std:sid="submission-41425780" id="deleteReplySM" method="delete" action="deleteReply">
         <cl:listener std:sid="listener-fcba885f" name="submit-success" handler="onDeleteReplySMSubmitSuccess"/>
         <cl:requestdata dataid="replyBoardNoDM"/>
         <cl:responsedata dataid="boardReply"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-89deba23" id="editReplySM" method="put" action="editReply">
+        <cl:listener std:sid="listener-2490eb10" name="submit-success" handler="onEditReplySMSubmitSuccess"/>
+        <cl:requestdata dataid="boardReply"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -255,50 +265,54 @@
         <cl:xylayoutdata std:sid="sxyl-data-e010000b" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:grid std:sid="grid-011a3e31" id="grd5" datasetid="boardReply">
+    <cl:grid std:sid="grid-011a3e31" id="grd5" datasetid="boardReply" autofit="0, 2" autorowheight="none" resizablecolumns="none">
       <cl:responsivexylayoutdata std:sid="rxyl-data-05d09893">
         <cl:xylayoutdata std:sid="sxyl-data-0f068377" top="580px" right="10px" bottom="10px" left="10px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
-      <cl:gridcolumn std:sid="g-column-0540b1cf" width="85px"/>
-      <cl:gridcolumn std:sid="g-column-1ace8bf0" width="85px"/>
+      <cl:gridcolumn std:sid="g-column-0540b1cf" width="85px" visible="false"/>
+      <cl:gridcolumn std:sid="g-column-57b2b23c" width="85px"/>
       <cl:gridcolumn std:sid="g-column-c9ceb7fd" width="150px"/>
       <cl:gridcolumn std:sid="g-column-a4c1f1bc"/>
-      <cl:gridcolumn std:sid="g-column-57b2b23c" width="85px"/>
-      <cl:gridcolumn std:sid="g-column-d0b3493e"/>
-      <cl:gridcolumn std:sid="g-column-98d6a76d"/>
+      <cl:gridcolumn std:sid="g-column-d0b3493e" width="100px" visible="true"/>
+      <cl:gridcolumn std:sid="g-column-98d6a76d" width="100px" visible="true"/>
       <cl:gridheader std:sid="gh-band-878f9613">
         <cl:gridrow std:sid="g-row-173a16d8"/>
-        <cl:gridcell std:sid="gh-cell-ff21fd94" rowindex="0" colindex="0" targetcolumnname="replyNo" sortable="false" filterable="false" text="댓글번호"/>
-        <cl:gridcell std:sid="gh-cell-57b0d8c9" rowindex="0" colindex="1" sortable="false" filterable="false" text="게시글 번호"/>
+        <cl:gridcell std:sid="gh-cell-ff21fd94" rowindex="0" colindex="0" targetcolumnname="replyNo" sortable="true" filterable="false" text="댓글번호"/>
+        <cl:gridcell std:sid="gh-cell-751c4266" rowindex="0" colindex="1" targetcolumnname="replyId" sortable="false" filterable="false" text="아이디"/>
         <cl:gridcell std:sid="gh-cell-d9027a7b" rowindex="0" colindex="2" targetcolumnname="replyContent" sortable="false" filterable="false" text="내용"/>
         <cl:gridcell std:sid="gh-cell-80083a06" rowindex="0" colindex="3" targetcolumnname="replyDate" sortable="false" filterable="false" text="댓글 등록 날짜"/>
-        <cl:gridcell std:sid="gh-cell-751c4266" rowindex="0" colindex="4" targetcolumnname="id" sortable="false" filterable="false" text="아이디"/>
-        <cl:gridcell std:sid="gh-cell-4f1ff4ee" rowindex="0" colindex="5"/>
-        <cl:gridcell std:sid="gh-cell-dbefef39" rowindex="0" colindex="6"/>
+        <cl:gridcell std:sid="gh-cell-4f1ff4ee" rowindex="0" colindex="4" text=""/>
+        <cl:gridcell std:sid="gh-cell-dbefef39" rowindex="0" colindex="5"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-e7b65e7b">
         <cl:gridrow std:sid="g-row-96262eaa"/>
         <cl:gridcell std:sid="gd-cell-56c32b08" rowindex="0" colindex="0" columnname="replyNo">
           <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="replyNo"/>
         </cl:gridcell>
-        <cl:gridcell std:sid="gd-cell-f8f1f280" rowindex="0" colindex="1"/>
+        <cl:gridcell std:sid="gd-cell-db8eec63" rowindex="0" colindex="1" columnname="replyId">
+          <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="replyId"/>
+        </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-b3c1ae30" rowindex="0" colindex="2" columnname="replyContent">
+          <cl:inputbox std:sid="i-box-96d086ec" id="ipb2">
+            <cl:expbind property="readOnly" category="PROPERTY" expression="replyId != #MemberVO.id ? true : false"/>
+            <cl:celldata std:sid="c-data-d57d6acf"/>
+          </cl:inputbox>
           <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="replyContent"/>
         </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-6a52f78c" rowindex="0" colindex="3" columnname="replyDate">
           <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="replyDate"/>
         </cl:gridcell>
-        <cl:gridcell std:sid="gd-cell-db8eec63" rowindex="0" colindex="4" columnname="id">
-          <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="id"/>
-        </cl:gridcell>
-        <cl:gridcell std:sid="gd-cell-b7ea2f5a" rowindex="0" colindex="5">
-          <cl:button std:sid="button-b5ee1ddc" id="replyEdit" visible="false" value="댓글 수정">
+        <cl:gridcell std:sid="gd-cell-b7ea2f5a" rowindex="0" colindex="4">
+          <cl:button std:sid="button-b5ee1ddc" id="replyEdit" value="댓글 수정">
+            <cl:listener std:sid="listener-ada1c257" name="click" handler="onReplyEditClick"/>
+            <cl:expbind property="visible" category="PROPERTY" expression="replyId == #MemberVO.id ? true : false"/>
             <cl:celldata std:sid="c-data-fc8e8c62"/>
           </cl:button>
         </cl:gridcell>
-        <cl:gridcell std:sid="gd-cell-fc54c13c" rowindex="0" colindex="6">
-          <cl:button std:sid="button-d328c188" id="replyDelete" visible="false" value="댓글 삭제">
+        <cl:gridcell std:sid="gd-cell-fc54c13c" rowindex="0" colindex="5">
+          <cl:button std:sid="button-d328c188" id="replyDelete" value="댓글 삭제">
             <cl:listener std:sid="listener-10228fc6" name="click" handler="onButtonClick4"/>
+            <cl:expbind property="visible" category="PROPERTY" expression="replyId == #MemberVO.id ? true : false"/>
             <cl:celldata std:sid="c-data-2dc7ebb4"/>
           </cl:button>
         </cl:gridcell>
