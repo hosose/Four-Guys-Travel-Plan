@@ -30,6 +30,7 @@
 				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 				app.lookup("planDetail").send();
 				app.lookup("searchbtn").click();
+				app.lookup("getContentIdList").send();
 				
 			}
 
@@ -169,7 +170,37 @@
 			function onAreaListSubmitSuccess(e) {
 				var areaList = e.control;
 				var grid = app.lookup("grd2")
-				grid.setCheckRowIndex(0, true);
+				var plannerDetail = app.lookup("plannerDetail");
+				var list = [];
+				for (let i = 0; i < plannerDetail.getRowCount(); i++) {
+					var contentId = plannerDetail.getRow(i).getValue("contentId");
+					list.push(contentId);
+				
+				}
+				for (var j = 0; j < grid.getRowCount(); j++) {
+					var contentIdd = grid.getRow(j).getValue("contentid");
+					//console.log(contentIdd);
+					if (list.indexOf(contentIdd)!=-1){
+						grid.setCheckRowIndex(j, true);
+					}
+				}
+			}
+
+
+
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onGetContentIdListSubmitSuccess(e) {
+				var getContentIdList = e.control;
+				var grd2 = app.lookup("grd2");
+				for (var i = 0; i < grd2.getRowCount(); i++) {
+					var contentIdd = grd2.getRow(i).getValue("contentid");
+					
+				}
+				
 			}
 			// End - User Script
 			
@@ -240,7 +271,8 @@
 					{
 						"name": "plannerLastDay",
 						"dataType": "string"
-					}
+					},
+					{"name": "contentId"}
 				]
 			});
 			app.register(dataSet_3);
@@ -445,6 +477,17 @@
 			submission_10.action = "cancelPlanner";
 			submission_10.addRequestData(dataMap_3);
 			app.register(submission_10);
+			
+			var submission_11 = new cpr.protocols.Submission("getContentIdList");
+			submission_11.async = false;
+			submission_11.method = "get";
+			submission_11.action = "getContentIdList";
+			submission_11.addRequestData(dataMap_3);
+			submission_11.addResponseData(dataSet_3, false);
+			if(typeof onGetContentIdListSubmitSuccess == "function") {
+				submission_11.addEventListener("submit-success", onGetContentIdListSubmitSuccess);
+			}
+			app.register(submission_11);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -556,6 +599,7 @@
 				"dataSet": app.lookup("jeju"),
 				"columns": [
 					{"width": "25px"},
+					{"width": "100px"},
 					{"width": "100px"}
 				],
 				"header": {
@@ -585,6 +629,11 @@
 									"font-weight" : "bolder"
 								});
 							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 2},
+							"configurator": function(cell){
+							}
 						}
 					]
 				},
@@ -604,6 +653,17 @@
 								cell.style.css({
 									"font-weight" : "normal"
 								});
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 2},
+							"configurator": function(cell){
+								cell.columnName = "contentid";
+								cell.control = (function(){
+									var output_1 = new cpr.controls.Output();
+									output_1.bind("value").toDataColumn("contentid");
+									return output_1;
+								})();
 							}
 						}
 					]
@@ -693,6 +753,61 @@
 				"right": "137px",
 				"width": "100px",
 				"height": "70px"
+			});
+			
+			var grid_4 = new cpr.controls.Grid("grd1");
+			grid_4.init({
+				"dataSet": app.lookup("plannerDetail"),
+				"columns": [
+					{"width": "100px"},
+					{"width": "100px"}
+				],
+				"header": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "plannerTitle";
+								cell.text = "plannerTitle";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "contentId";
+								cell.text = "contentId";
+							}
+						}
+					]
+				},
+				"detail": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnName = "plannerTitle";
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.columnName = "contentId";
+							}
+						}
+					]
+				}
+			});
+			container.addChild(grid_4, {
+				"top": "100px",
+				"left": "659px",
+				"width": "400px",
+				"height": "200px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

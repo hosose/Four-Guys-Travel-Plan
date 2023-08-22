@@ -207,6 +207,13 @@ public class PlannerController {
 		return new JSONDataView();
 	}
 	
+	@GetMapping("getContentIdList")
+	public View getContentId(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
+		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
+		dataRequest.setResponse("plannerDetail", plannerService.getContentIdListByPlannerNo(plannerNo));
+		return new JSONDataView();
+	}
 	
 	
 	
