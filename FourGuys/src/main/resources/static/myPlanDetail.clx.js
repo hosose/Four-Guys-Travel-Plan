@@ -45,9 +45,11 @@
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
+				var firstimage = grid.getSelectedRow().getValue("firstimage");
 				var embp_mapx = embp.setPageProperty("mapx", mapx);
 				var embp_mapy = embp.setPageProperty("mapy", mapy);
 				var embp_title = embp.setPageProperty("title", title);
+				var embp_firstimage = embp.setPageProperty("firstimage", firstimage);
 				embp.callPageMethod("panTo");
 			}
 
@@ -110,9 +112,11 @@
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
+				var firstimage = grid.getSelectedRow().getValue("firstimage");
 				var embp_mapx = embp.setPageProperty("mapx", mapx);
 				var embp_mapy = embp.setPageProperty("mapy", mapy);
 				var embp_title = embp.setPageProperty("title", title);
+				var embp_firstimage = embp.setPageProperty("firstimage", firstimage);
 				embp.callPageMethod("panTo");
 			}
 
@@ -175,19 +179,16 @@
 				for (let i = 0; i < plannerDetail.getRowCount(); i++) {
 					var contentId = plannerDetail.getRow(i).getValue("contentId");
 					list.push(contentId);
-				
+					
 				}
 				for (var j = 0; j < grid.getRowCount(); j++) {
 					var contentIdd = grid.getRow(j).getValue("contentid");
 					//console.log(contentIdd);
-					if (list.indexOf(contentIdd)!=-1){
+					if (list.indexOf(contentIdd) != -1) {
 						grid.setCheckRowIndex(j, true);
 					}
 				}
 			}
-
-
-
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -504,7 +505,26 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
+			var image_1 = new cpr.controls.Image();
+			image_1.src = "images/oceann.jpg";
+			container.addChild(image_1, {
+				"top": "0px",
+				"right": "0px",
+				"bottom": "0px",
+				"left": "0px"
+			});
+			
 			var userDefinedControl_1 = new udc.logo();
+			userDefinedControl_1.style.css({
+				"border-right-style" : "solid",
+				"border-bottom-color" : "#ffffff",
+				"border-left-style" : "solid",
+				"border-left-color" : "#ffffff",
+				"border-top-color" : "#ffffff",
+				"border-bottom-style" : "solid",
+				"border-right-color" : "#ffffff",
+				"border-top-style" : "solid"
+			});
 			container.addChild(userDefinedControl_1, {
 				"top": "20px",
 				"width": "175px",
@@ -514,10 +534,20 @@
 			
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
 			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+			embeddedPage_1.style.css({
+				"border-right-style" : "solid",
+				"border-bottom-color" : "#ffffff",
+				"border-left-style" : "solid",
+				"border-left-color" : "#ffffff",
+				"border-top-color" : "#ffffff",
+				"border-bottom-style" : "solid",
+				"border-right-color" : "#ffffff",
+				"border-top-style" : "solid"
+			});
 			container.addChild(embeddedPage_1, {
 				"top": "169px",
 				"right": "10px",
-				"bottom": "40px",
+				"bottom": "10px",
 				"left": "659px"
 			});
 			
@@ -543,9 +573,23 @@
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
 							cell.columnName = "planDate";
+							cell.style.css({
+								"background-color" : "#edd9d9",
+								"background-image" : "none"
+							});
 						}
 					}]
 				}
+			});
+			grid_1.style.css({
+				"border-right-style" : "solid",
+				"border-bottom-color" : "#000000",
+				"border-left-style" : "solid",
+				"border-left-color" : "#000000",
+				"border-top-color" : "#000000",
+				"border-bottom-style" : "solid",
+				"border-right-color" : "#000000",
+				"border-top-style" : "solid"
 			});
 			if(typeof onGrd3CellClick == "function") {
 				grid_1.addEventListener("cell-click", onGrd3CellClick);
@@ -579,10 +623,24 @@
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
 							cell.columnName = "title";
+							cell.style.css({
+								"background-color" : "#edd9d9",
+								"background-image" : "none"
+							});
 							cell.bind("fieldLabel").toDataSet(app.lookup("selectedPlan"), "title", 0);
 						}
 					}]
 				}
+			});
+			grid_2.style.css({
+				"border-right-style" : "solid",
+				"border-bottom-color" : "#000000",
+				"border-left-style" : "solid",
+				"border-left-color" : "#000000",
+				"border-top-color" : "#000000",
+				"border-bottom-style" : "solid",
+				"border-right-color" : "#000000",
+				"border-top-style" : "solid"
 			});
 			if(typeof onGrd4Click == "function") {
 				grid_2.addEventListener("click", onGrd4Click);
@@ -638,6 +696,9 @@
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.columnType = "checkbox";
+								cell.style.css({
+									"background-color" : "#EDEDCA"
+								});
 							}
 						},
 						{
@@ -645,7 +706,9 @@
 							"configurator": function(cell){
 								cell.columnName = "title";
 								cell.style.css({
-									"font-weight" : "normal"
+									"background-color" : "#edd9d9",
+									"font-weight" : "normal",
+									"background-image" : "none"
 								});
 							}
 						}
@@ -653,7 +716,15 @@
 				}
 			});
 			grid_3.style.css({
-				"font-weight" : "bolder"
+				"border-right-style" : "solid",
+				"border-bottom-color" : "#000000",
+				"font-weight" : "bolder",
+				"border-left-style" : "solid",
+				"border-left-color" : "#000000",
+				"border-top-color" : "#000000",
+				"border-bottom-style" : "solid",
+				"border-right-color" : "#000000",
+				"border-top-style" : "solid"
 			});
 			if(typeof onGrd2Click == "function") {
 				grid_3.addEventListener("click", onGrd2Click);
@@ -674,6 +745,14 @@
 			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
 			inputBox_1.placeholder = "지역 검색";
 			inputBox_1.style.css({
+				"border-right-style" : "solid",
+				"border-bottom-color" : "#000000",
+				"border-left-style" : "solid",
+				"border-left-color" : "#000000",
+				"border-top-color" : "#000000",
+				"border-bottom-style" : "solid",
+				"border-right-color" : "#000000",
+				"border-top-style" : "solid",
 				"text-align" : "center"
 			});
 			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("areaSearch"));
@@ -681,8 +760,8 @@
 			inputBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "title");
 			container.addChild(inputBox_1, {
 				"top": "129px",
-				"left": "272px",
-				"width": "273px",
+				"left": "220px",
+				"width": "325px",
 				"height": "30px"
 			});
 			
@@ -708,9 +787,17 @@
 			var button_2 = new cpr.controls.Button();
 			button_2.value = "";
 			button_2.style.css({
+				"border-right-style" : "solid",
 				"background-size" : "cover",
+				"border-bottom-color" : "#000000",
+				"border-left-style" : "solid",
+				"border-left-color" : "#000000",
+				"border-top-color" : "#000000",
+				"border-bottom-style" : "solid",
+				"border-right-color" : "#000000",
 				"background-image" : "url('images/cancelbutton.png')",
-				"background-position" : "center"
+				"background-position" : "center",
+				"border-top-style" : "solid"
 			});
 			if(typeof onButtonClick2 == "function") {
 				button_2.addEventListener("click", onButtonClick2);
@@ -724,9 +811,17 @@
 			
 			var button_3 = new cpr.controls.Button();
 			button_3.style.css({
+				"border-right-style" : "solid",
 				"background-size" : "cover",
+				"border-bottom-color" : "#000000",
+				"border-left-style" : "solid",
+				"border-left-color" : "#000000",
+				"border-top-color" : "#000000",
+				"border-bottom-style" : "solid",
+				"border-right-color" : "#000000",
 				"background-image" : "url('images/modifyButton.png')",
-				"background-position" : "center"
+				"background-position" : "center",
+				"border-top-style" : "solid"
 			});
 			if(typeof onButtonClick == "function") {
 				button_3.addEventListener("click", onButtonClick);

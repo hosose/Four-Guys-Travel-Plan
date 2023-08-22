@@ -21,7 +21,9 @@ public class ReplyTest {
 		ReplyVO replyVO = new ReplyVO();
 		replyVO.setBoardNo(boardNo);
 		replyVO.setReplyContent(replyContent);
+
 		replyVO.setReplyId(Id);
+
 		// replyMapper.insertReply(replyVO);
 	}
 
