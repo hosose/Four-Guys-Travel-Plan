@@ -11,15 +11,6 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-75f61cb5">
-    <cl:searchinput std:sid="s-input-5e485e85" style="text-align:center;" value="" placeholder="여행지를 검색하세요!">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-80d03e88">
-        <cl:xylayoutdata std:sid="sxyl-data-c43e7ddc" top="200px" width="400px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="tablet"/>
-        <cl:xylayoutdata std:sid="sxyl-data-9455f11a" top="200px" width="983px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="wide"/>
-        <cl:xylayoutdata std:sid="sxyl-data-b55f89ef" top="200px" width="1000px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="new-screen"/>
-        <cl:xylayoutdata std:sid="sxyl-data-cebfa326" top="200px" width="1210px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="new-screen2"/>
-        <cl:xylayoutdata std:sid="sxyl-data-a0f1382f" top="200px" width="500px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="new-screen3"/>
-      </cl:responsivexylayoutdata>
-    </cl:searchinput>
     <cl:button std:sid="button-9083e9ae" id="jeju" style="background-size:cover; color:#FFFFFF; font-size:40px; background-image:url(images/harubang2.jpg); background-position:center;" value="JEJU">
       <cl:listener std:sid="listener-2abc7368" name="click" handler="onJejuClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-6daa3d08">

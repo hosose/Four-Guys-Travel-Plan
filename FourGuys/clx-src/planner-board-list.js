@@ -35,7 +35,7 @@ function onPlannerBoardListSMSubmitError(e) {
 }
 
 function gridPaging() {
-	var plannerBoardListGrid = app.lookup("plannerBoardListGrid");
+	var plannerBoardListGrid = app.lookup("plannerBoardListGrd");
 	for(let i =0; i<plannerBoardListGrid.rowCount;i++){
 		plannerBoardListGrid.getRow(i).setValue("boardTitle", "<a href=\"boardDetailPage/"+plannerBoardListGrid.getRow(i).getValue("boardNo")+"\">"+plannerBoardListGrid.getRow(i).getValue("boardTitle")+"</a>")
 	}

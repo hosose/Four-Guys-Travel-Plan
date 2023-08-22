@@ -61,7 +61,7 @@
 			 */
 			function onGrd2Click(e) {
 				var grd2 = e.control;
-				var grid = app.lookup("grd2");
+				var grid = app.lookup("contentGrd");
 				var embp = app.lookup("ep1");
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
@@ -80,8 +80,8 @@
 			 */
 			function onDayBtnSMSubmitSuccess(e) {
 				var dayBtnSM = e.control;
-				var grid = app.lookup("grd3");
-				app.lookup("createPlanDM").setValue("planDate", 1);
+				var grid = app.lookup("dayGrd");
+				app.lookup("planDM").setValue("planDate", 1);
 			}
 
 			/*
@@ -90,9 +90,9 @@
 			 */
 			function onGrd3CellClick(e) {
 				var grd3 = e.control;
-				var grid = app.lookup("grd3");
+				var grid = app.lookup("dayGrd");
 				var planDate = grid.getSelectedRow().getValue("planDate");
-				app.lookup("createPlanDM").setValue("planDate", planDate);
+				app.lookup("planDM").setValue("planDate", planDate);
 				app.lookup("selectDate").send();
 			}
 
@@ -102,9 +102,9 @@
 			 */
 			function onGrd2RowCheck(e) {
 				var grd2 = e.control;
-				var grid = app.lookup("grd2");
+				var grid = app.lookup("contentGrd");
 				var contentId = grid.getSelectedRow().getValue("contentid");
-				app.lookup("createPlanDM").setValue("contentid", contentId);
+				app.lookup("planDM").setValue("contentid", contentId);
 				app.lookup("createPlan").send();
 			}
 
@@ -116,7 +116,7 @@
 				var grd2 = e.control;
 				var contentId = grd2.getSelectedRow().getValue("contentid");
 
-				app.lookup("createPlanDM").setValue("contentid", contentId);
+				app.lookup("planDM").setValue("contentid", contentId);
 				app.lookup("deletePlan").send();
 			}
 
@@ -277,7 +277,7 @@
 			});
 			app.register(dataMap_2);
 			
-			var dataMap_3 = new cpr.data.DataMap("createPlanDM");
+			var dataMap_3 = new cpr.data.DataMap("planDM");
 			dataMap_3.parseData({
 				"columns" : [
 					{"name": "contentid"},
@@ -388,36 +388,7 @@
 				]
 			});
 			
-			var group_1 = new cpr.controls.Container("grp1");
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_1);
-			container.addChild(group_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "20px",
-						"left": "20px",
-						"width": "848px",
-						"height": "22px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "20px",
-						"left": "10px",
-						"width": "414px",
-						"height": "22px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "20px",
-						"left": "7px",
-						"width": "290px",
-						"height": "22px"
-					}
-				]
-			});
-			
-			var group_2 = new cpr.controls.Container();
+			var group_1 = new cpr.controls.Container();
 			var formLayout_1 = new cpr.controls.layouts.FormLayout();
 			formLayout_1.scrollable = false;
 			formLayout_1.topMargin = "5px";
@@ -428,7 +399,7 @@
 			formLayout_1.verticalSpacing = "25px";
 			formLayout_1.setColumns(["100px", "100px"]);
 			formLayout_1.setRows(["70px"]);
-			group_2.setLayout(formLayout_1);
+			group_1.setLayout(formLayout_1);
 			(function(container){
 				var button_1 = new cpr.controls.Button();
 				button_1.style.css({
@@ -459,8 +430,8 @@
 					"colIndex": 1,
 					"rowIndex": 0
 				});
-			})(group_2);
-			container.addChild(group_2, {
+			})(group_1);
+			container.addChild(group_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
@@ -486,7 +457,7 @@
 				]
 			});
 			
-			var grid_1 = new cpr.controls.Grid("grd2");
+			var grid_1 = new cpr.controls.Grid("contentGrd");
 			grid_1.init({
 				"dataSet": app.lookup("jeju"),
 				"columns": [
@@ -585,7 +556,7 @@
 				]
 			});
 			
-			var grid_2 = new cpr.controls.Grid("grd1");
+			var grid_2 = new cpr.controls.Grid("selectedContentGrd");
 			grid_2.init({
 				"dataSet": app.lookup("selectedPlan"),
 				"columns": [{"width": "100px"}],
@@ -648,11 +619,11 @@
 				]
 			});
 			
-			var group_3 = new cpr.controls.Container("grp2");
-			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-			group_3.setLayout(xYLayout_2);
+			var group_2 = new cpr.controls.Container("grp2");
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			group_2.setLayout(xYLayout_1);
 			(function(container){
-				var grid_3 = new cpr.controls.Grid("grd3");
+				var grid_3 = new cpr.controls.Grid("dayGrd");
 				grid_3.init({
 					"dataSet": app.lookup("planDate"),
 					"columns": [{"width": "100px"}],
@@ -697,8 +668,8 @@
 					"width": "120px",
 					"left": "calc(50% - 60px)"
 				});
-			})(group_3);
-			container.addChild(group_3, {
+			})(group_2);
+			container.addChild(group_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
@@ -826,7 +797,7 @@
 				]
 			});
 			
-			var comboBox_1 = new cpr.controls.ComboBox("cmb1");
+			var comboBox_1 = new cpr.controls.ComboBox("categoryCmb");
 			comboBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "cat1");
 			(function(comboBox_1){
 				comboBox_1.addItem(new cpr.controls.Item("", ""));

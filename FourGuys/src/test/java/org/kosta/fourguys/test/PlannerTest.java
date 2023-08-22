@@ -146,4 +146,10 @@ public class PlannerTest {
 		int result = plannerMapper.deletePlannerByNo(245);
 		Assertions.assertEquals(1, result);
 	}
+	
+	@Test
+	public void getContentIdByPlannerNo() {
+		List<PlanVO> resultVO = plannerMapper.getContentIdListByPlannerNo(270);
+		System.out.println(resultVO);
+	}
 }

@@ -34,7 +34,7 @@
       <cl:listener std:sid="listener-571ec24d" name="click" handler="onSelectBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-d2cf1afa" bottom="50px" width="180px" height="40px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM"/>
     </cl:button>
-    <cl:grid std:sid="grid-b3d09715" id="grd1" datasetid="plannerVO">
+    <cl:grid std:sid="grid-b3d09715" id="plannerGrd" datasetid="plannerVO">
       <cl:xylayoutdata std:sid="xyl-data-a902b8fd" top="20px" width="550px" height="250px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
       <cl:gridcolumn std:sid="g-column-b69f1b94"/>
       <cl:gridcolumn std:sid="g-column-36ef6ff4"/>

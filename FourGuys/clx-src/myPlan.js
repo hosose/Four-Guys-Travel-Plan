@@ -22,7 +22,7 @@ function onBodyLoad(e) {
  * @param {Number} vnPageRow
  */
 function gridPaging() {
-	var vcGridSample = app.lookup("grd1");
+	var vcGridSample = app.lookup("completeGrd");
 	var vcPageIndexer = app.lookup("completePaging");
 	vcPageIndexer.redraw();
 	
@@ -39,7 +39,7 @@ function gridPaging() {
 }
 
 function gridPaging2() {
-	var vcGridSample = app.lookup("grd2");
+	var vcGridSample = app.lookup("notCompleteGrd");
 	var vcPageIndexer = app.lookup("notCompletePaging");
 	vcPageIndexer.redraw();
 	
@@ -80,7 +80,7 @@ function onNotCompletePagingSelectionChange(e) {
  */
 function onButtonClick(e) {
 	var button = e.control;
-	var grd2 = app.lookup("grd2")
+	var grd2 = app.lookup("notCompleteGrd")
 	var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
 	location.href = "myPlanDetail/" + plannerNo;
 	
@@ -92,7 +92,7 @@ function onButtonClick(e) {
 */
 function onButtonClick2(e) {
 	var button = e.control;
-	var grd1 = app.lookup("grd1")
+	var grd1 = app.lookup("completeGrd")
 	var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
 	location.href = "myPlanDetail/" + plannerNo;
 }
@@ -107,7 +107,7 @@ function onButtonClick3(e) {
 	if (!confirm("삭제하시겠습니까?")) {
 		alert("취소를 누르셨습니다.");
 	} else {
-		var grd1 = app.lookup("grd1")
+		var grd1 = app.lookup("completeGrd")
 		var plannerNo = grd1.getSelectedRow().getValue("plannerNo");
 		app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 		app.lookup("deletePlanner").send();
@@ -139,7 +139,7 @@ function onButtonClick4(e) {
 	if (!confirm("삭제하시겠습니까?")) {
 		alert("취소를 누르셨습니다.");
 	} else {
-		var grd2 = app.lookup("grd2")
+		var grd2 = app.lookup("notCompleteGrd")
 		var plannerNo = grd2.getSelectedRow().getValue("plannerNo");
 		app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 		app.lookup("deletePlanner").send();

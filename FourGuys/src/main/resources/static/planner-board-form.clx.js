@@ -62,7 +62,7 @@
 			function onDayGrdCellClick(e) {
 				var dayGrd = e.control;
 				var planDate = dayGrd.getSelectedRow().getValue("planDate");
-				app.lookup("createPlanDM").setValue("planDate", planDate);
+				app.lookup("planDM").setValue("planDate", planDate);
 				app.lookup("selectDate").send();
 			}
 
@@ -159,7 +159,7 @@
 			});
 			app.register(dataMap_2);
 			
-			var dataMap_3 = new cpr.data.DataMap("createPlanDM");
+			var dataMap_3 = new cpr.data.DataMap("planDM");
 			dataMap_3.parseData({
 				"columns" : [
 					{"name": "contentid"},
@@ -318,7 +318,7 @@
 					"rowIndex": 2,
 					"topSpacing": 5
 				});
-				var inputBox_1 = new cpr.controls.InputBox("ipb1");
+				var inputBox_1 = new cpr.controls.InputBox("titleIpb");
 				inputBox_1.placeholder = "제목을 입력해주세요.";
 				inputBox_1.style.css({
 					"border-right-style" : "solid",

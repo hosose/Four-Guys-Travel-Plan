@@ -81,22 +81,18 @@
 				var plannerNo = app.lookup("boardDetail").getRow(0).getValue("plannerNo");
 				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 				app.lookup("dayBtnSM").send();
-				var boardContentValue = app.lookup("boardContentValue");
-				boardContentValue.selectRows([0]);
-				setTimeout(() => app.lookup("PasteBtn").click(), 700);
+				setTimeout(() => getContent(), 700);
 			}
 
 			/*
 			 * "Button" 버튼(PasteBtn)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onPasteBtnClick(e) {
-				var pasteBtn = e.control;
+			function getContent() {
 				var ep1 = app.lookup("ep1");
-				var boardContentValue = app.lookup("boardContentValue");
-				var vcIpb = boardContentValue.getSelectedRow().getValue("boardContent");
-				if (vcIpb == "" || vcIpb == null) return false;
-				ep1.callPageMethod("pasteHTML", vcIpb);
+				var boardContentValue = app.lookup("boardDetail").getRow(0).getValue("boardContent");
+				if (boardContentValue == "" || boardContentValue == null) return false;
+				ep1.callPageMethod("pasteHTML", boardContentValue);
 			}
 
 			function print(psEventType) {
@@ -554,26 +550,6 @@
 				"left": "calc(50% - 500px)"
 			});
 			
-			var output_3 = new cpr.controls.Output("plannerNoOutput");
-			output_3.visible = false;
-			output_3.bind("value").toDataMap(app.lookup("plannerNoDM"), "plannerNo");
-			container.addChild(output_3, {
-				"top": "66px",
-				"left": "257px",
-				"width": "10px",
-				"height": "10px"
-			});
-			
-			var output_4 = new cpr.controls.Output("planDateOutput");
-			output_4.visible = false;
-			output_4.bind("value").toDataMap(app.lookup("createPlanDM"), "planDate");
-			container.addChild(output_4, {
-				"top": "66px",
-				"left": "277px",
-				"width": "10px",
-				"height": "10px"
-			});
-			
 			var button_1 = new cpr.controls.Button("selectBtn");
 			button_1.value = "수정";
 			button_1.style.css({
@@ -598,40 +574,6 @@
 				"left": "calc(50% - 100px)"
 			});
 			
-			var grid_4 = new cpr.controls.Grid("boardContentValue");
-			grid_4.visible = false;
-			grid_4.init({
-				"dataSet": app.lookup("boardDetail"),
-				"columns": [{"width": "100px"}],
-				"header": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.filterable = false;
-							cell.sortable = false;
-							cell.targetColumnName = "boardContent";
-							cell.text = "boardContent";
-						}
-					}]
-				},
-				"detail": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.columnName = "boardContent";
-						}
-					}]
-				}
-			});
-			container.addChild(grid_4, {
-				"top": "86px",
-				"left": "237px",
-				"width": "10px",
-				"height": "10px"
-			});
-			
 			var button_2 = new cpr.controls.Button("PasteBtn");
 			button_2.visible = false;
 			button_2.value = "Button";
@@ -645,10 +587,10 @@
 				"height": "10px"
 			});
 			
-			var output_5 = new cpr.controls.Output("lblVal");
-			output_5.visible = false;
-			output_5.bind("value").toDataSet(app.lookup("boardDetail"), "boardContent", 0);
-			container.addChild(output_5, {
+			var output_3 = new cpr.controls.Output("lblVal");
+			output_3.visible = false;
+			output_3.bind("value").toDataSet(app.lookup("boardDetail"), "boardContent", 0);
+			container.addChild(output_3, {
 				"top": "86px",
 				"left": "257px",
 				"width": "10px",

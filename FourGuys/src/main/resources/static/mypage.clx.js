@@ -89,7 +89,7 @@
 			 */
 			function onFindMyPageSubmitSuccess(e){
 				var findMyPage = e.control;
-				var meta = findMyPage.getMetadata("findMyPageis");
+				var meta = findMyPage.getMetadata("memberVO");
 				if(meta != null){
 					var ID = app.lookup("ID");
 					var passwd = app.lookup("PASSWORD");
@@ -249,41 +249,8 @@
 			// End - User Script
 			
 			// Header
-			var dataSet_1 = new cpr.data.DataSet("ds1");
-			dataSet_1.parseData({
-				"columns" : [
-					{
-						"name": "PLANNER_NO",
-						"dataType": "number"
-					},
-					{"name": "ID"},
-					{
-						"name": "PLANNER_TITLE",
-						"dataType": "string"
-					},
-					{
-						"name": "PLANNER_START_DATE",
-						"dataType": "string"
-					},
-					{
-						"name": "PLANNER_LAST_DATE",
-						"dataType": "string"
-					}
-				]
-			});
-			app.register(dataSet_1);
-			var dataMap_1 = new cpr.data.DataMap("dmDetail");
+			var dataMap_1 = new cpr.data.DataMap("member");
 			dataMap_1.parseData({
-				"columns" : [
-					{"name": "PLAN_TITLE"},
-					{"name": "PLAN_START"},
-					{"name": "PLAN_LAST"}
-				]
-			});
-			app.register(dataMap_1);
-			
-			var dataMap_2 = new cpr.data.DataMap("member");
-			dataMap_2.parseData({
 				"alterColumnLayout": "client",
 				"columns": [
 					{"name": "id"},
@@ -298,11 +265,10 @@
 					{"name": "address"}
 				]
 			});
-			app.register(dataMap_2);
+			app.register(dataMap_1);
 			var submission_1 = new cpr.protocols.Submission("findMyPage");
 			submission_1.method = "get";
-			submission_1.action = "findMyPage";
-			submission_1.addResponseData(dataMap_2, false);
+			submission_1.action = "loginCheck";
 			if(typeof onFindMyPageSubmitSuccess == "function") {
 				submission_1.addEventListener("submit-success", onFindMyPageSubmitSuccess);
 			}
@@ -311,7 +277,7 @@
 			var submission_2 = new cpr.protocols.Submission("updateMember");
 			submission_2.method = "put";
 			submission_2.action = "/updateMember";
-			submission_2.addRequestData(dataMap_2);
+			submission_2.addRequestData(dataMap_1);
 			if(typeof onUpdateMemberSubmitSuccess == "function") {
 				submission_2.addEventListener("submit-success", onUpdateMemberSubmitSuccess);
 			}

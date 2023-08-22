@@ -73,14 +73,11 @@ function isEmail(asValue) {
  */
 function onSubRegisterSubmitSuccess(e) {
 	var subRegister = e.control;
-	
 	var uri = subRegister.getMetadata("registerSuccess");
-	
 	if (uri != null) {
 		alert("회원가입을 축하드립니다.");
 		location.href = uri;
 	}
-	
 }
 
 /*

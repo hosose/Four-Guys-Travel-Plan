@@ -2,6 +2,7 @@ package org.kosta.fourguys.service;
 
 import java.util.List;
 
+import org.kosta.fourguys.vo.PlanVO;
 import org.kosta.fourguys.vo.PlannerVO;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,7 @@ public interface PlannerService {
 	public List<PlannerVO> findPlannerByNo(int plannerNo);
 	
 	public int deletePlannerByNo(int plannerNo);
+	
+	public List<PlanVO> getContentIdListByPlannerNo(int plannerNo);
 
 }

@@ -170,30 +170,10 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:output std:sid="output-7056fa8a" id="plannerNoOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="plannerNoDM" columnname="plannerNo"/>
-      <cl:xylayoutdata std:sid="xyl-data-1d3d6c15" top="66px" left="257px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
-    <cl:output std:sid="output-723c42bc" id="planDateOutput" visible="false">
-      <cl:datamapbind property="value" datacontrolid="createPlanDM" columnname="planDate"/>
-      <cl:xylayoutdata std:sid="xyl-data-4f7d3d26" top="66px" left="277px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
     <cl:button std:sid="button-6f1f615e" id="selectBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:25px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="수정">
       <cl:listener std:sid="listener-eced33cf" name="click" handler="onSelectBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-4024c71d" bottom="30px" width="200px" height="60px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM"/>
     </cl:button>
-    <cl:grid std:sid="grid-a8f0a09e" id="boardContentValue" visible="false" datasetid="boardDetail">
-      <cl:xylayoutdata std:sid="xyl-data-26e165fe" top="86px" left="237px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:gridcolumn std:sid="g-column-b39c64fc"/>
-      <cl:gridheader std:sid="gh-band-a022b371">
-        <cl:gridrow std:sid="g-row-d8c90487"/>
-        <cl:gridcell std:sid="gh-cell-539ab827" rowindex="0" colindex="0" targetcolumnname="boardContent" sortable="false" filterable="false" text="boardContent"/>
-      </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-9875555b">
-        <cl:gridrow std:sid="g-row-91674e03"/>
-        <cl:gridcell std:sid="gd-cell-3c3b7cc7" rowindex="0" colindex="0" columnname="boardContent"/>
-      </cl:griddetail>
-    </cl:grid>
     <cl:button std:sid="button-cf546080" id="PasteBtn" visible="false" value="Button">
       <cl:listener std:sid="listener-92f1dace" name="click" handler="onPasteBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-c84a7a1c" top="66px" left="237px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

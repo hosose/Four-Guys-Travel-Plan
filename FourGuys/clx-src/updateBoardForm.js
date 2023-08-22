@@ -68,22 +68,18 @@ function onBoardDetailSMSubmitSuccess(e) {
 	var plannerNo = app.lookup("boardDetail").getRow(0).getValue("plannerNo");
 	app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 	app.lookup("dayBtnSM").send();
-	var boardContentValue = app.lookup("boardContentValue");
-	boardContentValue.selectRows([0]);
-	setTimeout(() => app.lookup("PasteBtn").click(), 700);
+	setTimeout(() => getContent(), 700);
 }
 
 /*
  * "Button" 버튼(PasteBtn)에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onPasteBtnClick(e) {
-	var pasteBtn = e.control;
+function getContent() {
 	var ep1 = app.lookup("ep1");
-	var boardContentValue = app.lookup("boardContentValue");
-	var vcIpb = boardContentValue.getSelectedRow().getValue("boardContent");
-	if (vcIpb == "" || vcIpb == null) return false;
-	ep1.callPageMethod("pasteHTML", vcIpb);
+	var boardContentValue = app.lookup("boardDetail").getRow(0).getValue("boardContent");
+	if (boardContentValue == "" || boardContentValue == null) return false;
+	ep1.callPageMethod("pasteHTML", boardContentValue);
 }
 
 function print(psEventType) {

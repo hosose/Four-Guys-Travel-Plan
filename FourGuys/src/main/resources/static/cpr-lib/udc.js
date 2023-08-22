@@ -191,7 +191,7 @@
 					var vo = loginCheck.getMetadata("memberVO");
 					var loginBtn = app.lookup("loginBtn");
 					var logoutBtn = app.lookup("logoutBtn");
-					var MyPageBtn = app.lookup("MyPageBtn");
+					var MyPageBtn = app.lookup("myPageBtn");
 					if(vo){
 						loginBtn.visible = false;
 						logoutBtn.visible = true;
@@ -375,7 +375,7 @@
 					"height": "45px"
 				});
 				
-				var button_5 = new cpr.controls.Button("MyPageBtn");
+				var button_5 = new cpr.controls.Button("myPageBtn");
 				button_5.visible = false;
 				button_5.value = "마이페이지";
 				button_5.style.css({

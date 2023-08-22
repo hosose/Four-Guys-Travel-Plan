@@ -48,7 +48,7 @@ function onTitleSearchKeydown(e) {
  */
 function onGrd2Click(e) {
 	var grd2 = e.control;
-	var grid = app.lookup("grd2");
+	var grid = app.lookup("contentGrd");
 	var embp = app.lookup("ep1");
 	var mapx = grid.getSelectedRow().getValue("mapx");
 	var mapy = grid.getSelectedRow().getValue("mapy");
@@ -67,8 +67,8 @@ function onGrd2Click(e) {
  */
 function onDayBtnSMSubmitSuccess(e) {
 	var dayBtnSM = e.control;
-	var grid = app.lookup("grd3");
-	app.lookup("createPlanDM").setValue("planDate", 1);
+	var grid = app.lookup("dayGrd");
+	app.lookup("planDM").setValue("planDate", 1);
 }
 
 /*
@@ -77,9 +77,9 @@ function onDayBtnSMSubmitSuccess(e) {
  */
 function onGrd3CellClick(e) {
 	var grd3 = e.control;
-	var grid = app.lookup("grd3");
+	var grid = app.lookup("dayGrd");
 	var planDate = grid.getSelectedRow().getValue("planDate");
-	app.lookup("createPlanDM").setValue("planDate", planDate);
+	app.lookup("planDM").setValue("planDate", planDate);
 	app.lookup("selectDate").send();
 }
 
@@ -89,9 +89,9 @@ function onGrd3CellClick(e) {
  */
 function onGrd2RowCheck(e) {
 	var grd2 = e.control;
-	var grid = app.lookup("grd2");
+	var grid = app.lookup("contentGrd");
 	var contentId = grid.getSelectedRow().getValue("contentid");
-	app.lookup("createPlanDM").setValue("contentid", contentId);
+	app.lookup("planDM").setValue("contentid", contentId);
 	app.lookup("createPlan").send();
 }
 
@@ -103,7 +103,7 @@ function onGrd2RowUncheck(e) {
 	var grd2 = e.control;
 	var contentId = grd2.getSelectedRow().getValue("contentid");
 
-	app.lookup("createPlanDM").setValue("contentid", contentId);
+	app.lookup("planDM").setValue("contentid", contentId);
 	app.lookup("deletePlan").send();
 }
 

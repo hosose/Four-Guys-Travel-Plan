@@ -39,8 +39,8 @@ public class PlannerBoardController {
 		boolean success = false;
 		HttpSession session = request.getSession(false);
 		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
-		ParameterGroup plannerBoardDetailParam = dataRequest.getParameterGroup("plannerBoardNoDM");
-		int plannerBoardNo = Integer.parseInt(plannerBoardDetailParam.getValue("BOARD_NO"));
+		ParameterGroup plannerBoardNoDM = dataRequest.getParameterGroup("plannerBoardNoDM");
+		int plannerBoardNo = Integer.parseInt(plannerBoardNoDM.getValue("BOARD_NO"));
 		Map<String, Object> initParam = new HashMap<>();
 		List<PlannerBoardVO> result = plannerBoardService.findPlannerBoardByNo(plannerBoardNo);
 		if (result != null) {
@@ -50,7 +50,6 @@ public class PlannerBoardController {
 			success = true;
 		}
 		dataRequest.setResponse("boardDetail", plannerBoardService.findPlannerBoardByNo(plannerBoardNo));
-		dataRequest.setResponse("boardDM", plannerBoardService.findPlannerBoardByNo(plannerBoardNo));
 		dataRequest.setMetadata(success, initParam);
 		return new JSONDataView();
 	}
@@ -59,7 +58,6 @@ public class PlannerBoardController {
 	public View updateBoard(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		String id = null;
-		Map<String, Object> initParam = new HashMap<>();
 		if (session != null) {
 			MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
 			id = memberVO.getId();
@@ -77,9 +75,6 @@ public class PlannerBoardController {
 		plannerBoardVO.setBoardNo(plannerBoardNo);
 		plannerBoardVO.setId(id);
 		plannerBoardService.updateBoard(plannerBoardVO);
-		initParam.put("plannerBoardVO", plannerBoardVO);
-		dataRequest.setMetadata(true, initParam);
-		dataRequest.setResponse("plannerBoardVO", plannerBoardVO);
 		return new JSONDataView();
 	}
 
@@ -100,13 +95,11 @@ public class PlannerBoardController {
 	@GetMapping("/boardDetailPage/{boardNo}")
 	public View getBoardDetailPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		return new UIView("plannerBoardDetail.clx");
-
 	}
 
 	@GetMapping("/updateBoardForm/{boardNo}")
 	public View updateBoardPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
 		return new UIView("updateBoardForm.clx");
-
 	}
 
 	@GetMapping("/createPlannerBoardForm")
@@ -188,7 +181,6 @@ public class PlannerBoardController {
 		PlannerBoardVO plannerBoardVO = new PlannerBoardVO();
 		plannerBoardVO.setBoardNo(boardNo);
 		plannerBoardService.deleteBoard(plannerBoardVO);
-		dataRequest.setResponse("boardDetail", plannerBoardService.deleteBoard(plannerBoardVO));
 		return new JSONDataView();
 	}
 }

@@ -48,7 +48,7 @@
 			}
 
 			function gridPaging() {
-				var plannerBoardListGrid = app.lookup("plannerBoardListGrid");
+				var plannerBoardListGrid = app.lookup("plannerBoardListGrd");
 				for(let i =0; i<plannerBoardListGrid.rowCount;i++){
 					plannerBoardListGrid.getRow(i).setValue("boardTitle", "<a href=\"boardDetailPage/"+plannerBoardListGrid.getRow(i).getValue("boardNo")+"\">"+plannerBoardListGrid.getRow(i).getValue("boardTitle")+"</a>")
 				}
@@ -246,7 +246,7 @@
 			formLayout_1.setRowAutoSizing(1, true);
 			group_1.setLayout(formLayout_1);
 			(function(container){
-				var button_1 = new cpr.controls.Button();
+				var button_1 = new cpr.controls.Button("registerBoardBtn");
 				button_1.value = "글쓰기";
 				button_1.style.css({
 					"background-color" : "#306dc6",
@@ -263,7 +263,7 @@
 					"rowIndex": 0,
 					"bottomSpacing": 10
 				});
-				var grid_1 = new cpr.controls.Grid("plannerBoardListGrid");
+				var grid_1 = new cpr.controls.Grid("plannerBoardListGrd");
 				grid_1.init({
 					"dataSet": app.lookup("plannerBoardList"),
 					"columns": [

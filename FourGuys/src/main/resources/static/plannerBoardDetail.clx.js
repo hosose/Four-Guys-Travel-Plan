@@ -31,20 +31,18 @@
 			 */
 			function onGrd4Click(e) {
 				var grd4 = e.control;
-				var grid = app.lookup("grd4");
+				var grid = app.lookup("selectedContentGrd");
 				var embp = app.lookup("ep1");
 				var mapx = grid.getSelectedRow().getValue("mapx");
 				var mapy = grid.getSelectedRow().getValue("mapy");
 				var title = grid.getSelectedRow().getValue("title");
 				var firstimage = grid.getSelectedRow().getValue("firstimage");
-				var embp_mapx = embp.setPageProperty("mapx",mapx);
-				var embp_mapy = embp.setPageProperty("mapy",mapy);
-				var embp_title = embp.setPageProperty("title",title);
-				var embp_firstimage = embp.setPageProperty("firstimage",firstimage);
+				var embp_mapx = embp.setPageProperty("mapx", mapx);
+				var embp_mapy = embp.setPageProperty("mapy", mapy);
+				var embp_title = embp.setPageProperty("title", title);
+				var embp_firstimage = embp.setPageProperty("firstimage", firstimage);
 				embp.callPageMethod("panTo");
 			}
-
-
 
 			/*
 			 * 그리드에서 cell-click 이벤트 발생 시 호출.
@@ -52,9 +50,9 @@
 			 */
 			function onGrd3CellClick(e) {
 				var grd3 = e.control;
-				var grid = app.lookup("grd3");
+				var grid = app.lookup("dayGrd");
 				var planDate = grid.getSelectedRow().getValue("planDate");
-				app.lookup("createPlanDM").setValue("planDate", planDate);
+				app.lookup("planDM").setValue("planDate", planDate);
 				app.lookup("getTitle").send();
 			}
 
@@ -66,8 +64,8 @@
 				var currentUrl = location.href;
 				var button = e.control;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-				location.href="updateBoardForm/"+boardNo;
-
+				location.href = "updateBoardForm/" + boardNo;
+				
 			}
 
 			/*
@@ -78,13 +76,11 @@
 				var button = e.control;
 				var currentUrl = location.href;
 				var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-				if(!confirm("삭제하시겠습니까?")){
+				if (!confirm("삭제하시겠습니까?")) {
 					alert("취소되었습니다")
-					location.href="boardDetailPage/"+boardNo;
-				}else{
+					location.href = "boardDetailPage/" + boardNo;
+				} else {
 					app.lookup("deleteBoardSM").send();
-					alert("삭제되었습니다");
-					location.href="planner-board-list.clx";
 				}
 			}
 
@@ -104,9 +100,9 @@
 				var vo = boardDetailSM.getMetadata("MemberVO");
 				var editBtn = app.lookup("editBtn");
 				var deleteBtn = app.lookup("deleteBtn");
-				if(vo["id"]==createrId){
+				if (vo["id"] == createrId) {
 					editBtn.visible = true;
-					deleteBtn.visible=true;
+					deleteBtn.visible = true;
 				}
 				app.lookup("snippet").value = app.lookup("boardDetail").getValue(0, "boardContent");
 			}
@@ -142,11 +138,11 @@
 				if (!confirm("삭제하시겠습니까?")) {
 					alert("취소되었습니다");
 				} else {
-					var replyNo = app.lookup("grd5").getSelectedRow().getValue("replyNo");
+					var replyNo = app.lookup("replyGrd").getSelectedRow().getValue("replyNo");
 					app.lookup("replyBoardNoDM").setValue("REPLY_NO", replyNo);
 					app.lookup("deleteReplySM").send();
 					alert("삭제되었습니다");
-					location.href="boardDetailPage/"+boardNo;
+					location.href = "boardDetailPage/" + boardNo;
 				}
 			}
 
@@ -154,28 +150,43 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onDeleteReplySMSubmitSuccess(e){
+			function onDeleteReplySMSubmitSuccess(e) {
 				var deleteReplySM = e.control;
 				var boardDetailSM = e.control;
-				var replyNo = app.lookup("grd5").getRow(0).getValue("replyNo");
+				var replyNo = app.lookup("replyGrd").getRow(0).getValue("replyNo");
 				app.lookup("replyBoardNoDM").setValue("replyNo", replyNo);
 			}
 
 			/*
+			 * "댓글 수정" 버튼(replyEdit)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onReplyEditClick(e) {
+				var replyEdit = e.control;
+				if (confirm("수정하시겠습니까?")) {
+					app.lookup("editReplySM").send();
+					location.reload();
+				}
+			}
+
+			/*
+			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
+			 * 통신 중 문제가 생기면 발생합니다.
+			 */
+			function onDeleteBoardSMSubmitError(e) {
+				var deleteBoardSM = e.control;
+				alert("삭제하지 못하였습니다.");
+			}
+
+			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onReplyListSMSubmitSuccess(e){
-				var replyListSM = e.control;
-				var vo = replyListSM.getMetadata("MemberVO");
-				var editBtn = app.lookup("replyEdit");
-				var deleteBtn = app.lookup("replyDelete");
-				var value = app.lookup("boardReply").getValue(0, "id");
-				if(vo["id"]==value){
-					editBtn.visible = true;
-					deleteBtn.visible=true;
-				}
-			};
+			function onDeleteBoardSMSubmitSuccess(e) {
+				var deleteBoardSM = e.control;
+				alert("삭제되었습니다");
+				location.href = "planner-board-list.clx";
+			}
 			// End - User Script
 			
 			// Header
@@ -273,7 +284,7 @@
 						"dataType": "string"
 					},
 					{
-						"name": "id",
+						"name": "replyId",
 						"dataType": "string"
 					}
 				]
@@ -288,50 +299,23 @@
 			});
 			app.register(dataMap_1);
 			
-			var dataMap_2 = new cpr.data.DataMap("dm1");
+			var dataMap_2 = new cpr.data.DataMap("plannerNoDM");
 			dataMap_2.parseData({
-				"columns" : [
-					{"name": "id"},
-					{
-						"name": "plannerNo",
-						"dataType": "number"
-					},
-					{"name": "boardContent"},
-					{
-						"name": "boardNo",
-						"dataType": "number"
-					},
-					{"name": "boardTitle"},
-					{"name": "boardCreateDate"},
-					{
-						"name": "boardHits",
-						"dataType": "number"
-					},
-					{
-						"name": "RNo",
-						"dataType": "number"
-					}
-				]
+				"columns" : [{"name": "plannerNo"}]
 			});
 			app.register(dataMap_2);
 			
-			var dataMap_3 = new cpr.data.DataMap("plannerNoDM");
+			var dataMap_3 = new cpr.data.DataMap("planDM");
 			dataMap_3.parseData({
-				"columns" : [{"name": "plannerNo"}]
-			});
-			app.register(dataMap_3);
-			
-			var dataMap_4 = new cpr.data.DataMap("createPlanDM");
-			dataMap_4.parseData({
 				"columns" : [
 					{"name": "contentid"},
 					{"name": "planDate"}
 				]
 			});
-			app.register(dataMap_4);
+			app.register(dataMap_3);
 			
-			var dataMap_5 = new cpr.data.DataMap("selectTitleDM");
-			dataMap_5.parseData({
+			var dataMap_4 = new cpr.data.DataMap("selectTitleDM");
+			dataMap_4.parseData({
 				"columns" : [
 					{
 						"name": "plannerNo",
@@ -344,28 +328,34 @@
 					{"name": "title"}
 				]
 			});
+			app.register(dataMap_4);
+			
+			var dataMap_5 = new cpr.data.DataMap("editBoardDM");
+			dataMap_5.parseData({});
 			app.register(dataMap_5);
 			
-			var dataMap_6 = new cpr.data.DataMap("editBoardDM");
-			dataMap_6.parseData({});
-			app.register(dataMap_6);
-			
-			var dataMap_7 = new cpr.data.DataMap("replyDM");
-			dataMap_7.parseData({
+			var dataMap_6 = new cpr.data.DataMap("replyDM");
+			dataMap_6.parseData({
 				"columns" : [
 					{"name": "REPLY_CONTENT"},
 					{"name": "REPLY_DATE"},
 					{"name": "ID"}
 				]
 			});
-			app.register(dataMap_7);
+			app.register(dataMap_6);
 			
-			var dataMap_8 = new cpr.data.DataMap("replyBoardNoDM");
-			dataMap_8.parseData({
+			var dataMap_7 = new cpr.data.DataMap("replyBoardNoDM");
+			dataMap_7.parseData({
 				"columns" : [{
 					"name": "REPLY_NO",
 					"dataType": "number"
 				}]
+			});
+			app.register(dataMap_7);
+			
+			var dataMap_8 = new cpr.data.DataMap("MemberVO");
+			dataMap_8.parseData({
+				"columns" : [{"name": "id"}]
 			});
 			app.register(dataMap_8);
 			var submission_1 = new cpr.protocols.Submission("boardDetailSM");
@@ -378,74 +368,83 @@
 			}
 			app.register(submission_1);
 			
-			var submission_2 = new cpr.protocols.Submission("selectDate");
+			var submission_2 = new cpr.protocols.Submission("getDay");
 			submission_2.method = "get";
-			submission_2.action = "selectPlansByDate";
-			submission_2.addRequestData(dataMap_3);
-			submission_2.addResponseData(dataSet_3, false);
+			submission_2.action = "getDay";
+			submission_2.addRequestData(dataMap_2);
+			submission_2.addResponseData(dataSet_2, false);
 			app.register(submission_2);
 			
-			var submission_3 = new cpr.protocols.Submission("getDay");
+			var submission_3 = new cpr.protocols.Submission("getTitle");
 			submission_3.method = "get";
-			submission_3.action = "getDay";
+			submission_3.action = "selectPlansByDate";
+			submission_3.addRequestData(dataMap_2);
 			submission_3.addRequestData(dataMap_3);
-			submission_3.addResponseData(dataSet_2, false);
+			submission_3.addResponseData(dataSet_3, false);
 			app.register(submission_3);
 			
-			var submission_4 = new cpr.protocols.Submission("getTitle");
-			submission_4.method = "get";
-			submission_4.action = "selectPlansByDate";
-			submission_4.addRequestData(dataMap_3);
-			submission_4.addRequestData(dataMap_4);
-			submission_4.addResponseData(dataSet_3, false);
+			var submission_4 = new cpr.protocols.Submission("editBoard");
+			submission_4.method = "put";
+			submission_4.action = "editBoard";
+			submission_4.addRequestData(dataSet_1);
 			app.register(submission_4);
 			
-			var submission_5 = new cpr.protocols.Submission("editBoard");
-			submission_5.method = "put";
-			submission_5.action = "editBoard";
-			submission_5.addRequestData(dataSet_1);
+			var submission_5 = new cpr.protocols.Submission("increaseHitsSM");
+			submission_5.action = "increaseBoardHits";
+			submission_5.addRequestData(dataMap_1);
 			app.register(submission_5);
 			
-			var submission_6 = new cpr.protocols.Submission("increaseHitsSM");
-			submission_6.action = "increaseBoardHits";
+			var submission_6 = new cpr.protocols.Submission("deleteBoardSM");
+			submission_6.method = "delete";
+			submission_6.action = "deleteBoard";
 			submission_6.addRequestData(dataMap_1);
+			submission_6.addResponseData(dataSet_1, false);
+			if(typeof onDeleteBoardSMSubmitError == "function") {
+				submission_6.addEventListener("submit-error", onDeleteBoardSMSubmitError);
+			}
+			if(typeof onDeleteBoardSMSubmitSuccess == "function") {
+				submission_6.addEventListener("submit-success", onDeleteBoardSMSubmitSuccess);
+			}
 			app.register(submission_6);
 			
-			var submission_7 = new cpr.protocols.Submission("deleteBoardSM");
-			submission_7.method = "delete";
-			submission_7.action = "deleteBoard";
+			var submission_7 = new cpr.protocols.Submission("insertReplySM");
+			submission_7.method = "post";
+			submission_7.action = "insertReply";
+			submission_7.addRequestData(dataMap_6);
 			submission_7.addRequestData(dataMap_1);
-			submission_7.addResponseData(dataSet_1, false);
+			submission_7.addResponseData(dataSet_4, false);
+			if(typeof onInsertReplySMSubmitSuccess == "function") {
+				submission_7.addEventListener("submit-success", onInsertReplySMSubmitSuccess);
+			}
 			app.register(submission_7);
 			
-			var submission_8 = new cpr.protocols.Submission("insertReplySM");
-			submission_8.method = "post";
-			submission_8.action = "insertReply";
-			submission_8.addRequestData(dataMap_7);
+			var submission_8 = new cpr.protocols.Submission("replyListSM");
+			submission_8.method = "get";
+			submission_8.action = "findReplyBoardByNo";
 			submission_8.addRequestData(dataMap_1);
 			submission_8.addResponseData(dataSet_4, false);
-			if(typeof onInsertReplySMSubmitSuccess == "function") {
-				submission_8.addEventListener("submit-success", onInsertReplySMSubmitSuccess);
+			submission_8.addResponseData(dataMap_8, false);
+			if(typeof onReplyListSMSubmitSuccess == "function") {
+				submission_8.addEventListener("submit-success", onReplyListSMSubmitSuccess);
 			}
 			app.register(submission_8);
 			
-			var submission_9 = new cpr.protocols.Submission("replyListSM");
-			submission_9.method = "get";
-			submission_9.action = "findReplyBoardByNo";
-			submission_9.addRequestData(dataMap_1);
+			var submission_9 = new cpr.protocols.Submission("deleteReplySM");
+			submission_9.method = "delete";
+			submission_9.action = "deleteReply";
+			submission_9.addRequestData(dataMap_7);
 			submission_9.addResponseData(dataSet_4, false);
-			if(typeof onReplyListSMSubmitSuccess == "function") {
-				submission_9.addEventListener("submit-success", onReplyListSMSubmitSuccess);
+			if(typeof onDeleteReplySMSubmitSuccess == "function") {
+				submission_9.addEventListener("submit-success", onDeleteReplySMSubmitSuccess);
 			}
 			app.register(submission_9);
 			
-			var submission_10 = new cpr.protocols.Submission("deleteReplySM");
-			submission_10.method = "delete";
-			submission_10.action = "deleteReply";
-			submission_10.addRequestData(dataMap_8);
-			submission_10.addResponseData(dataSet_4, false);
-			if(typeof onDeleteReplySMSubmitSuccess == "function") {
-				submission_10.addEventListener("submit-success", onDeleteReplySMSubmitSuccess);
+			var submission_10 = new cpr.protocols.Submission("editReplySM");
+			submission_10.method = "put";
+			submission_10.action = "editReply";
+			submission_10.addRequestData(dataSet_4);
+			if(typeof onEditReplySMSubmitSuccess == "function") {
+				submission_10.addEventListener("submit-success", onEditReplySMSubmitSuccess);
 			}
 			app.register(submission_10);
 			app.supportMedia("all and (min-width: 1024px)", "default");
@@ -520,7 +519,7 @@
 				]
 			});
 			
-			var grid_1 = new cpr.controls.Grid("grd3");
+			var grid_1 = new cpr.controls.Grid("dayGrd");
 			grid_1.init({
 				"dataSet": app.lookup("planDate"),
 				"columns": [{"width": "100px"}],
@@ -547,7 +546,7 @@
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
 							cell.columnName = "planDate";
-							cell.bind("fieldLabel").toDataMap(app.lookup("createPlanDM"), "planDate");
+							cell.bind("fieldLabel").toDataMap(app.lookup("planDM"), "planDate");
 						}
 					}]
 				}
@@ -581,7 +580,7 @@
 				]
 			});
 			
-			var grid_2 = new cpr.controls.Grid("grd4");
+			var grid_2 = new cpr.controls.Grid("selectedContentGrd");
 			grid_2.init({
 				"dataSet": app.lookup("selectedPlan"),
 				"columns": [{"width": "100px"}],
@@ -708,17 +707,28 @@
 				]
 			});
 			
-			var grid_3 = new cpr.controls.Grid("grd5");
+			var grid_3 = new cpr.controls.Grid("replyGrd");
 			grid_3.init({
 				"dataSet": app.lookup("boardReply"),
+				"autoRowHeight": "none",
+				"autoFit": "0, 2",
+				"resizableColumns": "none",
 				"columns": [
+					{
+						"width": "85px",
+						"visible": false
+					},
 					{"width": "85px"},
-					{"width": "85px"},
-					{"width": "150px"},
-					{"width": "100px"},
-					{"width": "85px"},
-					{"width": "100px"},
-					{"width": "100px"}
+					{"width": "98px"},
+					{"width": "152px"},
+					{
+						"width": "100px",
+						"visible": true
+					},
+					{
+						"width": "100px",
+						"visible": true
+					}
 				],
 				"header": {
 					"rows": [{"height": "24px"}],
@@ -727,7 +737,7 @@
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
 								cell.filterable = false;
-								cell.sortable = false;
+								cell.sortable = true;
 								cell.targetColumnName = "replyNo";
 								cell.text = "댓글번호";
 							}
@@ -737,7 +747,8 @@
 							"configurator": function(cell){
 								cell.filterable = false;
 								cell.sortable = false;
-								cell.text = "게시글 번호";
+								cell.targetColumnName = "replyId";
+								cell.text = "아이디";
 							}
 						},
 						{
@@ -761,19 +772,11 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
-								cell.filterable = false;
-								cell.sortable = false;
-								cell.targetColumnName = "id";
-								cell.text = "아이디";
+								cell.text = "";
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 5},
-							"configurator": function(cell){
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 6},
 							"configurator": function(cell){
 							}
 						}
@@ -792,6 +795,8 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 1},
 							"configurator": function(cell){
+								cell.columnName = "replyId";
+								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyId", 0);
 							}
 						},
 						{
@@ -799,6 +804,13 @@
 							"configurator": function(cell){
 								cell.columnName = "replyContent";
 								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyContent", 0);
+								cell.control = (function(){
+									var inputBox_1 = new cpr.controls.InputBox("ipb2");
+									inputBox_1.bind("readOnly").toExpression("replyId != #MemberVO.id ? true : false");
+									inputBox_1.bind("value").toDataColumn("replyContent");
+									return inputBox_1;
+								})();
+								cell.controlConstraint = {};
 							}
 						},
 						{
@@ -811,29 +823,25 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
-								cell.columnName = "id";
-								cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "id", 0);
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 5},
-							"configurator": function(cell){
 								cell.control = (function(){
 									var button_3 = new cpr.controls.Button("replyEdit");
-									button_3.visible = false;
 									button_3.value = "댓글 수정";
+									button_3.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
+									if(typeof onReplyEditClick == "function") {
+										button_3.addEventListener("click", onReplyEditClick);
+									}
 									return button_3;
 								})();
 								cell.controlConstraint = {};
 							}
 						},
 						{
-							"constraint": {"rowIndex": 0, "colIndex": 6},
+							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
 								cell.control = (function(){
 									var button_4 = new cpr.controls.Button("replyDelete");
-									button_4.visible = false;
 									button_4.value = "댓글 삭제";
+									button_4.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
 									if(typeof onButtonClick4 == "function") {
 										button_4.addEventListener("click", onButtonClick4);
 									}
@@ -871,12 +879,12 @@
 				]
 			});
 			
-			var inputBox_1 = new cpr.controls.InputBox("ipb1");
-			inputBox_1.style.css({
+			var inputBox_2 = new cpr.controls.InputBox("replyContentIpb");
+			inputBox_2.style.css({
 				"text-align" : "center"
 			});
-			inputBox_1.bind("value").toDataMap(app.lookup("replyDM"), "REPLY_CONTENT");
-			container.addChild(inputBox_1, {
+			inputBox_2.bind("value").toDataMap(app.lookup("replyDM"), "REPLY_CONTENT");
+			container.addChild(inputBox_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
@@ -902,7 +910,7 @@
 				]
 			});
 			
-			var button_5 = new cpr.controls.Button();
+			var button_5 = new cpr.controls.Button("replyRegisterBtn");
 			button_5.value = "댓글 등록";
 			if(typeof onButtonClick3 == "function") {
 				button_5.addEventListener("click", onButtonClick3);
@@ -933,7 +941,7 @@
 				]
 			});
 			
-			var group_1 = new cpr.controls.Container("grp1");
+			var group_1 = new cpr.controls.Container("boardContentGrp");
 			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
 			group_1.setLayout(verticalLayout_1);
 			(function(container){

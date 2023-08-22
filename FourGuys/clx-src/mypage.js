@@ -76,7 +76,7 @@ function StrengthChecker(PasswordParameter) {
  */
 function onFindMyPageSubmitSuccess(e){
 	var findMyPage = e.control;
-	var meta = findMyPage.getMetadata("findMyPageis");
+	var meta = findMyPage.getMetadata("memberVO");
 	if(meta != null){
 		var ID = app.lookup("ID");
 		var passwd = app.lookup("PASSWORD");

@@ -18,20 +18,18 @@ function onBodyLoad(e) {
  */
 function onGrd4Click(e) {
 	var grd4 = e.control;
-	var grid = app.lookup("grd4");
+	var grid = app.lookup("selectedContentGrd");
 	var embp = app.lookup("ep1");
 	var mapx = grid.getSelectedRow().getValue("mapx");
 	var mapy = grid.getSelectedRow().getValue("mapy");
 	var title = grid.getSelectedRow().getValue("title");
 	var firstimage = grid.getSelectedRow().getValue("firstimage");
-	var embp_mapx = embp.setPageProperty("mapx",mapx);
-	var embp_mapy = embp.setPageProperty("mapy",mapy);
-	var embp_title = embp.setPageProperty("title",title);
-	var embp_firstimage = embp.setPageProperty("firstimage",firstimage);
+	var embp_mapx = embp.setPageProperty("mapx", mapx);
+	var embp_mapy = embp.setPageProperty("mapy", mapy);
+	var embp_title = embp.setPageProperty("title", title);
+	var embp_firstimage = embp.setPageProperty("firstimage", firstimage);
 	embp.callPageMethod("panTo");
 }
-
-
 
 /*
  * 그리드에서 cell-click 이벤트 발생 시 호출.
@@ -39,9 +37,9 @@ function onGrd4Click(e) {
  */
 function onGrd3CellClick(e) {
 	var grd3 = e.control;
-	var grid = app.lookup("grd3");
+	var grid = app.lookup("dayGrd");
 	var planDate = grid.getSelectedRow().getValue("planDate");
-	app.lookup("createPlanDM").setValue("planDate", planDate);
+	app.lookup("planDM").setValue("planDate", planDate);
 	app.lookup("getTitle").send();
 }
 
@@ -53,8 +51,8 @@ function onButtonClick(e) {
 	var currentUrl = location.href;
 	var button = e.control;
 	var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-	location.href="updateBoardForm/"+boardNo;
-
+	location.href = "updateBoardForm/" + boardNo;
+	
 }
 
 /*
@@ -65,13 +63,11 @@ function onButtonClick2(e) {
 	var button = e.control;
 	var currentUrl = location.href;
 	var boardNo = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
-	if(!confirm("삭제하시겠습니까?")){
+	if (!confirm("삭제하시겠습니까?")) {
 		alert("취소되었습니다")
-		location.href="boardDetailPage/"+boardNo;
-	}else{
+		location.href = "boardDetailPage/" + boardNo;
+	} else {
 		app.lookup("deleteBoardSM").send();
-		alert("삭제되었습니다");
-		location.href="planner-board-list.clx";
 	}
 }
 
@@ -91,9 +87,9 @@ function onBoardDetailSMSubmitSuccess2(e) {
 	var vo = boardDetailSM.getMetadata("MemberVO");
 	var editBtn = app.lookup("editBtn");
 	var deleteBtn = app.lookup("deleteBtn");
-	if(vo["id"]==createrId){
+	if (vo["id"] == createrId) {
 		editBtn.visible = true;
-		deleteBtn.visible=true;
+		deleteBtn.visible = true;
 	}
 	app.lookup("snippet").value = app.lookup("boardDetail").getValue(0, "boardContent");
 }
@@ -129,11 +125,11 @@ function onButtonClick4(e) {
 	if (!confirm("삭제하시겠습니까?")) {
 		alert("취소되었습니다");
 	} else {
-		var replyNo = app.lookup("grd5").getSelectedRow().getValue("replyNo");
+		var replyNo = app.lookup("replyGrd").getSelectedRow().getValue("replyNo");
 		app.lookup("replyBoardNoDM").setValue("REPLY_NO", replyNo);
 		app.lookup("deleteReplySM").send();
 		alert("삭제되었습니다");
-		location.href="boardDetailPage/"+boardNo;
+		location.href = "boardDetailPage/" + boardNo;
 	}
 }
 
@@ -141,25 +137,40 @@ function onButtonClick4(e) {
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
  */
-function onDeleteReplySMSubmitSuccess(e){
+function onDeleteReplySMSubmitSuccess(e) {
 	var deleteReplySM = e.control;
 	var boardDetailSM = e.control;
-	var replyNo = app.lookup("grd5").getRow(0).getValue("replyNo");
+	var replyNo = app.lookup("replyGrd").getRow(0).getValue("replyNo");
 	app.lookup("replyBoardNoDM").setValue("replyNo", replyNo);
 }
 
 /*
+ * "댓글 수정" 버튼(replyEdit)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onReplyEditClick(e) {
+	var replyEdit = e.control;
+	if (confirm("수정하시겠습니까?")) {
+		app.lookup("editReplySM").send();
+		location.reload();
+	}
+}
+
+/*
+ * 서브미션에서 submit-error 이벤트 발생 시 호출.
+ * 통신 중 문제가 생기면 발생합니다.
+ */
+function onDeleteBoardSMSubmitError(e) {
+	var deleteBoardSM = e.control;
+	alert("삭제하지 못하였습니다.");
+}
+
+/*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
  */
-function onReplyListSMSubmitSuccess(e){
-	var replyListSM = e.control;
-	var vo = replyListSM.getMetadata("MemberVO");
-	var editBtn = app.lookup("replyEdit");
-	var deleteBtn = app.lookup("replyDelete");
-	var value = app.lookup("boardReply").getValue(0, "id");
-	if(vo["id"]==value){
-		editBtn.visible = true;
-		deleteBtn.visible=true;
-	}
+function onDeleteBoardSMSubmitSuccess(e) {
+	var deleteBoardSM = e.control;
+	alert("삭제되었습니다");
+	location.href = "planner-board-list.clx";
 }

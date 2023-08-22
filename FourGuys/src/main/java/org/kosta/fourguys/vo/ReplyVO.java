@@ -12,5 +12,5 @@ public class ReplyVO {
 	private int boardNo;
 	private String replyContent;
 	private String replyDate;
-	private String Id;
+	private String replyId;
 }
