@@ -99,6 +99,11 @@ public class PlannerBoardController {
 
 	@GetMapping("/updateBoardForm/{boardNo}")
 	public View updateBoardPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
 		return new UIView("updateBoardForm.clx");
 	}
 

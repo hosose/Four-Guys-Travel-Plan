@@ -49,18 +49,18 @@
     <cl:udc std:sid="ud-control-97b1121b" type="udc.header_nav">
       <cl:xylayoutdata std:sid="xyl-data-805eee2f" top="10px" right="20px" width="623px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:udc>
-    <cl:output std:sid="output-a472c580" style="font-size:50px; font-family:@휴먼엑스포; text-align:center;" value="플래너 게시판">
+    <cl:output std:sid="output-a472c580" style="font-size:50px; font-family:Snap ITC; text-align:center;" value="TRAVEL and PLAN">
       <cl:xylayoutdata std:sid="xyl-data-fc8ef003" top="150px" width="578px" height="81px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
     </cl:output>
     <cl:group std:sid="group-10051869">
-      <cl:xylayoutdata std:sid="xyl-data-11143e6e" top="260px" width="950px" height="490px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-34e02ca4" id="registerBoardBtn" style="background-color:#306dc6; background-repeat:no-repeat; color:#FFFFFF; font-size:18px; background-image:none;" value="글쓰기">
+      <cl:xylayoutdata std:sid="xyl-data-11143e6e" top="260px" width="1200px" height="490px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-34e02ca4" id="registerBoardBtn" style="background-color:#98dde3; color:#FFFFFF; font-size:18px; background-image:none;" value="글쓰기">
         <cl:listener std:sid="listener-abd0710f" name="click" handler="onButtonClick"/>
         <cl:formdata std:sid="f-data-15b3a17f" bottomSpacing="10" row="0" col="1"/>
       </cl:button>
-      <cl:grid std:sid="grid-6456d8df" id="plannerBoardListGrd" style="font-size:16px;" datasetid="plannerBoardList">
+      <cl:grid std:sid="grid-6456d8df" id="plannerBoardListGrd" style="border-right-style:none; border-left-style:none; font-size:16px;" datasetid="plannerBoardList">
         <cl:listener std:sid="listener-d16eb053" name="row-dblclick" handler="onPlannerBoardListGridRowDblclick"/>
-        <cl:formdata std:sid="f-data-cddc21c0" row="1" col="0" rowspan="1" colspan="2"/>
+        <cl:formdata std:sid="f-data-25370d96" row="1" col="0" rowspan="1" colspan="2"/>
         <cl:gridcolumn std:sid="g-column-8412c27f" width="71px"/>
         <cl:gridcolumn std:sid="g-column-86293035" width="74px"/>
         <cl:gridcolumn std:sid="g-column-11a025de" width="324px"/>
@@ -68,23 +68,23 @@
         <cl:gridcolumn std:sid="g-column-828df6ab"/>
         <cl:gridheader std:sid="gh-band-4be5bc4d">
           <cl:gridrow std:sid="g-row-34304861" height="33px"/>
-          <cl:gridcell std:sid="gh-cell-bc36220c" rowindex="0" colindex="0" targetcolumnname="RNo" sortable="false" filterable="false" text="게시글 번호"/>
-          <cl:gridcell std:sid="gh-cell-6c83b58e" rowindex="0" colindex="1" targetcolumnname="id" sortable="false" filterable="false" text="작성자"/>
-          <cl:gridcell std:sid="gh-cell-b800b69c" rowindex="0" colindex="2" targetcolumnname="boardTitle" sortable="false" filterable="false" text="게시물 제목"/>
-          <cl:gridcell std:sid="gh-cell-c1659ab2" rowindex="0" colindex="3" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="등록일"/>
-          <cl:gridcell std:sid="gh-cell-9c3992f2" rowindex="0" colindex="4" targetcolumnname="boardHits" sortable="false" filterable="false" text="조회수"/>
+          <cl:gridcell std:sid="gh-cell-bc36220c" rowindex="0" colindex="0" style="background-color:#FFFFFF; border-right-style:none; border-top-width:1px; border-left-style:none; border-top-color:#000000; background-image:none; border-top-style:solid;" targetcolumnname="RNo" sortable="false" filterable="false" text="No"/>
+          <cl:gridcell std:sid="gh-cell-6c83b58e" rowindex="0" colindex="1" style="background-color:#FFFFFF; border-right-style:none; border-top-width:1px; border-left-style:none; border-top-color:#000000; background-image:none; border-top-style:solid;" targetcolumnname="id" sortable="false" filterable="false" text="글쓴이"/>
+          <cl:gridcell std:sid="gh-cell-b800b69c" rowindex="0" colindex="2" style="background-color:#FFFFFF; border-right-style:none; border-top-width:1px; border-left-style:none; border-top-color:#000000; background-image:none; border-top-style:solid;" targetcolumnname="boardTitle" sortable="false" filterable="false" text="제목"/>
+          <cl:gridcell std:sid="gh-cell-c1659ab2" rowindex="0" colindex="3" style="background-color:#FFFFFF; border-right-style:none; border-top-width:1px; border-left-style:none; border-top-color:#000000; background-image:none; border-top-style:solid;" targetcolumnname="boardCreateDate" sortable="false" filterable="false" text="작성시간"/>
+          <cl:gridcell std:sid="gh-cell-9c3992f2" rowindex="0" colindex="4" style="background-color:#FFFFFF; border-right-style:none; border-top-width:1px; border-left-style:none; border-top-color:#000000; background-image:none; border-top-style:solid;" targetcolumnname="boardHits" sortable="false" filterable="false" text="조회수"/>
         </cl:gridheader>
         <cl:griddetail std:sid="gd-band-2afd19b3">
           <cl:gridrow std:sid="g-row-a432dec3" height="39px"/>
-          <cl:gridcell std:sid="gd-cell-c62f03bf" rowindex="0" colindex="0" style="font-size:14px;" columnname="RNo"/>
-          <cl:gridcell std:sid="gd-cell-f42da008" rowindex="0" colindex="1" style="font-size:14px;" columnname="id"/>
-          <cl:gridcell std:sid="gd-cell-dbc6ad53" rowindex="0" colindex="2" style="text-align:center;" columnname="boardTitle">
-            <cl:htmlsnippet std:sid="htmlsnippet-7ffd3b63" style="vertical-align:middle; font-size:16px; text-align:center;" value="&lt;p>HTML Snippet&lt;/p>">
+          <cl:gridcell std:sid="gd-cell-c62f03bf" rowindex="0" colindex="0" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none; font-size:14px;" columnname="RNo"/>
+          <cl:gridcell std:sid="gd-cell-f42da008" rowindex="0" colindex="1" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none; font-size:14px;" columnname="id"/>
+          <cl:gridcell std:sid="gd-cell-dbc6ad53" rowindex="0" colindex="2" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none; text-align:center;" columnname="boardTitle">
+            <cl:htmlsnippet std:sid="htmlsnippet-7ffd3b63" style="background-color:#FFFFFF; vertical-align:middle; font-size:16px; text-align:center;" value="&lt;p>HTML Snippet&lt;/p>">
               <cl:celldata std:sid="c-data-2a5543d2"/>
             </cl:htmlsnippet>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-87fda9bb" rowindex="0" colindex="3" style="font-size:14px;" columnname="boardCreateDate"/>
-          <cl:gridcell std:sid="gd-cell-f1fb66ec" rowindex="0" colindex="4" style="font-size:14px;" columnname="boardHits"/>
+          <cl:gridcell std:sid="gd-cell-87fda9bb" rowindex="0" colindex="3" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none; font-size:14px;" columnname="boardCreateDate"/>
+          <cl:gridcell std:sid="gd-cell-f1fb66ec" rowindex="0" colindex="4" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none; font-size:14px;" columnname="boardHits"/>
         </cl:griddetail>
       </cl:grid>
       <cl:formlayout std:sid="f-layout-bbd5fd42" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">

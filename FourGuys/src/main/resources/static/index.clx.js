@@ -72,10 +72,10 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "1px",
-						"right": "7px",
-						"bottom": "-1px",
-						"left": "-7px"
+						"top": "0px",
+						"right": "0px",
+						"bottom": "0px",
+						"left": "0px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",

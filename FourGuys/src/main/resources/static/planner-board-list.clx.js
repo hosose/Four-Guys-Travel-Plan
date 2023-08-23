@@ -219,10 +219,10 @@
 			});
 			
 			var output_1 = new cpr.controls.Output();
-			output_1.value = "플래너 게시판";
+			output_1.value = "TRAVEL and PLAN";
 			output_1.style.css({
 				"font-size" : "50px",
-				"font-family" : "@휴먼엑스포",
+				"font-family" : "Snap ITC",
 				"text-align" : "center"
 			});
 			container.addChild(output_1, {
@@ -249,8 +249,7 @@
 				var button_1 = new cpr.controls.Button("registerBoardBtn");
 				button_1.value = "글쓰기";
 				button_1.style.css({
-					"background-color" : "#306dc6",
-					"background-repeat" : "no-repeat",
+					"background-color" : "#98dde3",
 					"color" : "#FFFFFF",
 					"font-size" : "18px",
 					"background-image" : "none"
@@ -282,7 +281,16 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "RNo";
-									cell.text = "게시글 번호";
+									cell.text = "No";
+									cell.style.css({
+										"background-color" : "#FFFFFF",
+										"border-right-style" : "none",
+										"border-top-width" : "1px",
+										"border-left-style" : "none",
+										"border-top-color" : "#000000",
+										"background-image" : "none",
+										"border-top-style" : "solid"
+									});
 								}
 							},
 							{
@@ -291,7 +299,16 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "id";
-									cell.text = "작성자";
+									cell.text = "글쓴이";
+									cell.style.css({
+										"background-color" : "#FFFFFF",
+										"border-right-style" : "none",
+										"border-top-width" : "1px",
+										"border-left-style" : "none",
+										"border-top-color" : "#000000",
+										"background-image" : "none",
+										"border-top-style" : "solid"
+									});
 								}
 							},
 							{
@@ -300,7 +317,16 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "boardTitle";
-									cell.text = "게시물 제목";
+									cell.text = "제목";
+									cell.style.css({
+										"background-color" : "#FFFFFF",
+										"border-right-style" : "none",
+										"border-top-width" : "1px",
+										"border-left-style" : "none",
+										"border-top-color" : "#000000",
+										"background-image" : "none",
+										"border-top-style" : "solid"
+									});
 								}
 							},
 							{
@@ -309,7 +335,16 @@
 									cell.filterable = false;
 									cell.sortable = false;
 									cell.targetColumnName = "boardCreateDate";
-									cell.text = "등록일";
+									cell.text = "작성시간";
+									cell.style.css({
+										"background-color" : "#FFFFFF",
+										"border-right-style" : "none",
+										"border-top-width" : "1px",
+										"border-left-style" : "none",
+										"border-top-color" : "#000000",
+										"background-image" : "none",
+										"border-top-style" : "solid"
+									});
 								}
 							},
 							{
@@ -319,6 +354,15 @@
 									cell.sortable = false;
 									cell.targetColumnName = "boardHits";
 									cell.text = "조회수";
+									cell.style.css({
+										"background-color" : "#FFFFFF",
+										"border-right-style" : "none",
+										"border-top-width" : "1px",
+										"border-left-style" : "none",
+										"border-top-color" : "#000000",
+										"background-image" : "none",
+										"border-top-style" : "solid"
+									});
 								}
 							}
 						]
@@ -331,6 +375,9 @@
 								"configurator": function(cell){
 									cell.columnName = "RNo";
 									cell.style.css({
+										"border-right-style" : "none",
+										"background-color" : "#FFFFFF",
+										"border-left-style" : "none",
 										"font-size" : "14px"
 									});
 								}
@@ -340,6 +387,9 @@
 								"configurator": function(cell){
 									cell.columnName = "id";
 									cell.style.css({
+										"border-right-style" : "none",
+										"background-color" : "#FFFFFF",
+										"border-left-style" : "none",
 										"font-size" : "14px"
 									});
 								}
@@ -349,12 +399,16 @@
 								"configurator": function(cell){
 									cell.columnName = "boardTitle";
 									cell.style.css({
+										"border-right-style" : "none",
+										"background-color" : "#FFFFFF",
+										"border-left-style" : "none",
 										"text-align" : "center"
 									});
 									cell.control = (function(){
 										var hTMLSnippet_1 = new cpr.controls.HTMLSnippet();
 										hTMLSnippet_1.value = "<p>HTML Snippet<\/p>";
 										hTMLSnippet_1.style.css({
+											"background-color" : "#FFFFFF",
 											"vertical-align" : "middle",
 											"font-size" : "16px",
 											"text-align" : "center"
@@ -370,6 +424,9 @@
 								"configurator": function(cell){
 									cell.columnName = "boardCreateDate";
 									cell.style.css({
+										"border-right-style" : "none",
+										"background-color" : "#FFFFFF",
+										"border-left-style" : "none",
 										"font-size" : "14px"
 									});
 								}
@@ -379,6 +436,9 @@
 								"configurator": function(cell){
 									cell.columnName = "boardHits";
 									cell.style.css({
+										"border-right-style" : "none",
+										"background-color" : "#FFFFFF",
+										"border-left-style" : "none",
 										"font-size" : "14px"
 									});
 								}
@@ -387,6 +447,8 @@
 					}
 				});
 				grid_1.style.css({
+					"border-right-style" : "none",
+					"border-left-style" : "none",
 					"font-size" : "16px"
 				});
 				if(typeof onPlannerBoardListGridRowDblclick == "function") {
@@ -401,9 +463,9 @@
 			})(group_1);
 			container.addChild(group_1, {
 				"top": "260px",
-				"width": "950px",
+				"width": "1200px",
 				"height": "490px",
-				"left": "calc(50% - 475px)"
+				"left": "calc(50% - 600px)"
 			});
 			
 			var pageIndexer_1 = new cpr.controls.PageIndexer("pageIdx");
