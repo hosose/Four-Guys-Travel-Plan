@@ -497,7 +497,7 @@
 				var button_1 = new cpr.controls.Button("MyPageBtn");
 				button_1.value = "MYPAGE";
 				button_1.style.css({
-					"background-color" : "#306DC6",
+					"background-color" : "#98dde3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"text-shadow" : "none",
@@ -542,7 +542,7 @@
 				var button_2 = new cpr.controls.Button("MyPlanBtn");
 				button_2.value = "MYPLAN";
 				button_2.style.css({
-					"background-color" : "#306DC6",
+					"background-color" : "#98dde3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"text-shadow" : "none",

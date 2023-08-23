@@ -49,7 +49,8 @@
 			app.supportMedia("all and (min-width: 1670px)", "new-screen");
 			app.supportMedia("all and (min-width: 1550px) and (max-width: 1669px)", "wide");
 			app.supportMedia("all and (min-width: 1260px) and (max-width: 1549px)", "new-screen2");
-			app.supportMedia("all and (min-width: 900px) and (max-width: 1259px)", "new-screen3");
+			app.supportMedia("all and (min-width: 1024px) and (max-width: 1259px)", "default");
+			app.supportMedia("all and (min-width: 900px) and (max-width: 1023px)", "new-screen3");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 899px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
 			
@@ -82,9 +83,9 @@
 					{
 						"media": "all and (min-width: 1670px)",
 						"top": "339px",
-						"right": "1360px",
+						"right": "1420px",
 						"width": "330px",
-						"height": "350px"
+						"height": "352px"
 					}, 
 					{
 						"media": "all and (min-width: 1550px) and (max-width: 1669px)",
@@ -101,7 +102,14 @@
 						"height": "210px"
 					}, 
 					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
+						"media": "all and (min-width: 1024px) and (max-width: 1259px)",
+						"top": "338px",
+						"right": "498px",
+						"width": "300px",
+						"height": "310px"
+					}, 
+					{
+						"media": "all and (min-width: 900px) and (max-width: 1023px)",
 						"top": "338px",
 						"right": "498px",
 						"width": "300px",
@@ -135,7 +143,7 @@
 					{
 						"media": "all and (min-width: 1670px)",
 						"top": "339px",
-						"right": "970px",
+						"right": "960px",
 						"width": "330px",
 						"height": "350px"
 					}, 
@@ -154,7 +162,14 @@
 						"height": "210px"
 					}, 
 					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
+						"media": "all and (min-width: 1024px) and (max-width: 1259px)",
+						"top": "338px",
+						"right": "80px",
+						"width": "300px",
+						"height": "310px"
+					}, 
+					{
+						"media": "all and (min-width: 900px) and (max-width: 1023px)",
 						"top": "338px",
 						"right": "80px",
 						"width": "300px",
@@ -188,7 +203,7 @@
 					{
 						"media": "all and (min-width: 1670px)",
 						"top": "340px",
-						"right": "580px",
+						"right": "530px",
 						"width": "330px",
 						"height": "350px"
 					}, 
@@ -207,7 +222,14 @@
 						"height": "210px"
 					}, 
 					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
+						"media": "all and (min-width: 1024px) and (max-width: 1259px)",
+						"top": "713px",
+						"right": "498px",
+						"width": "300px",
+						"height": "310px"
+					}, 
+					{
+						"media": "all and (min-width: 900px) and (max-width: 1023px)",
 						"top": "713px",
 						"right": "498px",
 						"width": "300px",
@@ -241,7 +263,7 @@
 					{
 						"media": "all and (min-width: 1670px)",
 						"top": "340px",
-						"right": "200px",
+						"right": "100px",
 						"width": "330px",
 						"height": "350px"
 					}, 
@@ -260,7 +282,14 @@
 						"height": "210px"
 					}, 
 					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
+						"media": "all and (min-width: 1024px) and (max-width: 1259px)",
+						"top": "713px",
+						"right": "80px",
+						"width": "300px",
+						"height": "310px"
+					}, 
+					{
+						"media": "all and (min-width: 900px) and (max-width: 1023px)",
 						"top": "713px",
 						"right": "80px",
 						"width": "300px",
@@ -308,7 +337,14 @@
 						"height": "80px"
 					}, 
 					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
+						"media": "all and (min-width: 1024px) and (max-width: 1259px)",
+						"top": "20px",
+						"right": "41px",
+						"width": "600px",
+						"height": "80px"
+					}, 
+					{
+						"media": "all and (min-width: 900px) and (max-width: 1023px)",
 						"top": "20px",
 						"right": "41px",
 						"width": "1034px",
@@ -356,7 +392,14 @@
 						"height": "70px"
 					}, 
 					{
-						"media": "all and (min-width: 900px) and (max-width: 1259px)",
+						"media": "all and (min-width: 1024px) and (max-width: 1259px)",
+						"top": "20px",
+						"left": "20px",
+						"width": "349px",
+						"height": "70px"
+					}, 
+					{
+						"media": "all and (min-width: 900px) and (max-width: 1023px)",
 						"top": "20px",
 						"left": "102px",
 						"width": "349px",

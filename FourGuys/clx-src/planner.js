@@ -13,7 +13,7 @@ function onBodyLoad(e) {
 	app.lookup("searchbtn").click();
 	app.openDialog("select_date_title", {
 		width: 600,
-		height: 450
+		height: 400
 	}, function(dialog) {
 		dialog.ready(function(dialogApp) {});
 	}).then(function(returnValue) {

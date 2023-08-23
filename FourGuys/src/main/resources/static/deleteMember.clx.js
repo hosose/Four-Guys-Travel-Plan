@@ -94,6 +94,8 @@
 			var container = app.getContainer();
 			container.style.setClasses(["cl-form-group"]);
 			container.style.css({
+				"background-image" : "none",
+				"background-color" : "#fafafa",
 				"width" : "100%",
 				"top" : "0px",
 				"height" : "100%",
@@ -102,12 +104,14 @@
 			
 			// Layout
 			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			responsiveXYLayout_1.scrollable = false;
 			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
 			var output_1 = new cpr.controls.Output("intro1");
 			output_1.value = "";
 			output_1.style.css({
+				"background-color" : "rgba(255, 255, 255, 0.6)",
 				"font-weight" : "bold",
 				"vertical-align" : "middle",
 				"font-size" : "30px",
@@ -120,21 +124,21 @@
 						"media": "all and (min-width: 1024px)",
 						"top": "0px",
 						"right": "0px",
-						"bottom": "0px",
+						"bottom": "60px",
 						"left": "0px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "0px",
 						"right": "0px",
-						"bottom": "0px",
+						"bottom": "60px",
 						"left": "0px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "0px",
 						"right": "0px",
-						"bottom": "0px",
+						"bottom": "60px",
 						"left": "0px"
 					}
 				]
@@ -143,7 +147,7 @@
 			var button_1 = new cpr.controls.Button("deleteBtn");
 			button_1.value = "탈퇴";
 			button_1.style.css({
-				"background-color" : "#FF0000",
+				"background-color" : "#d27979",
 				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
 				"text-shadow" : "none",
@@ -151,6 +155,7 @@
 				"border-left-style" : "none",
 				"font-size" : "18px",
 				"border-bottom-style" : "none",
+				"font-family" : "AppleSDGothicNeoEB00",
 				"background-image" : "none",
 				"font-style" : "normal",
 				"border-top-style" : "none"
@@ -162,24 +167,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"bottom": "23px",
-						"left": "20px",
-						"width": "180px",
-						"height": "25px"
+						"right": "200px",
+						"bottom": "0px",
+						"width": "198px",
+						"height": "60px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"bottom": "23px",
-						"left": "10px",
-						"width": "88px",
-						"height": "25px"
+						"right": "98px",
+						"bottom": "0px",
+						"width": "97px",
+						"height": "60px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"bottom": "23px",
-						"left": "7px",
-						"width": "62px",
-						"height": "25px"
+						"right": "68px",
+						"bottom": "0px",
+						"width": "68px",
+						"height": "60px"
 					}
 				]
 			});
@@ -187,7 +192,7 @@
 			var button_2 = new cpr.controls.Button("cancelBtn");
 			button_2.value = "취소";
 			button_2.style.css({
-				"background-color" : "#306DC6",
+				"background-color" : "#98dde3",
 				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
 				"text-shadow" : "none",
@@ -195,6 +200,7 @@
 				"border-left-style" : "none",
 				"font-size" : "18px",
 				"border-bottom-style" : "none",
+				"font-family" : "AppleSDGothicNeoEB00",
 				"background-image" : "none",
 				"font-style" : "normal",
 				"border-top-style" : "none"
@@ -206,24 +212,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"bottom": "23px",
-						"left": "210px",
-						"width": "180px",
-						"height": "25px"
+						"right": "0px",
+						"bottom": "0px",
+						"width": "198px",
+						"height": "60px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"bottom": "23px",
-						"left": "103px",
-						"width": "88px",
-						"height": "25px"
+						"right": "0px",
+						"bottom": "0px",
+						"width": "97px",
+						"height": "60px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"bottom": "23px",
-						"left": "72px",
-						"width": "62px",
-						"height": "25px"
+						"right": "0px",
+						"bottom": "0px",
+						"width": "68px",
+						"height": "60px"
 					}
 				]
 			});

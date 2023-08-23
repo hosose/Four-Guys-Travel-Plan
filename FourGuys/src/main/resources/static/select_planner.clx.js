@@ -101,7 +101,7 @@
 			var button_1 = new cpr.controls.Button("selectBtn");
 			button_1.value = "플래너 선택";
 			button_1.style.css({
-				"background-color" : "#306DC6",
+				"background-color" : "#98dde3",
 				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
 				"color" : "#FFFFFF",

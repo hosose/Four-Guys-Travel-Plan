@@ -8,13 +8,13 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-7fa3f9fd" style="top:0px; color:#FFFFFF; left:0px; width:300px; height:300px;">
-    <cl:button std:sid="button-a1fd91f1" id="MyPageBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoEB00; background-image:none; font-style:normal; border-top-style:none;" value="MYPAGE">
+    <cl:button std:sid="button-a1fd91f1" id="MyPageBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoEB00; background-image:none; font-style:normal; border-top-style:none;" value="MYPAGE">
       <cl:listener std:sid="listener-2ac08692" name="click" handler="onMyPageBtnClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-29b0cb82">
         <cl:xylayoutdata std:sid="sxyl-data-c36184f2" top="125px" left="0px" width="145px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:button std:sid="button-dec25474" id="MyPlanBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoEB00; background-image:none; font-style:normal; border-top-style:none;" value="MYPLAN">
+    <cl:button std:sid="button-dec25474" id="MyPlanBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoEB00; background-image:none; font-style:normal; border-top-style:none;" value="MYPLAN">
       <cl:listener std:sid="listener-1494a9ed" name="click" handler="onMyPlanBtnClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-a6547716">
         <cl:xylayoutdata std:sid="sxyl-data-31544ea9" top="65px" left="1px" width="144px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>

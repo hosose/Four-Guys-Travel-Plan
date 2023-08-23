@@ -646,6 +646,15 @@
 			var button_1 = new cpr.controls.Button("deleteBtn");
 			button_1.visible = false;
 			button_1.value = "삭제";
+			button_1.style.css({
+				"background-color" : "#98dde3",
+				"border-radius" : "5px",
+				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
+				"color" : "#FFFFFF",
+				"font-family" : "AppleSDGothicNeoEB00",
+				"background-image" : "none"
+			});
 			if(typeof onButtonClick2 == "function") {
 				button_1.addEventListener("click", onButtonClick2);
 			}
@@ -678,6 +687,15 @@
 			var button_2 = new cpr.controls.Button("editBtn");
 			button_2.visible = false;
 			button_2.value = "수정";
+			button_2.style.css({
+				"background-color" : "#98dde3",
+				"border-radius" : "5px",
+				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
+				"color" : "#FFFFFF",
+				"font-family" : "AppleSDGothicNeoEB00",
+				"background-image" : "none"
+			});
 			if(typeof onButtonClick == "function") {
 				button_2.addEventListener("click", onButtonClick);
 			}
@@ -827,6 +845,12 @@
 								cell.control = (function(){
 									var button_3 = new cpr.controls.Button("replyEdit");
 									button_3.value = "댓글 수정";
+									button_3.style.css({
+										"background-color" : "#98dde3",
+										"background-repeat" : "no-repeat",
+										"color" : "#FFFFFF",
+										"background-image" : "none"
+									});
 									button_3.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
 									if(typeof onReplyEditClick == "function") {
 										button_3.addEventListener("click", onReplyEditClick);
@@ -842,6 +866,12 @@
 								cell.control = (function(){
 									var button_4 = new cpr.controls.Button("replyDelete");
 									button_4.value = "댓글 삭제";
+									button_4.style.css({
+										"background-color" : "#98dde3",
+										"background-repeat" : "no-repeat",
+										"color" : "#FFFFFF",
+										"background-image" : "none"
+									});
 									button_4.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
 									if(typeof onButtonClick4 == "function") {
 										button_4.addEventListener("click", onButtonClick4);
@@ -913,6 +943,15 @@
 			
 			var button_5 = new cpr.controls.Button("replyRegisterBtn");
 			button_5.value = "댓글 등록";
+			button_5.style.css({
+				"border-radius" : "5px",
+				"background-color" : "#98dde3",
+				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
+				"color" : "#FFFFFF",
+				"font-family" : "AppleSDGothicNeoEB00",
+				"background-image" : "none"
+			});
 			if(typeof onButtonClick3 == "function") {
 				button_5.addEventListener("click", onButtonClick3);
 			}

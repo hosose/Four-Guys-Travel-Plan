@@ -170,7 +170,7 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:button std:sid="button-6f1f615e" id="selectBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:25px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="수정">
+    <cl:button std:sid="button-6f1f615e" id="selectBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:25px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="수정">
       <cl:listener std:sid="listener-eced33cf" name="click" handler="onSelectBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-4024c71d" bottom="30px" width="200px" height="60px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM"/>
     </cl:button>

@@ -249,7 +249,7 @@
 				var button_1 = new cpr.controls.Button("registerBoardBtn");
 				button_1.value = "글쓰기";
 				button_1.style.css({
-					"background-color" : "#306dc6",
+					"background-color" : "#98dde3",
 					"background-repeat" : "no-repeat",
 					"color" : "#FFFFFF",
 					"font-size" : "18px",
@@ -408,6 +408,12 @@
 			
 			var pageIndexer_1 = new cpr.controls.PageIndexer("pageIdx");
 			pageIndexer_1.pageRowCount = 10;
+			pageIndexer_1.style.index.css({
+				"background-color" : "#98dde3",
+				"background-repeat" : "no-repeat",
+				"color" : "#FFFFFF",
+				"background-image" : "none"
+			});
 			pageIndexer_1.bind("totalRowCount").toExpression("#plannerBoardList2.getRowCount()");
 			pageIndexer_1.init(1, 1, 1);
 			if(typeof onPageIndexerSelectionChange == "function") {
