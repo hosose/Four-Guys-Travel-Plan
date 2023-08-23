@@ -72,10 +72,10 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
+						"top": "1px",
+						"right": "7px",
+						"bottom": "-1px",
+						"left": "-7px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
@@ -132,10 +132,11 @@
 			output_2.value = "TRAVEL and PLAN 스케줄링";
 			output_2.style.setClasses(["output1"]);
 			output_2.style.css({
-				"background-color" : "#37E7F1",
+				"background-color" : "#98dde3",
 				"color" : "#FFFFFF",
 				"font-size" : "50px",
-				"font-style" : "normal"
+				"font-style" : "normal",
+				"background-image" : "none"
 			});
 			container.addChild(output_2, {
 				positions: [

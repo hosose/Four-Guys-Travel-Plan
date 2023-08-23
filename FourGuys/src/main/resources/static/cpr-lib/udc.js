@@ -150,7 +150,7 @@
 				var button_1 = new cpr.controls.Button("loginBtn");
 				button_1.value = "Login";
 				button_1.style.css({
-					"background-color" : "#306DC6",
+					"background-color" : "#98DDE3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"color" : "#FFFFFF",
@@ -175,7 +175,7 @@
 				button_2.visible = true;
 				button_2.value = "플래너 게시판";
 				button_2.style.css({
-					"background-color" : "#306DC6",
+					"background-color" : "#98DDE3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"color" : "#FFFFFF",
@@ -207,7 +207,7 @@
 					"border-right-color" : "#ffffff",
 					"font-style" : "normal",
 					"border-top-style" : "none",
-					"background-color" : "#306DC6",
+					"background-color" : "#98DDE3",
 					"background-repeat" : "no-repeat",
 					"border-left-style" : "none",
 					"border-top-color" : "#ffffff",
@@ -228,7 +228,7 @@
 				button_4.visible = false;
 				button_4.value = "Logout";
 				button_4.style.css({
-					"background-color" : "#306DC6",
+					"background-color" : "#98DDE3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"color" : "#FFFFFF",
@@ -253,7 +253,7 @@
 				button_5.visible = false;
 				button_5.value = "마이페이지";
 				button_5.style.css({
-					"background-color" : "#306DC6",
+					"background-color" : "#98DDE3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"color" : "#FFFFFF",
