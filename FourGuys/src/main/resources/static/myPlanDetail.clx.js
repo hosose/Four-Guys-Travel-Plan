@@ -164,7 +164,7 @@
 				var button = e.control;
 				app.lookup("cancelPlanner").send();
 				alert("취소되었습니다");
-				location.href = "selectDestinationForm";
+				location.href = "/myplan";
 			}
 
 			/*
@@ -203,6 +203,15 @@
 				}
 				
 			}
+
+			/*
+			 * 콤보 박스에서 selection-change 이벤트 발생 시 호출.
+			 * ComboBox Item을 선택하여 선택된 값이 저장된 후에 발생하는 이벤트.
+			 */
+			function onCategoryCmbSelectionChange(e){
+				var categoryCmb = e.control;
+				app.lookup("areaList").send();
+			};
 			// End - User Script
 			
 			// Header
@@ -505,15 +514,6 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var image_1 = new cpr.controls.Image();
-			image_1.src = "images/oceann.jpg";
-			container.addChild(image_1, {
-				"top": "0px",
-				"right": "0px",
-				"bottom": "0px",
-				"left": "0px"
-			});
-			
 			var userDefinedControl_1 = new udc.logo();
 			userDefinedControl_1.style.css({
 				"border-right-style" : "solid",
@@ -526,7 +526,7 @@
 				"border-top-style" : "solid"
 			});
 			container.addChild(userDefinedControl_1, {
-				"top": "20px",
+				"top": "8px",
 				"width": "175px",
 				"height": "70px",
 				"left": "calc(50% - 87px)"
@@ -535,17 +535,17 @@
 			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
 			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
 			embeddedPage_1.style.css({
-				"border-right-style" : "solid",
+				"border-right-style" : "none",
 				"border-bottom-color" : "#ffffff",
-				"border-left-style" : "solid",
+				"border-left-style" : "none",
 				"border-left-color" : "#ffffff",
 				"border-top-color" : "#ffffff",
-				"border-bottom-style" : "solid",
+				"border-bottom-style" : "none",
 				"border-right-color" : "#ffffff",
-				"border-top-style" : "solid"
+				"border-top-style" : "none"
 			});
 			container.addChild(embeddedPage_1, {
-				"top": "169px",
+				"top": "89px",
 				"right": "10px",
 				"bottom": "10px",
 				"left": "659px"
@@ -564,6 +564,11 @@
 							cell.sortable = false;
 							cell.targetColumnName = "planDate";
 							cell.text = "DAY";
+							cell.style.css({
+								"background-color" : "#FFFFFF",
+								"color" : "#2DCEB9",
+								"font-weight" : "bolder"
+							});
 						}
 					}]
 				},
@@ -574,31 +579,20 @@
 						"configurator": function(cell){
 							cell.columnName = "planDate";
 							cell.style.css({
-								"background-color" : "#edd9d9",
-								"background-image" : "none"
+								"font-weight" : "normal"
 							});
 						}
 					}]
 				}
 			});
-			grid_1.style.css({
-				"border-right-style" : "solid",
-				"border-bottom-color" : "#000000",
-				"border-left-style" : "solid",
-				"border-left-color" : "#000000",
-				"border-top-color" : "#000000",
-				"border-bottom-style" : "solid",
-				"border-right-color" : "#000000",
-				"border-top-style" : "solid"
-			});
 			if(typeof onGrd3CellClick == "function") {
 				grid_1.addEventListener("cell-click", onGrd3CellClick);
 			}
 			container.addChild(grid_1, {
-				"top": "169px",
+				"top": "117px",
 				"bottom": "10px",
 				"left": "10px",
-				"width": "200px"
+				"width": "170px"
 			});
 			
 			var grid_2 = new cpr.controls.Grid("selectedContentGrd");
@@ -614,6 +608,12 @@
 							cell.sortable = false;
 							cell.targetColumnName = "title";
 							cell.text = "선택한 여행지";
+							cell.style.css({
+								"background-color" : "#FFFFFF",
+								"color" : "#2DCEB9",
+								"font-weight" : "bolder",
+								"background-image" : "none"
+							});
 						}
 					}]
 				},
@@ -623,33 +623,19 @@
 						"constraint": {"rowIndex": 0, "colIndex": 0},
 						"configurator": function(cell){
 							cell.columnName = "title";
-							cell.style.css({
-								"background-color" : "#edd9d9",
-								"background-image" : "none"
-							});
 							cell.bind("fieldLabel").toDataSet(app.lookup("selectedPlan"), "title", 0);
 						}
 					}]
 				}
 			});
-			grid_2.style.css({
-				"border-right-style" : "solid",
-				"border-bottom-color" : "#000000",
-				"border-left-style" : "solid",
-				"border-left-color" : "#000000",
-				"border-top-color" : "#000000",
-				"border-bottom-style" : "solid",
-				"border-right-color" : "#000000",
-				"border-top-style" : "solid"
-			});
 			if(typeof onGrd4Click == "function") {
 				grid_2.addEventListener("click", onGrd4Click);
 			}
 			container.addChild(grid_2, {
-				"top": "169px",
+				"top": "117px",
 				"bottom": "10px",
-				"left": "220px",
-				"width": "200px"
+				"left": "190px",
+				"width": "204px"
 			});
 			
 			var grid_3 = new cpr.controls.Grid("contentGrd");
@@ -697,7 +683,7 @@
 							"configurator": function(cell){
 								cell.columnType = "checkbox";
 								cell.style.css({
-									"background-color" : "#EDEDCA"
+									"background-color" : "#FFFFFF"
 								});
 							}
 						},
@@ -706,9 +692,7 @@
 							"configurator": function(cell){
 								cell.columnName = "title";
 								cell.style.css({
-									"background-color" : "#edd9d9",
-									"font-weight" : "normal",
-									"background-image" : "none"
+									"font-weight" : "normal"
 								});
 							}
 						}
@@ -716,15 +700,7 @@
 				}
 			});
 			grid_3.style.css({
-				"border-right-style" : "solid",
-				"border-bottom-color" : "#000000",
-				"font-weight" : "bolder",
-				"border-left-style" : "solid",
-				"border-left-color" : "#000000",
-				"border-top-color" : "#000000",
-				"border-bottom-style" : "solid",
-				"border-right-color" : "#000000",
-				"border-top-style" : "solid"
+				"font-weight" : "bolder"
 			});
 			if(typeof onGrd2Click == "function") {
 				grid_3.addEventListener("click", onGrd2Click);
@@ -736,10 +712,10 @@
 				grid_3.addEventListener("row-uncheck", onGrd2RowUncheck);
 			}
 			container.addChild(grid_3, {
-				"top": "169px",
+				"top": "155px",
 				"bottom": "10px",
-				"left": "430px",
-				"width": "219px"
+				"left": "404px",
+				"width": "245px"
 			});
 			
 			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
@@ -759,16 +735,16 @@
 			inputBox_1.setBindContext(dataMapContext_1);
 			inputBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "title");
 			container.addChild(inputBox_1, {
-				"top": "129px",
-				"left": "220px",
-				"width": "325px",
+				"top": "77px",
+				"left": "190px",
+				"width": "355px",
 				"height": "30px"
 			});
 			
 			var button_1 = new cpr.controls.Button("searchbtn");
 			button_1.value = "검색";
 			button_1.style.css({
-				"background-color" : "#306DC6",
+				"background-color" : "#98dde3",
 				"background-repeat" : "no-repeat",
 				"color" : "#FFFFFF",
 				"font-size" : "15px",
@@ -778,7 +754,7 @@
 				button_1.addEventListener("click", onSearchbtnClick);
 			}
 			container.addChild(button_1, {
-				"top": "129px",
+				"top": "77px",
 				"left": "549px",
 				"width": "100px",
 				"height": "30px"
@@ -831,6 +807,28 @@
 				"right": "137px",
 				"width": "100px",
 				"height": "70px"
+			});
+			
+			var comboBox_1 = new cpr.controls.ComboBox("categoryCmb");
+			comboBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "cat1");
+			(function(comboBox_1){
+				comboBox_1.addItem(new cpr.controls.Item("", ""));
+				comboBox_1.addItem(new cpr.controls.Item("자연", "A01"));
+				comboBox_1.addItem(new cpr.controls.Item("인문", "A02"));
+				comboBox_1.addItem(new cpr.controls.Item("레포츠", "A03"));
+				comboBox_1.addItem(new cpr.controls.Item("쇼핑", "A04"));
+				comboBox_1.addItem(new cpr.controls.Item("음식점", "A05"));
+				comboBox_1.addItem(new cpr.controls.Item("숙박", "B02"));
+				comboBox_1.addItem(new cpr.controls.Item("추천코스", "C01"));
+			})(comboBox_1);
+			if(typeof onCategoryCmbSelectionChange == "function") {
+				comboBox_1.addEventListener("selection-change", onCategoryCmbSelectionChange);
+			}
+			container.addChild(comboBox_1, {
+				"top": "117px",
+				"left": "404px",
+				"width": "245px",
+				"height": "28px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

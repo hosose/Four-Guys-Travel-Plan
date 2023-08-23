@@ -151,7 +151,7 @@ function onButtonClick2(e) {
 	var button = e.control;
 	app.lookup("cancelPlanner").send();
 	alert("취소되었습니다");
-	location.href = "selectDestinationForm";
+	location.href = "/myplan";
 }
 
 /*
@@ -189,4 +189,13 @@ function onGetContentIdListSubmitSuccess(e) {
 		
 	}
 	
+}
+
+/*
+ * 콤보 박스에서 selection-change 이벤트 발생 시 호출.
+ * ComboBox Item을 선택하여 선택된 값이 저장된 후에 발생하는 이벤트.
+ */
+function onCategoryCmbSelectionChange(e){
+	var categoryCmb = e.control;
+	app.lookup("areaList").send();
 }

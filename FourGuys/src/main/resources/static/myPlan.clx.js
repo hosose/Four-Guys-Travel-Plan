@@ -264,6 +264,7 @@
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
+				"background-color" : "#FAFAFA",
 				"width" : "100%",
 				"height" : "100%"
 			});
@@ -273,33 +274,34 @@
 			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
-			var image_1 = new cpr.controls.Image();
-			image_1.src = "images/harubang4.png";
-			image_1.style.css({
-				"opacity" : "70%"
+			var group_1 = new cpr.controls.Container();
+			group_1.style.css({
+				"background-color" : "#FFFFFF"
 			});
-			container.addChild(image_1, {
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_1);
+			container.addChild(group_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
+						"top": "30px",
+						"right": "30px",
+						"bottom": "30px",
+						"left": "30px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
+						"top": "30px",
+						"right": "15px",
+						"bottom": "30px",
+						"left": "15px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
+						"top": "30px",
+						"right": "10px",
+						"bottom": "30px",
+						"left": "10px"
 					}
 				]
 			});
@@ -322,21 +324,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "85px",
+						"top": "126px",
 						"width": "100px",
 						"height": "30px",
 						"left": "calc(50% - 50px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "85px",
+						"top": "126px",
 						"width": "49px",
 						"height": "30px",
 						"left": "calc(50% - 24px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "85px",
+						"top": "126px",
 						"width": "34px",
 						"height": "30px",
 						"left": "calc(50% - 17px)"
@@ -407,7 +409,10 @@
 								cell.targetColumnName = "planNo";
 								cell.text = "플래너 번호";
 								cell.style.css({
-									"color" : "#000000"
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"color" : "#000000",
+									"background-image" : "none"
 								});
 							}
 						},
@@ -419,7 +424,10 @@
 								cell.targetColumnName = "plannerTitle";
 								cell.text = "플래너 제목";
 								cell.style.css({
-									"color" : "#000000"
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"color" : "#000000",
+									"background-image" : "none"
 								});
 							}
 						},
@@ -431,7 +439,10 @@
 								cell.targetColumnName = "plannerStartDate";
 								cell.text = "시작일";
 								cell.style.css({
-									"color" : "#000000"
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"color" : "#000000",
+									"background-image" : "none"
 								});
 							}
 						},
@@ -443,7 +454,11 @@
 								cell.targetColumnName = "plannerLastDay";
 								cell.text = "종료일";
 								cell.style.css({
-									"color" : "#000000"
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"color" : "#000000",
+									"border-bottom-style" : "solid",
+									"background-image" : "none"
 								});
 							}
 						},
@@ -452,8 +467,10 @@
 							"configurator": function(cell){
 								cell.text = "";
 								cell.style.css({
-									"background-color" : "transparent",
-									"color" : "#000000"
+									"background-color" : "#f8f8f8",
+									"border-right-style" : "none",
+									"color" : "#000000",
+									"background-image" : "none"
 								});
 							}
 						},
@@ -462,7 +479,10 @@
 							"configurator": function(cell){
 								cell.text = "";
 								cell.style.css({
-									"color" : "#000000"
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"color" : "#000000",
+									"background-image" : "none"
 								});
 							}
 						}
@@ -476,7 +496,8 @@
 							"configurator": function(cell){
 								cell.columnName = "planNo";
 								cell.style.css({
-									"background-color" : "#EDD9D9"
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none"
 								});
 							}
 						},
@@ -485,7 +506,8 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerTitle";
 								cell.style.css({
-									"background-color" : "#EDD9D9"
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none"
 								});
 							}
 						},
@@ -494,7 +516,8 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerStartDate";
 								cell.style.css({
-									"background-color" : "#EDD9D9"
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none"
 								});
 							}
 						},
@@ -503,16 +526,30 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
 								cell.style.css({
-									"background-color" : "#EDD9D9"
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none",
+									"border-left-style" : "none",
+									"border-bottom-style" : "solid",
+									"border-top-style" : "none"
 								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
+								cell.style.css({
+									"border-right-style" : "none",
+									"background-color" : "#FFFFFF"
+								});
 								cell.control = (function(){
 									var button_1 = new cpr.controls.Button();
 									button_1.value = "상세보기";
+									button_1.style.css({
+										"border-radius" : "50px",
+										"background-color" : "#98dde3",
+										"border-right-style" : "none",
+										"background-image" : "none"
+									});
 									if(typeof onButtonClick2 == "function") {
 										button_1.addEventListener("click", onButtonClick2);
 									}
@@ -530,9 +567,18 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
+								cell.style.css({
+									"border-right-style" : "none",
+									"background-color" : "#FFFFFF"
+								});
 								cell.control = (function(){
 									var button_2 = new cpr.controls.Button();
 									button_2.value = "삭제";
+									button_2.style.css({
+										"border-radius" : "50px",
+										"background-color" : "#98dde3",
+										"background-image" : "none"
+									});
 									if(typeof onButtonClick3 == "function") {
 										button_2.addEventListener("click", onButtonClick3);
 									}
@@ -545,7 +591,18 @@
 				}
 			});
 			grid_1.style.css({
-				"color" : "#000000"
+				"border-right-style" : "none",
+				"color" : "#000000",
+				"border-left-style" : "none",
+				"font-family" : "'맑은 고딕' , 'Malgun Gothic' , sans-serif",
+				"border-bottom-style" : "none",
+				"text-align" : "left"
+			});
+			grid_1.style.row.css({
+				"border-right-style" : "none",
+				"border-left-style" : "none",
+				"border-bottom-style" : "none",
+				"border-top-style" : "none"
 			});
 			if(typeof onGrd1Dblclick == "function") {
 				grid_1.addEventListener("dblclick", onGrd1Dblclick);
@@ -557,21 +614,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "125px",
+						"top": "166px",
 						"width": "897px",
 						"height": "172px",
 						"left": "calc(50% - 448px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "125px",
+						"top": "166px",
 						"width": "438px",
 						"height": "172px",
 						"left": "calc(50% - 219px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "125px",
+						"top": "166px",
 						"width": "307px",
 						"height": "172px",
 						"left": "calc(50% - 153px)"
@@ -600,9 +657,13 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "planNo";
-								cell.text = "플래너번호";
+								cell.text = "플래너 번호";
 								cell.style.css({
-									"color" : "#000000"
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"color" : "#000000",
+									"border-left-style" : "none",
+									"background-image" : "none"
 								});
 							}
 						},
@@ -612,9 +673,13 @@
 								cell.filterable = false;
 								cell.sortable = false;
 								cell.targetColumnName = "plannerTitle";
-								cell.text = "플래너제목";
+								cell.text = "플래너 제목";
 								cell.style.css({
-									"color" : "#000000"
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"color" : "#000000",
+									"border-left-style" : "none",
+									"background-image" : "none"
 								});
 							}
 						},
@@ -626,7 +691,11 @@
 								cell.targetColumnName = "plannerStartDate";
 								cell.text = "시작일";
 								cell.style.css({
-									"color" : "#000000"
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"color" : "#000000",
+									"border-left-style" : "none",
+									"background-image" : "none"
 								});
 							}
 						},
@@ -638,18 +707,34 @@
 								cell.targetColumnName = "plannerLastDay";
 								cell.text = "종료일";
 								cell.style.css({
-									"color" : "#000000"
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"color" : "#000000",
+									"border-left-style" : "none",
+									"background-image" : "none"
 								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
+								cell.style.css({
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"border-left-style" : "none",
+									"background-image" : "none"
+								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
+								cell.style.css({
+									"border-right-style" : "none",
+									"background-color" : "#f8f8f8",
+									"border-left-style" : "none",
+									"background-image" : "none"
+								});
 							}
 						}
 					]
@@ -662,7 +747,9 @@
 							"configurator": function(cell){
 								cell.columnName = "planNo";
 								cell.style.css({
-									"background-color" : "#EDD9D9"
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none",
+									"border-left-style" : "none"
 								});
 							}
 						},
@@ -671,7 +758,9 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerTitle";
 								cell.style.css({
-									"background-color" : "#EDD9D9"
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none",
+									"border-left-style" : "none"
 								});
 							}
 						},
@@ -680,7 +769,9 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerStartDate";
 								cell.style.css({
-									"background-color" : "#EDD9D9"
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none",
+									"border-left-style" : "none"
 								});
 							}
 						},
@@ -689,16 +780,28 @@
 							"configurator": function(cell){
 								cell.columnName = "plannerLastDay";
 								cell.style.css({
-									"background-color" : "#EDD9D9"
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none",
+									"border-left-style" : "none"
 								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
+								cell.style.css({
+									"border-right-style" : "none",
+									"color" : "#FFFFFF",
+									"border-left-style" : "none"
+								});
 								cell.control = (function(){
 									var button_3 = new cpr.controls.Button();
 									button_3.value = "상세보기";
+									button_3.style.css({
+										"border-radius" : "50px",
+										"background-color" : "#98dde3",
+										"background-image" : "none"
+									});
 									if(typeof onButtonClick == "function") {
 										button_3.addEventListener("click", onButtonClick);
 									}
@@ -710,9 +813,19 @@
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 5},
 							"configurator": function(cell){
+								cell.style.css({
+									"border-right-style" : "none",
+									"background-color" : "#FFFFFF",
+									"border-left-style" : "none"
+								});
 								cell.control = (function(){
 									var button_4 = new cpr.controls.Button();
 									button_4.value = "삭제";
+									button_4.style.css({
+										"border-radius" : "50px",
+										"background-color" : "#98dde3",
+										"background-image" : "none"
+									});
 									if(typeof onButtonClick4 == "function") {
 										button_4.addEventListener("click", onButtonClick4);
 									}
@@ -725,7 +838,10 @@
 				}
 			});
 			grid_2.style.css({
-				"color" : "#000000"
+				"border-right-style" : "none",
+				"color" : "#000000",
+				"border-left-style" : "none",
+				"border-bottom-style" : "none"
 			});
 			if(typeof onGrd2Click == "function") {
 				grid_2.addEventListener("click", onGrd2Click);
@@ -758,6 +874,9 @@
 			
 			var pageIndexer_1 = new cpr.controls.PageIndexer("completePaging");
 			pageIndexer_1.pageRowCount = 5;
+			pageIndexer_1.style.index.css({
+				"background-color" : "#98dde3"
+			});
 			pageIndexer_1.bind("totalRowCount").toExpression("#completePlannerVO.getRowCount()");
 			pageIndexer_1.init(1, 1, 1);
 			if(typeof onCompletePagingSelectionChange == "function") {
@@ -767,21 +886,21 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "307px",
+						"top": "348px",
 						"width": "408px",
 						"height": "42px",
 						"left": "calc(50% - 204px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "307px",
+						"top": "348px",
 						"width": "199px",
 						"height": "42px",
 						"left": "calc(50% - 99px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "307px",
+						"top": "348px",
 						"width": "139px",
 						"height": "42px",
 						"left": "calc(50% - 69px)"
@@ -791,6 +910,9 @@
 			
 			var pageIndexer_2 = new cpr.controls.PageIndexer("notCompletePaging");
 			pageIndexer_2.pageRowCount = 5;
+			pageIndexer_2.style.index.css({
+				"background-color" : "#98dde3"
+			});
 			pageIndexer_2.bind("totalRowCount").toExpression("#notCompletePlannerVO.getRowCount()");
 			pageIndexer_2.init(1, 1, 1);
 			if(typeof onNotCompletePagingSelectionChange == "function") {

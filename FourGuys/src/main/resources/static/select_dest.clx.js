@@ -135,8 +135,11 @@
 			var button_2 = new cpr.controls.Button("seoul");
 			button_2.value = "SEOUL";
 			button_2.style.css({
+				"background-size" : "cover",
 				"color" : "#FFFFFF",
-				"font-size" : "40px"
+				"font-size" : "40px",
+				"background-image" : "url('images/seoul.jpg')",
+				"background-position" : "center"
 			});
 			container.addChild(button_2, {
 				positions: [
@@ -195,8 +198,11 @@
 			var button_3 = new cpr.controls.Button("japan");
 			button_3.value = "JAPAN";
 			button_3.style.css({
+				"background-size" : "cover",
 				"color" : "#FFFFFF",
-				"font-size" : "40px"
+				"font-size" : "40px",
+				"background-image" : "url('images/japan.jpeg')",
+				"background-position" : "center"
 			});
 			container.addChild(button_3, {
 				positions: [
@@ -255,8 +261,11 @@
 			var button_4 = new cpr.controls.Button("vietnam");
 			button_4.value = "VIETNAM";
 			button_4.style.css({
+				"background-size" : "cover",
 				"color" : "#FFFFFF",
-				"font-size" : "40px"
+				"font-size" : "40px",
+				"background-image" : "url('images/vietnam.jpg')",
+				"background-position" : "center"
 			});
 			container.addChild(button_4, {
 				positions: [
