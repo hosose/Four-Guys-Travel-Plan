@@ -104,6 +104,7 @@
 			var container = app.getContainer();
 			container.style.css({
 				"background-image" : "none",
+				"background-color" : "#FAFAFA",
 				"width" : "100%",
 				"top" : "0px",
 				"height" : "100%",
@@ -115,19 +116,10 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var image_1 = new cpr.controls.Image();
-			image_1.src = "images/harubang3.jpg";
-			container.addChild(image_1, {
-				"top": "0px",
-				"right": "0px",
-				"bottom": "0px",
-				"left": "0px"
-			});
-			
 			var group_1 = new cpr.controls.Container("container");
 			group_1.style.setClasses(["login-box"]);
 			group_1.style.css({
-				"background-color" : "tarnsparent",
+				"background-color" : "#FFFFFF",
 				"border-right-style" : "solid",
 				"border-bottom-color" : "#ffffff",
 				"border-left-style" : "solid",
@@ -142,28 +134,43 @@
 			formLayout_1.rightMargin = "50";
 			formLayout_1.bottomMargin = "50";
 			formLayout_1.leftMargin = "50";
-			formLayout_1.setColumns(["1fr"]);
-			formLayout_1.setRows(["50px", "20px", "30px", "30px", "30px", "30px"]);
+			formLayout_1.setColumns(["80px", "1fr"]);
+			formLayout_1.setRows(["60px", "25px", "50px", "25px", "50px", "30px", "50px", "50px"]);
 			group_1.setLayout(formLayout_1);
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("idInput");
 				inputBox_1.tooltip = "ID를 입력하세요";
-				inputBox_1.placeholder = "ID";
 				inputBox_1.style.css({
-					"font-family" : "AppleSDGothicNeoB00"
+					"background-color" : "#F7F8F9",
+					"border-right-style" : "none",
+					"border-radius" : "5px",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				inputBox_1.bind("value").toDataMap(app.lookup("loginParam"), "id");
 				container.addChild(inputBox_1, {
 					"colIndex": 0,
 					"rowIndex": 2,
-					"verticalAlign": "fill"
+					"colSpan": 2,
+					"rowSpan": 1,
+					"verticalAlign": "fill",
+					"bottomSpacing": 5
 				});
 				var inputBox_2 = new cpr.controls.InputBox("passwordInput");
 				inputBox_2.tooltip = "비밀번호를 입력하세요";
 				inputBox_2.secret = true;
-				inputBox_2.placeholder = "PW";
 				inputBox_2.style.css({
-					"font-family" : "AppleSDGothicNeoB00"
+					"background-color" : "#F7F8F9",
+					"border-right-style" : "none",
+					"border-radius" : "5px",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				inputBox_2.bind("value").toDataMap(app.lookup("loginParam"), "password");
 				if(typeof onPasswordInputKeydown == "function") {
@@ -171,59 +178,100 @@
 				}
 				container.addChild(inputBox_2, {
 					"colIndex": 0,
-					"rowIndex": 3,
-					"verticalAlign": "fill"
+					"rowIndex": 4,
+					"colSpan": 2,
+					"rowSpan": 1,
+					"verticalAlign": "fill",
+					"topSpacing": 5
 				});
-				var image_2 = new cpr.controls.Image();
-				image_2.src = "theme/images/logo.png";
-				container.addChild(image_2, {
+				var image_1 = new cpr.controls.Image();
+				image_1.src = "theme/images/logo.png";
+				container.addChild(image_1, {
 					"colIndex": 0,
 					"rowIndex": 0,
-					"colSpan": 1,
+					"colSpan": 2,
 					"rowSpan": 1
 				});
 				var button_1 = new cpr.controls.Button("btnLogin");
 				button_1.value = "LOGIN";
 				button_1.style.setClasses(["login"]);
 				button_1.style.css({
-					"background-color" : "#306dc6",
+					"background-color" : "#98DDE3",
+					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"text-shadow" : "none",
 					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-size" : "25px",
 					"font-family" : "AppleSDGothicNeoB00",
-					"background-image" : "none"
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				if(typeof onBtnLoginClick == "function") {
 					button_1.addEventListener("click", onBtnLoginClick);
 				}
 				container.addChild(button_1, {
 					"colIndex": 0,
-					"rowIndex": 4
+					"rowIndex": 6,
+					"colSpan": 2,
+					"rowSpan": 1
 				});
 				var button_2 = new cpr.controls.Button("register");
 				button_2.value = "회원가입";
 				button_2.style.setClasses(["register"]);
 				button_2.style.css({
-					"background-color" : "#306dc6",
+					"background-color" : "#98DDE3",
+					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"text-shadow" : "none",
 					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-size" : "25px",
 					"font-family" : "AppleSDGothicNeoB00",
-					"background-image" : "none"
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				if(typeof onRegisterClick2 == "function") {
 					button_2.addEventListener("click", onRegisterClick2);
 				}
 				container.addChild(button_2, {
 					"colIndex": 0,
-					"rowIndex": 5
+					"rowIndex": 7,
+					"colSpan": 2,
+					"rowSpan": 1
+				});
+				var output_1 = new cpr.controls.Output();
+				output_1.value = "이메일";
+				output_1.style.css({
+					"color" : "#AAAAAA",
+					"font-size" : "18px"
+				});
+				container.addChild(output_1, {
+					"colIndex": 0,
+					"rowIndex": 1,
+					"colSpan": 1,
+					"rowSpan": 1
+				});
+				var output_2 = new cpr.controls.Output();
+				output_2.value = "비밀번호";
+				output_2.style.css({
+					"color" : "#AAAAAA",
+					"font-size" : "18px"
+				});
+				container.addChild(output_2, {
+					"colIndex": 0,
+					"rowIndex": 3,
+					"colSpan": 1,
+					"rowSpan": 1
 				});
 			})(group_1);
 			container.addChild(group_1, {
-				"width": "350px",
-				"height": "300px",
-				"left": "calc(50% - 175px)",
-				"top": "calc(50% - 150px)"
+				"width": "448px",
+				"height": "439px",
+				"left": "calc(50% - 224px)",
+				"top": "calc(50% - 219px)"
 			});
 			
 			var userDefinedControl_1 = new udc.logo();

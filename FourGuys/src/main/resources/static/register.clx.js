@@ -322,6 +322,7 @@
 			container.style.css({
 				"border-bottom-style" : "none",
 				"border-top-style" : "none",
+				"background-color" : "#FAFAFA",
 				"border-right-style" : "none",
 				"width" : "100%",
 				"height" : "100%",
@@ -333,34 +334,6 @@
 			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
-			var image_1 = new cpr.controls.Image();
-			image_1.src = "images/ocean.jpg";
-			container.addChild(image_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					}
-				]
-			});
-			
 			var group_1 = new cpr.controls.Container();
 			group_1.style.css({
 				"border-right-style" : "solid",
@@ -376,77 +349,57 @@
 			var responsiveXYLayout_2 = new cpr.controls.layouts.ResponsiveXYLayout();
 			group_1.setLayout(responsiveXYLayout_2);
 			(function(container){
-				var image_2 = new cpr.controls.Image();
-				image_2.src = "images/Four_Guys.png";
-				container.addChild(image_2, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "20px",
-							"width": "479px",
-							"height": "77px",
-							"left": "calc(50% - 239px)"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "20px",
-							"width": "234px",
-							"height": "77px",
-							"left": "calc(50% - 117px)"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "20px",
-							"width": "164px",
-							"height": "77px",
-							"left": "calc(50% - 82px)"
-						}
-					]
-				});
 				var output_1 = new cpr.controls.Output();
 				output_1.value = "ID";
 				output_1.style.css({
-					"border-right-style" : "solid",
+					"border-right-style" : "none",
 					"border-bottom-color" : "#ffffff",
-					"color" : "#FFFFFF",
-					"border-left-style" : "solid",
+					"color" : "#AAAAAA",
+					"border-left-style" : "none",
 					"border-left-color" : "#ffffff",
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
-					"border-bottom-style" : "solid",
+					"border-bottom-style" : "none",
 					"font-family" : "AppleSDGothicNeoEB00",
-					"border-top-style" : "solid",
+					"border-top-style" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_1, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "157px",
-							"left": "167px",
+							"top": "26px",
+							"left": "171px",
 							"width": "100px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "157px",
-							"left": "82px",
+							"top": "26px",
+							"left": "83px",
 							"width": "49px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "157px",
-							"left": "57px",
+							"top": "26px",
+							"left": "58px",
 							"width": "34px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var inputBox_1 = new cpr.controls.InputBox("ipb_id");
 				inputBox_1.placeholder = "ID";
 				inputBox_1.style.css({
-					"font-family" : "AppleSDGothicNeoEB00"
+					"background-color" : "#f7f8f9",
+					"border-right-style" : "none",
+					"border-radius" : "5px",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				inputBox_1.bind("value").toDataMap(app.lookup("dm_register"), "id");
 				if(typeof onIpb_idBlur == "function") {
@@ -456,24 +409,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "157px",
-							"left": "272px",
+							"top": "26px",
+							"left": "276px",
 							"width": "200px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "157px",
-							"left": "133px",
+							"top": "26px",
+							"left": "135px",
 							"width": "98px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "157px",
-							"left": "93px",
+							"top": "26px",
+							"left": "94px",
 							"width": "68px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
@@ -481,7 +434,14 @@
 				inputBox_2.secret = true;
 				inputBox_2.placeholder = "PASSWORD";
 				inputBox_2.style.css({
-					"font-family" : "AppleSDGothicNeoEB00"
+					"background-color" : "#f7f8f9",
+					"border-right-style" : "none",
+					"border-radius" : "5px",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				inputBox_2.bind("value").toDataMap(app.lookup("dm_register"), "password");
 				if(typeof onIpb_passwordBlur == "function") {
@@ -494,31 +454,38 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "200px",
-							"left": "272px",
+							"top": "87px",
+							"left": "276px",
 							"width": "200px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "200px",
-							"left": "133px",
+							"top": "87px",
+							"left": "135px",
 							"width": "98px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "200px",
-							"left": "93px",
+							"top": "87px",
+							"left": "94px",
 							"width": "68px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var inputBox_3 = new cpr.controls.InputBox("ipb_name");
 				inputBox_3.placeholder = "이름";
 				inputBox_3.style.css({
-					"font-family" : "AppleSDGothicNeoEB00"
+					"background-color" : "#f7f8f9",
+					"border-right-style" : "none",
+					"border-radius" : "5px",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				inputBox_3.bind("value").toDataMap(app.lookup("dm_register"), "name");
 				if(typeof onIpb_nameBlur == "function") {
@@ -528,31 +495,38 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "243px",
-							"left": "272px",
+							"top": "145px",
+							"left": "276px",
 							"width": "200px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "243px",
-							"left": "133px",
+							"top": "145px",
+							"left": "135px",
 							"width": "98px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "243px",
-							"left": "93px",
+							"top": "145px",
+							"left": "94px",
 							"width": "68px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var inputBox_4 = new cpr.controls.InputBox("ipb_address");
 				inputBox_4.placeholder = "주소";
 				inputBox_4.style.css({
-					"font-family" : "AppleSDGothicNeoEB00"
+					"background-color" : "#f7f8f9",
+					"border-right-style" : "none",
+					"border-radius" : "5px",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				inputBox_4.bind("value").toDataMap(app.lookup("dm_register"), "address");
 				if(typeof onIpb_addressBlur == "function") {
@@ -562,31 +536,38 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "329px",
-							"left": "272px",
+							"top": "260px",
+							"left": "276px",
 							"width": "200px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "329px",
-							"left": "133px",
+							"top": "260px",
+							"left": "135px",
 							"width": "98px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "329px",
-							"left": "93px",
+							"top": "260px",
+							"left": "94px",
 							"width": "68px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var inputBox_5 = new cpr.controls.InputBox("ipb_email");
 				inputBox_5.placeholder = "email@fourguys.com";
 				inputBox_5.style.css({
-					"font-family" : "AppleSDGothicNeoEB00"
+					"background-color" : "#f7f8f9",
+					"border-right-style" : "none",
+					"border-radius" : "5px",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				inputBox_5.bind("value").toDataMap(app.lookup("dm_register"), "email");
 				if(typeof onIpb_emailBlur == "function") {
@@ -596,31 +577,38 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "372px",
-							"left": "272px",
+							"top": "319px",
+							"left": "276px",
 							"width": "200px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "372px",
-							"left": "133px",
+							"top": "319px",
+							"left": "135px",
 							"width": "98px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "372px",
-							"left": "93px",
+							"top": "319px",
+							"left": "94px",
 							"width": "68px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var maskEditor_1 = new cpr.controls.MaskEditor("mse_phone");
 				maskEditor_1.mask = "(000)0000-0000";
 				maskEditor_1.style.css({
-					"font-family" : "AppleSDGothicNeoEB00"
+					"background-color" : "#f7f8f9",
+					"border-right-style" : "none",
+					"border-radius" : "5px",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				maskEditor_1.bind("value").toDataMap(app.lookup("dm_register"), "phone");
 				if(typeof onMse_phoneBlur == "function") {
@@ -630,38 +618,42 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "415px",
-							"left": "272px",
+							"top": "377px",
+							"left": "276px",
 							"width": "200px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "415px",
-							"left": "133px",
+							"top": "377px",
+							"left": "135px",
 							"width": "98px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "415px",
-							"left": "93px",
+							"top": "377px",
+							"left": "94px",
 							"width": "68px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var button_1 = new cpr.controls.Button("register");
 				button_1.value = "회원등록";
 				button_1.style.css({
-					"background-color" : "#306dc6",
+					"background-color" : "#98dde3",
+					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"text-shadow" : "none",
 					"color" : "#FFFFFF",
 					"font-weight" : "normal",
+					"border-left-style" : "none",
 					"font-size" : "25px",
 					"font-family" : "AppleSDGothicNeoEB00",
-					"background-image" : "none"
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				if(typeof onRegisterClick == "function") {
 					button_1.addEventListener("click", onRegisterClick);
@@ -670,22 +662,22 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "493px",
-							"left": "251px",
+							"top": "446px",
+							"left": "255px",
 							"width": "200px",
 							"height": "50px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "493px",
-							"left": "123px",
+							"top": "446px",
+							"left": "125px",
 							"width": "98px",
 							"height": "50px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "493px",
-							"left": "86px",
+							"top": "446px",
+							"left": "87px",
 							"width": "68px",
 							"height": "50px"
 						}
@@ -694,127 +686,134 @@
 				var output_2 = new cpr.controls.Output();
 				output_2.value = "PASSWORD";
 				output_2.style.css({
-					"border-right-style" : "solid",
+					"border-right-style" : "none",
 					"border-bottom-color" : "#ffffff",
-					"color" : "#FFFFFF",
-					"border-left-style" : "solid",
+					"color" : "#AAAAAA",
+					"border-left-style" : "none",
 					"border-left-color" : "#ffffff",
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
-					"border-bottom-style" : "solid",
+					"border-bottom-style" : "none",
 					"font-family" : "AppleSDGothicNeoEB00",
-					"border-top-style" : "solid",
+					"border-top-style" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_2, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "200px",
-							"left": "167px",
+							"top": "87px",
+							"left": "171px",
 							"width": "100px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "200px",
-							"left": "82px",
+							"top": "87px",
+							"left": "83px",
 							"width": "49px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "200px",
-							"left": "57px",
+							"top": "87px",
+							"left": "58px",
 							"width": "34px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var output_3 = new cpr.controls.Output();
 				output_3.value = "이름";
 				output_3.style.css({
-					"border-right-style" : "solid",
+					"border-right-style" : "none",
 					"border-bottom-color" : "#ffffff",
-					"color" : "#FFFFFF",
-					"border-left-style" : "solid",
+					"color" : "#AAAAAA",
+					"border-left-style" : "none",
 					"border-left-color" : "#ffffff",
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
-					"border-bottom-style" : "solid",
+					"border-bottom-style" : "none",
 					"font-family" : "AppleSDGothicNeoEB00",
-					"border-top-style" : "solid",
+					"border-top-style" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_3, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "243px",
-							"left": "167px",
+							"top": "145px",
+							"left": "171px",
 							"width": "100px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "243px",
-							"left": "82px",
+							"top": "145px",
+							"left": "83px",
 							"width": "49px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "243px",
-							"left": "57px",
+							"top": "145px",
+							"left": "58px",
 							"width": "34px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var output_4 = new cpr.controls.Output();
 				output_4.value = "주소";
 				output_4.style.css({
-					"border-right-style" : "solid",
+					"border-right-style" : "none",
 					"border-bottom-color" : "#ffffff",
-					"color" : "#FFFFFF",
-					"border-left-style" : "solid",
+					"color" : "#AAAAAA",
+					"border-left-style" : "none",
 					"border-left-color" : "#ffffff",
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
-					"border-bottom-style" : "solid",
+					"border-bottom-style" : "none",
 					"font-family" : "AppleSDGothicNeoEB00",
-					"border-top-style" : "solid",
+					"border-top-style" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_4, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "329px",
-							"left": "167px",
+							"top": "260px",
+							"left": "171px",
 							"width": "100px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "329px",
-							"left": "82px",
+							"top": "260px",
+							"left": "83px",
 							"width": "49px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "329px",
-							"left": "57px",
+							"top": "260px",
+							"left": "58px",
 							"width": "34px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var dateInput_1 = new cpr.controls.DateInput("dti_birth");
 				dateInput_1.placeholder = "생년월일";
 				dateInput_1.style.css({
-					"font-family" : "AppleSDGothicNeoEB00"
+					"background-color" : "#f7f8f9",
+					"border-right-style" : "none",
+					"border-radius" : "5px",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				dateInput_1.bind("value").toDataMap(app.lookup("dm_register"), "birth");
 				if(typeof onDti_birthBlur == "function") {
@@ -824,144 +823,144 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "286px",
-							"left": "272px",
+							"top": "203px",
+							"left": "276px",
 							"width": "200px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "286px",
-							"left": "133px",
+							"top": "203px",
+							"left": "135px",
 							"width": "98px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "286px",
-							"left": "93px",
+							"top": "203px",
+							"left": "94px",
 							"width": "68px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var output_5 = new cpr.controls.Output();
 				output_5.value = "생년월일";
 				output_5.style.css({
-					"border-right-style" : "solid",
+					"border-right-style" : "none",
 					"border-bottom-color" : "#ffffff",
-					"color" : "#FFFFFF",
-					"border-left-style" : "solid",
+					"color" : "#AAAAAA",
+					"border-left-style" : "none",
 					"border-left-color" : "#ffffff",
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
-					"border-bottom-style" : "solid",
+					"border-bottom-style" : "none",
 					"font-family" : "AppleSDGothicNeoEB00",
-					"border-top-style" : "solid",
+					"border-top-style" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_5, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "286px",
-							"left": "167px",
+							"top": "203px",
+							"left": "171px",
 							"width": "100px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "286px",
-							"left": "82px",
+							"top": "203px",
+							"left": "83px",
 							"width": "49px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "286px",
-							"left": "57px",
+							"top": "203px",
+							"left": "58px",
 							"width": "34px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var output_6 = new cpr.controls.Output();
 				output_6.value = "이메일";
 				output_6.style.css({
-					"border-right-style" : "solid",
+					"border-right-style" : "none",
 					"border-bottom-color" : "#ffffff",
-					"color" : "#FFFFFF",
-					"border-left-style" : "solid",
+					"color" : "#AAAAAA",
+					"border-left-style" : "none",
 					"border-left-color" : "#ffffff",
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
-					"border-bottom-style" : "solid",
+					"border-bottom-style" : "none",
 					"font-family" : "AppleSDGothicNeoEB00",
-					"border-top-style" : "solid",
+					"border-top-style" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_6, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "372px",
-							"left": "167px",
+							"top": "318px",
+							"left": "171px",
 							"width": "100px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "372px",
-							"left": "82px",
+							"top": "318px",
+							"left": "83px",
 							"width": "49px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "372px",
-							"left": "57px",
+							"top": "318px",
+							"left": "58px",
 							"width": "34px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
 				var output_7 = new cpr.controls.Output();
 				output_7.value = "휴대폰번호";
 				output_7.style.css({
-					"border-right-style" : "solid",
+					"border-right-style" : "none",
 					"border-bottom-color" : "#ffffff",
-					"color" : "#FFFFFF",
-					"border-left-style" : "solid",
+					"color" : "#AAAAAA",
+					"border-left-style" : "none",
 					"border-left-color" : "#ffffff",
 					"border-top-color" : "#ffffff",
 					"border-right-color" : "#ffffff",
-					"border-bottom-style" : "solid",
+					"border-bottom-style" : "none",
 					"font-family" : "AppleSDGothicNeoEB00",
-					"border-top-style" : "solid",
+					"border-top-style" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_7, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "415px",
-							"left": "167px",
+							"top": "377px",
+							"left": "171px",
 							"width": "100px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "415px",
-							"left": "82px",
+							"top": "377px",
+							"left": "83px",
 							"width": "49px",
-							"height": "25px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "415px",
-							"left": "57px",
+							"top": "377px",
+							"left": "58px",
 							"width": "34px",
-							"height": "25px"
+							"height": "30px"
 						}
 					]
 				});
@@ -976,36 +975,40 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "224px",
-							"left": "167px",
+							"top": "116px",
+							"left": "171px",
 							"width": "305px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "224px",
-							"left": "82px",
+							"top": "116px",
+							"left": "83px",
 							"width": "149px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "224px",
-							"left": "57px",
+							"top": "116px",
+							"left": "58px",
 							"width": "104px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
 				var button_2 = new cpr.controls.Button();
 				button_2.value = "중복확인";
 				button_2.style.css({
-					"background-color" : "#306dc6",
+					"background-color" : "#98dde3",
+					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
 					"text-shadow" : "none",
 					"color" : "#FFFFFF",
+					"border-left-style" : "none",
 					"font-family" : "AppleSDGothicNeoM00",
-					"background-image" : "none"
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				if(typeof onButtonClick == "function") {
 					button_2.addEventListener("click", onButtonClick);
@@ -1014,24 +1017,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "160px",
-							"left": "482px",
+							"top": "26px",
+							"left": "486px",
 							"width": "100px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "160px",
-							"left": "235px",
+							"top": "26px",
+							"left": "237px",
 							"width": "49px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "160px",
-							"left": "165px",
+							"top": "26px",
+							"left": "166px",
 							"width": "34px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
@@ -1046,24 +1049,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "181px",
-							"left": "167px",
+							"top": "55px",
+							"left": "171px",
 							"width": "305px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "181px",
-							"left": "82px",
+							"top": "55px",
+							"left": "83px",
 							"width": "149px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "181px",
-							"left": "57px",
+							"top": "55px",
+							"left": "58px",
 							"width": "104px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
@@ -1078,24 +1081,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "267px",
-							"left": "167px",
+							"top": "174px",
+							"left": "171px",
 							"width": "305px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "267px",
-							"left": "82px",
+							"top": "174px",
+							"left": "83px",
 							"width": "149px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "267px",
-							"left": "57px",
+							"top": "174px",
+							"left": "58px",
 							"width": "104px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
@@ -1110,24 +1113,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "310px",
-							"left": "167px",
+							"top": "231px",
+							"left": "171px",
 							"width": "305px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "310px",
-							"left": "82px",
+							"top": "231px",
+							"left": "83px",
 							"width": "149px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "310px",
-							"left": "57px",
+							"top": "231px",
+							"left": "58px",
 							"width": "104px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
@@ -1142,24 +1145,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "353px",
-							"left": "167px",
+							"top": "289px",
+							"left": "171px",
 							"width": "305px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "353px",
-							"left": "82px",
+							"top": "289px",
+							"left": "83px",
 							"width": "149px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "353px",
-							"left": "57px",
+							"top": "289px",
+							"left": "58px",
 							"width": "104px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
@@ -1174,24 +1177,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "396px",
-							"left": "167px",
+							"top": "348px",
+							"left": "171px",
 							"width": "305px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "396px",
-							"left": "82px",
+							"top": "348px",
+							"left": "83px",
 							"width": "149px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "396px",
-							"left": "57px",
+							"top": "348px",
+							"left": "58px",
 							"width": "104px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
@@ -1206,24 +1209,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "439px",
-							"left": "167px",
+							"top": "406px",
+							"left": "171px",
 							"width": "305px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "439px",
-							"left": "82px",
+							"top": "406px",
+							"left": "83px",
 							"width": "149px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "439px",
-							"left": "57px",
+							"top": "406px",
+							"left": "58px",
 							"width": "104px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
@@ -1236,24 +1239,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "203px",
-							"left": "482px",
+							"top": "87px",
+							"left": "486px",
 							"width": "100px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "203px",
-							"left": "235px",
+							"top": "87px",
+							"left": "237px",
 							"width": "49px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "203px",
-							"left": "165px",
+							"top": "87px",
+							"left": "166px",
 							"width": "34px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
@@ -1262,22 +1265,22 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "82px",
-						"bottom": "38px",
+						"top": "73px",
+						"bottom": "47px",
 						"width": "706px",
 						"left": "calc(50% - 353px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "82px",
-						"bottom": "38px",
+						"top": "73px",
+						"bottom": "47px",
 						"width": "345px",
 						"left": "calc(50% - 172px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "82px",
-						"bottom": "38px",
+						"top": "73px",
+						"bottom": "47px",
 						"width": "241px",
 						"left": "calc(50% - 120px)"
 					}

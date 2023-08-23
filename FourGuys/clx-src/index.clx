@@ -23,7 +23,7 @@
     <cl:listener std:sid="listener-5492d180" name="load" handler="onBodyLoad"/>
     <cl:img std:sid="image-28e63dd0" id="jejuImg1" style="opacity: 70%;" src="images/harubang.jpg">
       <cl:responsivexylayoutdata std:sid="rxyl-data-ef22a856">
-        <cl:xylayoutdata std:sid="sxyl-data-4d32c2ce" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-4d32c2ce" top="1px" right="7px" bottom="-1px" left="-7px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
         <cl:xylayoutdata std:sid="sxyl-data-f598f924" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="tablet"/>
       </cl:responsivexylayoutdata>
     </cl:img>
@@ -33,7 +33,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-ab8187f2" top="320px" left="20px" width="400px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
       </cl:responsivexylayoutdata>
     </cl:output>
-    <cl:output std:sid="output-ee793e74" id="text2" style="background-color:#37E7F1; color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="TRAVEL and PLAN 스케줄링">
+    <cl:output std:sid="output-ee793e74" id="text2" style="background-color:#98dde3; color:#FFFFFF; font-size:50px; font-style:normal; background-image:none;" class="output1" value="TRAVEL and PLAN 스케줄링">
       <cl:responsivexylayoutdata std:sid="rxyl-data-6ccaae39">
         <cl:xylayoutdata std:sid="sxyl-data-11040f2d" top="389px" left="130px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
         <cl:xylayoutdata std:sid="sxyl-data-6056e7bf" top="389px" left="20px" width="315px" height="76px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
