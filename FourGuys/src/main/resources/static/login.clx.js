@@ -31,10 +31,7 @@
 			 */
 			function onSubLoginSubmitSuccess(e) {
 				var subLogin = e.control;
-				var uri = subLogin.getMetadata("uri");
-				if (uri != null) {
 					history.back();
-				}
 			}
 
 			/*

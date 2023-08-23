@@ -592,7 +592,7 @@
 							cell.filterable = false;
 							cell.sortable = false;
 							cell.targetColumnName = "title";
-							cell.text = "선택 목록";
+							cell.text = "관광지 목록";
 							cell.style.css({
 								"background-color" : "#FFFFFF",
 								"background-repeat" : "repeat",

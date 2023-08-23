@@ -57,7 +57,7 @@
           <cl:datacolumn std:sid="d-column-6f9f12d7" name="plannerNo"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:datamap std:sid="d-map-e4ff96d8" id="createPlanDM">
+      <cl:datamap std:sid="d-map-e4ff96d8" id="planDM">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-f47e10bf" name="contentid"/>
           <cl:datacolumn std:sid="d-column-0f887bcf" name="planDate"/>
@@ -84,7 +84,7 @@
       </cl:submission>
       <cl:submission std:sid="submission-4bb551dd" id="selectDate" method="get" action="selectPlansByDate">
         <cl:requestdata dataid="plannerNoDM"/>
-        <cl:requestdata dataid="createPlanDM"/>
+        <cl:requestdata dataid="planDM"/>
         <cl:responsedata dataid="selectedPlan"/>
       </cl:submission>
       <cl:submission std:sid="submission-68fdf2a0" id="createPlannerBoardSM" action="createPlannerBoard">

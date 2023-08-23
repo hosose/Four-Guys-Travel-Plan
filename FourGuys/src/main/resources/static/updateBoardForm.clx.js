@@ -48,7 +48,7 @@
 			function onDayGrdCellClick(e) {
 				var dayGrd = e.control;
 				var planDate = dayGrd.getSelectedRow().getValue("planDate");
-				app.lookup("createPlanDM").setValue("planDate", planDate);
+				app.lookup("planDM").setValue("planDate", planDate);
 				app.lookup("selectDate").send();
 			}
 
@@ -247,7 +247,7 @@
 			});
 			app.register(dataMap_2);
 			
-			var dataMap_3 = new cpr.data.DataMap("createPlanDM");
+			var dataMap_3 = new cpr.data.DataMap("planDM");
 			dataMap_3.parseData({
 				"columns" : [
 					{"name": "contentid"},

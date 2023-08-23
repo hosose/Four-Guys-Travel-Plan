@@ -174,7 +174,7 @@
       <cl:gridcolumn std:sid="g-column-9bfcafe4"/>
       <cl:gridheader std:sid="gh-band-4ef620f9">
         <cl:gridrow std:sid="g-row-9e749704"/>
-        <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="선택 목록"/>
+        <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="관광지 목록"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-0ea6d39f">
         <cl:gridrow std:sid="g-row-e287c25a"/>

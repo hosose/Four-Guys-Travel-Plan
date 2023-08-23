@@ -43,7 +43,6 @@ public class MemberController {
 		} else {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("memberVO", result);
-			initParam.put("uri", "/");
 			success = true;
 		}
 		dataRequest.setMetadata(success, initParam);
