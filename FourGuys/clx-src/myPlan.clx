@@ -53,12 +53,12 @@
       </cl:responsivexylayoutdata>
       <cl:xylayout std:sid="xylayout-1b1a9225"/>
     </cl:group>
-    <cl:output std:sid="output-17ee7ce0" style="border-right-style:solid; border-bottom-color:#ffffff; color:#FFFFFF; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-bottom-style:solid; border-right-color:#ffffff; border-top-style:solid; text-align:center;" value="완성">
+    <cl:output std:sid="output-17ee7ce0" style="border-right-style:solid; border-bottom-color:#000000; color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid; text-align:center;" value="완성">
       <cl:responsivexylayoutdata std:sid="rxyl-data-38bbe393">
         <cl:xylayoutdata std:sid="sxyl-data-1aad1833" top="126px" width="100px" height="30px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
-    <cl:output std:sid="output-88084889" style="border-right-style:solid; color:#FFFFFF; border-bottom-color:#ffffff; border-left-style:solid; border-left-color:#ffffff; border-top-color:#ffffff; border-bottom-style:solid; border-right-color:#ffffff; border-top-style:solid; text-align:center;" value="미완성">
+    <cl:output std:sid="output-88084889" style="border-right-style:solid; color:#000000; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid; text-align:center;" value="미완성">
       <cl:responsivexylayoutdata std:sid="rxyl-data-5aa11748">
         <cl:xylayoutdata std:sid="sxyl-data-110d6587" top="428px" width="100px" height="30px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
