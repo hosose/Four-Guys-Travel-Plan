@@ -713,6 +713,7 @@
 				"autoRowHeight": "none",
 				"autoFit": "0, 2",
 				"resizableColumns": "none",
+				"clickMode": "edit",
 				"columns": [
 					{
 						"width": "85px",

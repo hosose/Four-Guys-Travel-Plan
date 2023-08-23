@@ -62,7 +62,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-110d6587" top="428px" width="100px" height="30px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
-    <cl:grid std:sid="grid-77587128" id="completeGrd" style="color:#000000;" datasetid="dvCompletePaging">
+    <cl:grid std:sid="grid-77587128" id="completeGrd" style="color:#000000;" datasetid="dvCompletePaging" clickmode="edit">
       <cl:listener std:sid="listener-8a6c43b0" name="dblclick" handler="onGrd1Dblclick"/>
       <cl:listener std:sid="listener-6a769b35" name="click" handler="onGrd1Click"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-1003cc3d">
@@ -105,7 +105,7 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-105a7fd9" id="notCompleteGrd" style="color:#000000;" datasetid="dvNotCompletePaging">
+    <cl:grid std:sid="grid-105a7fd9" id="notCompleteGrd" style="color:#000000;" datasetid="dvNotCompletePaging" clickmode="edit">
       <cl:listener std:sid="listener-ca38dd39" name="click" handler="onGrd2Click"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-d6c50020">
         <cl:xylayoutdata std:sid="sxyl-data-349b47fe" top="468px" width="897px" height="146px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>

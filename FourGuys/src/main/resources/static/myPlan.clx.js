@@ -387,6 +387,7 @@
 			var grid_1 = new cpr.controls.Grid("completeGrd");
 			grid_1.init({
 				"dataSet": app.lookup("dvCompletePaging"),
+				"clickMode": "edit",
 				"columns": [
 					{"width": "100px"},
 					{"width": "100px"},
@@ -581,6 +582,7 @@
 			var grid_2 = new cpr.controls.Grid("notCompleteGrd");
 			grid_2.init({
 				"dataSet": app.lookup("dvNotCompletePaging"),
+				"clickMode": "edit",
 				"columns": [
 					{"width": "100px"},
 					{"width": "100px"},
