@@ -33,7 +33,7 @@
 				var subLogin = e.control;
 				var uri = subLogin.getMetadata("uri");
 				if (uri != null) {
-				location.href=uri
+					history.back();
 				}
 			}
 
