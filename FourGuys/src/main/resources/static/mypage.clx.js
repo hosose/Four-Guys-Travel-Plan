@@ -143,8 +143,9 @@
 					"msg": intro
 				}
 				app.openDialog("deleteMember", {
-					width: 450,
-					height: 300
+					width: 400,
+					height: 150,
+					headerVisible: false
 				}, function(dialog) {
 					dialog.ready(function(dialogApp) {
 						// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
@@ -292,6 +293,8 @@
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
+				"background-image" : "none",
+				"background-color" : "#fafafa",
 				"width" : "100%",
 				"height" : "100%"
 			});
@@ -301,432 +304,418 @@
 			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
-			var image_1 = new cpr.controls.Image();
-			image_1.src = "images/harubang3.jpg";
-			container.addChild(image_1, {
+			var userDefinedControl_1 = new udc.logo();
+			container.addChild(userDefinedControl_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
+						"width": "170px",
+						"height": "73px",
+						"left": "calc(50% - 85px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
+						"width": "83px",
+						"height": "73px",
+						"left": "calc(50% - 41px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
+						"width": "58px",
+						"height": "73px",
+						"left": "calc(50% - 29px)"
 					}
 				]
 			});
 			
-			var group_1 = new cpr.controls.Container("grp1");
-			var responsiveXYLayout_2 = new cpr.controls.layouts.ResponsiveXYLayout();
-			group_1.setLayout(responsiveXYLayout_2);
+			var group_1 = new cpr.controls.Container("grp5");
+			group_1.style.css({
+				"background-color" : "rgba(255, 255, 255, 0.6)"
+			});
+			var formLayout_1 = new cpr.controls.layouts.FormLayout();
+			formLayout_1.scrollable = false;
+			formLayout_1.topMargin = "0px";
+			formLayout_1.rightMargin = "0px";
+			formLayout_1.bottomMargin = "0px";
+			formLayout_1.leftMargin = "0px";
+			formLayout_1.horizontalSpacing = "5px";
+			formLayout_1.verticalSpacing = "5px";
+			formLayout_1.setColumns(["1fr", "100px", "200px", "100px", "1fr"]);
+			formLayout_1.setRows(["1fr", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "50px", "10px", "50px", "1fr"]);
+			group_1.setLayout(formLayout_1);
 			(function(container){
-				var userDefinedControl_1 = new udc.logo();
-				container.addChild(userDefinedControl_1, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "0px",
-							"width": "170px",
-							"height": "73px",
-							"left": "calc(50% - 85px)"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "0px",
-							"width": "83px",
-							"height": "73px",
-							"left": "calc(50% - 41px)"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "0px",
-							"width": "58px",
-							"height": "73px",
-							"left": "calc(50% - 29px)"
-						}
-					]
+				var output_1 = new cpr.controls.Output();
+				output_1.value = "아이디";
+				output_1.style.css({
+					"background-color" : "#ffffff",
+					"color" : "#AAAAAA",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none",
+					"text-align" : "center"
 				});
-				var group_2 = new cpr.controls.Container("grp5");
-				group_2.style.css({
-					"background-color" : "rgba(255,255,255,0.5)"
+				container.addChild(output_1, {
+					"colIndex": 1,
+					"rowIndex": 1,
+					"horizontalAlign": "center"
 				});
-				var formLayout_1 = new cpr.controls.layouts.FormLayout();
-				formLayout_1.scrollable = false;
-				formLayout_1.topMargin = "0px";
-				formLayout_1.rightMargin = "0px";
-				formLayout_1.bottomMargin = "0px";
-				formLayout_1.leftMargin = "0px";
-				formLayout_1.horizontalSpacing = "5px";
-				formLayout_1.verticalSpacing = "5px";
-				formLayout_1.setColumns(["1fr", "100px", "200px", "100px", "1fr"]);
-				formLayout_1.setRows(["1fr", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "25px", "40px", "20px", "40px", "1fr"]);
-				group_2.setLayout(formLayout_1);
-				(function(container){
-					var output_1 = new cpr.controls.Output();
-					output_1.value = "아이디";
-					output_1.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00",
-						"text-align" : "center"
-					});
-					container.addChild(output_1, {
-						"colIndex": 1,
-						"rowIndex": 1,
-						"horizontalAlign": "center"
-					});
-					var output_2 = new cpr.controls.Output();
-					output_2.value = "비밀번호";
-					output_2.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00",
-						"text-align" : "center"
-					});
-					container.addChild(output_2, {
-						"colIndex": 1,
-						"rowIndex": 3,
-						"horizontalAlign": "center"
-					});
-					var output_3 = new cpr.controls.Output();
-					output_3.value = "주소";
-					output_3.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00",
-						"text-align" : "center"
-					});
-					container.addChild(output_3, {
-						"colIndex": 1,
-						"rowIndex": 5,
-						"horizontalAlign": "center"
-					});
-					var output_4 = new cpr.controls.Output();
-					output_4.value = "이름";
-					output_4.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00",
-						"text-align" : "center"
-					});
-					container.addChild(output_4, {
-						"colIndex": 1,
-						"rowIndex": 7,
-						"horizontalAlign": "center"
-					});
-					var output_5 = new cpr.controls.Output();
-					output_5.value = "생년월일";
-					output_5.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00",
-						"text-align" : "center"
-					});
-					container.addChild(output_5, {
-						"colIndex": 1,
-						"rowIndex": 9,
-						"horizontalAlign": "center"
-					});
-					var output_6 = new cpr.controls.Output();
-					output_6.value = "이메일";
-					output_6.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00",
-						"text-align" : "center"
-					});
-					container.addChild(output_6, {
-						"colIndex": 1,
-						"rowIndex": 11,
-						"horizontalAlign": "center"
-					});
-					var output_7 = new cpr.controls.Output();
-					output_7.value = "휴대폰 번호";
-					output_7.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00",
-						"text-align" : "center"
-					});
-					container.addChild(output_7, {
-						"colIndex": 1,
-						"rowIndex": 13,
-						"horizontalAlign": "center"
-					});
-					var inputBox_1 = new cpr.controls.InputBox("ID");
-					inputBox_1.readOnly = true;
-					inputBox_1.style.css({
-						"background-color" : "#a3a3a3",
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00",
-						"background-image" : "none"
-					});
-					inputBox_1.bind("value").toDataMap(app.lookup("member"), "id");
-					if(typeof onID == "function") {
-						inputBox_1.addEventListener("click", onID);
-					}
-					container.addChild(inputBox_1, {
-						"colIndex": 2,
-						"rowIndex": 1
-					});
-					var inputBox_2 = new cpr.controls.InputBox("PASSWORD");
-					inputBox_2.secret = true;
-					inputBox_2.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00"
-					});
-					inputBox_2.bind("value").toDataMap(app.lookup("member"), "password");
-					if(typeof onPASSWORDBlur == "function") {
-						inputBox_2.addEventListener("blur", onPASSWORDBlur);
-					}
-					container.addChild(inputBox_2, {
-						"colIndex": 2,
-						"rowIndex": 3
-					});
-					var inputBox_3 = new cpr.controls.InputBox("ADDR");
-					inputBox_3.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00"
-					});
-					inputBox_3.bind("value").toDataMap(app.lookup("member"), "address");
-					if(typeof onADDRBlur == "function") {
-						inputBox_3.addEventListener("blur", onADDRBlur);
-					}
-					container.addChild(inputBox_3, {
-						"colIndex": 2,
-						"rowIndex": 5
-					});
-					var inputBox_4 = new cpr.controls.InputBox("NAME");
-					inputBox_4.style.css({
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00"
-					});
-					inputBox_4.bind("value").toDataMap(app.lookup("member"), "name");
-					if(typeof onNAMEBlur == "function") {
-						inputBox_4.addEventListener("blur", onNAMEBlur);
-					}
-					container.addChild(inputBox_4, {
-						"colIndex": 2,
-						"rowIndex": 7
-					});
-					var inputBox_5 = new cpr.controls.InputBox("EMAIL");
-					inputBox_5.readOnly = true;
-					inputBox_5.style.css({
-						"background-color" : "#A3A3A3",
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00",
-						"background-image" : "none"
-					});
-					inputBox_5.bind("value").toDataMap(app.lookup("member"), "email");
-					if(typeof onEMAIL == "function") {
-						inputBox_5.addEventListener("click", onEMAIL);
-					}
-					container.addChild(inputBox_5, {
-						"colIndex": 2,
-						"rowIndex": 11
-					});
-					var dateInput_1 = new cpr.controls.DateInput("BIRTH");
-					dateInput_1.readOnly = true;
-					dateInput_1.style.css({
-						"background-color" : "#A3A3A3",
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoEB00"
-					});
-					dateInput_1.bind("value").toDataMap(app.lookup("member"), "birth");
-					if(typeof onBIRTH == "function") {
-						dateInput_1.addEventListener("click", onBIRTH);
-					}
-					container.addChild(dateInput_1, {
-						"colIndex": 2,
-						"rowIndex": 9
-					});
-					var button_1 = new cpr.controls.Button("Update");
-					button_1.value = "수정하기";
-					button_1.style.css({
-						"background-color" : "#306dc6",
-						"border-right-style" : "none",
-						"background-repeat" : "no-repeat",
-						"text-shadow" : "none",
-						"color" : "#FFFFFF",
-						"border-left-style" : "none",
-						"font-size" : "18px",
-						"border-bottom-style" : "none",
-						"font-family" : "AppleSDGothicNeoB00",
-						"background-image" : "none",
-						"border-top-style" : "none"
-					});
-					if(typeof onBtn2Click == "function") {
-						button_1.addEventListener("click", onBtn2Click);
-					}
-					container.addChild(button_1, {
-						"colIndex": 2,
-						"rowIndex": 15
-					});
-					var button_2 = new cpr.controls.Button("deleteBtn");
-					button_2.value = "계정 탈퇴";
-					button_2.style.css({
-						"background-color" : "#FF0000",
-						"background-repeat" : "no-repeat",
-						"text-shadow" : "none",
-						"color" : "#FFFFFF",
-						"font-size" : "18px",
-						"font-family" : "AppleSDGothicNeoB00",
-						"background-image" : "none"
-					});
-					if(typeof ondeleteBtnClick == "function") {
-						button_2.addEventListener("click", ondeleteBtnClick);
-					}
-					container.addChild(button_2, {
-						"colIndex": 2,
-						"rowIndex": 17
-					});
-					var output_8 = new cpr.controls.Output("password_check");
-					output_8.style.css({
-						"font-family" : "AppleSDGothicNeoM00",
-						"text-align" : "center"
-					});
-					container.addChild(output_8, {
-						"colIndex": 3,
-						"rowIndex": 3
-					});
-					var output_9 = new cpr.controls.Output("password_output");
-					output_9.style.css({
-						"color" : "#FF0000",
-						"text-align" : "center"
-					});
-					container.addChild(output_9, {
-						"colIndex": 1,
-						"rowIndex": 4,
-						"colSpan": 3,
-						"rowSpan": 1
-					});
-					var output_10 = new cpr.controls.Output("addr__output");
-					output_10.style.css({
-						"color" : "#FF0000",
-						"text-align" : "center"
-					});
-					container.addChild(output_10, {
-						"colIndex": 1,
-						"rowIndex": 6,
-						"colSpan": 3,
-						"rowSpan": 1
-					});
-					var output_11 = new cpr.controls.Output("name__output");
-					output_11.style.css({
-						"color" : "#FF0000",
-						"text-align" : "center"
-					});
-					container.addChild(output_11, {
-						"colIndex": 1,
-						"rowIndex": 8,
-						"colSpan": 3,
-						"rowSpan": 1
-					});
-					var output_12 = new cpr.controls.Output("phone__output");
-					output_12.style.css({
-						"color" : "#FF0000",
-						"text-align" : "center"
-					});
-					container.addChild(output_12, {
-						"colIndex": 1,
-						"rowIndex": 14,
-						"colSpan": 3,
-						"rowSpan": 1
-					});
-					var maskEditor_1 = new cpr.controls.MaskEditor("PHONE");
-					maskEditor_1.mask = "(000)0000-0000";
-					maskEditor_1.style.css({
-						"font-family" : "AppleSDGothicNeoEB00"
-					});
-					maskEditor_1.bind("value").toDataMap(app.lookup("member"), "phone");
-					if(typeof onPHONEBlur == "function") {
-						maskEditor_1.addEventListener("blur", onPHONEBlur);
-					}
-					container.addChild(maskEditor_1, {
-						"colIndex": 2,
-						"rowIndex": 13
-					});
-				})(group_2);
-				container.addChild(group_2, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "149px",
-							"right": "149px",
-							"bottom": "149px",
-							"left": "150px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "149px",
-							"right": "73px",
-							"bottom": "149px",
-							"left": "73px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "149px",
-							"right": "51px",
-							"bottom": "149px",
-							"left": "51px"
-						}
-					]
+				var output_2 = new cpr.controls.Output();
+				output_2.value = "비밀번호";
+				output_2.style.css({
+					"background-color" : "#ffffff",
+					"color" : "#AAAAAA",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none",
+					"text-align" : "center"
 				});
-				var userDefinedControl_2 = new udc.myPageSideBar();
-				container.addChild(userDefinedControl_2, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "0px",
-							"bottom": "0px",
-							"left": "0px",
-							"width": "151px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "0px",
-							"bottom": "0px",
-							"left": "0px",
-							"width": "74px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "0px",
-							"bottom": "0px",
-							"left": "0px",
-							"width": "52px"
-						}
-					]
+				container.addChild(output_2, {
+					"colIndex": 1,
+					"rowIndex": 3,
+					"horizontalAlign": "center"
+				});
+				var output_3 = new cpr.controls.Output();
+				output_3.value = "주소";
+				output_3.style.css({
+					"background-color" : "#ffffff",
+					"color" : "#AAAAAA",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none",
+					"text-align" : "center"
+				});
+				container.addChild(output_3, {
+					"colIndex": 1,
+					"rowIndex": 5,
+					"horizontalAlign": "center"
+				});
+				var output_4 = new cpr.controls.Output();
+				output_4.value = "이름";
+				output_4.style.css({
+					"background-color" : "#ffffff",
+					"color" : "#AAAAAA",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none",
+					"text-align" : "center"
+				});
+				container.addChild(output_4, {
+					"colIndex": 1,
+					"rowIndex": 7,
+					"horizontalAlign": "center"
+				});
+				var output_5 = new cpr.controls.Output();
+				output_5.value = "생년월일";
+				output_5.style.css({
+					"background-color" : "#ffffff",
+					"color" : "#AAAAAA",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none",
+					"text-align" : "center"
+				});
+				container.addChild(output_5, {
+					"colIndex": 1,
+					"rowIndex": 9,
+					"horizontalAlign": "center"
+				});
+				var output_6 = new cpr.controls.Output();
+				output_6.value = "이메일";
+				output_6.style.css({
+					"background-color" : "#ffffff",
+					"color" : "#AAAAAA",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none",
+					"text-align" : "center"
+				});
+				container.addChild(output_6, {
+					"colIndex": 1,
+					"rowIndex": 11,
+					"horizontalAlign": "center"
+				});
+				var output_7 = new cpr.controls.Output();
+				output_7.value = "휴대폰 번호";
+				output_7.style.css({
+					"background-color" : "#ffffff",
+					"color" : "#AAAAAA",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none",
+					"text-align" : "center"
+				});
+				container.addChild(output_7, {
+					"colIndex": 1,
+					"rowIndex": 13,
+					"horizontalAlign": "center"
+				});
+				var inputBox_1 = new cpr.controls.InputBox("ID");
+				inputBox_1.readOnly = true;
+				inputBox_1.style.css({
+					"background-color" : "#BFBFBF",
+					"border-radius" : "5px",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none"
+				});
+				inputBox_1.bind("value").toDataMap(app.lookup("member"), "id");
+				if(typeof onID == "function") {
+					inputBox_1.addEventListener("click", onID);
+				}
+				container.addChild(inputBox_1, {
+					"colIndex": 2,
+					"rowIndex": 1
+				});
+				var inputBox_2 = new cpr.controls.InputBox("PASSWORD");
+				inputBox_2.secret = true;
+				inputBox_2.style.css({
+					"background-color" : "#f7f8f9",
+					"border-radius" : "5px",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none"
+				});
+				inputBox_2.bind("value").toDataMap(app.lookup("member"), "password");
+				if(typeof onPASSWORDBlur == "function") {
+					inputBox_2.addEventListener("blur", onPASSWORDBlur);
+				}
+				container.addChild(inputBox_2, {
+					"colIndex": 2,
+					"rowIndex": 3
+				});
+				var inputBox_3 = new cpr.controls.InputBox("ADDR");
+				inputBox_3.style.css({
+					"background-color" : "#f7f8f9",
+					"border-radius" : "5px",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none"
+				});
+				inputBox_3.bind("value").toDataMap(app.lookup("member"), "address");
+				if(typeof onADDRBlur == "function") {
+					inputBox_3.addEventListener("blur", onADDRBlur);
+				}
+				container.addChild(inputBox_3, {
+					"colIndex": 2,
+					"rowIndex": 5
+				});
+				var inputBox_4 = new cpr.controls.InputBox("NAME");
+				inputBox_4.style.css({
+					"background-color" : "#f7f8f9",
+					"border-radius" : "5px",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none"
+				});
+				inputBox_4.bind("value").toDataMap(app.lookup("member"), "name");
+				if(typeof onNAMEBlur == "function") {
+					inputBox_4.addEventListener("blur", onNAMEBlur);
+				}
+				container.addChild(inputBox_4, {
+					"colIndex": 2,
+					"rowIndex": 7
+				});
+				var inputBox_5 = new cpr.controls.InputBox("EMAIL");
+				inputBox_5.readOnly = true;
+				inputBox_5.style.css({
+					"background-color" : "#BFBFBF",
+					"border-radius" : "5px",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none"
+				});
+				inputBox_5.bind("value").toDataMap(app.lookup("member"), "email");
+				if(typeof onEMAIL == "function") {
+					inputBox_5.addEventListener("click", onEMAIL);
+				}
+				container.addChild(inputBox_5, {
+					"colIndex": 2,
+					"rowIndex": 11
+				});
+				var dateInput_1 = new cpr.controls.DateInput("BIRTH");
+				dateInput_1.readOnly = true;
+				dateInput_1.style.css({
+					"background-color" : "#BFBFBF",
+					"border-radius" : "5px",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none"
+				});
+				dateInput_1.bind("value").toDataMap(app.lookup("member"), "birth");
+				if(typeof onBIRTH == "function") {
+					dateInput_1.addEventListener("click", onBIRTH);
+				}
+				container.addChild(dateInput_1, {
+					"colIndex": 2,
+					"rowIndex": 9
+				});
+				var button_1 = new cpr.controls.Button("Update");
+				button_1.value = "수정하기";
+				button_1.style.css({
+					"background-color" : "#98dde3",
+					"border-right-style" : "none",
+					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
+					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-size" : "18px",
+					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
+					"background-image" : "none",
+					"border-top-style" : "none"
+				});
+				if(typeof onBtn2Click == "function") {
+					button_1.addEventListener("click", onBtn2Click);
+				}
+				container.addChild(button_1, {
+					"colIndex": 1,
+					"rowIndex": 16,
+					"colSpan": 3,
+					"rowSpan": 1
+				});
+				var button_2 = new cpr.controls.Button("deleteBtn");
+				button_2.value = "계정 탈퇴";
+				button_2.style.css({
+					"background-color" : "#d27979",
+					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
+					"color" : "#FFFFFF",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoB00",
+					"background-image" : "none"
+				});
+				if(typeof ondeleteBtnClick == "function") {
+					button_2.addEventListener("click", ondeleteBtnClick);
+				}
+				container.addChild(button_2, {
+					"colIndex": 1,
+					"rowIndex": 18,
+					"colSpan": 3,
+					"rowSpan": 1
+				});
+				var output_8 = new cpr.controls.Output("password_check");
+				output_8.style.css({
+					"font-family" : "AppleSDGothicNeoM00",
+					"text-align" : "center"
+				});
+				container.addChild(output_8, {
+					"colIndex": 3,
+					"rowIndex": 3
+				});
+				var output_9 = new cpr.controls.Output("password_output");
+				output_9.style.css({
+					"color" : "#FF0000",
+					"text-align" : "center"
+				});
+				container.addChild(output_9, {
+					"colIndex": 1,
+					"rowIndex": 4,
+					"colSpan": 3,
+					"rowSpan": 1
+				});
+				var output_10 = new cpr.controls.Output("addr__output");
+				output_10.style.css({
+					"color" : "#FF0000",
+					"text-align" : "center"
+				});
+				container.addChild(output_10, {
+					"colIndex": 1,
+					"rowIndex": 6,
+					"colSpan": 3,
+					"rowSpan": 1
+				});
+				var output_11 = new cpr.controls.Output("name__output");
+				output_11.style.css({
+					"color" : "#FF0000",
+					"text-align" : "center"
+				});
+				container.addChild(output_11, {
+					"colIndex": 1,
+					"rowIndex": 8,
+					"colSpan": 3,
+					"rowSpan": 1
+				});
+				var output_12 = new cpr.controls.Output("phone__output");
+				output_12.style.css({
+					"color" : "#FF0000",
+					"text-align" : "center"
+				});
+				container.addChild(output_12, {
+					"colIndex": 1,
+					"rowIndex": 14,
+					"colSpan": 3,
+					"rowSpan": 1
+				});
+				var maskEditor_1 = new cpr.controls.MaskEditor("PHONE");
+				maskEditor_1.mask = "(000)0000-0000";
+				maskEditor_1.style.css({
+					"background-color" : "#f7f8f9",
+					"border-radius" : "5px",
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"background-image" : "none"
+				});
+				maskEditor_1.bind("value").toDataMap(app.lookup("member"), "phone");
+				if(typeof onPHONEBlur == "function") {
+					maskEditor_1.addEventListener("blur", onPHONEBlur);
+				}
+				container.addChild(maskEditor_1, {
+					"colIndex": 2,
+					"rowIndex": 13
 				});
 			})(group_1);
 			container.addChild(group_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
+						"top": "100px",
+						"right": "250px",
+						"bottom": "100px",
+						"left": "250px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "100px",
+						"right": "122px",
+						"bottom": "100px",
+						"left": "122px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "100px",
+						"right": "85px",
+						"bottom": "100px",
+						"left": "85px"
+					}
+				]
+			});
+			
+			var userDefinedControl_2 = new udc.myPageSideBar();
+			container.addChild(userDefinedControl_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1024px)",
 						"top": "0px",
-						"right": "0px",
 						"bottom": "0px",
-						"left": "0px"
+						"left": "0px",
+						"width": "151px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "0px",
-						"right": "0px",
 						"bottom": "0px",
-						"left": "0px"
+						"left": "0px",
+						"width": "74px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "0px",
-						"right": "0px",
 						"bottom": "0px",
-						"left": "0px"
+						"left": "0px",
+						"width": "52px"
 					}
 				]
 			});

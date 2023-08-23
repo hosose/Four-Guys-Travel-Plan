@@ -24,26 +24,26 @@
     </cl:model>
     <cl:appspec title="회원탈퇴"/>
   </head>
-  <body std:sid="body-4b04b2c9" style="top:0px; left:0px; width:300px; height:300px;" class="cl-form-group">
+  <body std:sid="body-4b04b2c9" style="background-color:#fafafa; top:0px; left:0px; width:300px; background-image:none; height:300px;" class="cl-form-group">
     <cl:listener std:sid="listener-51eb9f3b" name="load" handler="onBodyLoad2"/>
-    <cl:output std:sid="output-74842dca" id="intro1" style="font-weight:bold; vertical-align:middle; font-size:30px; font-family:AppleSDGothicNeoEB00; text-align:center;" value="">
+    <cl:output std:sid="output-74842dca" id="intro1" style="background-color:rgba(255, 255, 255, 0.6); font-weight:bold; vertical-align:middle; font-size:30px; font-family:AppleSDGothicNeoEB00; text-align:center;" value="">
       <cl:responsivexylayoutdata std:sid="rxyl-data-7aa6c11b">
-        <cl:xylayoutdata std:sid="sxyl-data-88b37913" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-88b37913" top="0px" right="0px" bottom="60px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
-    <cl:button std:sid="button-6f1f615e" id="deleteBtn" style="background-color:#FF0000; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="탈퇴">
+    <cl:button std:sid="button-6f1f615e" id="deleteBtn" style="background-color:#d27979; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoEB00; background-image:none; font-style:normal; border-top-style:none;" value="탈퇴">
       <cl:listener std:sid="listener-5c3fcad4" name="click" handler="ondeleteBtnClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-91a5b86d">
-        <cl:xylayoutdata std:sid="sxyl-data-c11bd577" bottom="23px" left="20px" width="180px" height="25px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-c11bd577" right="200px" bottom="0px" width="198px" height="60px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:button std:sid="button-402b913e" id="cancelBtn" style="background-color:#306DC6; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="취소">
+    <cl:button std:sid="button-402b913e" id="cancelBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoEB00; background-image:none; font-style:normal; border-top-style:none;" value="취소">
       <cl:listener std:sid="listener-cb0cf689" name="click" handler="onCancelBtnClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-e2f3888d">
-        <cl:xylayoutdata std:sid="sxyl-data-c7b49e2d" bottom="23px" left="210px" width="180px" height="25px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-c7b49e2d" right="0px" bottom="0px" width="198px" height="60px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:responsivexylayout std:sid="r-xylayout-4e9b4931"/>
+    <cl:responsivexylayout std:sid="r-xylayout-4e9b4931" scrollable="false"/>
   </body>
   <std:studiosetting>
     <std:hruler/>

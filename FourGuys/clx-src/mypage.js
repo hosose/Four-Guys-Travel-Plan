@@ -130,8 +130,9 @@ function ondeleteBtnClick(e){
 		"msg": intro
 	}
 	app.openDialog("deleteMember", {
-		width: 450,
-		height: 300
+		width: 400,
+		height: 150,
+		headerVisible: false
 	}, function(dialog) {
 		dialog.ready(function(dialogApp) {
 			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.

@@ -180,7 +180,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-714f2c53" top="30px" left="170px" width="273px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:inputbox>
-    <cl:button std:sid="button-a998ad15" id="searchbtn" style="background-color:#306DC6; background-repeat:no-repeat; color:#FFFFFF; font-size:15px; background-image:none;" value="검색">
+    <cl:button std:sid="button-a998ad15" id="searchbtn" style="background-color:#98dde3; background-repeat:no-repeat; color:#FFFFFF; font-size:15px; background-image:none;" value="검색">
       <cl:listener std:sid="listener-12efc328" name="click" handler="onSearchbtnClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-f1665935">
         <cl:xylayoutdata std:sid="sxyl-data-2fcbd8a9" top="30px" left="455px" width="100px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
@@ -215,9 +215,6 @@
     </std:hruler>
     <std:vruler>
       <std:guide position="169"/>
-      <std:guide position="1036"/>
-      <std:guide position="864"/>
-      <std:guide position="768"/>
     </std:vruler>
   </std:studiosetting>
 </html>

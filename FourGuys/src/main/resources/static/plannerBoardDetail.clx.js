@@ -646,6 +646,15 @@
 			var button_1 = new cpr.controls.Button("deleteBtn");
 			button_1.visible = false;
 			button_1.value = "삭제";
+			button_1.style.css({
+				"background-color" : "#98dde3",
+				"border-radius" : "5px",
+				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
+				"color" : "#FFFFFF",
+				"font-family" : "AppleSDGothicNeoEB00",
+				"background-image" : "none"
+			});
 			if(typeof onButtonClick2 == "function") {
 				button_1.addEventListener("click", onButtonClick2);
 			}
@@ -678,6 +687,15 @@
 			var button_2 = new cpr.controls.Button("editBtn");
 			button_2.visible = false;
 			button_2.value = "수정";
+			button_2.style.css({
+				"background-color" : "#98dde3",
+				"border-radius" : "5px",
+				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
+				"color" : "#FFFFFF",
+				"font-family" : "AppleSDGothicNeoEB00",
+				"background-image" : "none"
+			});
 			if(typeof onButtonClick == "function") {
 				button_2.addEventListener("click", onButtonClick);
 			}
@@ -892,6 +910,7 @@
 										button_3.style.css({
 											"background-color" : "#98dde3",
 											"border-radius" : "50px",
+											"color" : "#FFFFFF",
 											"background-image" : "none"
 										});
 										button_3.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
@@ -921,6 +940,7 @@
 										button_4.style.css({
 											"background-color" : "#98dde3",
 											"border-radius" : "50px",
+											"color" : "#FFFFFF",
 											"background-image" : "none"
 										});
 										button_4.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");

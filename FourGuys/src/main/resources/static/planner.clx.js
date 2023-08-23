@@ -26,7 +26,7 @@
 				app.lookup("searchbtn").click();
 				app.openDialog("select_date_title", {
 					width: 600,
-					height: 450
+					height: 400
 				}, function(dialog) {
 					dialog.ready(function(dialogApp) {});
 				}).then(function(returnValue) {
@@ -735,7 +735,7 @@
 			var button_3 = new cpr.controls.Button("searchbtn");
 			button_3.value = "검색";
 			button_3.style.css({
-				"background-color" : "#306DC6",
+				"background-color" : "#98dde3",
 				"background-repeat" : "no-repeat",
 				"color" : "#FFFFFF",
 				"font-size" : "15px",
