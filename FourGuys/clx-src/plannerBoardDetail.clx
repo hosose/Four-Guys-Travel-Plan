@@ -183,13 +183,13 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:button std:sid="button-f742fcec" id="deleteBtn" style="background-color:#98dde3; border-radius:5px; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; font-family:AppleSDGothicNeoEB00; background-image:none;" visible="false" value="삭제">
+    <cl:button std:sid="button-f742fcec" id="deleteBtn" style="background-color:#98dde3; border-radius:5px; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-family:AppleSDGothicNeoEB00; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value="삭제">
       <cl:listener std:sid="listener-77cd6713" name="click" handler="onButtonClick2"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-97725089">
         <cl:xylayoutdata std:sid="sxyl-data-4612779f" top="40px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:button std:sid="button-dc31c6e3" id="editBtn" style="background-color:#98dde3; border-radius:5px; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; font-family:AppleSDGothicNeoEB00; background-image:none;" visible="false" value="수정">
+    <cl:button std:sid="button-dc31c6e3" id="editBtn" style="background-color:#98dde3; border-radius:5px; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-family:AppleSDGothicNeoEB00; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value="수정">
       <cl:listener std:sid="listener-b5d97c71" name="click" handler="onButtonClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-c5f469d0">
         <cl:xylayoutdata std:sid="sxyl-data-e010000b" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
@@ -234,14 +234,14 @@
           <cl:gridcell std:sid="gd-cell-6a52f78c" rowindex="0" colindex="3" style="border-right-style:none; border-left-style:none;" columnname="replyDate">
             <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="replyDate"/>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-b7ea2f5a" rowindex="0" colindex="4" style="border-right-style:none; border-radius:50px; background-color:#98dde3; border-left-style:none; border-bottom-style:none; background-image:none; border-top-style:none;">
+          <cl:gridcell std:sid="gd-cell-b7ea2f5a" rowindex="0" colindex="4" style="border-right-style:none; border-radius:50px; background-color:#FFFFFF; border-left-style:none; border-bottom-style:none; background-image:none; border-top-style:none; padding-right:5px;">
             <cl:button std:sid="button-b5ee1ddc" id="replyEdit" style="background-color:#98dde3; border-radius:50px; color:#FFFFFF; background-image:none;" value="댓글 수정">
               <cl:listener std:sid="listener-ada1c257" name="click" handler="onReplyEditClick"/>
               <cl:expbind property="visible" category="PROPERTY" expression="replyId == #MemberVO.id ? true : false"/>
               <cl:celldata std:sid="c-data-fc8e8c62"/>
             </cl:button>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-fc54c13c" rowindex="0" colindex="5" style="border-right-style:none; border-radius:50px; background-color:#98dde3; border-left-style:none; border-bottom-style:none; background-image:none; border-top-style:none;">
+          <cl:gridcell std:sid="gd-cell-fc54c13c" rowindex="0" colindex="5" style="border-right-style:none; border-radius:50px; background-color:#FFFFFF; border-left-style:none; border-bottom-style:none; background-image:none; border-top-style:none;">
             <cl:button std:sid="button-d328c188" id="replyDelete" style="background-color:#98dde3; border-radius:50px; color:#FFFFFF; background-image:none;" value="댓글 삭제">
               <cl:listener std:sid="listener-10228fc6" name="click" handler="onButtonClick4"/>
               <cl:expbind property="visible" category="PROPERTY" expression="replyId == #MemberVO.id ? true : false"/>
@@ -258,7 +258,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-9c138a57" top="932px" right="310px" left="200px" height="42px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:inputbox>
-    <cl:button std:sid="button-4a3b3195" id="replyRegisterBtn" style="background-color:#98dde3; color:#FFFFFF; font-size:18px; background-image:none;" value="댓글 등록">
+    <cl:button std:sid="button-4a3b3195" id="replyRegisterBtn" style="background-color:#98dde3; border-right-style:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; border-top-style:none;" value="댓글 등록">
       <cl:listener std:sid="listener-a2064369" name="click" handler="onButtonClick3"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-f4e27218">
         <cl:xylayoutdata std:sid="sxyl-data-bbb88b81" top="932px" right="200px" width="100px" height="42px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>

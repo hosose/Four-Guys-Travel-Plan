@@ -649,11 +649,15 @@
 			button_1.style.css({
 				"background-color" : "#98dde3",
 				"border-radius" : "5px",
+				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
 				"text-shadow" : "none",
 				"color" : "#FFFFFF",
+				"border-left-style" : "none",
 				"font-family" : "AppleSDGothicNeoEB00",
-				"background-image" : "none"
+				"border-bottom-style" : "none",
+				"background-image" : "none",
+				"border-top-style" : "none"
 			});
 			if(typeof onButtonClick2 == "function") {
 				button_1.addEventListener("click", onButtonClick2);
@@ -690,11 +694,15 @@
 			button_2.style.css({
 				"background-color" : "#98dde3",
 				"border-radius" : "5px",
+				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
 				"text-shadow" : "none",
 				"color" : "#FFFFFF",
+				"border-left-style" : "none",
 				"font-family" : "AppleSDGothicNeoEB00",
-				"background-image" : "none"
+				"border-bottom-style" : "none",
+				"background-image" : "none",
+				"border-top-style" : "none"
 			});
 			if(typeof onButtonClick == "function") {
 				button_2.addEventListener("click", onButtonClick);
@@ -898,11 +906,12 @@
 									cell.style.css({
 										"border-right-style" : "none",
 										"border-radius" : "50px",
-										"background-color" : "#98dde3",
+										"background-color" : "#FFFFFF",
 										"border-left-style" : "none",
 										"border-bottom-style" : "none",
 										"background-image" : "none",
-										"border-top-style" : "none"
+										"border-top-style" : "none",
+										"padding-right" : "5px"
 									});
 									cell.control = (function(){
 										var button_3 = new cpr.controls.Button("replyEdit");
@@ -928,7 +937,7 @@
 									cell.style.css({
 										"border-right-style" : "none",
 										"border-radius" : "50px",
-										"background-color" : "#98dde3",
+										"background-color" : "#FFFFFF",
 										"border-left-style" : "none",
 										"border-bottom-style" : "none",
 										"background-image" : "none",
@@ -1023,9 +1032,13 @@
 			button_5.value = "댓글 등록";
 			button_5.style.css({
 				"background-color" : "#98dde3",
+				"border-right-style" : "none",
 				"color" : "#FFFFFF",
+				"border-left-style" : "none",
 				"font-size" : "18px",
-				"background-image" : "none"
+				"border-bottom-style" : "none",
+				"background-image" : "none",
+				"border-top-style" : "none"
 			});
 			if(typeof onButtonClick3 == "function") {
 				button_5.addEventListener("click", onButtonClick3);

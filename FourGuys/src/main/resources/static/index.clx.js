@@ -59,8 +59,8 @@
 			});
 			
 			// Layout
-			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
-			container.setLayout(responsiveXYLayout_1);
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
 			var image_1 = new cpr.controls.Image("jejuImg1");
@@ -69,29 +69,10 @@
 				"opacity" : "70%"
 			});
 			container.addChild(image_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "0px",
-						"right": "0px",
-						"bottom": "0px",
-						"left": "0px"
-					}
-				]
+				"top": "0px",
+				"right": "0px",
+				"bottom": "0px",
+				"left": "0px"
 			});
 			
 			var output_1 = new cpr.controls.Output("text1");
@@ -103,29 +84,10 @@
 				"font-style" : "normal"
 			});
 			container.addChild(output_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "320px",
-						"left": "130px",
-						"width": "819px",
-						"height": "59px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "320px",
-						"left": "20px",
-						"width": "400px",
-						"height": "59px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "320px",
-						"left": "7px",
-						"width": "137px",
-						"height": "59px"
-					}
-				]
+				"top": "320px",
+				"left": "130px",
+				"width": "819px",
+				"height": "59px"
 			});
 			
 			var output_2 = new cpr.controls.Output("text2");
@@ -139,29 +101,10 @@
 				"background-image" : "none"
 			});
 			container.addChild(output_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "389px",
-						"left": "130px",
-						"width": "650px",
-						"height": "59px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "389px",
-						"left": "20px",
-						"width": "315px",
-						"height": "76px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "389px",
-						"left": "7px",
-						"width": "108px",
-						"height": "76px"
-					}
-				]
+				"top": "389px",
+				"left": "130px",
+				"width": "650px",
+				"height": "59px"
 			});
 			
 			var output_3 = new cpr.controls.Output("text3");
@@ -173,29 +116,10 @@
 				"font-style" : "normal"
 			});
 			container.addChild(output_3, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "389px",
-						"left": "779px",
-						"width": "650px",
-						"height": "59px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "397px",
-						"left": "334px",
-						"width": "168px",
-						"height": "59px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "397px",
-						"left": "114px",
-						"width": "57px",
-						"height": "59px"
-					}
-				]
+				"top": "389px",
+				"left": "779px",
+				"width": "650px",
+				"height": "59px"
 			});
 			
 			var output_4 = new cpr.controls.Output("text4");
@@ -207,83 +131,26 @@
 				"font-style" : "normal"
 			});
 			container.addChild(output_4, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "458px",
-						"left": "130px",
-						"width": "650px",
-						"height": "59px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "458px",
-						"left": "20px",
-						"width": "317px",
-						"height": "59px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "458px",
-						"left": "7px",
-						"width": "108px",
-						"height": "59px"
-					}
-				]
+				"top": "458px",
+				"left": "130px",
+				"width": "650px",
+				"height": "59px"
 			});
 			
 			var userDefinedControl_1 = new udc.logo();
 			container.addChild(userDefinedControl_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "20px",
-						"left": "50px",
-						"width": "196px",
-						"height": "77px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "20px",
-						"left": "24px",
-						"width": "204px",
-						"height": "77px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "20px",
-						"left": "8px",
-						"width": "70px",
-						"height": "77px"
-					}
-				]
+				"top": "20px",
+				"left": "50px",
+				"width": "196px",
+				"height": "77px"
 			});
 			
 			var userDefinedControl_2 = new udc.header_nav();
 			container.addChild(userDefinedControl_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "20px",
-						"right": "20px",
-						"width": "623px",
-						"height": "77px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "20px",
-						"right": "10px",
-						"width": "304px",
-						"height": "77px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "20px",
-						"right": "7px",
-						"width": "213px",
-						"height": "77px"
-					}
-				]
+				"top": "20px",
+				"right": "20px",
+				"width": "623px",
+				"height": "77px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

@@ -22,47 +22,27 @@
   <body std:sid="body-3c97ba97" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none; border-bottom-style:none; border-top-style:none;">
     <cl:listener std:sid="listener-5492d180" name="load" handler="onBodyLoad"/>
     <cl:img std:sid="image-28e63dd0" id="jejuImg1" style="opacity: 70%;" src="images/harubang.jpg">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-ef22a856">
-        <cl:xylayoutdata std:sid="sxyl-data-4d32c2ce" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="default"/>
-        <cl:xylayoutdata std:sid="sxyl-data-f598f924" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="tablet"/>
-      </cl:responsivexylayoutdata>
+      <cl:xylayoutdata std:sid="xyl-data-38b1cf9e" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
     </cl:img>
     <cl:output std:sid="output-c6854068" id="text1" style="color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="여행 계획을&#xD;&#xA;">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-e7694f39">
-        <cl:xylayoutdata std:sid="sxyl-data-941aff13" top="320px" left="130px" width="819px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-        <cl:xylayoutdata std:sid="sxyl-data-ab8187f2" top="320px" left="20px" width="400px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
-      </cl:responsivexylayoutdata>
+      <cl:xylayoutdata std:sid="xyl-data-d5796382" top="320px" left="130px" width="819px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-ee793e74" id="text2" style="background-color:#98dde3; color:#FFFFFF; font-size:50px; font-style:normal; background-image:none;" class="output1" value="TRAVEL and PLAN 스케줄링">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-6ccaae39">
-        <cl:xylayoutdata std:sid="sxyl-data-11040f2d" top="389px" left="130px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-        <cl:xylayoutdata std:sid="sxyl-data-6056e7bf" top="389px" left="20px" width="315px" height="76px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
-      </cl:responsivexylayoutdata>
+      <cl:xylayoutdata std:sid="xyl-data-e7a10a0c" top="389px" left="130px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-7750e935" id="text3" style="color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="을 통해">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-9dd1018e">
-        <cl:xylayoutdata std:sid="sxyl-data-14658437" top="389px" left="779px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-        <cl:xylayoutdata std:sid="sxyl-data-9b0c6a97" top="397px" left="334px" width="168px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
-      </cl:responsivexylayoutdata>
+      <cl:xylayoutdata std:sid="xyl-data-a7df6001" top="389px" left="779px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-59f212ff" id="text4" style="color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="작성해 보세요!">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-c9e4e195">
-        <cl:xylayoutdata std:sid="sxyl-data-cc1ee498" top="458px" left="130px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-        <cl:xylayoutdata std:sid="sxyl-data-fafdf8ac" top="458px" left="20px" width="317px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
-      </cl:responsivexylayoutdata>
+      <cl:xylayoutdata std:sid="xyl-data-a139a8ac" top="458px" left="130px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:udc std:sid="ud-control-8db052b7" type="udc.logo">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-855b8d38">
-        <cl:xylayoutdata std:sid="sxyl-data-61b1cda9" top="20px" left="50px" width="196px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-        <cl:xylayoutdata std:sid="sxyl-data-cdfb24c5" top="20px" left="24px" width="204px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
-      </cl:responsivexylayoutdata>
+      <cl:xylayoutdata std:sid="xyl-data-3577ee27" top="20px" left="50px" width="196px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:udc>
     <cl:udc std:sid="ud-control-97b1121b" type="udc.header_nav">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-7b6e5ef6">
-        <cl:xylayoutdata std:sid="sxyl-data-964b957d" top="20px" right="20px" width="623px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
+      <cl:xylayoutdata std:sid="xyl-data-9d402d7d" top="20px" right="20px" width="623px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:udc>
-    <cl:responsivexylayout std:sid="r-xylayout-a55ed4bb"/>
+    <cl:xylayout std:sid="xylayout-0196e612"/>
   </body>
   <std:studiosetting>
     <std:hruler/>

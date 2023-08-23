@@ -250,9 +250,13 @@
 				button_1.value = "글쓰기";
 				button_1.style.css({
 					"background-color" : "#98dde3",
+					"border-right-style" : "none",
 					"color" : "#FFFFFF",
+					"border-left-style" : "none",
 					"font-size" : "18px",
-					"background-image" : "none"
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
 				});
 				if(typeof onButtonClick == "function") {
 					button_1.addEventListener("click", onButtonClick);

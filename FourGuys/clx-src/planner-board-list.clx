@@ -54,7 +54,7 @@
     </cl:output>
     <cl:group std:sid="group-10051869">
       <cl:xylayoutdata std:sid="xyl-data-11143e6e" top="260px" width="1200px" height="490px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-34e02ca4" id="registerBoardBtn" style="background-color:#98dde3; color:#FFFFFF; font-size:18px; background-image:none;" value="글쓰기">
+      <cl:button std:sid="button-34e02ca4" id="registerBoardBtn" style="background-color:#98dde3; border-right-style:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; border-top-style:none;" value="글쓰기">
         <cl:listener std:sid="listener-abd0710f" name="click" handler="onButtonClick"/>
         <cl:formdata std:sid="f-data-15b3a17f" bottomSpacing="10" row="0" col="1"/>
       </cl:button>
