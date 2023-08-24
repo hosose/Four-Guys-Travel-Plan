@@ -276,13 +276,13 @@
     <cl:output std:sid="output-13acdcba" id="titleOutput" style="font-weight:bolder; font-size:35px; text-align:center;">
       <cl:datasetbind property="value" datacontrolid="boardDetail" columnname="boardTitle" rowindex="0"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-db3c6958">
-        <cl:xylayoutdata std:sid="sxyl-data-c293da36" top="59px" width="261px" height="47px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-c293da36" top="40px" width="400px" height="66px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
     <cl:output std:sid="output-569903ee" id="idOutput" style="font-weight:bold; font-size:14px; text-align:center;">
       <cl:datasetbind property="value" datacontrolid="boardDetail" columnname="id" rowindex="0"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-93f8b612">
-        <cl:xylayoutdata std:sid="sxyl-data-db24f2a6" top="105px" width="261px" height="23px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-db24f2a6" top="86px" width="300px" height="42px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
     <cl:output std:sid="output-9c12fd54" id="createDateOutput" style="font-weight:bold; font-size:14px; text-align:center;">
