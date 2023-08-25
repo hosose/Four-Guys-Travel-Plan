@@ -459,285 +459,462 @@
 			});
 			
 			// Layout
-			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
-			container.setLayout(responsiveXYLayout_1);
+			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
+			container.setLayout(verticalLayout_1);
 			
 			// UI Configuration
 			var userDefinedControl_1 = new udc.logo();
 			container.addChild(userDefinedControl_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "20px",
-						"left": "20px",
-						"width": "299px",
-						"height": "70px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "20px",
-						"left": "10px",
-						"width": "146px",
-						"height": "70px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "20px",
-						"left": "7px",
-						"width": "102px",
-						"height": "70px"
-					}
-				]
+				"width": "239px",
+				"height": "70px"
 			});
 			
-			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
-			embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
-			embeddedPage_1.scrolling = "no";
-			container.addChild(embeddedPage_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "160px",
-						"right": "200px",
-						"left": "680px",
-						"height": "353px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "160px",
-						"right": "98px",
-						"left": "332px",
-						"height": "353px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "160px",
-						"right": "68px",
-						"left": "232px",
-						"height": "353px"
-					}
-				]
-			});
-			
-			var grid_1 = new cpr.controls.Grid("dayGrd");
-			grid_1.init({
-				"dataSet": app.lookup("planDate"),
-				"columns": [{"width": "100px"}],
-				"header": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.filterable = false;
-							cell.sortable = false;
-							cell.targetColumnName = "planDate";
-							cell.text = "DAY";
-							cell.style.css({
-								"background-color" : "#FFFFFF",
-								"color" : "#2DCEB9",
-								"font-weight" : "bolder"
-							});
-						}
-					}]
-				},
-				"detail": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.columnName = "planDate";
-							cell.bind("fieldLabel").toDataMap(app.lookup("planDM"), "planDate");
-						}
-					}]
-				}
-			});
-			if(typeof onGrd3CellClick == "function") {
-				grid_1.addEventListener("cell-click", onGrd3CellClick);
-			}
-			container.addChild(grid_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "160px",
-						"left": "200px",
-						"width": "200px",
-						"height": "353px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "160px",
-						"left": "98px",
-						"width": "98px",
-						"height": "353px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "160px",
-						"left": "68px",
-						"width": "68px",
-						"height": "353px"
-					}
-				]
-			});
-			
-			var grid_2 = new cpr.controls.Grid("selectedContentGrd");
-			grid_2.init({
-				"dataSet": app.lookup("selectedPlan"),
-				"columns": [{"width": "100px"}],
-				"header": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.filterable = false;
-							cell.sortable = false;
-							cell.targetColumnName = "title";
-							cell.text = "관광지 목록";
-							cell.style.css({
-								"background-color" : "#FFFFFF",
-								"background-repeat" : "repeat",
-								"color" : "#2DCEB9",
-								"font-weight" : "bolder",
-								"background-image" : "none"
-							});
-						}
-					}]
-				},
-				"detail": {
-					"rows": [{"height": "24px"}],
-					"cells": [{
-						"constraint": {"rowIndex": 0, "colIndex": 0},
-						"configurator": function(cell){
-							cell.columnName = "title";
-							cell.bind("fieldLabel").toDataSet(app.lookup("selectedPlan"), "title", 0);
-						}
-					}]
-				}
-			});
-			if(typeof onGrd4Click == "function") {
-				grid_2.addEventListener("click", onGrd4Click);
-			}
-			container.addChild(grid_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "160px",
-						"left": "440px",
-						"width": "200px",
-						"height": "353px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "160px",
-						"left": "215px",
-						"width": "98px",
-						"height": "353px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "160px",
-						"left": "150px",
-						"width": "68px",
-						"height": "353px"
-					}
-				]
-			});
-			
-			var button_1 = new cpr.controls.Button("deleteBtn");
-			button_1.visible = false;
-			button_1.value = "삭제";
-			button_1.style.css({
-				"background-color" : "#98dde3",
-				"border-radius" : "5px",
-				"border-right-style" : "none",
-				"background-repeat" : "no-repeat",
-				"text-shadow" : "none",
-				"color" : "#FFFFFF",
-				"border-left-style" : "none",
-				"font-family" : "AppleSDGothicNeoEB00",
-				"border-bottom-style" : "none",
-				"background-image" : "none",
-				"border-top-style" : "none"
-			});
-			if(typeof onButtonClick2 == "function") {
-				button_1.addEventListener("click", onButtonClick2);
-			}
-			container.addChild(button_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "40px",
-						"right": "10px",
-						"width": "100px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "40px",
-						"right": "5px",
-						"width": "49px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "40px",
-						"right": "3px",
-						"width": "34px",
-						"height": "20px"
-					}
-				]
-			});
-			
-			var button_2 = new cpr.controls.Button("editBtn");
-			button_2.visible = false;
-			button_2.value = "수정";
-			button_2.style.css({
-				"background-color" : "#98dde3",
-				"border-radius" : "5px",
-				"border-right-style" : "none",
-				"background-repeat" : "no-repeat",
-				"text-shadow" : "none",
-				"color" : "#FFFFFF",
-				"border-left-style" : "none",
-				"font-family" : "AppleSDGothicNeoEB00",
-				"border-bottom-style" : "none",
-				"background-image" : "none",
-				"border-top-style" : "none"
-			});
-			if(typeof onButtonClick == "function") {
-				button_2.addEventListener("click", onButtonClick);
-			}
-			container.addChild(button_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "8px",
-						"right": "10px",
-						"width": "100px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "8px",
-						"right": "5px",
-						"width": "49px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "8px",
-						"right": "3px",
-						"width": "34px",
-						"height": "20px"
-					}
-				]
-			});
-			
-			var group_1 = new cpr.controls.Container();
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			xYLayout_1.scrollable = false;
-			group_1.setLayout(xYLayout_1);
+			var group_1 = new cpr.controls.Container("grp2");
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			group_1.setLayout(responsiveXYLayout_1);
 			(function(container){
+				var output_1 = new cpr.controls.Output("titleOutput");
+				output_1.style.css({
+					"font-weight" : "bolder",
+					"font-size" : "35px",
+					"text-align" : "center"
+				});
+				output_1.bind("value").toDataSet(app.lookup("boardDetail"), "boardTitle", 0);
+				container.addChild(output_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"width": "967px",
+							"height": "58px",
+							"left": "calc(50% - 483px)"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"width": "472px",
+							"height": "58px",
+							"left": "calc(50% - 236px)"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"width": "331px",
+							"height": "58px",
+							"left": "calc(50% - 165px)"
+						}
+					]
+				});
+				var output_2 = new cpr.controls.Output("createDateOutput");
+				output_2.style.css({
+					"font-weight" : "bold",
+					"font-size" : "14px",
+					"text-align" : "center"
+				});
+				output_2.bind("value").toDataSet(app.lookup("boardDetail"), "boardCreateDate", 0);
+				container.addChild(output_2, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "57px",
+							"right": "20px",
+							"width": "150px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "57px",
+							"right": "10px",
+							"width": "73px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "57px",
+							"right": "7px",
+							"width": "51px",
+							"height": "42px"
+						}
+					]
+				});
+				var grid_1 = new cpr.controls.Grid("dayGrd");
+				grid_1.init({
+					"dataSet": app.lookup("planDate"),
+					"columns": [{"width": "100px"}],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "planDate";
+								cell.text = "DAY";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"color" : "#2DCEB9",
+									"font-weight" : "bolder"
+								});
+							}
+						}]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnName = "planDate";
+								cell.bind("fieldLabel").toDataMap(app.lookup("planDM"), "planDate");
+							}
+						}]
+					}
+				});
+				if(typeof onGrd3CellClick == "function") {
+					grid_1.addEventListener("cell-click", onGrd3CellClick);
+				}
+				container.addChild(grid_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "131px",
+							"left": "20px",
+							"width": "100px",
+							"height": "353px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "131px",
+							"left": "10px",
+							"width": "49px",
+							"height": "353px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "131px",
+							"left": "7px",
+							"width": "34px",
+							"height": "353px"
+						}
+					]
+				});
+				var button_1 = new cpr.controls.Button("deleteBtn");
+				button_1.visible = false;
+				button_1.value = "삭제";
+				button_1.style.css({
+					"background-color" : "#98dde3",
+					"border-radius" : "5px",
+					"border-right-style" : "none",
+					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
+					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
+				});
+				if(typeof onButtonClick2 == "function") {
+					button_1.addEventListener("click", onButtonClick2);
+				}
+				container.addChild(button_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "38px",
+							"right": "0px",
+							"width": "56px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "38px",
+							"right": "0px",
+							"width": "27px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "38px",
+							"right": "0px",
+							"width": "19px",
+							"height": "20px"
+						}
+					]
+				});
+				var output_3 = new cpr.controls.Output("idOutput");
+				output_3.style.css({
+					"font-weight" : "bold",
+					"font-size" : "14px",
+					"text-align" : "center"
+				});
+				output_3.bind("value").toDataSet(app.lookup("boardDetail"), "id", 0);
+				container.addChild(output_3, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "57px",
+							"left": "20px",
+							"width": "150px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "57px",
+							"left": "10px",
+							"width": "73px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "57px",
+							"left": "7px",
+							"width": "51px",
+							"height": "42px"
+						}
+					]
+				});
+				var grid_2 = new cpr.controls.Grid("selectedContentGrd");
+				grid_2.init({
+					"dataSet": app.lookup("selectedPlan"),
+					"columns": [{"width": "100px"}],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.filterable = false;
+								cell.sortable = false;
+								cell.targetColumnName = "title";
+								cell.text = "관광지 목록";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"background-repeat" : "repeat",
+									"color" : "#2DCEB9",
+									"font-weight" : "bolder",
+									"background-image" : "none"
+								});
+							}
+						}]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.columnName = "title";
+								cell.bind("fieldLabel").toDataSet(app.lookup("selectedPlan"), "title", 0);
+							}
+						}]
+					}
+				});
+				if(typeof onGrd4Click == "function") {
+					grid_2.addEventListener("click", onGrd4Click);
+				}
+				container.addChild(grid_2, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "131px",
+							"left": "129px",
+							"width": "150px",
+							"height": "353px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "131px",
+							"left": "63px",
+							"width": "73px",
+							"height": "353px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "131px",
+							"left": "44px",
+							"width": "51px",
+							"height": "353px"
+						}
+					]
+				});
+				var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
+				embeddedPage_1.src = "thirdparty/maps/kakaoMapAPI.html";
+				embeddedPage_1.scrolling = "no";
+				container.addChild(embeddedPage_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "131px",
+							"right": "20px",
+							"left": "289px",
+							"height": "353px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "131px",
+							"right": "10px",
+							"left": "141px",
+							"height": "353px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "131px",
+							"right": "7px",
+							"left": "99px",
+							"height": "353px"
+						}
+					]
+				});
+				var button_2 = new cpr.controls.Button("editBtn");
+				button_2.visible = false;
+				button_2.value = "수정";
+				button_2.style.css({
+					"background-color" : "#98dde3",
+					"border-radius" : "5px",
+					"border-right-style" : "none",
+					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
+					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-family" : "AppleSDGothicNeoEB00",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
+				});
+				if(typeof onButtonClick == "function") {
+					button_2.addEventListener("click", onButtonClick);
+				}
+				container.addChild(button_2, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"right": "0px",
+							"width": "58px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"right": "0px",
+							"width": "28px",
+							"height": "20px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"right": "0px",
+							"width": "20px",
+							"height": "20px"
+						}
+					]
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				"autoSize": "none",
+				"width": "1024px",
+				"height": "489px"
+			});
+			
+			var group_2 = new cpr.controls.Container("boardContentGrp");
+			group_2.style.css({
+				"border-right-style" : "solid",
+				"border-bottom-color" : "#e1e1e1",
+				"border-left-style" : "solid",
+				"border-left-color" : "#e1e1e1",
+				"border-top-color" : "#e1e1e1",
+				"border-bottom-style" : "solid",
+				"border-right-color" : "#e1e1e1",
+				"border-top-style" : "solid"
+			});
+			var verticalLayout_2 = new cpr.controls.layouts.VerticalLayout();
+			group_2.setLayout(verticalLayout_2);
+			(function(container){
+				var hTMLSnippet_1 = new cpr.controls.HTMLSnippet("snippet");
+				container.addChild(hTMLSnippet_1, {
+					"autoSize": "both",
+					"width": "1024px",
+					"height": "120px"
+				});
+			})(group_2);
+			container.addChild(group_2, {
+				"autoSize": "height",
+				"width": "984px",
+				"height": "128px"
+			});
+			
+			var group_3 = new cpr.controls.Container("grp3");
+			var responsiveXYLayout_2 = new cpr.controls.layouts.ResponsiveXYLayout();
+			group_3.setLayout(responsiveXYLayout_2);
+			(function(container){
+				var inputBox_1 = new cpr.controls.InputBox("replyContentIpb");
+				inputBox_1.style.css({
+					"text-align" : "center"
+				});
+				inputBox_1.bind("value").toDataMap(app.lookup("replyDM"), "REPLY_CONTENT");
+				container.addChild(inputBox_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"left": "10px",
+							"width": "864px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"left": "5px",
+							"width": "422px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"left": "3px",
+							"width": "295px",
+							"height": "42px"
+						}
+					]
+				});
+				var button_3 = new cpr.controls.Button("replyRegisterBtn");
+				button_3.value = "댓글 등록";
+				button_3.style.css({
+					"background-color" : "#98dde3",
+					"border-right-style" : "none",
+					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-size" : "18px",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
+				});
+				if(typeof onButtonClick3 == "function") {
+					button_3.addEventListener("click", onButtonClick3);
+				}
+				container.addChild(button_3, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"right": "10px",
+							"width": "128px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"right": "5px",
+							"width": "63px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"right": "3px",
+							"width": "44px",
+							"height": "42px"
+						}
+					]
+				});
 				var grid_3 = new cpr.controls.Grid("replyGrd");
 				grid_3.init({
 					"dataSet": app.lookup("boardReply"),
@@ -878,13 +1055,13 @@
 									});
 									cell.bind("fieldLabel").toDataSet(app.lookup("boardReply"), "replyContent", 0);
 									cell.control = (function(){
-										var inputBox_1 = new cpr.controls.InputBox("ipb2");
-										inputBox_1.style.css({
+										var inputBox_2 = new cpr.controls.InputBox("ipb2");
+										inputBox_2.style.css({
 											"text-align" : "center"
 										});
-										inputBox_1.bind("readOnly").toExpression("replyId != #MemberVO.id ? true : false");
-										inputBox_1.bind("value").toDataColumn("replyContent");
-										return inputBox_1;
+										inputBox_2.bind("readOnly").toExpression("replyId != #MemberVO.id ? true : false");
+										inputBox_2.bind("value").toDataColumn("replyContent");
+										return inputBox_2;
 									})();
 									cell.controlConstraint = {};
 								}
@@ -914,19 +1091,19 @@
 										"padding-right" : "5px"
 									});
 									cell.control = (function(){
-										var button_3 = new cpr.controls.Button("replyEdit");
-										button_3.value = "댓글 수정";
-										button_3.style.css({
+										var button_4 = new cpr.controls.Button("replyEdit");
+										button_4.value = "댓글 수정";
+										button_4.style.css({
 											"background-color" : "#98dde3",
 											"border-radius" : "50px",
 											"color" : "#FFFFFF",
 											"background-image" : "none"
 										});
-										button_3.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
+										button_4.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
 										if(typeof onReplyEditClick == "function") {
-											button_3.addEventListener("click", onReplyEditClick);
+											button_4.addEventListener("click", onReplyEditClick);
 										}
-										return button_3;
+										return button_4;
 									})();
 									cell.controlConstraint = {};
 								}
@@ -944,19 +1121,19 @@
 										"border-top-style" : "none"
 									});
 									cell.control = (function(){
-										var button_4 = new cpr.controls.Button("replyDelete");
-										button_4.value = "댓글 삭제";
-										button_4.style.css({
+										var button_5 = new cpr.controls.Button("replyDelete");
+										button_5.value = "댓글 삭제";
+										button_5.style.css({
 											"background-color" : "#98dde3",
 											"border-radius" : "50px",
 											"color" : "#FFFFFF",
 											"background-image" : "none"
 										});
-										button_4.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
+										button_5.bind("visible").toExpression("replyId == #MemberVO.id ? true : false");
 										if(typeof onButtonClick4 == "function") {
-											button_4.addEventListener("click", onButtonClick4);
+											button_5.addEventListener("click", onButtonClick4);
 										}
-										return button_4;
+										return button_5;
 									})();
 									cell.controlConstraint = {};
 								}
@@ -965,254 +1142,35 @@
 					}
 				});
 				container.addChild(grid_3, {
-					"top": "0px",
-					"right": "0px",
-					"left": "0px",
-					"height": "223px"
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "52px",
+							"right": "0px",
+							"left": "0px",
+							"height": "265px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "52px",
+							"right": "0px",
+							"left": "0px",
+							"height": "265px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "52px",
+							"right": "0px",
+							"left": "0px",
+							"height": "265px"
+						}
+					]
 				});
-			})(group_1);
-			container.addChild(group_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "989px",
-						"right": "200px",
-						"left": "200px",
-						"height": "243px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "989px",
-						"right": "98px",
-						"left": "98px",
-						"height": "243px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "989px",
-						"right": "68px",
-						"left": "68px",
-						"height": "243px"
-					}
-				]
-			});
-			
-			var inputBox_2 = new cpr.controls.InputBox("replyContentIpb");
-			inputBox_2.style.css({
-				"text-align" : "center"
-			});
-			inputBox_2.bind("value").toDataMap(app.lookup("replyDM"), "REPLY_CONTENT");
-			container.addChild(inputBox_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "932px",
-						"right": "310px",
-						"left": "200px",
-						"height": "42px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "932px",
-						"right": "151px",
-						"left": "98px",
-						"height": "42px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "932px",
-						"right": "106px",
-						"left": "68px",
-						"height": "42px"
-					}
-				]
-			});
-			
-			var button_5 = new cpr.controls.Button("replyRegisterBtn");
-			button_5.value = "댓글 등록";
-			button_5.style.css({
-				"background-color" : "#98dde3",
-				"border-right-style" : "none",
-				"color" : "#FFFFFF",
-				"border-left-style" : "none",
-				"font-size" : "18px",
-				"border-bottom-style" : "none",
-				"background-image" : "none",
-				"border-top-style" : "none"
-			});
-			if(typeof onButtonClick3 == "function") {
-				button_5.addEventListener("click", onButtonClick3);
-			}
-			container.addChild(button_5, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "932px",
-						"right": "200px",
-						"width": "100px",
-						"height": "42px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "932px",
-						"right": "98px",
-						"width": "49px",
-						"height": "42px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "932px",
-						"right": "68px",
-						"width": "34px",
-						"height": "42px"
-					}
-				]
-			});
-			
-			var group_2 = new cpr.controls.Container("boardContentGrp");
-			group_2.style.css({
-				"border-right-style" : "solid",
-				"border-bottom-color" : "#e1e1e1",
-				"border-left-style" : "solid",
-				"border-left-color" : "#e1e1e1",
-				"border-top-color" : "#e1e1e1",
-				"border-bottom-style" : "solid",
-				"border-right-color" : "#e1e1e1",
-				"border-top-style" : "solid"
-			});
-			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
-			group_2.setLayout(verticalLayout_1);
-			(function(container){
-				var hTMLSnippet_1 = new cpr.controls.HTMLSnippet("snippet");
-				container.addChild(hTMLSnippet_1, {
-					"autoSize": "height",
-					"width": "724px",
-					"height": "398px"
-				});
-			})(group_2);
-			container.addChild(group_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "523px",
-						"right": "200px",
-						"left": "200px",
-						"height": "399px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "523px",
-						"right": "98px",
-						"left": "98px",
-						"height": "399px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "523px",
-						"right": "68px",
-						"left": "68px",
-						"height": "399px"
-					}
-				]
-			});
-			
-			var output_1 = new cpr.controls.Output("titleOutput");
-			output_1.style.css({
-				"font-weight" : "bolder",
-				"font-size" : "35px",
-				"text-align" : "center"
-			});
-			output_1.bind("value").toDataSet(app.lookup("boardDetail"), "boardTitle", 0);
-			container.addChild(output_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "40px",
-						"width": "833px",
-						"height": "58px",
-						"left": "calc(50% - 416px)"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "40px",
-						"width": "407px",
-						"height": "58px",
-						"left": "calc(50% - 203px)"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "40px",
-						"width": "285px",
-						"height": "58px",
-						"left": "calc(50% - 142px)"
-					}
-				]
-			});
-			
-			var output_2 = new cpr.controls.Output("idOutput");
-			output_2.style.css({
-				"font-weight" : "bold",
-				"font-size" : "14px",
-				"text-align" : "center"
-			});
-			output_2.bind("value").toDataSet(app.lookup("boardDetail"), "id", 0);
-			container.addChild(output_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "86px",
-						"width": "300px",
-						"height": "42px",
-						"left": "calc(50% - 150px)"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "86px",
-						"width": "146px",
-						"height": "42px",
-						"left": "calc(50% - 73px)"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "86px",
-						"width": "103px",
-						"height": "42px",
-						"left": "calc(50% - 51px)"
-					}
-				]
-			});
-			
-			var output_3 = new cpr.controls.Output("createDateOutput");
-			output_3.style.css({
-				"font-weight" : "bold",
-				"font-size" : "14px",
-				"text-align" : "center"
-			});
-			output_3.bind("value").toDataSet(app.lookup("boardDetail"), "boardCreateDate", 0);
-			container.addChild(output_3, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "127px",
-						"width": "261px",
-						"height": "23px",
-						"left": "calc(50% - 130px)"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "127px",
-						"width": "127px",
-						"height": "23px",
-						"left": "calc(50% - 63px)"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "127px",
-						"width": "89px",
-						"height": "23px",
-						"left": "calc(50% - 44px)"
-					}
-				]
+			})(group_3);
+			container.addChild(group_3, {
+				"autoSize": "none",
+				"width": "1024px",
+				"height": "337px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
