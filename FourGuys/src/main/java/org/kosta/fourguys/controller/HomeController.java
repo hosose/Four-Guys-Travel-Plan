@@ -45,7 +45,7 @@ public class HomeController {
 	public String myplan(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse httpServletResponse) {
 		HttpSession session = request.getSession(false);
 		if (session == null) {
-			return "index.clx";
+			return "login.clx";
 		}
 		return "myPlan.clx";
 	}
