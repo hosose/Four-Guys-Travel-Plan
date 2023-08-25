@@ -310,13 +310,13 @@
 			output_1.value = "완성";
 			output_1.style.css({
 				"border-right-style" : "solid",
-				"border-bottom-color" : "#ffffff",
-				"color" : "#FFFFFF",
+				"border-bottom-color" : "#000000",
+				"color" : "#000000",
 				"border-left-style" : "solid",
-				"border-left-color" : "#ffffff",
-				"border-top-color" : "#ffffff",
+				"border-left-color" : "#000000",
+				"border-top-color" : "#000000",
 				"border-bottom-style" : "solid",
-				"border-right-color" : "#ffffff",
+				"border-right-color" : "#000000",
 				"border-top-style" : "solid",
 				"text-align" : "center"
 			});
@@ -350,13 +350,13 @@
 			output_2.value = "미완성";
 			output_2.style.css({
 				"border-right-style" : "solid",
-				"color" : "#FFFFFF",
-				"border-bottom-color" : "#ffffff",
+				"color" : "#000000",
+				"border-bottom-color" : "#000000",
 				"border-left-style" : "solid",
-				"border-left-color" : "#ffffff",
-				"border-top-color" : "#ffffff",
+				"border-left-color" : "#000000",
+				"border-top-color" : "#000000",
 				"border-bottom-style" : "solid",
-				"border-right-color" : "#ffffff",
+				"border-right-color" : "#000000",
 				"border-top-style" : "solid",
 				"text-align" : "center"
 			});

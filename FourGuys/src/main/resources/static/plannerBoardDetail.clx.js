@@ -1127,24 +1127,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "59px",
-						"width": "261px",
-						"height": "47px",
-						"left": "calc(50% - 130px)"
+						"top": "40px",
+						"width": "400px",
+						"height": "66px",
+						"left": "calc(50% - 200px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "59px",
-						"width": "127px",
-						"height": "47px",
-						"left": "calc(50% - 63px)"
+						"top": "40px",
+						"width": "195px",
+						"height": "66px",
+						"left": "calc(50% - 97px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "59px",
-						"width": "89px",
-						"height": "47px",
-						"left": "calc(50% - 44px)"
+						"top": "40px",
+						"width": "137px",
+						"height": "66px",
+						"left": "calc(50% - 68px)"
 					}
 				]
 			});
@@ -1160,24 +1160,24 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1024px)",
-						"top": "105px",
-						"width": "261px",
-						"height": "23px",
-						"left": "calc(50% - 130px)"
+						"top": "86px",
+						"width": "300px",
+						"height": "42px",
+						"left": "calc(50% - 150px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "105px",
-						"width": "127px",
-						"height": "23px",
-						"left": "calc(50% - 63px)"
+						"top": "86px",
+						"width": "146px",
+						"height": "42px",
+						"left": "calc(50% - 73px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "105px",
-						"width": "89px",
-						"height": "23px",
-						"left": "calc(50% - 44px)"
+						"top": "86px",
+						"width": "103px",
+						"height": "42px",
+						"left": "calc(50% - 51px)"
 					}
 				]
 			});
