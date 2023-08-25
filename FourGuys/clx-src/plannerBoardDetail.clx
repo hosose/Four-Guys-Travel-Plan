@@ -276,7 +276,7 @@
     <cl:output std:sid="output-13acdcba" id="titleOutput" style="font-weight:bolder; font-size:35px; text-align:center;">
       <cl:datasetbind property="value" datacontrolid="boardDetail" columnname="boardTitle" rowindex="0"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-db3c6958">
-        <cl:xylayoutdata std:sid="sxyl-data-c293da36" top="40px" width="400px" height="66px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-c293da36" top="40px" width="833px" height="58px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
     <cl:output std:sid="output-569903ee" id="idOutput" style="font-weight:bold; font-size:14px; text-align:center;">

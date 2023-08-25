@@ -1128,23 +1128,23 @@
 					{
 						"media": "all and (min-width: 1024px)",
 						"top": "40px",
-						"width": "400px",
-						"height": "66px",
-						"left": "calc(50% - 200px)"
+						"width": "833px",
+						"height": "58px",
+						"left": "calc(50% - 416px)"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "40px",
-						"width": "195px",
-						"height": "66px",
-						"left": "calc(50% - 97px)"
+						"width": "407px",
+						"height": "58px",
+						"left": "calc(50% - 203px)"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "40px",
-						"width": "137px",
-						"height": "66px",
-						"left": "calc(50% - 68px)"
+						"width": "285px",
+						"height": "58px",
+						"left": "calc(50% - 142px)"
 					}
 				]
 			});
