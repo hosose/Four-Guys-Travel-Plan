@@ -94,7 +94,7 @@
 				var vcEditor = app.lookup("ep1");
 				var html = vcEditor.callPageMethod("showHTML");
 				print(html);
-			};
+			}
 			// End - User Script
 			
 			// Header

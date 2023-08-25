@@ -62,7 +62,6 @@ public class PlannerController {
 		planService.createPlans(plannerVO.getPlannerNo());
 		initParam.put("plannerVO", plannerVO);
 		dataRequest.setMetadata(true, initParam);
-		dataRequest.setResponse("plannerVO", plannerVO);
 		return new JSONDataView();
 	}
 
@@ -178,11 +177,21 @@ public class PlannerController {
 
 	@GetMapping("/myPlanDetail/{plannerNo}")
 	public View getMyPlanDetailPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
 		return new UIView("myPlanDetail.clx");
 	}
 
 	@GetMapping("/planDetail")
 	public View findPlannerByNo(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
 		ParameterGroup plannerDetailParam = dataRequest.getParameterGroup("plannerNoDM");
 		int plannerNo = Integer.parseInt(plannerDetailParam.getValue("plannerNo"));
 		dataRequest.setResponse("plannerDetail", plannerService.findPlannerByNo(plannerNo));
@@ -191,6 +200,11 @@ public class PlannerController {
 
 	@DeleteMapping("deletePlanner")
 	public View deletePlanner(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
 		ParameterGroup plannerNoParam = dataRequest.getParameterGroup("plannerNoDM");
 		int plannerNo = Integer.parseInt(plannerNoParam.getValue("plannerNo"));
 		plannerService.deletePlannerByNo(plannerNo);

@@ -94,6 +94,11 @@ public class PlannerBoardController {
 
 	@GetMapping("/boardDetailPage/{boardNo}")
 	public View getBoardDetailPage(DataRequest dataRequest, HttpServletResponse response, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
 		return new UIView("plannerBoardDetail.clx");
 	}
 
@@ -110,6 +115,11 @@ public class PlannerBoardController {
 	@GetMapping("/createPlannerBoardForm")
 	public View createPlannerBoardForm(DataRequest dataRequest, HttpServletResponse response,
 			HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			String uri = "login.clx";
+			return new UIView(uri);
+		}
 		return new UIView("planner-board-form.clx");
 	}
 
