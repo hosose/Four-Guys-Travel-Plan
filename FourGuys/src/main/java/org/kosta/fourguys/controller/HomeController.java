@@ -33,7 +33,11 @@ public class HomeController {
 	}
 
 	@GetMapping("/mypage")
-	public String mypage() {
+	public String mypage(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			return "login.clx";
+		}
 		return "mypage.clx";
 	}
 
@@ -44,10 +48,5 @@ public class HomeController {
 			return "index.clx";
 		}
 		return "myPlan.clx";
-	}
-
-	@GetMapping("/PlanBoard")
-	public String PlanBoard() {
-		return "PlanBoard.clx";
 	}
 }
