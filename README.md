@@ -60,7 +60,7 @@
 
 ## 회원가입
 
-[##_Image|kage@bXSIje/btssfGAMZ1H/1e9jedSkzsynbMtyd2YRuK/img.png|CDM|1.3|{"originWidth":1915,"originHeight":888,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/d9a4a3a5-7858-4713-83c8-7b496ec812c9)
 
 ## 마이 플래너
 
