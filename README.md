@@ -1,6 +1,5 @@
 ## Four Guys Travel And Plan
-
-[##_Image|kage@tCxuZ/btssaB1kZY0/niaTWcKrDB267tL2kvksv0/img.png|CDM|1.3|{"originWidth":550,"originHeight":550,"style":"alignLeft","width":209,"height":209}_##]
+![Four Guys](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/15b02285-ba3a-4773-acc6-28c30ad84ff7)
 
 ## 💁 팀원 소개
 
@@ -53,11 +52,11 @@
 
 ## 메인 페이지
 
-[##_Image|kage@os1fL/btssaC62aqH/gBFduoipBM13zWBILluHt0/img.png|CDM|1.3|{"originWidth":1918,"originHeight":883,"style":"alignCenter","width":714,"height":329}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/f38fed85-a2d7-4b8e-b52c-17d3bf0f9ed0)
 
 ## 로그인 페이지
 
-[##_Image|kage@o5sJS/btssbyDk26m/lnxydk3xBKZJp4MaLHUrwk/img.png|CDM|1.3|{"originWidth":1909,"originHeight":884,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/9dc13cd3-05c2-4324-bfa6-5bb0745d935e)
 
 ## 회원가입
 
@@ -65,32 +64,32 @@
 
 ## 마이 플래너
 
-[##_Image|kage@Klge4/btsscCyIABI/9Cl6VHEBT1MLkkzyNK6Fzk/img.png|CDM|1.3|{"originWidth":1912,"originHeight":883,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/4680f4be-f2c3-4a2e-98a9-7249b2ec947d)
 
 ## 회원 정보 수정
 
-[##_Image|kage@zBQip/btssgJp0nZG/mJV38kdqoM2IcIL2FNHmH0/img.png|CDM|1.3|{"originWidth":1913,"originHeight":886,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/03336b08-11e7-4a3a-9631-bbefefd79231)
 
 ## 여행지 선택
 
-[##_Image|kage@blrsgj/btssf0luGKX/NkHNyZSIIaz3Nu92YsaBck/img.png|CDM|1.3|{"originWidth":1909,"originHeight":925,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/9519e295-e567-4308-8fc6-aa4920c5e5ed)
 
 ## 플래너 생성 페이지
 
-[##_Image|kage@bUkCQH/btssbB07IUb/cOyOQ7Ky9QcvLKveWjcnyK/img.png|CDM|1.3|{"originWidth":1916,"originHeight":886,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/2bb26088-6032-4686-af3b-1f949fe54fad)
 
 ## 플래너 게시판
 
-[##_Image|kage@bunpsH/btssfWcjZ9V/EUvApwjHlFM7OFMG1DuBTK/img.png|CDM|1.3|{"originWidth":1903,"originHeight":883,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/b74a5d64-4b8d-4058-bd65-34490b76586e)
 
 ## 플래너 게시물 등록
 
-[##_Image|kage@dWJ62S/btssgpyzQM0/IJKZ619K35CxbsnbdrM3Zk/img.png|CDM|1.3|{"originWidth":1905,"originHeight":881,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/14de5168-0c20-472b-bf9c-b8430c7bf2eb)
 
 ## 게시물 상세 페이지
 
-[##_Image|kage@cgvvUc/btssaRpyMZ8/h9imKCvnpAjhm21NUmNxFK/img.png|CDM|1.3|{"originWidth":1892,"originHeight":887,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/cbdd484e-6ae2-455b-acf9-81a354fa609f)
 
 ## 댓글 기능
 
-[##_Image|kage@kThzU/btssk0YQl9w/7GByPq1kgNAYXuQgBHuYTK/img.png|CDM|1.3|{"originWidth":1536,"originHeight":299,"style":"alignCenter"}_##]
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/869ed8ee-7557-4359-91fa-9095cf5a2539)
