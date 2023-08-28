@@ -884,6 +884,7 @@
 			var pageIndexer_1 = new cpr.controls.PageIndexer("completePaging");
 			pageIndexer_1.pageRowCount = 5;
 			pageIndexer_1.style.css({
+				"color" : "#FFFFFF",
 				"font-family" : "AppleSDGothicNeoB00"
 			});
 			pageIndexer_1.style.index.css({
@@ -923,6 +924,7 @@
 			var pageIndexer_2 = new cpr.controls.PageIndexer("notCompletePaging");
 			pageIndexer_2.pageRowCount = 5;
 			pageIndexer_2.style.css({
+				"color" : "#FFFFFF",
 				"font-family" : "AppleSDGothicNeoB00"
 			});
 			pageIndexer_2.style.index.css({

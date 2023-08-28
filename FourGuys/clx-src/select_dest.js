@@ -30,3 +30,48 @@ function onJejuClick(e) {
 	});
 	
 }
+
+/*
+ * "SEOUL" 버튼(seoul)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onSeoulClick(e){
+	var seoul = e.control;
+	app.openDialog("alert", {width : 300, height : 160 ,headerVisible: false}, function(dialog){
+		dialog.ready(function(dialogApp){
+			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+		});
+	}).then(function(returnValue){
+		;
+	});
+}
+
+/*
+ * "JAPAN" 버튼(japan)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onJapanClick(e){
+	var japan = e.control;
+	app.openDialog("alert", {width : 400, height : 300 ,headerVisible: false, modal: true}, function(dialog){
+		dialog.ready(function(dialogApp){
+			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+		});
+	}).then(function(returnValue){
+		;
+	});
+}
+
+/*
+ * "VIETNAM" 버튼(vietnam)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onVietnamClick(e){
+	var vietnam = e.control;
+	app.openDialog("alert", {width : 400, height : 300 ,headerVisible: false, modal: true}, function(dialog){
+		dialog.ready(function(dialogApp){
+			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+		});
+	}).then(function(returnValue){
+		;
+	});
+}

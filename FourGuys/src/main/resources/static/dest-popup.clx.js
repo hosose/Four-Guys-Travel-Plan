@@ -71,6 +71,7 @@
 				"background-color" : "#98dde3",
 				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"border-left-style" : "none",
 				"font-size" : "18px",

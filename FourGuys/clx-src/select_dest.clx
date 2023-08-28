@@ -24,6 +24,7 @@
       </cl:responsivexylayoutdata>
     </cl:button>
     <cl:button std:sid="button-271d219c" id="seoul" style="background-size:cover; text-shadow:none; color:#FFFFFF; font-size:40px; font-family:AppleSDGothicNeoB00; background-image:url(images/seoul.jpg); background-position:center;" value="SEOUL">
+      <cl:listener std:sid="listener-66bf63a0" name="click" handler="onSeoulClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-144b0fa5">
         <cl:xylayoutdata std:sid="sxyl-data-1bfab4e0" top="339px" right="150px" width="200px" height="210px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
         <cl:xylayoutdata std:sid="sxyl-data-8f3b419b" top="339px" right="880px" width="330px" height="350px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="wide"/>
@@ -34,6 +35,7 @@
       </cl:responsivexylayoutdata>
     </cl:button>
     <cl:button std:sid="button-e7057512" id="japan" style="background-size:cover; text-shadow:none; color:#FFFFFF; font-size:40px; font-family:AppleSDGothicNeoB00; background-image:url(images/japan.jpeg); background-position:center;" value="JAPAN">
+      <cl:listener std:sid="listener-d99e9ca1" name="click" handler="onJapanClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-df05cba4">
         <cl:xylayoutdata std:sid="sxyl-data-a60647da" top="650px" right="400px" width="200px" height="210px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
         <cl:xylayoutdata std:sid="sxyl-data-b60f66c4" top="340px" right="490px" width="330px" height="350px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="wide"/>
@@ -44,6 +46,7 @@
       </cl:responsivexylayoutdata>
     </cl:button>
     <cl:button std:sid="button-2e1106cc" id="vietnam" style="background-size:cover; text-shadow:none; color:#FFFFFF; font-size:40px; font-family:AppleSDGothicNeoB00; background-image:url(images/vietnam.jpg); background-position:center;" value="VIETNAM">
+      <cl:listener std:sid="listener-3e0b6211" name="click" handler="onVietnamClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-f1b400f4">
         <cl:xylayoutdata std:sid="sxyl-data-a4915dc7" top="650px" right="150px" width="200px" height="210px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
         <cl:xylayoutdata std:sid="sxyl-data-172f411a" top="340px" right="100px" width="330px" height="350px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="wide"/>

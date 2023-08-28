@@ -145,7 +145,7 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:pageindexer std:sid="p-indexer-307d888a" id="completePaging" style="font-family:AppleSDGothicNeoB00;" pagerowcount="5">
+    <cl:pageindexer std:sid="p-indexer-307d888a" id="completePaging" style="color:#FFFFFF; font-family:AppleSDGothicNeoB00;" pagerowcount="5">
       <cl:listener std:sid="listener-a376b13d" name="selection-change" handler="onCompletePagingSelectionChange"/>
       <cl:expbind property="totalRowCount" category="PROPERTY" expression="#completePlannerVO.getRowCount()"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-05c464bd">
@@ -153,7 +153,7 @@
       </cl:responsivexylayoutdata>
       <cl:indexstyle style="background-color:#98dde3;"/>
     </cl:pageindexer>
-    <cl:pageindexer std:sid="p-indexer-e755de02" id="notCompletePaging" style="font-family:AppleSDGothicNeoB00;" pagerowcount="5">
+    <cl:pageindexer std:sid="p-indexer-e755de02" id="notCompletePaging" style="color:#FFFFFF; font-family:AppleSDGothicNeoB00;" pagerowcount="5">
       <cl:listener std:sid="listener-9fcc94b0" name="selection-change" handler="onNotCompletePagingSelectionChange"/>
       <cl:expbind property="totalRowCount" category="PROPERTY" expression="#notCompletePlannerVO.getRowCount()"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-201f16f8">

@@ -251,6 +251,7 @@
 				button_1.style.css({
 					"background-color" : "#98dde3",
 					"border-right-style" : "none",
+					"text-shadow" : "none",
 					"color" : "#FFFFFF",
 					"border-left-style" : "none",
 					"font-size" : "18px",
