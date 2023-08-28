@@ -24,7 +24,17 @@
 
 ## ERD
 
-[##_Image|kage@8sxoV/btsscD5r8cx/9CzvdKMDr6WL4PVJHUuU6k/img.png|CDM|1.3|{"originWidth":863,"originHeight":711,"style":"alignCenter","width":767,"height":632}_##]
+![Four-guys-erd](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/93b7f6f9-0909-4287-9693-d303bde81a27)
+
+
+## Use Case Diagram
+
+![Four-guys-use-case-diagram](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/59ca4453-1e92-470f-85ea-90b298e43db1)
+
+## Class Diagram
+
+![four-guys-class-diagram](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/21818d19-b4e0-4998-ba4b-9087074993e2)
+
 
 ## ✏️ 구현기능
 
