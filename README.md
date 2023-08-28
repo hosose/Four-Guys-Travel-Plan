@@ -66,7 +66,7 @@
 
 ## 로그인 페이지
 
-![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/9dc13cd3-05c2-4324-bfa6-5bb0745d935e)
+![image](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/1c7b2af4-02df-434c-aff7-acd7e7bc691d)
 
 ## 회원가입
 
