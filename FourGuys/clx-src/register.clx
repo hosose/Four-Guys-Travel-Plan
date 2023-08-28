@@ -25,7 +25,7 @@
         <cl:requestdata dataid="dm_register"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="회원가입"/>
   </head>
   <body std:sid="body-b3f0ff3a" style="border-right-style:none; background-color:#FAFAFA; border-left-style:none; border-bottom-style:none; border-top-style:none;">
     <cl:listener std:sid="listener-8f5d1ec4" name="load" handler="onBodyLoad"/>

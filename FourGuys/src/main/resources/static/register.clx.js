@@ -1318,6 +1318,6 @@
 			}
 		}
 	});
-	app.title = "register";
+	app.title = "회원가입";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

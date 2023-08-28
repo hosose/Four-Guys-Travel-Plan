@@ -17,7 +17,7 @@
         <cl:responsedata dataid="ds1"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="INDEX"/>
   </head>
   <body std:sid="body-3c97ba97" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none; border-bottom-style:none; border-top-style:none;">
     <cl:listener std:sid="listener-5492d180" name="load" handler="onBodyLoad"/>

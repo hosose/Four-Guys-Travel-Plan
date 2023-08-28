@@ -1017,6 +1017,6 @@
 			}
 		}
 	});
-	app.title = "myPlan";
+	app.title = "마이플랜";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

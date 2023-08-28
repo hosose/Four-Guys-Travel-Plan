@@ -12,11 +12,11 @@
         <cl:listener std:sid="listener-544f172d" name="submit-success" handler="onSubLogoutSubmitSuccess"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="해더"/>
   </head>
   <body std:sid="body-78891704" style="top:0px; left:0px; width:800px; height:500px;">
     <cl:listener std:sid="listener-9d202c04" name="load" handler="onBodyLoad"/>
-    <cl:button std:sid="button-6f1f615e" id="loginBtn" style="background-color:#98DDE3; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="Login">
+    <cl:button std:sid="button-6f1f615e" id="loginBtn" style="background-color:#98DDE3; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoB00; background-image:none; font-style:normal; border-top-style:none;" value="Login">
       <cl:listener std:sid="listener-d9dbad4d" name="click" handler="onLoginClick"/>
       <cl:xylayoutdata std:sid="xyl-data-6153b4c8" top="20px" right="20px" width="131px" height="45px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>

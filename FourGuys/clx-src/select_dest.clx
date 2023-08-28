@@ -9,7 +9,7 @@
     <screen std:sid="screen-1185395e" id="tablet" name="tablet" minwidth="500px" maxwidth="899px" width="500px" height="667px" customHeight="600" customWidth="800" active="false"/>
     <screen std:sid="screen-63788e67" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
     <cl:model std:sid="model-d0df39b0"/>
-    <cl:appspec/>
+    <cl:appspec title="여행지 선택 페이지"/>
   </head>
   <body std:sid="body-75f61cb5">
     <cl:button std:sid="button-9083e9ae" id="jeju" style="background-size:cover; text-shadow:none; color:#FFFFFF; font-size:40px; font-family:AppleSDGothicNeoB00; background-image:url(images/harubang2.jpg); background-position:center;" value="JEJU">

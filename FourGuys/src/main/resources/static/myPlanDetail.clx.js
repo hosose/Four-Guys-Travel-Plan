@@ -848,6 +848,6 @@
 			}
 		}
 	});
-	app.title = "myPlanDetail";
+	app.title = "내플랜상세보기";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

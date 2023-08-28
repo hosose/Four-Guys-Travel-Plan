@@ -606,6 +606,6 @@
 			}
 		}
 	});
-	app.title = "updateBoardForm";
+	app.title = "플랜 게시판 수정페이지";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

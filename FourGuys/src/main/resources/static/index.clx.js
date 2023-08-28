@@ -163,6 +163,6 @@
 			}
 		}
 	});
-	app.title = "index";
+	app.title = "INDEX";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

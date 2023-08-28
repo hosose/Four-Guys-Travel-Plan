@@ -1262,6 +1262,6 @@
 			}
 		}
 	});
-	app.title = "plannerBoardDetail";
+	app.title = "플랜 게시판 상세보기";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

@@ -5,7 +5,7 @@
     <screen std:sid="screen-e949a28e" id="tablet" name="tablet" width="500px" height="667px"/>
     <screen std:sid="screen-c26fd9b9" id="mobile" name="mobile" width="350px" height="525px"/>
     <cl:model std:sid="model-cad627a7"/>
-    <cl:appspec/>
+    <cl:appspec title="사이드바"/>
   </head>
   <body std:sid="body-7fa3f9fd" style="top:0px; color:#FFFFFF; left:0px; width:300px; height:300px;">
     <cl:button std:sid="button-a1fd91f1" id="MyPageBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoB00; background-image:none; font-style:normal; border-top-style:none;" value="MYPAGE">

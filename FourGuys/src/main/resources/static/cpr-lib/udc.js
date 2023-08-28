@@ -153,10 +153,12 @@
 					"background-color" : "#98DDE3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
 					"color" : "#FFFFFF",
 					"border-left-style" : "none",
 					"font-size" : "18px",
 					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none",
 					"font-style" : "normal",
 					"border-top-style" : "none"
@@ -286,7 +288,7 @@
 				}
 			}
 		});
-	internalApp.title = "header_nav";
+	internalApp.title = "해더";
 	
 	// Type declaration for header_nav
 	cpr.utils.Util.ensurePackage("udc").header_nav = function(id){
@@ -410,7 +412,7 @@
 				});
 			}
 		});
-	internalApp.title = "logo";
+	internalApp.title = "로고";
 	
 	// Type declaration for logo
 	cpr.utils.Util.ensurePackage("udc").logo = function(id){
@@ -593,7 +595,7 @@
 				});
 			}
 		});
-	internalApp.title = "myPageSideBar";
+	internalApp.title = "사이드바";
 	
 	// Type declaration for myPageSideBar
 	cpr.utils.Util.ensurePackage("udc").myPageSideBar = function(id){

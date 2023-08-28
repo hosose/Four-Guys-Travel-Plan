@@ -850,6 +850,6 @@
 			}
 		}
 	});
-	app.title = "planner";
+	app.title = "플래너";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

@@ -558,6 +558,6 @@
 			}
 		}
 	});
-	app.title = "planner-board-form";
+	app.title = "플랜 게시판 작성페이지";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

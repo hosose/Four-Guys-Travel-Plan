@@ -43,7 +43,7 @@
         <cl:requestdata dataid="plannerNoDM"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="마이플랜"/>
   </head>
   <body std:sid="body-5be48a01" style="background-color:#FAFAFA;">
     <cl:listener std:sid="listener-af51bba0" name="load" handler="onBodyLoad"/>

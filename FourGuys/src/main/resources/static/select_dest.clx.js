@@ -440,6 +440,6 @@
 			});
 		}
 	});
-	app.title = "select_dest";
+	app.title = "여행지 선택 페이지";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

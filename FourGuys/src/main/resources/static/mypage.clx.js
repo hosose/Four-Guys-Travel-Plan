@@ -724,6 +724,6 @@
 			}
 		}
 	});
-	app.title = "mypage";
+	app.title = "마이페이지";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

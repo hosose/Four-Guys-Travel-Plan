@@ -5,7 +5,7 @@
     <screen std:sid="screen-5ea38f88" id="tablet" name="tablet" width="500px" height="667px"/>
     <screen std:sid="screen-4230200a" id="mobile" name="mobile" width="350px" height="525px"/>
     <cl:model std:sid="model-38e0f02e"/>
-    <cl:appspec/>
+    <cl:appspec title="로고"/>
   </head>
   <body std:sid="body-5266d4b3" style="top:0px; left:0px; width:300px; height:300px;">
     <cl:button std:sid="button-76087784" id="logo" style="border-right-style:none; background-color:transparent; background-size:cover; border-left-style:none; border-bottom-style:none; background-position:center; background-image:url(../images/Four_Guys-removebg-preview.png); border-top-style:none;" value="">

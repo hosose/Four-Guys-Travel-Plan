@@ -135,7 +135,7 @@
         <cl:requestdata dataid="boardReply"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="플랜 게시판 상세보기"/>
   </head>
   <body std:sid="body-de831e9d">
     <cl:listener std:sid="listener-c4c1ed67" name="load" handler="onBodyLoad"/>

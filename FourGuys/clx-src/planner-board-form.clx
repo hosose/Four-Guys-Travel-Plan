@@ -58,7 +58,7 @@
         <cl:requestdata dataid="plannerNoDM"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="플랜 게시판 작성페이지"/>
   </head>
   <body std:sid="body-d33f96c1">
     <cl:listener std:sid="listener-904fd8c5" name="load" handler="onBodyLoad"/>
