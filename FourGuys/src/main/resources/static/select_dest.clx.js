@@ -70,8 +70,10 @@
 			button_1.value = "JEJU";
 			button_1.style.css({
 				"background-size" : "cover",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"font-size" : "40px",
+				"font-family" : "AppleSDGothicNeoB00",
 				"background-image" : "url('images/harubang2.jpg')",
 				"background-position" : "center"
 			});
@@ -136,8 +138,10 @@
 			button_2.value = "SEOUL";
 			button_2.style.css({
 				"background-size" : "cover",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"font-size" : "40px",
+				"font-family" : "AppleSDGothicNeoB00",
 				"background-image" : "url('images/seoul.jpg')",
 				"background-position" : "center"
 			});
@@ -199,8 +203,10 @@
 			button_3.value = "JAPAN";
 			button_3.style.css({
 				"background-size" : "cover",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"font-size" : "40px",
+				"font-family" : "AppleSDGothicNeoB00",
 				"background-image" : "url('images/japan.jpeg')",
 				"background-position" : "center"
 			});
@@ -262,8 +268,10 @@
 			button_4.value = "VIETNAM";
 			button_4.style.css({
 				"background-size" : "cover",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"font-size" : "40px",
+				"font-family" : "AppleSDGothicNeoB00",
 				"background-image" : "url('images/vietnam.jpg')",
 				"background-position" : "center"
 			});

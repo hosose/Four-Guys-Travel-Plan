@@ -114,13 +114,13 @@
     </cl:udc>
     <cl:group std:sid="group-c106376f">
       <cl:xylayoutdata std:sid="xyl-data-2f88e00e" top="158px" bottom="100px" width="1000px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
-      <cl:output std:sid="output-1b096b81" id="titleOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; border-top-style:solid; text-align:center;" value="제목">
+      <cl:output std:sid="output-1b096b81" id="titleOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid; text-align:center;" value="제목">
         <cl:formdata std:sid="f-data-8a016bda" bottomSpacing="5" row="0" col="0" rowspan="1" colspan="1"/>
       </cl:output>
-      <cl:output std:sid="output-aa161d45" id="contentOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; border-top-style:solid; text-align:center;" value="내용">
+      <cl:output std:sid="output-aa161d45" id="contentOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid; text-align:center;" value="내용">
         <cl:formdata std:sid="f-data-26fdaeb7" topSpacing="5" row="2" col="0"/>
       </cl:output>
-      <cl:grid std:sid="grid-b5555db0" id="placeGrd" style="border-right-style:solid; border-radius:5px; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="selectedPlan">
+      <cl:grid std:sid="grid-b5555db0" id="placeGrd" style="border-right-style:solid; border-radius:5px; border-left-style:solid; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid;" datasetid="selectedPlan">
         <cl:relativebind property="readOnly" columnname="title"/>
         <cl:formdata std:sid="f-data-1e836188" leftSpacing="2" row="1" col="1"/>
         <cl:gridcolumn std:sid="g-column-bfe52550"/>
@@ -133,7 +133,7 @@
           <cl:gridcell std:sid="gd-cell-26ab244d" rowindex="0" colindex="0" columnname="title"/>
         </cl:griddetail>
       </cl:grid>
-      <cl:grid std:sid="grid-4b2f4cfd" id="boardTitle" style="font-size:30px; text-align:center;" datasetid="boardDetail">
+      <cl:grid std:sid="grid-4b2f4cfd" id="boardTitle" style="font-size:30px; font-family:AppleSDGothicNeoB00; text-align:center;" datasetid="boardDetail">
         <cl:formdata std:sid="f-data-5252857e" row="0" col="1"/>
         <cl:gridcolumn std:sid="g-column-7a70e2b1"/>
         <cl:griddetail std:sid="gd-band-212942c7">
@@ -149,7 +149,7 @@
         <cl:listener std:sid="listener-d23da09a" name="load" handler="onEp1Load2"/>
         <cl:formdata std:sid="f-data-1bde33d1" row="2" col="1"/>
       </cl:embeddedpage>
-      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="border-right-style:solid; border-radius:5px; font-weight:bolder; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="planDate">
+      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="border-right-style:solid; border-radius:5px; font-weight:bolder; border-left-style:solid; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid;" datasetid="planDate">
         <cl:listener std:sid="listener-8b1cd717" name="cell-click" handler="onDayGrdCellClick"/>
         <cl:formdata std:sid="f-data-7ee6e902" row="1" col="0"/>
         <cl:gridcolumn std:sid="g-column-cf4a4af2"/>

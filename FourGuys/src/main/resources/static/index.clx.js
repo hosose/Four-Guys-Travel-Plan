@@ -81,11 +81,13 @@
 			output_1.style.css({
 				"color" : "#FFFFFF",
 				"font-size" : "50px",
-				"font-style" : "normal"
+				"font-family" : "AppleSDGothicNeoB00",
+				"font-style" : "normal",
+				"text-align" : "left"
 			});
 			container.addChild(output_1, {
 				"top": "320px",
-				"left": "130px",
+				"left": "172px",
 				"width": "819px",
 				"height": "59px"
 			});
@@ -97,13 +99,15 @@
 				"background-color" : "#98dde3",
 				"color" : "#FFFFFF",
 				"font-size" : "50px",
+				"font-family" : "AppleSDGothicNeoB00",
 				"font-style" : "normal",
-				"background-image" : "none"
+				"background-image" : "none",
+				"text-align" : "right"
 			});
 			container.addChild(output_2, {
 				"top": "389px",
-				"left": "130px",
-				"width": "650px",
+				"left": "172px",
+				"width": "608px",
 				"height": "59px"
 			});
 			
@@ -113,6 +117,7 @@
 			output_3.style.css({
 				"color" : "#FFFFFF",
 				"font-size" : "50px",
+				"font-family" : "AppleSDGothicNeoB00",
 				"font-style" : "normal"
 			});
 			container.addChild(output_3, {
@@ -128,11 +133,12 @@
 			output_4.style.css({
 				"color" : "#FFFFFF",
 				"font-size" : "50px",
+				"font-family" : "AppleSDGothicNeoB00",
 				"font-style" : "normal"
 			});
 			container.addChild(output_4, {
 				"top": "458px",
-				"left": "130px",
+				"left": "172px",
 				"width": "650px",
 				"height": "59px"
 			});

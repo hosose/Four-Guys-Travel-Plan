@@ -75,6 +75,7 @@
 				"border-left-style" : "none",
 				"font-size" : "18px",
 				"border-bottom-style" : "none",
+				"font-family" : "AppleSDGothicNeoB00",
 				"background-image" : "none",
 				"font-style" : "normal",
 				"border-top-style" : "none"
@@ -100,6 +101,9 @@
 			
 			var output_1 = new cpr.controls.Output("intro1");
 			output_1.value = "";
+			output_1.style.css({
+				"font-family" : "AppleSDGothicNeoB00"
+			});
 			container.addChild(output_1, {
 				"top": "5px",
 				"left": "20px",

@@ -24,17 +24,17 @@
     <cl:img std:sid="image-28e63dd0" id="jejuImg1" style="opacity: 70%;" src="images/harubang.jpg">
       <cl:xylayoutdata std:sid="xyl-data-38b1cf9e" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
     </cl:img>
-    <cl:output std:sid="output-c6854068" id="text1" style="color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="여행 계획을&#xD;&#xA;">
-      <cl:xylayoutdata std:sid="xyl-data-d5796382" top="320px" left="130px" width="819px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:output std:sid="output-c6854068" id="text1" style="color:#FFFFFF; font-size:50px; font-family:AppleSDGothicNeoB00; font-style:normal; text-align:left;" class="output1" value="여행 계획을&#xD;&#xA;">
+      <cl:xylayoutdata std:sid="xyl-data-d5796382" top="320px" left="172px" width="819px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:output std:sid="output-ee793e74" id="text2" style="background-color:#98dde3; color:#FFFFFF; font-size:50px; font-style:normal; background-image:none;" class="output1" value="TRAVEL and PLAN 스케줄링">
-      <cl:xylayoutdata std:sid="xyl-data-e7a10a0c" top="389px" left="130px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:output std:sid="output-ee793e74" id="text2" style="background-color:#98dde3; color:#FFFFFF; font-size:50px; font-family:AppleSDGothicNeoB00; font-style:normal; background-image:none; text-align:right;" class="output1" value="TRAVEL and PLAN 스케줄링">
+      <cl:xylayoutdata std:sid="xyl-data-e7a10a0c" top="389px" left="172px" width="608px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:output std:sid="output-7750e935" id="text3" style="color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="을 통해">
+    <cl:output std:sid="output-7750e935" id="text3" style="color:#FFFFFF; font-size:50px; font-family:AppleSDGothicNeoB00; font-style:normal;" class="output1" value="을 통해">
       <cl:xylayoutdata std:sid="xyl-data-a7df6001" top="389px" left="779px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:output std:sid="output-59f212ff" id="text4" style="color:#FFFFFF; font-size:50px; font-style:normal;" class="output1" value="작성해 보세요!">
-      <cl:xylayoutdata std:sid="xyl-data-a139a8ac" top="458px" left="130px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:output std:sid="output-59f212ff" id="text4" style="color:#FFFFFF; font-size:50px; font-family:AppleSDGothicNeoB00; font-style:normal;" class="output1" value="작성해 보세요!">
+      <cl:xylayoutdata std:sid="xyl-data-a139a8ac" top="458px" left="172px" width="650px" height="59px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:udc std:sid="ud-control-8db052b7" type="udc.logo">
       <cl:xylayoutdata std:sid="xyl-data-3577ee27" top="20px" left="50px" width="196px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

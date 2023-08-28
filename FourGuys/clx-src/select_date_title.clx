@@ -32,31 +32,31 @@
   </head>
   <body std:sid="body-4b04b2c9" style="top:0px; left:0px; width:800px; height:600px;" class="cl-form-group">
     <cl:listener std:sid="listener-6cc5c582" name="load" handler="onBodyLoad"/>
-    <cl:button std:sid="button-6f1f615e" id="createBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="플래너 만들기">
+    <cl:button std:sid="button-6f1f615e" id="createBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoB00; background-image:none; font-style:normal; border-top-style:none;" value="플래너 만들기">
       <cl:listener std:sid="listener-7815f637" name="click" handler="onCreateBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-d2cf1afa" bottom="50px" left="200px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
     </cl:button>
-    <cl:output std:sid="output-28d34c53" id="titleoutput" style="text-align:center;" value="여행 제목">
+    <cl:output std:sid="output-28d34c53" id="titleoutput" style="font-family:AppleSDGothicNeoB00; text-align:center;" value="여행 제목">
       <cl:xylayoutdata std:sid="xyl-data-7c45a595" top="50px" left="50px" width="100px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:output std:sid="output-1c7e68dd" id="dateoutput" style="text-align:center;" value="여행 기간">
+    <cl:output std:sid="output-1c7e68dd" id="dateoutput" style="font-family:AppleSDGothicNeoB00; text-align:center;" value="여행 기간">
       <cl:xylayoutdata std:sid="xyl-data-2c515219" top="150px" left="50px" width="100px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:inputbox std:sid="i-box-7a1eab29" id="titleInput" placeholder="제목을 입력해주세요.">
+    <cl:inputbox std:sid="i-box-7a1eab29" id="titleInput" style="font-family:AppleSDGothicNeoB00;" placeholder="제목을 입력해주세요.">
       <cl:datamapbind property="value" datacontrolid="plannerDM" columnname="plannerTitle"/>
       <cl:xylayoutdata std:sid="xyl-data-5996cdf3" top="50px" left="200px" width="267px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:dateinput std:sid="d-input-da101aa7" id="dti1">
+    <cl:dateinput std:sid="d-input-da101aa7" id="dti1" style="font-family:AppleSDGothicNeoB00;">
       <cl:listener std:sid="listener-ffc22a0c" name="value-change" handler="onDti1ValueChange"/>
       <cl:datamapbind property="value" datacontrolid="plannerDM" columnname="plannerStartDate"/>
       <cl:xylayoutdata std:sid="xyl-data-807d208f" top="150px" left="200px" width="110px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:dateinput>
-    <cl:dateinput std:sid="d-input-fdac4d62" id="dti2">
+    <cl:dateinput std:sid="d-input-fdac4d62" id="dti2" style="font-family:AppleSDGothicNeoB00;">
       <cl:listener std:sid="listener-23267c2c" name="value-change" handler="onDti2ValueChange"/>
       <cl:datamapbind property="value" datacontrolid="plannerDM" columnname="plannerLastDate"/>
       <cl:xylayoutdata std:sid="xyl-data-66efeb32" top="150px" left="357px" width="110px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:dateinput>
-    <cl:output std:sid="output-ae711959" style="font-size:30px;" value="~">
+    <cl:output std:sid="output-ae711959" style="font-size:30px; font-family:AppleSDGothicNeoB00;" value="~">
       <cl:xylayoutdata std:sid="xyl-data-bc12749e" top="150px" left="320px" width="27px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:xylayout std:sid="xylayout-a77e7e0a"/>

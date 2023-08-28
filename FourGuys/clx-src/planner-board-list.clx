@@ -54,11 +54,11 @@
     </cl:output>
     <cl:group std:sid="group-10051869">
       <cl:xylayoutdata std:sid="xyl-data-11143e6e" top="260px" width="1200px" height="490px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-34e02ca4" id="registerBoardBtn" style="background-color:#98dde3; border-right-style:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; border-top-style:none;" value="글쓰기">
+      <cl:button std:sid="button-34e02ca4" id="registerBoardBtn" style="background-color:#98dde3; border-right-style:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoB00; background-image:none; border-top-style:none;" value="글쓰기">
         <cl:listener std:sid="listener-abd0710f" name="click" handler="onButtonClick"/>
         <cl:formdata std:sid="f-data-15b3a17f" bottomSpacing="10" row="0" col="1"/>
       </cl:button>
-      <cl:grid std:sid="grid-6456d8df" id="plannerBoardListGrd" style="border-right-style:none; border-left-style:none; font-size:16px;" datasetid="plannerBoardList">
+      <cl:grid std:sid="grid-6456d8df" id="plannerBoardListGrd" style="border-right-style:none; border-left-style:none; font-size:16px; font-family:AppleSDGothicNeoB00;" datasetid="plannerBoardList">
         <cl:listener std:sid="listener-d16eb053" name="row-dblclick" handler="onPlannerBoardListGridRowDblclick"/>
         <cl:formdata std:sid="f-data-25370d96" row="1" col="0" rowspan="1" colspan="2"/>
         <cl:gridcolumn std:sid="g-column-8412c27f" width="71px"/>
@@ -94,7 +94,7 @@
         <cl:columns length="100" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
       </cl:formlayout>
     </cl:group>
-    <cl:pageindexer std:sid="p-indexer-8d751f7e" id="pageIdx" pagerowcount="10">
+    <cl:pageindexer std:sid="p-indexer-8d751f7e" id="pageIdx" style="font-family:AppleSDGothicNeoB00;" pagerowcount="10">
       <cl:listener std:sid="listener-3f5e021b" name="selection-change" handler="onPageIndexerSelectionChange"/>
       <cl:expbind property="totalRowCount" category="PROPERTY" expression="#plannerBoardList2.getRowCount()"/>
       <cl:xylayoutdata std:sid="xyl-data-ae38b285" top="770px" width="356px" height="40px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>

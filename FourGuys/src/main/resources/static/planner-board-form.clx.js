@@ -292,6 +292,7 @@
 					"border-left-style" : "solid",
 					"font-size" : "25px",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -310,6 +311,7 @@
 					"border-left-style" : "solid",
 					"font-size" : "25px",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -329,6 +331,7 @@
 					"font-size" : "25px",
 					"padding-bottom" : "5px",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid",
 					"padding-right" : "5px"
 				});
@@ -381,6 +384,7 @@
 					"font-weight" : "bolder",
 					"border-left-style" : "solid",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid"
 				});
 				if(typeof onDayGrdCellClick == "function") {
@@ -432,6 +436,7 @@
 					"border-radius" : "5px",
 					"border-left-style" : "solid",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid"
 				});
 				container.addChild(grid_2, {
@@ -477,17 +482,19 @@
 			var button_1 = new cpr.controls.Button("selectBtn");
 			button_1.value = "등록";
 			button_1.style.css({
-				"background-color" : "#98dde3",
 				"border-right-style" : "none",
+				"color" : "#FFFFFF",
+				"font-size" : "25px",
+				"font-style" : "normal",
+				"border-top-style" : "none",
+				"background-color" : "#98dde3",
 				"border-radius" : "5px",
 				"background-repeat" : "no-repeat",
-				"color" : "#FFFFFF",
+				"text-shadow" : "none",
 				"border-left-style" : "none",
-				"font-size" : "25px",
 				"border-bottom-style" : "none",
-				"background-image" : "none",
-				"font-style" : "normal",
-				"border-top-style" : "none"
+				"font-family" : "AppleSDGothicNeoB00",
+				"background-image" : "none"
 			});
 			if(typeof onSelectBtnClick == "function") {
 				button_1.addEventListener("click", onSelectBtnClick);

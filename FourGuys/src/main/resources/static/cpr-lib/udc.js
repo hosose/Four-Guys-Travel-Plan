@@ -178,10 +178,12 @@
 					"background-color" : "#98DDE3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
 					"color" : "#FFFFFF",
 					"border-left-style" : "none",
 					"font-size" : "18px",
 					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none",
 					"font-style" : "normal",
 					"border-top-style" : "none"
@@ -209,9 +211,11 @@
 					"border-top-style" : "none",
 					"background-color" : "#98DDE3",
 					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
 					"border-left-style" : "none",
 					"border-top-color" : "#ffffff",
 					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none"
 				});
 				if(typeof onCreate_planClick == "function") {
@@ -231,10 +235,12 @@
 					"background-color" : "#98DDE3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
 					"color" : "#FFFFFF",
 					"border-left-style" : "none",
 					"font-size" : "18px",
 					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none",
 					"font-style" : "normal",
 					"border-top-style" : "none"
@@ -256,10 +262,12 @@
 					"background-color" : "#98DDE3",
 					"border-right-style" : "none",
 					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
 					"color" : "#FFFFFF",
 					"border-left-style" : "none",
 					"font-size" : "18px",
 					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none",
 					"font-style" : "normal",
 					"border-top-style" : "none"
@@ -505,7 +513,7 @@
 					"border-left-style" : "none",
 					"font-size" : "18px",
 					"border-bottom-style" : "none",
-					"font-family" : "AppleSDGothicNeoEB00",
+					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none",
 					"font-style" : "normal",
 					"border-top-style" : "none"
@@ -550,7 +558,7 @@
 					"border-left-style" : "none",
 					"font-size" : "18px",
 					"border-bottom-style" : "none",
-					"font-family" : "AppleSDGothicNeoEB00",
+					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none",
 					"font-style" : "normal",
 					"border-top-style" : "none"

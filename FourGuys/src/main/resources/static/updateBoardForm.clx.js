@@ -380,6 +380,7 @@
 					"border-left-style" : "solid",
 					"font-size" : "25px",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -398,6 +399,7 @@
 					"border-left-style" : "solid",
 					"font-size" : "25px",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
@@ -446,6 +448,7 @@
 					"border-radius" : "5px",
 					"border-left-style" : "solid",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid"
 				});
 				container.addChild(grid_1, {
@@ -478,6 +481,7 @@
 				});
 				grid_2.style.css({
 					"font-size" : "30px",
+					"font-family" : "AppleSDGothicNeoB00",
 					"text-align" : "center"
 				});
 				container.addChild(grid_2, {
@@ -533,6 +537,7 @@
 					"font-weight" : "bolder",
 					"border-left-style" : "solid",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid"
 				});
 				if(typeof onDayGrdCellClick == "function") {

@@ -87,6 +87,7 @@
 			var container = app.getContainer();
 			container.style.setClasses(["cl-form-group"]);
 			container.style.css({
+				"font-family" : "AppleSDGothicNeoB00",
 				"width" : "100%",
 				"top" : "0px",
 				"height" : "100%",
@@ -104,10 +105,12 @@
 				"background-color" : "#98dde3",
 				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"border-left-style" : "none",
 				"font-size" : "18px",
 				"border-bottom-style" : "none",
+				"font-family" : "AppleSDGothicNeoB00",
 				"background-image" : "none",
 				"font-style" : "normal",
 				"border-top-style" : "none"
@@ -185,6 +188,9 @@
 						}
 					]
 				}
+			});
+			grid_1.style.css({
+				"font-family" : "AppleSDGothicNeoB00"
 			});
 			container.addChild(grid_1, {
 				"top": "20px",

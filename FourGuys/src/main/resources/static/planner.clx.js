@@ -516,7 +516,8 @@
 				}
 			});
 			grid_1.style.css({
-				"font-weight" : "bolder"
+				"font-weight" : "bolder",
+				"font-family" : "AppleSDGothicNeoB00"
 			});
 			if(typeof onGrd2Click == "function") {
 				grid_1.addEventListener("click", onGrd2Click);
@@ -591,7 +592,8 @@
 				}
 			});
 			grid_2.style.css({
-				"border-radius" : "10px"
+				"border-radius" : "10px",
+				"font-family" : "AppleSDGothicNeoB00"
 			});
 			container.addChild(grid_2, {
 				positions: [
@@ -657,7 +659,8 @@
 					}
 				});
 				grid_3.style.css({
-					"font-weight" : "bolder"
+					"font-weight" : "bolder",
+					"font-family" : "AppleSDGothicNeoB00"
 				});
 				if(typeof onGrd3CellClick == "function") {
 					grid_3.addEventListener("cell-click", onGrd3CellClick);
@@ -698,6 +701,7 @@
 			var inputBox_1 = new cpr.controls.InputBox("titleSearch");
 			inputBox_1.placeholder = "지역 검색";
 			inputBox_1.style.css({
+				"font-family" : "AppleSDGothicNeoB00",
 				"text-align" : "center"
 			});
 			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("areaSearch"));
@@ -739,6 +743,7 @@
 				"background-repeat" : "no-repeat",
 				"color" : "#FFFFFF",
 				"font-size" : "15px",
+				"font-family" : "AppleSDGothicNeoB00",
 				"background-image" : "none"
 			});
 			if(typeof onSearchbtnClick == "function") {
@@ -798,6 +803,9 @@
 			});
 			
 			var comboBox_1 = new cpr.controls.ComboBox("categoryCmb");
+			comboBox_1.style.css({
+				"font-family" : "AppleSDGothicNeoB00"
+			});
 			comboBox_1.bind("value").toDataMap(app.lookup("areaSearch"), "cat1");
 			(function(comboBox_1){
 				comboBox_1.addItem(new cpr.controls.Item("", ""));

@@ -477,6 +477,7 @@
 				output_1.style.css({
 					"font-weight" : "bolder",
 					"font-size" : "35px",
+					"font-family" : "AppleSDGothicNeoB00",
 					"text-align" : "center"
 				});
 				output_1.bind("value").toDataSet(app.lookup("boardDetail"), "boardTitle", 0);
@@ -509,7 +510,8 @@
 				output_2.style.css({
 					"font-weight" : "bold",
 					"font-size" : "14px",
-					"text-align" : "center"
+					"font-family" : "AppleSDGothicNeoB00",
+					"text-align" : "left"
 				});
 				output_2.bind("value").toDataSet(app.lookup("boardDetail"), "boardCreateDate", 0);
 				container.addChild(output_2, {
@@ -517,21 +519,21 @@
 						{
 							"media": "all and (min-width: 1024px)",
 							"top": "57px",
-							"right": "20px",
+							"left": "358px",
 							"width": "150px",
 							"height": "42px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "57px",
-							"right": "10px",
+							"left": "175px",
 							"width": "73px",
 							"height": "42px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "57px",
-							"right": "7px",
+							"left": "122px",
 							"width": "51px",
 							"height": "42px"
 						}
@@ -569,6 +571,9 @@
 						}]
 					}
 				});
+				grid_1.style.css({
+					"font-family" : "AppleSDGothicNeoB00"
+				});
 				if(typeof onGrd3CellClick == "function") {
 					grid_1.addEventListener("cell-click", onGrd3CellClick);
 				}
@@ -576,24 +581,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "131px",
+							"top": "109px",
 							"left": "20px",
-							"width": "100px",
-							"height": "353px"
+							"width": "120px",
+							"height": "375px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "131px",
+							"top": "109px",
 							"left": "10px",
-							"width": "49px",
-							"height": "353px"
+							"width": "59px",
+							"height": "375px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "131px",
+							"top": "109px",
 							"left": "7px",
-							"width": "34px",
-							"height": "353px"
+							"width": "41px",
+							"height": "375px"
 						}
 					]
 				});
@@ -645,7 +650,8 @@
 				output_3.style.css({
 					"font-weight" : "bold",
 					"font-size" : "14px",
-					"text-align" : "center"
+					"font-family" : "AppleSDGothicNeoB00",
+					"text-align" : "left"
 				});
 				output_3.bind("value").toDataSet(app.lookup("boardDetail"), "id", 0);
 				container.addChild(output_3, {
@@ -653,21 +659,21 @@
 						{
 							"media": "all and (min-width: 1024px)",
 							"top": "57px",
-							"left": "20px",
+							"left": "88px",
 							"width": "150px",
 							"height": "42px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "57px",
-							"left": "10px",
+							"left": "43px",
 							"width": "73px",
 							"height": "42px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "57px",
-							"left": "7px",
+							"left": "30px",
 							"width": "51px",
 							"height": "42px"
 						}
@@ -707,6 +713,9 @@
 						}]
 					}
 				});
+				grid_2.style.css({
+					"font-family" : "AppleSDGothicNeoB00"
+				});
 				if(typeof onGrd4Click == "function") {
 					grid_2.addEventListener("click", onGrd4Click);
 				}
@@ -714,24 +723,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "131px",
-							"left": "129px",
+							"top": "109px",
+							"left": "150px",
 							"width": "150px",
-							"height": "353px"
+							"height": "375px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "131px",
-							"left": "63px",
+							"top": "109px",
+							"left": "73px",
 							"width": "73px",
-							"height": "353px"
+							"height": "375px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "131px",
-							"left": "44px",
+							"top": "109px",
+							"left": "51px",
 							"width": "51px",
-							"height": "353px"
+							"height": "375px"
 						}
 					]
 				});
@@ -742,24 +751,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "131px",
+							"top": "109px",
 							"right": "20px",
-							"left": "289px",
-							"height": "353px"
+							"left": "310px",
+							"height": "375px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "131px",
+							"top": "109px",
 							"right": "10px",
-							"left": "141px",
-							"height": "353px"
+							"left": "151px",
+							"height": "375px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "131px",
+							"top": "109px",
 							"right": "7px",
-							"left": "99px",
-							"height": "353px"
+							"left": "106px",
+							"height": "375px"
 						}
 					]
 				});
@@ -807,6 +816,72 @@
 						}
 					]
 				});
+				var output_4 = new cpr.controls.Output();
+				output_4.value = "작성자 : ";
+				output_4.style.css({
+					"font-weight" : "bold",
+					"font-size" : "14px",
+					"font-family" : "AppleSDGothicNeoB00",
+					"text-align" : "right"
+				});
+				container.addChild(output_4, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "57px",
+							"left": "29px",
+							"width": "60px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "57px",
+							"left": "14px",
+							"width": "29px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "57px",
+							"left": "10px",
+							"width": "21px",
+							"height": "42px"
+						}
+					]
+				});
+				var output_5 = new cpr.controls.Output();
+				output_5.value = "작성일 : ";
+				output_5.style.css({
+					"font-weight" : "bold",
+					"font-size" : "14px",
+					"font-family" : "AppleSDGothicNeoB00",
+					"text-align" : "right"
+				});
+				container.addChild(output_5, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "57px",
+							"left": "259px",
+							"width": "100px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "57px",
+							"left": "126px",
+							"width": "49px",
+							"height": "42px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "57px",
+							"left": "89px",
+							"width": "34px",
+							"height": "42px"
+						}
+					]
+				});
 			})(group_1);
 			container.addChild(group_1, {
 				"autoSize": "none",
@@ -830,15 +905,16 @@
 			(function(container){
 				var hTMLSnippet_1 = new cpr.controls.HTMLSnippet("snippet");
 				container.addChild(hTMLSnippet_1, {
-					"autoSize": "both",
-					"width": "1024px",
+					"autoSize": "height",
+					"width": "900px",
 					"height": "120px"
 				});
 			})(group_2);
 			container.addChild(group_2, {
-				"autoSize": "height",
-				"width": "984px",
-				"height": "128px"
+				"autoSize": "both",
+				"width": "900px",
+				"height": "128px",
+				"minWidth": 900
 			});
 			
 			var group_3 = new cpr.controls.Container("grp3");
@@ -847,7 +923,8 @@
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("replyContentIpb");
 				inputBox_1.style.css({
-					"text-align" : "center"
+					"font-family" : "AppleSDGothicNeoB00",
+					"text-align" : "left"
 				});
 				inputBox_1.bind("value").toDataMap(app.lookup("replyDM"), "REPLY_CONTENT");
 				container.addChild(inputBox_1, {
@@ -856,22 +933,22 @@
 							"media": "all and (min-width: 1024px)",
 							"top": "0px",
 							"left": "10px",
-							"width": "864px",
-							"height": "42px"
+							"width": "860px",
+							"height": "40px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "0px",
 							"left": "5px",
-							"width": "422px",
-							"height": "42px"
+							"width": "420px",
+							"height": "40px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "0px",
 							"left": "3px",
-							"width": "295px",
-							"height": "42px"
+							"width": "294px",
+							"height": "40px"
 						}
 					]
 				});
@@ -880,10 +957,12 @@
 				button_3.style.css({
 					"background-color" : "#98dde3",
 					"border-right-style" : "none",
+					"text-shadow" : "none",
 					"color" : "#FFFFFF",
 					"border-left-style" : "none",
 					"font-size" : "18px",
 					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none",
 					"border-top-style" : "none"
 				});
@@ -895,23 +974,23 @@
 						{
 							"media": "all and (min-width: 1024px)",
 							"top": "0px",
-							"right": "10px",
-							"width": "128px",
-							"height": "42px"
+							"left": "880px",
+							"width": "120px",
+							"height": "40px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "0px",
-							"right": "5px",
-							"width": "63px",
-							"height": "42px"
+							"left": "430px",
+							"width": "59px",
+							"height": "40px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "0px",
-							"right": "3px",
-							"width": "44px",
-							"height": "42px"
+							"left": "301px",
+							"width": "41px",
+							"height": "40px"
 						}
 					]
 				});
@@ -1057,6 +1136,7 @@
 									cell.control = (function(){
 										var inputBox_2 = new cpr.controls.InputBox("ipb2");
 										inputBox_2.style.css({
+											"font-family" : "AppleSDGothicNeoB00",
 											"text-align" : "center"
 										});
 										inputBox_2.bind("readOnly").toExpression("replyId != #MemberVO.id ? true : false");
@@ -1096,6 +1176,7 @@
 										button_4.style.css({
 											"background-color" : "#98dde3",
 											"border-radius" : "50px",
+											"text-shadow" : "none",
 											"color" : "#FFFFFF",
 											"background-image" : "none"
 										});
@@ -1126,6 +1207,7 @@
 										button_5.style.css({
 											"background-color" : "#98dde3",
 											"border-radius" : "50px",
+											"text-shadow" : "none",
 											"color" : "#FFFFFF",
 											"background-image" : "none"
 										});
@@ -1140,6 +1222,9 @@
 							}
 						]
 					}
+				});
+				grid_3.style.css({
+					"font-family" : "AppleSDGothicNeoB00"
 				});
 				container.addChild(grid_3, {
 					positions: [

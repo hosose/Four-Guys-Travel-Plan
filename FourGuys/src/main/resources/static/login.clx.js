@@ -243,7 +243,8 @@
 				output_1.value = "이메일";
 				output_1.style.css({
 					"color" : "#AAAAAA",
-					"font-size" : "18px"
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoB00"
 				});
 				container.addChild(output_1, {
 					"colIndex": 0,
@@ -255,7 +256,8 @@
 				output_2.value = "비밀번호";
 				output_2.style.css({
 					"color" : "#AAAAAA",
-					"font-size" : "18px"
+					"font-size" : "18px",
+					"font-family" : "AppleSDGothicNeoB00"
 				});
 				container.addChild(output_2, {
 					"colIndex": 0,

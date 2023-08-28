@@ -12,7 +12,7 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-75f61cb5">
-    <cl:button std:sid="button-9083e9ae" id="jeju" style="background-size:cover; color:#FFFFFF; font-size:40px; background-image:url(images/harubang2.jpg); background-position:center;" value="JEJU">
+    <cl:button std:sid="button-9083e9ae" id="jeju" style="background-size:cover; text-shadow:none; color:#FFFFFF; font-size:40px; font-family:AppleSDGothicNeoB00; background-image:url(images/harubang2.jpg); background-position:center;" value="JEJU">
       <cl:listener std:sid="listener-2abc7368" name="click" handler="onJejuClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-6daa3d08">
         <cl:xylayoutdata std:sid="sxyl-data-9762d81f" top="339px" right="400px" width="200px" height="210px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
@@ -23,7 +23,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-901d451c" top="338px" right="498px" width="300px" height="310px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:button std:sid="button-271d219c" id="seoul" style="background-size:cover; color:#FFFFFF; font-size:40px; background-image:url(images/seoul.jpg); background-position:center;" value="SEOUL">
+    <cl:button std:sid="button-271d219c" id="seoul" style="background-size:cover; text-shadow:none; color:#FFFFFF; font-size:40px; font-family:AppleSDGothicNeoB00; background-image:url(images/seoul.jpg); background-position:center;" value="SEOUL">
       <cl:responsivexylayoutdata std:sid="rxyl-data-144b0fa5">
         <cl:xylayoutdata std:sid="sxyl-data-1bfab4e0" top="339px" right="150px" width="200px" height="210px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
         <cl:xylayoutdata std:sid="sxyl-data-8f3b419b" top="339px" right="880px" width="330px" height="350px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="wide"/>
@@ -33,7 +33,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-a5898807" top="338px" right="80px" width="300px" height="310px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:button std:sid="button-e7057512" id="japan" style="background-size:cover; color:#FFFFFF; font-size:40px; background-image:url(images/japan.jpeg); background-position:center;" value="JAPAN">
+    <cl:button std:sid="button-e7057512" id="japan" style="background-size:cover; text-shadow:none; color:#FFFFFF; font-size:40px; font-family:AppleSDGothicNeoB00; background-image:url(images/japan.jpeg); background-position:center;" value="JAPAN">
       <cl:responsivexylayoutdata std:sid="rxyl-data-df05cba4">
         <cl:xylayoutdata std:sid="sxyl-data-a60647da" top="650px" right="400px" width="200px" height="210px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
         <cl:xylayoutdata std:sid="sxyl-data-b60f66c4" top="340px" right="490px" width="330px" height="350px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="wide"/>
@@ -43,7 +43,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-ec27aeda" top="713px" right="498px" width="300px" height="310px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:button std:sid="button-2e1106cc" id="vietnam" style="background-size:cover; color:#FFFFFF; font-size:40px; background-image:url(images/vietnam.jpg); background-position:center;" value="VIETNAM">
+    <cl:button std:sid="button-2e1106cc" id="vietnam" style="background-size:cover; text-shadow:none; color:#FFFFFF; font-size:40px; font-family:AppleSDGothicNeoB00; background-image:url(images/vietnam.jpg); background-position:center;" value="VIETNAM">
       <cl:responsivexylayoutdata std:sid="rxyl-data-f1b400f4">
         <cl:xylayoutdata std:sid="sxyl-data-a4915dc7" top="650px" right="150px" width="200px" height="210px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
         <cl:xylayoutdata std:sid="sxyl-data-172f411a" top="340px" right="100px" width="330px" height="350px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="wide"/>
