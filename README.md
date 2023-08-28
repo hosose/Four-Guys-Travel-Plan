@@ -24,7 +24,7 @@
 
 ## ERD
 
-[##_Image|kage@8sxoV/btsscD5r8cx/9CzvdKMDr6WL4PVJHUuU6k/img.png|CDM|1.3|{"originWidth":863,"originHeight":711,"style":"alignCenter","width":767,"height":632}_##]
+![Four-guys-erd](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/93b7f6f9-0909-4287-9693-d303bde81a27)
 
 
 ## Use Case Diagram
