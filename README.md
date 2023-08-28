@@ -26,6 +26,12 @@
 
 [##_Image|kage@8sxoV/btsscD5r8cx/9CzvdKMDr6WL4PVJHUuU6k/img.png|CDM|1.3|{"originWidth":863,"originHeight":711,"style":"alignCenter","width":767,"height":632}_##]
 
+
+## Use Case Diagram
+
+![Four-guys-use-case-diagram](https://github.com/hosose/Four-Guys-Travel-Plan/assets/112751572/59ca4453-1e92-470f-85ea-90b298e43db1)
+
+
 ## ✏️ 구현기능
 
 -   메인 홈페이지
