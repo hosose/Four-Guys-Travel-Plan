@@ -163,6 +163,6 @@
 			}
 		}
 	});
-	app.title = "INDEX";
+	app.title = "FourGuys";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

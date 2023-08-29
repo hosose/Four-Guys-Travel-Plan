@@ -32,7 +32,7 @@
   </head>
   <body std:sid="body-4b04b2c9" style="top:0px; left:0px; width:800px; height:600px;" class="cl-form-group">
     <cl:listener std:sid="listener-6cc5c582" name="load" handler="onBodyLoad"/>
-    <cl:button std:sid="button-6f1f615e" id="createBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoB00; background-image:none; font-style:normal; border-top-style:none;" value="플래너 만들기">
+    <cl:button std:sid="button-6f1f615e" id="createBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoB00; background-image:none; font-style:normal; border-top-style:none;" value="플래너 만들기">
       <cl:listener std:sid="listener-7815f637" name="click" handler="onCreateBtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-d2cf1afa" bottom="50px" left="200px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
     </cl:button>

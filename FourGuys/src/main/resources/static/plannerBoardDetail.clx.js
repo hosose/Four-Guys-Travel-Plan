@@ -97,6 +97,7 @@
 				var createrId = app.lookup("boardDetail").getRow(0).getValue("id");
 				app.lookup("plannerNoDM").setValue("plannerNo", plannerNo);
 				app.lookup("getDay").send();
+				app.lookup("snippet").value = app.lookup("boardDetail").getValue(0, "boardContent");
 				var vo = boardDetailSM.getMetadata("MemberVO");
 				var editBtn = app.lookup("editBtn");
 				var deleteBtn = app.lookup("deleteBtn");
@@ -104,7 +105,6 @@
 					editBtn.visible = true;
 					deleteBtn.visible = true;
 				}
-				app.lookup("snippet").value = app.lookup("boardDetail").getValue(0, "boardContent");
 			}
 
 			/*
@@ -113,7 +113,14 @@
 			 */
 			function onButtonClick3(e) {
 				var button = e.control;
-				app.lookup("insertReplySM").send();
+				var MemberVO = app.lookup("MemberVO").getValue("id");
+				if(MemberVO == null||MemberVO == ""){
+					alert("댓글 등록 할려면 로그인 해 주세요.");
+					location.href="/loginForm";
+				}else{
+					app.lookup("insertReplySM").send();
+				}
+				
 			}
 
 			/*
@@ -186,7 +193,7 @@
 				var deleteBoardSM = e.control;
 				alert("삭제되었습니다");
 				location.href = "planner-board-list.clx";
-			}
+			};
 			// End - User Script
 			
 			// Header
@@ -373,6 +380,9 @@
 			submission_2.action = "getDay";
 			submission_2.addRequestData(dataMap_2);
 			submission_2.addResponseData(dataSet_2, false);
+			if(typeof onGetDaySubmitSuccess == "function") {
+				submission_2.addEventListener("submit-success", onGetDaySubmitSuccess);
+			}
 			app.register(submission_2);
 			
 			var submission_3 = new cpr.protocols.Submission("getTitle");

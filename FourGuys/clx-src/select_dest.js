@@ -19,7 +19,7 @@ function onJejuClick(e) {
 	}
 	app.openDialog("dest-popup", {
 		width: 600,
-		height: 450
+		height: 400
 	}, function(dialog) {
 		dialog.ready(function(dialogApp) {
 			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
@@ -37,9 +37,8 @@ function onJejuClick(e) {
  */
 function onSeoulClick(e){
 	var seoul = e.control;
-	app.openDialog("alert", {width : 300, height : 160 ,headerVisible: false}, function(dialog){
+	app.openDialog("alert", {width : 300, height : 200 ,headerVisible: false, modal: true}, function(dialog){
 		dialog.ready(function(dialogApp){
-			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
 		});
 	}).then(function(returnValue){
 		;
@@ -52,9 +51,8 @@ function onSeoulClick(e){
  */
 function onJapanClick(e){
 	var japan = e.control;
-	app.openDialog("alert", {width : 400, height : 300 ,headerVisible: false, modal: true}, function(dialog){
+	app.openDialog("alert", {width : 300, height : 200 ,headerVisible: false, modal: true}, function(dialog){
 		dialog.ready(function(dialogApp){
-			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
 		});
 	}).then(function(returnValue){
 		;
@@ -67,9 +65,8 @@ function onJapanClick(e){
  */
 function onVietnamClick(e){
 	var vietnam = e.control;
-	app.openDialog("alert", {width : 400, height : 300 ,headerVisible: false, modal: true}, function(dialog){
+	app.openDialog("alert", {width : 300, height : 200 ,headerVisible: false, modal: true}, function(dialog){
 		dialog.ready(function(dialogApp){
-			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
 		});
 	}).then(function(returnValue){
 		;

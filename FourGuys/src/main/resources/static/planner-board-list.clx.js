@@ -502,6 +502,6 @@
 			}
 		}
 	});
-	app.title = "플래너 게시판 리스트";
+	app.title = "플래너 게시판";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

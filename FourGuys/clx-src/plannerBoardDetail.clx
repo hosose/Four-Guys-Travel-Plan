@@ -93,6 +93,7 @@
         <cl:responsedata dataid="boardDetail"/>
       </cl:submission>
       <cl:submission std:sid="submission-d6b667c2" id="getDay" method="get" action="getDay">
+        <cl:listener std:sid="listener-82c3c18b" name="submit-success" handler="onGetDaySubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:responsedata dataid="planDate"/>
       </cl:submission>

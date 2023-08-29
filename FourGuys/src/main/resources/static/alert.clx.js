@@ -12,20 +12,11 @@
 			var linker = {};
 			// Start - User Script
 			/************************************************
-			 * alert.js
-			 * Created at 2023. 8. 28. 오후 5:28:27.
+			 * ALDT.js
+			 * Created at 2023. 8. 29. 오전 9:46:08.
 			 *
 			 * @author USER
 			 ************************************************/
-
-			/**
-			 * UDC 컨트롤이 그리드의 뷰 모드에서 표시할 텍스트를 반환합니다.
-			 */
-			exports.getText = function(){
-				// TODO: 그리드의 뷰 모드에서 표시할 텍스트를 반환하는 하는 코드를 작성해야 합니다.
-				return "";
-			};
-
 			/*
 			 * "닫기" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -37,17 +28,13 @@
 			// End - User Script
 			
 			// Header
-			app.supportMedia("all and (min-width: 1024px)", "default");
-			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
-			app.supportMedia("all and (max-width: 499px)", "mobile");
+			app.supportMedia("all", "new-screen");
 			
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
 				"width" : "100%",
-				"top" : "0px",
-				"height" : "100%",
-				"left" : "0px"
+				"height" : "100%"
 			});
 			
 			// Layout
@@ -63,6 +50,7 @@
 				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"border-left-style" : "none",
+				"font-size" : "25px",
 				"font-family" : "@AppleSDGothicNeoB00",
 				"border-bottom-style" : "none",
 				"background-image" : "none",
@@ -72,27 +60,28 @@
 				button_1.addEventListener("click", onButtonClick);
 			}
 			container.addChild(button_1, {
-				"top": "125px",
-				"left": "20px",
-				"width": "250px",
-				"height": "20px"
+				"top": "130px",
+				"right": "30px",
+				"bottom": "20px",
+				"left": "30px"
 			});
 			
 			var output_1 = new cpr.controls.Output();
 			output_1.value = "공사중입니다.";
 			output_1.style.css({
+				"color" : "#000000",
 				"font-size" : "25px",
 				"font-family" : "AppleSDGothicNeoB00",
 				"text-align" : "center"
 			});
 			container.addChild(output_1, {
-				"top": "20px",
-				"right": "754px",
-				"left": "20px",
-				"height": "95px"
+				"top": "30px",
+				"right": "30px",
+				"bottom": "90px",
+				"left": "30px"
 			});
 		}
 	});
-	app.title = "다른지역 막기";
+	app.title = "alert";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

@@ -85,10 +85,10 @@
 				button_1.addEventListener("click", onButtonClick);
 			}
 			container.addChild(button_1, {
-				"bottom": "50px",
-				"left": "50px",
-				"width": "155px",
-				"height": "25px"
+				"right": "10px",
+				"bottom": "10px",
+				"left": "10px",
+				"height": "50px"
 			});
 			
 			var image_1 = new cpr.controls.Image();

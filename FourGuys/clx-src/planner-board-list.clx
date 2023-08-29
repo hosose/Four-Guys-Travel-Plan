@@ -38,7 +38,7 @@
         <cl:responsedata dataid="plannerBoardList2"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec title="플래너 게시판 리스트"/>
+    <cl:appspec title="플래너 게시판"/>
   </head>
   <body std:sid="body-3afb49c3">
     <cl:listener std:sid="listener-35ed72b9" name="load" handler="onBodyLoad"/>
