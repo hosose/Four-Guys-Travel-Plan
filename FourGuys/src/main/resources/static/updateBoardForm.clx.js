@@ -339,60 +339,116 @@
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
+			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
+			container.setLayout(verticalLayout_1);
 			
 			// UI Configuration
-			var userDefinedControl_1 = new udc.logo();
-			container.addChild(userDefinedControl_1, {
-				"top": "10px",
-				"left": "10px",
-				"width": "196px",
-				"height": "77px"
-			});
-			
-			var userDefinedControl_2 = new udc.header_nav();
-			container.addChild(userDefinedControl_2, {
-				"top": "10px",
-				"right": "20px",
-				"width": "623px",
-				"height": "77px"
-			});
-			
 			var group_1 = new cpr.controls.Container();
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			group_1.setLayout(responsiveXYLayout_1);
+			(function(container){
+				var userDefinedControl_1 = new udc.logo();
+				container.addChild(userDefinedControl_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"left": "0px",
+							"width": "300px",
+							"height": "77px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"left": "0px",
+							"width": "146px",
+							"height": "77px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"left": "0px",
+							"width": "103px",
+							"height": "77px"
+						}
+					]
+				});
+				var userDefinedControl_2 = new udc.header_nav();
+				container.addChild(userDefinedControl_2, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"right": "10px",
+							"width": "600px",
+							"height": "77px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"right": "5px",
+							"width": "293px",
+							"height": "77px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"right": "3px",
+							"width": "205px",
+							"height": "77px"
+						}
+					]
+				});
+				var output_1 = new cpr.controls.Output("lblVal");
+				output_1.visible = false;
+				output_1.bind("value").toDataSet(app.lookup("boardDetail"), "boardContent", 0);
+				container.addChild(output_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "8px",
+							"left": "364px",
+							"width": "10px",
+							"height": "10px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "8px",
+							"left": "178px",
+							"width": "5px",
+							"height": "10px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "8px",
+							"left": "124px",
+							"width": "3px",
+							"height": "10px"
+						}
+					]
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				"autoSize": "none",
+				"width": "1024px",
+				"height": "77px"
+			});
+			
+			var group_2 = new cpr.controls.Container();
 			var formLayout_1 = new cpr.controls.layouts.FormLayout();
 			formLayout_1.scrollable = false;
-			formLayout_1.topMargin = "0px";
+			formLayout_1.topMargin = "10px";
 			formLayout_1.rightMargin = "0px";
 			formLayout_1.bottomMargin = "0px";
 			formLayout_1.leftMargin = "0px";
 			formLayout_1.horizontalSpacing = "0px";
 			formLayout_1.verticalSpacing = "0px";
 			formLayout_1.setColumns(["120px", "1fr"]);
-			formLayout_1.setRows(["75px", "200px", "1fr"]);
-			group_1.setLayout(formLayout_1);
+			formLayout_1.setRows(["75px", "200px"]);
+			group_2.setLayout(formLayout_1);
 			(function(container){
-				var output_1 = new cpr.controls.Output("titleOutput");
-				output_1.value = "제목";
-				output_1.style.css({
-					"border-right-style" : "solid",
-					"border-radius" : "5px",
-					"border-left-style" : "solid",
-					"font-size" : "25px",
-					"border-bottom-style" : "solid",
-					"font-family" : "AppleSDGothicNeoB00",
-					"border-top-style" : "solid",
-					"text-align" : "center"
-				});
-				container.addChild(output_1, {
-					"colIndex": 0,
-					"rowIndex": 0,
-					"colSpan": 1,
-					"rowSpan": 1,
-					"bottomSpacing": 5
-				});
-				var output_2 = new cpr.controls.Output("contentOutput");
-				output_2.value = "내용";
+				var output_2 = new cpr.controls.Output("titleOutput");
+				output_2.value = "제목";
 				output_2.style.css({
 					"border-right-style" : "solid",
 					"border-radius" : "5px",
@@ -405,8 +461,8 @@
 				});
 				container.addChild(output_2, {
 					"colIndex": 0,
-					"rowIndex": 2,
-					"topSpacing": 5
+					"rowIndex": 0,
+					"bottomSpacing": 5
 				});
 				var grid_1 = new cpr.controls.Grid("placeGrd");
 				grid_1.init({
@@ -454,11 +510,14 @@
 				container.addChild(grid_1, {
 					"colIndex": 1,
 					"rowIndex": 1,
+					"colSpan": 1,
+					"rowSpan": 1,
 					"leftSpacing": 2
 				});
 				var grid_2 = new cpr.controls.Grid("boardTitle");
 				grid_2.init({
 					"dataSet": app.lookup("boardDetail"),
+					"clickMode": "edit",
 					"columns": [{"width": "100px"}],
 					"detail": {
 						"rows": [{"height": "70px"}],
@@ -471,6 +530,14 @@
 								});
 								cell.control = (function(){
 									var inputBox_1 = new cpr.controls.InputBox("ipb1");
+									inputBox_1.style.css({
+										"border-right-style" : "none",
+										"border-left-style" : "none",
+										"font-family" : "AppleSDGothicNeoB00",
+										"border-bottom-style" : "none",
+										"border-top-style" : "none",
+										"text-align" : "center"
+									});
 									inputBox_1.bind("value").toDataColumn("boardTitle");
 									return inputBox_1;
 								})();
@@ -480,22 +547,17 @@
 					}
 				});
 				grid_2.style.css({
+					"border-right-style" : "none",
+					"border-left-style" : "none",
 					"font-size" : "30px",
 					"font-family" : "AppleSDGothicNeoB00",
+					"border-bottom-style" : "none",
+					"border-top-style" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(grid_2, {
 					"colIndex": 1,
 					"rowIndex": 0
-				});
-				var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
-				embeddedPage_1.src = "thirdparty/smarteditor/SmartEditor2.html";
-				if(typeof onEp1Load2 == "function") {
-					embeddedPage_1.addEventListener("load", onEp1Load2);
-				}
-				container.addChild(embeddedPage_1, {
-					"colIndex": 1,
-					"rowIndex": 2
 				});
 				var grid_3 = new cpr.controls.Grid("dayGrd");
 				grid_3.init({
@@ -547,59 +609,75 @@
 					"colIndex": 0,
 					"rowIndex": 1
 				});
-			})(group_1);
-			container.addChild(group_1, {
-				"top": "158px",
-				"bottom": "100px",
+			})(group_2);
+			container.addChild(group_2, {
+				"autoSize": "none",
 				"width": "1000px",
-				"left": "calc(50% - 500px)"
+				"height": "285px"
 			});
 			
-			var button_1 = new cpr.controls.Button("selectBtn");
-			button_1.value = "수정";
-			button_1.style.css({
-				"background-color" : "#98dde3",
-				"border-right-style" : "none",
-				"background-repeat" : "no-repeat",
-				"color" : "#FFFFFF",
-				"border-left-style" : "none",
-				"font-size" : "25px",
-				"border-bottom-style" : "none",
-				"background-image" : "none",
-				"font-style" : "normal",
-				"border-top-style" : "none"
-			});
-			if(typeof onSelectBtnClick == "function") {
-				button_1.addEventListener("click", onSelectBtnClick);
+			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
+			embeddedPage_1.src = "thirdparty/smarteditor/SmartEditor2.html";
+			if(typeof onEp1Load2 == "function") {
+				embeddedPage_1.addEventListener("load", onEp1Load2);
 			}
-			container.addChild(button_1, {
-				"bottom": "30px",
-				"width": "200px",
-				"height": "60px",
-				"left": "calc(50% - 100px)"
+			container.addChild(embeddedPage_1, {
+				"autoSize": "height",
+				"width": "904px",
+				"height": "420px",
+				"minHeight": 420
 			});
 			
-			var button_2 = new cpr.controls.Button("PasteBtn");
-			button_2.visible = false;
-			button_2.value = "Button";
-			if(typeof onPasteBtnClick == "function") {
-				button_2.addEventListener("click", onPasteBtnClick);
-			}
-			container.addChild(button_2, {
-				"top": "66px",
-				"left": "237px",
-				"width": "10px",
-				"height": "10px"
-			});
-			
-			var output_3 = new cpr.controls.Output("lblVal");
-			output_3.visible = false;
-			output_3.bind("value").toDataSet(app.lookup("boardDetail"), "boardContent", 0);
-			container.addChild(output_3, {
-				"top": "86px",
-				"left": "257px",
-				"width": "10px",
-				"height": "10px"
+			var group_3 = new cpr.controls.Container();
+			var responsiveXYLayout_2 = new cpr.controls.layouts.ResponsiveXYLayout();
+			group_3.setLayout(responsiveXYLayout_2);
+			(function(container){
+				var button_1 = new cpr.controls.Button("selectBtn");
+				button_1.value = "수정";
+				button_1.style.css({
+					"background-color" : "#98dde3",
+					"border-right-style" : "none",
+					"background-repeat" : "no-repeat",
+					"color" : "#FFFFFF",
+					"border-left-style" : "none",
+					"font-size" : "25px",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"font-style" : "normal",
+					"border-top-style" : "none"
+				});
+				if(typeof onSelectBtnClick == "function") {
+					button_1.addEventListener("click", onSelectBtnClick);
+				}
+				container.addChild(button_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"width": "400px",
+							"height": "60px",
+							"left": "calc(50% - 200px)"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"width": "195px",
+							"height": "60px",
+							"left": "calc(50% - 97px)"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"width": "137px",
+							"height": "60px",
+							"left": "calc(50% - 68px)"
+						}
+					]
+				});
+			})(group_3);
+			container.addChild(group_3, {
+				"width": "1024px",
+				"height": "60px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

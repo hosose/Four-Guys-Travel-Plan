@@ -106,23 +106,34 @@
   </head>
   <body std:sid="body-d33f96c1">
     <cl:listener std:sid="listener-904fd8c5" name="load" handler="onBodyLoad"/>
-    <cl:udc std:sid="ud-control-8db052b7" type="udc.logo">
-      <cl:xylayoutdata std:sid="xyl-data-596801aa" top="10px" left="10px" width="196px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:udc>
-    <cl:udc std:sid="ud-control-97b1121b" type="udc.header_nav">
-      <cl:xylayoutdata std:sid="xyl-data-3f71cc91" top="10px" right="20px" width="623px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
-    </cl:udc>
-    <cl:group std:sid="group-c106376f">
-      <cl:xylayoutdata std:sid="xyl-data-2f88e00e" top="158px" bottom="100px" width="1000px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
-      <cl:output std:sid="output-1b096b81" id="titleOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid; text-align:center;" value="제목">
-        <cl:formdata std:sid="f-data-8a016bda" bottomSpacing="5" row="0" col="0" rowspan="1" colspan="1"/>
+    <cl:group std:sid="group-0b40271a">
+      <cl:verticaldata std:sid="v-data-5a3da35f" width="1024px" height="77px" syncminwidth="true" syncminheight="true" autosize="none"/>
+      <cl:udc std:sid="ud-control-8db052b7" type="udc.logo">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-cbb2ed96">
+          <cl:xylayoutdata std:sid="sxyl-data-a296fe97" top="0px" left="0px" width="300px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:udc>
+      <cl:udc std:sid="ud-control-97b1121b" type="udc.header_nav">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-21b13d26">
+          <cl:xylayoutdata std:sid="sxyl-data-a8c55c92" top="0px" right="10px" width="600px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:udc>
+      <cl:output std:sid="output-c9678d8c" id="lblVal" visible="false">
+        <cl:datasetbind property="value" category="PROPERTY" datacontrolid="boardDetail" columnname="boardContent"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-f60d8bce">
+          <cl:xylayoutdata std:sid="sxyl-data-e3dbad81" top="8px" left="364px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
       </cl:output>
-      <cl:output std:sid="output-aa161d45" id="contentOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid; text-align:center;" value="내용">
-        <cl:formdata std:sid="f-data-26fdaeb7" topSpacing="5" row="2" col="0"/>
+      <cl:responsivexylayout std:sid="r-xylayout-0cebe04b"/>
+    </cl:group>
+    <cl:group std:sid="group-c106376f">
+      <cl:verticaldata std:sid="v-data-f96e66ca" width="1000px" height="285px" syncminheight="true" autosize="none"/>
+      <cl:output std:sid="output-1b096b81" id="titleOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid; text-align:center;" value="제목">
+        <cl:formdata std:sid="f-data-11b7c0ea" bottomSpacing="5" row="0" col="0"/>
       </cl:output>
       <cl:grid std:sid="grid-b5555db0" id="placeGrd" style="border-right-style:solid; border-radius:5px; border-left-style:solid; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid;" datasetid="selectedPlan">
         <cl:relativebind property="readOnly" columnname="title"/>
-        <cl:formdata std:sid="f-data-1e836188" leftSpacing="2" row="1" col="1"/>
+        <cl:formdata std:sid="f-data-bb59c0f6" leftSpacing="2" row="1" col="1" rowspan="1" colspan="1"/>
         <cl:gridcolumn std:sid="g-column-bfe52550"/>
         <cl:gridheader std:sid="gh-band-f0066996">
           <cl:gridrow std:sid="g-row-cd71b6ce" height="45px"/>
@@ -133,22 +144,18 @@
           <cl:gridcell std:sid="gd-cell-26ab244d" rowindex="0" colindex="0" columnname="title"/>
         </cl:griddetail>
       </cl:grid>
-      <cl:grid std:sid="grid-4b2f4cfd" id="boardTitle" style="font-size:30px; font-family:AppleSDGothicNeoB00; text-align:center;" datasetid="boardDetail">
-        <cl:formdata std:sid="f-data-5252857e" row="0" col="1"/>
+      <cl:grid std:sid="grid-4b2f4cfd" id="boardTitle" style="border-right-style:none; border-left-style:none; font-size:30px; font-family:AppleSDGothicNeoB00; border-bottom-style:none; border-top-style:none; text-align:center;" datasetid="boardDetail" clickmode="edit">
+        <cl:formdata std:sid="f-data-9cd4d7d6" row="0" col="1"/>
         <cl:gridcolumn std:sid="g-column-7a70e2b1"/>
         <cl:griddetail std:sid="gd-band-212942c7">
           <cl:gridrow std:sid="g-row-56710d78" height="70px"/>
           <cl:gridcell std:sid="gd-cell-0c2a121a" rowindex="0" colindex="0" style="font-size:35px;" columnname="boardTitle">
-            <cl:inputbox std:sid="i-box-421cb0af" id="ipb1">
+            <cl:inputbox std:sid="i-box-421cb0af" id="ipb1" style="border-right-style:none; border-left-style:none; font-family:AppleSDGothicNeoB00; border-bottom-style:none; border-top-style:none; text-align:center;">
               <cl:celldata std:sid="c-data-710c3044"/>
             </cl:inputbox>
           </cl:gridcell>
         </cl:griddetail>
       </cl:grid>
-      <cl:embeddedpage std:sid="e-page-cc66bfb7" id="ep1" src="thirdparty/smarteditor/SmartEditor2.html">
-        <cl:listener std:sid="listener-d23da09a" name="load" handler="onEp1Load2"/>
-        <cl:formdata std:sid="f-data-1bde33d1" row="2" col="1"/>
-      </cl:embeddedpage>
       <cl:grid std:sid="grid-815196f0" id="dayGrd" style="border-right-style:solid; border-radius:5px; font-weight:bolder; border-left-style:solid; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid;" datasetid="planDate">
         <cl:listener std:sid="listener-8b1cd717" name="cell-click" handler="onDayGrdCellClick"/>
         <cl:formdata std:sid="f-data-7ee6e902" row="1" col="0"/>
@@ -162,27 +169,28 @@
           <cl:gridcell std:sid="gd-cell-1aca0de3" rowindex="0" colindex="0" columnname="planDate"/>
         </cl:griddetail>
       </cl:grid>
-      <cl:formlayout std:sid="f-layout-4b7e1278" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
+      <cl:formlayout std:sid="f-layout-4b7e1278" scrollable="false" hspace="0px" vspace="0px" top-margin="10px" right-margin="0px" bottom-margin="0px" left-margin="0px">
         <cl:rows length="75" unit="PIXEL"/>
         <cl:rows length="200" unit="PIXEL" autoSizing="false" syncminlength="false"/>
-        <cl:rows length="1" unit="FRACTION"/>
         <cl:columns length="120" unit="PIXEL"/>
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:button std:sid="button-6f1f615e" id="selectBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:25px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="수정">
-      <cl:listener std:sid="listener-eced33cf" name="click" handler="onSelectBtnClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-4024c71d" bottom="30px" width="200px" height="60px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM"/>
-    </cl:button>
-    <cl:button std:sid="button-cf546080" id="PasteBtn" visible="false" value="Button">
-      <cl:listener std:sid="listener-92f1dace" name="click" handler="onPasteBtnClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-c84a7a1c" top="66px" left="237px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
-    <cl:output std:sid="output-c9678d8c" id="lblVal" visible="false">
-      <cl:datasetbind property="value" category="PROPERTY" datacontrolid="boardDetail" columnname="boardContent"/>
-      <cl:xylayoutdata std:sid="xyl-data-e17a06b8" top="86px" left="257px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
-    <cl:xylayout std:sid="xylayout-ee9778a0"/>
+    <cl:embeddedpage std:sid="e-page-cc66bfb7" id="ep1" src="thirdparty/smarteditor/SmartEditor2.html">
+      <cl:listener std:sid="listener-d23da09a" name="load" handler="onEp1Load2"/>
+      <cl:verticaldata std:sid="v-data-9eefe047" width="904px" height="420px" syncminheight="true" autosize="height"/>
+    </cl:embeddedpage>
+    <cl:group std:sid="group-e337c007">
+      <cl:verticaldata std:sid="v-data-f9f55b8f" width="1024px" height="60px"/>
+      <cl:button std:sid="button-6f1f615e" id="selectBtn" style="background-color:#98dde3; border-right-style:none; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:25px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="수정">
+        <cl:listener std:sid="listener-eced33cf" name="click" handler="onSelectBtnClick"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-b793a74a">
+          <cl:xylayoutdata std:sid="sxyl-data-d53204d7" top="0px" width="400px" height="60px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:responsivexylayout std:sid="r-xylayout-c1c8a0d3"/>
+    </cl:group>
+    <cl:verticallayout std:sid="v-layout-810edb5b"/>
   </body>
   <std:studiosetting>
     <std:hruler/>

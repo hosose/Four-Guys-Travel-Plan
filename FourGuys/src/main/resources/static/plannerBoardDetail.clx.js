@@ -496,23 +496,23 @@
 						{
 							"media": "all and (min-width: 1024px)",
 							"top": "0px",
-							"width": "967px",
-							"height": "58px",
-							"left": "calc(50% - 483px)"
+							"right": "10px",
+							"left": "10px",
+							"height": "58px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "0px",
-							"width": "472px",
-							"height": "58px",
-							"left": "calc(50% - 236px)"
+							"right": "5px",
+							"left": "5px",
+							"height": "58px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "0px",
-							"width": "331px",
-							"height": "58px",
-							"left": "calc(50% - 165px)"
+							"right": "3px",
+							"left": "3px",
+							"height": "58px"
 						}
 					]
 				});
@@ -635,24 +635,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "38px",
-							"right": "0px",
+							"top": "63px",
+							"right": "20px",
 							"width": "56px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "38px",
-							"right": "0px",
+							"top": "63px",
+							"right": "10px",
 							"width": "27px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "38px",
-							"right": "0px",
+							"top": "63px",
+							"right": "7px",
 							"width": "19px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
@@ -805,24 +805,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "0px",
-							"right": "0px",
+							"top": "63px",
+							"right": "86px",
 							"width": "58px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "0px",
-							"right": "0px",
+							"top": "63px",
+							"right": "42px",
 							"width": "28px",
-							"height": "20px"
+							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "0px",
-							"right": "0px",
+							"top": "63px",
+							"right": "29px",
 							"width": "20px",
-							"height": "20px"
+							"height": "30px"
 						}
 					]
 				});
