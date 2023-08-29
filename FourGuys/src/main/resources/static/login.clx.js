@@ -240,7 +240,7 @@
 					"rowSpan": 1
 				});
 				var output_1 = new cpr.controls.Output();
-				output_1.value = "이메일";
+				output_1.value = "아이디";
 				output_1.style.css({
 					"color" : "#AAAAAA",
 					"font-size" : "18px"

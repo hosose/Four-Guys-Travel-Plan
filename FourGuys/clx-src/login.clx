@@ -41,7 +41,7 @@
         <cl:listener std:sid="listener-71f7cd62" name="click" handler="onRegisterClick2"/>
         <cl:formdata std:sid="f-data-00467c00" row="7" col="0" rowspan="1" colspan="2"/>
       </cl:button>
-      <cl:output std:sid="output-2194fdf3" style="color:#AAAAAA; font-size:18px;" value="이메일">
+      <cl:output std:sid="output-2194fdf3" style="color:#AAAAAA; font-size:18px;" value="아이디">
         <cl:formdata std:sid="f-data-ba676eb9" row="1" col="0" rowspan="1" colspan="1"/>
       </cl:output>
       <cl:output std:sid="output-62e5110a" style="color:#AAAAAA; font-size:18px;" value="비밀번호">

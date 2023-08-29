@@ -12,26 +12,8 @@ INSERT INTO jeju_area VALUES (#{contentid},#{mapx},#{mapy},#{cat1},#{cat2},#{cat
 			<if test="title!=null and title!=''">
 			 title like '%' || #{title} || '%'
 			</if>
-			<if test="cat1=='A01'">
-				and "cat1" = 'A01'
-			</if>
-			<if test="cat1=='A02'">
-				and "cat1" = 'A02'
-			</if>
-			<if test="cat1=='A03'">
-				and "cat1" = 'A03'
-			</if>
-			<if test="cat1=='A04'">
-				and "cat1" = 'A04'
-			</if>
-			<if test="cat1=='A05'">
-				and "cat1" = 'A05'
-			</if>
-			<if test="cat1=='B02'">
-				and "cat1" = 'B02'
-			</if>
-			<if test="cat1=='C01'">
-				and "cat1" = 'C01'
+			<if test="cat1!=null and cat1!=''">
+				and "cat1" = #{cat1}
 			</if>
 	</where>
 </select>
