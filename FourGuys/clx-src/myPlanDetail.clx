@@ -142,7 +142,7 @@
         <cl:responsedata dataid="plannerDetail"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="내플랜상세보기"/>
   </head>
   <body std:sid="body-de831e9d">
     <cl:listener std:sid="listener-c4c1ed67" name="load" handler="onBodyLoad"/>
@@ -152,7 +152,7 @@
     <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" style="border-right-style:none; border-bottom-color:#ffffff; border-left-style:none; border-left-color:#ffffff; border-top-color:#ffffff; border-bottom-style:none; border-right-color:#ffffff; border-top-style:none;" src="thirdparty/maps/kakaoMapAPI.html">
       <cl:xylayoutdata std:sid="xyl-data-28a8e457" top="89px" right="10px" bottom="10px" left="659px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
     </cl:embeddedpage>
-    <cl:grid std:sid="grid-cccde53f" id="dayGrd" datasetid="planDate">
+    <cl:grid std:sid="grid-cccde53f" id="dayGrd" style="font-family:AppleSDGothicNeoB00;" datasetid="planDate">
       <cl:listener std:sid="listener-9cf5eca9" name="cell-click" handler="onGrd3CellClick"/>
       <cl:xylayoutdata std:sid="xyl-data-d6a374d8" top="117px" bottom="10px" left="10px" width="170px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
       <cl:gridcolumn std:sid="g-column-09c7aeb8"/>
@@ -165,7 +165,7 @@
         <cl:gridcell std:sid="gd-cell-3333db54" rowindex="0" colindex="0" style="font-weight:normal;" columnname="planDate"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-7187e12f" id="selectedContentGrd" datasetid="selectedPlan">
+    <cl:grid std:sid="grid-7187e12f" id="selectedContentGrd" style="font-family:AppleSDGothicNeoB00;" datasetid="selectedPlan">
       <cl:listener std:sid="listener-ab175514" name="click" handler="onGrd4Click"/>
       <cl:xylayoutdata std:sid="xyl-data-2b706f83" top="117px" bottom="10px" left="190px" width="204px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
       <cl:gridcolumn std:sid="g-column-9bfcafe4"/>
@@ -180,7 +180,7 @@
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-1afb50d3" id="contentGrd" style="font-weight:bolder;" datasetid="jeju">
+    <cl:grid std:sid="grid-1afb50d3" id="contentGrd" style="font-weight:bolder; font-family:AppleSDGothicNeoB00;" datasetid="jeju">
       <cl:listener std:sid="listener-ecc5c8b0" name="click" handler="onGrd2Click"/>
       <cl:listener std:sid="listener-78676b99" name="row-check" handler="onGrd2RowCheck"/>
       <cl:listener std:sid="listener-b1a08f44" name="row-uncheck" handler="onGrd2RowUncheck"/>
@@ -198,12 +198,12 @@
         <cl:gridcell std:sid="gd-cell-798f542a" rowindex="0" colindex="1" style="font-weight:normal;" columnname="title"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:inputbox std:sid="i-box-dde342b5" id="titleSearch" style="border-right-style:solid; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid; text-align:center;" placeholder="지역 검색">
+    <cl:inputbox std:sid="i-box-dde342b5" id="titleSearch" style="border-right-style:solid; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; font-family:AppleSDGothicNeoB00; border-top-style:solid; text-align:center;" placeholder="지역 검색">
       <cl:datamapbind property="value" category="PROPERTY" datacontrolid="areaSearch" columnname="title"/>
       <cl:datamapcontext datacontrolid="areaSearch"/>
       <cl:xylayoutdata std:sid="xyl-data-44bdcf32" top="77px" left="190px" width="355px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:button std:sid="button-a998ad15" id="searchbtn" style="background-color:#98dde3; background-repeat:no-repeat; color:#FFFFFF; font-size:15px; background-image:none;" value="검색">
+    <cl:button std:sid="button-a998ad15" id="searchbtn" style="background-color:#98dde3; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; font-size:15px; font-family:AppleSDGothicNeoB00; background-image:none;" value="검색">
       <cl:listener std:sid="listener-7cc17f10" name="click" handler="onSearchbtnClick"/>
       <cl:xylayoutdata std:sid="xyl-data-f4de444a" top="77px" left="549px" width="100px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
@@ -215,7 +215,7 @@
       <cl:listener std:sid="listener-a187e7e2" name="click" handler="onButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-1442c6b5" top="8px" right="137px" width="100px" height="70px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:combobox std:sid="c-box-099b73f5" id="categoryCmb">
+    <cl:combobox std:sid="c-box-099b73f5" id="categoryCmb" style="font-family:AppleSDGothicNeoB00;">
       <cl:listener std:sid="listener-2a59ab5b" name="selection-change" handler="onCategoryCmbSelectionChange"/>
       <cl:datamapbind property="value" datacontrolid="areaSearch" columnname="cat1"/>
       <cl:xylayoutdata std:sid="xyl-data-a92c1239" top="117px" left="404px" width="245px" height="28px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

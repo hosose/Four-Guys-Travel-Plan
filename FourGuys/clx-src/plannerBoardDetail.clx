@@ -93,6 +93,7 @@
         <cl:responsedata dataid="boardDetail"/>
       </cl:submission>
       <cl:submission std:sid="submission-d6b667c2" id="getDay" method="get" action="getDay">
+        <cl:listener std:sid="listener-82c3c18b" name="submit-success" handler="onGetDaySubmitSuccess"/>
         <cl:requestdata dataid="plannerNoDM"/>
         <cl:responsedata dataid="planDate"/>
       </cl:submission>
@@ -135,72 +136,121 @@
         <cl:requestdata dataid="boardReply"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="플랜 게시판 상세보기"/>
   </head>
   <body std:sid="body-de831e9d">
     <cl:listener std:sid="listener-c4c1ed67" name="load" handler="onBodyLoad"/>
     <cl:udc std:sid="ud-control-6dbfc96f" type="udc.logo">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-e2467989">
-        <cl:xylayoutdata std:sid="sxyl-data-0fdb9adb" top="20px" left="20px" width="299px" height="70px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
+      <cl:verticaldata std:sid="v-data-6578a5a0" width="239px" height="70px"/>
     </cl:udc>
-    <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html" scrolling="no">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-42aeba20">
-        <cl:xylayoutdata std:sid="sxyl-data-0c2b548c" top="160px" right="200px" left="680px" height="353px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:embeddedpage>
-    <cl:grid std:sid="grid-cccde53f" id="dayGrd" datasetid="planDate">
-      <cl:listener std:sid="listener-9cf5eca9" name="cell-click" handler="onGrd3CellClick"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-053c234e">
-        <cl:xylayoutdata std:sid="sxyl-data-a500d52a" top="160px" left="200px" width="200px" height="353px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-      <cl:gridcolumn std:sid="g-column-09c7aeb8"/>
-      <cl:gridheader std:sid="gh-band-91667f1f">
-        <cl:gridrow std:sid="g-row-9713d813"/>
-        <cl:gridcell std:sid="gh-cell-a07f605b" rowindex="0" colindex="0" style="background-color:#FFFFFF; color:#2DCEB9; font-weight:bolder;" targetcolumnname="planDate" sortable="false" filterable="false" text="DAY"/>
-      </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-f201f12d">
-        <cl:gridrow std:sid="g-row-40f87f23"/>
-        <cl:gridcell std:sid="gd-cell-3333db54" rowindex="0" colindex="0" columnname="planDate">
-          <cl:datamapbind property="fieldLabel" category="PROPERTY" datacontrolid="planDM" columnname="planDate"/>
-        </cl:gridcell>
-      </cl:griddetail>
-    </cl:grid>
-    <cl:grid std:sid="grid-7187e12f" id="selectedContentGrd" datasetid="selectedPlan">
-      <cl:listener std:sid="listener-ab175514" name="click" handler="onGrd4Click"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-bc7d69ab">
-        <cl:xylayoutdata std:sid="sxyl-data-c16f3225" top="160px" left="440px" width="200px" height="353px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-      <cl:gridcolumn std:sid="g-column-9bfcafe4"/>
-      <cl:gridheader std:sid="gh-band-4ef620f9">
-        <cl:gridrow std:sid="g-row-9e749704"/>
-        <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="관광지 목록"/>
-      </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-0ea6d39f">
-        <cl:gridrow std:sid="g-row-e287c25a"/>
-        <cl:gridcell std:sid="gd-cell-02944f9e" rowindex="0" colindex="0" columnname="title">
-          <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="selectedPlan" columnname="title"/>
-        </cl:gridcell>
-      </cl:griddetail>
-    </cl:grid>
-    <cl:button std:sid="button-f742fcec" id="deleteBtn" style="background-color:#98dde3; border-radius:5px; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-family:AppleSDGothicNeoEB00; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value="삭제">
-      <cl:listener std:sid="listener-77cd6713" name="click" handler="onButtonClick2"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-97725089">
-        <cl:xylayoutdata std:sid="sxyl-data-4612779f" top="40px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:button>
-    <cl:button std:sid="button-dc31c6e3" id="editBtn" style="background-color:#98dde3; border-radius:5px; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-family:AppleSDGothicNeoEB00; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value="수정">
-      <cl:listener std:sid="listener-b5d97c71" name="click" handler="onButtonClick"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-c5f469d0">
-        <cl:xylayoutdata std:sid="sxyl-data-e010000b" top="8px" right="10px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:button>
-    <cl:group std:sid="group-834dd170">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-4a17ed19">
-        <cl:xylayoutdata std:sid="sxyl-data-6d7fe829" top="989px" right="200px" left="200px" height="243px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-      <cl:grid std:sid="grid-011a3e31" id="replyGrd" datasetid="boardReply" autorowheight="all" clickmode="edit" resizablecolumns="none">
-        <cl:xylayoutdata std:sid="xyl-data-815b30c7" top="0px" right="0px" left="0px" height="223px" horizontalAnchor="BOTH"/>
+    <cl:group std:sid="group-6d1d0e4a" id="grp2">
+      <cl:verticaldata std:sid="v-data-51a9fa8c" width="1024px" height="489px" autosize="none"/>
+      <cl:output std:sid="output-13acdcba" id="titleOutput" style="font-weight:bolder; font-size:35px; font-family:AppleSDGothicNeoB00; text-align:center;">
+        <cl:datasetbind property="value" datacontrolid="boardDetail" columnname="boardTitle" rowindex="0"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-fad3f693">
+          <cl:xylayoutdata std:sid="sxyl-data-1cf09ece" top="0px" width="967px" height="58px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:output>
+      <cl:output std:sid="output-9c12fd54" id="createDateOutput" style="font-weight:bold; font-size:14px; font-family:AppleSDGothicNeoB00; text-align:left;">
+        <cl:datasetbind property="value" datacontrolid="boardDetail" columnname="boardCreateDate" rowindex="0"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-6ed3840a">
+          <cl:xylayoutdata std:sid="sxyl-data-efa8add6" top="57px" left="358px" width="150px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:output>
+      <cl:grid std:sid="grid-cccde53f" id="dayGrd" style="font-family:AppleSDGothicNeoB00;" datasetid="planDate">
+        <cl:listener std:sid="listener-9cf5eca9" name="cell-click" handler="onGrd3CellClick"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-ff85b518">
+          <cl:xylayoutdata std:sid="sxyl-data-0b0f2e32" top="109px" left="20px" width="120px" height="375px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+        <cl:gridcolumn std:sid="g-column-09c7aeb8"/>
+        <cl:gridheader std:sid="gh-band-91667f1f">
+          <cl:gridrow std:sid="g-row-9713d813"/>
+          <cl:gridcell std:sid="gh-cell-a07f605b" rowindex="0" colindex="0" style="background-color:#FFFFFF; color:#2DCEB9; font-weight:bolder;" targetcolumnname="planDate" sortable="false" filterable="false" text="DAY"/>
+        </cl:gridheader>
+        <cl:griddetail std:sid="gd-band-f201f12d">
+          <cl:gridrow std:sid="g-row-40f87f23"/>
+          <cl:gridcell std:sid="gd-cell-3333db54" rowindex="0" colindex="0" columnname="planDate">
+            <cl:datamapbind property="fieldLabel" category="PROPERTY" datacontrolid="planDM" columnname="planDate"/>
+          </cl:gridcell>
+        </cl:griddetail>
+      </cl:grid>
+      <cl:button std:sid="button-f742fcec" id="deleteBtn" style="background-color:#98dde3; border-radius:5px; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-family:AppleSDGothicNeoEB00; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value="삭제">
+        <cl:listener std:sid="listener-77cd6713" name="click" handler="onButtonClick2"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-fe5cf2ac">
+          <cl:xylayoutdata std:sid="sxyl-data-a69de50f" top="38px" right="0px" width="56px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:output std:sid="output-569903ee" id="idOutput" style="font-weight:bold; font-size:14px; font-family:AppleSDGothicNeoB00; text-align:left;">
+        <cl:datasetbind property="value" datacontrolid="boardDetail" columnname="id" rowindex="0"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-8b9174d5">
+          <cl:xylayoutdata std:sid="sxyl-data-33b285b4" top="57px" left="88px" width="150px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:output>
+      <cl:grid std:sid="grid-7187e12f" id="selectedContentGrd" style="font-family:AppleSDGothicNeoB00;" datasetid="selectedPlan">
+        <cl:listener std:sid="listener-ab175514" name="click" handler="onGrd4Click"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-66bd52aa">
+          <cl:xylayoutdata std:sid="sxyl-data-64146927" top="109px" left="150px" width="150px" height="375px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+        <cl:gridcolumn std:sid="g-column-9bfcafe4"/>
+        <cl:gridheader std:sid="gh-band-4ef620f9">
+          <cl:gridrow std:sid="g-row-9e749704"/>
+          <cl:gridcell std:sid="gh-cell-b4f44ee8" rowindex="0" colindex="0" style="background-color:#FFFFFF; background-repeat:repeat; color:#2DCEB9; font-weight:bolder; background-image:none;" targetcolumnname="title" sortable="false" filterable="false" text="관광지 목록"/>
+        </cl:gridheader>
+        <cl:griddetail std:sid="gd-band-0ea6d39f">
+          <cl:gridrow std:sid="g-row-e287c25a"/>
+          <cl:gridcell std:sid="gd-cell-02944f9e" rowindex="0" colindex="0" columnname="title">
+            <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="selectedPlan" columnname="title"/>
+          </cl:gridcell>
+        </cl:griddetail>
+      </cl:grid>
+      <cl:embeddedpage std:sid="e-page-82e6df57" id="ep1" src="thirdparty/maps/kakaoMapAPI.html" scrolling="no">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-995d3471">
+          <cl:xylayoutdata std:sid="sxyl-data-672c0cd3" top="109px" right="20px" left="310px" height="375px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:embeddedpage>
+      <cl:button std:sid="button-dc31c6e3" id="editBtn" style="background-color:#98dde3; border-radius:5px; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-family:AppleSDGothicNeoEB00; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value="수정">
+        <cl:listener std:sid="listener-b5d97c71" name="click" handler="onButtonClick"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-56bf5d50">
+          <cl:xylayoutdata std:sid="sxyl-data-f59df893" top="0px" right="0px" width="58px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:output std:sid="output-8178837c" style="font-weight:bold; font-size:14px; font-family:AppleSDGothicNeoB00; text-align:right;" value="작성자 : ">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-bfc170ef">
+          <cl:xylayoutdata std:sid="sxyl-data-4c17b56e" top="57px" left="29px" width="60px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:output>
+      <cl:output std:sid="output-b5b92ff8" style="font-weight:bold; font-size:14px; font-family:AppleSDGothicNeoB00; text-align:right;" value="작성일 : ">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-47ec7b03">
+          <cl:xylayoutdata std:sid="sxyl-data-38a368c0" top="57px" left="259px" width="100px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:output>
+      <cl:responsivexylayout std:sid="r-xylayout-b6ae9e56"/>
+    </cl:group>
+    <cl:group std:sid="group-c6ee925d" id="boardContentGrp" style="border-right-style:solid; border-bottom-color:#e1e1e1; border-left-style:solid; border-left-color:#e1e1e1; border-top-color:#e1e1e1; border-bottom-style:solid; border-right-color:#e1e1e1; border-top-style:solid;">
+      <cl:verticaldata std:sid="v-data-9698b59b" width="900px" height="128px" syncminwidth="true" autosize="both"/>
+      <cl:htmlsnippet std:sid="htmlsnippet-f1862d32" id="snippet">
+        <cl:verticaldata std:sid="v-data-3e46f969" width="900px" height="120px" autosize="height"/>
+      </cl:htmlsnippet>
+      <cl:verticallayout std:sid="v-layout-31ab9a73"/>
+    </cl:group>
+    <cl:group std:sid="group-fb1e1639" id="grp3">
+      <cl:verticaldata std:sid="v-data-72b20ff8" width="1024px" height="337px" autosize="none"/>
+      <cl:inputbox std:sid="i-box-51f2a9d1" id="replyContentIpb" style="font-family:AppleSDGothicNeoB00; text-align:left;">
+        <cl:datamapbind property="value" datacontrolid="replyDM" columnname="REPLY_CONTENT"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-6509d378">
+          <cl:xylayoutdata std:sid="sxyl-data-f9dc89d7" top="0px" left="10px" width="860px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:inputbox>
+      <cl:button std:sid="button-4a3b3195" id="replyRegisterBtn" style="background-color:#98dde3; border-right-style:none; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; font-family:AppleSDGothicNeoB00; background-image:none; border-top-style:none;" value="댓글 등록">
+        <cl:listener std:sid="listener-a2064369" name="click" handler="onButtonClick3"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-f96c17d2">
+          <cl:xylayoutdata std:sid="sxyl-data-164fe489" top="0px" left="880px" width="120px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:grid std:sid="grid-011a3e31" id="replyGrd" style="font-family:AppleSDGothicNeoB00;" datasetid="boardReply" autorowheight="all" clickmode="edit" resizablecolumns="none">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-f326c24d">
+          <cl:xylayoutdata std:sid="sxyl-data-0a6bf34a" top="52px" right="0px" left="0px" height="265px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
         <cl:gridcolumn std:sid="g-column-0540b1cf" width="85px" visible="false"/>
         <cl:gridcolumn std:sid="g-column-57b2b23c" width="85px"/>
         <cl:gridcolumn std:sid="g-column-c9ceb7fd" width="395px"/>
@@ -225,7 +275,7 @@
             <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="replyId"/>
           </cl:gridcell>
           <cl:gridcell std:sid="gd-cell-b3c1ae30" rowindex="0" colindex="2" style="border-right-style:none; border-left-style:none;" columnname="replyContent">
-            <cl:inputbox std:sid="i-box-96d086ec" id="ipb2" style="text-align:center;">
+            <cl:inputbox std:sid="i-box-96d086ec" id="ipb2" style="font-family:AppleSDGothicNeoB00; text-align:center;">
               <cl:expbind property="readOnly" category="PROPERTY" expression="replyId != #MemberVO.id ? true : false"/>
               <cl:celldata std:sid="c-data-d57d6acf"/>
             </cl:inputbox>
@@ -235,14 +285,14 @@
             <cl:datasetbind property="fieldLabel" category="PROPERTY" datacontrolid="boardReply" columnname="replyDate"/>
           </cl:gridcell>
           <cl:gridcell std:sid="gd-cell-b7ea2f5a" rowindex="0" colindex="4" style="border-right-style:none; border-radius:50px; background-color:#FFFFFF; border-left-style:none; border-bottom-style:none; background-image:none; border-top-style:none; padding-right:5px;">
-            <cl:button std:sid="button-b5ee1ddc" id="replyEdit" style="background-color:#98dde3; border-radius:50px; color:#FFFFFF; background-image:none;" value="댓글 수정">
+            <cl:button std:sid="button-b5ee1ddc" id="replyEdit" style="background-color:#98dde3; border-radius:50px; text-shadow:none; color:#FFFFFF; background-image:none;" value="댓글 수정">
               <cl:listener std:sid="listener-ada1c257" name="click" handler="onReplyEditClick"/>
               <cl:expbind property="visible" category="PROPERTY" expression="replyId == #MemberVO.id ? true : false"/>
               <cl:celldata std:sid="c-data-fc8e8c62"/>
             </cl:button>
           </cl:gridcell>
           <cl:gridcell std:sid="gd-cell-fc54c13c" rowindex="0" colindex="5" style="border-right-style:none; border-radius:50px; background-color:#FFFFFF; border-left-style:none; border-bottom-style:none; background-image:none; border-top-style:none;">
-            <cl:button std:sid="button-d328c188" id="replyDelete" style="background-color:#98dde3; border-radius:50px; color:#FFFFFF; background-image:none;" value="댓글 삭제">
+            <cl:button std:sid="button-d328c188" id="replyDelete" style="background-color:#98dde3; border-radius:50px; text-shadow:none; color:#FFFFFF; background-image:none;" value="댓글 삭제">
               <cl:listener std:sid="listener-10228fc6" name="click" handler="onButtonClick4"/>
               <cl:expbind property="visible" category="PROPERTY" expression="replyId == #MemberVO.id ? true : false"/>
               <cl:celldata std:sid="c-data-2dc7ebb4"/>
@@ -250,48 +300,9 @@
           </cl:gridcell>
         </cl:griddetail>
       </cl:grid>
-      <cl:xylayout std:sid="xylayout-af702ce7" scrollable="false"/>
+      <cl:responsivexylayout std:sid="r-xylayout-c0173a71"/>
     </cl:group>
-    <cl:inputbox std:sid="i-box-51f2a9d1" id="replyContentIpb" style="text-align:center;">
-      <cl:datamapbind property="value" datacontrolid="replyDM" columnname="REPLY_CONTENT"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-1bd5ae4d">
-        <cl:xylayoutdata std:sid="sxyl-data-9c138a57" top="932px" right="310px" left="200px" height="42px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:inputbox>
-    <cl:button std:sid="button-4a3b3195" id="replyRegisterBtn" style="background-color:#98dde3; border-right-style:none; color:#FFFFFF; border-left-style:none; font-size:18px; border-bottom-style:none; background-image:none; border-top-style:none;" value="댓글 등록">
-      <cl:listener std:sid="listener-a2064369" name="click" handler="onButtonClick3"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-f4e27218">
-        <cl:xylayoutdata std:sid="sxyl-data-bbb88b81" top="932px" right="200px" width="100px" height="42px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:button>
-    <cl:group std:sid="group-c6ee925d" id="boardContentGrp" style="border-right-style:solid; border-bottom-color:#e1e1e1; border-left-style:solid; border-left-color:#e1e1e1; border-top-color:#e1e1e1; border-bottom-style:solid; border-right-color:#e1e1e1; border-top-style:solid;">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-9eb7b050">
-        <cl:xylayoutdata std:sid="sxyl-data-a57b7484" top="523px" right="200px" left="200px" height="399px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-      <cl:htmlsnippet std:sid="htmlsnippet-f1862d32" id="snippet">
-        <cl:verticaldata std:sid="v-data-e1158c9f" width="724px" height="398px" autosize="height"/>
-      </cl:htmlsnippet>
-      <cl:verticallayout std:sid="v-layout-31ab9a73"/>
-    </cl:group>
-    <cl:output std:sid="output-13acdcba" id="titleOutput" style="font-weight:bolder; font-size:35px; text-align:center;">
-      <cl:datasetbind property="value" datacontrolid="boardDetail" columnname="boardTitle" rowindex="0"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-db3c6958">
-        <cl:xylayoutdata std:sid="sxyl-data-c293da36" top="40px" width="833px" height="58px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:output>
-    <cl:output std:sid="output-569903ee" id="idOutput" style="font-weight:bold; font-size:14px; text-align:center;">
-      <cl:datasetbind property="value" datacontrolid="boardDetail" columnname="id" rowindex="0"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-93f8b612">
-        <cl:xylayoutdata std:sid="sxyl-data-db24f2a6" top="86px" width="300px" height="42px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:output>
-    <cl:output std:sid="output-9c12fd54" id="createDateOutput" style="font-weight:bold; font-size:14px; text-align:center;">
-      <cl:datasetbind property="value" datacontrolid="boardDetail" columnname="boardCreateDate" rowindex="0"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-469af14d">
-        <cl:xylayoutdata std:sid="sxyl-data-2101b1ec" top="127px" width="261px" height="23px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:output>
-    <cl:responsivexylayout std:sid="r-xylayout-22d199fb"/>
+    <cl:verticallayout std:sid="v-layout-2c2724ac"/>
   </body>
   <std:studiosetting>
     <std:hruler/>

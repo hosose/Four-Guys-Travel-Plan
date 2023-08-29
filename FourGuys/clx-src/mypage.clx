@@ -25,7 +25,7 @@
         <cl:requestdata dataid="member"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec title="mypage">
+    <cl:appspec title="마이페이지">
       <cl:event name="event" type="cpr.events.CAppEvent"/>
     </cl:appspec>
   </head>

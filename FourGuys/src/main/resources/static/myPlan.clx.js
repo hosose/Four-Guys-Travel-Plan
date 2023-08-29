@@ -317,6 +317,7 @@
 				"border-top-color" : "#000000",
 				"border-bottom-style" : "solid",
 				"border-right-color" : "#000000",
+				"font-family" : "AppleSDGothicNeoB00",
 				"border-top-style" : "solid",
 				"text-align" : "center"
 			});
@@ -357,6 +358,7 @@
 				"border-top-color" : "#000000",
 				"border-bottom-style" : "solid",
 				"border-right-color" : "#000000",
+				"font-family" : "AppleSDGothicNeoB00",
 				"border-top-style" : "solid",
 				"text-align" : "center"
 			});
@@ -548,6 +550,9 @@
 										"border-radius" : "50px",
 										"background-color" : "#98dde3",
 										"border-right-style" : "none",
+										"text-shadow" : "none",
+										"color" : "#FFFFFF",
+										"font-family" : "AppleSDGothicNeoB00",
 										"background-image" : "none"
 									});
 									if(typeof onButtonClick2 == "function") {
@@ -577,6 +582,9 @@
 									button_2.style.css({
 										"border-radius" : "50px",
 										"background-color" : "#98dde3",
+										"text-shadow" : "none",
+										"color" : "#FFFFFF",
+										"font-family" : "AppleSDGothicNeoB00",
 										"background-image" : "none"
 									});
 									if(typeof onButtonClick3 == "function") {
@@ -594,7 +602,7 @@
 				"border-right-style" : "none",
 				"color" : "#000000",
 				"border-left-style" : "none",
-				"font-family" : "'맑은 고딕' , 'Malgun Gothic' , sans-serif",
+				"font-family" : "AppleSDGothicNeoB00",
 				"border-bottom-style" : "none",
 				"text-align" : "left"
 			});
@@ -604,12 +612,6 @@
 				"border-bottom-style" : "none",
 				"border-top-style" : "none"
 			});
-			if(typeof onGrd1Dblclick == "function") {
-				grid_1.addEventListener("dblclick", onGrd1Dblclick);
-			}
-			if(typeof onGrd1Click == "function") {
-				grid_1.addEventListener("click", onGrd1Click);
-			}
 			container.addChild(grid_1, {
 				positions: [
 					{
@@ -800,6 +802,9 @@
 									button_3.style.css({
 										"border-radius" : "50px",
 										"background-color" : "#98dde3",
+										"text-shadow" : "none",
+										"color" : "#FFFFFF",
+										"font-family" : "AppleSDGothicNeoB00",
 										"background-image" : "none"
 									});
 									if(typeof onButtonClick == "function") {
@@ -824,6 +829,9 @@
 									button_4.style.css({
 										"border-radius" : "50px",
 										"background-color" : "#98dde3",
+										"text-shadow" : "none",
+										"color" : "#FFFFFF",
+										"font-family" : "AppleSDGothicNeoB00",
 										"background-image" : "none"
 									});
 									if(typeof onButtonClick4 == "function") {
@@ -841,7 +849,8 @@
 				"border-right-style" : "none",
 				"color" : "#000000",
 				"border-left-style" : "none",
-				"border-bottom-style" : "none"
+				"border-bottom-style" : "none",
+				"font-family" : "AppleSDGothicNeoB00"
 			});
 			if(typeof onGrd2Click == "function") {
 				grid_2.addEventListener("click", onGrd2Click);
@@ -874,6 +883,10 @@
 			
 			var pageIndexer_1 = new cpr.controls.PageIndexer("completePaging");
 			pageIndexer_1.pageRowCount = 5;
+			pageIndexer_1.style.css({
+				"color" : "#FFFFFF",
+				"font-family" : "AppleSDGothicNeoB00"
+			});
 			pageIndexer_1.style.index.css({
 				"background-color" : "#98dde3"
 			});
@@ -910,6 +923,10 @@
 			
 			var pageIndexer_2 = new cpr.controls.PageIndexer("notCompletePaging");
 			pageIndexer_2.pageRowCount = 5;
+			pageIndexer_2.style.css({
+				"color" : "#FFFFFF",
+				"font-family" : "AppleSDGothicNeoB00"
+			});
 			pageIndexer_2.style.index.css({
 				"background-color" : "#98dde3"
 			});
@@ -1002,6 +1019,6 @@
 			}
 		}
 	});
-	app.title = "myPlan";
+	app.title = "마이플랜";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

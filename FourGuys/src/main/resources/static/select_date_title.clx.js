@@ -156,10 +156,12 @@
 				"background-color" : "#98dde3",
 				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"border-left-style" : "none",
 				"font-size" : "18px",
 				"border-bottom-style" : "none",
+				"font-family" : "AppleSDGothicNeoB00",
 				"background-image" : "none",
 				"font-style" : "normal",
 				"border-top-style" : "none"
@@ -177,6 +179,7 @@
 			var output_1 = new cpr.controls.Output("titleoutput");
 			output_1.value = "여행 제목";
 			output_1.style.css({
+				"font-family" : "AppleSDGothicNeoB00",
 				"text-align" : "center"
 			});
 			container.addChild(output_1, {
@@ -189,6 +192,7 @@
 			var output_2 = new cpr.controls.Output("dateoutput");
 			output_2.value = "여행 기간";
 			output_2.style.css({
+				"font-family" : "AppleSDGothicNeoB00",
 				"text-align" : "center"
 			});
 			container.addChild(output_2, {
@@ -200,6 +204,9 @@
 			
 			var inputBox_1 = new cpr.controls.InputBox("titleInput");
 			inputBox_1.placeholder = "제목을 입력해주세요.";
+			inputBox_1.style.css({
+				"font-family" : "AppleSDGothicNeoB00"
+			});
 			inputBox_1.bind("value").toDataMap(app.lookup("plannerDM"), "plannerTitle");
 			container.addChild(inputBox_1, {
 				"top": "50px",
@@ -209,6 +216,9 @@
 			});
 			
 			var dateInput_1 = new cpr.controls.DateInput("dti1");
+			dateInput_1.style.css({
+				"font-family" : "AppleSDGothicNeoB00"
+			});
 			dateInput_1.bind("value").toDataMap(app.lookup("plannerDM"), "plannerStartDate");
 			if(typeof onDti1ValueChange == "function") {
 				dateInput_1.addEventListener("value-change", onDti1ValueChange);
@@ -221,6 +231,9 @@
 			});
 			
 			var dateInput_2 = new cpr.controls.DateInput("dti2");
+			dateInput_2.style.css({
+				"font-family" : "AppleSDGothicNeoB00"
+			});
 			dateInput_2.bind("value").toDataMap(app.lookup("plannerDM"), "plannerLastDate");
 			if(typeof onDti2ValueChange == "function") {
 				dateInput_2.addEventListener("value-change", onDti2ValueChange);
@@ -235,7 +248,8 @@
 			var output_3 = new cpr.controls.Output();
 			output_3.value = "~";
 			output_3.style.css({
-				"font-size" : "30px"
+				"font-size" : "30px",
+				"font-family" : "AppleSDGothicNeoB00"
 			});
 			container.addChild(output_3, {
 				"top": "150px",

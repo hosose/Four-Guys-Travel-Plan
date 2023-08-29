@@ -71,10 +71,12 @@
 				"background-color" : "#98dde3",
 				"border-right-style" : "none",
 				"background-repeat" : "no-repeat",
+				"text-shadow" : "none",
 				"color" : "#FFFFFF",
 				"border-left-style" : "none",
 				"font-size" : "18px",
 				"border-bottom-style" : "none",
+				"font-family" : "AppleSDGothicNeoB00",
 				"background-image" : "none",
 				"font-style" : "normal",
 				"border-top-style" : "none"
@@ -83,10 +85,10 @@
 				button_1.addEventListener("click", onButtonClick);
 			}
 			container.addChild(button_1, {
-				"bottom": "50px",
-				"left": "50px",
-				"width": "155px",
-				"height": "25px"
+				"right": "10px",
+				"bottom": "10px",
+				"left": "10px",
+				"height": "50px"
 			});
 			
 			var image_1 = new cpr.controls.Image();
@@ -100,6 +102,9 @@
 			
 			var output_1 = new cpr.controls.Output("intro1");
 			output_1.value = "";
+			output_1.style.css({
+				"font-family" : "AppleSDGothicNeoB00"
+			});
 			container.addChild(output_1, {
 				"top": "5px",
 				"left": "20px",

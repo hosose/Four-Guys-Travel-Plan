@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-39382108" version="1.0.4584">
+  <head std:sid="head-06871bcc">
+    <screen std:sid="screen-ef0e9775" id="new-screen" name="new-screen" width="300px" height="200px"/>
+    <cl:model std:sid="model-7d8fb036"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-aa0cfe2f">
+    <cl:button std:sid="button-fef0623e" style="background-color:#98dde3; border-right-style:none; text-shadow:none; color:#FFFFFF; border-left-style:none; font-size:25px; font-family:@AppleSDGothicNeoB00; border-bottom-style:none; background-image:none; border-top-style:none;" value="닫기">
+      <cl:listener std:sid="listener-216cf9a0" name="click" handler="onButtonClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-f7416368" top="130px" right="30px" bottom="20px" left="30px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+    </cl:button>
+    <cl:output std:sid="output-0bcd9f29" style="color:#000000; font-size:25px; font-family:AppleSDGothicNeoB00; text-align:center;" value="공사중입니다.">
+      <cl:xylayoutdata std:sid="xyl-data-539cd243" top="30px" right="30px" bottom="90px" left="30px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+    </cl:output>
+    <cl:xylayout std:sid="xylayout-35b8df0c"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

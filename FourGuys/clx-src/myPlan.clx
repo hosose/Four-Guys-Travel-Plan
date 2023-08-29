@@ -43,7 +43,7 @@
         <cl:requestdata dataid="plannerNoDM"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="마이플랜"/>
   </head>
   <body std:sid="body-5be48a01" style="background-color:#FAFAFA;">
     <cl:listener std:sid="listener-af51bba0" name="load" handler="onBodyLoad"/>
@@ -53,19 +53,17 @@
       </cl:responsivexylayoutdata>
       <cl:xylayout std:sid="xylayout-1b1a9225"/>
     </cl:group>
-    <cl:output std:sid="output-17ee7ce0" style="border-right-style:solid; border-bottom-color:#000000; color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid; text-align:center;" value="완성">
+    <cl:output std:sid="output-17ee7ce0" style="border-right-style:solid; border-bottom-color:#000000; color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; font-family:AppleSDGothicNeoB00; border-top-style:solid; text-align:center;" value="완성">
       <cl:responsivexylayoutdata std:sid="rxyl-data-38bbe393">
         <cl:xylayoutdata std:sid="sxyl-data-1aad1833" top="126px" width="100px" height="30px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
-    <cl:output std:sid="output-88084889" style="border-right-style:solid; color:#000000; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; border-top-style:solid; text-align:center;" value="미완성">
+    <cl:output std:sid="output-88084889" style="border-right-style:solid; color:#000000; border-bottom-color:#000000; border-left-style:solid; border-left-color:#000000; border-top-color:#000000; border-bottom-style:solid; border-right-color:#000000; font-family:AppleSDGothicNeoB00; border-top-style:solid; text-align:center;" value="미완성">
       <cl:responsivexylayoutdata std:sid="rxyl-data-5aa11748">
         <cl:xylayoutdata std:sid="sxyl-data-110d6587" top="428px" width="100px" height="30px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:output>
-    <cl:grid std:sid="grid-77587128" id="completeGrd" style="border-right-style:none; color:#000000; border-left-style:none; font-family:'맑은 고딕' , 'Malgun Gothic' , sans-serif; border-bottom-style:none; text-align:left;" datasetid="dvCompletePaging" clickmode="edit">
-      <cl:listener std:sid="listener-8a6c43b0" name="dblclick" handler="onGrd1Dblclick"/>
-      <cl:listener std:sid="listener-6a769b35" name="click" handler="onGrd1Click"/>
+    <cl:grid std:sid="grid-77587128" id="completeGrd" style="border-right-style:none; color:#000000; border-left-style:none; font-family:AppleSDGothicNeoB00; border-bottom-style:none; text-align:left;" datasetid="dvCompletePaging" clickmode="edit">
       <cl:responsivexylayoutdata std:sid="rxyl-data-1003cc3d">
         <cl:xylayoutdata std:sid="sxyl-data-39120671" top="166px" width="897px" height="172px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
@@ -92,7 +90,7 @@
         <cl:gridcell std:sid="gd-cell-fbdd1136" rowindex="0" colindex="2" style="background-color:#FFFFFF; border-right-style:none;" columnname="plannerStartDate"/>
         <cl:gridcell std:sid="gd-cell-7a3fbda2" rowindex="0" colindex="3" style="background-color:#FFFFFF; border-right-style:none; border-left-style:none; border-bottom-style:solid; border-top-style:none;" columnname="plannerLastDay"/>
         <cl:gridcell std:sid="gd-cell-934fc396" rowindex="0" colindex="4" style="border-right-style:none; background-color:#FFFFFF;">
-          <cl:button std:sid="button-abb03fc9" style="border-radius:50px; background-color:#98dde3; border-right-style:none; background-image:none;" value="상세보기">
+          <cl:button std:sid="button-abb03fc9" style="border-radius:50px; background-color:#98dde3; border-right-style:none; text-shadow:none; color:#FFFFFF; font-family:AppleSDGothicNeoB00; background-image:none;" value="상세보기">
             <cl:listener std:sid="listener-f1dac54a" name="click" handler="onButtonClick2"/>
             <cl:listener std:sid="listener-0e0487cd" name="mousedown" handler="onButtonMousedown"/>
             <cl:listener std:sid="listener-0d70861b" name="mouseup" handler="onButtonMouseup"/>
@@ -100,14 +98,14 @@
           </cl:button>
         </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-9d3224e4" rowindex="0" colindex="5" style="border-right-style:none; background-color:#FFFFFF;">
-          <cl:button std:sid="button-80214ad9" style="border-radius:50px; background-color:#98dde3; background-image:none;" value="삭제">
+          <cl:button std:sid="button-80214ad9" style="border-radius:50px; background-color:#98dde3; text-shadow:none; color:#FFFFFF; font-family:AppleSDGothicNeoB00; background-image:none;" value="삭제">
             <cl:listener std:sid="listener-a7510629" name="click" handler="onButtonClick3"/>
             <cl:celldata std:sid="c-data-7e2763e7"/>
           </cl:button>
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-105a7fd9" id="notCompleteGrd" style="border-right-style:none; color:#000000; border-left-style:none; border-bottom-style:none;" datasetid="dvNotCompletePaging" clickmode="edit">
+    <cl:grid std:sid="grid-105a7fd9" id="notCompleteGrd" style="border-right-style:none; color:#000000; border-left-style:none; border-bottom-style:none; font-family:AppleSDGothicNeoB00;" datasetid="dvNotCompletePaging" clickmode="edit">
       <cl:listener std:sid="listener-ca38dd39" name="click" handler="onGrd2Click"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-d6c50020">
         <cl:xylayoutdata std:sid="sxyl-data-349b47fe" top="468px" width="897px" height="146px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
@@ -134,20 +132,20 @@
         <cl:gridcell std:sid="gd-cell-3dfe8918" rowindex="0" colindex="2" style="background-color:#FFFFFF; border-right-style:none; border-left-style:none;" columnname="plannerStartDate"/>
         <cl:gridcell std:sid="gd-cell-483493a3" rowindex="0" colindex="3" style="background-color:#FFFFFF; border-right-style:none; border-left-style:none;" columnname="plannerLastDay"/>
         <cl:gridcell std:sid="gd-cell-5fce4d48" rowindex="0" colindex="4" style="border-right-style:none; color:#FFFFFF; border-left-style:none;">
-          <cl:button std:sid="button-201c3a2f" style="border-radius:50px; background-color:#98dde3; background-image:none;" value="상세보기">
+          <cl:button std:sid="button-201c3a2f" style="border-radius:50px; background-color:#98dde3; text-shadow:none; color:#FFFFFF; font-family:AppleSDGothicNeoB00; background-image:none;" value="상세보기">
             <cl:listener std:sid="listener-57d49197" name="click" handler="onButtonClick"/>
             <cl:celldata std:sid="c-data-f2e96005"/>
           </cl:button>
         </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-93e38e66" rowindex="0" colindex="5" style="border-right-style:none; background-color:#FFFFFF; border-left-style:none;">
-          <cl:button std:sid="button-ad338198" style="border-radius:50px; background-color:#98dde3; background-image:none;" value="삭제">
+          <cl:button std:sid="button-ad338198" style="border-radius:50px; background-color:#98dde3; text-shadow:none; color:#FFFFFF; font-family:AppleSDGothicNeoB00; background-image:none;" value="삭제">
             <cl:listener std:sid="listener-e9df89e8" name="click" handler="onButtonClick4"/>
             <cl:celldata std:sid="c-data-501099ac"/>
           </cl:button>
         </cl:gridcell>
       </cl:griddetail>
     </cl:grid>
-    <cl:pageindexer std:sid="p-indexer-307d888a" id="completePaging" pagerowcount="5">
+    <cl:pageindexer std:sid="p-indexer-307d888a" id="completePaging" style="color:#FFFFFF; font-family:AppleSDGothicNeoB00;" pagerowcount="5">
       <cl:listener std:sid="listener-a376b13d" name="selection-change" handler="onCompletePagingSelectionChange"/>
       <cl:expbind property="totalRowCount" category="PROPERTY" expression="#completePlannerVO.getRowCount()"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-05c464bd">
@@ -155,7 +153,7 @@
       </cl:responsivexylayoutdata>
       <cl:indexstyle style="background-color:#98dde3;"/>
     </cl:pageindexer>
-    <cl:pageindexer std:sid="p-indexer-e755de02" id="notCompletePaging" pagerowcount="5">
+    <cl:pageindexer std:sid="p-indexer-e755de02" id="notCompletePaging" style="color:#FFFFFF; font-family:AppleSDGothicNeoB00;" pagerowcount="5">
       <cl:listener std:sid="listener-9fcc94b0" name="selection-change" handler="onNotCompletePagingSelectionChange"/>
       <cl:expbind property="totalRowCount" category="PROPERTY" expression="#notCompletePlannerVO.getRowCount()"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-201f16f8">

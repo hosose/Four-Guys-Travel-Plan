@@ -53,7 +53,7 @@
 		planner_start_date,
 		to_char(planner_last_day,'YYYY-MM-DD')
 		planner_last_day FROM PLANNER
-		WHERE id = #{id} ORDER BY planner_start_date DESC
+		WHERE id = #{id} and COMPLETE_FLAG = '완성' ORDER BY planner_start_date DESC
 	</select>
 	<select id="findPlannerByNo" parameterType="int" resultType="org.kosta.fourguys.vo.PlannerVO">
 		 SELECT * FROM planner where "PLANNER_NO" = #{plannerNo}

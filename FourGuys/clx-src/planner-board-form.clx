@@ -58,35 +58,40 @@
         <cl:requestdata dataid="plannerNoDM"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="플랜 게시판 작성페이지"/>
   </head>
   <body std:sid="body-d33f96c1">
     <cl:listener std:sid="listener-904fd8c5" name="load" handler="onBodyLoad"/>
-    <cl:udc std:sid="ud-control-8db052b7" type="udc.logo">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-1eb9d7b3">
-        <cl:xylayoutdata std:sid="sxyl-data-8c7edeb7" top="10px" left="10px" width="196px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:udc>
-    <cl:udc std:sid="ud-control-97b1121b" type="udc.header_nav">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-fa4d4a17">
-        <cl:xylayoutdata std:sid="sxyl-data-e2d105cc" top="10px" right="20px" width="623px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:udc>
+    <cl:group std:sid="group-0e9677d1">
+      <cl:verticaldata std:sid="v-data-c87bfa7c" width="1024px" height="77px"/>
+      <cl:udc std:sid="ud-control-8db052b7" type="udc.logo">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-f640828c">
+          <cl:xylayoutdata std:sid="sxyl-data-c2e94785" top="0px" left="0px" width="300px" height="77px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:udc>
+      <cl:udc std:sid="ud-control-97b1121b" type="udc.header_nav">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-4e0ac35a">
+          <cl:xylayoutdata std:sid="sxyl-data-a1385791" top="0px" right="10px" width="600px" height="77px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:udc>
+      <cl:output std:sid="output-8727b642" id="lblVal" visible="false">
+        <cl:datamapbind property="value" datacontrolid="boardDM" columnname="content"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-86e1dd11">
+          <cl:xylayoutdata std:sid="sxyl-data-5c7b7a27" top="20px" left="310px" width="10px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:output>
+      <cl:responsivexylayout std:sid="r-xylayout-4465871d"/>
+    </cl:group>
     <cl:group std:sid="group-c106376f">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-fc910558">
-        <cl:xylayoutdata std:sid="sxyl-data-2239e34c" top="158px" bottom="100px" width="1000px" horizontalAnchor="CENTER" verticalAnchor="BOTH" screenid="default"/>
-      </cl:responsivexylayoutdata>
-      <cl:output std:sid="output-1b096b81" id="titleOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; border-top-style:solid; text-align:center;" value="제목">
+      <cl:verticaldata std:sid="v-data-cb1bbff1" width="1000px" height="275px" syncminheight="true" autosize="none"/>
+      <cl:output std:sid="output-1b096b81" id="titleOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid; text-align:center;" value="제목">
         <cl:formdata std:sid="f-data-8a016bda" bottomSpacing="5" row="0" col="0" rowspan="1" colspan="1"/>
       </cl:output>
-      <cl:output std:sid="output-aa161d45" id="contentOutput" style="border-right-style:solid; border-radius:5px; border-left-style:solid; font-size:25px; border-bottom-style:solid; border-top-style:solid; text-align:center;" value="내용">
-        <cl:formdata std:sid="f-data-26fdaeb7" topSpacing="5" row="2" col="0"/>
-      </cl:output>
-      <cl:inputbox std:sid="i-box-1e5a489f" id="titleIpb" style="border-right-style:solid; border-radius:5px; padding-top:5px; border-left-style:solid; padding-left:5px; font-size:25px; padding-bottom:5px; border-bottom-style:solid; border-top-style:solid; padding-right:5px;" placeholder="제목을 입력해주세요.">
+      <cl:inputbox std:sid="i-box-1e5a489f" id="titleIpb" style="border-right-style:solid; border-radius:5px; padding-top:5px; border-left-style:solid; padding-left:5px; font-size:25px; padding-bottom:5px; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid; padding-right:5px;" placeholder="제목을 입력해주세요.">
         <cl:datamapbind property="value" datacontrolid="boardDM" columnname="title"/>
         <cl:formdata std:sid="f-data-f859d660" bottomSpacing="5" leftSpacing="3" row="0" col="1" rowspan="1" colspan="1"/>
       </cl:inputbox>
-      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="border-right-style:solid; border-radius:5px; font-weight:bolder; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="planDate">
+      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="border-right-style:solid; border-radius:5px; font-weight:bolder; border-left-style:solid; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid;" datasetid="planDate">
         <cl:listener std:sid="listener-a8fe3df0" name="cell-click" handler="onDayGrdCellClick"/>
         <cl:formdata std:sid="f-data-c52af065" rightSpacing="2" row="1" col="0" rowspan="1" colspan="1"/>
         <cl:gridcolumn std:sid="g-column-8344e975"/>
@@ -99,7 +104,7 @@
           <cl:gridcell std:sid="gd-cell-f83a592c" rowindex="0" colindex="0" style="font-weight:normal;" columnname="planDate"/>
         </cl:griddetail>
       </cl:grid>
-      <cl:grid std:sid="grid-b5555db0" id="placeGrd" style="border-right-style:solid; border-radius:5px; border-left-style:solid; border-bottom-style:solid; border-top-style:solid;" datasetid="selectedPlan">
+      <cl:grid std:sid="grid-b5555db0" id="placeGrd" style="border-right-style:solid; border-radius:5px; border-left-style:solid; border-bottom-style:solid; font-family:AppleSDGothicNeoB00; border-top-style:solid;" datasetid="selectedPlan">
         <cl:formdata std:sid="f-data-1e836188" leftSpacing="2" row="1" col="1"/>
         <cl:gridcolumn std:sid="g-column-bfe52550"/>
         <cl:gridheader std:sid="gh-band-f0066996">
@@ -111,30 +116,28 @@
           <cl:gridcell std:sid="gd-cell-26ab244d" rowindex="0" colindex="0" columnname="title"/>
         </cl:griddetail>
       </cl:grid>
-      <cl:embeddedpage std:sid="e-page-7d55cbb0" id="ep1" src="thirdparty/smarteditor/SmartEditor2.html">
-        <cl:formdata std:sid="f-data-1af79ceb" row="2" col="1" rowspan="1" colspan="1"/>
-      </cl:embeddedpage>
       <cl:formlayout std:sid="f-layout-4b7e1278" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
         <cl:rows length="75" unit="PIXEL"/>
         <cl:rows length="200" unit="PIXEL" autoSizing="false" syncminlength="false"/>
-        <cl:rows length="1" unit="FRACTION" autoSizing="false" hidden="false"/>
+        <cl:rows length="10" unit="FRACTION" autoSizing="false" hidden="false"/>
         <cl:columns length="120" unit="PIXEL"/>
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:button std:sid="button-6f1f615e" id="selectBtn" style="background-color:#98dde3; border-right-style:none; border-radius:5px; background-repeat:no-repeat; color:#FFFFFF; border-left-style:none; font-size:25px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="등록">
-      <cl:listener std:sid="listener-eced33cf" name="click" handler="onSelectBtnClick"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-dcaca3a0">
-        <cl:xylayoutdata std:sid="sxyl-data-4aa5fab2" bottom="30px" width="200px" height="60px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:button>
-    <cl:output std:sid="output-8727b642" id="lblVal" visible="false">
-      <cl:datamapbind property="value" datacontrolid="boardDM" columnname="content"/>
-      <cl:responsivexylayoutdata std:sid="rxyl-data-3abbe98d">
-        <cl:xylayoutdata std:sid="sxyl-data-eff535c9" top="120px" left="12px" width="896px" height="28px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-      </cl:responsivexylayoutdata>
-    </cl:output>
-    <cl:responsivexylayout std:sid="r-xylayout-1bd05747"/>
+    <cl:embeddedpage std:sid="e-page-7d55cbb0" id="ep1" src="thirdparty/smarteditor/SmartEditor2.html">
+      <cl:verticaldata std:sid="v-data-43dac56d" width="904px" height="420px" syncminheight="true" autosize="height"/>
+    </cl:embeddedpage>
+    <cl:group std:sid="group-40bf792b">
+      <cl:verticaldata std:sid="v-data-1018cd95" width="1024px" height="50px"/>
+      <cl:button std:sid="button-6f1f615e" id="selectBtn" style="border-right-style:none; color:#FFFFFF; font-size:25px; font-style:normal; border-top-style:none; background-color:#98dde3; border-radius:5px; background-repeat:no-repeat; text-shadow:none; border-left-style:none; border-bottom-style:none; font-family:AppleSDGothicNeoB00; background-image:none;" value="등록">
+        <cl:listener std:sid="listener-eced33cf" name="click" handler="onSelectBtnClick"/>
+        <cl:responsivexylayoutdata std:sid="rxyl-data-44ae7c31">
+          <cl:xylayoutdata std:sid="sxyl-data-313c6155" top="0px" right="462px" left="462px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:responsivexylayout std:sid="r-xylayout-327b2a81"/>
+    </cl:group>
+    <cl:verticallayout std:sid="v-layout-b9ca1115"/>
   </body>
   <std:studiosetting>
     <std:hruler/>

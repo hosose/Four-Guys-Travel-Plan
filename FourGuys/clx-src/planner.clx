@@ -89,7 +89,7 @@
         <cl:requestdata dataid="plannerNoDM"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec title="플래너"/>
   </head>
   <body std:sid="body-2ffb0c79" style="background-image:none;">
     <cl:listener std:sid="listener-2b714a1a" name="load" handler="onBodyLoad"/>
@@ -116,7 +116,7 @@
         <cl:columns length="100" unit="PIXEL"/>
       </cl:formlayout>
     </cl:group>
-    <cl:grid std:sid="grid-1afb50d3" id="contentGrd" style="font-weight:bolder;" datasetid="jeju">
+    <cl:grid std:sid="grid-1afb50d3" id="contentGrd" style="font-weight:bolder; font-family:AppleSDGothicNeoB00;" datasetid="jeju">
       <cl:listener std:sid="listener-98f29226" name="click" handler="onGrd2Click"/>
       <cl:listener std:sid="listener-a198f87f" name="row-check" handler="onGrd2RowCheck"/>
       <cl:listener std:sid="listener-cfd1181e" name="row-check" handler="onGrd2RowCheck"/>
@@ -138,7 +138,7 @@
         <cl:gridcell std:sid="gd-cell-798f542a" rowindex="0" colindex="1" style="font-weight:normal;" columnname="title"/>
       </cl:griddetail>
     </cl:grid>
-    <cl:grid std:sid="grid-b5555db0" id="selectedContentGrd" style="border-radius:10px;" datasetid="selectedPlan">
+    <cl:grid std:sid="grid-b5555db0" id="selectedContentGrd" style="border-radius:10px; font-family:AppleSDGothicNeoB00;" datasetid="selectedPlan">
       <cl:responsivexylayoutdata std:sid="rxyl-data-e8f31ba5">
         <cl:xylayoutdata std:sid="sxyl-data-1e88443d" top="80px" bottom="10px" left="150px" width="200px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
@@ -157,7 +157,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-90274e3c" top="80px" bottom="10px" left="20px" width="120px" horizontalAnchor="LEFT" verticalAnchor="BOTH" screenid="default"/>
       </cl:responsivexylayoutdata>
       <cl:xylayoutdata std:sid="xyl-data-c727585c" top="73px" left="20px" width="120px" height="680px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="font-weight:bolder;" datasetid="planDate">
+      <cl:grid std:sid="grid-815196f0" id="dayGrd" style="font-weight:bolder; font-family:AppleSDGothicNeoB00;" datasetid="planDate">
         <cl:listener std:sid="listener-23808200" name="cell-click" handler="onGrd3CellClick"/>
         <cl:xylayoutdata std:sid="xyl-data-72edf3c9" top="0px" bottom="0px" width="120px" horizontalAnchor="CENTER" verticalAnchor="BOTH"/>
         <cl:gridcolumn std:sid="g-column-8344e975"/>
@@ -172,7 +172,7 @@
       </cl:grid>
       <cl:xylayout std:sid="xylayout-d70cae89"/>
     </cl:group>
-    <cl:inputbox std:sid="i-box-dde342b5" id="titleSearch" style="text-align:center;" placeholder="지역 검색">
+    <cl:inputbox std:sid="i-box-dde342b5" id="titleSearch" style="font-family:AppleSDGothicNeoB00; text-align:center;" placeholder="지역 검색">
       <cl:listener std:sid="listener-cceaf311" name="keydown" handler="onTitleSearchKeydown"/>
       <cl:datamapbind property="value" category="PROPERTY" datacontrolid="areaSearch" columnname="title"/>
       <cl:datamapcontext datacontrolid="areaSearch"/>
@@ -180,7 +180,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-714f2c53" top="30px" left="170px" width="273px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:inputbox>
-    <cl:button std:sid="button-a998ad15" id="searchbtn" style="background-color:#98dde3; background-repeat:no-repeat; color:#FFFFFF; font-size:15px; background-image:none;" value="검색">
+    <cl:button std:sid="button-a998ad15" id="searchbtn" style="background-color:#98dde3; background-repeat:no-repeat; color:#FFFFFF; font-size:15px; font-family:AppleSDGothicNeoB00; background-image:none;" value="검색">
       <cl:listener std:sid="listener-12efc328" name="click" handler="onSearchbtnClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-f1665935">
         <cl:xylayoutdata std:sid="sxyl-data-2fcbd8a9" top="30px" left="455px" width="100px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
@@ -191,7 +191,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-f8021ced" top="0px" width="300px" height="73px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
     </cl:udc>
-    <cl:combobox std:sid="c-box-099b73f5" id="categoryCmb">
+    <cl:combobox std:sid="c-box-099b73f5" id="categoryCmb" style="font-family:AppleSDGothicNeoB00;">
       <cl:listener std:sid="listener-09e688ae" name="selection-change" handler="onCmb1SelectionChange"/>
       <cl:datamapbind property="value" datacontrolid="areaSearch" columnname="cat1"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-795944c0">

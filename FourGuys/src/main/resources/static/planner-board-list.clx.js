@@ -251,10 +251,12 @@
 				button_1.style.css({
 					"background-color" : "#98dde3",
 					"border-right-style" : "none",
+					"text-shadow" : "none",
 					"color" : "#FFFFFF",
 					"border-left-style" : "none",
 					"font-size" : "18px",
 					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
 					"background-image" : "none",
 					"border-top-style" : "none"
 				});
@@ -453,7 +455,8 @@
 				grid_1.style.css({
 					"border-right-style" : "none",
 					"border-left-style" : "none",
-					"font-size" : "16px"
+					"font-size" : "16px",
+					"font-family" : "AppleSDGothicNeoB00"
 				});
 				if(typeof onPlannerBoardListGridRowDblclick == "function") {
 					grid_1.addEventListener("row-dblclick", onPlannerBoardListGridRowDblclick);
@@ -474,6 +477,9 @@
 			
 			var pageIndexer_1 = new cpr.controls.PageIndexer("pageIdx");
 			pageIndexer_1.pageRowCount = 10;
+			pageIndexer_1.style.css({
+				"font-family" : "AppleSDGothicNeoB00"
+			});
 			pageIndexer_1.style.index.css({
 				"background-color" : "#98dde3",
 				"background-repeat" : "no-repeat",
@@ -496,6 +502,6 @@
 			}
 		}
 	});
-	app.title = "planner-board-list";
+	app.title = "플래너 게시판";
 	cpr.core.Platform.INSTANCE.register(app);
 })();

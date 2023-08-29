@@ -213,65 +213,101 @@
 			});
 			
 			// Layout
-			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
-			container.setLayout(responsiveXYLayout_1);
+			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
+			container.setLayout(verticalLayout_1);
 			
 			// UI Configuration
-			var userDefinedControl_1 = new udc.logo();
-			container.addChild(userDefinedControl_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "10px",
-						"left": "10px",
-						"width": "196px",
-						"height": "77px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "10px",
-						"left": "5px",
-						"width": "96px",
-						"height": "77px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "10px",
-						"left": "3px",
-						"width": "67px",
-						"height": "77px"
-					}
-				]
-			});
-			
-			var userDefinedControl_2 = new udc.header_nav();
-			container.addChild(userDefinedControl_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "10px",
-						"right": "20px",
-						"width": "623px",
-						"height": "77px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "10px",
-						"right": "10px",
-						"width": "304px",
-						"height": "77px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "10px",
-						"right": "7px",
-						"width": "213px",
-						"height": "77px"
-					}
-				]
-			});
-			
 			var group_1 = new cpr.controls.Container();
+			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
+			group_1.setLayout(responsiveXYLayout_1);
+			(function(container){
+				var userDefinedControl_1 = new udc.logo();
+				container.addChild(userDefinedControl_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"left": "0px",
+							"width": "300px",
+							"height": "77px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"left": "0px",
+							"width": "146px",
+							"height": "77px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"left": "0px",
+							"width": "103px",
+							"height": "77px"
+						}
+					]
+				});
+				var userDefinedControl_2 = new udc.header_nav();
+				container.addChild(userDefinedControl_2, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"right": "10px",
+							"width": "600px",
+							"height": "77px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"right": "5px",
+							"width": "293px",
+							"height": "77px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"right": "3px",
+							"width": "205px",
+							"height": "77px"
+						}
+					]
+				});
+				var output_1 = new cpr.controls.Output("lblVal");
+				output_1.visible = false;
+				output_1.bind("value").toDataMap(app.lookup("boardDM"), "content");
+				container.addChild(output_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "20px",
+							"left": "310px",
+							"width": "10px",
+							"height": "10px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "20px",
+							"left": "151px",
+							"width": "5px",
+							"height": "10px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "20px",
+							"left": "106px",
+							"width": "3px",
+							"height": "10px"
+						}
+					]
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				"width": "1024px",
+				"height": "77px"
+			});
+			
+			var group_2 = new cpr.controls.Container();
 			var formLayout_1 = new cpr.controls.layouts.FormLayout();
 			formLayout_1.scrollable = false;
 			formLayout_1.topMargin = "0px";
@@ -281,42 +317,27 @@
 			formLayout_1.horizontalSpacing = "0px";
 			formLayout_1.verticalSpacing = "0px";
 			formLayout_1.setColumns(["120px", "1fr"]);
-			formLayout_1.setRows(["75px", "200px", "1fr"]);
-			group_1.setLayout(formLayout_1);
+			formLayout_1.setRows(["75px", "200px", "10fr"]);
+			group_2.setLayout(formLayout_1);
 			(function(container){
-				var output_1 = new cpr.controls.Output("titleOutput");
-				output_1.value = "제목";
-				output_1.style.css({
-					"border-right-style" : "solid",
-					"border-radius" : "5px",
-					"border-left-style" : "solid",
-					"font-size" : "25px",
-					"border-bottom-style" : "solid",
-					"border-top-style" : "solid",
-					"text-align" : "center"
-				});
-				container.addChild(output_1, {
-					"colIndex": 0,
-					"rowIndex": 0,
-					"colSpan": 1,
-					"rowSpan": 1,
-					"bottomSpacing": 5
-				});
-				var output_2 = new cpr.controls.Output("contentOutput");
-				output_2.value = "내용";
+				var output_2 = new cpr.controls.Output("titleOutput");
+				output_2.value = "제목";
 				output_2.style.css({
 					"border-right-style" : "solid",
 					"border-radius" : "5px",
 					"border-left-style" : "solid",
 					"font-size" : "25px",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid",
 					"text-align" : "center"
 				});
 				container.addChild(output_2, {
 					"colIndex": 0,
-					"rowIndex": 2,
-					"topSpacing": 5
+					"rowIndex": 0,
+					"colSpan": 1,
+					"rowSpan": 1,
+					"bottomSpacing": 5
 				});
 				var inputBox_1 = new cpr.controls.InputBox("titleIpb");
 				inputBox_1.placeholder = "제목을 입력해주세요.";
@@ -329,6 +350,7 @@
 					"font-size" : "25px",
 					"padding-bottom" : "5px",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid",
 					"padding-right" : "5px"
 				});
@@ -381,6 +403,7 @@
 					"font-weight" : "bolder",
 					"border-left-style" : "solid",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid"
 				});
 				if(typeof onDayGrdCellClick == "function") {
@@ -432,6 +455,7 @@
 					"border-radius" : "5px",
 					"border-left-style" : "solid",
 					"border-bottom-style" : "solid",
+					"font-family" : "AppleSDGothicNeoB00",
 					"border-top-style" : "solid"
 				});
 				container.addChild(grid_2, {
@@ -439,118 +463,81 @@
 					"rowIndex": 1,
 					"leftSpacing": 2
 				});
-				var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
-				embeddedPage_1.src = "thirdparty/smarteditor/SmartEditor2.html";
-				container.addChild(embeddedPage_1, {
-					"colIndex": 1,
-					"rowIndex": 2,
-					"colSpan": 1,
-					"rowSpan": 1
+			})(group_2);
+			container.addChild(group_2, {
+				"autoSize": "none",
+				"width": "1000px",
+				"height": "275px"
+			});
+			
+			var embeddedPage_1 = new cpr.controls.EmbeddedPage("ep1");
+			embeddedPage_1.src = "thirdparty/smarteditor/SmartEditor2.html";
+			container.addChild(embeddedPage_1, {
+				"autoSize": "height",
+				"width": "904px",
+				"height": "420px",
+				"minHeight": 420
+			});
+			
+			var group_3 = new cpr.controls.Container();
+			var responsiveXYLayout_2 = new cpr.controls.layouts.ResponsiveXYLayout();
+			group_3.setLayout(responsiveXYLayout_2);
+			(function(container){
+				var button_1 = new cpr.controls.Button("selectBtn");
+				button_1.value = "등록";
+				button_1.style.css({
+					"border-right-style" : "none",
+					"color" : "#FFFFFF",
+					"font-size" : "25px",
+					"font-style" : "normal",
+					"border-top-style" : "none",
+					"background-color" : "#98dde3",
+					"border-radius" : "5px",
+					"background-repeat" : "no-repeat",
+					"text-shadow" : "none",
+					"border-left-style" : "none",
+					"border-bottom-style" : "none",
+					"font-family" : "AppleSDGothicNeoB00",
+					"background-image" : "none"
 				});
-			})(group_1);
-			container.addChild(group_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "158px",
-						"bottom": "100px",
-						"width": "1000px",
-						"left": "calc(50% - 500px)"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "158px",
-						"bottom": "100px",
-						"width": "488px",
-						"left": "calc(50% - 244px)"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "158px",
-						"bottom": "100px",
-						"width": "342px",
-						"left": "calc(50% - 171px)"
-					}
-				]
-			});
-			
-			var button_1 = new cpr.controls.Button("selectBtn");
-			button_1.value = "등록";
-			button_1.style.css({
-				"background-color" : "#98dde3",
-				"border-right-style" : "none",
-				"border-radius" : "5px",
-				"background-repeat" : "no-repeat",
-				"color" : "#FFFFFF",
-				"border-left-style" : "none",
-				"font-size" : "25px",
-				"border-bottom-style" : "none",
-				"background-image" : "none",
-				"font-style" : "normal",
-				"border-top-style" : "none"
-			});
-			if(typeof onSelectBtnClick == "function") {
-				button_1.addEventListener("click", onSelectBtnClick);
-			}
-			container.addChild(button_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"bottom": "30px",
-						"width": "200px",
-						"height": "60px",
-						"left": "calc(50% - 100px)"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"bottom": "30px",
-						"width": "98px",
-						"height": "60px",
-						"left": "calc(50% - 49px)"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"bottom": "30px",
-						"width": "68px",
-						"height": "60px",
-						"left": "calc(50% - 34px)"
-					}
-				]
-			});
-			
-			var output_3 = new cpr.controls.Output("lblVal");
-			output_3.visible = false;
-			output_3.bind("value").toDataMap(app.lookup("boardDM"), "content");
-			container.addChild(output_3, {
-				positions: [
-					{
-						"media": "all and (min-width: 1024px)",
-						"top": "120px",
-						"left": "12px",
-						"width": "896px",
-						"height": "28px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "120px",
-						"left": "6px",
-						"width": "438px",
-						"height": "28px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "120px",
-						"left": "4px",
-						"width": "306px",
-						"height": "28px"
-					}
-				]
+				if(typeof onSelectBtnClick == "function") {
+					button_1.addEventListener("click", onSelectBtnClick);
+				}
+				container.addChild(button_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "0px",
+							"right": "462px",
+							"left": "462px",
+							"height": "50px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "0px",
+							"right": "226px",
+							"left": "226px",
+							"height": "50px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "0px",
+							"right": "158px",
+							"left": "158px",
+							"height": "50px"
+						}
+					]
+				});
+			})(group_3);
+			container.addChild(group_3, {
+				"width": "1024px",
+				"height": "50px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
 			}
 		}
 	});
-	app.title = "planner-board-form";
+	app.title = "플랜 게시판 작성페이지";
 	cpr.core.Platform.INSTANCE.register(app);
 })();
