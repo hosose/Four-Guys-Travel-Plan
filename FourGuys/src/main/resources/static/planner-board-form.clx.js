@@ -508,23 +508,23 @@
 						{
 							"media": "all and (min-width: 1024px)",
 							"top": "0px",
-							"right": "462px",
-							"left": "462px",
-							"height": "50px"
+							"width": "400px",
+							"height": "50px",
+							"left": "calc(50% - 200px)"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "0px",
-							"right": "226px",
-							"left": "226px",
-							"height": "50px"
+							"width": "195px",
+							"height": "50px",
+							"left": "calc(50% - 97px)"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "0px",
-							"right": "158px",
-							"left": "158px",
-							"height": "50px"
+							"width": "137px",
+							"height": "50px",
+							"left": "calc(50% - 68px)"
 						}
 					]
 				});

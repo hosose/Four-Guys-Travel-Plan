@@ -211,7 +211,7 @@
       <cl:button std:sid="button-dc31c6e3" id="editBtn" style="background-color:#98dde3; border-radius:5px; border-right-style:none; background-repeat:no-repeat; text-shadow:none; color:#FFFFFF; border-left-style:none; font-family:AppleSDGothicNeoEB00; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value="수정">
         <cl:listener std:sid="listener-b5d97c71" name="click" handler="onButtonClick"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-56bf5d50">
-          <cl:xylayoutdata std:sid="sxyl-data-f59df893" top="63px" right="86px" width="58px" height="30px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-f59df893" top="63px" right="86px" width="56px" height="30px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
         </cl:responsivexylayoutdata>
       </cl:button>
       <cl:output std:sid="output-8178837c" style="font-weight:bold; font-size:14px; font-family:AppleSDGothicNeoB00; text-align:right;" value="작성자 : ">

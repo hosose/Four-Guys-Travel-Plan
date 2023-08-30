@@ -132,7 +132,7 @@
       <cl:button std:sid="button-6f1f615e" id="selectBtn" style="border-right-style:none; color:#FFFFFF; font-size:25px; font-style:normal; border-top-style:none; background-color:#98dde3; border-radius:5px; background-repeat:no-repeat; text-shadow:none; border-left-style:none; border-bottom-style:none; font-family:AppleSDGothicNeoB00; background-image:none;" value="등록">
         <cl:listener std:sid="listener-eced33cf" name="click" handler="onSelectBtnClick"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-44ae7c31">
-          <cl:xylayoutdata std:sid="sxyl-data-313c6155" top="0px" right="462px" left="462px" height="50px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-313c6155" top="0px" width="400px" height="50px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
         </cl:responsivexylayoutdata>
       </cl:button>
       <cl:responsivexylayout std:sid="r-xylayout-327b2a81"/>

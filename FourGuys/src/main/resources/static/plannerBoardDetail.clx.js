@@ -807,21 +807,21 @@
 							"media": "all and (min-width: 1024px)",
 							"top": "63px",
 							"right": "86px",
-							"width": "58px",
+							"width": "56px",
 							"height": "30px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "63px",
 							"right": "42px",
-							"width": "28px",
+							"width": "27px",
 							"height": "30px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "63px",
 							"right": "29px",
-							"width": "20px",
+							"width": "19px",
 							"height": "30px"
 						}
 					]
